@@ -1,0 +1,165 @@
+@prefix dig: <http://dig.isi.edu/ontology/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://dig.isi.edu/ontology/> rdf:type owl:Ontology .
+
+
+#########################################################
+#
+# Classes
+#
+#########################################################
+
+dig:E1_Entity rdf:type owl:Class ; 
+	rdfs:label "E1_Entity"@en ;
+	rdfs:comment """Represents an entity in the DIG domain."""
+	.
+
+dig:E2_Versioned_Entity rdf:type owl:Class ; 
+	rdfs:subClassOf dig:E1_Entity ;
+	rdfs:label ""@en ;
+	rdfs:comment """Represents an entity that can have multiple versions."""
+	.
+
+dig:E3_Web_Document rdf:type owl:Class ; 
+	rdfs:subClassOf dig:E2_Versioned_Entity ;
+	rdfs:label "E2_Versioned_Entity"@en ;
+	rdfs:comment """Represents a Web document for which there can be multiple versions."""
+	.
+
+dig:E4_Web_Image rdf:type owl:Class ; 
+	rdfs:subClassOf dig:E2_Versioned_Entity ;
+	rdfs:label ""@en ;
+	rdfs:comment """Represents an image availabel on the Web."""
+	.
+
+dig:E5_Web_Document_Version rdf:type owl:Class ; 
+	rdfs:subClassOf dig:E1_Entity ;
+	rdfs:label "E4_Web_Image"@en ;
+	rdfs:comment """Represents a specific version of Web document, downloaded at a specific point in time."""
+	.
+
+dig:E6_Web_Image_Version rdf:type owl:Class ; 
+	rdfs:subClassOf dig:E5_Web_Document_Version ;
+	rdfs:label "E5_Web_Image_Version"@en ;
+	rdfs:comment """Represents a specific version of an image on the Web, downloaded at a specific point in time."""
+	.
+
+dig:E7_Version rdf:type owl:Class ; 
+	rdfs:subClassOf dig:E1_Entity ;
+	rdfs:label "E7_Version"@en ;
+	rdfs:comment """Represents a version of some entity."""
+	.
+
+dig:E8_Phone_Number rdf:type owl:Class ; 
+	rdfs:subClassOf dig:E1_Entity ;
+	rdfs:label "E8_Phone_Number"@en ;
+	rdfs:comment """A phone number."""
+	.
+
+dig:E9_Identifier rdf:type owl:Class ; 
+	rdfs:subClassOf dig:E1_Entity ;
+	rdfs:label "E8_Phone_Number"@en ;
+	rdfs:comment """A phone number."""
+	.
+
+dig:E10_URL rdf:type owl:Class ; 
+	rdfs:subClassOf dig:E1_Entity ;
+	rdfs:label "E10_URL"@en ;
+	rdfs:comment """The URL of a version of a web document."""
+	.
+
+#########################################################
+#
+# Object Properties
+#
+#########################################################
+
+dig:P1_has_version rdf:type owl:ObjectProperty ; 
+	rdfs:label "P1_has_version"@en ;
+	rdfs:domain dig:E2_Versioned_Entity ; 
+	rdfs:range dig:E7_Version ;
+	rdfs:comment "Identifies a version of a versioned document." 
+	.
+
+dig:P2_has_preferred_identifier rdf:type owl:ObjectProperty ; 
+	rdfs:label "P2_has_preferred_identifier"@en ;
+	rdfs:domain dig:E1_Entity ; 
+	rdfs:range dig:E9_Identifier ;
+	rdfs:comment "The preferred identifier of an entity." 
+	.
+
+dig:P3_has_part rdf:type owl:ObjectProperty ; 
+	rdfs:label "P2_has_preferred_identifier"@en ;
+	rdfs:domain dig:E5_Web_Document_Version ; 
+	rdfs:range dig:E5_Web_Document_Version ;
+	rdfs:comment "Identifies the parts of a version of a document." 
+	.
+
+dig:P4_has_title_part rdf:type owl:ObjectProperty ; 
+	rdfs:label "P3_has_title_part"@en ;
+	rdfs:subPropertyOf dig:P3_has_part ;
+	rdfs:domain dig:E5_Web_Document_Version ; 
+	rdfs:range dig:E5_Web_Document_Version ;
+	rdfs:comment "Identifies the title part of a version of a document." 
+	.
+
+dig:P5_has_image_part rdf:type owl:ObjectProperty ; 
+	rdfs:label "P3_has_image_part"@en ;
+	rdfs:subPropertyOf dig:P3_has_part ;
+	rdfs:domain dig:E5_Web_Document_Version ; 
+	rdfs:range dig:E6_Web_Image_Version ;
+	rdfs:comment "Identifies the title part of a version of a document." 
+	.
+
+dig:P6_mentions rdf:type owl:ObjectProperty ; 
+	rdfs:label "P6_mentions"@en ;
+	rdfs:domain dig:E5_Web_Document_Version ; 
+	rdfs:range dig:E1_Entity ;
+	rdfs:comment "Identifies an entity mentioned in a version of a document." 
+	.
+
+dig:P7_mentions_phone_number rdf:type owl:ObjectProperty ; 
+	rdfs:label "P7_mentions_phone_number"@en ;
+	rdfs:subPropertyOf dig:P6_mentions ;
+	rdfs:domain dig:E5_Web_Document_Version ; 
+	rdfs:range dig:E8_Phone_Number ;
+	rdfs:comment "Identifies an phone number mentioned in a version of a document." 
+	.
+
+dig:P8_url rdf:type owl:ObjectProperty ; 
+	rdfs:label "P8_url"@en ;
+	rdfs:domain dig:E5_Web_Document_Version ; 
+	rdfs:range dig:E10_URL ;
+	rdfs:comment "The URL of a version of a document." 
+	.
+
+dig:P9_original_url rdf:type owl:ObjectProperty ; 
+	rdfs:label "P9_original_url"@en ;
+	rdfs:subPropertyOf dig:P8_url ;
+	rdfs:domain dig:E5_Web_Document_Version ; 
+	rdfs:range dig:E10_URL ;
+	rdfs:comment "The URL from where a version of a document was originally downloaded from." 
+	.
+
+dig:P10_cache_url rdf:type owl:ObjectProperty ; 
+	rdfs:label "P10_cache_url"@en ;
+	rdfs:subPropertyOf dig:P8_url ;
+	rdfs:domain dig:E5_Web_Document_Version ; 
+	rdfs:range dig:E10_URL ;
+	rdfs:comment "The URL of a cached version of a document was originally downloaded from." 
+	.
+
+#########################################################
+#
+# Data Properties
+#
+#########################################################
+
+dig:P101_creation_time rdf:type owl:DatatypeProperty ; 
+	rdfs:domain dig:E5_Web_Document_Version ;
+	rdfs:comment """The time when a version of a Web document was created.""" 
+	.
