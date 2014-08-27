@@ -3,6 +3,7 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2008/05/skos#> .
 
 <http://dig.isi.edu/ontology/> rdf:type owl:Ontology .
 
@@ -37,7 +38,7 @@ dig:E4_Web_Image rdf:type owl:Class ;
 	.
 
 dig:E5_Web_Document_Version rdf:type owl:Class ; 
-	rdfs:subClassOf dig:E1_Entity ;
+	rdfs:subClassOf dig:E7_Version ;
 	rdfs:label "E4_Web_Image"@en ;
 	rdfs:comment """Represents a specific version of Web document, downloaded at a specific point in time."""
 	.
@@ -63,7 +64,7 @@ dig:E8_Phone_Number rdf:type owl:Class ;
 dig:E9_Identifier rdf:type owl:Class ; 
 	rdfs:subClassOf dig:E1_Entity ;
 	rdfs:label "E8_Phone_Number"@en ;
-	rdfs:comment """A phone number."""
+	rdfs:comment """An identifier."""
 	.
 
 dig:E10_URL rdf:type owl:Class ; 
@@ -105,6 +106,14 @@ dig:P4_has_title_part rdf:type owl:ObjectProperty ;
 	rdfs:domain dig:E5_Web_Document_Version ; 
 	rdfs:range dig:E5_Web_Document_Version ;
 	rdfs:comment "Identifies the title part of a version of a document." 
+	.
+
+dig:P11_has_body_part rdf:type owl:ObjectProperty ; 
+	rdfs:label "P11_has_body_part"@en ;
+	rdfs:subPropertyOf dig:P3_has_part ;
+	rdfs:domain dig:E5_Web_Document_Version ; 
+	rdfs:range dig:E5_Web_Document_Version ;
+	rdfs:comment "Identifies the body part of a version of a document." 
 	.
 
 dig:P5_has_image_part rdf:type owl:ObjectProperty ; 
@@ -159,7 +168,8 @@ dig:P10_cache_url rdf:type owl:ObjectProperty ;
 #
 #########################################################
 
-dig:P101_creation_time rdf:type owl:DatatypeProperty ; 
+dig:P101_creation_time_DEPRECATED rdf:type owl:DatatypeProperty ; 
 	rdfs:domain dig:E5_Web_Document_Version ;
+	skos:note """We are using dct:created instead.""" ;
 	rdfs:comment """The time when a version of a Web document was created.""" 
 	.
