@@ -9,3 +9,12 @@ def countryUri(x):
 	import re
 	x = re.sub('[^A-Za-z0-9]+', '', getValue("Country"))
 	return x.lower()
+
+
+def toTitleCaseIfUpper(x):
+	"Return the string in title case if it is all upper, otherwise leave capitalization alone."
+	x = x.strip()
+	if x.isupper():
+	    return x.title()
+	else:
+	    return x
