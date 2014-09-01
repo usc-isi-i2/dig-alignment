@@ -1,7 +1,7 @@
 ## Airport Data
 This dataset contains information about airport codes that we use to map backpage market codes to city names and latitude/longitude.
 
-Downloaded `x-airports.csv` from from http://openflights.org/data.html
+Downloaded `x-airports.csv` from http://openflights.org/data.html
 
 ### PyTransforms
 #### _placeUri_

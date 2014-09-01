@@ -12,6 +12,7 @@ There is a separate folder for each dataset, typically containing the following 
 - `x-*.zip` are slightly larger sample datasets.
 - `*-model-*.ttl` are Karma model files to align features.
 - `*-aligned.json` are samples of aligned features. 
+- `*-augmented-*.json` are samples of aligned features that we augmented by joining with other aligned features.
 
 ## karma
 The home directory of karma so that others can easily replicate the Karma environment on their machines. The interesting files are in the preloaded-ontologies
