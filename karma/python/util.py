@@ -18,3 +18,8 @@ def toTitleCaseIfUpper(x):
 	    return x.title()
 	else:
 	    return x
+
+def phoneExchange(tenDigitPhone):
+	"Return the first six digits of a phone if it is a 10-digit phone."
+	if tenDigitPhone.isdigit() and len(tenDigitPhone.decode("utf-8")) == 10:
+	    return tenDigitPhone[0:6]
