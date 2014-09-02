@@ -23,3 +23,14 @@ def phoneExchange(tenDigitPhone):
 	"Return the first six digits of a phone if it is a 10-digit phone."
 	if tenDigitPhone.isdigit() and len(tenDigitPhone.decode("utf-8")) == 10:
 	    return tenDigitPhone[0:6]
+
+def nonAsciiChars(x):
+	"Return a set of the non-ascii chars in x"
+	import re
+	return set(re.sub('[\x00-\x7f]', '', x))
+
+def nonAsciiCharsAsString(x):
+	"Return a string containing a comma-separated list of non-ascii chars in x"
+	y = list(nonAsciiChars(x))
+	y.sort()
+	return ', '.join(y)
