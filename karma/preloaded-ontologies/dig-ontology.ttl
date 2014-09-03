@@ -4,6 +4,7 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix skos: <http://www.w3.org/2008/05/skos#> .
+@prefix schema: <http://schema.org/> .
 
 <http://dig.isi.edu/ontology/> rdf:type owl:Ontology .
 
@@ -14,63 +15,29 @@
 #
 #########################################################
 
-dig:E1_Entity rdf:type owl:Class ; 
-	rdfs:label "E1_Entity"@en ;
-	rdfs:comment """Represents an entity in the DIG domain."""
+
+dig:URLEntity rdf:type owl:Class ; 
+	rdfs:label "URLEntity"@en ;
+	rdfs:comment """Represents an address on the Web from where we can retrieve a resource.
+	Each time we dereference a URL we get a schema:CreativeWork, which we call a dig:snapshot"""
 	.
 
-dig:E2_Versioned_Entity rdf:type owl:Class ; 
-	rdfs:subClassOf dig:E1_Entity ;
-	rdfs:label ""@en ;
-	rdfs:comment """Represents an entity that can have multiple versions."""
+dig:Identifier rdf:type owl:Class ; 
+	rdfs:label "Identifier"@en ;
+	rdfs:comment """An identifier of something."""
 	.
 
-dig:E3_Web_Document rdf:type owl:Class ; 
-	rdfs:subClassOf dig:E2_Versioned_Entity ;
-	rdfs:label "E2_Versioned_Entity"@en ;
-	rdfs:comment """Represents a Web document for which there can be multiple versions."""
-	.
-
-dig:E4_Web_Image rdf:type owl:Class ; 
-	rdfs:subClassOf dig:E2_Versioned_Entity ;
-	rdfs:label ""@en ;
-	rdfs:comment """Represents an image availabel on the Web."""
-	.
-
-dig:E5_Web_Document_Version rdf:type owl:Class ; 
-	rdfs:subClassOf dig:E7_Version ;
-	rdfs:label "E4_Web_Image"@en ;
-	rdfs:comment """Represents a specific version of Web document, downloaded at a specific point in time."""
-	.
-
-dig:E6_Web_Image_Version rdf:type owl:Class ; 
-	rdfs:subClassOf dig:E5_Web_Document_Version ;
-	rdfs:label "E5_Web_Image_Version"@en ;
-	rdfs:comment """Represents a specific version of an image on the Web, downloaded at a specific point in time."""
-	.
-
-dig:E7_Version rdf:type owl:Class ; 
-	rdfs:subClassOf dig:E1_Entity ;
-	rdfs:label "E7_Version"@en ;
-	rdfs:comment """Represents a version of some entity."""
-	.
-
-dig:E8_Phone_Number rdf:type owl:Class ; 
-	rdfs:subClassOf dig:E1_Entity ;
-	rdfs:label "E8_Phone_Number"@en ;
+dig:PhoneNumber rdf:type owl:Class ; 
+	rdfs:subClassOf dig:Identifier ;
+	rdfs:label "PhoneNumber"@en ;
+	skos:note """Still wavering whether a phone number is a subclass of Identifier.""" ;
 	rdfs:comment """A phone number."""
 	.
 
-dig:E9_Identifier rdf:type owl:Class ; 
-	rdfs:subClassOf dig:E1_Entity ;
-	rdfs:label "E8_Phone_Number"@en ;
-	rdfs:comment """An identifier."""
-	.
-
-dig:E10_URL rdf:type owl:Class ; 
-	rdfs:subClassOf dig:E1_Entity ;
-	rdfs:label "E10_URL"@en ;
-	rdfs:comment """The URL of a version of a web document."""
+dig:PersonName rdf:type owl:Class ; 
+	rdfs:label "PersonName"@en ;
+	skos:note """Defining as a class so that we can attach provenance to the object""" ;
+	rdfs:comment """A person name."""
 	.
 
 #########################################################
@@ -79,88 +46,101 @@ dig:E10_URL rdf:type owl:Class ;
 #
 #########################################################
 
-dig:P1_has_version rdf:type owl:ObjectProperty ; 
-	rdfs:label "P1_has_version"@en ;
-	rdfs:domain dig:E2_Versioned_Entity ; 
-	rdfs:range dig:E7_Version ;
-	rdfs:comment "Identifies a version of a versioned document." 
+dig:snapshot rdf:type owl:ObjectProperty ; 
+	rdfs:label "snapshot"@en ;
+	rdfs:domain dig:URLEntity ; 
+	rdfs:range schema:CreativeWork ;
+	owl:inverseOf dig:isSnapshotOf ;
+	rdfs:comment "Identifies a resource download from a url." 
 	.
 
-dig:P2_has_preferred_identifier rdf:type owl:ObjectProperty ; 
-	rdfs:label "P2_has_preferred_identifier"@en ;
-	rdfs:domain dig:E1_Entity ; 
-	rdfs:range dig:E9_Identifier ;
+dig:isSnapshotOf rdf:type owl:ObjectProperty ; 
+	rdfs:label "isSnapshotOf"@en ;
+	rdfs:domain schema:CreativeWork ;
+	rdfs:range dig:URLEntity ; 
+	owl:inverseOf dig:snapshot ;
+	rdfs:comment "Inverse of dig:snapshot." 
+	.
+
+dig:identifier rdf:type owl:ObjectProperty ; 
+	rdfs:label "identifier"@en ;
+	rdfs:range dig:Identifier ;
+	rdfs:comment "An identifier of an entity." 
+	.
+
+dig:preferredIdentifier rdf:type owl:ObjectProperty ; 
+	rdfs:subPropertyOf dig:identifier ;
+	rdfs:label "preferredIdentifier"@en ;
+	rdfs:range dig:Identifier ;
 	rdfs:comment "The preferred identifier of an entity." 
 	.
 
-dig:P3_has_part rdf:type owl:ObjectProperty ; 
-	rdfs:label "P2_has_preferred_identifier"@en ;
-	rdfs:domain dig:E5_Web_Document_Version ; 
-	rdfs:range dig:E5_Web_Document_Version ;
-	rdfs:comment "Identifies the parts of a version of a document." 
+dig:hasTitlePart rdf:type owl:ObjectProperty ; 
+	rdfs:label "hasTitlePart"@en ;
+	rdfs:subPropertyOf schema:hasPart ;
+	rdfs:comment "Identifies the title part of a schema:CreativeWork." 
 	.
 
-dig:P4_has_title_part rdf:type owl:ObjectProperty ; 
-	rdfs:label "P3_has_title_part"@en ;
-	rdfs:subPropertyOf dig:P3_has_part ;
-	rdfs:domain dig:E5_Web_Document_Version ; 
-	rdfs:range dig:E5_Web_Document_Version ;
-	rdfs:comment "Identifies the title part of a version of a document." 
+dig:hasBodyPart rdf:type owl:ObjectProperty ; 
+	rdfs:label "hasBodyPart"@en ;
+	rdfs:subPropertyOf schema:hasPart ;
+	rdfs:comment "Identifies the body part of a schema:CreativeWork." 
 	.
 
-dig:P11_has_body_part rdf:type owl:ObjectProperty ; 
-	rdfs:label "P11_has_body_part"@en ;
-	rdfs:subPropertyOf dig:P3_has_part ;
-	rdfs:domain dig:E5_Web_Document_Version ; 
-	rdfs:range dig:E5_Web_Document_Version ;
-	rdfs:comment "Identifies the body part of a version of a document." 
+dig:hasImagePart rdf:type owl:ObjectProperty ; 
+	rdfs:label "hasImagePart"@en ;
+	rdfs:subPropertyOf schema:hasPart ;
+	rdfs:range schema:ImageObject ;
+	rdfs:comment "Identifies an ImageObject that is part of a schema:CreativeWork." 
 	.
 
-dig:P5_has_image_part rdf:type owl:ObjectProperty ; 
-	rdfs:label "P3_has_image_part"@en ;
-	rdfs:subPropertyOf dig:P3_has_part ;
-	rdfs:domain dig:E5_Web_Document_Version ; 
-	rdfs:range dig:E6_Web_Image_Version ;
-	rdfs:comment "Identifies the title part of a version of a document." 
+dig:mentionsPhoneNumber rdf:type owl:ObjectProperty ; 
+	rdfs:label "mentionsPhoneNumber"@en ;
+	rdfs:subPropertyOf schema:mentions ;
+	rdfs:domain schema:CreativeWork ;
+	rdfs:range dig:PhoneNumber ;
+	rdfs:comment "Identifies an phone number mentioned in a schema:CreativeWork." 
 	.
 
-dig:P6_mentions rdf:type owl:ObjectProperty ; 
-	rdfs:label "P6_mentions"@en ;
-	rdfs:domain dig:E5_Web_Document_Version ; 
-	rdfs:range dig:E1_Entity ;
-	rdfs:comment "Identifies an entity mentioned in a version of a document." 
+dig:mentionsPlace rdf:type owl:ObjectProperty ; 
+	rdfs:label "mentionsPlace"@en ;
+	rdfs:subPropertyOf schema:mentions ;
+	rdfs:range schema:Place ;
+	rdfs:comment "Identifies a schema:Place mentioned in a schema:CreativeWork." 
 	.
 
-dig:P7_mentions_phone_number rdf:type owl:ObjectProperty ; 
-	rdfs:label "P7_mentions_phone_number"@en ;
-	rdfs:subPropertyOf dig:P6_mentions ;
-	rdfs:domain dig:E5_Web_Document_Version ; 
-	rdfs:range dig:E8_Phone_Number ;
-	rdfs:comment "Identifies an phone number mentioned in a version of a document." 
+dig:mentionsPerson rdf:type owl:ObjectProperty ; 
+	rdfs:label "mentionsPerson"@en ;
+	rdfs:subPropertyOf schema:mentions ;
+	rdfs:range schema:Person ;
+	rdfs:comment "Identifies a schema:Person mentioned in a schema:CreativeWork." 
 	.
 
-dig:P8_url rdf:type owl:ObjectProperty ; 
-	rdfs:label "P8_url"@en ;
-	rdfs:domain dig:E5_Web_Document_Version ; 
-	rdfs:range dig:E10_URL ;
-	rdfs:comment "The URL of a version of a document." 
+dig:urlEntity rdf:type owl:ObjectProperty ; 
+	rdfs:label "urlEntity"@en ;
+	rdfs:domain schema:CreativeWork ; 
+	rdfs:range dig:URLEntity ;
+	skos:note """schema.org has a schema:url property, but it is a DatatypeProperty, 
+	and urlEntity is an ObjectProperty. We define the domain as schema:CreativeWork as opposed
+	to owl:Thing as defined in schema.org.""" ;
+	rdfs:comment "The URL of a schema:CreativeWork." 
 	.
 
-dig:P9_original_url rdf:type owl:ObjectProperty ; 
-	rdfs:label "P9_original_url"@en ;
-	rdfs:subPropertyOf dig:P8_url ;
-	rdfs:domain dig:E5_Web_Document_Version ; 
-	rdfs:range dig:E10_URL ;
-	rdfs:comment "The URL from where a version of a document was originally downloaded from." 
+dig:primaryLocation rdf:type owl:ObjectProperty ; 
+	rdfs:label "postingLocation"@en ;
+	rdfs:subPropertyOf schema:mentions ;
+	rdfs:domain schema:CreativeWork ;
+	rdfs:range schema:Place ;
+	rdfs:comment "The primary location associated with a schema:CreativeWork." 
 	.
 
-dig:P10_cache_url rdf:type owl:ObjectProperty ; 
-	rdfs:label "P10_cache_url"@en ;
-	rdfs:subPropertyOf dig:P8_url ;
-	rdfs:domain dig:E5_Web_Document_Version ; 
-	rdfs:range dig:E10_URL ;
-	rdfs:comment "The URL of a cached version of a document was originally downloaded from." 
+dig:pseudonym rdf:type owl:ObjectProperty ; 
+	rdfs:label "pseudonym"@en ;
+	rdfs:domain schema:Person ;
+	rdfs:range dig:PersonName ;
+	rdfs:comment "The pseudonym of a person." 
 	.
+
 
 #########################################################
 #
@@ -168,8 +148,26 @@ dig:P10_cache_url rdf:type owl:ObjectProperty ;
 #
 #########################################################
 
-dig:P101_creation_time_DEPRECATED rdf:type owl:DatatypeProperty ; 
-	rdfs:domain dig:E5_Web_Document_Version ;
-	skos:note """We are using dct:created instead.""" ;
-	rdfs:comment """The time when a version of a Web document was created.""" 
+schema:url rdf:type owl:DatatypeProperty ;
+	rdfs:label "url"@en ;
+	skos:note """The owl file for schema.org is missing the url property, which is in schema.org.""" ;
+	rdfs:comment "The URL of a resource." 
+	.
+
+dig:cacheUrl rdf:type owl:DatatypeProperty ;
+	rdfs:label "cacheUrl"@en ;
+	rdfs:subPropertyOf schema:url ;
+	rdfs:comment "The URL of a cached version of a resource." 
+	.
+
+dig:mentionsPersonAge rdf:type owl:DatatypeProperty ;
+	rdfs:label "cacheUrl"@en ;
+	rdfs:domain schema:CreativeWork ;
+	rdfs:comment "A person age mentioned in a schema:CreativeWork." 
+	.
+
+dig:tenDigitPhoneNumber rdf:type owl:DatatypeProperty ;
+	rdfs:label "tenDigitPhoneNumber"@en ;
+	rdfs:domain dig:PhoneNumber ;
+	rdfs:comment "The 10 digit number of a USA phone number." 
 	.
