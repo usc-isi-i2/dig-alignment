@@ -30,8 +30,14 @@ dig:Identifier rdf:type owl:Class ;
 dig:PhoneNumber rdf:type owl:Class ; 
 	rdfs:subClassOf dig:Identifier ;
 	rdfs:label "PhoneNumber"@en ;
-	skos:note """ Still wavering whether a phone number is a subclass of Identifier.""" ;
+	skos:note """Still wavering whether a phone number is a subclass of Identifier.""" ;
 	rdfs:comment """A phone number."""
+	.
+
+dig:PersonName rdf:type owl:Class ; 
+	rdfs:label "PersonName"@en ;
+	skos:note """Defining as a class so that we can attach provenance to the object""" ;
+	rdfs:comment """A person name."""
 	.
 
 #########################################################
@@ -103,6 +109,13 @@ dig:mentionsPlace rdf:type owl:ObjectProperty ;
 	rdfs:comment "Identifies a schema:Place mentioned in a schema:CreativeWork." 
 	.
 
+dig:mentionsPerson rdf:type owl:ObjectProperty ; 
+	rdfs:label "mentionsPerson"@en ;
+	rdfs:subPropertyOf schema:mentions ;
+	rdfs:range schema:Person ;
+	rdfs:comment "Identifies a schema:Person mentioned in a schema:CreativeWork." 
+	.
+
 dig:urlEntity rdf:type owl:ObjectProperty ; 
 	rdfs:label "urlEntity"@en ;
 	rdfs:domain schema:CreativeWork ; 
@@ -120,6 +133,14 @@ dig:primaryLocation rdf:type owl:ObjectProperty ;
 	rdfs:range schema:Place ;
 	rdfs:comment "The primary location associated with a schema:CreativeWork." 
 	.
+
+dig:pseudonym rdf:type owl:ObjectProperty ; 
+	rdfs:label "pseudonym"@en ;
+	rdfs:domain schema:Person ;
+	rdfs:range dig:PersonName ;
+	rdfs:comment "The pseudonym of a person." 
+	.
+
 
 #########################################################
 #
