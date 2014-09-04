@@ -68,6 +68,11 @@ def fingerprintString(x):
 	y.sort()
 	return '_'.join(y)
 
+def selectInOutCall(x):
+	res = True
+	if (x == "incall" or x == "notincall" or x == "outcall" or x == "notoutcall" or x == "incalloutcall"):
+		res = False
+	return res
 
 def md5Hash(x):
 	"Return md5 hash of x"
