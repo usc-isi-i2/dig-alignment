@@ -19,6 +19,16 @@ Larger versions of the files are in the Azure file system at http://karma-dig-se
 - `x-inlandempire-lasvegas-losangeles-sandiego+backpage-phones.*` contains the aligned features after we run the phone extractor.
 - `x-inlandempire-lasvegas-losangeles-sandiego+backpage-workingname.*` contains the aligned features after we run the person name extractor.
 
+We are currently working to add the output of additional extractors:
+
+- multi-provider indicating when the ad is about two or more providers
+- ethnicity preferences of clients stated in the ad
+- age preferences of clients stated in the ad
+- in-call/out-call restrictions
+- new-in-town statements indicating that providers recently arrived
+- provider youth indicating whether the provider makes statements about youth
+- provider ethnicity indicating statements about the provider ethnicity or nationality
+
 The following files contain data that we will join with the backpage data to add additional information:
 
 - `x-airports-aligned.*` contains place information based on the airport iata codes. After joining, the backpage data gets extended with address and geo-coordinates for the ads that contain airport codes.
