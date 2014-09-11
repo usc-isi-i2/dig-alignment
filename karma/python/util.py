@@ -74,6 +74,17 @@ def selectInOutCall(x):
 		res = False
 	return res
 
+def inOutCallUriOld(x):
+	"Return a URI for a In/Out Call Preference"
+	import re
+	x = re.sub('[^A-Za-z0-9]+', '', x)
+	x = x.lower()
+	return 'inOutCallPreference/' + x
+
+def inOutCallUri(x):
+	"Return a URI for a In/Out Call Preference based on the category column"
+	return 'inoutcallpreference/' + x
+
 def md5Hash(x):
 	"Return md5 hash of x"
 	import hashlib
