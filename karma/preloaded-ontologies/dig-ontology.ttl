@@ -104,15 +104,34 @@ dig:hasTitlePart rdf:type owl:ObjectProperty ;
 	rdfs:comment "Identifies the title part of a schema:CreativeWork." 
 	.
 
+dig:isTitlePartOf rdf:type owl:ObjectProperty ; 
+	rdfs:label "isTitlePartOf"@en ;
+	owl:inverseOf  dig:hasTitlePart ;
+	rdfs:comment "Identifies the title part of a schema:CreativeWork." 
+	.
+
 dig:hasBodyPart rdf:type owl:ObjectProperty ; 
 	rdfs:label "hasBodyPart"@en ;
 	rdfs:subPropertyOf schema:hasPart ;
+	rdfs:comment "Identifies the body part of a schema:CreativeWork."
+	.
+
+dig:isBodyPartOf rdf:type owl:ObjectProperty ; 
+	rdfs:label "isBodyPartOf"@en ;
+	owl:inverseOf dig:hasBodyPart ;
 	rdfs:comment "Identifies the body part of a schema:CreativeWork." 
 	.
 
 dig:hasImagePart rdf:type owl:ObjectProperty ; 
 	rdfs:label "hasImagePart"@en ;
 	rdfs:subPropertyOf schema:hasPart ;
+	rdfs:range schema:ImageObject ;
+	rdfs:comment "Identifies an ImageObject that is part of a schema:CreativeWork." 
+	.
+
+dig:isImagePartOf rdf:type owl:ObjectProperty ; 
+	rdfs:label "isImagePartOf"@en ;
+	owl:inverseOf dig:hasImagePart ;
 	rdfs:range schema:ImageObject ;
 	rdfs:comment "Identifies an ImageObject that is part of a schema:CreativeWork." 
 	.
@@ -125,6 +144,15 @@ dig:mentionsPhoneNumber rdf:type owl:ObjectProperty ;
 	rdfs:comment "Identifies an phone number mentioned in a schema:CreativeWork." 
 	.
 
+dig:isMentionedPhoneNumberIn rdf:type owl:ObjectProperty ; 
+	rdfs:label "isMentionedPhoneNumberIn"@en ;
+	rdfs:subPropertyOf schema:mentions ;
+	rdfs:range schema:CreativeWork ;
+	rdfs:domain dig:PhoneNumber ;
+	owl:inverseOf dig:mentionsPhoneNumber;
+	rdfs:comment "Identifies an phone number mentioned in a schema:CreativeWork." 
+	.
+
 dig:mentionsPlace rdf:type owl:ObjectProperty ; 
 	rdfs:label "mentionsPlace"@en ;
 	rdfs:subPropertyOf schema:mentions ;
@@ -132,10 +160,24 @@ dig:mentionsPlace rdf:type owl:ObjectProperty ;
 	rdfs:comment "Identifies a schema:Place mentioned in a schema:CreativeWork." 
 	.
 
+dig:isMentionedPlaceIn rdf:type owl:ObjectProperty ; 
+	rdfs:label "isMentionedPlaceIn"@en ;
+	rdfs:domain schema:Place ;
+	owl:inverseOf dig:mentionsPlace;
+	rdfs:comment "Identifies a schema:Place mentioned in a schema:CreativeWork." 
+	.
+
 dig:mentionsPerson rdf:type owl:ObjectProperty ; 
 	rdfs:label "mentionsPerson"@en ;
 	rdfs:subPropertyOf schema:mentions ;
 	rdfs:range schema:Person ;
+	rdfs:comment "Identifies a schema:Person mentioned in a schema:CreativeWork." 
+	.
+
+dig:isMentionedPersonIn rdf:type owl:ObjectProperty ; 
+	rdfs:label "isMentionedPersonIn"@en ;
+	rdfs:domain schema:Person ;
+	owl:inverseOf dig:mentionsPerson ;
 	rdfs:comment "Identifies a schema:Person mentioned in a schema:CreativeWork." 
 	.
 
