@@ -1,3 +1,6 @@
+from collections import defaultdict
+import re
+
 # phone
 # phone2	810
 
@@ -5,7 +8,7 @@ def clean_phone(x):
 	"""Return the phone as a 10 digit number,
 	 or as close to that as we can make it
 	"""
-	ph = numericOnly(x.strip())
+	ph = numericOnly(x.strip().lower())
 	# If there are 11 numbers 
 	if (len(ph)==11 and ph[0]=="1"):
 		ph = ph[1:]
@@ -20,7 +23,7 @@ def feature_phone(x):
 def clean_age(x):
 	"""Return the a clean age
 	"""
-	return x.strip();
+	return x.strip().lower();
 
 def feature_age(x):
 	cleaned = clean_age(x)
@@ -32,7 +35,7 @@ def clean_email(x):
 	"""Return a clean email address
 	"""
 	if (x.find("@") != -1):
-		em = x.strip().lower();
+		em = x.strip().lower().lower();
 		return em;
 
 def feature_email(x):
@@ -42,7 +45,7 @@ def feature_email(x):
 
 # gender
 def clean_gender(x):
-	g = x.strip().lower();
+	g = x.strip().lower().lower();
 	if g in ["female", "f"]:
 		return "f"
 	elif g in ["male", "m"]:
@@ -71,7 +74,7 @@ def feature_rate(x):
 
 # ethnicity	38587
 def clean_ethnicity(x):
-	stripped = x.strip()
+	stripped = x.strip().lower()
 	return x
 
 def feature_ethnicity(x):
@@ -80,9 +83,37 @@ def feature_ethnicity(x):
 		return "feature/ethnicity/%s" % cleaned
 
 # height	29135
+# 168
+# 5'6"
+# 6'
+# 5'7" - 5'9"
+# test=["168", "5'6\"", "6'", "5'7\" - 5'9\""]
+
+def nearest5(x):
+	return 5*(int(2.5 + x)/5)
+
 def clean_height(x):
-	stripped = x.strip()
-	return x
+	stripped = x.strip().lower()
+	# take only first measurement of any range
+	stripped = stripped.split('-')[0].strip()
+	try:
+		# First, 5'6" or 6' or 6'7
+		dimensions = stripped.split("'")
+		if len(dimensions) >= 2:
+			feet = int(dimensions[0])
+			try:
+				inches = int(dimensions[1].strip('"'))
+			except:
+				# empty inches
+				inches = 0
+			return nearest5(int(2.54 * (12 * feet) + inches))
+		else:
+			# no inches, so try centimeters
+			# Second, 137
+			return nearest5(int(stripped))
+	except:
+		return None
+	return None
 
 def feature_height(x):
 	cleaned = clean_height(x)
@@ -91,7 +122,7 @@ def feature_height(x):
 
 # hair	22078
 def clean_hair(x):
-	stripped = x.strip()
+	stripped = x.strip().lower()
 	return x
 
 def feature_hair(x):
@@ -101,7 +132,7 @@ def feature_hair(x):
 
 # build	21842
 def clean_build(x):
-	stripped = x.strip()
+	stripped = x.strip().lower()
 	return x
 
 def feature_build(x):
@@ -111,7 +142,7 @@ def feature_build(x):
 
 # cup	19179
 def clean_cup(x):
-	stripped = x.strip()
+	stripped = x.strip().lower().lower()
 	return x
 
 def feature_cup(x):
@@ -121,7 +152,7 @@ def feature_cup(x):
 
 # bust	18394
 def clean_bust(x):
-	stripped = x.strip()
+	stripped = x.strip().lower()
 	return x
 
 def feature_bust(x):
@@ -131,7 +162,7 @@ def feature_bust(x):
 
 # piercings	18294
 def clean_piercings(x):
-	stripped = x.strip()
+	stripped = x.strip().lower()
 	return x
 
 def feature_piercings(x):
@@ -141,7 +172,7 @@ def feature_piercings(x):
 
 # creditcards	18272
 def clean_creditcards(x):
-	stripped = x.strip()
+	stripped = x.strip().lower()
 	return x
 
 def feature_creditcards(x):
@@ -151,7 +182,7 @@ def feature_creditcards(x):
 
 # hairlength	18030
 def clean_hairlength(x):
-	stripped = x.strip()
+	stripped = x.strip().lower()
 	return x
 
 def feature_hairlength(x):
@@ -161,7 +192,7 @@ def feature_hairlength(x):
 
 # hairtype	17945
 def clean_hairtype(x):
-	stripped = x.strip()
+	stripped = x.strip().lower()
 	return x
 
 def feature_hairtype(x):
@@ -171,7 +202,7 @@ def feature_hairtype(x):
 
 # eyes	16723
 def clean_eyes(x):
-	stripped = x.strip()
+	stripped = x.strip().lower()
 	return x
 
 def feature_eyes(x):
@@ -181,7 +212,7 @@ def feature_eyes(x):
 
 # weight	13316
 def clean_weight(x):
-	stripped = x.strip()
+	stripped = x.strip().lower()
 	return x
 
 def feature_weight(x):
@@ -191,7 +222,7 @@ def feature_weight(x):
 
 # name	10042
 def clean_name(x):
-	stripped = x.strip()
+	stripped = x.strip().lower()
 	return x
 
 def feature_name(x):
@@ -201,7 +232,7 @@ def feature_name(x):
 
 # tattoos	8614
 def clean_tattoos(x):
-	stripped = x.strip()
+	stripped = x.strip().lower()
 	return x
 
 def feature_tattoos(x):
@@ -211,7 +242,7 @@ def feature_tattoos(x):
 
 # grooming	5709
 def clean_grooming(x):
-	stripped = x.strip()
+	stripped = x.strip().lower()
 	return x
 
 def feature_grooming(x):
@@ -221,7 +252,7 @@ def feature_grooming(x):
 
 # implants	5469
 def clean_implants(x):
-	stripped = x.strip()
+	stripped = x.strip().lower()
 	return x
 
 def feature_implants(x):
@@ -231,7 +262,7 @@ def feature_implants(x):
 
 # username	5209
 def clean_username(x):
-	stripped = x.strip()
+	stripped = x.strip().lower()
 	return x
 
 def feature_username(x):
@@ -241,7 +272,7 @@ def feature_username(x):
 
 # travel	4727
 def clean_travel(x):
-	stripped = x.strip()
+	stripped = x.strip().lower()
 	return x
 
 def feature_travel(x):
@@ -251,7 +282,7 @@ def feature_travel(x):
 
 # zip	2734
 def clean_zip(x):
-	stripped = x.strip()
+	stripped = x.strip().lower()
 	return x
 
 def feature_zip(x):
@@ -261,7 +292,7 @@ def feature_zip(x):
 
 # waist	2468
 def clean_waist(x):
-	stripped = x.strip()
+	stripped = x.strip().lower()
 	return x
 
 def feature_waist(x):
@@ -271,7 +302,7 @@ def feature_waist(x):
 
 # hips	2400
 def clean_hips(x):
-	stripped = x.strip()
+	stripped = x.strip().lower()
 	return x
 
 def feature_hips(x):
@@ -281,7 +312,7 @@ def feature_hips(x):
 
 # alias	2049
 def clean_alias(x):
-	stripped = x.strip()
+	stripped = x.strip().lower()
 	return x
 
 def feature_alias(x):
