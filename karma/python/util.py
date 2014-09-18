@@ -60,6 +60,10 @@ def alphaNumeric(x):
 	"Replace consecutive non-alphanumeric bya single space"
 	return re.sub('[^A-Za-z0-9]+', ' ', x)
 
+def numericOnly(x):
+	"Remove non-numeric chars from the string x"
+	return re.sub('[^0-9]+', '', x)
+
 
 def fingerprintString(x):
 	"Make a fingerprint liek the one google refine makes"
@@ -89,3 +93,11 @@ def md5Hash(x):
 	"Return md5 hash of x"
 	import hashlib
 	return hashlib.md5(x).hexdigest()
+
+def tenDigitPhoneNumber(x):
+	"""Return the 10-digit phone number of a phone, as 10 consecutive digits"""
+	return re.sub('[^0-9]+', '', x)
+
+
+
+

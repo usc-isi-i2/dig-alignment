@@ -30,8 +30,16 @@ dig:Identifier rdf:type owl:Class ;
 dig:PhoneNumber rdf:type owl:Class ; 
 	rdfs:subClassOf dig:Identifier ;
 	rdfs:label "PhoneNumber"@en ;
-	skos:note """Still wavering whether a phone number is a subclass of Identifier.""" ;
+	skos:note """Still wavering whether a phone number is a subclass of Identifier.
+	Clearly not an appropriate identifier for a person given that numbers get recycled.""" ;
 	rdfs:comment """A phone number."""
+	.
+
+dig:EmailAddress rdf:type owl:Class ; 
+	rdfs:subClassOf dig:Identifier ;
+	rdfs:label "EmailAddress"@en ;
+	skos:note """Still wavering whether an email address is a subclass of Identifier.""" ;
+	rdfs:comment """An email address."""
 	.
 
 dig:PersonName rdf:type owl:Class ; 
@@ -60,7 +68,20 @@ dig:Preference rdf:type owl:Class ;
 dig:Boolean rdf:type owl:Class ; 
 	rdfs:label "Boolean"@en ;
 	rdfs:comment """Represents a Boolean value.
-	The admissible instances are http://dig.isi.edu/data/boolean/true and falase."""
+	The admissible instances are http://dig.isi.edu/data/boolean/true and false."""
+	.
+
+dig:Feature rdf:type owl:Class ; 
+	rdfs:label "Feature"@en ;
+	rdfs:comment """Represents a feature."""
+	.
+
+dig:BinaryFeature rdf:type owl:Class ; 
+	rdfs:subClassOf dig:Feature ;
+	rdfs:label "Feature"@en ;
+	rdfs:comment """Represents a binary feature. Binary features are coded as
+	URI so that if the URI is present the feature is true, and when it is absent
+	the feature is false."""
 	.
 
 #########################################################
@@ -206,6 +227,13 @@ dig:pseudonym rdf:type owl:ObjectProperty ;
 	rdfs:comment "The pseudonym of a person." 
 	.
 
+dig:emailAddress rdf:type owl:ObjectProperty ; 
+	rdfs:label "emailAddress"@en ;
+	rdfs:domain schema:Person ;
+	rdfs:range dig:EmailAddress ;
+	rdfs:comment "The email address of a person." 
+	.
+
 dig:ethnicity rdf:type owl:ObjectProperty ; 
 	rdfs:label "ethnicity"@en ;
 	rdfs:domain schema:Person ;
@@ -227,6 +255,13 @@ dig:preferenceSubject rdf:type owl:ObjectProperty ;
 	rdfs:comment """The thing about which a preference is stated. 
 	The values in the range are URIs that form a controlled vocabulary;
 	they include values such as http://..../agegroup/young"""
+	.
+
+dig:personFeature rdf:type owl:ObjectProperty ; 
+	rdfs:label "personFeature"@en ;
+	rdfs:domain schema:CreativeWork ;
+	rdfs:range dig:Feature ; 
+	rdfs:comment "A feature that characterizes people mentioned in a creative work." 
 	.
 
 #########################################################
