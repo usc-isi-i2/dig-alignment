@@ -64,6 +64,10 @@ def numericOnly(x):
 	"Remove non-numeric chars from the string x"
 	return re.sub('[^0-9]+', '', x)
 
+def alphaOnly(x):
+	"Remove non-alphabetic chars from the string x"
+	return re.sub('[^A-Za-z]+', '', x)
+
 
 def fingerprintString(x):
 	"Make a fingerprint liek the one google refine makes"

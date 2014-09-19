@@ -173,12 +173,12 @@ def feature_bust(x):
 	if cleaned:
 		return "feature/bust/%s" % cleaned
 
-# piercings	18294
+# piercings	18294 
 # None Belly Button Face
 # xxxxx Other (where xxxx is a legal value)
 # Tongue Breasts Belly Button Other
 #
-# Maybe use "belly button" "bellow the belt" as tokens
+# Maybe use "belly button" "bellow the belt" as tokens, and then
 # we should generate a comma-separated list of values and then
 # use split values to generate a multi-valued cell so that we
 # can generate multiple features per attribute.
