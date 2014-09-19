@@ -1,6 +1,6 @@
 from collections import defaultdict
 import re
-from util import numericOnly, alphaOnly
+#from util import numericOnly, alphaOnly
 
 def nearest5(x):
 	return 5*(int(2.5 + x)/5)
