@@ -239,13 +239,11 @@ def feature_weight(x):
 		if len(l) == 1:
 			l = re.split("st", cleaned)
 		if len(l) > 1:
-			print l
 			stone = float(l[0])
 			lb = l[1]
 			lb = lb.strip('s')
 			lb = lb.strip('lb')
 			lb = lb.strip('pound')
-			print "lb = %r" % lb
 			try:
 				lb = float(lb)
 			except ValueError as e:
@@ -275,13 +273,7 @@ def feature_weight(x):
 			return sanityCheck(lb_to_kg(num))
 	
 	except Exception as e:
-		print e
 		return None
-
-for wt in test:
-	print "\n"
-	a = feature_weight(wt)
-	print "%r => %r" % (wt, a)
 
 # name	10042
 def clean_name(x):
