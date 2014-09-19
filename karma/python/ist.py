@@ -86,7 +86,7 @@ def feature_rate(x):
 # ethnicity	38587
 def clean_ethnicity(x):
 	stripped = x.strip().lower()
-	return x
+	return stripped
 
 def feature_ethnicity(x):
 	cleaned = clean_ethnicity(x)
@@ -166,9 +166,19 @@ def feature_cup(x):
 # bust  Perrrfct
 def clean_bust(x):
 	stripped = x.strip().lower()
-	return x
+	stripped = stripped.replace(" ","")
+	first = re.split("-")[0]
+	first = numericOnly(first)
+	return first and int(first)
 
 def feature_bust(x):
+	"this one is in inches"
+	def sanityCheck(bust):
+		if bust >= 20 and bust <= 50:
+			return bust
+		else:
+			return None
+
 	cleaned = clean_bust(x)
 	if cleaned:
 		return "feature/bust/%s" % cleaned
@@ -184,17 +194,19 @@ def feature_bust(x):
 # can generate multiple features per attribute.
 def clean_piercings(x):
 	stripped = x.strip().lower()
-	return x
+	stripped = re.sub("belly button", "bellybutton", stripped)
+	stripped = re.sub("below the belt", "belowthebelt", stripped)
+	return stripped.split(' ')
 
 def feature_piercings(x):
 	cleaned = clean_piercings(x)
 	if cleaned:
-		return "feature/piercings/%s" % cleaned
+		return ",".join(["feature/piercings/%s" % c for c in cleaned])
 
 # creditcards	18272
 def clean_creditcards(x):
 	stripped = x.strip().lower()
-	return x
+	return stripped
 
 def feature_creditcards(x):
 	cleaned = clean_creditcards(x)
@@ -390,9 +402,6 @@ def feature_alias(x):
 	cleaned = clean_alias(x)
 	if cleaned:
 		return "feature/alias/%s" % cleaned
-
-
-
 
 mapFunctions = defaultdict(lambda x: None)
 
