@@ -92,7 +92,12 @@ def feature_ethnicity(x):
 def nearest5(x):
 	return 5*(int(2.5 + x)/5)
 
-def clean_height(x):
+def clean_height(x, minHeight=130, maxHeight=210):
+	def sanityCheck(x):
+		if minHeight <= x and x <= maxHeight:
+			return x
+		else:
+			return None
 	stripped = x.strip().lower()
 	# take only first measurement of any range
 	stripped = stripped.split('-')[0].strip()
@@ -106,11 +111,11 @@ def clean_height(x):
 			except:
 				# empty inches
 				inches = 0
-			return nearest5(int(2.54 * (12 * feet) + inches))
+			return sanityCheck(nearest5(int(2.54 * (12 * feet) + inches)))
 		else:
 			# no inches, so try centimeters
 			# Second, 137
-			return nearest5(int(stripped))
+			return sanityCheck(nearest5(int(stripped)))
 	except:
 		return None
 	return None
@@ -210,15 +215,73 @@ def feature_eyes(x):
 	if cleaned:
 		return "feature/eyes/%s" % cleaned
 
+test = ["9st2lb", "10stone4lb", "8st", "8stone",  "7.5st", "45kg", "50.2kilos", "45000g", "123pounds", "123.5lb", "140.5", "20", "1000"]
+
 # weight	13316
 def clean_weight(x):
 	stripped = x.strip().lower()
 	return x
 
 def feature_weight(x):
-	cleaned = clean_weight(x)
-	if cleaned:
-		return "feature/weight/%s" % cleaned
+	"unmarked weight < 90 is interpreted as kg, >=90 as lb"
+	def lb_to_kg(lb):
+		return int(float(lb)/2.2)
+	def sanityCheck(kg):
+		if kg >= 40 and kg <= 200:
+			return kg
+		else:
+			return None
+
+	try:
+		cleaned = clean_weight(x)
+		# first try for st/stone
+		l = re.split("stone", cleaned)
+		if len(l) == 1:
+			l = re.split("st", cleaned)
+		if len(l) > 1:
+			print l
+			stone = float(l[0])
+			lb = l[1]
+			lb = lb.strip('s')
+			lb = lb.strip('lb')
+			lb = lb.strip('pound')
+			print "lb = %r" % lb
+			try:
+				lb = float(lb)
+			except ValueError as e:
+				lb = 0
+			return sanityCheck(lb_to_kg(int(stone*14+lb)))
+		lb = cleaned.strip('s')
+		# now try for just pounds
+		if lb.endswith("lb"):
+			return sanityCheck(lb_to_kg(int(float(lb.strip('lb')))))
+		if lb.endswith('pound'):
+			return sanityCheck(lb_to_kg(int(float(lb.strip('pound')))))
+		# now kg
+		kg = cleaned.strip('s')
+		if kg.endswith("kg"):
+			return sanityCheck(int(float(kg.strip('kg'))))
+		if kg.endswith('kilo'):
+			return sanityCheck(int(float(kg.strip('kilo'))))
+		if kg.endswith('kilogram'):
+			return sanityCheck(int(float(kg.strip('kilogram'))))
+		# now assume number sans unit
+		num = int(float(cleaned))
+		if num < 90:
+			# assume kg
+			return sanityCheck(num)
+		else:
+			# assume lb
+			return sanityCheck(lb_to_kg(num))
+	
+	except Exception as e:
+		print e
+		return None
+
+for wt in test:
+	print "\n"
+	a = feature_weight(wt)
+	print "%r => %r" % (wt, a)
 
 # name	10042
 def clean_name(x):
