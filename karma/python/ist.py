@@ -1,6 +1,6 @@
 from collections import defaultdict
 import re
-from util import numericOnly
+from util import numericOnly, alphaOnly
 
 def nearest5(x):
 	return 5*(int(2.5 + x)/5)
@@ -95,11 +95,13 @@ def feature_ethnicity(x):
 		return "feature/ethnicity/%s" % cleaned
 
 # height	29135
-# 168
-# 5'6"
-# 6'
-# 5'7" - 5'9"
-# test=["168", "5'6\"", "6'", "5'7\" - 5'9\""]
+
+height_samples = ["168", "5'6\"", "6'", "5'7\" - 5'9\""]
+def test_height():
+	for b in height_samples:
+		f = feature_height(b)
+		print "%r => %r" % (b, f)
+
 
 def clean_height(x):
 	stripped = x.strip().lower()
@@ -259,7 +261,6 @@ def feature_eyes(x):
 		return "feature/eyes/%s" % cleaned
 
 # weight	13316
-# weight	13316
 def clean_weight(x):
 	stripped = x.strip().lower()
 	return stripped
@@ -381,7 +382,7 @@ def feature_travel(x):
 # zip	2734
 def clean_zip(x):
 	stripped = x.strip().lower()
-	return alphaOnly(stripped)
+	return numericOnly(stripped)
 
 def feature_zip(x):
 	cleaned = clean_zip(x)
@@ -389,19 +390,70 @@ def feature_zip(x):
 		return "feature/zip/%s" % cleaned
 
 # waist	2468
+waist_samples = ["24 inches", "28\"", "70cm", "70 cm", "26.5", "svelte", "24-25"]
+def test_waist():
+	for b in waist_samples:
+		f = feature_waist(b)
+		print "%r => %r" % (b, f)
+
+
 def clean_waist(x):
-	stripped = x.strip().lower()
-	return alphaOnly(stripped)
+	"copied from bust"
+	try:
+		stripped = x.strip().lower()
+		stripped = stripped.replace(" ","")
+		first = re.split("-", stripped)[0]
+		first = first.strip()
+		return first 
+	except:
+		pass
+	return None
 
 def feature_waist(x):
-	cleaned = clean_waist(x)
-	if cleaned:
-		return "feature/waist/%s" % cleaned
+	"unmarked waist < 60 is interpreted as in, >=60 as cm"
+	def inch_to_cm(inch):
+		return int(inch*2.54)
+	def sanityCheck(cm):
+		if cm >= 40 and cm <= 200:
+			return "feature/waist/" + str(cm)
+		else:
+			return None
+
+	try:
+		cleaned = clean_waist(x)
+		inch = cleaned.strip('es')
+		inch = inch.strip('s')
+		print inch
+		# now try for just inches
+		if inch.endswith("inch"):
+			return sanityCheck(nearest2(inch_to_cm(int(float(inch.strip('inch'))))))
+		if inch.endswith('in'):
+			return sanityCheck(nearest2(inch_to_cm(int(float(inch.strip('in'))))))
+		if inch.endswith('"'):
+			return sanityCheck(nearest2(inch_to_cm(int(float(inch.strip('"'))))))
+		# now cm
+		cm = cleaned.strip('s')
+		if cm.endswith("cm"):
+			return sanityCheck(nearest2(int(float(cm.strip('cm')))))
+		if cm.endswith('centimeter'):
+			return sanityCheck(nearest2(int(float(cm.strip('centimeter')))))
+		# now assume number sans unit
+		num = int(float(cleaned))
+		if num >= 60:
+			# assume cm
+			return sanityCheck(nearest2(num))
+		else:
+			# assume inch
+			return sanityCheck(nearest2(inch_to_cm(num)))
+	
+	except Exception, e:
+		print e
+		return None
 
 # hips	2400
 def clean_hips(x):
 	stripped = x.strip().lower()
-	return alphaOnly(stripped)
+	return numericOnly(stripped)
 
 def feature_hips(x):
 	cleaned = clean_hips(x)
