@@ -69,8 +69,13 @@ def feature_gender(x):
 # rate30	10640
 # rate15	1215
 def clean_rate(x):
-	r = strip();
-	return int(x)
+	r = x.strip().lower()
+	if r[0] == "0":
+		return None
+	rate = int(float(r))
+	if rate < 20 or rate > 1000:
+		return None
+	return nearest5(rate)
 
 def feature_rate(x):
 	cleaned = clean_rate(x)
@@ -95,12 +100,7 @@ def feature_ethnicity(x):
 # 5'7" - 5'9"
 # test=["168", "5'6\"", "6'", "5'7\" - 5'9\""]
 
-def clean_height(x, minHeight=130, maxHeight=210):
-	def sanityCheck(x):
-		if minHeight <= x and x <= maxHeight:
-			return x
-		else:
-			return None
+def clean_height(x):
 	stripped = x.strip().lower()
 	# take only first measurement of any range
 	stripped = stripped.split('-')[0].strip()
@@ -114,11 +114,11 @@ def clean_height(x, minHeight=130, maxHeight=210):
 			except:
 				# empty inches
 				inches = 0
-			return sanityCheck(nearest5(int(2.54 * (12 * feet) + inches)))
+			return nearest5(int(2.54 * (12 * feet) + inches))
 		else:
 			# no inches, so try centimeters
 			# Second, 137
-			return sanityCheck(nearest5(int(stripped)))
+			return nearest5(int(stripped))
 	except:
 		return None
 	return None
@@ -131,7 +131,7 @@ def feature_height(x):
 # hair	22078
 def clean_hair(x):
 	stripped = x.strip().lower()
-	return x
+	return alphaOnly(stripped)
 
 def feature_hair(x):
 	cleaned = clean_hair(x)
@@ -141,7 +141,7 @@ def feature_hair(x):
 # build	21842
 def clean_build(x):
 	stripped = x.strip().lower()
-	return x
+	return alphaOnly(stripped)
 
 def feature_build(x):
 	cleaned = clean_build(x)
@@ -150,8 +150,8 @@ def feature_build(x):
 
 # cup	19179
 def clean_cup(x):
-	stripped = x.strip().lower().lower()
-	return x
+	stripped = x.strip().lower()
+	return alphaOnly(stripped)
 
 def feature_cup(x):
 	cleaned = clean_cup(x)
@@ -159,6 +159,11 @@ def feature_cup(x):
 		return "feature/cup/%s" % cleaned
 
 # bust	18394
+# bust  34-35
+# bust  D
+# bust  34&quot;
+# bust  over
+# bust  Perrrfct
 def clean_bust(x):
 	stripped = x.strip().lower()
 	return x
@@ -169,6 +174,14 @@ def feature_bust(x):
 		return "feature/bust/%s" % cleaned
 
 # piercings	18294
+# None Belly Button Face
+# xxxxx Other (where xxxx is a legal value)
+# Tongue Breasts Belly Button Other
+#
+# Maybe use "belly button" "bellow the belt" as tokens
+# we should generate a comma-separated list of values and then
+# use split values to generate a multi-valued cell so that we
+# can generate multiple features per attribute.
 def clean_piercings(x):
 	stripped = x.strip().lower()
 	return x
@@ -191,7 +204,7 @@ def feature_creditcards(x):
 # hairlength	18030
 def clean_hairlength(x):
 	stripped = x.strip().lower()
-	return x
+	return alphaOnly(stripped)
 
 def feature_hairlength(x):
 	cleaned = clean_hairlength(x)
@@ -201,7 +214,7 @@ def feature_hairlength(x):
 # hairtype	17945
 def clean_hairtype(x):
 	stripped = x.strip().lower()
-	return x
+	return alphaOnly(stripped)
 
 def feature_hairtype(x):
 	cleaned = clean_hairtype(x)
@@ -211,19 +224,18 @@ def feature_hairtype(x):
 # eyes	16723
 def clean_eyes(x):
 	stripped = x.strip().lower()
-	return x
+	return alphaOnly(stripped)
 
 def feature_eyes(x):
 	cleaned = clean_eyes(x)
 	if cleaned:
 		return "feature/eyes/%s" % cleaned
 
-test = ["9st2lb", "10stone4lb", "8st", "8stone",  "7.5st", "45kg", "50.2kilos", "45000g", "123pounds", "123.5lb", "140.5", "20", "1000"]
-
+# weight	13316
 # weight	13316
 def clean_weight(x):
 	stripped = x.strip().lower()
-	return x
+	return stripped
 
 def feature_weight(x):
 	"unmarked weight < 90 is interpreted as kg, >=90 as lb"
@@ -278,10 +290,11 @@ def feature_weight(x):
 	except Exception as e:
 		return None
 
+
 # name	10042
 def clean_name(x):
 	stripped = x.strip().lower()
-	return x
+	return alphaOnly(stripped)
 
 def feature_name(x):
 	cleaned = clean_name(x)
@@ -291,7 +304,7 @@ def feature_name(x):
 # tattoos	8614
 def clean_tattoos(x):
 	stripped = x.strip().lower()
-	return x
+	return alphaOnly(stripped)
 
 def feature_tattoos(x):
 	cleaned = clean_tattoos(x)
@@ -301,7 +314,7 @@ def feature_tattoos(x):
 # grooming	5709
 def clean_grooming(x):
 	stripped = x.strip().lower()
-	return x
+	return alphaOnly(stripped)
 
 def feature_grooming(x):
 	cleaned = clean_grooming(x)
@@ -311,7 +324,7 @@ def feature_grooming(x):
 # implants	5469
 def clean_implants(x):
 	stripped = x.strip().lower()
-	return x
+	return alphaOnly(stripped)
 
 def feature_implants(x):
 	cleaned = clean_implants(x)
@@ -321,7 +334,7 @@ def feature_implants(x):
 # username	5209
 def clean_username(x):
 	stripped = x.strip().lower()
-	return x
+	return alphaOnly(stripped)
 
 def feature_username(x):
 	cleaned = clean_username(x)
@@ -331,7 +344,7 @@ def feature_username(x):
 # travel	4727
 def clean_travel(x):
 	stripped = x.strip().lower()
-	return x
+	return alphaOnly(stripped)
 
 def feature_travel(x):
 	cleaned = clean_travel(x)
@@ -341,7 +354,7 @@ def feature_travel(x):
 # zip	2734
 def clean_zip(x):
 	stripped = x.strip().lower()
-	return x
+	return alphaOnly(stripped)
 
 def feature_zip(x):
 	cleaned = clean_zip(x)
@@ -351,7 +364,7 @@ def feature_zip(x):
 # waist	2468
 def clean_waist(x):
 	stripped = x.strip().lower()
-	return x
+	return alphaOnly(stripped)
 
 def feature_waist(x):
 	cleaned = clean_waist(x)
@@ -361,7 +374,7 @@ def feature_waist(x):
 # hips	2400
 def clean_hips(x):
 	stripped = x.strip().lower()
-	return x
+	return alphaOnly(stripped)
 
 def feature_hips(x):
 	cleaned = clean_hips(x)
@@ -371,7 +384,7 @@ def feature_hips(x):
 # alias	2049
 def clean_alias(x):
 	stripped = x.strip().lower()
-	return x
+	return alphaOnly(stripped)
 
 def feature_alias(x):
 	cleaned = clean_alias(x)
