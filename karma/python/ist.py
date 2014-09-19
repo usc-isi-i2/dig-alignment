@@ -82,11 +82,14 @@ def feature_rate(x):
 	cleaned = clean_rate(x)
 	if cleaned:
 		return "feature/rate/%s" % cleaned
-
+def test_ethnicity():
+	for b in ethnicity_samples:
+		f = feature_ethnicity(b)
+		print "%r => %r" % (b, f)
 
 # ethnicity	38587
 def clean_ethnicity(x):
-	stripped = x.strip().lower()
+	stripped = x.strip().lower().replace(" ","")
 	return stripped
 
 def feature_ethnicity(x):
