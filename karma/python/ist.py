@@ -1,5 +1,6 @@
 from collections import defaultdict
 import re
+from util import numericOnly
 
 def nearest5(x):
 	return 5*(int(2.5 + x)/5)
@@ -164,12 +165,26 @@ def feature_cup(x):
 # bust  34&quot;
 # bust  over
 # bust  Perrrfct
+
+bust_samples = ["34-35", "D", "34&quot;", '34"', "over", "Perrrfct", "34.5"]
+def test_bust():
+	for b in bust_samples:
+		f = feature_bust(b)
+		print "%r => %r" % (b, f)
+
 def clean_bust(x):
 	stripped = x.strip().lower()
 	stripped = stripped.replace(" ","")
-	first = re.split("-")[0]
-	first = numericOnly(first)
-	return first and int(first)
+	first = re.split("-", stripped)[0]
+	try:
+		return int(float(first))
+	except:
+		pass
+	try:
+		return int(numericOnly(first))
+	except:
+		pass
+	return None
 
 def feature_bust(x):
 	"this one is in inches"
