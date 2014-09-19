@@ -255,7 +255,7 @@ def feature_weight(x):
 		return int(float(lb)/2.2)
 	def sanityCheck(kg):
 		if kg >= 40 and kg <= 200:
-			return kg
+			return "feature/weight/" + str(kg)
 		else:
 			return None
 
@@ -273,7 +273,7 @@ def feature_weight(x):
 			lb = lb.strip('pound')
 			try:
 				lb = float(lb)
-			except ValueError as e:
+			except ValueError, e:
 				lb = 0
 			return sanityCheck(nearest2(lb_to_kg(int(stone*14+lb))))
 		lb = cleaned.strip('s')
@@ -299,7 +299,7 @@ def feature_weight(x):
 			# assume lb
 			return sanityCheck(nearest2(lb_to_kg(num)))
 	
-	except Exception as e:
+	except Exception, e:
 		return None
 
 
