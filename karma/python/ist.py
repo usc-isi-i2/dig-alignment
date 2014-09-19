@@ -423,7 +423,6 @@ def feature_waist(x):
 		cleaned = clean_waist(x)
 		inch = cleaned.strip('es')
 		inch = inch.strip('s')
-		print inch
 		# now try for just inches
 		if inch.endswith("inch"):
 			return sanityCheck(nearest2(inch_to_cm(int(float(inch.strip('inch'))))))
@@ -447,7 +446,6 @@ def feature_waist(x):
 			return sanityCheck(nearest2(inch_to_cm(num)))
 	
 	except Exception, e:
-		print e
 		return None
 
 # hips	2400
@@ -469,6 +467,21 @@ def feature_alias(x):
 	cleaned = clean_alias(x)
 	if cleaned:
 		return "feature/alias/%s" % cleaned
+
+# availability	2049
+availability_samples = ["Incall", "Outcall", "Incall Outcall"] 
+def test_availability():
+	for b in availability_samples:
+		f = feature_availability(b)
+		print "%r => %r" % (b, f)
+def clean_availability(x):
+	stripped = x.strip().lower()
+	return alphaOnly(stripped)
+
+def feature_availability(x):
+	cleaned = clean_availability(x)
+	if cleaned:
+		return "feature/availability/%s" % cleaned
 
 mapFunctions = defaultdict(lambda x: None)
 
@@ -499,6 +512,7 @@ mapFunctions['zip'] = feature_zip
 mapFunctions['waist'] = feature_waist
 mapFunctions['hips'] = feature_hips
 mapFunctions['alias'] = feature_alias
+mapFunctions['availability'] = feature_availability
 
 def feature_value(attributeName, value):
 	return mapFunctions[attributeName](value)
