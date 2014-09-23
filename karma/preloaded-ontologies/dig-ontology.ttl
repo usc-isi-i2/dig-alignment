@@ -30,8 +30,16 @@ dig:Identifier rdf:type owl:Class ;
 dig:PhoneNumber rdf:type owl:Class ; 
 	rdfs:subClassOf dig:Identifier ;
 	rdfs:label "PhoneNumber"@en ;
-	skos:note """Still wavering whether a phone number is a subclass of Identifier.""" ;
+	skos:note """Still wavering whether a phone number is a subclass of Identifier.
+	Clearly not an appropriate identifier for a person given that numbers get recycled.""" ;
 	rdfs:comment """A phone number."""
+	.
+
+dig:EmailAddress rdf:type owl:Class ; 
+	rdfs:subClassOf dig:Identifier ;
+	rdfs:label "EmailAddress"@en ;
+	skos:note """Still wavering whether an email address is a subclass of Identifier.""" ;
+	rdfs:comment """An email address."""
 	.
 
 dig:PersonName rdf:type owl:Class ; 
@@ -60,7 +68,20 @@ dig:Preference rdf:type owl:Class ;
 dig:Boolean rdf:type owl:Class ; 
 	rdfs:label "Boolean"@en ;
 	rdfs:comment """Represents a Boolean value.
-	The admissible instances are http://dig.isi.edu/data/boolean/true and falase."""
+	The admissible instances are http://dig.isi.edu/data/boolean/true and false."""
+	.
+
+dig:Feature rdf:type owl:Class ; 
+	rdfs:label "Feature"@en ;
+	rdfs:comment """Represents a feature."""
+	.
+
+dig:BinaryFeature rdf:type owl:Class ; 
+	rdfs:subClassOf dig:Feature ;
+	rdfs:label "Feature"@en ;
+	rdfs:comment """Represents a binary feature. Binary features are coded as
+	URI so that if the URI is present the feature is true, and when it is absent
+	the feature is false."""
 	.
 
 #########################################################
@@ -104,15 +125,34 @@ dig:hasTitlePart rdf:type owl:ObjectProperty ;
 	rdfs:comment "Identifies the title part of a schema:CreativeWork." 
 	.
 
+dig:isTitlePartOf rdf:type owl:ObjectProperty ; 
+	rdfs:label "isTitlePartOf"@en ;
+	owl:inverseOf  dig:hasTitlePart ;
+	rdfs:comment "Identifies the title part of a schema:CreativeWork." 
+	.
+
 dig:hasBodyPart rdf:type owl:ObjectProperty ; 
 	rdfs:label "hasBodyPart"@en ;
 	rdfs:subPropertyOf schema:hasPart ;
+	rdfs:comment "Identifies the body part of a schema:CreativeWork."
+	.
+
+dig:isBodyPartOf rdf:type owl:ObjectProperty ; 
+	rdfs:label "isBodyPartOf"@en ;
+	owl:inverseOf dig:hasBodyPart ;
 	rdfs:comment "Identifies the body part of a schema:CreativeWork." 
 	.
 
 dig:hasImagePart rdf:type owl:ObjectProperty ; 
 	rdfs:label "hasImagePart"@en ;
 	rdfs:subPropertyOf schema:hasPart ;
+	rdfs:range schema:ImageObject ;
+	rdfs:comment "Identifies an ImageObject that is part of a schema:CreativeWork." 
+	.
+
+dig:isImagePartOf rdf:type owl:ObjectProperty ; 
+	rdfs:label "isImagePartOf"@en ;
+	owl:inverseOf dig:hasImagePart ;
 	rdfs:range schema:ImageObject ;
 	rdfs:comment "Identifies an ImageObject that is part of a schema:CreativeWork." 
 	.
@@ -125,6 +165,15 @@ dig:mentionsPhoneNumber rdf:type owl:ObjectProperty ;
 	rdfs:comment "Identifies an phone number mentioned in a schema:CreativeWork." 
 	.
 
+dig:isMentionedPhoneNumberIn rdf:type owl:ObjectProperty ; 
+	rdfs:label "isMentionedPhoneNumberIn"@en ;
+	rdfs:subPropertyOf schema:mentions ;
+	rdfs:range schema:CreativeWork ;
+	rdfs:domain dig:PhoneNumber ;
+	owl:inverseOf dig:mentionsPhoneNumber;
+	rdfs:comment "Identifies an phone number mentioned in a schema:CreativeWork." 
+	.
+
 dig:mentionsPlace rdf:type owl:ObjectProperty ; 
 	rdfs:label "mentionsPlace"@en ;
 	rdfs:subPropertyOf schema:mentions ;
@@ -132,10 +181,24 @@ dig:mentionsPlace rdf:type owl:ObjectProperty ;
 	rdfs:comment "Identifies a schema:Place mentioned in a schema:CreativeWork." 
 	.
 
+dig:isMentionedPlaceIn rdf:type owl:ObjectProperty ; 
+	rdfs:label "isMentionedPlaceIn"@en ;
+	rdfs:domain schema:Place ;
+	owl:inverseOf dig:mentionsPlace;
+	rdfs:comment "Identifies a schema:Place mentioned in a schema:CreativeWork." 
+	.
+
 dig:mentionsPerson rdf:type owl:ObjectProperty ; 
 	rdfs:label "mentionsPerson"@en ;
 	rdfs:subPropertyOf schema:mentions ;
 	rdfs:range schema:Person ;
+	rdfs:comment "Identifies a schema:Person mentioned in a schema:CreativeWork." 
+	.
+
+dig:isMentionedPersonIn rdf:type owl:ObjectProperty ; 
+	rdfs:label "isMentionedPersonIn"@en ;
+	rdfs:domain schema:Person ;
+	owl:inverseOf dig:mentionsPerson ;
 	rdfs:comment "Identifies a schema:Person mentioned in a schema:CreativeWork." 
 	.
 
@@ -164,6 +227,13 @@ dig:pseudonym rdf:type owl:ObjectProperty ;
 	rdfs:comment "The pseudonym of a person." 
 	.
 
+dig:emailAddress rdf:type owl:ObjectProperty ; 
+	rdfs:label "emailAddress"@en ;
+	rdfs:domain schema:Person ;
+	rdfs:range dig:EmailAddress ;
+	rdfs:comment "The email address of a person." 
+	.
+
 dig:ethnicity rdf:type owl:ObjectProperty ; 
 	rdfs:label "ethnicity"@en ;
 	rdfs:domain schema:Person ;
@@ -185,6 +255,13 @@ dig:preferenceSubject rdf:type owl:ObjectProperty ;
 	rdfs:comment """The thing about which a preference is stated. 
 	The values in the range are URIs that form a controlled vocabulary;
 	they include values such as http://..../agegroup/young"""
+	.
+
+dig:personFeature rdf:type owl:ObjectProperty ; 
+	rdfs:label "personFeature"@en ;
+	rdfs:domain schema:CreativeWork ;
+	rdfs:range dig:Feature ; 
+	rdfs:comment "A feature that characterizes people mentioned in a creative work." 
 	.
 
 #########################################################

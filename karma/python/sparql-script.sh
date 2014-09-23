@@ -1,0 +1,1 @@
+curl -X POST -H  "Accept: text/csv" -H "Content-Type: application/x-www-form-urlencoded" --data-urlencode "query@features-query.sparql" http://localhost:8080/openrdf-sesame/repositories/karma_data
