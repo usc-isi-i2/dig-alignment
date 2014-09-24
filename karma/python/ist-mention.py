@@ -31,7 +31,7 @@ def clean_phone(x):
 def feature_phone(x):
     cleaned = clean_phone(x)
     if cleaned:
-        return "feature/phonenumber/%s" % cleaned
+        return "phonenumber/%s" % cleaned
 
 # age   15647
 def clean_age(x):
@@ -42,7 +42,7 @@ def clean_age(x):
 def feature_age(x):
     cleaned = clean_age(x)
     if cleaned:
-        return "feature/age/%s" % cleaned
+        return "age/%s" % cleaned
 
 # email 7105
 def clean_email(x):
@@ -55,7 +55,7 @@ def clean_email(x):
 def feature_email(x):
     cleaned = clean_email(x)
     if cleaned:
-        return "feature/email/%s" % cleaned
+        return "email/%s" % cleaned
 
 # gender
 def clean_gender(x):
@@ -70,7 +70,7 @@ def clean_gender(x):
 def feature_gender(x):
     cleaned = clean_gender(x)
     if cleaned:
-        return "feature/gender/%s" % cleaned
+        return "gender/%s" % cleaned
 
 # rate
 # rate60    12706
@@ -90,7 +90,7 @@ def clean_rate(x):
 def feature_rate(x):
     cleaned = clean_rate(x)
     if cleaned:
-        return "feature/rate/%s" % cleaned
+        return "rate/%s" % cleaned
 def test_ethnicity():
     for b in ethnicity_samples:
         f = feature_ethnicity(b)
@@ -104,7 +104,7 @@ def clean_ethnicity(x):
 def feature_ethnicity(x):
     cleaned = clean_ethnicity(x)
     if cleaned:
-        return "feature/ethnicity/%s" % cleaned
+        return "ethnicity/%s" % cleaned
 
 # height    29135
 
@@ -145,7 +145,7 @@ def clean_height(x):
 def feature_height(x):
     cleaned = clean_height(x)
     if cleaned:
-        return "feature/height/%s" % cleaned
+        return "height/%s" % cleaned
 
 # hair  22078
 def clean_hair(x):
@@ -155,7 +155,7 @@ def clean_hair(x):
 def feature_hair(x):
     cleaned = clean_hair(x)
     if cleaned:
-        return "feature/hair/%s" % cleaned
+        return "hair/%s" % cleaned
 
 # build 21842
 def clean_build(x):
@@ -165,7 +165,7 @@ def clean_build(x):
 def feature_build(x):
     cleaned = clean_build(x)
     if cleaned:
-        return "feature/build/%s" % cleaned
+        return "build/%s" % cleaned
 
 # cup   19179
 def clean_cup(x):
@@ -175,7 +175,7 @@ def clean_cup(x):
 def feature_cup(x):
     cleaned = clean_cup(x)
     if cleaned:
-        return "feature/cup/%s" % cleaned
+        return "cup/%s" % cleaned
 
 # bust  18394
 # bust  34-35
@@ -214,7 +214,7 @@ def feature_bust(x):
 
     cleaned = clean_bust(x)
     if cleaned:
-        return "feature/bust/%s" % cleaned
+        return "bust/%s" % cleaned
 
 # piercings 18294 
 # None Belly Button Face
@@ -234,7 +234,7 @@ def clean_piercings(x):
 def feature_piercings(x):
     cleaned = clean_piercings(x)
     if cleaned:
-        return ",".join(["feature/piercings/%s" % c for c in cleaned])
+        return ",".join(["piercings/%s" % c for c in cleaned])
 
 # creditcards   18272
 def clean_creditcards(x):
@@ -244,7 +244,7 @@ def clean_creditcards(x):
 def feature_creditcards(x):
     cleaned = clean_creditcards(x)
     if cleaned:
-        return "feature/creditcards/%s" % cleaned
+        return "creditcards/%s" % cleaned
 
 # hairlength    18030
 def clean_hairlength(x):
@@ -254,7 +254,7 @@ def clean_hairlength(x):
 def feature_hairlength(x):
     cleaned = clean_hairlength(x)
     if cleaned:
-        return "feature/hairlength/%s" % cleaned
+        return "hairlength/%s" % cleaned
 
 # hairtype  17945
 def clean_hairtype(x):
@@ -264,7 +264,7 @@ def clean_hairtype(x):
 def feature_hairtype(x):
     cleaned = clean_hairtype(x)
     if cleaned:
-        return "feature/hairtype/%s" % cleaned
+        return "hairtype/%s" % cleaned
 
 # eyes  16723
 def clean_eyes(x):
@@ -274,7 +274,7 @@ def clean_eyes(x):
 def feature_eyes(x):
     cleaned = clean_eyes(x)
     if cleaned:
-        return "feature/eyes/%s" % cleaned
+        return "eyes/%s" % cleaned
 
 # weight    13316
 def clean_weight(x):
@@ -287,7 +287,7 @@ def feature_weight(x):
         return int(float(lb)/2.2)
     def sanityCheck(kg):
         if kg >= 40 and kg <= 200:
-            return "feature/weight/" + str(kg)
+            return "weight/" + str(kg)
         else:
             return None
 
@@ -359,7 +359,7 @@ def clean_name(x):
 def feature_name(x):
     cleaned = clean_name(x)
     if cleaned:
-        return "feature/name/%s" % cleaned
+        return "name/%s" % cleaned
 
 # tattoos   8614
 def clean_tattoos(x):
@@ -369,7 +369,7 @@ def clean_tattoos(x):
 def feature_tattoos(x):
     cleaned = clean_tattoos(x)
     if cleaned:
-        return "feature/tattoos/%s" % cleaned
+        return "tattoos/%s" % cleaned
 
 # grooming  5709
 def clean_grooming(x):
@@ -379,7 +379,7 @@ def clean_grooming(x):
 def feature_grooming(x):
     cleaned = clean_grooming(x)
     if cleaned:
-        return "feature/grooming/%s" % cleaned
+        return "grooming/%s" % cleaned
 
 # implants  5469
 def clean_implants(x):
@@ -389,7 +389,7 @@ def clean_implants(x):
 def feature_implants(x):
     cleaned = clean_implants(x)
     if cleaned:
-        return "feature/implants/%s" % cleaned
+        return "implants/%s" % cleaned
 
 # username  5209
 def clean_username(x):
@@ -399,7 +399,7 @@ def clean_username(x):
 def feature_username(x):
     cleaned = clean_username(x)
     if cleaned:
-        return "feature/username/%s" % cleaned
+        return "username/%s" % cleaned
 
 # travel    4727
 def clean_travel(x):
@@ -409,7 +409,7 @@ def clean_travel(x):
 def feature_travel(x):
     cleaned = clean_travel(x)
     if cleaned:
-        return "feature/travel/%s" % cleaned
+        return "travel/%s" % cleaned
 
 # zip   2734
 def clean_zip(x):
@@ -419,7 +419,7 @@ def clean_zip(x):
 def feature_zip(x):
     cleaned = clean_zip(x)
     if cleaned:
-        return "feature/zip/%s" % cleaned
+        return "zip/%s" % cleaned
 
 # waist 2468
 waist_samples = ["24 inches", "28\"", "70cm", "70 cm", "26.5", "svelte", "24-25"]
@@ -447,7 +447,7 @@ def feature_waist(x):
         return int(inch*2.54)
     def sanityCheck(cm):
         if cm >= 40 and cm <= 200:
-            return "feature/waist/" + str(cm)
+            return "waist/" + str(cm)
         else:
             return None
 
@@ -502,7 +502,7 @@ def clean_hips(x):
 def feature_hips(x):
     cleaned = clean_hips(x)
     if cleaned:
-        return "feature/hips/%s" % cleaned
+        return "hips/%s" % cleaned
 
 # alias 2049
 def clean_alias(x):
@@ -512,7 +512,7 @@ def clean_alias(x):
 def feature_alias(x):
     cleaned = clean_alias(x)
     if cleaned:
-        return "feature/alias/%s" % cleaned
+        return "alias/%s" % cleaned
 
 # availability  2049
 availability_samples = ["Incall", "Outcall", "Incall Outcall"] 
@@ -527,7 +527,7 @@ def clean_availability(x):
 def feature_availability(x):
     cleaned = clean_availability(x)
     if cleaned:
-        return "feature/availability/%s" % cleaned
+        return "availability/%s" % cleaned
 
 mapFunctions = defaultdict(lambda x: None)
 
