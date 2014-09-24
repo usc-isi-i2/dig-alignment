@@ -18,6 +18,16 @@ Larger versions of the files are in the Azure file system at http://karma-dig-se
 - `x-inlandempire-lasvegas-losangeles-sandiego+backpage-basic.*` is the result of aligning `x-inlandempire-lasvegas-losangeles-sandiego.json` to the DIG ontologies. It defines the basic structure for all the aligned files we produce for the different extractors that we run on the file.
 - `x-inlandempire-lasvegas-losangeles-sandiego+backpage-phones.*` contains the aligned features after we run the phone extractor.
 - `x-inlandempire-lasvegas-losangeles-sandiego+backpage-workingname.*` contains the aligned features after we run the person name extractor.
+- `x-inlandempire-lasvegas-losangeles-sandiego+backpage-incalloutcall.*` contains the aligned features after we run the person incall/outcall extractors.
+
+We are currently working to add the output of additional extractors:
+
+- multi-provider indicating when the ad is about two or more providers
+- ethnicity preferences of clients stated in the ad
+- age preferences of clients stated in the ad
+- new-in-town statements indicating that providers recently arrived
+- provider youth indicating whether the provider makes statements about youth
+- provider ethnicity indicating statements about the provider ethnicity or nationality
 
 The following files contain data that we will join with the backpage data to add additional information:
 
