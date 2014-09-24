@@ -5,6 +5,7 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix skos: <http://www.w3.org/2008/05/skos#> .
 @prefix schema: <http://schema.org/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
 
 <http://memexproxy.com/ontology/> rdf:type owl:Ontology .
 
@@ -20,6 +21,20 @@ memex:URLEntity rdf:type owl:Class ;
 	rdfs:label "URLEntity"@en ;
 	rdfs:comment """Represents an address on the Web from where we can retrieve a resource.
 	Each time we dereference a URL we get a schema:CreativeWork, which we call a memex:snapshot"""
+	.
+
+memex:Snapshot rdf:type owl:Class ;
+	rdfs:label "Snapshot"@en ;
+	rdfs:comment """Represents the retrieved resource from an address on the Web""" ;
+	rdfs:subClassOf schema:CreativeWork ;
+	rdfs:subClassOf prov:Entity 
+	.
+
+memex:Mention rdf:type owl:Class ;
+	rdfs:label "Mention"@en ;
+	rdfs:comment """Represents a piece of extracted information""" ;
+	rdfs:subClassOf schema:CreativeWork ;
+	rdfs:subClassOf prov:Entity
 	.
 
 memex:Identifier rdf:type owl:Class ; 
@@ -157,51 +172,6 @@ memex:isImagePartOf rdf:type owl:ObjectProperty ;
 	rdfs:comment "Identifies an ImageObject that is part of a schema:CreativeWork." 
 	.
 
-memex:mentionsPhoneNumber rdf:type owl:ObjectProperty ; 
-	rdfs:label "mentionsPhoneNumber"@en ;
-	rdfs:subPropertyOf schema:mentions ;
-	rdfs:domain schema:CreativeWork ;
-	rdfs:range memex:PhoneNumber ;
-	rdfs:comment "Identifies an phone number mentioned in a schema:CreativeWork." 
-	.
-
-memex:isMentionedPhoneNumberIn rdf:type owl:ObjectProperty ; 
-	rdfs:label "isMentionedPhoneNumberIn"@en ;
-	rdfs:subPropertyOf schema:mentions ;
-	rdfs:range schema:CreativeWork ;
-	rdfs:domain memex:PhoneNumber ;
-	owl:inverseOf memex:mentionsPhoneNumber;
-	rdfs:comment "Identifies an phone number mentioned in a schema:CreativeWork." 
-	.
-
-memex:mentionsPlace rdf:type owl:ObjectProperty ; 
-	rdfs:label "mentionsPlace"@en ;
-	rdfs:subPropertyOf schema:mentions ;
-	rdfs:range schema:Place ;
-	rdfs:comment "Identifies a schema:Place mentioned in a schema:CreativeWork." 
-	.
-
-memex:isMentionedPlaceIn rdf:type owl:ObjectProperty ; 
-	rdfs:label "isMentionedPlaceIn"@en ;
-	rdfs:domain schema:Place ;
-	owl:inverseOf memex:mentionsPlace;
-	rdfs:comment "Identifies a schema:Place mentioned in a schema:CreativeWork." 
-	.
-
-memex:mentionsPerson rdf:type owl:ObjectProperty ; 
-	rdfs:label "mentionsPerson"@en ;
-	rdfs:subPropertyOf schema:mentions ;
-	rdfs:range schema:Person ;
-	rdfs:comment "Identifies a schema:Person mentioned in a schema:CreativeWork." 
-	.
-
-memex:isMentionedPersonIn rdf:type owl:ObjectProperty ; 
-	rdfs:label "isMentionedPersonIn"@en ;
-	rdfs:domain schema:Person ;
-	owl:inverseOf memex:mentionsPerson ;
-	rdfs:comment "Identifies a schema:Person mentioned in a schema:CreativeWork." 
-	.
-
 memex:urlEntity rdf:type owl:ObjectProperty ; 
 	rdfs:label "urlEntity"@en ;
 	rdfs:domain schema:CreativeWork ; 
@@ -241,6 +211,13 @@ memex:ethnicity rdf:type owl:ObjectProperty ;
 	rdfs:comment "The ethnicity of a person." 
 	.
 
+memex:age rdf:type owl:ObjectProperty ; 
+	rdfs:label "age"@en ;
+	rdfs:domain schema:Person ;
+	rdfs:range memex:Age ;
+	rdfs:comment "The age of a person." 
+	.
+
 memex:preferenceQualifier rdf:type owl:ObjectProperty ; 
 	rdfs:label "preferenceQualifier"@en ;
 	rdfs:domain memex:Preference ;
@@ -264,6 +241,12 @@ memex:personFeature rdf:type owl:ObjectProperty ;
 	rdfs:comment "A feature that characterizes people mentioned in a creative work." 
 	.
 
+memex:hasMention rdf:type owl:ObjectProperty ;
+	rdfs:label "HasMention"@en ;
+	rdfs:domain schema:CreativeWork ;
+	rdfs:range schema:Mention ;
+	.
+
 #########################################################
 #
 # Data Properties
@@ -282,14 +265,19 @@ memex:cacheUrl rdf:type owl:DatatypeProperty ;
 	rdfs:comment "The URL of a cached version of a resource." 
 	.
 
-memex:mentionsPersonAge rdf:type owl:DatatypeProperty ;
-	rdfs:label "cacheUrl"@en ;
-	rdfs:domain schema:CreativeWork ;
-	rdfs:comment "A person age mentioned in a schema:CreativeWork." 
-	.
-
 memex:tenDigitPhoneNumber rdf:type owl:DatatypeProperty ;
 	rdfs:label "tenDigitPhoneNumber"@en ;
 	rdfs:domain memex:PhoneNumber ;
 	rdfs:comment "The 10 digit number of a USA phone number." 
+	.
+
+memex:confidence rdf:type owl:DataTypeProeprty ;
+	rdfs:label "confidence"@en ;
+	rdfs:comment "Confidence value associated with mention"
+	.
+memex:mentionConfidence rdf:type owl:DataTypeProperty ;
+	rdfs:label "confidence"@en ;
+	rdfs:domain memex:Mention ;
+	rdfs:subPropertyOf memex:confidence ;
+	rdfs:comment "Confidence value associated with mention"
 	.
