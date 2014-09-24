@@ -1,12 +1,13 @@
-@prefix dig: <http://dig.isi.edu/ontology/> .
+@prefix memex: <http://memexproxy.com/ontology/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix skos: <http://www.w3.org/2008/05/skos#> .
 @prefix schema: <http://schema.org/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
 
-<http://dig.isi.edu/ontology/> rdf:type owl:Ontology .
+<http://memexproxy.com/ontology/> rdf:type owl:Ontology .
 
 
 #########################################################
@@ -16,68 +17,82 @@
 #########################################################
 
 
-dig:URLEntity rdf:type owl:Class ; 
+memex:URLEntity rdf:type owl:Class ; 
 	rdfs:label "URLEntity"@en ;
 	rdfs:comment """Represents an address on the Web from where we can retrieve a resource.
-	Each time we dereference a URL we get a schema:CreativeWork, which we call a dig:snapshot"""
+	Each time we dereference a URL we get a schema:CreativeWork, which we call a memex:snapshot"""
 	.
 
-dig:Identifier rdf:type owl:Class ; 
+memex:Snapshot rdf:type owl:Class ;
+	rdfs:label "Snapshot"@en ;
+	rdfs:comment """Represents the retrieved resource from an address on the Web""" ;
+	rdfs:subClassOf schema:CreativeWork ;
+	rdfs:subClassOf prov:Entity 
+	.
+
+memex:Mention rdf:type owl:Class ;
+	rdfs:label "Mention"@en ;
+	rdfs:comment """Represents a piece of extracted information""" ;
+	rdfs:subClassOf schema:CreativeWork ;
+	rdfs:subClassOf prov:Entity
+	.
+
+memex:Identifier rdf:type owl:Class ; 
 	rdfs:label "Identifier"@en ;
 	rdfs:comment """An identifier of something."""
 	.
 
-dig:PhoneNumber rdf:type owl:Class ; 
-	rdfs:subClassOf dig:Identifier ;
+memex:PhoneNumber rdf:type owl:Class ; 
+	rdfs:subClassOf memex:Identifier ;
 	rdfs:label "PhoneNumber"@en ;
 	skos:note """Still wavering whether a phone number is a subclass of Identifier.
 	Clearly not an appropriate identifier for a person given that numbers get recycled.""" ;
 	rdfs:comment """A phone number."""
 	.
 
-dig:EmailAddress rdf:type owl:Class ; 
-	rdfs:subClassOf dig:Identifier ;
+memex:EmailAddress rdf:type owl:Class ; 
+	rdfs:subClassOf memex:Identifier ;
 	rdfs:label "EmailAddress"@en ;
 	skos:note """Still wavering whether an email address is a subclass of Identifier.""" ;
 	rdfs:comment """An email address."""
 	.
 
-dig:PersonName rdf:type owl:Class ; 
+memex:PersonName rdf:type owl:Class ; 
 	rdfs:label "PersonName"@en ;
 	skos:note """Defining as a class so that we can attach provenance to the object""" ;
 	rdfs:comment """A person name."""
 	.
 
-dig:Ethnicity rdf:type owl:Class ; 
+memex:Ethnicity rdf:type owl:Class ; 
 	rdfs:label "Ethnicity"@en ;
 	rdfs:comment """Represents Identity with or membership in a particular racial, national,
 	 or cultural group and observance of that group's customs, beliefs, and language."""
 	.
 
-dig:AgeGroup rdf:type owl:Class ; 
+memex:AgeGroup rdf:type owl:Class ; 
 	rdfs:label "AgeGroup"@en ;
 	rdfs:comment """Represents an age group, such as young, old, child."""
 	.
 
-dig:Preference rdf:type owl:Class ; 
+memex:Preference rdf:type owl:Class ; 
 	rdfs:label "Preference"@en ;
 	rdfs:comment """Represents a preference that a Person or Organization may have
 	about a certain subject."""
 	.
 
-dig:Boolean rdf:type owl:Class ; 
+memex:Boolean rdf:type owl:Class ; 
 	rdfs:label "Boolean"@en ;
 	rdfs:comment """Represents a Boolean value.
-	The admissible instances are http://dig.isi.edu/data/boolean/true and false."""
+	The admissible instances are http://memexproxy.com/data/boolean/true and false."""
 	.
 
-dig:Feature rdf:type owl:Class ; 
+memex:Feature rdf:type owl:Class ; 
 	rdfs:label "Feature"@en ;
 	rdfs:comment """Represents a feature."""
 	.
 
-dig:BinaryFeature rdf:type owl:Class ; 
-	rdfs:subClassOf dig:Feature ;
+memex:BinaryFeature rdf:type owl:Class ; 
+	rdfs:subClassOf memex:Feature ;
 	rdfs:label "Feature"@en ;
 	rdfs:comment """Represents a binary feature. Binary features are coded as
 	URI so that if the URI is present the feature is true, and when it is absent
@@ -90,129 +105,84 @@ dig:BinaryFeature rdf:type owl:Class ;
 #
 #########################################################
 
-dig:snapshot rdf:type owl:ObjectProperty ; 
+memex:snapshot rdf:type owl:ObjectProperty ; 
 	rdfs:label "snapshot"@en ;
-	rdfs:domain dig:URLEntity ; 
+	rdfs:domain memex:URLEntity ; 
 	rdfs:range schema:CreativeWork ;
-	owl:inverseOf dig:isSnapshotOf ;
+	owl:inverseOf memex:isSnapshotOf ;
 	rdfs:comment "Identifies a resource download from a url." 
 	.
 
-dig:isSnapshotOf rdf:type owl:ObjectProperty ; 
+memex:isSnapshotOf rdf:type owl:ObjectProperty ; 
 	rdfs:label "isSnapshotOf"@en ;
 	rdfs:domain schema:CreativeWork ;
-	rdfs:range dig:URLEntity ; 
-	owl:inverseOf dig:snapshot ;
-	rdfs:comment "Inverse of dig:snapshot." 
+	rdfs:range memex:URLEntity ; 
+	owl:inverseOf memex:snapshot ;
+	rdfs:comment "Inverse of memex:snapshot." 
 	.
 
-dig:identifier rdf:type owl:ObjectProperty ; 
+memex:identifier rdf:type owl:ObjectProperty ; 
 	rdfs:label "identifier"@en ;
-	rdfs:range dig:Identifier ;
+	rdfs:range memex:Identifier ;
 	rdfs:comment "An identifier of an entity." 
 	.
 
-dig:preferredIdentifier rdf:type owl:ObjectProperty ; 
-	rdfs:subPropertyOf dig:identifier ;
+memex:preferredIdentifier rdf:type owl:ObjectProperty ; 
+	rdfs:subPropertyOf memex:identifier ;
 	rdfs:label "preferredIdentifier"@en ;
-	rdfs:range dig:Identifier ;
+	rdfs:range memex:Identifier ;
 	rdfs:comment "The preferred identifier of an entity." 
 	.
 
-dig:hasTitlePart rdf:type owl:ObjectProperty ; 
+memex:hasTitlePart rdf:type owl:ObjectProperty ; 
 	rdfs:label "hasTitlePart"@en ;
 	rdfs:subPropertyOf schema:hasPart ;
 	rdfs:comment "Identifies the title part of a schema:CreativeWork." 
 	.
 
-dig:isTitlePartOf rdf:type owl:ObjectProperty ; 
+memex:isTitlePartOf rdf:type owl:ObjectProperty ; 
 	rdfs:label "isTitlePartOf"@en ;
-	owl:inverseOf  dig:hasTitlePart ;
+	owl:inverseOf  memex:hasTitlePart ;
 	rdfs:comment "Identifies the title part of a schema:CreativeWork." 
 	.
 
-dig:hasBodyPart rdf:type owl:ObjectProperty ; 
+memex:hasBodyPart rdf:type owl:ObjectProperty ; 
 	rdfs:label "hasBodyPart"@en ;
 	rdfs:subPropertyOf schema:hasPart ;
 	rdfs:comment "Identifies the body part of a schema:CreativeWork."
 	.
 
-dig:isBodyPartOf rdf:type owl:ObjectProperty ; 
+memex:isBodyPartOf rdf:type owl:ObjectProperty ; 
 	rdfs:label "isBodyPartOf"@en ;
-	owl:inverseOf dig:hasBodyPart ;
+	owl:inverseOf memex:hasBodyPart ;
 	rdfs:comment "Identifies the body part of a schema:CreativeWork." 
 	.
 
-dig:hasImagePart rdf:type owl:ObjectProperty ; 
+memex:hasImagePart rdf:type owl:ObjectProperty ; 
 	rdfs:label "hasImagePart"@en ;
 	rdfs:subPropertyOf schema:hasPart ;
 	rdfs:range schema:ImageObject ;
 	rdfs:comment "Identifies an ImageObject that is part of a schema:CreativeWork." 
 	.
 
-dig:isImagePartOf rdf:type owl:ObjectProperty ; 
+memex:isImagePartOf rdf:type owl:ObjectProperty ; 
 	rdfs:label "isImagePartOf"@en ;
-	owl:inverseOf dig:hasImagePart ;
+	owl:inverseOf memex:hasImagePart ;
 	rdfs:range schema:ImageObject ;
 	rdfs:comment "Identifies an ImageObject that is part of a schema:CreativeWork." 
 	.
 
-dig:mentionsPhoneNumber rdf:type owl:ObjectProperty ; 
-	rdfs:label "mentionsPhoneNumber"@en ;
-	rdfs:subPropertyOf schema:mentions ;
-	rdfs:domain schema:CreativeWork ;
-	rdfs:range dig:PhoneNumber ;
-	rdfs:comment "Identifies an phone number mentioned in a schema:CreativeWork." 
-	.
-
-dig:isMentionedPhoneNumberIn rdf:type owl:ObjectProperty ; 
-	rdfs:label "isMentionedPhoneNumberIn"@en ;
-	rdfs:subPropertyOf schema:mentions ;
-	rdfs:range schema:CreativeWork ;
-	rdfs:domain dig:PhoneNumber ;
-	owl:inverseOf dig:mentionsPhoneNumber;
-	rdfs:comment "Identifies an phone number mentioned in a schema:CreativeWork." 
-	.
-
-dig:mentionsPlace rdf:type owl:ObjectProperty ; 
-	rdfs:label "mentionsPlace"@en ;
-	rdfs:subPropertyOf schema:mentions ;
-	rdfs:range schema:Place ;
-	rdfs:comment "Identifies a schema:Place mentioned in a schema:CreativeWork." 
-	.
-
-dig:isMentionedPlaceIn rdf:type owl:ObjectProperty ; 
-	rdfs:label "isMentionedPlaceIn"@en ;
-	rdfs:domain schema:Place ;
-	owl:inverseOf dig:mentionsPlace;
-	rdfs:comment "Identifies a schema:Place mentioned in a schema:CreativeWork." 
-	.
-
-dig:mentionsPerson rdf:type owl:ObjectProperty ; 
-	rdfs:label "mentionsPerson"@en ;
-	rdfs:subPropertyOf schema:mentions ;
-	rdfs:range schema:Person ;
-	rdfs:comment "Identifies a schema:Person mentioned in a schema:CreativeWork." 
-	.
-
-dig:isMentionedPersonIn rdf:type owl:ObjectProperty ; 
-	rdfs:label "isMentionedPersonIn"@en ;
-	rdfs:domain schema:Person ;
-	owl:inverseOf dig:mentionsPerson ;
-	rdfs:comment "Identifies a schema:Person mentioned in a schema:CreativeWork." 
-	.
-
-dig:urlEntity rdf:type owl:ObjectProperty ; 
+memex:urlEntity rdf:type owl:ObjectProperty ; 
 	rdfs:label "urlEntity"@en ;
 	rdfs:domain schema:CreativeWork ; 
-	rdfs:range dig:URLEntity ;
+	rdfs:range memex:URLEntity ;
 	skos:note """schema.org has a schema:url property, but it is a DatatypeProperty, 
 	and urlEntity is an ObjectProperty. We define the domain as schema:CreativeWork as opposed
 	to owl:Thing as defined in schema.org.""" ;
 	rdfs:comment "The URL of a schema:CreativeWork." 
 	.
 
-dig:primaryLocation rdf:type owl:ObjectProperty ; 
+memex:primaryLocation rdf:type owl:ObjectProperty ; 
 	rdfs:label "postingLocation"@en ;
 	rdfs:subPropertyOf schema:mentions ;
 	rdfs:domain schema:CreativeWork ;
@@ -220,48 +190,63 @@ dig:primaryLocation rdf:type owl:ObjectProperty ;
 	rdfs:comment "The primary location associated with a schema:CreativeWork." 
 	.
 
-dig:pseudonym rdf:type owl:ObjectProperty ; 
+memex:pseudonym rdf:type owl:ObjectProperty ; 
 	rdfs:label "pseudonym"@en ;
 	rdfs:domain schema:Person ;
-	rdfs:range dig:PersonName ;
+	rdfs:range memex:PersonName ;
 	rdfs:comment "The pseudonym of a person." 
 	.
 
-dig:emailAddress rdf:type owl:ObjectProperty ; 
+memex:emailAddress rdf:type owl:ObjectProperty ; 
 	rdfs:label "emailAddress"@en ;
 	rdfs:domain schema:Person ;
-	rdfs:range dig:EmailAddress ;
+	rdfs:range memex:EmailAddress ;
 	rdfs:comment "The email address of a person." 
 	.
 
-dig:ethnicity rdf:type owl:ObjectProperty ; 
+memex:ethnicity rdf:type owl:ObjectProperty ; 
 	rdfs:label "ethnicity"@en ;
 	rdfs:domain schema:Person ;
-	rdfs:range dig:Ethnicity ;
+	rdfs:range memex:Ethnicity ;
 	rdfs:comment "The ethnicity of a person." 
 	.
 
-dig:preferenceQualifier rdf:type owl:ObjectProperty ; 
+memex:age rdf:type owl:ObjectProperty ; 
+	rdfs:label "age"@en ;
+	rdfs:domain schema:Person ;
+	rdfs:range memex:Age ;
+	rdfs:comment "The age of a person." 
+	.
+
+memex:preferenceQualifier rdf:type owl:ObjectProperty ; 
 	rdfs:label "preferenceQualifier"@en ;
-	rdfs:domain dig:Preference ;
+	rdfs:domain memex:Preference ;
 	rdfs:comment """The qualifier of a preference. 
 	The values in the range are URIs that form a controlled vocabulary;
 	they include values such as http://..../preferencequalifier/only"""
 	.
 
-dig:preferenceSubject rdf:type owl:ObjectProperty ; 
+memex:preferenceSubject rdf:type owl:ObjectProperty ; 
 	rdfs:label "preferenceSubject"@en ;
-	rdfs:domain dig:Preference ;
+	rdfs:domain memex:Preference ;
 	rdfs:comment """The thing about which a preference is stated. 
 	The values in the range are URIs that form a controlled vocabulary;
 	they include values such as http://..../agegroup/young"""
 	.
 
-dig:personFeature rdf:type owl:ObjectProperty ; 
+memex:personFeature rdf:type owl:ObjectProperty ; 
 	rdfs:label "personFeature"@en ;
 	rdfs:domain schema:CreativeWork ;
-	rdfs:range dig:Feature ; 
+	rdfs:range memex:Feature ; 
 	rdfs:comment "A feature that characterizes people mentioned in a creative work." 
+	.
+
+## schema:mentions is already in schema.org
+#
+memex:hasMention rdf:type owl:ObjectProperty ;
+	rdfs:label "HasMention"@en ;
+	rdfs:domain schema:CreativeWork ;
+	rdfs:range schema:Mention ;
 	.
 
 #########################################################
@@ -276,20 +261,25 @@ schema:url rdf:type owl:DatatypeProperty ;
 	rdfs:comment "The URL of a resource." 
 	.
 
-dig:cacheUrl rdf:type owl:DatatypeProperty ;
+memex:cacheUrl rdf:type owl:DatatypeProperty ;
 	rdfs:label "cacheUrl"@en ;
 	rdfs:subPropertyOf schema:url ;
 	rdfs:comment "The URL of a cached version of a resource." 
 	.
 
-dig:mentionsPersonAge rdf:type owl:DatatypeProperty ;
-	rdfs:label "cacheUrl"@en ;
-	rdfs:domain schema:CreativeWork ;
-	rdfs:comment "A person age mentioned in a schema:CreativeWork." 
+memex:tenDigitPhoneNumber rdf:type owl:DatatypeProperty ;
+	rdfs:label "tenDigitPhoneNumber"@en ;
+	rdfs:domain memex:PhoneNumber ;
+	rdfs:comment "The 10 digit number of a USA phone number." 
 	.
 
-dig:tenDigitPhoneNumber rdf:type owl:DatatypeProperty ;
-	rdfs:label "tenDigitPhoneNumber"@en ;
-	rdfs:domain dig:PhoneNumber ;
-	rdfs:comment "The 10 digit number of a USA phone number." 
+memex:confidence rdf:type owl:DataTypeProeprty ;
+	rdfs:label "confidence"@en ;
+	rdfs:comment "Confidence value associated with mention"
+	.
+memex:mentionConfidence rdf:type owl:DataTypeProperty ;
+	rdfs:label "confidence"@en ;
+	rdfs:domain memex:Mention ;
+	rdfs:subPropertyOf memex:confidence ;
+	rdfs:comment "Confidence value associated with mention"
 	.

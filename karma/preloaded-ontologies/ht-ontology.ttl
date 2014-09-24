@@ -1,5 +1,5 @@
-@prefix ht: <http://dig.isi.edu/ontology/human-trafficking/> . 
-@prefix dig: <http://dig.isi.edu/ontology/> .
+@prefix ht: <http://memexproxy.com/ontology/human-trafficking/> . 
+@prefix memex: <http://memexproxy.com/ontology/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -7,7 +7,7 @@
 @prefix skos: <http://www.w3.org/2008/05/skos#> .
 @prefix schema: <http://schema.org/> .
 
-<http://dig.isi.edu/ontology/human-trafficking/> rdf:type owl:Ontology .
+<http://memexproxy.com/ontology/human-trafficking/> rdf:type owl:Ontology .
 
 
 #########################################################
@@ -18,19 +18,25 @@
 
 ht:InOutCallPreference rdf:type owl:Class ; 
 	rdfs:label "InOutCallPreference"@en ;
-	rdfs:comment """Represents the In/Out Call preference."""
+	rdfs:comment """Represents the In/Out Call preference.""" ;
+	rdfs:subClassOf memex:Preference ;
 	.
 
 ht:EthnicityPreference rdf:type owl:Class ; 
 	rdfs:label "EthnicityPreference"@en ;
 	skos:note """It would be better to model this as two objects. A generic Preference
-	object with a "subject" property pointing to dig:Ethnicity. The extraction gets more
+	object with a "subject" property pointing to memex:Ethnicity. The extraction gets more
 	complicated, so we need to think about it. We would have to split "white only" into two
 	columns. See mentionsClientAgeGroupPreference.""" ;
-	rdfs:comment """Represents a preference for a particular ethnicity."""
+	rdfs:comment """Represents a preference for a particular ethnicity.""" ;
+	rdfs:subClassOf memex:Preference ;
 	.
 
-
+ht:ServiceRate rdf:type owl:Class ;
+	rdfs:label "ServiceRate"@en ;
+	rdfs:comment """Represents the monetary Rate charged for a Service""" ;
+	rdfs:subClassOf schema:PriceSpecification ;
+	.
 
 #########################################################
 #
@@ -43,7 +49,7 @@ ht:mentionsInOutCallPreference rdf:type owl:ObjectProperty ;
 	rdfs:subPropertyOf schema:mentions ;
 	rdfs:domain schema:CreativeWork ;
 	rdfs:range ht:InOutCallPreference ;
-	rdfs:comment """Identifies call preference of schema:CreativeWork.""" 
+	rdfs:comment """Identifies an in call out call preference mentioned in a schema:CreativeWork.""";
 	.
 
 ht:mentionsClientEthnicityPreference rdf:type owl:ObjectProperty ; 
@@ -51,36 +57,43 @@ ht:mentionsClientEthnicityPreference rdf:type owl:ObjectProperty ;
 	rdfs:subPropertyOf schema:mentions ;
 	rdfs:domain schema:CreativeWork ;
 	rdfs:range ht:EthnicityPreference ;
-	rdfs:comment """Identifies call preference of schema:CreativeWork."""
+	rdfs:comment """Identifies a client ethnicity preference mentioned in a schema:CreativeWork.""" ;
 	.
 
 ht:mentionsClientAgeGroupPreference rdf:type owl:ObjectProperty ; 
 	rdfs:label "mentionsClientAgeGroupPreference"@en ;
 	rdfs:subPropertyOf schema:mentions ;
 	rdfs:domain schema:CreativeWork ;
-	rdfs:range dig:Preference ;
-	rdfs:comment """Identifies a preference for clients of a perticular age group 
-	mentioned in schema:CreativeWork."""
+	rdfs:range memex:Preference ;
+	rdfs:comment """Identifies a preference for clients of a particular age group 
+        mentioned in schema:CreativeWork.""";
 	.
 
 ht:mentionsMultipleProviders rdf:type owl:ObjectProperty ; 
 	rdfs:label "mentionsMultipleProviders"@en ;
 	rdfs:subPropertyOf schema:mentions ;
 	rdfs:domain schema:CreativeWork ;
-	rdfs:range dig:Boolean ;
-	skos:note """In Andrew's extractors we map all mentions to multiple providers to "true".""" ;
-	rdfs:comment """Identifies mentions to multiple providers in schema:CreativeWork."""
+	rdfs:range memex:Boolean ;
+	skos:note """In Andrew's extractors, we map all mentions to multiple providers to true.""";
+	rdfs:comment """Identifies mentions to multiple providers in schema:CreativeWork.""" ;
 	.
 
 ht:mentionsNewInTown rdf:type owl:ObjectProperty ; 
 	rdfs:label "mentionsNewInTown"@en ;
 	rdfs:subPropertyOf schema:mentions ;
 	rdfs:domain schema:CreativeWork ;
-	rdfs:range dig:Boolean ;
+	rdfs:range memex:Boolean ;
 	skos:note """In Andrew's extractors we map all mentions to new in town to "true".""" ;
-	rdfs:comment """Identifies mentions in a schema:CreativeWork that a provider is new-in-town."""
+	rdfs:comment """Identifies mentions in a schema:CreativeWork that a provider is new-in-town.""" ;
 	.
 
+ht:mentionsServiceRate rdf:type owl:ObjectProperty ;
+	rdfs:label "mentionsServiceRate" ;
+	rdfs:subPropertyOf schema:mentions ;
+	rdfs:domain schema:CreativeWork ;
+	rdfs:range memex:ServiceRate ;
+	rdfs:comment """Identifies mentions in a schema:CreativeWork that a provider offers a service at a specified.""" ;
+	.
 #########################################################
 #
 # Data Properties
