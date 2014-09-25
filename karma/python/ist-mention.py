@@ -33,7 +33,7 @@ def clean_phone(x):
 def feature_phone(x):
     cleaned = clean_phone(x)
     if cleaned:
-        return "phonenumber/%s" % cleaned
+        return "PhoneNumber/%s" % cleaned
 
 # age   15647
 def clean_age(x):
@@ -44,7 +44,7 @@ def clean_age(x):
 def feature_age(x):
     cleaned = clean_age(x)
     if cleaned:
-        return "age/%s" % cleaned
+        return "Age/%s" % cleaned
 
 # email 7105
 def clean_email(x):
@@ -57,7 +57,7 @@ def clean_email(x):
 def feature_email(x):
     cleaned = clean_email(x)
     if cleaned:
-        return "email/%s" % cleaned
+        return "EmailAddress/%s" % cleaned
 
 # gender
 def clean_gender(x):
@@ -106,7 +106,7 @@ def clean_ethnicity(x):
 def feature_ethnicity(x):
     cleaned = clean_ethnicity(x)
     if cleaned:
-        return "ethnicity/%s" % cleaned
+        return "Ethnicity/%s" % cleaned
 
 # height    29135
 
@@ -361,7 +361,7 @@ def clean_name(x):
 def feature_name(x):
     cleaned = clean_name(x)
     if cleaned:
-        return "name/%s" % cleaned
+        return "PersonName/%s" % cleaned
 
 # tattoos   8614
 def clean_tattoos(x):
