@@ -1,5 +1,7 @@
 from collections import defaultdict
 import re
+import hashlib
+
 #from util import numericOnly, alphaOnly
 
 # for JSON, there would be 
@@ -528,6 +530,9 @@ def feature_availability(x):
     cleaned = clean_availability(x)
     if cleaned:
         return "availability/%s" % cleaned
+
+def get_url_hash(string)
+    return hashlib.sha1(string).hexdigest()
 
 mapFunctions = defaultdict(lambda x: None)
 
