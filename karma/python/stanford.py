@@ -1,3 +1,6 @@
+import time
+import hashlib
+
 def splitNameField(field):
     if field=="N":
         return []
@@ -6,8 +9,6 @@ def splitNameField(field):
     if field.endswith("}"):
         field = field[:-1]
     return ",".join([n.strip('"') for n in field.split(",")])
-
-return splitNameField(getValue("names"))
 
 countryCodes = [1, 20, 212, 213, 216, 218, 220, 221, 222, 223, 224,
                 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235,
@@ -53,8 +54,6 @@ def splitPhoneField(field):
         return p
     return ",".join([stripCountryCode(p) for p in field.split(",")])
 
-return splitPhoneField(getValue("phones"))
-
 def splitLocationField(field):
     if field=="N":
         return []
@@ -64,21 +63,14 @@ def splitLocationField(field):
         field = field[:-1]
     return ",".join([l.strip('"') for l in field.split(",")])
 
-
-return splitLocationField(getValue("locations"))
-
-import time
 def modtimeToEpochTime(modtime):
     # 2014-04-23 22:23:47
     pattern = '%Y-%m-%d %H:%M:%S'
     epoch = int(time.mktime(time.strptime(modtime, pattern)))
     return epoch
 
-import hashlib
 def sha1(x):
     return hashlib.sha1(x).hexdigest()
 
 def generateUri(modtime, url):
     return "crawl/%s-%s" % (sha1(url), modtimeToEpochTime(modtime))
-
-return generateUri(getValue("modtime"), getValue("url"))
