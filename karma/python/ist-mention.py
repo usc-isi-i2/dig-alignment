@@ -531,7 +531,7 @@ def feature_availability(x):
     if cleaned:
         return "availability/%s" % cleaned
 
-def get_url_hash(string)
+def get_url_hash(string):
     return hashlib.sha1(string).hexdigest()
 
 mapFunctions = defaultdict(lambda x: None)
