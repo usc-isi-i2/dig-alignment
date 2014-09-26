@@ -8,6 +8,7 @@ def splitNameField(field):
         field = field[1:]
     if field.endswith("}"):
         field = field[:-1]
+    field = field.replace(" ", "_")
     return ",".join([n.strip('"') for n in field.split(",")])
 
 countryCodes = [1, 20, 212, 213, 216, 218, 220, 221, 222, 223, 224,
@@ -61,6 +62,7 @@ def splitLocationField(field):
         field = field[1:]
     if field.endswith("}"):
         field = field[:-1]
+    field = field.replace(" ", "_")
     return ",".join([l.strip('"') for l in field.split(",")])
 
 def modtimeToEpochTime(modtime):
@@ -72,5 +74,58 @@ def modtimeToEpochTime(modtime):
 def sha1(x):
     return hashlib.sha1(x).hexdigest()
 
+# I want this to be the column uri of WebPage
 def generateUri(modtime, url):
     return "crawl/%s-%s" % (sha1(url), modtimeToEpochTime(modtime))
+
+def phone_feature_value():
+    feature_value("phone", getValue("phonevalues"))
+
+##################################################################
+
+# ## select unix_timestamp(b.importtime)*1000 as timestamp, b.url, a.* from ads_attributes a join ads b on a.ads_id=b.id  limit 10
+
+# ### PyTransforms
+# #### _crawl_uri_
+# From column: _url_
+# >``` python
+# return "crawl/"+get_url_hash(getValue("url"))+"-"+getValue("timestamp")
+# ```
+
+# #### _feature_value_
+# From column: _value_
+# >``` python
+# return feature_value(getValue("attribute"), getValue("value"))
+# ```
+
+# #### _mentions_uri_
+# From column: _feature_value_
+# >``` python
+# return "mention/"+getValue("feature_value")+"/"+getValue("crawl_uri")
+# ```
+
+# #### _mentions_primary_source_
+# From column: _crawl_uri_
+# >``` python
+# return getValue("crawl_uri")
+# ```
+
+
+# ### Semantic Types
+# | Column | Property | Class |
+# |  ----- | -------- | ----- |
+# | _crawl_uri_ | `uri` | `schema:WebPage1`|
+# | _extractor_ | `uri` | `owl:Thing2`|
+# | _feature_value_ | `uri` | `owl:Thing1`|
+# | _mentions_primary_source_ | `uri` | `owl:Thing3`|
+# | _mentions_uri_ | `uri` | `memex:Mention1`|
+# | _url_ | `schema:url` | `schema:WebPage1`|
+
+
+# ### Links
+# | From | Property | To |
+# |  --- | -------- | ---|
+# | `memex:Mention1` | `memex:feature` | `owl:Thing1`|
+# | `memex:Mention1` | `prov:hadPrimarySource` | `owl:Thing3`|
+# | `memex:Mention1` | `prov:wasGeneratedBy` | `owl:Thing2`|
+# | `schema:WebPage1` | `schema:mentions` | `memex:Mention1`|

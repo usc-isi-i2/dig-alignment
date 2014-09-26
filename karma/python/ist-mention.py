@@ -531,6 +531,23 @@ def feature_availability(x):
     if cleaned:
         return "availability/%s" % cleaned
 
+# for stanford only
+location_samples = ["Iowa", "New York", "arlington"]
+def test_location():
+    for b in location_samples:
+        f = feature_location(b)
+        print "%r => %r" % (b, f)
+def clean_location(x):
+    stripped = x.strip().lower()
+    stripped = stripped.replace(" ","_")
+    return alphaOnly(stripped)
+
+def feature_location(x):
+    cleaned = clean_location(x)
+    if cleaned:
+        return "location/%s" % cleaned
+
+
 def get_url_hash(string):
     return hashlib.sha1(string).hexdigest()
 
@@ -564,6 +581,7 @@ mapFunctions['waist'] = feature_waist
 mapFunctions['hips'] = feature_hips
 mapFunctions['alias'] = feature_alias
 mapFunctions['availability'] = feature_availability
+mapFunctions['location'] = feature_location
 
 def feature_value(attributeName, value):
     return mapFunctions[attributeName](value)
