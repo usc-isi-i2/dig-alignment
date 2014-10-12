@@ -72,7 +72,6 @@ return "extractor/stanford/0.1"
 | Column | Property | Class |
 |  ----- | -------- | ----- |
 | _crawl_url_ | `uri` | `schema:WebPage1`|
-| _extractor_ | `uri` | `owl:Thing4`|
 | _location_feature_value_ | `uri` | `owl:Thing3`|
 | _location_mentions_uri_ | `uri` | `memex:Mention3`|
 | _name_feature_value_ | `uri` | `owl:Thing1`|
@@ -85,11 +84,11 @@ return "extractor/stanford/0.1"
 | From | Property | To |
 |  --- | -------- | ---|
 | `memex:Mention1` | `memex:feature` | `owl:Thing1`|
-| `memex:Mention1` | `prov:wasGeneratedBy` | `owl:Thing4`|
+| `memex:Mention1` | `prov:wasGeneratedBy` | `xsd:http://memexproxy.com/data/extractor/stanford/0.1`|
 | `memex:Mention2` | `memex:feature` | `owl:Thing2`|
-| `memex:Mention2` | `prov:wasGeneratedBy` | `owl:Thing4`|
+| `memex:Mention2` | `prov:wasGeneratedBy` | `xsd:http://memexproxy.com/data/extractor/stanford/0.1`|
 | `memex:Mention3` | `memex:feature` | `owl:Thing3`|
-| `memex:Mention3` | `prov:wasGeneratedBy` | `owl:Thing4`|
+| `memex:Mention3` | `prov:wasGeneratedBy` | `xsd:http://memexproxy.com/data/extractor/stanford/0.1`|
 | `schema:WebPage1` | `schema:mentions` | `memex:Mention2`|
 | `schema:WebPage1` | `schema:mentions` | `memex:Mention3`|
 | `schema:WebPage1` | `schema:mentions` | `memex:Mention1`|
