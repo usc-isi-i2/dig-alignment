@@ -1,0 +1,890 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix schemax: <http://topbraid.org/schemax/> .
+@prefix schema: <http://schema.org/> .
+@prefix memex: <http://memexproxy.com/ontology/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ht: <http://memexproxy.com/ontology/human-trafficking/> .
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix km-dev: <http://isi.edu/integration/karma/dev#> .
+
+_:node1943v1vd8x1 a km-dev:R2RMLMapping ;
+	km-dev:sourceName "select unix_timestamp(b.importtime)*1000 as timestamp, b.url, a.* from ads_attributes a join ads b on a.ads_id=b.id  limit 10" ;
+	km-dev:modelPublicationTime "1413177474473"^^xsd:long ;
+	km-dev:modelVersion "1.7" ;
+	km-dev:hasInputColumns "[[{\"columnName\":\"attribute\"}],[{\"columnName\":\"value\"}],[{\"columnName\":\"url\"}],[{\"columnName\":\"timestamp\"}]]" ;
+	km-dev:hasOutputColumns "[[{\"columnName\":\"feature_value\"}],[{\"columnName\":\"crawl_uri\"}],[{\"columnName\":\"feature_name\"}],[{\"columnName\":\"featurecollection_uri\"}]]" ;
+	km-dev:hasModelLabel "ads-attributes-features" ;
+	km-dev:hasBaseURI "http://memexproxy.com/data/" ;
+	km-dev:hasWorksheetHistory """[
+    {
+        \"tags\": [\"Transformation\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"url\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"value\": \"crawl_uri\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"value\": \"return \\\"crawl/\\\"+get_url_hash(getValue(\\\"url\\\"))+\\\"-\\\"+getValue(\\\"timestamp\\\")\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"url\\\"}]},{\\\"value\\\":[{\\\"columnName\\\":\\\"timestamp\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"crawl_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SubmitPythonTransformationCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"properties\",
+                \"value\": {
+                    \"hasServiceProperties\": false,
+                    \"hasPrefix\": false,
+                    \"graphLabel\": \"ads-attributes-mention-model\",
+                    \"hasBaseURI\": false
+                },
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetWorksheetPropertiesCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"properties\",
+                \"value\": {
+                    \"hasServiceProperties\": false,
+                    \"hasPrefix\": true,
+                    \"prefix\": \"memex\",
+                    \"graphLabel\": \"\",
+                    \"hasBaseURI\": false
+                },
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetWorksheetPropertiesCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"properties\",
+                \"value\": {
+                    \"hasServiceProperties\": false,
+                    \"hasPrefix\": false,
+                    \"graphLabel\": \"\",
+                    \"hasBaseURI\": true,
+                    \"baseURI\": \"http://memexproxy.com/data/\"
+                },
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetWorksheetPropertiesCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"crawl_uri\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyName\",
+                \"value\": \"isUriOfClass\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyUri\",
+                \"value\": \"http://schema.org/WebPage\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyId\",
+                \"value\": \"http://schema.org/WebPage1 (add)\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"FullType\": \"http://isi.edu/integration/karma/dev#classLink\",
+                    \"isPrimary\": true,
+                    \"DomainLabel\": \"schema:WebPage1 (add)\",
+                    \"DomainId\": \"http://schema.org/WebPage1 (add)\",
+                    \"DomainUri\": \"http://schema.org/WebPage\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"isKey\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"crawl_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"crawl_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetMetaPropertyCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"properties\",
+                \"value\": {
+                    \"hasServiceProperties\": false,
+                    \"hasPrefix\": false,
+                    \"graphLabel\": \"ads-attributes-features\",
+                    \"hasBaseURI\": false
+                },
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetWorksheetPropertiesCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"attribute\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"value\": \"feature_name\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"value\": \"return feature_name(getValue(\\\"attribute\\\"))\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"attribute\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"feature_name\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SubmitPythonTransformationCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"feature_name\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyName\",
+                \"value\": \"isUriOfClass\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyUri\",
+                \"value\": \"http://www.w3.org/2004/02/skos/core#Concept\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyId\",
+                \"value\": \"http://www.w3.org/2004/02/skos/core#Concept1 (add)\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://isi.edu/integration/karma/dev#classLink\",
+                    \"DomainLabel\": \"skos:Concept1 (add)\",
+                    \"DomainId\": \"http://www.w3.org/2004/02/skos/core#Concept1\",
+                    \"DomainUri\": \"http://www.w3.org/2004/02/skos/core#Concept\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"isKey\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"feature_name\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"feature_name\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetMetaPropertyCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"crawl_uri\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"value\": \"featurecollection_uri\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"value\": \"return getValue(\\\"crawl_uri\\\")+\\\"/featurecollection\\\"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"crawl_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"featurecollection_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SubmitPythonTransformationCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"featurecollection_uri\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyName\",
+                \"value\": \"isUriOfClass\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyUri\",
+                \"value\": \"http://memexproxy.com/ontology/FeatureCollection\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyId\",
+                \"value\": \"http://memexproxy.com/ontology/FeatureCollection1 (add)\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://isi.edu/integration/karma/dev#classLink\",
+                    \"DomainLabel\": \"memex:FeatureCollection1 (add)\",
+                    \"DomainId\": \"http://memexproxy.com/ontology/FeatureCollection1\",
+                    \"DomainUri\": \"http://memexproxy.com/ontology/FeatureCollection\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"isKey\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"featurecollection_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"featurecollection_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetMetaPropertyCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"value\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"value\": \"feature_value\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"value\": \"return feature_value(getValue(\\\"attribute\\\"), getValue(\\\"value\\\"))\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"attribute\\\"}]},{\\\"value\\\":[{\\\"columnName\\\":\\\"value\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"feature_value\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SubmitPythonTransformationCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"feature_value\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://memexproxy.com/ontology/featureValue\",
+                    \"DomainLabel\": \"memex:Feature1 (add)\",
+                    \"DomainId\": \"http://memexproxy.com/ontology/Feature1 (add)\",
+                    \"DomainUri\": \"http://memexproxy.com/ontology/Feature\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"isKey\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"feature_value\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"feature_value\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetSemanticTypeCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"initialEdges\",
+                \"value\": [],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"alignmentId\",
+                \"value\": \"WSP1:WS1AL\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newEdges\",
+                \"value\": [{
+                    \"edgeTargetUri\": \"http://www.w3.org/2004/02/skos/core#Concept1\",
+                    \"edgeId\": \"http://memexproxy.com/ontology/featureName\",
+                    \"edgeTargetId\": \"http://www.w3.org/2004/02/skos/core#Concept1\",
+                    \"edgeSourceId\": \"http://memexproxy.com/ontology/Feature1\",
+                    \"edgeSourceUri\": \"http://memexproxy.com/ontology/Feature\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"ChangeInternalNodeLinksCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"initialEdges\",
+                \"value\": [
+                    {
+                        \"edgeId\": \"http://memexproxy.com/ontology/hasFeatures\",
+                        \"edgeTargetId\": \"http://memexproxy.com/ontology/Feature1\",
+                        \"edgeSourceId\": \"http://memexproxy.com/ontology/FeatureCollection1\"
+                    },
+                    {
+                        \"edgeId\": \"http://memexproxy.com/ontology/hasFeatureCollection\",
+                        \"edgeTargetId\": \"http://memexproxy.com/ontology/FeatureCollection1\",
+                        \"edgeSourceId\": \"http://schema.org/WebPage1\"
+                    }
+                ],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newEdges\",
+                \"value\": [
+                    {
+                        \"edgeId\": \"http://memexproxy.com/ontology/hasFeatures\",
+                        \"edgeTargetId\": \"http://memexproxy.com/ontology/Feature1\",
+                        \"edgeSourceId\": \"http://memexproxy.com/ontology/FeatureCollection1\"
+                    },
+                    {
+                        \"edgeId\": \"http://memexproxy.com/ontology/hasFeatureCollection\",
+                        \"edgeTargetId\": \"http://memexproxy.com/ontology/FeatureCollection1\",
+                        \"edgeSourceId\": \"http://schema.org/WebPage1\"
+                    }
+                ],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"ChangeInternalNodeLinksCommand\"
+    }
+]""" .
+
+km-dev:TriplesMap_74a5f244-4e00-4539-a2ee-8f0e0a0ade66 a rr:TriplesMap .
+
+_:node1943v1vd8x1 km-dev:hasTriplesMap km-dev:TriplesMap_74a5f244-4e00-4539-a2ee-8f0e0a0ade66 .
+
+km-dev:TriplesMap_74a5f244-4e00-4539-a2ee-8f0e0a0ade66 km-dev:isPartOfMapping _:node1943v1vd8x1 .
+
+_:node1943v1vd8x2 rr:tableName "select unix_timestamp(b.importtime)*1000 as timestamp, b.url, a.* from ads_attributes a join ads b on a.ads_id=b.id  limit 10" ;
+	a rr:LogicalTable ;
+	km-dev:isPartOfMapping _:node1943v1vd8x1 .
+
+_:node1943v1vd8x1 km-dev:hasLogicalTable _:node1943v1vd8x2 .
+
+km-dev:TriplesMap_74a5f244-4e00-4539-a2ee-8f0e0a0ade66 rr:logicalTable _:node1943v1vd8x2 ;
+	rr:subjectMap _:node1943v1vd8x3 .
+
+_:node1943v1vd8x1 km-dev:hasSubjectMap _:node1943v1vd8x3 .
+
+_:node1943v1vd8x3 km-dev:isPartOfMapping _:node1943v1vd8x1 ;
+	a rr:SubjectMap ;
+	km-dev:alignmentNodeId "http://memexproxy.com/ontology/Feature1" ;
+	rr:class memex:Feature ;
+	rr:termType rr:BlankNode ;
+	km-dev:namePrefix "memex:Feature1" .
+
+km-dev:PredicateObjectMap_a5d284e2-2c69-49f8-9800-05cd98ecfed9 rr:predicate memex:featureName .
+
+km-dev:RefObjectMap_994fb0c5-91da-4814-b8f1-ec2b02d6d0ed a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_26feac37-cea7-457a-9329-d9cde48f3e06 ;
+	km-dev:isPartOfMapping _:node1943v1vd8x1 .
+
+_:node1943v1vd8x1 km-dev:hasObjectMap km-dev:RefObjectMap_994fb0c5-91da-4814-b8f1-ec2b02d6d0ed .
+
+km-dev:PredicateObjectMap_a5d284e2-2c69-49f8-9800-05cd98ecfed9 rr:objectMap km-dev:RefObjectMap_994fb0c5-91da-4814-b8f1-ec2b02d6d0ed .
+
+km-dev:TriplesMap_74a5f244-4e00-4539-a2ee-8f0e0a0ade66 rr:predicateObjectMap km-dev:PredicateObjectMap_a5d284e2-2c69-49f8-9800-05cd98ecfed9 .
+
+km-dev:PredicateObjectMap_a5d284e2-2c69-49f8-9800-05cd98ecfed9 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node1943v1vd8x1 .
+
+_:node1943v1vd8x1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_a5d284e2-2c69-49f8-9800-05cd98ecfed9 .
+
+km-dev:PredicateObjectMap_52d84c38-a357-49f6-a887-2f26cf1f5b4e rr:predicate memex:featureValue .
+
+_:node1943v1vd8x4 rr:column "feature_value" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node1943v1vd8x1 .
+
+_:node1943v1vd8x1 km-dev:hasObjectMap _:node1943v1vd8x4 .
+
+km-dev:PredicateObjectMap_52d84c38-a357-49f6-a887-2f26cf1f5b4e rr:objectMap _:node1943v1vd8x4 .
+
+km-dev:TriplesMap_74a5f244-4e00-4539-a2ee-8f0e0a0ade66 rr:predicateObjectMap km-dev:PredicateObjectMap_52d84c38-a357-49f6-a887-2f26cf1f5b4e .
+
+km-dev:PredicateObjectMap_52d84c38-a357-49f6-a887-2f26cf1f5b4e a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node1943v1vd8x1 .
+
+_:node1943v1vd8x1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_52d84c38-a357-49f6-a887-2f26cf1f5b4e .
+
+km-dev:TriplesMap_26feac37-cea7-457a-9329-d9cde48f3e06 a rr:TriplesMap .
+
+_:node1943v1vd8x1 km-dev:hasTriplesMap km-dev:TriplesMap_26feac37-cea7-457a-9329-d9cde48f3e06 .
+
+km-dev:TriplesMap_26feac37-cea7-457a-9329-d9cde48f3e06 km-dev:isPartOfMapping _:node1943v1vd8x1 .
+
+_:node1943v1vd8x5 rr:tableName "select unix_timestamp(b.importtime)*1000 as timestamp, b.url, a.* from ads_attributes a join ads b on a.ads_id=b.id  limit 10" ;
+	a rr:LogicalTable ;
+	km-dev:isPartOfMapping _:node1943v1vd8x1 .
+
+_:node1943v1vd8x1 km-dev:hasLogicalTable _:node1943v1vd8x5 .
+
+km-dev:TriplesMap_26feac37-cea7-457a-9329-d9cde48f3e06 rr:logicalTable _:node1943v1vd8x5 ;
+	rr:subjectMap _:node1943v1vd8x6 .
+
+_:node1943v1vd8x1 km-dev:hasSubjectMap _:node1943v1vd8x6 .
+
+_:node1943v1vd8x6 km-dev:isPartOfMapping _:node1943v1vd8x1 ;
+	a rr:SubjectMap ;
+	km-dev:alignmentNodeId "http://www.w3.org/2004/02/skos/core#Concept1" ;
+	rr:class skos:Concept ;
+	rr:template "{feature_name}" .
+
+km-dev:TriplesMap_554b6960-5953-4900-bc94-da8a3c2118cd a rr:TriplesMap .
+
+_:node1943v1vd8x1 km-dev:hasTriplesMap km-dev:TriplesMap_554b6960-5953-4900-bc94-da8a3c2118cd .
+
+km-dev:TriplesMap_554b6960-5953-4900-bc94-da8a3c2118cd km-dev:isPartOfMapping _:node1943v1vd8x1 .
+
+_:node1943v1vd8x7 rr:tableName "select unix_timestamp(b.importtime)*1000 as timestamp, b.url, a.* from ads_attributes a join ads b on a.ads_id=b.id  limit 10" ;
+	a rr:LogicalTable ;
+	km-dev:isPartOfMapping _:node1943v1vd8x1 .
+
+_:node1943v1vd8x1 km-dev:hasLogicalTable _:node1943v1vd8x7 .
+
+km-dev:TriplesMap_554b6960-5953-4900-bc94-da8a3c2118cd rr:logicalTable _:node1943v1vd8x7 ;
+	rr:subjectMap _:node1943v1vd8x8 .
+
+_:node1943v1vd8x1 km-dev:hasSubjectMap _:node1943v1vd8x8 .
+
+_:node1943v1vd8x8 km-dev:isPartOfMapping _:node1943v1vd8x1 ;
+	a rr:SubjectMap ;
+	km-dev:alignmentNodeId "http://memexproxy.com/ontology/FeatureCollection1" ;
+	rr:class memex:FeatureCollection ;
+	rr:template "{crawl_uri}/featurecollection" .
+
+km-dev:PredicateObjectMap_55df3169-74c8-4eb5-8df1-ac2f04de343b rr:predicate memex:hasFeatures .
+
+km-dev:RefObjectMap_247a9159-cc94-41a0-abce-a0b6ffa683a2 a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_74a5f244-4e00-4539-a2ee-8f0e0a0ade66 ;
+	km-dev:isPartOfMapping _:node1943v1vd8x1 .
+
+_:node1943v1vd8x1 km-dev:hasObjectMap km-dev:RefObjectMap_247a9159-cc94-41a0-abce-a0b6ffa683a2 .
+
+km-dev:PredicateObjectMap_55df3169-74c8-4eb5-8df1-ac2f04de343b rr:objectMap km-dev:RefObjectMap_247a9159-cc94-41a0-abce-a0b6ffa683a2 .
+
+km-dev:TriplesMap_554b6960-5953-4900-bc94-da8a3c2118cd rr:predicateObjectMap km-dev:PredicateObjectMap_55df3169-74c8-4eb5-8df1-ac2f04de343b .
+
+km-dev:PredicateObjectMap_55df3169-74c8-4eb5-8df1-ac2f04de343b a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node1943v1vd8x1 .
+
+_:node1943v1vd8x1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_55df3169-74c8-4eb5-8df1-ac2f04de343b .
+
+km-dev:TriplesMap_03692498-ae20-4392-8f11-636ffa144c76 a rr:TriplesMap .
+
+_:node1943v1vd8x1 km-dev:hasTriplesMap km-dev:TriplesMap_03692498-ae20-4392-8f11-636ffa144c76 .
+
+km-dev:TriplesMap_03692498-ae20-4392-8f11-636ffa144c76 km-dev:isPartOfMapping _:node1943v1vd8x1 .
+
+_:node1943v1vd8x9 rr:tableName "select unix_timestamp(b.importtime)*1000 as timestamp, b.url, a.* from ads_attributes a join ads b on a.ads_id=b.id  limit 10" ;
+	a rr:LogicalTable ;
+	km-dev:isPartOfMapping _:node1943v1vd8x1 .
+
+_:node1943v1vd8x1 km-dev:hasLogicalTable _:node1943v1vd8x9 .
+
+km-dev:TriplesMap_03692498-ae20-4392-8f11-636ffa144c76 rr:logicalTable _:node1943v1vd8x9 ;
+	rr:subjectMap _:node1943v1vd8x10 .
+
+_:node1943v1vd8x1 km-dev:hasSubjectMap _:node1943v1vd8x10 .
+
+_:node1943v1vd8x10 km-dev:isPartOfMapping _:node1943v1vd8x1 ;
+	a rr:SubjectMap ;
+	km-dev:alignmentNodeId "http://schema.org/WebPage1" ;
+	rr:class schema:WebPage ;
+	rr:template "{crawl_uri}" ;
+	a km-dev:steinerTreeRootNode .
+
+km-dev:PredicateObjectMap_50ad7afc-a996-4c9e-92f7-969c3155b1ea rr:predicate memex:hasFeatureCollection .
+
+km-dev:RefObjectMap_89893fd5-56b3-4281-8cff-af441cb886eb a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_554b6960-5953-4900-bc94-da8a3c2118cd ;
+	km-dev:isPartOfMapping _:node1943v1vd8x1 .
+
+_:node1943v1vd8x1 km-dev:hasObjectMap km-dev:RefObjectMap_89893fd5-56b3-4281-8cff-af441cb886eb .
+
+km-dev:PredicateObjectMap_50ad7afc-a996-4c9e-92f7-969c3155b1ea rr:objectMap km-dev:RefObjectMap_89893fd5-56b3-4281-8cff-af441cb886eb .
+
+km-dev:TriplesMap_03692498-ae20-4392-8f11-636ffa144c76 rr:predicateObjectMap km-dev:PredicateObjectMap_50ad7afc-a996-4c9e-92f7-969c3155b1ea .
+
+km-dev:PredicateObjectMap_50ad7afc-a996-4c9e-92f7-969c3155b1ea a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node1943v1vd8x1 .
+
+_:node1943v1vd8x1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_50ad7afc-a996-4c9e-92f7-969c3155b1ea .

@@ -30,10 +30,6 @@ def clean_phone(x):
         ph = ph[1:]
     return ph;
 
-def feature_phone(x):
-    cleaned = clean_phone(x)
-    if cleaned:
-        return "PhoneNumber/%s" % cleaned
 
 # age   15647
 def clean_age(x):
@@ -553,7 +549,7 @@ def get_url_hash(string):
 
 mapFunctions = defaultdict(lambda x: None)
 
-mapFunctions['phone'] = feature_phone
+mapFunctions['phone'] = clean_phone
 mapFunctions['age'] = feature_age
 mapFunctions['email'] = feature_email
 mapFunctions['gender'] = feature_gender
@@ -585,3 +581,45 @@ mapFunctions['location'] = feature_location
 
 def feature_value(attributeName, value):
     return mapFunctions[attributeName](value)
+
+
+
+# Pedro
+attribute_to_feature = {}
+attribute_to_feature['phone'] = "phonenumber"
+attribute_to_feature['age'] = "person/age"
+attribute_to_feature['email'] = "emailaddress"
+attribute_to_feature['gender'] = "person/gender"
+attribute_to_feature['ethnicity'] = "person/ethnicity"
+attribute_to_feature['height'] = "person/height"
+attribute_to_feature['hair'] = "person/haircolor"
+attribute_to_feature['build'] = "person/build"
+attribute_to_feature['cup'] = "person/cupsizeus"
+attribute_to_feature['bust'] = "person/bustbandsize"
+attribute_to_feature['piercings'] = "person/piercings"
+attribute_to_feature['creditcards'] = "creditcardaccepted"
+attribute_to_feature['hairlength'] = "person/hairlength"
+attribute_to_feature['hairtype'] = "person/hairtype"
+attribute_to_feature['eyes'] = "person/eyecolor"
+attribute_to_feature['weight'] = "person/weight"
+attribute_to_feature['name'] = "person/name"
+attribute_to_feature['tattoos'] = "person/tattoocount"
+attribute_to_feature['grooming'] = "person/grooming"
+attribute_to_feature['implants'] = "person/implantspresent"
+attribute_to_feature['username'] = "person/username"
+attribute_to_feature['travel'] = "person/travel"
+attribute_to_feature['zip'] = "zipcode"
+attribute_to_feature['waist'] = "person/waistsize"
+attribute_to_feature['hips'] = "person/hipstype"
+attribute_to_feature['alias'] = "persion/alias"
+attribute_to_feature['availability'] = "person/incalloutcall"
+
+attribute_to_feature['rate15'] = "rateperhour"
+attribute_to_feature['rate30'] = "rateperhour"
+attribute_to_feature['rate60'] = "rateperhour"
+
+
+def feature_name(attribute_name):
+    value = attribute_to_feature[attribute_name];
+    if value:
+        return "features/"+value
