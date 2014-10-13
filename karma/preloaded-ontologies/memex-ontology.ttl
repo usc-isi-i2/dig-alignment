@@ -3,7 +3,7 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix skos: <http://www.w3.org/2008/05/skos#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix schema: <http://schema.org/> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 
@@ -21,13 +21,6 @@ memex:URLEntity rdf:type owl:Class ;
 	rdfs:label "URLEntity"@en ;
 	rdfs:comment """Represents an address on the Web from where we can retrieve a resource.
 	Each time we dereference a URL we get a schema:CreativeWork, which we call a memex:snapshot"""
-	.
-
-memex:Snapshot rdf:type owl:Class ;
-	rdfs:label "Snapshot"@en ;
-	rdfs:comment """Represents the retrieved resource from an address on the Web""" ;
-	rdfs:subClassOf schema:CreativeWork ;
-	rdfs:subClassOf prov:Entity 
 	.
 
 memex:Mention rdf:type owl:Class ;
@@ -88,7 +81,14 @@ memex:Boolean rdf:type owl:Class ;
 
 memex:Feature rdf:type owl:Class ; 
 	rdfs:label "Feature"@en ;
-	rdfs:comment """Represents a feature."""
+	rdfs:comment """Represents a feature. Typically, features are derived from extractions
+	from Web pages. Their purpose is to represent information about an entity when the 
+	identity of the entity is still unknown."""
+	.
+
+memex:FeatureCollection rdf:type owl:Class ; 
+	rdfs:label "Feature"@en ;
+	rdfs:comment """A collection of Feature."""
 	.
 
 memex:BinaryFeature rdf:type owl:Class ; 
@@ -234,24 +234,30 @@ memex:preferenceSubject rdf:type owl:ObjectProperty ;
 	they include values such as http://..../agegroup/young"""
 	.
 
-memex:personFeature rdf:type owl:ObjectProperty ; 
-	rdfs:label "personFeature"@en ;
+memex:hasFeatureCollection rdf:type owl:ObjectProperty ; 
+	rdfs:label "hasFeatureCollection"@en ;
 	rdfs:domain schema:CreativeWork ;
-	rdfs:range memex:Feature ; 
-	rdfs:comment "A feature that characterizes people mentioned in a creative work." 
+	rdfs:range memex:FeatureCollection ;
+	rdfs:comment """The FeatureCollection associated with CreativeWork."""
 	.
 
-## schema:mentions is already in schema.org
-#
-memex:hasMention rdf:type owl:ObjectProperty ;
-	rdfs:label "HasMention"@en ;
-	rdfs:domain schema:CreativeWork ;
-	rdfs:range schema:Mention ;
+memex:hasFeatures rdf:type owl:ObjectProperty ; 
+	rdfs:label "hasFeatures"@en ;
+	rdfs:domain memex:FeatureCollection ;
+	rdfs:range memex:Feature ;
+	rdfs:comment """The member Features of a FeatureCollection."""
 	.
 
-memex:feature rdf:type owl:ObjectProperty ;
-	rdfs:label "feature"@en ;
-	rdfs:comment "This is some feature" ;
+memex:featureObject rdf:type owl:ObjectProperty ; 
+	rdfs:label "featureObject"@en ;
+	rdfs:domain memex:Feature ;
+	rdfs:comment """The value of a feature represented as an object."""
+	.
+
+memex:featureName rdf:type owl:ObjectProperty ; 
+	rdfs:label "featureName"@en ;
+	rdfs:domain memex:Feature ;
+	rdfs:comment """The name of a feature in a controlled vocabulary of feature names."""
 	.
 
 #########################################################
@@ -282,9 +288,9 @@ memex:confidence rdf:type owl:DataTypeProeprty ;
 	rdfs:label "confidence"@en ;
 	rdfs:comment "Confidence value associated with mention"
 	.
-memex:mentionConfidence rdf:type owl:DataTypeProperty ;
-	rdfs:label "confidence"@en ;
-	rdfs:domain memex:Mention ;
-	rdfs:subPropertyOf memex:confidence ;
-	rdfs:comment "Confidence value associated with mention"
+
+memex:featureValue rdf:type owl:DatatypeProperty ;
+	rdfs:label "featureValue"@en ;
+	rdfs:domain memex:Feature ;
+	rdfs:comment "The value of a Feature represented as a literal." 
 	.
