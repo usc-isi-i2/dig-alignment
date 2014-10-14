@@ -620,6 +620,6 @@ attribute_to_feature['rate60'] = "rateperhour"
 
 
 def feature_name(attribute_name):
-    value = attribute_to_feature[attribute_name];
-    if value:
-        return "features/"+value
+    return attribute_to_feature[attribute_name]
+
+
