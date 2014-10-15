@@ -22,18 +22,19 @@ import hashlib
 
 def clean_phone(x):
     """Return the phone as a 10 digit number,
-     or as close to that as we can make it
+     or as close to that as we can make it.
+     Prefix with country code '+1' at the end.
     """
     ph = numericOnly(x.strip().lower())
     # If there are 11 numbers 
     if (len(ph)==11 and ph[0]=="1"):
         ph = ph[1:]
-    return ph;
+    return '+1' + ph;
 
 
 # age   15647
 def clean_age(x):
-    """Return the a clean age
+    """Return the clean age
     """
     return x.strip().lower();
 
@@ -47,7 +48,7 @@ def clean_email(x):
     """Return a clean email address
     """
     if (x.find("@") != -1):
-        em = x.strip().lower().lower();
+        em = x.strip().lower();
         return em;
 
 def feature_email(x):
@@ -57,7 +58,7 @@ def feature_email(x):
 
 # gender
 def clean_gender(x):
-    g = x.strip().lower().lower();
+    g = x.strip().lower();
     if g in ["female", "f"]:
         return "f"
     elif g in ["male", "m"]:
@@ -85,6 +86,7 @@ def clean_rate(x):
     # no binning
     return rate
 
+ethnicity_samples = ["black", "african-american", "latina", "ASIAN", "Martian"]
 def feature_rate(x):
     cleaned = clean_rate(x)
     if cleaned:
@@ -189,27 +191,28 @@ def test_bust():
         print "%r => %r" % (b, f)
 
 def clean_bust(x):
-    stripped = x.strip().lower()
-    stripped = stripped.replace(" ","")
-    first = re.split("-", stripped)[0]
-    try:
-        return int(float(first))
-    except:
-        pass
-    try:
-        return int(numericOnly(first))
-    except:
-        pass
-    return None
-
-def feature_bust(x):
-    "this one is in inches"
+    """Bust measured in inches, restricted to [20,50]"""
     def sanityCheck(bust):
         if bust >= 20 and bust <= 50:
             return bust
         else:
             return None
 
+    stripped = x.strip().lower()
+    stripped = stripped.replace(" ","")
+    first = re.split("-", stripped)[0]
+    try:
+        return sanityCheck(int(float(first)))
+    except:
+        pass
+    try:
+        return sanityCheck(int(numericOnly(first)))
+    except:
+        pass
+    return None
+
+def feature_bust(x):
+    "Bust measured in inches"
     cleaned = clean_bust(x)
     if cleaned:
         return "bust/%s" % cleaned
@@ -219,7 +222,7 @@ def feature_bust(x):
 # xxxxx Other (where xxxx is a legal value)
 # Tongue Breasts Belly Button Other
 #
-# Maybe use "belly button" "bellow the belt" as tokens, and then
+# Maybe use "belly button" "below the belt" as tokens, and then
 # we should generate a comma-separated list of values and then
 # use split values to generate a multi-valued cell so that we
 # can generate multiple features per attribute.
@@ -228,6 +231,9 @@ def clean_piercings(x):
     stripped = re.sub("belly button", "bellybutton", stripped)
     stripped = re.sub("below the belt", "belowthebelt", stripped)
     return stripped.split(' ')
+
+def commaList(l):
+    return ",".join(l)
 
 def feature_piercings(x):
     cleaned = clean_piercings(x)
@@ -276,16 +282,15 @@ def feature_eyes(x):
 
 # weight    13316
 def clean_weight(x):
-    stripped = x.strip().lower()
-    return stripped
+    """In kg.
+unmarked weight < 90 is interpreted as kg, >=90 as lb"""
+    x = x.strip().lower()
 
-def feature_weight(x):
-    "unmarked weight < 90 is interpreted as kg, >=90 as lb"
     def lb_to_kg(lb):
         return int(float(lb)/2.2)
     def sanityCheck(kg):
         if kg >= 40 and kg <= 200:
-            return "weight/" + str(kg)
+            return kg
         else:
             return None
 
@@ -348,6 +353,14 @@ def feature_weight(x):
     except Exception, e:
         return None
 
+def feature_weight(x):
+    """in kg
+unmarked weight < 90 is interpreted as kg, >=90 as lb"""
+    kg = clean_weight(x)
+    if kg and kg >= 40 and kg <= 200:
+        return "weight/" + str(kg)
+    else:
+        return None
 
 # name  10042
 def clean_name(x):
@@ -429,28 +442,23 @@ def test_waist():
 
 def clean_waist(x):
     "copied from bust"
+    def inch_to_cm(inch):
+        return int(inch*2.54)
+    def sanityCheck(cm):
+        if cm >= 40 and cm <= 200:
+            return cm
+        else:
+            return None
     try:
         stripped = x.strip().lower()
         stripped = stripped.replace(" ","")
         first = re.split("-", stripped)[0]
         first = first.strip()
-        return first 
     except:
         pass
-    return None
-
-def feature_waist(x):
-    "unmarked waist < 60 is interpreted as in, >=60 as cm"
-    def inch_to_cm(inch):
-        return int(inch*2.54)
-    def sanityCheck(cm):
-        if cm >= 40 and cm <= 200:
-            return "waist/" + str(cm)
-        else:
-            return None
 
     try:
-        cleaned = clean_waist(x)
+        cleaned = first
         inch = cleaned.strip('es')
         inch = inch.strip('s')
         # now try for just inches
@@ -490,6 +498,16 @@ def feature_waist(x):
             return sanityCheck(inch_to_cm(num))
     
     except Exception, e:
+        return None
+
+
+def feature_waist(x):
+    """in cm
+unmarked waist < 60 is interpreted as in, >=60 as cm"""
+    cm = clean_waist(x)
+    if cm and cm >= 40 and cm <= 200:
+        return "waist/" + str(cm)
+    else:
         return None
 
 # hips  2400
@@ -550,34 +568,34 @@ def get_url_hash(string):
 mapFunctions = defaultdict(lambda x: None)
 
 mapFunctions['phone'] = clean_phone
-mapFunctions['age'] = feature_age
-mapFunctions['email'] = feature_email
-mapFunctions['gender'] = feature_gender
-mapFunctions['rate'] = feature_rate
-mapFunctions['ethnicity'] = feature_ethnicity
-mapFunctions['height'] = feature_height
-mapFunctions['hair'] = feature_hair
-mapFunctions['build'] = feature_build
-mapFunctions['cup'] = feature_cup
-mapFunctions['bust'] = feature_bust
-mapFunctions['piercings'] = feature_piercings
-mapFunctions['creditcards'] = feature_creditcards
-mapFunctions['hairlength'] = feature_hairlength
-mapFunctions['hairtype'] = feature_hairtype
-mapFunctions['eyes'] = feature_eyes
-mapFunctions['weight'] = feature_weight
-mapFunctions['name'] = feature_name
-mapFunctions['tattoos'] = feature_tattoos
-mapFunctions['grooming'] = feature_grooming
-mapFunctions['implants'] = feature_implants
-mapFunctions['username'] = feature_username
-mapFunctions['travel'] = feature_travel
-mapFunctions['zip'] = feature_zip
-mapFunctions['waist'] = feature_waist
-mapFunctions['hips'] = feature_hips
-mapFunctions['alias'] = feature_alias
-mapFunctions['availability'] = feature_availability
-mapFunctions['location'] = feature_location
+mapFunctions['age'] = clean_age
+mapFunctions['email'] = clean_email
+mapFunctions['gender'] = clean_gender
+mapFunctions['rate'] = clean_rate
+mapFunctions['ethnicity'] = clean_ethnicity
+mapFunctions['height'] = clean_height
+mapFunctions['hair'] = clean_hair
+mapFunctions['build'] = clean_build
+mapFunctions['cup'] = clean_cup
+mapFunctions['bust'] = clean_bust
+mapFunctions['piercings'] = lambda x: commaList(clean_piercings(x))
+mapFunctions['creditcards'] = clean_creditcards
+mapFunctions['hairlength'] = clean_hairlength
+mapFunctions['hairtype'] = clean_hairtype
+mapFunctions['eyes'] = clean_eyes
+mapFunctions['weight'] = clean_weight
+mapFunctions['name'] = clean_name
+mapFunctions['tattoos'] = clean_tattoos
+mapFunctions['grooming'] = clean_grooming
+mapFunctions['implants'] = clean_implants
+mapFunctions['username'] = clean_username
+mapFunctions['travel'] = clean_travel
+mapFunctions['zip'] = clean_zip
+mapFunctions['waist'] = clean_waist
+mapFunctions['hips'] = clean_hips
+mapFunctions['alias'] = clean_alias
+mapFunctions['availability'] = clean_availability
+mapFunctions['location'] = clean_location
 
 def feature_value(attributeName, value):
     return mapFunctions[attributeName](value)
@@ -620,6 +638,5 @@ attribute_to_feature['rate60'] = "rateperhour"
 
 
 def feature_name(attribute_name):
+    """Note: this overrides a specific feature function"""    
     return attribute_to_feature[attribute_name]
-
-
