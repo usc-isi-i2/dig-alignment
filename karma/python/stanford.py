@@ -53,7 +53,7 @@ def splitPhoneField(field):
                 if p[1:1+lcode] == scode:
                     return p[1+lcode:]
         return p
-    return ",".join([stripCountryCode(p) for p in field.split(",")])
+    return field
 
 def splitLocationField(field):
     if field=="N":
