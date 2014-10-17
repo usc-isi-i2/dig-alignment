@@ -86,6 +86,18 @@ def clean_rate(x):
     # no binning
     return rate
 
+def clean_rate15(x):
+    rate = clean_rate(x)
+    if rate != None:
+        rate = rate * 4
+    return rate
+
+def clean_rate30(x):
+    rate = clean_rate(x)
+    if rate != None:
+        rate = rate * 2
+    return rate
+
 ethnicity_samples = ["black", "african-american", "latina", "ASIAN", "Martian"]
 def feature_rate(x):
     cleaned = clean_rate(x)
@@ -284,7 +296,7 @@ def feature_eyes(x):
 def clean_weight(x):
     """In kg.
 unmarked weight < 90 is interpreted as kg, >=90 as lb"""
-    x = x.strip().lower()
+    x = str(x).strip().lower()
 
     def lb_to_kg(lb):
         return int(float(lb)/2.2)
@@ -295,8 +307,9 @@ unmarked weight < 90 is interpreted as kg, >=90 as lb"""
             return None
 
     try:
-        cleaned = clean_weight(x)
-        # first try for st/stone
+        cleaned = x
+
+        # # first try for st/stone
         l = re.split("stone", cleaned)
         if len(l) == 1:
             l = re.split("st", cleaned)
@@ -572,6 +585,8 @@ mapFunctions['age'] = clean_age
 mapFunctions['email'] = clean_email
 mapFunctions['gender'] = clean_gender
 mapFunctions['rate'] = clean_rate
+mapFunctions['rate30'] = clean_rate30
+mapFunctions['rate60'] = clean_rate
 mapFunctions['ethnicity'] = clean_ethnicity
 mapFunctions['height'] = clean_height
 mapFunctions['hair'] = clean_hair
@@ -596,9 +611,16 @@ mapFunctions['hips'] = clean_hips
 mapFunctions['alias'] = clean_alias
 mapFunctions['availability'] = clean_availability
 mapFunctions['location'] = clean_location
+mapFunctions['userlocation'] = clean_location
 
 def feature_value(attributeName, value):
-    return mapFunctions[attributeName](value)
+    try:
+        ret = mapFunctions[attributeName](value)
+        if ret == None:
+            ret = ''
+        return ret
+    except Exception, e:
+        return ''
 
 
 
@@ -631,7 +653,7 @@ attribute_to_feature['waist'] = "person/waistsize"
 attribute_to_feature['hips'] = "person/hipstype"
 attribute_to_feature['alias'] = "persion/alias"
 attribute_to_feature['availability'] = "person/incalloutcall"
-
+attribute_to_feature['userlocation'] = "person/location"
 attribute_to_feature['rate15'] = "rateperhour"
 attribute_to_feature['rate30'] = "rateperhour"
 attribute_to_feature['rate60'] = "rateperhour"
@@ -639,4 +661,18 @@ attribute_to_feature['rate60'] = "rateperhour"
 
 def feature_name(attribute_name):
     """Note: this overrides a specific feature function"""    
-    return attribute_to_feature[attribute_name]
+    try:
+        ret = attribute_to_feature[attribute_name]
+        if ret == None:
+            ret = ''
+        return ret
+    except Exception, e:
+        return ''
+
+def feature_mod_time(feature_name, feature_value, mod_time):
+    try:
+        if len(feature_value) > 0:
+            return mod_time
+        return ''
+    except Exception, e:
+        return ''

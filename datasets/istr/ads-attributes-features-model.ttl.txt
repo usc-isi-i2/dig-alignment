@@ -13,12 +13,12 @@
 @prefix rr: <http://www.w3.org/ns/r2rml#> .
 @prefix km-dev: <http://isi.edu/integration/karma/dev#> .
 
-_:node1948suk7gx1 a km-dev:R2RMLMapping ;
-	km-dev:sourceName "select unix_timestamp(b.importtime)*1000 as timestamp, b.url, a.* from ads_attributes a join ads b on a.ads_id=b.id  limit 200000000" ;
-	km-dev:modelPublicationTime "1413343039729"^^xsd:long ;
+_:node194flokovx1 a km-dev:R2RMLMapping ;
+	km-dev:sourceName "select unix_timestamp(b.importtime)*1000 as timestamp, b.url, a.* from ads_attributes a join ads b on a.ads_id=b.id  limit 1000" ;
+	km-dev:modelPublicationTime "1413570384671"^^xsd:long ;
 	km-dev:modelVersion "1.7" ;
 	km-dev:hasInputColumns "[[{\"columnName\":\"attribute\"}],[{\"columnName\":\"value\"}],[{\"columnName\":\"url\"}],[{\"columnName\":\"modtime\"}],[{\"columnName\":\"timestamp\"}]]" ;
-	km-dev:hasOutputColumns "[[{\"columnName\":\"feature_value\"}],[{\"columnName\":\"feature_name\"}],[{\"columnName\":\"crawl_uri\"}],[{\"columnName\":\"featurecollection_uri\"}],[{\"columnName\":\"modtime\"}]]" ;
+	km-dev:hasOutputColumns "[[{\"columnName\":\"feature_value\"}],[{\"columnName\":\"featurecollection_uri\"}],[{\"columnName\":\"feature_modtime\"}],[{\"columnName\":\"feature_name\"}],[{\"columnName\":\"crawl_uri\"}]]" ;
 	km-dev:hasModelLabel "ads-attributes-features" ;
 	km-dev:hasBaseURI "http://memex.zapto.org/data/" ;
 	km-dev:hasWorksheetHistory """[
@@ -928,179 +928,322 @@ _:node1948suk7gx1 a km-dev:R2RMLMapping ;
             }
         ],
         \"commandName\": \"SetSemanticTypeCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"modtime\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"value\": \"feature_modtime\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"value\": \"return feature_mod_time(getValue(\\\"feature_name\\\"), getValue(\\\"feature_value\\\"), getValue(\\\"modtime\\\"))\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"feature_value\\\"}]},{\\\"value\\\":[{\\\"columnName\\\":\\\"feature_name\\\"}]},{\\\"value\\\":[{\\\"columnName\\\":\\\"modtime\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"feature_modtime\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SubmitPythonTransformationCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"modtime\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": true,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"xsd:date\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"modtime\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"modtime\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"UnassignSemanticTypeCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"feature_modtime\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://www.w3.org/ns/prov#generatedAtTime\",
+                    \"DomainLabel\": \"memex:Feature1\",
+                    \"DomainId\": \"http://memexproxy.com/ontology/Feature1\",
+                    \"DomainUri\": \"http://memexproxy.com/ontology/Feature\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"feature_modtime\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"feature_modtime\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetSemanticTypeCommand\"
     }
 ]""" .
 
-km-dev:TriplesMap_65c419eb-4c39-47ed-9dfe-2e1a9a1f4a4f a rr:TriplesMap .
+km-dev:TriplesMap_ad8911a6-40ab-410e-b2d5-fb299c841132 a rr:TriplesMap .
 
-_:node1948suk7gx1 km-dev:hasTriplesMap km-dev:TriplesMap_65c419eb-4c39-47ed-9dfe-2e1a9a1f4a4f .
+_:node194flokovx1 km-dev:hasTriplesMap km-dev:TriplesMap_ad8911a6-40ab-410e-b2d5-fb299c841132 .
 
-km-dev:TriplesMap_65c419eb-4c39-47ed-9dfe-2e1a9a1f4a4f km-dev:isPartOfMapping _:node1948suk7gx1 .
+km-dev:TriplesMap_ad8911a6-40ab-410e-b2d5-fb299c841132 km-dev:isPartOfMapping _:node194flokovx1 .
 
-_:node1948suk7gx2 rr:tableName "select unix_timestamp(b.importtime)*1000 as timestamp, b.url, a.* from ads_attributes a join ads b on a.ads_id=b.id  limit 200000000" ;
+_:node194flokovx2 rr:tableName "select unix_timestamp(b.importtime)*1000 as timestamp, b.url, a.* from ads_attributes a join ads b on a.ads_id=b.id  limit 1000" ;
 	a rr:LogicalTable ;
-	km-dev:isPartOfMapping _:node1948suk7gx1 .
+	km-dev:isPartOfMapping _:node194flokovx1 .
 
-_:node1948suk7gx1 km-dev:hasLogicalTable _:node1948suk7gx2 .
+_:node194flokovx1 km-dev:hasLogicalTable _:node194flokovx2 .
 
-km-dev:TriplesMap_65c419eb-4c39-47ed-9dfe-2e1a9a1f4a4f rr:logicalTable _:node1948suk7gx2 ;
-	rr:subjectMap _:node1948suk7gx3 .
+km-dev:TriplesMap_ad8911a6-40ab-410e-b2d5-fb299c841132 rr:logicalTable _:node194flokovx2 ;
+	rr:subjectMap _:node194flokovx3 .
 
-_:node1948suk7gx1 km-dev:hasSubjectMap _:node1948suk7gx3 .
+_:node194flokovx1 km-dev:hasSubjectMap _:node194flokovx3 .
 
-_:node1948suk7gx3 km-dev:isPartOfMapping _:node1948suk7gx1 ;
+_:node194flokovx3 km-dev:isPartOfMapping _:node194flokovx1 ;
 	a rr:SubjectMap ;
 	km-dev:alignmentNodeId "http://memexproxy.com/ontology/Feature1" ;
 	rr:class memex:Feature ;
 	rr:termType rr:BlankNode ;
 	km-dev:namePrefix "memex:Feature1" .
 
-km-dev:PredicateObjectMap_254b5456-06a5-4f4e-8917-d3735b456af3 rr:predicate memex:featureName .
+km-dev:PredicateObjectMap_c72455b3-a1ca-4c3e-8a0a-b67f8a2ea094 rr:predicate memex:featureName .
 
-_:node1948suk7gx4 rr:column "feature_name" ;
+_:node194flokovx4 rr:column "feature_name" ;
 	a rr:ObjectMap ;
-	km-dev:isPartOfMapping _:node1948suk7gx1 .
+	km-dev:isPartOfMapping _:node194flokovx1 .
 
-_:node1948suk7gx1 km-dev:hasObjectMap _:node1948suk7gx4 .
+_:node194flokovx1 km-dev:hasObjectMap _:node194flokovx4 .
 
-km-dev:PredicateObjectMap_254b5456-06a5-4f4e-8917-d3735b456af3 rr:objectMap _:node1948suk7gx4 .
+km-dev:PredicateObjectMap_c72455b3-a1ca-4c3e-8a0a-b67f8a2ea094 rr:objectMap _:node194flokovx4 .
 
-km-dev:TriplesMap_65c419eb-4c39-47ed-9dfe-2e1a9a1f4a4f rr:predicateObjectMap km-dev:PredicateObjectMap_254b5456-06a5-4f4e-8917-d3735b456af3 .
+km-dev:TriplesMap_ad8911a6-40ab-410e-b2d5-fb299c841132 rr:predicateObjectMap km-dev:PredicateObjectMap_c72455b3-a1ca-4c3e-8a0a-b67f8a2ea094 .
 
-km-dev:PredicateObjectMap_254b5456-06a5-4f4e-8917-d3735b456af3 a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node1948suk7gx1 .
+km-dev:PredicateObjectMap_c72455b3-a1ca-4c3e-8a0a-b67f8a2ea094 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node194flokovx1 .
 
-_:node1948suk7gx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_254b5456-06a5-4f4e-8917-d3735b456af3 .
+_:node194flokovx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_c72455b3-a1ca-4c3e-8a0a-b67f8a2ea094 .
 
-km-dev:PredicateObjectMap_2484cc0d-21cd-45ba-a634-563aa6097f55 rr:predicate memex:featureValue .
+km-dev:PredicateObjectMap_b257b20c-bb4f-4e0b-aa60-f6ae7b6f077e rr:predicate memex:featureValue .
 
-_:node1948suk7gx5 rr:column "feature_value" ;
+_:node194flokovx5 rr:column "feature_value" ;
 	a rr:ObjectMap ;
-	km-dev:isPartOfMapping _:node1948suk7gx1 .
+	km-dev:isPartOfMapping _:node194flokovx1 .
 
-_:node1948suk7gx1 km-dev:hasObjectMap _:node1948suk7gx5 .
+_:node194flokovx1 km-dev:hasObjectMap _:node194flokovx5 .
 
-km-dev:PredicateObjectMap_2484cc0d-21cd-45ba-a634-563aa6097f55 rr:objectMap _:node1948suk7gx5 .
+km-dev:PredicateObjectMap_b257b20c-bb4f-4e0b-aa60-f6ae7b6f077e rr:objectMap _:node194flokovx5 .
 
-km-dev:TriplesMap_65c419eb-4c39-47ed-9dfe-2e1a9a1f4a4f rr:predicateObjectMap km-dev:PredicateObjectMap_2484cc0d-21cd-45ba-a634-563aa6097f55 .
+km-dev:TriplesMap_ad8911a6-40ab-410e-b2d5-fb299c841132 rr:predicateObjectMap km-dev:PredicateObjectMap_b257b20c-bb4f-4e0b-aa60-f6ae7b6f077e .
 
-km-dev:PredicateObjectMap_2484cc0d-21cd-45ba-a634-563aa6097f55 a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node1948suk7gx1 .
+km-dev:PredicateObjectMap_b257b20c-bb4f-4e0b-aa60-f6ae7b6f077e a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node194flokovx1 .
 
-_:node1948suk7gx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_2484cc0d-21cd-45ba-a634-563aa6097f55 .
+_:node194flokovx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_b257b20c-bb4f-4e0b-aa60-f6ae7b6f077e .
 
-km-dev:PredicateObjectMap_b9a0ee30-7a20-4bc0-8bcb-a3fde27a83ea rr:predicate prov:generatedAtTime .
+km-dev:PredicateObjectMap_4a362f5e-3a92-46f2-93a5-74d34318684c rr:predicate prov:generatedAtTime .
 
-_:node1948suk7gx6 rr:column "modtime" ;
+_:node194flokovx6 rr:column "feature_modtime" ;
 	a rr:ObjectMap ;
-	rr:datatype "http://www.w3.org/2001/XMLSchema#date" ;
-	km-dev:isPartOfMapping _:node1948suk7gx1 .
+	km-dev:isPartOfMapping _:node194flokovx1 .
 
-_:node1948suk7gx1 km-dev:hasObjectMap _:node1948suk7gx6 .
+_:node194flokovx1 km-dev:hasObjectMap _:node194flokovx6 .
 
-km-dev:PredicateObjectMap_b9a0ee30-7a20-4bc0-8bcb-a3fde27a83ea rr:objectMap _:node1948suk7gx6 .
+km-dev:PredicateObjectMap_4a362f5e-3a92-46f2-93a5-74d34318684c rr:objectMap _:node194flokovx6 .
 
-km-dev:TriplesMap_65c419eb-4c39-47ed-9dfe-2e1a9a1f4a4f rr:predicateObjectMap km-dev:PredicateObjectMap_b9a0ee30-7a20-4bc0-8bcb-a3fde27a83ea .
+km-dev:TriplesMap_ad8911a6-40ab-410e-b2d5-fb299c841132 rr:predicateObjectMap km-dev:PredicateObjectMap_4a362f5e-3a92-46f2-93a5-74d34318684c .
 
-km-dev:PredicateObjectMap_b9a0ee30-7a20-4bc0-8bcb-a3fde27a83ea a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node1948suk7gx1 .
+km-dev:PredicateObjectMap_4a362f5e-3a92-46f2-93a5-74d34318684c a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node194flokovx1 .
 
-_:node1948suk7gx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_b9a0ee30-7a20-4bc0-8bcb-a3fde27a83ea .
+_:node194flokovx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_4a362f5e-3a92-46f2-93a5-74d34318684c .
 
-km-dev:PredicateObjectMap_a243b088-75db-4ed6-b307-77fe295defbd rr:predicate prov:wasGeneratedBy .
+km-dev:PredicateObjectMap_6c670b61-2bc6-4787-b92d-298856c5ca87 rr:predicate prov:wasGeneratedBy .
 
-_:node1948suk7gx7 rr:constant <http://memexproxy.com/data/software/extractor/ist/ist-attributes-database> ;
+_:node194flokovx7 rr:constant <http://memexproxy.com/data/software/extractor/ist/ist-attributes-database> ;
 	a rr:ObjectMap ;
-	km-dev:isPartOfMapping _:node1948suk7gx1 .
+	km-dev:isPartOfMapping _:node194flokovx1 .
 
-_:node1948suk7gx1 km-dev:hasObjectMap _:node1948suk7gx7 .
+_:node194flokovx1 km-dev:hasObjectMap _:node194flokovx7 .
 
-km-dev:PredicateObjectMap_a243b088-75db-4ed6-b307-77fe295defbd rr:objectMap _:node1948suk7gx7 .
+km-dev:PredicateObjectMap_6c670b61-2bc6-4787-b92d-298856c5ca87 rr:objectMap _:node194flokovx7 .
 
-km-dev:TriplesMap_65c419eb-4c39-47ed-9dfe-2e1a9a1f4a4f rr:predicateObjectMap km-dev:PredicateObjectMap_a243b088-75db-4ed6-b307-77fe295defbd .
+km-dev:TriplesMap_ad8911a6-40ab-410e-b2d5-fb299c841132 rr:predicateObjectMap km-dev:PredicateObjectMap_6c670b61-2bc6-4787-b92d-298856c5ca87 .
 
-km-dev:PredicateObjectMap_a243b088-75db-4ed6-b307-77fe295defbd a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node1948suk7gx1 .
+km-dev:PredicateObjectMap_6c670b61-2bc6-4787-b92d-298856c5ca87 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node194flokovx1 .
 
-_:node1948suk7gx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_a243b088-75db-4ed6-b307-77fe295defbd .
+_:node194flokovx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_6c670b61-2bc6-4787-b92d-298856c5ca87 .
 
-km-dev:TriplesMap_11fa2acb-89c6-489a-a442-8d1412261d1c a rr:TriplesMap .
+km-dev:TriplesMap_59e8f137-6911-485f-9065-14d7268b3976 a rr:TriplesMap .
 
-_:node1948suk7gx1 km-dev:hasTriplesMap km-dev:TriplesMap_11fa2acb-89c6-489a-a442-8d1412261d1c .
+_:node194flokovx1 km-dev:hasTriplesMap km-dev:TriplesMap_59e8f137-6911-485f-9065-14d7268b3976 .
 
-km-dev:TriplesMap_11fa2acb-89c6-489a-a442-8d1412261d1c km-dev:isPartOfMapping _:node1948suk7gx1 .
+km-dev:TriplesMap_59e8f137-6911-485f-9065-14d7268b3976 km-dev:isPartOfMapping _:node194flokovx1 .
 
-_:node1948suk7gx8 rr:tableName "select unix_timestamp(b.importtime)*1000 as timestamp, b.url, a.* from ads_attributes a join ads b on a.ads_id=b.id  limit 200000000" ;
+_:node194flokovx8 rr:tableName "select unix_timestamp(b.importtime)*1000 as timestamp, b.url, a.* from ads_attributes a join ads b on a.ads_id=b.id  limit 1000" ;
 	a rr:LogicalTable ;
-	km-dev:isPartOfMapping _:node1948suk7gx1 .
+	km-dev:isPartOfMapping _:node194flokovx1 .
 
-_:node1948suk7gx1 km-dev:hasLogicalTable _:node1948suk7gx8 .
+_:node194flokovx1 km-dev:hasLogicalTable _:node194flokovx8 .
 
-km-dev:TriplesMap_11fa2acb-89c6-489a-a442-8d1412261d1c rr:logicalTable _:node1948suk7gx8 ;
-	rr:subjectMap _:node1948suk7gx9 .
+km-dev:TriplesMap_59e8f137-6911-485f-9065-14d7268b3976 rr:logicalTable _:node194flokovx8 ;
+	rr:subjectMap _:node194flokovx9 .
 
-_:node1948suk7gx1 km-dev:hasSubjectMap _:node1948suk7gx9 .
+_:node194flokovx1 km-dev:hasSubjectMap _:node194flokovx9 .
 
-_:node1948suk7gx9 km-dev:isPartOfMapping _:node1948suk7gx1 ;
+_:node194flokovx9 km-dev:isPartOfMapping _:node194flokovx1 ;
 	a rr:SubjectMap ;
 	km-dev:alignmentNodeId "http://memexproxy.com/ontology/FeatureCollection1" ;
 	rr:class memex:FeatureCollection ;
 	rr:template "{crawl_uri}/featurecollection" .
 
-km-dev:PredicateObjectMap_9276d2a9-e467-474c-868d-cd63c225020d rr:predicate memex:hasFeatures .
+km-dev:PredicateObjectMap_4dc9e1c9-e05f-4767-b8ef-0827a36774b2 rr:predicate memex:hasFeatures .
 
-km-dev:RefObjectMap_5ff3d511-6bad-428c-8b20-a9691a5e045f a rr:RefObjectMap , rr:ObjectMap ;
-	rr:parentTriplesMap km-dev:TriplesMap_65c419eb-4c39-47ed-9dfe-2e1a9a1f4a4f ;
-	km-dev:isPartOfMapping _:node1948suk7gx1 .
+km-dev:RefObjectMap_23a328e7-f0e8-41f0-8631-40854d7bf9a6 a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_ad8911a6-40ab-410e-b2d5-fb299c841132 ;
+	km-dev:isPartOfMapping _:node194flokovx1 .
 
-_:node1948suk7gx1 km-dev:hasObjectMap km-dev:RefObjectMap_5ff3d511-6bad-428c-8b20-a9691a5e045f .
+_:node194flokovx1 km-dev:hasObjectMap km-dev:RefObjectMap_23a328e7-f0e8-41f0-8631-40854d7bf9a6 .
 
-km-dev:PredicateObjectMap_9276d2a9-e467-474c-868d-cd63c225020d rr:objectMap km-dev:RefObjectMap_5ff3d511-6bad-428c-8b20-a9691a5e045f .
+km-dev:PredicateObjectMap_4dc9e1c9-e05f-4767-b8ef-0827a36774b2 rr:objectMap km-dev:RefObjectMap_23a328e7-f0e8-41f0-8631-40854d7bf9a6 .
 
-km-dev:TriplesMap_11fa2acb-89c6-489a-a442-8d1412261d1c rr:predicateObjectMap km-dev:PredicateObjectMap_9276d2a9-e467-474c-868d-cd63c225020d .
+km-dev:TriplesMap_59e8f137-6911-485f-9065-14d7268b3976 rr:predicateObjectMap km-dev:PredicateObjectMap_4dc9e1c9-e05f-4767-b8ef-0827a36774b2 .
 
-km-dev:PredicateObjectMap_9276d2a9-e467-474c-868d-cd63c225020d a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node1948suk7gx1 .
+km-dev:PredicateObjectMap_4dc9e1c9-e05f-4767-b8ef-0827a36774b2 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node194flokovx1 .
 
-_:node1948suk7gx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_9276d2a9-e467-474c-868d-cd63c225020d .
+_:node194flokovx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_4dc9e1c9-e05f-4767-b8ef-0827a36774b2 .
 
-km-dev:TriplesMap_c38c22a1-7696-4788-a210-bc956efcb0c2 a rr:TriplesMap .
+km-dev:TriplesMap_de33202e-8b38-4296-8f27-3dcf65e90595 a rr:TriplesMap .
 
-_:node1948suk7gx1 km-dev:hasTriplesMap km-dev:TriplesMap_c38c22a1-7696-4788-a210-bc956efcb0c2 .
+_:node194flokovx1 km-dev:hasTriplesMap km-dev:TriplesMap_de33202e-8b38-4296-8f27-3dcf65e90595 .
 
-km-dev:TriplesMap_c38c22a1-7696-4788-a210-bc956efcb0c2 km-dev:isPartOfMapping _:node1948suk7gx1 .
+km-dev:TriplesMap_de33202e-8b38-4296-8f27-3dcf65e90595 km-dev:isPartOfMapping _:node194flokovx1 .
 
-_:node1948suk7gx10 rr:tableName "select unix_timestamp(b.importtime)*1000 as timestamp, b.url, a.* from ads_attributes a join ads b on a.ads_id=b.id  limit 200000000" ;
+_:node194flokovx10 rr:tableName "select unix_timestamp(b.importtime)*1000 as timestamp, b.url, a.* from ads_attributes a join ads b on a.ads_id=b.id  limit 1000" ;
 	a rr:LogicalTable ;
-	km-dev:isPartOfMapping _:node1948suk7gx1 .
+	km-dev:isPartOfMapping _:node194flokovx1 .
 
-_:node1948suk7gx1 km-dev:hasLogicalTable _:node1948suk7gx10 .
+_:node194flokovx1 km-dev:hasLogicalTable _:node194flokovx10 .
 
-km-dev:TriplesMap_c38c22a1-7696-4788-a210-bc956efcb0c2 rr:logicalTable _:node1948suk7gx10 ;
-	rr:subjectMap _:node1948suk7gx11 .
+km-dev:TriplesMap_de33202e-8b38-4296-8f27-3dcf65e90595 rr:logicalTable _:node194flokovx10 ;
+	rr:subjectMap _:node194flokovx11 .
 
-_:node1948suk7gx1 km-dev:hasSubjectMap _:node1948suk7gx11 .
+_:node194flokovx1 km-dev:hasSubjectMap _:node194flokovx11 .
 
-_:node1948suk7gx11 km-dev:isPartOfMapping _:node1948suk7gx1 ;
+_:node194flokovx11 km-dev:isPartOfMapping _:node194flokovx1 ;
 	a rr:SubjectMap ;
 	km-dev:alignmentNodeId "http://schema.org/WebPage1" ;
 	rr:class schema:WebPage ;
 	rr:template "{crawl_uri}" ;
 	a km-dev:steinerTreeRootNode .
 
-km-dev:PredicateObjectMap_27e25e4e-a4e4-4410-9a74-f3dcfab535aa rr:predicate memex:hasFeatureCollection .
+km-dev:PredicateObjectMap_fbecdb0f-49f7-4f1a-a2c1-a4932aae56e1 rr:predicate memex:hasFeatureCollection .
 
-km-dev:RefObjectMap_5d75a6d7-41c4-4dca-9e40-15971173cba6 a rr:RefObjectMap , rr:ObjectMap ;
-	rr:parentTriplesMap km-dev:TriplesMap_11fa2acb-89c6-489a-a442-8d1412261d1c ;
-	km-dev:isPartOfMapping _:node1948suk7gx1 .
+km-dev:RefObjectMap_9129102d-da98-4ba0-901d-4d4268a7856c a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_59e8f137-6911-485f-9065-14d7268b3976 ;
+	km-dev:isPartOfMapping _:node194flokovx1 .
 
-_:node1948suk7gx1 km-dev:hasObjectMap km-dev:RefObjectMap_5d75a6d7-41c4-4dca-9e40-15971173cba6 .
+_:node194flokovx1 km-dev:hasObjectMap km-dev:RefObjectMap_9129102d-da98-4ba0-901d-4d4268a7856c .
 
-km-dev:PredicateObjectMap_27e25e4e-a4e4-4410-9a74-f3dcfab535aa rr:objectMap km-dev:RefObjectMap_5d75a6d7-41c4-4dca-9e40-15971173cba6 .
+km-dev:PredicateObjectMap_fbecdb0f-49f7-4f1a-a2c1-a4932aae56e1 rr:objectMap km-dev:RefObjectMap_9129102d-da98-4ba0-901d-4d4268a7856c .
 
-km-dev:TriplesMap_c38c22a1-7696-4788-a210-bc956efcb0c2 rr:predicateObjectMap km-dev:PredicateObjectMap_27e25e4e-a4e4-4410-9a74-f3dcfab535aa .
+km-dev:TriplesMap_de33202e-8b38-4296-8f27-3dcf65e90595 rr:predicateObjectMap km-dev:PredicateObjectMap_fbecdb0f-49f7-4f1a-a2c1-a4932aae56e1 .
 
-km-dev:PredicateObjectMap_27e25e4e-a4e4-4410-9a74-f3dcfab535aa a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node1948suk7gx1 .
+km-dev:PredicateObjectMap_fbecdb0f-49f7-4f1a-a2c1-a4932aae56e1 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node194flokovx1 .
 
-_:node1948suk7gx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_27e25e4e-a4e4-4410-9a74-f3dcfab535aa .
+_:node194flokovx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_fbecdb0f-49f7-4f1a-a2c1-a4932aae56e1 .
