@@ -576,7 +576,10 @@ def feature_location(x):
 
 
 def get_url_hash(string):
-    return hashlib.sha1(string).hexdigest()
+    return hashlib.sha1(string).hexdigest().upper()
+
+def getCacheBaseUrl():
+    return "http://memex.zapto.org/data/"
 
 mapFunctions = defaultdict(lambda x: None)
 

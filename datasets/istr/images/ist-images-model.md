@@ -4,7 +4,7 @@
 #### _ad_crawl_uri_
 From column: _ad_url_
 >``` python
-return "page/"+get_url_hash(getValue("ad_url"))+"/"+getValue("timestamp")
+return getCacheBaseUrl()+"page/"+get_url_hash(getValue("ad_url"))+"/"+getValue("ad_timestamp")
 ```
 
 
