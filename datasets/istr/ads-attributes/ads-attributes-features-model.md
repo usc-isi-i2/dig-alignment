@@ -4,7 +4,7 @@
 #### _crawl_uri_
 From column: _url_
 >``` python
-return "page/"+get_url_hash(getValue("url"))+"/"+getValue("timestamp")
+return getCacheBaseUrl()+"page/"+get_url_hash(getValue("url"))+"/"+getValue("timestamp")
 ```
 
 #### _feature_name_
