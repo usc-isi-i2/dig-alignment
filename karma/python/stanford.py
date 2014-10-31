@@ -53,7 +53,7 @@ def splitPhoneField(field):
                 if p[1:1+lcode] == scode:
                     return p[1+lcode:]
         return p
-    return ",".join([stripCountryCode(p) for p in field.split(",")])
+    return field
 
 def splitLocationField(field):
     if field=="N":
@@ -76,7 +76,7 @@ def sha1(x):
 
 # I want this to be the column uri of WebPage
 def generateUri(modtime, url):
-    return "crawl/%s-%s" % (sha1(url), (modtimeToEpochTime(modtime)*1000)-10800000)
+    return "page/%s/%s/processed" % (sha1(url), (modtimeToEpochTime(modtime)*1000)-10800000)
 
 def phone_feature_value():
     feature_value("phone", getValue("phonevalues"))
