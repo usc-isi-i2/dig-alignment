@@ -1,10 +1,10 @@
-## select unix_timestamp(b.importtime)*1000 as timestamp, b.url, a.* from ads_attributes a join ads b on a.ads_id=b.id  limit 200000000
+## add-attributes-sample-5.json
 
 ### PyTransforms
 #### _crawl_uri_
 From column: _url_
 >``` python
-return getCacheBaseUrl()+"page/"+get_url_hash(getValue("url"))+"/"+getValue("timestamp")
+return getCacheBaseUrl()+"page/"+get_url_hash(getValue("url"))+"/"+getValue("timestamp")+"/processed"
 ```
 
 #### _feature_name_
@@ -25,15 +25,35 @@ From column: _value_
 return feature_value(getValue("attribute"), getValue("value"))
 ```
 
+#### _feature_modtime_
+From column: _modtime_
+>``` python
+return feature_mod_time(getValue("feature_name"), getValue("feature_value"), getValue("modtime"))
+```
+
+#### _feature_name_property_
+From column: _feature_name_
+>``` python
+return "http://memexproxy.com/ontology/"+feature_name(getValue("attribute"))
+```
+
+#### _feature_value2_
+From column: _feature_value_
+>``` python
+return getValue("feature_value")
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
 |  ----- | -------- | ----- |
 | _crawl_uri_ | `uri` | `schema:WebPage1`|
+| _feature_modtime_ | `prov:generatedAtTime` | `memex:Feature1`|
 | _feature_name_ | `memex:featureName` | `memex:Feature1`|
+| _feature_name_property_ | `km-dev:dataPropertyOfColumnLink` | `memex:Feature1`|
 | _feature_value_ | `memex:featureValue` | `memex:Feature1`|
+| _feature_value2_ | `memex:featureValue` | `memex:Feature1`|
 | _featurecollection_uri_ | `uri` | `memex:FeatureCollection1`|
-| _modtime_ | `prov:generatedAtTime` | `memex:Feature1`|
 
 
 ### Links
