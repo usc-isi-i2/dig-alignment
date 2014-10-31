@@ -20,4 +20,4 @@ mvn exec:java -Dexec.mainClass="edu.isi.karma.rdf.GenerateContextFromModel" -Dex
 ########################################################
 #			Stanford Extractions
 ########################################################
-mvn exec:java -Dexec.mainClass="edu.isi.karma.rdf.GenerateContextFromModel" -Dexec.args="--modelpath /Users/dipsy/github/dig-alignment/datasets/istr/stanford-extractions/stanford-extractions-features-model.ttl --outputfile /Users/dipsy/github/dig-alignment/datasets/istr/stanford-extractions/stanford-extractions-features-context.json" -Dexec.classpathScope=compile
+mvn exec:java -Dexec.mainClass="edu.isi.karma.rdf.GenerateContextFromModel" -Dexec.args="--modelpath /Users/dipsy/github/dig-alignment/datasets/istr/stanford-extractions/stanford-features-model.ttl --outputfile /Users/dipsy/github/dig-alignment/datasets/istr/stanford-extractions/stanford-features-context.json" -Dexec.classpathScope=compile
