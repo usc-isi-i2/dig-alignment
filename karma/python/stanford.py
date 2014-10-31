@@ -76,7 +76,7 @@ def sha1(x):
 
 # I want this to be the column uri of WebPage
 def generateUri(modtime, url):
-    return "page/%s/%s" % (sha1(url), (modtimeToEpochTime(modtime)*1000)-10800000)
+    return "page/%s/%s/processed" % (sha1(url), (modtimeToEpochTime(modtime)*1000)-10800000)
 
 def phone_feature_value():
     feature_value("phone", getValue("phonevalues"))
