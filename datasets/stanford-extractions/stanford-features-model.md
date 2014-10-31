@@ -1,81 +1,65 @@
-## stanford-extractions-sample.json
+## add-attributes-sample-5.json
 
 ### PyTransforms
-#### _crawl_url_
+#### _crawl_uri_
 From column: _url_
 >``` python
-return generateUri(getValue("modtime"), getValue("url"))
+return getCacheBaseUrl()+"page/"+get_url_hash(getValue("url"))+"/"+getValue("timestamp")+"/processed"
 ```
 
-#### _namelist_
-From column: _names_
+#### _feature_name_
+From column: _attribute_
 >``` python
-return splitNameField(getValue("names"))
-```
-
-#### _phonelist_
-From column: _phones_
->``` python
-return splitPhoneField(getValue("phones"))
-```
-
-#### _locationlist_
-From column: _locations_
->``` python
-return splitLocationField(getValue("locations"))
+return feature_name(getValue("attribute"))
 ```
 
 #### _featurecollection_uri_
-From column: _crawl_url_
+From column: _crawl_uri_
 >``` python
-return getValue("crawl_url")+"/featurecollection"
+return getValue("crawl_uri")+"/featurecollection"
 ```
 
-#### _names_values2_
-From column: _names_values / Values_
+#### _feature_value_
+From column: _value_
 >``` python
-return getValue("Values")
+return feature_value(getValue("attribute"), getValue("value"))
 ```
 
-#### _phone_values2_
-From column: _phones_values / Values_
+#### _feature_modtime_
+From column: _modtime_
 >``` python
-return getValue("Values")
+return feature_mod_time(getValue("feature_name"), getValue("feature_value"), getValue("modtime"))
 ```
 
-#### _locations_values2_
-From column: _locations_values / Values_
+#### _feature_name_property_
+From column: _feature_name_
 >``` python
-return getValue("Values")
+return "http://memexproxy.com/ontology/"+feature_name(getValue("attribute"))
+```
+
+#### _feature_value2_
+From column: _feature_value_
+>``` python
+return getValue("feature_value")
 ```
 
 
 ### Semantic Types
 | Column | Property | Class |
 |  ----- | -------- | ----- |
-| _Values_ | `memex:featureValue` | `memex:Feature1`|
-| _Values_ | `memex:featureValue` | `memex:Feature2`|
-| _Values_ | `memex:featureValue` | `memex:Feature3`|
-| _crawl_url_ | `uri` | `schema:WebPage1`|
+| _crawl_uri_ | `uri` | `schema:WebPage1`|
+| _feature_modtime_ | `prov:generatedAtTime` | `memex:Feature1`|
+| _feature_name_ | `memex:featureName` | `memex:Feature1`|
+| _feature_name_property_ | `km-dev:dataPropertyOfColumnLink` | `memex:Feature1`|
+| _feature_value_ | `memex:featureValue` | `memex:Feature1`|
+| _feature_value2_ | `memex:featureValue` | `memex:Feature1`|
 | _featurecollection_uri_ | `uri` | `memex:FeatureCollection1`|
-| _locations_values2_ | `memex:place_name` | `memex:Feature3`|
-| _names_values2_ | `memex:person_name` | `memex:Feature1`|
-| _phone_values2_ | `memex:phonenumber` | `memex:Feature2`|
+| _modtime_ | `prov:generatedAtTime` | `memex:Feature1`|
 
 
 ### Links
 | From | Property | To |
 |  --- | -------- | ---|
-| `memex:Feature1` | `memex:featureName` | `xsd:person_name`|
-| `memex:Feature1` | `prov:generatedAtTime` | `xsd:2014-10-12`|
-| `memex:Feature1` | `prov:wasGeneratedBy` | `xsd:http://memexproxy.com/data/software/extractor/stanford/0.1`|
-| `memex:Feature2` | `memex:featureName` | `xsd:phonenumber`|
-| `memex:Feature2` | `prov:generatedAtTime` | `xsd:2014-10-12`|
-| `memex:Feature2` | `prov:wasGeneratedBy` | `xsd:http://memexproxy.com/data/software/extractor/stanford/0.1`|
-| `memex:Feature3` | `memex:featureName` | `xsd:place_name`|
-| `memex:Feature3` | `prov:generatedAtTime` | `xsd:2014-10-12`|
-| `memex:Feature3` | `prov:wasGeneratedBy` | `xsd:http://memexproxy.com/data/software/extractor/stanford/0.1`|
+| `memex:Feature1` | `prov:wasGeneratedBy` | `xsd:http://memexproxy.com/data/software/extractor/ist/ist-attributes-database`|
 | `memex:FeatureCollection1` | `memex:hasFeatures` | `memex:Feature1`|
-| `memex:FeatureCollection1` | `memex:hasFeatures` | `memex:Feature2`|
-| `memex:FeatureCollection1` | `memex:hasFeatures` | `memex:Feature3`|
 | `schema:WebPage1` | `memex:hasFeatureCollection` | `memex:FeatureCollection1`|
