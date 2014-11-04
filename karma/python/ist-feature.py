@@ -635,7 +635,6 @@ mapFunctions['hips'] = clean_hips
 mapFunctions['alias'] = clean_alias
 mapFunctions['availability'] = clean_availability
 mapFunctions['location'] = clean_location
-mapFunctions['userlocation'] = clean_location
 
 def feature_value(attributeName, value):
     try:
@@ -677,7 +676,7 @@ attribute_to_feature['waist'] = "person_waistsize"
 attribute_to_feature['hips'] = "person_hipstype"
 attribute_to_feature['alias'] = "persion_alias"
 attribute_to_feature['availability'] = "person_incalloutcall"
-attribute_to_feature['userlocation'] = "person_location"
+attribute_to_feature['location'] = "person_location"
 attribute_to_feature['rate15'] = "rateperhour"
 attribute_to_feature['rate30'] = "rateperhour"
 attribute_to_feature['rate60'] = "rateperhour"

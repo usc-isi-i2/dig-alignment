@@ -4,7 +4,7 @@
 #### _crawl_url_
 From column: _url_
 >``` python
-return getCacheBaseUrl() + "page/"+get_url_hash(getValue("url"))+"/"+getValue("ad_timestamp") + "/processed"
+return "page/"+get_url_hash(getValue("url"))+"/"+getValue("ad_timestamp") + "/processed"
 ```
 
 #### _namelist_
@@ -49,6 +49,18 @@ From column: _locations_values / Values_
 return getValue("Values")
 ```
 
+#### _Values_
+From column: _phones_values / Values_
+>``` python
+return clean_phone(getValue("Values"))
+```
+
+#### _phone_values3_
+From column: _phones_values / phone_values2_
+>``` python
+return phone_uri(getValue("Values"))
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
@@ -61,6 +73,7 @@ return getValue("Values")
 | _locations_values2_ | `memex:place_name` | `memex:Feature3`|
 | _names_values2_ | `memex:person_name` | `memex:Feature1`|
 | _phone_values2_ | `memex:phonenumber` | `memex:Feature2`|
+| _phone_values3_ | `uri` | `memex:PhoneNumber1`|
 
 
 ### Links
@@ -70,6 +83,7 @@ return getValue("Values")
 | `memex:Feature1` | `prov:generatedAtTime` | `xsd:2014-10-12`|
 | `memex:Feature1` | `prov:wasGeneratedBy` | `xsd:http://memexproxy.com/data/software/extractor/stanford/0.1`|
 | `memex:Feature2` | `memex:featureName` | `xsd:phonenumber`|
+| `memex:Feature2` | `memex:featureObject` | `memex:PhoneNumber1`|
 | `memex:Feature2` | `prov:generatedAtTime` | `xsd:2014-10-12`|
 | `memex:Feature2` | `prov:wasGeneratedBy` | `xsd:http://memexproxy.com/data/software/extractor/stanford/0.1`|
 | `memex:Feature3` | `memex:featureName` | `xsd:place_name`|
