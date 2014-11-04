@@ -4,7 +4,7 @@
 #### _crawl_uri_
 From column: _url_
 >``` python
-return getCacheBaseUrl()+"page/"+get_url_hash(getValue("url"))+"/"+getValue("timestamp")+"/processed"
+return "page/"+get_url_hash(getValue("url"))+"/"+getValue("timestamp")+"/processed"
 ```
 
 #### _feature_name_
@@ -43,6 +43,20 @@ From column: _feature_value_
 return getValue("feature_value")
 ```
 
+#### _phone_value_
+From column: _feature_value2_
+>``` python
+if(getValue("feature_name") == "phonenumber"):
+  return getValue("feature_value")
+return ''
+```
+
+#### _phone_uri_
+From column: _phone_value_
+>``` python
+return phone_uri(getValue("phone_value"))
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
@@ -50,15 +64,16 @@ return getValue("feature_value")
 | _crawl_uri_ | `uri` | `schema:WebPage1`|
 | _feature_modtime_ | `prov:generatedAtTime` | `memex:Feature1`|
 | _feature_name_ | `memex:featureName` | `memex:Feature1`|
-| _feature_name_property_ | `km-dev:dataPropertyOfColumnLink` | `memex:Feature1`|
 | _feature_value_ | `memex:featureValue` | `memex:Feature1`|
 | _feature_value2_ | `memex:featureValue` | `memex:Feature1`|
 | _featurecollection_uri_ | `uri` | `memex:FeatureCollection1`|
+| _phone_uri_ | `uri` | `memex:PhoneNumber1`|
 
 
 ### Links
 | From | Property | To |
 |  --- | -------- | ---|
+| `memex:Feature1` | `memex:featureObject` | `memex:PhoneNumber1`|
 | `memex:Feature1` | `prov:wasGeneratedBy` | `xsd:http://memexproxy.com/data/software/extractor/ist/ist-attributes-database`|
 | `memex:FeatureCollection1` | `memex:hasFeatures` | `memex:Feature1`|
 | `schema:WebPage1` | `memex:hasFeatureCollection` | `memex:FeatureCollection1`|

@@ -29,8 +29,29 @@ def clean_phone(x):
     # If there are 11 numbers 
     if (len(ph)==11 and ph[0]=="1"):
         ph = ph[1:]
-    return '+1' + ph;
+    return '+1-' + ph;
 
+def phone_uri(x):
+    """Return the puri for a phone
+    as countrycode-phone
+    Do not return uri if countrycode is not present
+    """
+    x = x.strip().lower()
+    ph = numericOnly(x)
+    final = ''
+	
+    # If there are 11 numbers 
+    if (len(ph)==11 and ph[0]=="1"):
+        ph = ph[1:];
+        final = 'phonenumber/1-' + ph;
+    else:
+    	dashIdx = x.find('-');
+    	if(dashIdx != -1):
+    		cc = numericOnly(x[0:dashIdx].strip());
+    		ph = numericOnly(x[dashIdx+1].strip());
+    		if(len(cc) > 0 and len(ph) > 0):
+    			final = 'phonenumber/' + cc + '-' + ph
+    return final
 
 # age   15647
 def clean_age(x):
