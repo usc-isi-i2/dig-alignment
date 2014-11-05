@@ -61,6 +61,12 @@ def clean_age(x):
     """
     return x.strip().lower();
 
+def age_uri(x):
+	cx = clean_age(x)
+	if (len(x)>0):
+		return "person-age/" + cx
+	return ''
+	
 def feature_age(x):
     cleaned = clean_age(x)
     if cleaned:

@@ -16,6 +16,9 @@ mvn exec:java -Dexec.mainClass="edu.isi.karma.rdf.OfflineRdfGenerator" -Dexec.ar
 #Ads address
 mvn exec:java -Dexec.mainClass="edu.isi.karma.rdf.OfflineRdfGenerator" -Dexec.args="--sourcetype SQL --dbtype MySQL --hostname 23.101.198.62 --username dipsy --password sqlpassword --portnumber 3306 --dbname memex_small --queryfile /Users/dipsy/github/dig-alignment/datasets/istr/ads/import.sql --modelfilepath /Users/dipsy/github/dig-alignment/datasets/istr/ads/model-address/ads-address-model.ttl --jsonoutputfile /Users/dipsy/github/dig-alignment/datasets/istr/ads/model-address/ads-address-jsonld.json --contextfile /Users/dipsy/github/dig-alignment/datasets/istr/context-for-istr-datasets.json --outputfile /Users/dipsy/github/dig-alignment/datasets/istr/ads/model-address/ads-address-rdf.n3" -Dexec.classpathScope=compile
 
+#Ads age
+mvn exec:java -Dexec.mainClass="edu.isi.karma.rdf.OfflineRdfGenerator" -Dexec.args="--sourcetype SQL --dbtype MySQL --hostname 23.101.198.62 --username dipsy --password sqlpassword --portnumber 3306 --dbname memex_small --queryfile /Users/dipsy/github/dig-alignment/datasets/istr/ads/import.sql --modelfilepath /Users/dipsy/github/dig-alignment/datasets/istr/ads/model-age/ads-age-model.ttl --jsonoutputfile /Users/dipsy/github/dig-alignment/datasets/istr/ads/model-age/ads-address-jsonld.json --contextfile /Users/dipsy/github/dig-alignment/datasets/istr/context-for-istr-datasets.json --outputfile /Users/dipsy/github/dig-alignment/datasets/istr/ads/model-age/ads-age-rdf.n3" -Dexec.classpathScope=compile
+
 
 ########################################################
 #			Ads-Attributes
