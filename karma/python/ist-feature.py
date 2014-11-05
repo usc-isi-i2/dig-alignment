@@ -25,11 +25,13 @@ def clean_phone(x):
      or as close to that as we can make it.
      Prefix with country code '+1' at the end.
     """
-    ph = numericOnly(x.strip().lower())
-    # If there are 11 numbers 
-    if (len(ph)==11 and ph[0]=="1"):
-        ph = ph[1:]
-    return '+1-' + ph;
+    if (len(x)>0):
+    	ph = numericOnly(x.strip().lower())
+    	# If there are 11 numbers 
+    	if (len(ph)==11 and ph[0]=="1"):
+        	ph = ph[1:]
+    	return '+1-' + ph;
+    return ''
 
 def phone_uri(x):
     """Return the puri for a phone
@@ -48,7 +50,7 @@ def phone_uri(x):
     	dashIdx = x.find('-');
     	if(dashIdx != -1):
     		cc = numericOnly(x[0:dashIdx].strip());
-    		ph = numericOnly(x[dashIdx+1].strip());
+    		ph = numericOnly(x[dashIdx+1:].strip());
     		if(len(cc) > 0 and len(ph) > 0):
     			final = 'phonenumber/' + cc + '-' + ph
     return final

@@ -1,16 +1,16 @@
-## ads-sample.json
+## select unix_timestamp(a.importtime)*1000 as timestamp, a.* from ads a where a.id=1405
 
 ### PyTransforms
 #### _crawl_uri_
 From column: _url_
 >``` python
-return getCacheBaseUrl()+"page/"+get_url_hash(getValue("url"))+"/"+getValue("timestamp")+"/processed"
+return "page/"+get_url_hash(getValue("url"))+"/"+getValue("timestamp")+"/processed"
 ```
 
 #### _snapshot_uri_
 From column: _crawl_uri_
 >``` python
-return getCacheBaseUrl()+"page/"+get_url_hash(getValue("url"))+"/"+getValue("timestamp")+"/raw"
+return "page/"+get_url_hash(getValue("url"))+"/"+getValue("timestamp")+"/raw"
 ```
 
 #### _featurecollection_uri_
@@ -22,8 +22,7 @@ return getValue("crawl_uri")+"/featurecollection"
 #### _phone_clean_
 From column: _phone_
 >``` python
-if getValue("phone"):
-  return clean_phone(getValue("phone"))
+return clean_phone(getValue("phone"))
 ```
 
 #### _phone_uri_
@@ -41,8 +40,10 @@ return getValue("phone_clean")
 #### _phone_feature_uri_
 From column: _featurecollection_uri_
 >``` python
-if getValue("phone_clean"):
-  return getValue("featurecollection_uri")+"/"+getValue("phone_uri")
+uri = getValue("phone_uri")
+if (len(uri)>0):
+  return getValue("featurecollection_uri")+"/"+uri
+return ''
 ```
 
 #### _modetime_iso8601_
