@@ -64,7 +64,7 @@ def clean_age(x):
 def age_uri(x):
 	cx = clean_age(x)
 	if (len(x)>0):
-		return "person-age/" + cx
+		return "person_age/" + cx
 	return ''
 	
 def feature_age(x):

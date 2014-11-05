@@ -10,7 +10,7 @@ return "page/"+get_url_hash(getValue("url"))+"/"+getValue("timestamp")+"/process
 #### _snapshot_uri_
 From column: _crawl_uri_
 >``` python
-return "page/"+get_url_hash(getValue("url"))+"/"+getValue("timestamp")+"/raw"
+return "http://memex.zapto.org/data/page/"+get_url_hash(getValue("url"))+"/"+getValue("timestamp")+"/raw"
 ```
 
 #### _featurecollection_uri_
@@ -34,7 +34,8 @@ return getValue("age_clean")
 #### _age_feature_uri_
 From column: _age_clean2_
 >``` python
-return age_uri(getValue("age"))
+if getValue("age_clean"):
+  return getValue("featurecollection_uri")+"/"+age_uri(getValue("age"))
 ```
 
 #### _modtime_iso8601_
@@ -59,7 +60,7 @@ return iso8601date(getValue("modtime"))
 ### Links
 | From | Property | To |
 |  --- | -------- | ---|
-| `memex:Feature1` | `memex:featureValue` | `xsd:person_age`|
+| `memex:Feature1` | `memex:featureName` | `xsd:person_age`|
 | `memex:Feature1` | `prov:wasGeneratedBy` | `prov:Activity1`|
 | `memex:Feature1` | `prov:wasDerivedFrom` | `schema:WebPage1`|
 | `memex:FeatureCollection1` | `memex:person_age_feature` | `memex:Feature1`|
