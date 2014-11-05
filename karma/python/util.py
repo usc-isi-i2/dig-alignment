@@ -1,4 +1,5 @@
 import re
+from datetime import datetime, date, time
 
 def documentUrl(x):
 	"Return the original document URL from the URL in the document version"
@@ -105,8 +106,19 @@ def tenDigitPhoneNumber(x):
 	return re.sub('[^0-9]+', '', x)
 
 ### To-do: implement correctly.
-def iso8601date(date):
+def iso8601date(date, format="%y-%m-%d %H:%M:%s %z"):
 	"""Convert a date to ISO8601 date format"""
-	return date
-
+	try:
+		try:
+			dt = datetime.strptime(date, format)
+		except:
+			try:
+				format = "%y-%m-%d %H:%M:%s.0"
+				dt = datetime.strptime(date, format)
+			except:
+				format = "%y-%m-%d"
+				dt = datetime.strptime(date, format)
+		return dt.isoformat()
+	except:
+		return date
 

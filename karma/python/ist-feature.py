@@ -602,6 +602,31 @@ def get_url_hash(string):
 def getCacheBaseUrl():
     return "http://memex.zapto.org/data/"
 
+def feature_address(city, state, country):
+	return clean_address(city, state, country, ", ")
+
+def clean_address(city, state, country, sep):
+	city = clean_location(city)
+	usep = ""
+	addr = ""
+	if city:
+		addr = city
+		usep = sep
+	state = clean_location(state)
+	if state:
+		addr = addr + usep + state
+		usep = sep
+	country = clean_location(country)
+	if country:
+		addr = addr + usep + country
+	return addr
+
+def address_uri(city, state, country):
+	addr = clean_address(city, state, country, "-")
+	if len(addr) > 0:
+		return "address/" + addr
+	return ''
+
 mapFunctions = defaultdict(lambda x: None)
 
 mapFunctions['phone'] = clean_phone
