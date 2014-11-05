@@ -104,6 +104,9 @@ def tenDigitPhoneNumber(x):
 	"""Return the 10-digit phone number of a phone, as 10 consecutive digits"""
 	return re.sub('[^0-9]+', '', x)
 
-
+### To-do: implement correctly.
+def iso8601date(date):
+	"""Convert a date to ISO8601 date format"""
+	return date
 
 
