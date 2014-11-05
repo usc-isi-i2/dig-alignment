@@ -1,4 +1,4 @@
-## select unix_timestamp(a.importtime)*1000 as timestamp, a.* from ads a where a.id=1405
+## ads-sample.json
 
 ### PyTransforms
 #### _crawl_uri_
@@ -10,7 +10,7 @@ return "page/"+get_url_hash(getValue("url"))+"/"+getValue("timestamp")+"/process
 #### _snapshot_uri_
 From column: _crawl_uri_
 >``` python
-return "page/"+get_url_hash(getValue("url"))+"/"+getValue("timestamp")+"/raw"
+return "http://memex.zapto.org/data/page/"+get_url_hash(getValue("url"))+"/"+getValue("timestamp")+"/raw"
 ```
 
 #### _featurecollection_uri_
@@ -49,7 +49,21 @@ return ''
 #### _modetime_iso8601_
 From column: _modtime_
 >``` python
-return iso8601date(getValue("modtime"))
+if getValue("phone_clean"):
+  return iso8601date(getValue("modtime"))
+```
+
+#### _exchange_uri_
+From column: _phone_uri_
+>``` python
+if getValue("phone_clean"):
+  return phoneExchangeUri(getValue("phone_clean"))
+```
+
+#### _phone_clean2_
+From column: _phone_clean1_
+>``` python
+return getValue("phone_clean")
 ```
 
 
@@ -57,10 +71,12 @@ return iso8601date(getValue("modtime"))
 | Column | Property | Class |
 |  ----- | -------- | ----- |
 | _crawl_uri_ | `uri` | `schema:WebPage1`|
+| _exchange_uri_ | `uri` | `schema:Place1`|
 | _featurecollection_uri_ | `uri` | `memex:FeatureCollection1`|
 | _modetime_iso8601_ | `prov:endedAtTime` | `prov:Activity1`|
 | _phone_clean_ | `memex:phonenumber` | `memex:Feature1`|
 | _phone_clean1_ | `memex:featureValue` | `memex:Feature1`|
+| _phone_clean2_ | `rdfs:label` | `memex:PhoneNumber1`|
 | _phone_feature_uri_ | `uri` | `memex:Feature1`|
 | _phone_uri_ | `uri` | `memex:PhoneNumber1`|
 | _snapshot_uri_ | `memex:snapshotUri` | `schema:WebPage1`|
@@ -74,5 +90,6 @@ return iso8601date(getValue("modtime"))
 | `memex:Feature1` | `prov:wasGeneratedBy` | `prov:Activity1`|
 | `memex:Feature1` | `prov:wasDerivedFrom` | `schema:WebPage1`|
 | `memex:FeatureCollection1` | `memex:phonenumber_feature` | `memex:Feature1`|
+| `memex:PhoneNumber1` | `schema:location` | `schema:Place1`|
 | `prov:Activity1` | `prov:wasAttributedTo` | `xsd:http://memexproxy.com/data/software/extractor/ist/version/unknown`|
 | `schema:WebPage1` | `memex:hasFeatureCollection` | `memex:FeatureCollection1`|

@@ -37,11 +37,19 @@ def toTitleCaseCleaned(x):
 	return y.title()
 
 
-def phoneExchange(tenDigitPhone):
-	"Return the first six digits of a phone if it is a 10-digit phone."
-	if tenDigitPhone.isdigit() and len(tenDigitPhone.decode("utf-8")) == 10:
-	    return tenDigitPhone[0:6]
+def phoneExchange(phonenumber):
+	"Return the first six digits of a phone if it is a 10-digit USA phone, ie, starts with 1-."
+	result = ''
+	if phonenumber.startswith("+1-"):
+		tenDigitPhone = phonenumber[3:]
+		if tenDigitPhone.isdigit() and len(tenDigitPhone.decode("utf-8")) == 10:
+			result = tenDigitPhone[0:6]
+	return result
 
+
+def phoneExchangeUri(phonenumber):
+	"Return the URI of a phone exchange so that we can join with the phone exchange data"
+	return "phone/exchange/"+phoneExchange(phonenumber)
 
 def nonAsciiChars(x):
 	"Return a set of the non-ascii chars in x"
@@ -105,7 +113,6 @@ def tenDigitPhoneNumber(x):
 	"""Return the 10-digit phone number of a phone, as 10 consecutive digits"""
 	return re.sub('[^0-9]+', '', x)
 
-### To-do: implement correctly.
 def iso8601date(date, format="%y-%m-%d %H:%M:%s %z"):
 	"""Convert a date to ISO8601 date format"""
 	try:
