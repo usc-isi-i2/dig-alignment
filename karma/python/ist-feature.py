@@ -77,9 +77,10 @@ def feature_age(x):
 def clean_email(x):
     """Return a clean email address
     """
-    if (x.find("@") != -1):
+    if (len(x)>0 and x.find("@") != -1):
         em = x.strip().lower();
         return em;
+    return ''
 
 def feature_email(x):
     cleaned = clean_email(x)
@@ -647,6 +648,13 @@ def gender_uri(gender):
 	cg = clean_gender(gender)
 	if (len(cg)>0):
 		return "person_gender/" + cg
+	return ''
+
+def emailaddress_uri(email):
+	c = clean_email(email)
+	if (len(c) > 0):
+		qc = quote(c, safe='')
+		return "emailaddress/" + qc
 	return ''
 
 mapFunctions = defaultdict(lambda x: None)
