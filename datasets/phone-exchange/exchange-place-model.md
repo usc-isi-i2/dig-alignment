@@ -31,6 +31,12 @@ From column: _exchange_region_
 return "place/state/"+getValue("exchange_region").lower().strip()
 ```
 
+#### _place_label_
+From column: _city_name_
+>``` python
+return getValue("city_name")+", "+getValue("areacode_adm1_name")
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
@@ -41,6 +47,7 @@ return "place/state/"+getValue("exchange_region").lower().strip()
 | _exchange_rc_lat_ | `schema:latitude` | `schema:GeoCoordinates1`|
 | _exchange_rc_lon_ | `schema:longitude` | `schema:GeoCoordinates1`|
 | _geoUri_ | `uri` | `schema:GeoCoordinates1`|
+| _place_label_ | `rdfs:label` | `schema:Place1`|
 | _postalAddressUri_ | `uri` | `schema:PostalAddress1`|
 
 
