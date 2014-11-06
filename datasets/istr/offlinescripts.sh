@@ -22,6 +22,9 @@ mvn exec:java -Dexec.mainClass="edu.isi.karma.rdf.OfflineRdfGenerator" -Dexec.ar
 #Ads website
 mvn exec:java -Dexec.mainClass="edu.isi.karma.rdf.OfflineRdfGenerator" -Dexec.args="--sourcetype SQL --dbtype MySQL --hostname 23.101.198.62 --username dipsy --password sqlpassword --portnumber 3306 --dbname memex_small --queryfile /Users/dipsy/github/dig-alignment/datasets/istr/ads/import.sql --modelfilepath /Users/dipsy/github/dig-alignment/datasets/istr/ads/model-website/ads-website-model.ttl --jsonoutputfile /Users/dipsy/github/dig-alignment/datasets/istr/ads/model-website/ads-website-jsonld.json --contextfile /Users/dipsy/github/dig-alignment/datasets/istr/context-for-istr-datasets.json --outputfile /Users/dipsy/github/dig-alignment/datasets/istr/ads/model-website/ads-website-rdf.n3" -Dexec.classpathScope=compile
 
+#Ads gender
+mvn exec:java -Dexec.mainClass="edu.isi.karma.rdf.OfflineRdfGenerator" -Dexec.args="--sourcetype SQL --dbtype MySQL --hostname 23.101.198.62 --username dipsy --password sqlpassword --portnumber 3306 --dbname memex_small --queryfile /Users/dipsy/github/dig-alignment/datasets/istr/ads/import.sql --modelfilepath /Users/dipsy/github/dig-alignment/datasets/istr/ads/model-gender/ads-gender-model.ttl --jsonoutputfile /Users/dipsy/github/dig-alignment/datasets/istr/ads/model-gender/ads-gender-jsonld.json --contextfile /Users/dipsy/github/dig-alignment/datasets/istr/context-for-istr-datasets.json --outputfile /Users/dipsy/github/dig-alignment/datasets/istr/ads/model-gender/ads-gender-rdf.n3" -Dexec.classpathScope=compile
+
 ########################################################
 #			Ads-Attributes
 ########################################################

@@ -88,18 +88,19 @@ def feature_email(x):
 
 # gender
 def clean_gender(x):
-    g = x.strip().lower();
-    if g in ["female", "f"]:
-        return "f"
-    elif g in ["male", "m"]:
-        return "m"
-    else:
-        return None
+	if (len(x)>0):
+	    g = x.strip().lower();
+	    if g in ["female", "f"]:
+	        return "f"
+	    elif g in ["male", "m"]:
+	        return "m"
+	return ''
 
 def feature_gender(x):
     cleaned = clean_gender(x)
     if cleaned:
         return "gender/%s" % cleaned
+    return ''
 
 # rate
 # rate60    12706
@@ -640,6 +641,12 @@ def website_uri(website):
 	if len(website) > 0:
 		uri = quote(website, safe='')
 		return "website/" + uri
+	return ''
+
+def gender_uri(gender):
+	cg = clean_gender(gender)
+	if (len(cg)>0):
+		return "person_gender/" + cg
 	return ''
 
 mapFunctions = defaultdict(lambda x: None)
