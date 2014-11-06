@@ -10,7 +10,7 @@ return "page/"+get_url_hash(getValue("url"))+"/"+getValue("timestamp")+"/process
 #### _snapshot_uri_
 From column: _crawl_uri_
 >``` python
-return "page/"+get_url_hash(getValue("url"))+"/"+getValue("timestamp")+"/raw"
+return "http://memex.zapto.org/data/page/"+get_url_hash(getValue("url"))+"/"+getValue("timestamp")+"/raw"
 ```
 
 #### _featurecollection_uri_
@@ -51,6 +51,13 @@ From column: _modtime_
 return iso8601date(getValue("modtime"))
 ```
 
+#### _country_uri_
+From column: _country_
+>``` python
+if getValue("country"):
+  return "country/"+getValue("country")
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
@@ -61,6 +68,7 @@ return iso8601date(getValue("modtime"))
 | _address_uri_ | `uri` | `schema:PostalAddress1`|
 | _city_ | `schema:addressLocality` | `schema:PostalAddress1`|
 | _country_ | `rdfs:label` | `schema:Country1`|
+| _country_uri_ | `uri` | `schema:Country1`|
 | _crawl_uri_ | `uri` | `schema:WebPage1`|
 | _featurecollection_uri_ | `uri` | `memex:FeatureCollection1`|
 | _modtime_iso8601_ | `prov:endedAtTime` | `prov:Activity1`|
