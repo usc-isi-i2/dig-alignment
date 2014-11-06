@@ -1,6 +1,7 @@
 from collections import defaultdict
 import re
 import hashlib
+from urllib import quote
 
 #from util import numericOnly, alphaOnly
 
@@ -633,6 +634,12 @@ def address_uri(city, state, country):
 	addr = clean_address(city, state, country, "-")
 	if len(addr) > 0:
 		return "address/" + addr
+	return ''
+
+def website_uri(website):
+	if len(website) > 0:
+		uri = quote(website, safe='')
+		return "website/" + uri
 	return ''
 
 mapFunctions = defaultdict(lambda x: None)

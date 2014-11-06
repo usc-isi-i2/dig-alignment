@@ -1,0 +1,2579 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix schemax: <http://topbraid.org/schemax/> .
+@prefix schema: <http://schema.org/> .
+@prefix memex: <http://memexproxy.com/ontology/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ht: <http://memexproxy.com/ontology/human-trafficking/> .
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix km-dev: <http://isi.edu/integration/karma/dev#> .
+
+_:node1963b0enbx1 a km-dev:R2RMLMapping ;
+	km-dev:sourceName "ads-sample.json" ;
+	km-dev:modelPublicationTime "1415303936747"^^xsd:long ;
+	km-dev:modelVersion "1.7" ;
+	km-dev:hasInputColumns "[[{\"columnName\":\"url\"}],[{\"columnName\":\"website\"}],[{\"columnName\":\"modtime\"}],[{\"columnName\":\"timestamp\"}]]" ;
+	km-dev:hasOutputColumns "[[{\"columnName\":\"modetime_iso8601\"}],[{\"columnName\":\"website_feature_uri\"}],[{\"columnName\":\"featurecollection_uri\"}],[{\"columnName\":\"website\"}],[{\"columnName\":\"website2\"}],[{\"columnName\":\"crawl_uri\"}]]" ;
+	km-dev:hasModelLabel "ads-sample.json" ;
+	km-dev:hasBaseURI "http://memex.zapto.org/data/" ;
+	km-dev:hasWorksheetHistory """[
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"properties\",
+                \"value\": {
+                    \"hasServiceProperties\": false,
+                    \"hasPrefix\": true,
+                    \"prefix\": \"memex\",
+                    \"graphLabel\": \"\",
+                    \"hasBaseURI\": false
+                },
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetWorksheetPropertiesCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"properties\",
+                \"value\": {
+                    \"hasServiceProperties\": false,
+                    \"hasPrefix\": false,
+                    \"graphLabel\": \"\",
+                    \"hasBaseURI\": true,
+                    \"baseURI\": \"http://memex.zapto.org/data/\"
+                },
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetWorksheetPropertiesCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"url\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"value\": \"crawl_uri\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"value\": \"return \\\"page/\\\"+get_url_hash(getValue(\\\"url\\\"))+\\\"/\\\"+getValue(\\\"timestamp\\\")+\\\"/processed\\\"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"url\\\"}]},{\\\"value\\\":[{\\\"columnName\\\":\\\"timestamp\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"crawl_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SubmitPythonTransformationCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"text\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"value\": \"featurecollection_uri\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"value\": \"return getValue(\\\"crawl_uri\\\")+\\\"/featurecollection\\\"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"crawl_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"featurecollection_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SubmitPythonTransformationCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"orderedColumns\",
+                \"value\": [
+                    {
+                        \"id\": [{\"columnName\": \"posttime\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"posttime\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"timestamp\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"timestamp\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"id\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"id\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"first_id\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"first_id\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"sources_id\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"sources_id\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"incoming_id\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"incoming_id\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"url\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"url\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"crawl_uri\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"crawl_uri\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"title\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"title\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"text\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"text\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"featurecollection_uri\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"featurecollection_uri\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"type\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"type\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"sid\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"sid\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"region\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"region\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"city\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"city\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"state\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"state\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"country\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"country\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"phone\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"phone\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"age\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"age\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"website\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"website\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"email\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"email\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"gender\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"gender\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"service\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"service\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"importtime\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"importtime\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"modtime\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"modtime\"
+                    }
+                ],
+                \"type\": \"orderedColumns\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"OrganizeColumnsCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"orderedColumns\",
+                \"value\": [
+                    {
+                        \"id\": [{\"columnName\": \"posttime\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"posttime\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"id\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"id\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"first_id\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"first_id\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"sources_id\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"sources_id\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"incoming_id\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"incoming_id\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"url\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"url\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"crawl_uri\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"crawl_uri\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"title\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"title\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"text\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"text\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"featurecollection_uri\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"featurecollection_uri\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"type\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"type\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"sid\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"sid\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"region\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"region\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"city\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"city\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"state\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"state\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"country\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"country\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"phone\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"phone\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"age\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"age\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"website\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"website\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"email\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"email\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"gender\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"gender\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"service\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"service\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"importtime\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"importtime\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"modtime\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"modtime\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"timestamp\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"timestamp\"
+                    }
+                ],
+                \"type\": \"orderedColumns\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"OrganizeColumnsCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"orderedColumns\",
+                \"value\": [
+                    {
+                        \"id\": [{\"columnName\": \"posttime\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"posttime\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"id\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"id\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"first_id\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"first_id\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"sources_id\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"sources_id\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"incoming_id\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"incoming_id\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"url\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"url\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"crawl_uri\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"crawl_uri\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"title\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"title\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"text\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"text\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"featurecollection_uri\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"featurecollection_uri\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"type\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"type\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"sid\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"sid\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"region\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"region\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"city\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"city\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"state\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"state\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"country\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"country\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"phone\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"phone\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"age\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"age\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"website\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"website\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"email\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"email\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"gender\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"gender\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"service\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"service\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"importtime\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"importtime\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"modtime\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"modtime\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"timestamp\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"timestamp\"
+                    }
+                ],
+                \"type\": \"orderedColumns\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"OrganizeColumnsCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"orderedColumns\",
+                \"value\": [
+                    {
+                        \"id\": [{\"columnName\": \"posttime\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"posttime\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"id\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"id\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"first_id\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"first_id\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"sources_id\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"sources_id\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"incoming_id\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"incoming_id\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"url\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"url\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"crawl_uri\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"crawl_uri\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"title\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"title\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"text\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"text\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"featurecollection_uri\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"featurecollection_uri\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"type\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"type\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"sid\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"sid\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"region\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"region\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"city\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"city\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"state\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"state\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"country\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"country\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"phone\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"phone\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"age\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"age\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"website\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"website\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"email\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"email\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"gender\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"gender\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"service\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"service\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"importtime\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"importtime\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"modtime\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"modtime\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"timestamp\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"timestamp\"
+                    }
+                ],
+                \"type\": \"orderedColumns\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"OrganizeColumnsCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"crawl_uri\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyName\",
+                \"value\": \"isUriOfClass\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyUri\",
+                \"value\": \"http://schema.org/WebPage\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyId\",
+                \"value\": \"http://schema.org/WebPage1 (add)\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"FullType\": \"http://isi.edu/integration/karma/dev#classLink\",
+                    \"isPrimary\": true,
+                    \"DomainLabel\": \"schema:WebPage1 (add)\",
+                    \"DomainId\": \"http://schema.org/WebPage1\",
+                    \"DomainUri\": \"http://schema.org/WebPage\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"crawl_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"crawl_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetMetaPropertyCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"featurecollection_uri\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyName\",
+                \"value\": \"isUriOfClass\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyUri\",
+                \"value\": \"http://memexproxy.com/ontology/FeatureCollection\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyId\",
+                \"value\": \"http://memexproxy.com/ontology/FeatureCollection1 (add)\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"FullType\": \"http://isi.edu/integration/karma/dev#classLink\",
+                    \"isPrimary\": true,
+                    \"DomainLabel\": \"memex:FeatureCollection1 (add)\",
+                    \"DomainId\": \"http://memexproxy.com/ontology/FeatureCollection1\",
+                    \"DomainUri\": \"http://memexproxy.com/ontology/FeatureCollection\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"featurecollection_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"featurecollection_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetMetaPropertyCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"initialEdges\",
+                \"value\": [{
+                    \"edgeId\": \"http://memexproxy.com/ontology/hasFeatureCollection\",
+                    \"edgeSourceId\": \"http://schema.org/WebPage1\",
+                    \"edgeTargetId\": \"http://memexproxy.com/ontology/FeatureCollection1\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newEdges\",
+                \"value\": [{
+                    \"edgeId\": \"http://memexproxy.com/ontology/hasFeatureCollection\",
+                    \"edgeSourceId\": \"http://schema.org/WebPage1\",
+                    \"edgeTargetId\": \"http://memexproxy.com/ontology/FeatureCollection1\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"ChangeInternalNodeLinksCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"modtime\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"value\": \"modetime_iso8601\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"value\": \"return iso8601date(getValue(\\\"modtime\\\"))\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"modtime\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"modetime_iso8601\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SubmitPythonTransformationCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"modetime_iso8601\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"FullType\": \"http://www.w3.org/ns/prov#endedAtTime\",
+                    \"isPrimary\": true,
+                    \"DomainLabel\": \"prov:Activity1 (add)\",
+                    \"DomainId\": \"http://www.w3.org/ns/prov#Activity1\",
+                    \"DomainUri\": \"http://www.w3.org/ns/prov#Activity\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"modetime_iso8601\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"modetime_iso8601\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetSemanticTypeCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"literalValue\",
+                \"value\": \"http://memexproxy.com/data/software/extractor/ist/version/unknown\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"literalType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"isUri\",
+                \"value\": true,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"AddLiteralNodeCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"initialEdges\",
+                \"value\": [],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newEdges\",
+                \"value\": [{
+                    \"edgeTargetUri\": \"http://memexproxy.com/data/software/extractor/ist/version/unknown\",
+                    \"edgeId\": \"http://www.w3.org/ns/prov#wasAttributedTo\",
+                    \"edgeSourceId\": \"http://www.w3.org/ns/prov#Activity1\",
+                    \"edgeTargetId\": \"http://memexproxy.com/data/software/extractor/ist/version/unknown1\",
+                    \"edgeSourceUri\": \"http://www.w3.org/ns/prov#Activity\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"ChangeInternalNodeLinksCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"initialEdges\",
+                \"value\": [],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"alignmentId\",
+                \"value\": \"WSP5:WS1AL\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newEdges\",
+                \"value\": [{
+                    \"edgeTargetUri\": \"http://www.w3.org/ns/prov#Activity1\",
+                    \"edgeId\": \"http://www.w3.org/ns/prov#wasGeneratedBy\",
+                    \"edgeSourceId\": \"http://memexproxy.com/ontology/Feature1 (add)\",
+                    \"edgeTargetId\": \"http://www.w3.org/ns/prov#Activity1\",
+                    \"edgeSourceUri\": \"http://memexproxy.com/ontology/Feature\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"ChangeInternalNodeLinksCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"initialEdges\",
+                \"value\": [],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"alignmentId\",
+                \"value\": \"WSP5:WS1AL\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newEdges\",
+                \"value\": [{
+                    \"edgeTargetUri\": \"http://schema.org/WebPage\",
+                    \"edgeId\": \"http://www.w3.org/ns/prov#wasDerivedFrom\",
+                    \"edgeSourceId\": \"http://memexproxy.com/ontology/Feature1\",
+                    \"edgeTargetId\": \"http://schema.org/WebPage1\",
+                    \"edgeSourceUri\": \"http://memexproxy.com/ontology/Feature1\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"ChangeInternalNodeLinksCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"initialEdges\",
+                \"value\": [],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"alignmentId\",
+                \"value\": \"WSP5:WS1AL\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newEdges\",
+                \"value\": [{
+                    \"edgeTargetUri\": \"http://memexproxy.com/ontology/Feature\",
+                    \"edgeId\": \"http://memexproxy.com/ontology/website_feature\",
+                    \"edgeSourceId\": \"http://memexproxy.com/ontology/FeatureCollection1\",
+                    \"edgeTargetId\": \"http://memexproxy.com/ontology/Feature1\",
+                    \"edgeSourceUri\": \"http://memexproxy.com/ontology/FeatureCollection1\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"ChangeInternalNodeLinksCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"website\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"value\": \"website2\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"value\": \"return getValue(\\\"website\\\")\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"website\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"website2\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SubmitPythonTransformationCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"website\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"FullType\": \"http://memexproxy.com/ontology/website\",
+                    \"isPrimary\": true,
+                    \"DomainLabel\": \"memex:Feature1\",
+                    \"DomainId\": \"http://memexproxy.com/ontology/Feature1\",
+                    \"DomainUri\": \"http://memexproxy.com/ontology/Feature\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"website\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"website\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetSemanticTypeCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"website2\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"FullType\": \"http://memexproxy.com/ontology/featureValue\",
+                    \"isPrimary\": true,
+                    \"DomainLabel\": \"memex:Feature1\",
+                    \"DomainId\": \"http://memexproxy.com/ontology/Feature1\",
+                    \"DomainUri\": \"http://memexproxy.com/ontology/Feature\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"website2\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"website2\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetSemanticTypeCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"literalValue\",
+                \"value\": \"website\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"literalType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"isUri\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"AddLiteralNodeCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"initialEdges\",
+                \"value\": [],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newEdges\",
+                \"value\": [{
+                    \"edgeTargetUri\": \"website\",
+                    \"edgeId\": \"http://memexproxy.com/ontology/featureName\",
+                    \"edgeSourceId\": \"http://memexproxy.com/ontology/Feature1\",
+                    \"edgeTargetId\": \"website1\",
+                    \"edgeSourceUri\": \"http://memexproxy.com/ontology/Feature\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"ChangeInternalNodeLinksCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"orderedColumns\",
+                \"value\": [
+                    {
+                        \"id\": [{\"columnName\": \"posttime\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"posttime\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"id\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"id\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"first_id\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"first_id\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"sources_id\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"sources_id\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"incoming_id\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"incoming_id\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"url\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"url\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"crawl_uri\"}],
+                        \"visible\": true,
+                        \"hideable\": false,
+                        \"name\": \"crawl_uri\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"title\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"title\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"text\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"text\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"featurecollection_uri\"}],
+                        \"visible\": true,
+                        \"hideable\": false,
+                        \"name\": \"featurecollection_uri\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"type\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"type\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"sid\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"sid\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"region\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"region\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"city\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"city\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"state\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"state\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"country\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"country\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"phone\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"phone\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"age\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"age\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"website\"}],
+                        \"visible\": true,
+                        \"hideable\": false,
+                        \"name\": \"website\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"website2\"}],
+                        \"visible\": true,
+                        \"hideable\": false,
+                        \"name\": \"website2\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"email\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"email\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"gender\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"gender\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"service\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"service\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"importtime\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"importtime\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"modtime\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"modtime\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"modetime_iso8601\"}],
+                        \"visible\": true,
+                        \"hideable\": false,
+                        \"name\": \"modetime_iso8601\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"timestamp\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"timestamp\"
+                    }
+                ],
+                \"type\": \"orderedColumns\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"OrganizeColumnsCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"orderedColumns\",
+                \"value\": [
+                    {
+                        \"id\": [{\"columnName\": \"posttime\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"posttime\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"id\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"id\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"first_id\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"first_id\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"sources_id\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"sources_id\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"incoming_id\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"incoming_id\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"url\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"url\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"crawl_uri\"}],
+                        \"visible\": true,
+                        \"hideable\": false,
+                        \"name\": \"crawl_uri\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"title\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"title\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"text\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"text\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"featurecollection_uri\"}],
+                        \"visible\": true,
+                        \"hideable\": false,
+                        \"name\": \"featurecollection_uri\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"type\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"type\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"sid\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"sid\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"region\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"region\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"city\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"city\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"state\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"state\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"country\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"country\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"phone\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"phone\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"age\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"age\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"website\"}],
+                        \"visible\": true,
+                        \"hideable\": false,
+                        \"name\": \"website\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"website2\"}],
+                        \"visible\": true,
+                        \"hideable\": false,
+                        \"name\": \"website2\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"email\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"email\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"gender\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"gender\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"service\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"service\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"importtime\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"importtime\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"modtime\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"modtime\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"modetime_iso8601\"}],
+                        \"visible\": true,
+                        \"hideable\": false,
+                        \"name\": \"modetime_iso8601\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"timestamp\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"timestamp\"
+                    }
+                ],
+                \"type\": \"orderedColumns\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"OrganizeColumnsCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"orderedColumns\",
+                \"value\": [
+                    {
+                        \"id\": [{\"columnName\": \"posttime\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"posttime\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"id\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"id\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"first_id\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"first_id\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"sources_id\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"sources_id\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"incoming_id\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"incoming_id\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"url\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"url\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"crawl_uri\"}],
+                        \"visible\": true,
+                        \"hideable\": false,
+                        \"name\": \"crawl_uri\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"title\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"title\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"text\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"text\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"featurecollection_uri\"}],
+                        \"visible\": true,
+                        \"hideable\": false,
+                        \"name\": \"featurecollection_uri\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"type\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"type\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"sid\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"sid\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"region\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"region\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"city\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"city\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"state\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"state\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"country\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"country\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"phone\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"phone\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"age\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"age\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"website\"}],
+                        \"visible\": true,
+                        \"hideable\": false,
+                        \"name\": \"website\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"website2\"}],
+                        \"visible\": true,
+                        \"hideable\": false,
+                        \"name\": \"website2\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"email\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"email\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"gender\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"gender\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"service\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"service\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"importtime\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"importtime\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"modtime\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"modtime\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"modetime_iso8601\"}],
+                        \"visible\": true,
+                        \"hideable\": false,
+                        \"name\": \"modetime_iso8601\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"timestamp\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"timestamp\"
+                    }
+                ],
+                \"type\": \"orderedColumns\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"OrganizeColumnsCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"website2\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"value\": \"website_feature_uri\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"value\": \"website = getValue(\\\"website\\\")\\nif (len(website)>0):\\n  return getValue(\\\"featurecollection_uri\\\")+\\\"/\\\" + website_uri(website)\\nreturn ''\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"featurecollection_uri\\\"}]},{\\\"value\\\":[{\\\"columnName\\\":\\\"website\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"website_feature_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SubmitPythonTransformationCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"website_feature_uri\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyName\",
+                \"value\": \"isUriOfClass\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyUri\",
+                \"value\": \"http://memexproxy.com/ontology/Feature\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyId\",
+                \"value\": \"http://memexproxy.com/ontology/Feature1\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"FullType\": \"http://isi.edu/integration/karma/dev#classLink\",
+                    \"isPrimary\": true,
+                    \"DomainLabel\": \"memex:Feature1\",
+                    \"DomainId\": \"http://memexproxy.com/ontology/Feature1\",
+                    \"DomainUri\": \"http://memexproxy.com/ontology/Feature\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"website_feature_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"website_feature_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetMetaPropertyCommand\"
+    }
+]""" .
+
+km-dev:TriplesMap_dcef5f80-d463-40a0-9b7c-d59f3525d1d2 a rr:TriplesMap .
+
+_:node1963b0enbx1 km-dev:hasTriplesMap km-dev:TriplesMap_dcef5f80-d463-40a0-9b7c-d59f3525d1d2 .
+
+km-dev:TriplesMap_dcef5f80-d463-40a0-9b7c-d59f3525d1d2 km-dev:isPartOfMapping _:node1963b0enbx1 .
+
+_:node1963b0enbx2 rr:tableName "ads-sample.json" ;
+	a rr:LogicalTable ;
+	km-dev:isPartOfMapping _:node1963b0enbx1 .
+
+_:node1963b0enbx1 km-dev:hasLogicalTable _:node1963b0enbx2 .
+
+km-dev:TriplesMap_dcef5f80-d463-40a0-9b7c-d59f3525d1d2 rr:logicalTable _:node1963b0enbx2 ;
+	rr:subjectMap _:node1963b0enbx3 .
+
+_:node1963b0enbx1 km-dev:hasSubjectMap _:node1963b0enbx3 .
+
+_:node1963b0enbx3 km-dev:isPartOfMapping _:node1963b0enbx1 ;
+	a rr:SubjectMap ;
+	km-dev:alignmentNodeId "http://memexproxy.com/ontology/Feature1" ;
+	rr:class memex:Feature ;
+	rr:template "{website_feature_uri}" ;
+	a km-dev:steinerTreeRootNode .
+
+km-dev:PredicateObjectMap_97fc78ff-ed47-48b6-86d2-52e1ef63c02d rr:predicate memex:featureName .
+
+_:node1963b0enbx4 rr:constant "website" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node1963b0enbx1 .
+
+_:node1963b0enbx1 km-dev:hasObjectMap _:node1963b0enbx4 .
+
+km-dev:PredicateObjectMap_97fc78ff-ed47-48b6-86d2-52e1ef63c02d rr:objectMap _:node1963b0enbx4 .
+
+km-dev:TriplesMap_dcef5f80-d463-40a0-9b7c-d59f3525d1d2 rr:predicateObjectMap km-dev:PredicateObjectMap_97fc78ff-ed47-48b6-86d2-52e1ef63c02d .
+
+km-dev:PredicateObjectMap_97fc78ff-ed47-48b6-86d2-52e1ef63c02d a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node1963b0enbx1 .
+
+_:node1963b0enbx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_97fc78ff-ed47-48b6-86d2-52e1ef63c02d .
+
+km-dev:PredicateObjectMap_0a0cc016-6ee3-440b-a3d0-9e5c1d42735d rr:predicate memex:featureValue .
+
+_:node1963b0enbx5 rr:column "website" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node1963b0enbx1 .
+
+_:node1963b0enbx1 km-dev:hasObjectMap _:node1963b0enbx5 .
+
+km-dev:PredicateObjectMap_0a0cc016-6ee3-440b-a3d0-9e5c1d42735d rr:objectMap _:node1963b0enbx5 .
+
+km-dev:TriplesMap_dcef5f80-d463-40a0-9b7c-d59f3525d1d2 rr:predicateObjectMap km-dev:PredicateObjectMap_0a0cc016-6ee3-440b-a3d0-9e5c1d42735d .
+
+km-dev:PredicateObjectMap_0a0cc016-6ee3-440b-a3d0-9e5c1d42735d a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node1963b0enbx1 .
+
+_:node1963b0enbx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_0a0cc016-6ee3-440b-a3d0-9e5c1d42735d .
+
+km-dev:PredicateObjectMap_c163c5d2-16f1-4947-a16d-b7ef6e944c92 rr:predicate memex:website .
+
+_:node1963b0enbx6 rr:column "website" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node1963b0enbx1 .
+
+_:node1963b0enbx1 km-dev:hasObjectMap _:node1963b0enbx6 .
+
+km-dev:PredicateObjectMap_c163c5d2-16f1-4947-a16d-b7ef6e944c92 rr:objectMap _:node1963b0enbx6 .
+
+km-dev:TriplesMap_dcef5f80-d463-40a0-9b7c-d59f3525d1d2 rr:predicateObjectMap km-dev:PredicateObjectMap_c163c5d2-16f1-4947-a16d-b7ef6e944c92 .
+
+km-dev:PredicateObjectMap_c163c5d2-16f1-4947-a16d-b7ef6e944c92 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node1963b0enbx1 .
+
+_:node1963b0enbx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_c163c5d2-16f1-4947-a16d-b7ef6e944c92 .
+
+km-dev:PredicateObjectMap_3ef9cc42-53a3-49c3-9ac6-da7cb8bcd0da rr:predicate prov:wasGeneratedBy .
+
+km-dev:RefObjectMap_36e5570b-2519-4b42-a03e-16fda54c7daf a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_4a61fab6-1173-4ddd-b8ae-3fe6dd55a796 ;
+	km-dev:isPartOfMapping _:node1963b0enbx1 .
+
+_:node1963b0enbx1 km-dev:hasObjectMap km-dev:RefObjectMap_36e5570b-2519-4b42-a03e-16fda54c7daf .
+
+km-dev:PredicateObjectMap_3ef9cc42-53a3-49c3-9ac6-da7cb8bcd0da rr:objectMap km-dev:RefObjectMap_36e5570b-2519-4b42-a03e-16fda54c7daf .
+
+km-dev:TriplesMap_dcef5f80-d463-40a0-9b7c-d59f3525d1d2 rr:predicateObjectMap km-dev:PredicateObjectMap_3ef9cc42-53a3-49c3-9ac6-da7cb8bcd0da .
+
+km-dev:PredicateObjectMap_3ef9cc42-53a3-49c3-9ac6-da7cb8bcd0da a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node1963b0enbx1 .
+
+_:node1963b0enbx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_3ef9cc42-53a3-49c3-9ac6-da7cb8bcd0da .
+
+km-dev:PredicateObjectMap_949424bd-865f-4346-b9e9-baf0ffd27690 rr:predicate prov:wasDerivedFrom .
+
+km-dev:RefObjectMap_e746d744-fef2-4fa3-97cd-16cf32fb631b a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_5ed434f6-a2a1-4d07-9543-ceb97ad0a4d2 ;
+	km-dev:isPartOfMapping _:node1963b0enbx1 .
+
+_:node1963b0enbx1 km-dev:hasObjectMap km-dev:RefObjectMap_e746d744-fef2-4fa3-97cd-16cf32fb631b .
+
+km-dev:PredicateObjectMap_949424bd-865f-4346-b9e9-baf0ffd27690 rr:objectMap km-dev:RefObjectMap_e746d744-fef2-4fa3-97cd-16cf32fb631b .
+
+km-dev:TriplesMap_dcef5f80-d463-40a0-9b7c-d59f3525d1d2 rr:predicateObjectMap km-dev:PredicateObjectMap_949424bd-865f-4346-b9e9-baf0ffd27690 .
+
+km-dev:PredicateObjectMap_949424bd-865f-4346-b9e9-baf0ffd27690 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node1963b0enbx1 .
+
+_:node1963b0enbx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_949424bd-865f-4346-b9e9-baf0ffd27690 .
+
+km-dev:TriplesMap_4a61fab6-1173-4ddd-b8ae-3fe6dd55a796 a rr:TriplesMap .
+
+_:node1963b0enbx1 km-dev:hasTriplesMap km-dev:TriplesMap_4a61fab6-1173-4ddd-b8ae-3fe6dd55a796 .
+
+km-dev:TriplesMap_4a61fab6-1173-4ddd-b8ae-3fe6dd55a796 km-dev:isPartOfMapping _:node1963b0enbx1 .
+
+_:node1963b0enbx7 rr:tableName "ads-sample.json" ;
+	a rr:LogicalTable ;
+	km-dev:isPartOfMapping _:node1963b0enbx1 .
+
+_:node1963b0enbx1 km-dev:hasLogicalTable _:node1963b0enbx7 .
+
+km-dev:TriplesMap_4a61fab6-1173-4ddd-b8ae-3fe6dd55a796 rr:logicalTable _:node1963b0enbx7 ;
+	rr:subjectMap _:node1963b0enbx8 .
+
+_:node1963b0enbx1 km-dev:hasSubjectMap _:node1963b0enbx8 .
+
+_:node1963b0enbx8 km-dev:isPartOfMapping _:node1963b0enbx1 ;
+	a rr:SubjectMap ;
+	km-dev:alignmentNodeId "http://www.w3.org/ns/prov#Activity1" ;
+	rr:class prov:Activity ;
+	rr:termType rr:BlankNode ;
+	km-dev:namePrefix "prov:Activity1" .
+
+km-dev:PredicateObjectMap_4d8b0cce-9bfd-46c4-ae3e-a8a788b8cc93 rr:predicate prov:endedAtTime .
+
+_:node1963b0enbx9 rr:column "modetime_iso8601" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node1963b0enbx1 .
+
+_:node1963b0enbx1 km-dev:hasObjectMap _:node1963b0enbx9 .
+
+km-dev:PredicateObjectMap_4d8b0cce-9bfd-46c4-ae3e-a8a788b8cc93 rr:objectMap _:node1963b0enbx9 .
+
+km-dev:TriplesMap_4a61fab6-1173-4ddd-b8ae-3fe6dd55a796 rr:predicateObjectMap km-dev:PredicateObjectMap_4d8b0cce-9bfd-46c4-ae3e-a8a788b8cc93 .
+
+km-dev:PredicateObjectMap_4d8b0cce-9bfd-46c4-ae3e-a8a788b8cc93 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node1963b0enbx1 .
+
+_:node1963b0enbx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_4d8b0cce-9bfd-46c4-ae3e-a8a788b8cc93 .
+
+km-dev:PredicateObjectMap_49e6662b-aac3-4850-b9ae-fd034718d6aa rr:predicate prov:wasAttributedTo .
+
+_:node1963b0enbx10 rr:constant <http://memexproxy.com/data/software/extractor/ist/version/unknown> ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node1963b0enbx1 .
+
+_:node1963b0enbx1 km-dev:hasObjectMap _:node1963b0enbx10 .
+
+km-dev:PredicateObjectMap_49e6662b-aac3-4850-b9ae-fd034718d6aa rr:objectMap _:node1963b0enbx10 .
+
+km-dev:TriplesMap_4a61fab6-1173-4ddd-b8ae-3fe6dd55a796 rr:predicateObjectMap km-dev:PredicateObjectMap_49e6662b-aac3-4850-b9ae-fd034718d6aa .
+
+km-dev:PredicateObjectMap_49e6662b-aac3-4850-b9ae-fd034718d6aa a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node1963b0enbx1 .
+
+_:node1963b0enbx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_49e6662b-aac3-4850-b9ae-fd034718d6aa .
+
+km-dev:TriplesMap_d99455e2-0c51-487e-948b-f3006e372b09 a rr:TriplesMap .
+
+_:node1963b0enbx1 km-dev:hasTriplesMap km-dev:TriplesMap_d99455e2-0c51-487e-948b-f3006e372b09 .
+
+km-dev:TriplesMap_d99455e2-0c51-487e-948b-f3006e372b09 km-dev:isPartOfMapping _:node1963b0enbx1 .
+
+_:node1963b0enbx11 rr:tableName "ads-sample.json" ;
+	a rr:LogicalTable ;
+	km-dev:isPartOfMapping _:node1963b0enbx1 .
+
+_:node1963b0enbx1 km-dev:hasLogicalTable _:node1963b0enbx11 .
+
+km-dev:TriplesMap_d99455e2-0c51-487e-948b-f3006e372b09 rr:logicalTable _:node1963b0enbx11 ;
+	rr:subjectMap _:node1963b0enbx12 .
+
+_:node1963b0enbx1 km-dev:hasSubjectMap _:node1963b0enbx12 .
+
+_:node1963b0enbx12 km-dev:isPartOfMapping _:node1963b0enbx1 ;
+	a rr:SubjectMap ;
+	km-dev:alignmentNodeId "http://memexproxy.com/ontology/FeatureCollection1" ;
+	rr:class memex:FeatureCollection ;
+	rr:template "{crawl_uri}/featurecollection" .
+
+km-dev:PredicateObjectMap_80b68fb6-87e4-427a-8208-f2e50adcbe72 rr:predicate memex:website_feature .
+
+km-dev:RefObjectMap_bc202991-3d70-40da-b1e4-a3c67aab4e30 a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_dcef5f80-d463-40a0-9b7c-d59f3525d1d2 ;
+	km-dev:isPartOfMapping _:node1963b0enbx1 .
+
+_:node1963b0enbx1 km-dev:hasObjectMap km-dev:RefObjectMap_bc202991-3d70-40da-b1e4-a3c67aab4e30 .
+
+km-dev:PredicateObjectMap_80b68fb6-87e4-427a-8208-f2e50adcbe72 rr:objectMap km-dev:RefObjectMap_bc202991-3d70-40da-b1e4-a3c67aab4e30 .
+
+km-dev:TriplesMap_d99455e2-0c51-487e-948b-f3006e372b09 rr:predicateObjectMap km-dev:PredicateObjectMap_80b68fb6-87e4-427a-8208-f2e50adcbe72 .
+
+km-dev:PredicateObjectMap_80b68fb6-87e4-427a-8208-f2e50adcbe72 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node1963b0enbx1 .
+
+_:node1963b0enbx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_80b68fb6-87e4-427a-8208-f2e50adcbe72 .
+
+km-dev:TriplesMap_5ed434f6-a2a1-4d07-9543-ceb97ad0a4d2 a rr:TriplesMap .
+
+_:node1963b0enbx1 km-dev:hasTriplesMap km-dev:TriplesMap_5ed434f6-a2a1-4d07-9543-ceb97ad0a4d2 .
+
+km-dev:TriplesMap_5ed434f6-a2a1-4d07-9543-ceb97ad0a4d2 km-dev:isPartOfMapping _:node1963b0enbx1 .
+
+_:node1963b0enbx13 rr:tableName "ads-sample.json" ;
+	a rr:LogicalTable ;
+	km-dev:isPartOfMapping _:node1963b0enbx1 .
+
+_:node1963b0enbx1 km-dev:hasLogicalTable _:node1963b0enbx13 .
+
+km-dev:TriplesMap_5ed434f6-a2a1-4d07-9543-ceb97ad0a4d2 rr:logicalTable _:node1963b0enbx13 ;
+	rr:subjectMap _:node1963b0enbx14 .
+
+_:node1963b0enbx1 km-dev:hasSubjectMap _:node1963b0enbx14 .
+
+_:node1963b0enbx14 km-dev:isPartOfMapping _:node1963b0enbx1 ;
+	a rr:SubjectMap ;
+	km-dev:alignmentNodeId "http://schema.org/WebPage1" ;
+	rr:class schema:WebPage ;
+	rr:template "{crawl_uri}" .
+
+km-dev:PredicateObjectMap_06c69b1d-6a88-48f8-87d5-9f957c9aa31d rr:predicate memex:hasFeatureCollection .
+
+km-dev:RefObjectMap_6ba98579-8ca7-4067-91d8-e12c9d8bff28 a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_d99455e2-0c51-487e-948b-f3006e372b09 ;
+	km-dev:isPartOfMapping _:node1963b0enbx1 .
+
+_:node1963b0enbx1 km-dev:hasObjectMap km-dev:RefObjectMap_6ba98579-8ca7-4067-91d8-e12c9d8bff28 .
+
+km-dev:PredicateObjectMap_06c69b1d-6a88-48f8-87d5-9f957c9aa31d rr:objectMap km-dev:RefObjectMap_6ba98579-8ca7-4067-91d8-e12c9d8bff28 .
+
+km-dev:TriplesMap_5ed434f6-a2a1-4d07-9543-ceb97ad0a4d2 rr:predicateObjectMap km-dev:PredicateObjectMap_06c69b1d-6a88-48f8-87d5-9f957c9aa31d .
+
+km-dev:PredicateObjectMap_06c69b1d-6a88-48f8-87d5-9f957c9aa31d a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node1963b0enbx1 .
+
+_:node1963b0enbx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_06c69b1d-6a88-48f8-87d5-9f957c9aa31d .
