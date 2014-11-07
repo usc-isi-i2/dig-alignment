@@ -750,7 +750,9 @@ def feature_name(attribute_name):
 def feature_mod_time(feature_name, feature_value, mod_time):
     try:
         if len(feature_value) > 0:
-            return mod_time
+        	stripped = feature_value.strip()
+        	if (len(stripped)>0):
+        		return mod_time
         return ''
     except Exception, e:
         return ''
