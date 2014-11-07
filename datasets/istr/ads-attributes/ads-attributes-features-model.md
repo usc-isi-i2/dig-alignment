@@ -64,6 +64,7 @@ return phone_uri(getValue("phone_value"))
 | _crawl_uri_ | `uri` | `schema:WebPage1`|
 | _feature_modtime_ | `prov:generatedAtTime` | `memex:Feature1`|
 | _feature_name_ | `memex:featureName` | `memex:Feature1`|
+| _feature_name_property_ | `km-dev:dataPropertyOfColumnLink` | `memex:Feature1`|
 | _feature_value_ | `memex:featureValue` | `memex:Feature1`|
 | _feature_value2_ | `memex:featureValue` | `memex:Feature1`|
 | _featurecollection_uri_ | `uri` | `memex:FeatureCollection1`|
