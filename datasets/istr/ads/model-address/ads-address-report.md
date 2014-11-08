@@ -48,7 +48,8 @@ if(len("uri") > 0):
 #### _modtime_iso8601_
 From column: _modtime_
 >``` python
-return iso8601date(getValue("modtime"))
+if getValue("address_uri"):
+  return iso8601date(getValue("modtime"))
 ```
 
 #### _country_uri_
@@ -56,6 +57,13 @@ From column: _country_
 >``` python
 if getValue("country"):
   return "country/"+getValue("country")
+```
+
+#### _database_id_
+From column: _modtime_iso8601_
+>``` python
+if getValue("address_uri"):
+  return getValue("id")
 ```
 
 
@@ -70,6 +78,7 @@ if getValue("country"):
 | _country_ | `rdfs:label` | `schema:Country1`|
 | _country_uri_ | `uri` | `schema:Country1`|
 | _crawl_uri_ | `uri` | `schema:WebPage1`|
+| _database_id_ | `memex:databaseId` | `prov:Activity1`|
 | _featurecollection_uri_ | `uri` | `memex:FeatureCollection1`|
 | _modtime_iso8601_ | `prov:endedAtTime` | `prov:Activity1`|
 | _snapshot_uri_ | `memex:snapshotUri` | `schema:WebPage1`|
