@@ -16,7 +16,8 @@ return getValue("crawl_uri")+"/featurecollection"
 #### _modetime_iso8601_
 From column: _modtime_
 >``` python
-return iso8601date(getValue("modtime"))
+if getValue("gender_clean"):
+  return iso8601date(getValue("modtime"))
 ```
 
 #### _gender_clean_
@@ -39,11 +40,19 @@ if getValue("gender"):
 return ''
 ```
 
+#### _database_id_
+From column: _modetime_iso8601_
+>``` python
+if getValue("gender_clean"):
+  return getValue("id")
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
 |  ----- | -------- | ----- |
 | _crawl_uri_ | `uri` | `schema:WebPage1`|
+| _database_id_ | `memex:databaseId` | `prov:Activity1`|
 | _featurecollection_uri_ | `uri` | `memex:FeatureCollection1`|
 | _gender_clean_ | `memex:person_gender` | `memex:Feature1`|
 | _gender_clean2_ | `memex:featureValue` | `memex:Feature1`|
