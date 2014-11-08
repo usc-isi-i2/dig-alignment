@@ -66,11 +66,19 @@ From column: _phone_clean1_
 return getValue("phone_clean")
 ```
 
+#### _database_id_
+From column: _modetime_iso8601_
+>``` python
+if getValue("phone_clean"):
+  return getValue("id")
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
 |  ----- | -------- | ----- |
 | _crawl_uri_ | `uri` | `schema:WebPage1`|
+| _database_id_ | `memex:databaseId` | `prov:Activity1`|
 | _exchange_uri_ | `uri` | `schema:Place1`|
 | _featurecollection_uri_ | `uri` | `memex:FeatureCollection1`|
 | _modetime_iso8601_ | `prov:endedAtTime` | `prov:Activity1`|
