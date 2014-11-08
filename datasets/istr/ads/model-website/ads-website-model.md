@@ -16,7 +16,8 @@ return getValue("crawl_uri")+"/featurecollection"
 #### _modetime_iso8601_
 From column: _modtime_
 >``` python
-return iso8601date(getValue("modtime"))
+if getValue("website"):
+  return iso8601date(getValue("modtime"))
 ```
 
 #### _website2_
@@ -34,11 +35,19 @@ if (len(website)>0):
 return ''
 ```
 
+#### _database_id_
+From column: _modetime_iso8601_
+>``` python
+if getValue("website"):
+  return getValue("id")
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
 |  ----- | -------- | ----- |
 | _crawl_uri_ | `uri` | `schema:WebPage1`|
+| _database_id_ | `memex:databaseId` | `prov:Activity1`|
 | _featurecollection_uri_ | `uri` | `memex:FeatureCollection1`|
 | _modetime_iso8601_ | `prov:endedAtTime` | `prov:Activity1`|
 | _website_ | `memex:website` | `memex:Feature1`|
