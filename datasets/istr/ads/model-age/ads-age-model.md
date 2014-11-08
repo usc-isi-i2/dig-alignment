@@ -35,13 +35,21 @@ return getValue("age_clean")
 From column: _age_clean2_
 >``` python
 if getValue("age_clean"):
-  return getValue("featurecollection_uri")+"/"+age_uri(getValue("age"))
+  return getValue("featurecollection_uri")+"/"+age_uri(getValue("age_clean"))
 ```
 
 #### _modtime_iso8601_
 From column: _modtime_
 >``` python
-return iso8601date(getValue("modtime"))
+if getValue("age_clean"):
+  return iso8601date(getValue("modtime"))
+```
+
+#### _database_id_
+From column: _modtime_iso8601_
+>``` python
+if getValue("age_clean"):
+  return getValue("id")
 ```
 
 
@@ -52,6 +60,7 @@ return iso8601date(getValue("modtime"))
 | _age_clean2_ | `memex:featureValue` | `memex:Feature1`|
 | _age_feature_uri_ | `uri` | `memex:Feature1`|
 | _crawl_uri_ | `uri` | `schema:WebPage1`|
+| _database_id_ | `memex:databaseId` | `prov:Activity1`|
 | _featurecollection_uri_ | `uri` | `memex:FeatureCollection1`|
 | _modtime_iso8601_ | `prov:endedAtTime` | `prov:Activity1`|
 | _snapshot_uri_ | `memex:snapshotUri` | `schema:WebPage1`|
