@@ -732,9 +732,9 @@ attribute_to_feature['hips'] = "person_hipstype"
 attribute_to_feature['alias'] = "persion_alias"
 attribute_to_feature['availability'] = "person_incalloutcall"
 attribute_to_feature['location'] = "person_location"
-attribute_to_feature['rate15'] = "rateperhour"
-attribute_to_feature['rate30'] = "rateperhour"
-attribute_to_feature['rate60'] = "rateperhour"
+attribute_to_feature['rate15'] = "rate"
+attribute_to_feature['rate30'] = "rate"
+attribute_to_feature['rate60'] = "rate"
 
 
 def feature_name(attribute_name):
