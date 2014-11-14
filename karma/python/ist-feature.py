@@ -56,6 +56,9 @@ def phone_uri(x):
     			final = 'phonenumber/' + cc + '-' + ph
     return final
 
+def phonenumber_uri(x):
+	return phone_uri(x)
+
 # age   15647
 def clean_age(x):
     """Return the clean age
@@ -68,10 +71,10 @@ def age_uri(x):
 		return "person_age/" + cx
 	return ''
 	
-def feature_age(x):
-    cleaned = clean_age(x)
-    if cleaned:
-        return "Age/%s" % cleaned
+def person_age_uri(x):
+    if x:
+        return "person_age/%s" % x
+    return ''
 
 # email 7105
 def clean_email(x):
@@ -82,10 +85,10 @@ def clean_email(x):
         return em;
     return ''
 
-def feature_email(x):
-    cleaned = clean_email(x)
-    if cleaned:
-        return "EmailAddress/%s" % cleaned
+def emailaddress_uri(x):
+    if x:
+        return "emailaddress/%s" % x
+    return ''
 
 # gender
 def clean_gender(x):
@@ -97,10 +100,9 @@ def clean_gender(x):
 	        return "m"
 	return ''
 
-def feature_gender(x):
-    cleaned = clean_gender(x)
+def person_gender_uri(cleaned):
     if cleaned:
-        return "gender/%s" % cleaned
+        return "person_gender/%s" % cleaned
     return ''
 
 # rate
@@ -130,11 +132,12 @@ def clean_rate30(x):
         rate = rate * 2
     return rate
 
-ethnicity_samples = ["black", "african-american", "latina", "ASIAN", "Martian"]
-def feature_rate(x):
-    cleaned = clean_rate(x)
+def rate_uri(cleaned):
     if cleaned:
         return "rate/%s" % cleaned
+
+ethnicity_samples = ["black", "african-american", "latina", "ASIAN", "Martian"]
+
 def test_ethnicity():
     for b in ethnicity_samples:
         f = feature_ethnicity(b)
@@ -145,10 +148,9 @@ def clean_ethnicity(x):
     stripped = x.strip().lower().replace(" ","")
     return stripped
 
-def feature_ethnicity(x):
-    cleaned = clean_ethnicity(x)
+def person_ethnicity_uri(cleaned):
     if cleaned:
-        return "Ethnicity/%s" % cleaned
+        return "person_ethnicity/%s" % cleaned
 
 # height    29135
 
@@ -186,40 +188,36 @@ def clean_height(x):
         return None
     return None
 
-def feature_height(x):
-    cleaned = clean_height(x)
+def person_height_uri(cleaned):
     if cleaned:
-        return "height/%s" % cleaned
+        return "person_height/%s" % cleaned
 
 # hair  22078
 def clean_hair(x):
     stripped = x.strip().lower()
     return alphaOnly(stripped)
 
-def feature_hair(x):
-    cleaned = clean_hair(x)
+def person_haircolor_uri(cleaned):
     if cleaned:
-        return "hair/%s" % cleaned
+        return "person_haircolor/%s" % cleaned
 
 # build 21842
 def clean_build(x):
     stripped = x.strip().lower()
     return alphaOnly(stripped)
 
-def feature_build(x):
-    cleaned = clean_build(x)
+def person_build_uri(cleaned):
     if cleaned:
-        return "build/%s" % cleaned
+        return "person_build/%s" % cleaned
 
 # cup   19179
 def clean_cup(x):
     stripped = x.strip().lower()
     return alphaOnly(stripped)
 
-def feature_cup(x):
-    cleaned = clean_cup(x)
+def person_cupsizeus_uri(cleaned):
     if cleaned:
-        return "cup/%s" % cleaned
+        return "person_cupsizeus/%s" % cleaned
 
 # bust  18394
 # bust  34-35
@@ -255,11 +253,10 @@ def clean_bust(x):
         pass
     return None
 
-def feature_bust(x):
+def person_bustbandsize_uri(cleaned):
     "Bust measured in inches"
-    cleaned = clean_bust(x)
     if cleaned:
-        return "bust/%s" % cleaned
+        return "person_bustbandsize/%s" % cleaned
 
 # piercings 18294 
 # None Belly Button Face
@@ -279,50 +276,46 @@ def clean_piercings(x):
 def commaList(l):
     return ",".join(l)
 
-def feature_piercings(x):
-    cleaned = clean_piercings(x)
+def person_piercings_uri(cleaned):
     if cleaned:
-        return ",".join(["piercings/%s" % c for c in cleaned])
+        return ",".join(["person_piercings/%s" % c for c in cleaned])
 
 # creditcards   18272
 def clean_creditcards(x):
     stripped = x.strip().lower()
     return stripped
 
-def feature_creditcards(x):
+def creditcardaccepted_uri(cleaned):
     cleaned = clean_creditcards(x)
     if cleaned:
-        return "creditcards/%s" % cleaned
+        return "creditcardaccepted/%s" % cleaned
 
 # hairlength    18030
 def clean_hairlength(x):
     stripped = x.strip().lower()
     return alphaOnly(stripped)
 
-def feature_hairlength(x):
-    cleaned = clean_hairlength(x)
+def person_hairlength_uri(cleaned):
     if cleaned:
-        return "hairlength/%s" % cleaned
+        return "person_hairlength/%s" % cleaned
 
 # hairtype  17945
 def clean_hairtype(x):
     stripped = x.strip().lower()
     return alphaOnly(stripped)
 
-def feature_hairtype(x):
-    cleaned = clean_hairtype(x)
+def person_hairtype_uri(cleaned):
     if cleaned:
-        return "hairtype/%s" % cleaned
+        return "person_hairtype/%s" % cleaned
 
 # eyes  16723
 def clean_eyes(x):
     stripped = x.strip().lower()
     return alphaOnly(stripped)
 
-def feature_eyes(x):
-    cleaned = clean_eyes(x)
+def person_eyecolor_uri(cleaned):
     if cleaned:
-        return "eyes/%s" % cleaned
+        return "person_eyecolor/%s" % cleaned
 
 # weight    13316
 def clean_weight(x):
@@ -398,84 +391,72 @@ unmarked weight < 90 is interpreted as kg, >=90 as lb"""
     except Exception, e:
         return None
 
-def feature_weight(x):
-    """in kg
-unmarked weight < 90 is interpreted as kg, >=90 as lb"""
-    kg = clean_weight(x)
-    if kg and kg >= 40 and kg <= 200:
-        return "weight/" + str(kg)
-    else:
-        return None
+def person_weight_uri(cleaned):
+    if cleaned:
+        return "person_weight/%s" % cleaned
 
 # name  10042
 def clean_name(x):
     stripped = x.strip().lower()
     return alphaOnly(stripped)
 
-def feature_name(x):
-    cleaned = clean_name(x)
+def person_name_uri(cleaned):
     if cleaned:
-        return "PersonName/%s" % cleaned
+        return "person_name/%s" % cleaned
 
 # tattoos   8614
 def clean_tattoos(x):
     stripped = x.strip().lower()
     return alphaOnly(stripped)
 
-def feature_tattoos(x):
-    cleaned = clean_tattoos(x)
+def person_tattoocount_uri(cleaned):
     if cleaned:
-        return "tattoos/%s" % cleaned
+        return "person_tattoocount/%s" % cleaned
 
 # grooming  5709
 def clean_grooming(x):
     stripped = x.strip().lower()
     return alphaOnly(stripped)
 
-def feature_grooming(x):
-    cleaned = clean_grooming(x)
+def person_grooming_uri(cleaned):
     if cleaned:
-        return "grooming/%s" % cleaned
+        return "person_grooming/%s" % cleaned
 
 # implants  5469
 def clean_implants(x):
     stripped = x.strip().lower()
     return alphaOnly(stripped)
 
-def feature_implants(x):
-    cleaned = clean_implants(x)
+def person_implantspresent_uri(cleaned):
     if cleaned:
-        return "implants/%s" % cleaned
+        return "person_implantspresent/%s" % cleaned
 
 # username  5209
 def clean_username(x):
     stripped = x.strip().lower()
     return alphaOnly(stripped)
 
-def feature_username(x):
-    cleaned = clean_username(x)
+def person_username_uri(cleaned):
     if cleaned:
-        return "username/%s" % cleaned
+        return "person_username/%s" % cleaned
 
 # travel    4727
 def clean_travel(x):
     stripped = x.strip().lower()
     return alphaOnly(stripped)
 
-def feature_travel(x):
-    cleaned = clean_travel(x)
+def person_travel_uri(cleaned):
     if cleaned:
-        return "travel/%s" % cleaned
+        return "person_travel/%s" % cleaned
 
 # zip   2734
 def clean_zip(x):
     stripped = x.strip().lower()
     return numericOnly(stripped)
 
-def feature_zip(x):
-    cleaned = clean_zip(x)
+def place_zipcode_uri(cleaned):
     if cleaned:
-        return "zip/%s" % cleaned
+        return "place_zipcode/%s" % cleaned
 
 # waist 2468
 waist_samples = ["24 inches", "28\"", "70cm", "70 cm", "26.5", "svelte", "24-25"]
@@ -546,12 +527,11 @@ def clean_waist(x):
         return None
 
 
-def feature_waist(x):
+def person_waistsize_uri(cleaned):
     """in cm
 unmarked waist < 60 is interpreted as in, >=60 as cm"""
-    cm = clean_waist(x)
-    if cm and cm >= 40 and cm <= 200:
-        return "waist/" + str(cm)
+    if cleaned:
+        return "person_waistsize/" + str(cleaned)
     else:
         return None
 
@@ -560,20 +540,18 @@ def clean_hips(x):
     stripped = x.strip().lower()
     return numericOnly(stripped)
 
-def feature_hips(x):
-    cleaned = clean_hips(x)
+def person_hipstype_uri(cleaned):
     if cleaned:
-        return "hips/%s" % cleaned
+        return "person_hipstype/%s" % cleaned
 
 # alias 2049
 def clean_alias(x):
     stripped = x.strip().lower()
     return alphaOnly(stripped)
 
-def feature_alias(x):
-    cleaned = clean_alias(x)
+def person_alias_uri(cleaned):
     if cleaned:
-        return "alias/%s" % cleaned
+        return "person_alias/%s" % cleaned
 
 # availability  2049
 availability_samples = ["Incall", "Outcall", "Incall Outcall"] 
@@ -585,10 +563,9 @@ def clean_availability(x):
     stripped = x.strip().lower()
     return alphaOnly(stripped)
 
-def feature_availability(x):
-    cleaned = clean_availability(x)
+def person_incalloutcall_uri(cleaned):
     if cleaned:
-        return "availability/%s" % cleaned
+        return "person_incalloutcall/%s" % cleaned
 
 # for stanford only
 location_samples = ["Iowa", "New York", "arlington"]
@@ -601,10 +578,9 @@ def clean_location(x):
     stripped = stripped.replace(" ","_")
     return alphaOnly(stripped)
 
-def feature_location(x):
-    cleaned = clean_location(x)
+def place_location_uri(cleaned):
     if cleaned:
-        return "location/%s" % cleaned
+        return "place_location/%s" % cleaned
 
 
 def get_url_hash(string):
@@ -701,6 +677,55 @@ def feature_value(attributeName, value):
         return ''
 
 
+uriFunction = defaultdict(lambda x: None)
+
+uriFunction["phonenumber"] = phonenumber_uri
+uriFunction["person_age"] = person_age_uri
+uriFunction["emailaddress"] = emailaddress_uri
+uriFunction["person_gender"] = person_gender_uri
+uriFunction["person_ethnicity"] = person_ethnicity_uri
+uriFunction["person_height"] = person_height_uri
+uriFunction["person_haircolor"] = person_haircolor_uri
+uriFunction["person_build"] = person_build_uri
+uriFunction["person_cupsizeus"] = person_cupsizeus_uri
+uriFunction["person_bustbandsize"] = person_bustbandsize_uri
+uriFunction["person_piercings"] = person_piercings_uri
+uriFunction["creditcardaccepted"] = creditcardaccepted_uri
+uriFunction["person_hairlength"] = person_hairlength_uri
+uriFunction["person_hairtype"] = person_hairtype_uri
+uriFunction["person_eyecolor"] = person_eyecolor_uri
+uriFunction["person_weight"] = person_weight_uri
+uriFunction["person_name"] = person_name_uri
+uriFunction["person_tattoocount"] = person_tattoocount_uri
+uriFunction["person_grooming"] = person_grooming_uri
+uriFunction["person_implantspresent"] = person_implantspresent_uri
+uriFunction["person_username"] = person_username_uri
+uriFunction["person_travel"] = person_travel_uri
+uriFunction["place_zipcode"] = place_zipcode_uri
+uriFunction["person_waistsize"] = person_waistsize_uri
+uriFunction["person_hipstype"] = person_hipstype_uri
+uriFunction["person_alias"] = person_alias_uri
+uriFunction["person_incalloutcall"] = person_incalloutcall_uri
+uriFunction["place_location"] = place_location_uri
+uriFunction["rate"] = rate_uri
+
+def feature_uri(cleanAttributeName, cleanValue):
+    try:
+        ret = uriFunction[cleanAttributeName](cleanValue)
+        if ret == None:
+            ret = ''
+        return ret
+    except Exception, e:
+        return ''
+
+def feature_value(attributeName, value):
+    try:
+        ret = mapFunctions[attributeName](value)
+        if ret == None:
+            ret = ''
+        return ret
+    except Exception, e:
+        return ''
 
 # Pedro
 attribute_to_feature = {}
@@ -726,12 +751,12 @@ attribute_to_feature['grooming'] = "person_grooming"
 attribute_to_feature['implants'] = "person_implantspresent"
 attribute_to_feature['username'] = "person_username"
 attribute_to_feature['travel'] = "person_travel"
-attribute_to_feature['zip'] = "zipcode"
+attribute_to_feature['zip'] = "place_zipcode"
 attribute_to_feature['waist'] = "person_waistsize"
 attribute_to_feature['hips'] = "person_hipstype"
-attribute_to_feature['alias'] = "persion_alias"
+attribute_to_feature['alias'] = "person_alias"
 attribute_to_feature['availability'] = "person_incalloutcall"
-attribute_to_feature['location'] = "person_location"
+attribute_to_feature['location'] = "place_location"
 attribute_to_feature['rate15'] = "rate"
 attribute_to_feature['rate30'] = "rate"
 attribute_to_feature['rate60'] = "rate"

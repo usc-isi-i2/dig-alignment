@@ -1,4 +1,4 @@
-## add-attributes-sample-5.json
+## add-attributes-sample-100.json
 
 ### PyTransforms
 #### _crawl_uri_
@@ -10,7 +10,9 @@ return getCacheBaseUrl()+"page/"+get_url_hash(getValue("url"))+"/"+getValue("tim
 #### _feature_collection_property_
 From column: _attribute_
 >``` python
-return "http://memexproxy.com/ontology/"+feature_name(getValue("attribute")) + "_feature"
+fn = feature_name(getValue("attribute"))
+if fn:
+   return "http://memexproxy.com/ontology/"+ fn + "_feature"
 ```
 
 #### _feature_name_
@@ -22,7 +24,10 @@ return feature_name(getValue("attribute"))
 #### _feature_name_property_
 From column: _feature_name_
 >``` python
-return "http://memexproxy.com/ontology/"+feature_name(getValue("attribute"))
+fn = feature_name(getValue("attribute"))
+if fn:
+   return "http://memexproxy.com/ontology/"+fn
+return ''
 ```
 
 #### _feature_value_
@@ -61,6 +66,12 @@ if modtime:
 return ''
 ```
 
+#### _feature_uri_
+From column: _feature_value2_
+>``` python
+return feature_uri(getValue("feature_name"), getValue("feature_value"))
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
@@ -70,6 +81,7 @@ return ''
 | _feature_collection_property_ | `km-dev:objectPropertySpecialization` | `memex:FeatureCollection1`|
 | _feature_name_ | `memex:featureName` | `memex:Feature1`|
 | _feature_name_property_ | `km-dev:dataPropertyOfColumnLink` | `memex:Feature1`|
+| _feature_uri_ | `uri` | `memex:Feature1`|
 | _feature_value_ | `memex:featureValue` | `memex:Feature1`|
 | _feature_value2_ | `memex:featureValue` | `memex:Feature1`|
 | _featurecollection_uri_ | `uri` | `memex:FeatureCollection1`|
