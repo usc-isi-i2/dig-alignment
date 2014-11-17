@@ -93,6 +93,6 @@ if getValue("address_uri"):
 | `memex:Feature1` | `prov:wasGeneratedBy` | `prov:Activity1`|
 | `memex:Feature1` | `prov:wasDerivedFrom` | `schema:WebPage1`|
 | `memex:FeatureCollection1` | `memex:postalAddress_feature` | `memex:Feature1`|
-| `prov:Activity1` | `prov:wasAttributedTo` | `xsd:http://memexproxy.com/data/software/extractor/ist/version/unknown`|
+| `prov:Activity1` | `prov:wasAttributedTo` | `xsd:http://memex.zapto.org/data/software/extractor/ist/version/unknown`|
 | `schema:PostalAddress1` | `schema:addressCountry` | `schema:Country1`|
 | `schema:WebPage1` | `memex:hasFeatureCollection` | `memex:FeatureCollection1`|
