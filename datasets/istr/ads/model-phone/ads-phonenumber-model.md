@@ -99,5 +99,5 @@ if getValue("phone_clean"):
 | `memex:Feature1` | `prov:wasDerivedFrom` | `schema:WebPage1`|
 | `memex:FeatureCollection1` | `memex:phonenumber_feature` | `memex:Feature1`|
 | `memex:PhoneNumber1` | `schema:location` | `schema:Place1`|
-| `prov:Activity1` | `prov:wasAttributedTo` | `xsd:http://memexproxy.com/data/software/extractor/ist/version/unknown`|
+| `prov:Activity1` | `prov:wasAttributedTo` | `xsd:http://memex.zapto.org/data/software/extractor/ist/version/unknown`|
 | `schema:WebPage1` | `memex:hasFeatureCollection` | `memex:FeatureCollection1`|
