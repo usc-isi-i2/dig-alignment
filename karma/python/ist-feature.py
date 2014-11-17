@@ -109,32 +109,70 @@ def person_gender_uri(cleaned):
 # rate60    12706
 # rate30    10640
 # rate15    1215
-def clean_rate(x):
-    r = x.strip().lower()
-    if r[0] == "0":
+def base_clean_rate(x):
+    clean = x.strip().lower()
+    if clean[0] == "0":
         return None
-    rate = int(float(r))
+
+    rate = int(float(clean))
     if rate < 20 or rate > 1000:
         return None
-    # return nearest5(rate)
-    # no binning
     return rate
+
+def clean_rate(x):
+    rate = base_clean_rate(x)
+    if rate != None:
+    	return "%s-per-60min" % rate
+    return ''
 
 def clean_rate15(x):
-    rate = clean_rate(x)
+    rate = base_clean_rate(x)
+    # if rate != None:
+    #     rate = rate * 4
     if rate != None:
-        rate = rate * 4
-    return rate
+    	return "%s-per-15min" % rate
+    return ''
 
 def clean_rate30(x):
-    rate = clean_rate(x)
+    rate = base_clean_rate(x)
+    # if rate != None:
+    #     rate = rate * 2
     if rate != None:
-        rate = rate * 2
-    return rate
+    	return "%s-per-30min" % rate
+    return ''
 
 def rate_uri(cleaned):
     if cleaned:
         return "rate/%s" % cleaned
+
+def rate_price(cleaned):
+    if cleaned:
+        idx = cleaned.find("-")
+        if idx != -1:
+            return int(cleaned[0:idx])
+    return ''
+
+def rate_duration(cleaned):
+    if cleaned:
+        idx = cleaned.find("per-")
+        if idx != -1:
+            str = cleaned[idx+4:]
+            dur = str[0: len(str)-3]
+            return dur
+    return ''
+
+def rate_unit(cleaned):
+    if cleaned:
+        idx = cleaned.find("min")
+        if idx != -1:
+            return "MIN"
+        idx = cleaned.find("sec")
+        if idx != -1:
+            return "SEC"
+        idx = cleaned.find("hr")
+        if idx != -1:
+            return "HUR"
+    return ''
 
 ethnicity_samples = ["black", "african-american", "latina", "ASIAN", "Martian"]
 
@@ -640,6 +678,7 @@ mapFunctions['age'] = clean_age
 mapFunctions['email'] = clean_email
 mapFunctions['gender'] = clean_gender
 mapFunctions['rate'] = clean_rate
+mapFunctions['rate15'] = clean_rate15
 mapFunctions['rate30'] = clean_rate30
 mapFunctions['rate60'] = clean_rate
 mapFunctions['ethnicity'] = clean_ethnicity
