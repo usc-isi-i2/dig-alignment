@@ -41,6 +41,7 @@ return ''
 | _database_id_ | `memex:databaseId` | `prov:Activity1`|
 | _image_snapshot_uri_ | `memex:snapshotUri` | `schema:ImageObject1`|
 | _image_uri_ | `uri` | `schema:ImageObject1`|
+| _importtime_ | `prov:generatedAtTime` | `schema:ImageObject1`|
 | _location_ | `memex:cacheUrl` | `schema:ImageObject1`|
 | _modtime_iso_ | `prov:endedAtTime` | `prov:Activity1`|
 | _url_ | `schema:url` | `schema:ImageObject1`|
@@ -49,6 +50,6 @@ return ''
 ### Links
 | From | Property | To |
 |  --- | -------- | ---|
-| `prov:Activity1` | `prov:wasAttributedTo` | `xsd:http://memexproxy.com/data/software/extractor/ist/images/version/unknown`|
-| `schema:ImageObject1` | `prov:wasGeneratedBy` | `prov:Activity1`|
+| `schema:ImageObject1` | `schema:mentions` | `prov:Activity1`|
+| `schema:ImageObject1` | `prov:wasGeneratedBy` | `xsd:http://memex.zapto.org/data/software/extractor/ist/ist-images-database`|
 | `schema:WebPage1` | `memex:hasImagePart` | `schema:ImageObject1`|
