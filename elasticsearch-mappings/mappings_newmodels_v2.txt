@@ -1,4 +1,6 @@
 http://karma-dig-service.cloudapp.net:55310/swebpages/swebpage
+
+
 POST /_mapping
 {
 "swebpage":{
@@ -108,6 +110,37 @@ POST /_mapping
                         
                     }
                 },
+                
+                "postalAddress_feature":{
+                    "type": "object", "include_in_parent":true,
+                    "properties":{
+                        "addressLocality":{"type": "string","include_in_parent" :true},
+                        "uri":{"type": "string","include_in_parent" :true},
+                        "featureName":{"type": "string","include_in_parent":true},
+                        "postalAddress":{"type": "string","include_in_parent":true},
+                        "featureValue":{"type": "string","include_in_parent":true},
+                        "wasDerivedFrom":{"type": "string","include_in_parent":true},
+                        "wasGeneratedBy":{
+                            "type": "nested","include_in_parent":true,
+                            "properties":{
+                                "databaseId":{"type": "string","include_in_parent":true},
+                                "wasAttributedTo":{"type": "string","include_in_parent":true},
+                                "endedAtTime":{"type": "string","include_in_parent":true}
+                            }
+                        },
+                        "featureObject":{
+                            "type": "nested","include_in_parent":true,
+                            "addressLocality":{"type": "string","include_in_parent":true},
+                            "addressRegion":{"type": "string","include_in_parent":true},
+                            "uri":{"type": "string","include_in_parent":true},
+                            "addressCountry":{
+                                "type":"nested","include_in_parent":true,
+                                "uri":{"type": "string","include_in_parent":true},
+                                "label":{"type": "string","include_in_parent":true}
+                            }
+                        }
+                    }
+                },
                 "phonenumber_feature":{
                     "type": "nested",
                     "include_in_parent":true,
@@ -180,7 +213,15 @@ POST /_mapping
         "properties":{
             "generatedAtTime":{"type": "string","include_in_parent":true},
             "snapshotUri":{"type": "string","include_in_parent":true},
-            "wasGeneratedBy":{"type": "string","include_in_parent":true},
+            "wasGeneratedBy":{
+                            "type": "nested",
+                            "include_in_parent":true,
+                            "properties":{
+                                "databaseId":{"type": "string","include_in_parent":true},
+                                "wasAttributedTo":{"type": "string","include_in_parent":true},
+                                "endedAtTime":{"type": "string","include_in_parent":true}
+                            }
+                        },
             "cacheUrl":{"type": "string","include_in_parent":true},
             "uri":{"type": "string","include_in_parent":true},
             "url":{"type": "string","include_in_parent":true}
