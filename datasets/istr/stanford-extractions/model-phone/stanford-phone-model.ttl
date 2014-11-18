@@ -1,0 +1,2160 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix schemax: <http://topbraid.org/schemax/> .
+@prefix schema: <http://schema.org/> .
+@prefix memex: <http://memexproxy.com/ontology/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ht: <http://memexproxy.com/ontology/human-trafficking/> .
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix km-dev: <http://isi.edu/integration/karma/dev#> .
+
+_:node197283gqbx1 a km-dev:R2RMLMapping ;
+	km-dev:sourceName "stanford-features-sample.json" ;
+	km-dev:modelPublicationTime "1416341078860"^^xsd:long ;
+	km-dev:modelVersion "1.7" ;
+	km-dev:hasInputColumns "[[{\"columnName\":\"ad_timestamp\"}],[{\"columnName\":\"url\"}],[{\"columnName\":\"phones2\"},{\"columnName\":\"Values\"}],[{\"columnName\":\"ID\"}]]" ;
+	km-dev:hasOutputColumns "[[{\"columnName\":\"phoneslist\"}],[{\"columnName\":\"crawl_uri\"}],[{\"columnName\":\"phones2\"},{\"columnName\":\"phone_clean\"}],[{\"columnName\":\"phones2\"},{\"columnName\":\"phone_uri\"}],[{\"columnName\":\"phones2\"},{\"columnName\":\"stanford_gentime_iso\"}],[{\"columnName\":\"phones2\"},{\"columnName\":\"phone_label\"}],[{\"columnName\":\"phones2\"},{\"columnName\":\"phone_uri2\"}],[{\"columnName\":\"phones2\"},{\"columnName\":\"phone_clean2\"}],[{\"columnName\":\"phones2\"},{\"columnName\":\"database_id\"}],[{\"columnName\":\"featureCollection_uri\"}],[{\"columnName\":\"phones2\"},{\"columnName\":\"exchange_uri\"}]]" ;
+	km-dev:hasModelLabel "stanford-features-sample.json" ;
+	km-dev:hasBaseURI "http://localhost:8080/source/" ;
+	km-dev:hasWorksheetHistory """[
+    {
+        \"tags\": [\"Transformation\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"url\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"value\": \"crawl_uri\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"value\": \"return getCacheBaseUrl()+\\\"page/\\\"+get_url_hash(getValue(\\\"url\\\"))+\\\"/\\\"+getValue(\\\"ad_timestamp\\\")+\\\"/processed\\\"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"ad_timestamp\\\"}]},{\\\"value\\\":[{\\\"columnName\\\":\\\"url\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"crawl_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SubmitPythonTransformationCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"crawl_uri\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"value\": \"featureCollection_uri\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"value\": \"return getValue(\\\"crawl_uri\\\")+\\\"/featurecollection\\\"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"crawl_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"featureCollection_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SubmitPythonTransformationCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"crawl_uri\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyName\",
+                \"value\": \"isUriOfClass\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyUri\",
+                \"value\": \"http://schema.org/WebPage\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyId\",
+                \"value\": \"http://schema.org/WebPage1 (add)\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://isi.edu/integration/karma/dev#classLink\",
+                    \"DomainLabel\": \"schema:WebPage1 (add)\",
+                    \"DomainId\": \"http://schema.org/WebPage1\",
+                    \"DomainUri\": \"http://schema.org/WebPage\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"crawl_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"crawl_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetMetaPropertyCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"featureCollection_uri\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyName\",
+                \"value\": \"isUriOfClass\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyUri\",
+                \"value\": \"http://memexproxy.com/ontology/FeatureCollection\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyId\",
+                \"value\": \"http://memexproxy.com/ontology/FeatureCollection1 (add)\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://isi.edu/integration/karma/dev#classLink\",
+                    \"DomainLabel\": \"memex:FeatureCollection1 (add)\",
+                    \"DomainId\": \"http://memexproxy.com/ontology/FeatureCollection1\",
+                    \"DomainUri\": \"http://memexproxy.com/ontology/FeatureCollection\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"featureCollection_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"featureCollection_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetMetaPropertyCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"initialEdges\",
+                \"value\": [],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"alignmentId\",
+                \"value\": \"WSP3:WS1AL\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newEdges\",
+                \"value\": [{
+                    \"edgeTargetUri\": \"http://schema.org/WebPage1\",
+                    \"edgeId\": \"http://www.w3.org/ns/prov#wasDerivedFrom\",
+                    \"edgeTargetId\": \"http://schema.org/WebPage1\",
+                    \"edgeSourceId\": \"http://memexproxy.com/ontology/Feature1 (add)\",
+                    \"edgeSourceUri\": \"http://memexproxy.com/ontology/Feature\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"ChangeInternalNodeLinksCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"initialEdges\",
+                \"value\": [{
+                    \"edgeId\": \"http://memexproxy.com/ontology/hasFeatureCollection\",
+                    \"edgeTargetId\": \"http://memexproxy.com/ontology/FeatureCollection1\",
+                    \"edgeSourceId\": \"http://schema.org/WebPage1\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newEdges\",
+                \"value\": [{
+                    \"edgeId\": \"http://memexproxy.com/ontology/hasFeatureCollection\",
+                    \"edgeTargetId\": \"http://memexproxy.com/ontology/FeatureCollection1\",
+                    \"edgeSourceId\": \"http://schema.org/WebPage1\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"ChangeInternalNodeLinksCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"initialEdges\",
+                \"value\": [],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"alignmentId\",
+                \"value\": \"WSP3:WS1AL\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newEdges\",
+                \"value\": [{
+                    \"edgeTargetUri\": \"http://www.w3.org/ns/prov#Activity\",
+                    \"edgeId\": \"http://www.w3.org/ns/prov#wasGeneratedBy\",
+                    \"edgeTargetId\": \"http://www.w3.org/ns/prov#Activity1 (add)\",
+                    \"edgeSourceId\": \"http://memexproxy.com/ontology/Feature1\",
+                    \"edgeSourceUri\": \"http://memexproxy.com/ontology/Feature1\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"ChangeInternalNodeLinksCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"phones\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"value\": \"phoneslist\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"value\": \"return splitPhoneField(getValue(\\\"phones\\\"))\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"phones\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"phoneslist\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SubmitPythonTransformationCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"phoneslist\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"delimiter\",
+                \"value\": \",\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newColName\",
+                \"value\": \"phones2\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newHNodeId\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SplitValuesCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"phones2\"},
+                    {\"columnName\": \"Values\"}
+                ],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"value\": \"phone_clean\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"value\": \"return clean_phone(getValue(\\\"Values\\\"))\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"phones2\\\"},{\\\"columnName\\\":\\\"Values\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"phones2\\\"},{\\\"columnName\\\":\\\"phone_clean\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SubmitPythonTransformationCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"phones2\"},
+                    {\"columnName\": \"phone_clean\"}
+                ],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"value\": \"phone_clean2\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"value\": \"return getValue(\\\"phone_clean\\\")\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"phones2\\\"},{\\\"columnName\\\":\\\"phone_clean\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"phones2\\\"},{\\\"columnName\\\":\\\"phone_clean2\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SubmitPythonTransformationCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"phones2\"},
+                    {\"columnName\": \"phone_clean\"}
+                ],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://memexproxy.com/ontology/featureValue\",
+                    \"DomainLabel\": \"memex:Feature1\",
+                    \"DomainId\": \"http://memexproxy.com/ontology/Feature1\",
+                    \"DomainUri\": \"http://memexproxy.com/ontology/Feature\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"phones2\\\"},{\\\"columnName\\\":\\\"phone_clean\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"phones2\\\"},{\\\"columnName\\\":\\\"phone_clean\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetSemanticTypeCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"initialEdges\",
+                \"value\": [],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"alignmentId\",
+                \"value\": \"WSP4:WS1AL\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newEdges\",
+                \"value\": [{
+                    \"edgeTargetUri\": \"http://memexproxy.com/ontology/Feature\",
+                    \"edgeId\": \"http://memexproxy.com/ontology/phonenumber_feature\",
+                    \"edgeTargetId\": \"http://memexproxy.com/ontology/Feature1\",
+                    \"edgeSourceId\": \"http://memexproxy.com/ontology/FeatureCollection1\",
+                    \"edgeSourceUri\": \"http://memexproxy.com/ontology/FeatureCollection1\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"ChangeInternalNodeLinksCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"phones2\"},
+                    {\"columnName\": \"phone_clean2\"}
+                ],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://memexproxy.com/ontology/phonenumber\",
+                    \"DomainLabel\": \"memex:Feature1\",
+                    \"DomainId\": \"http://memexproxy.com/ontology/Feature1\",
+                    \"DomainUri\": \"http://memexproxy.com/ontology/Feature\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"phones2\\\"},{\\\"columnName\\\":\\\"phone_clean2\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"phones2\\\"},{\\\"columnName\\\":\\\"phone_clean2\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetSemanticTypeCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"literalValue\",
+                \"value\": \"phonenumber\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"literalType\",
+                \"value\": \"xsd:string\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"isUri\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"AddLiteralNodeCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"initialEdges\",
+                \"value\": [],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newEdges\",
+                \"value\": [{
+                    \"edgeTargetUri\": \"phonenumber\",
+                    \"edgeId\": \"http://memexproxy.com/ontology/featureName\",
+                    \"edgeTargetId\": \"phonenumber1\",
+                    \"edgeSourceId\": \"http://memexproxy.com/ontology/Feature1\",
+                    \"edgeSourceUri\": \"http://memexproxy.com/ontology/Feature\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"ChangeInternalNodeLinksCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"phones2\"},
+                    {\"columnName\": \"phone_clean2\"}
+                ],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"value\": \"phone_uri\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"value\": \"return phone_uri(getValue(\\\"phone_clean\\\"))\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"phones2\\\"},{\\\"columnName\\\":\\\"phone_clean\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"phones2\\\"},{\\\"columnName\\\":\\\"phone_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SubmitPythonTransformationCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"phones2\"},
+                    {\"columnName\": \"phone_uri\"}
+                ],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyName\",
+                \"value\": \"isUriOfClass\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyUri\",
+                \"value\": \"http://memexproxy.com/ontology/Feature\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyId\",
+                \"value\": \"http://memexproxy.com/ontology/Feature1\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://isi.edu/integration/karma/dev#classLink\",
+                    \"DomainLabel\": \"memex:Feature1\",
+                    \"DomainId\": \"http://memexproxy.com/ontology/Feature1\",
+                    \"DomainUri\": \"http://memexproxy.com/ontology/Feature\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"phones2\\\"},{\\\"columnName\\\":\\\"phone_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"phones2\\\"},{\\\"columnName\\\":\\\"phone_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetMetaPropertyCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"initialEdges\",
+                \"value\": [],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"alignmentId\",
+                \"value\": \"WSP4:WS1AL\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newEdges\",
+                \"value\": [{
+                    \"edgeTargetUri\": \"http://memexproxy.com/ontology/PhoneNumber\",
+                    \"edgeId\": \"http://memexproxy.com/ontology/featureObject\",
+                    \"edgeTargetId\": \"http://memexproxy.com/ontology/PhoneNumber1 (add)\",
+                    \"edgeSourceId\": \"http://memexproxy.com/ontology/Feature1\",
+                    \"edgeSourceUri\": \"http://memexproxy.com/ontology/Feature1\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"ChangeInternalNodeLinksCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"phones2\"},
+                    {\"columnName\": \"phone_uri\"}
+                ],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"value\": \"phone_label\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"value\": \"return getValue(\\\"phone_clean\\\")\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"phones2\\\"},{\\\"columnName\\\":\\\"phone_clean\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"phones2\\\"},{\\\"columnName\\\":\\\"phone_label\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SubmitPythonTransformationCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"phones2\"},
+                    {\"columnName\": \"phone_label\"}
+                ],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://www.w3.org/2000/01/rdf-schema#label\",
+                    \"DomainLabel\": \"memex:PhoneNumber1\",
+                    \"DomainId\": \"http://memexproxy.com/ontology/PhoneNumber1\",
+                    \"DomainUri\": \"http://memexproxy.com/ontology/PhoneNumber\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"phones2\\\"},{\\\"columnName\\\":\\\"phone_label\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"phones2\\\"},{\\\"columnName\\\":\\\"phone_label\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetSemanticTypeCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"phones2\"},
+                    {\"columnName\": \"phone_label\"}
+                ],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"value\": \"phone_uri2\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"value\": \"return getValue(\\\"phone_uri\\\")\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"phones2\\\"},{\\\"columnName\\\":\\\"phone_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"phones2\\\"},{\\\"columnName\\\":\\\"phone_uri2\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SubmitPythonTransformationCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"phones2\"},
+                    {\"columnName\": \"phone_uri2\"}
+                ],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyName\",
+                \"value\": \"isUriOfClass\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyUri\",
+                \"value\": \"http://memexproxy.com/ontology/PhoneNumber\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyId\",
+                \"value\": \"http://memexproxy.com/ontology/PhoneNumber1\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://isi.edu/integration/karma/dev#classLink\",
+                    \"DomainLabel\": \"memex:PhoneNumber1\",
+                    \"DomainId\": \"http://memexproxy.com/ontology/PhoneNumber1\",
+                    \"DomainUri\": \"http://memexproxy.com/ontology/PhoneNumber\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"phones2\\\"},{\\\"columnName\\\":\\\"phone_uri2\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"phones2\\\"},{\\\"columnName\\\":\\\"phone_uri2\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetMetaPropertyCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"phones2\"},
+                    {\"columnName\": \"phone_uri2\"}
+                ],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"value\": \"exchange_uri\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"value\": \"if getValue(\\\"phone_clean\\\"):\\n  return phoneExchangeUri(getValue(\\\"phone_clean\\\"))\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"phones2\\\"},{\\\"columnName\\\":\\\"phone_clean\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"phones2\\\"},{\\\"columnName\\\":\\\"exchange_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SubmitPythonTransformationCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"initialEdges\",
+                \"value\": [],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"alignmentId\",
+                \"value\": \"WSP4:WS1AL\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newEdges\",
+                \"value\": [{
+                    \"edgeTargetUri\": \"http://schema.org/Place\",
+                    \"edgeId\": \"http://schema.org/location\",
+                    \"edgeTargetId\": \"http://schema.org/Place1 (add)\",
+                    \"edgeSourceId\": \"http://memexproxy.com/ontology/PhoneNumber1\",
+                    \"edgeSourceUri\": \"http://memexproxy.com/ontology/PhoneNumber1\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"ChangeInternalNodeLinksCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"phones2\"},
+                    {\"columnName\": \"exchange_uri\"}
+                ],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyName\",
+                \"value\": \"isUriOfClass\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyUri\",
+                \"value\": \"http://schema.org/Place\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyId\",
+                \"value\": \"http://schema.org/Place1\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://isi.edu/integration/karma/dev#classLink\",
+                    \"DomainLabel\": \"schema:Place1\",
+                    \"DomainId\": \"http://schema.org/Place1\",
+                    \"DomainUri\": \"http://schema.org/Place\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"phones2\\\"},{\\\"columnName\\\":\\\"exchange_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"phones2\\\"},{\\\"columnName\\\":\\\"exchange_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetMetaPropertyCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"phones2\"},
+                    {\"columnName\": \"exchange_uri\"}
+                ],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"value\": \"database_id\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"value\": \"if getValue(\\\"phone_clean\\\"):\\n  return getValue(\\\"ID\\\")\\nreturn ''\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"phones2\\\"},{\\\"columnName\\\":\\\"phone_clean\\\"}]},{\\\"value\\\":[{\\\"columnName\\\":\\\"ID\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"phones2\\\"},{\\\"columnName\\\":\\\"database_id\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SubmitPythonTransformationCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"phones2\"},
+                    {\"columnName\": \"database_id\"}
+                ],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://memexproxy.com/ontology/databaseId\",
+                    \"DomainLabel\": \"prov:Activity1\",
+                    \"DomainId\": \"http://www.w3.org/ns/prov#Activity1\",
+                    \"DomainUri\": \"http://www.w3.org/ns/prov#Activity\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"phones2\\\"},{\\\"columnName\\\":\\\"database_id\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"phones2\\\"},{\\\"columnName\\\":\\\"database_id\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetSemanticTypeCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"phones2\"},
+                    {\"columnName\": \"database_id\"}
+                ],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"hTableId\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"value\": \"stanford_gentime\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"defaultValue\",
+                \"value\": \"2014-10-12\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"AddColumnCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"phones2\"},
+                    {\"columnName\": \"stanford_gentime\"}
+                ],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"value\": \"stanford_gentime_iso\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"value\": \"if getValue(\\\"phone_clean\\\"):\\n  return iso8601date(getValue(\\\"stanford_gentime\\\"))\\nreturn ''\\n\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"phones2\\\"},{\\\"columnName\\\":\\\"phone_clean\\\"}]},{\\\"value\\\":[{\\\"columnName\\\":\\\"phones2\\\"},{\\\"columnName\\\":\\\"stanford_gentime\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"phones2\\\"},{\\\"columnName\\\":\\\"stanford_gentime_iso\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SubmitPythonTransformationCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"phones2\"},
+                    {\"columnName\": \"stanford_gentime_iso\"}
+                ],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://www.w3.org/ns/prov#endedAtTime\",
+                    \"DomainLabel\": \"prov:Activity1\",
+                    \"DomainId\": \"http://www.w3.org/ns/prov#Activity1\",
+                    \"DomainUri\": \"http://www.w3.org/ns/prov#Activity\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"phones2\\\"},{\\\"columnName\\\":\\\"stanford_gentime_iso\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"phones2\\\"},{\\\"columnName\\\":\\\"stanford_gentime_iso\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetSemanticTypeCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"literalValue\",
+                \"value\": \"http://memex.zapto.org/data/software/extractor/stanford/version/0.1\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"literalType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"isUri\",
+                \"value\": true,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"AddLiteralNodeCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"initialEdges\",
+                \"value\": [],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newEdges\",
+                \"value\": [{
+                    \"edgeTargetUri\": \"http://memex.zapto.org/data/software/extractor/stanford/version/0.1\",
+                    \"edgeId\": \"http://www.w3.org/ns/prov#wasAttributedTo\",
+                    \"edgeTargetId\": \"http://memex.zapto.org/data/software/extractor/stanford/version/0.11\",
+                    \"edgeSourceId\": \"http://www.w3.org/ns/prov#Activity1\",
+                    \"edgeSourceUri\": \"http://www.w3.org/ns/prov#Activity\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"ChangeInternalNodeLinksCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"orderedColumns\",
+                \"value\": [
+                    {
+                        \"id\": [{\"columnName\": \"modtime\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"modtime\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"ad_timestamp\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"ad_timestamp\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"url\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"url\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"crawl_uri\"}],
+                        \"visible\": true,
+                        \"hideable\": false,
+                        \"name\": \"crawl_uri\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"featureCollection_uri\"}],
+                        \"visible\": true,
+                        \"hideable\": false,
+                        \"name\": \"featureCollection_uri\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"ID\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"ID\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"names\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"names\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"phones\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"phones\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"phoneslist\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"phoneslist\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"locations\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"locations\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"phones2\"}],
+                        \"visible\": true,
+                        \"hideable\": false,
+                        \"name\": \"phones2\",
+                        \"children\": \"[{\\\"id\\\":[{\\\"columnName\\\":\\\"phones2\\\"},{\\\"columnName\\\":\\\"Values\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Values\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"phones2\\\"},{\\\"columnName\\\":\\\"phone_clean\\\"}],\\\"visible\\\":true,\\\"hideable\\\":false,\\\"name\\\":\\\"phone_clean\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"phones2\\\"},{\\\"columnName\\\":\\\"phone_clean2\\\"}],\\\"visible\\\":true,\\\"hideable\\\":false,\\\"name\\\":\\\"phone_clean2\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"phones2\\\"},{\\\"columnName\\\":\\\"phone_uri\\\"}],\\\"visible\\\":true,\\\"hideable\\\":false,\\\"name\\\":\\\"phone_uri\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"phones2\\\"},{\\\"columnName\\\":\\\"phone_label\\\"}],\\\"visible\\\":true,\\\"hideable\\\":false,\\\"name\\\":\\\"phone_label\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"phones2\\\"},{\\\"columnName\\\":\\\"phone_uri2\\\"}],\\\"visible\\\":true,\\\"hideable\\\":false,\\\"name\\\":\\\"phone_uri2\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"phones2\\\"},{\\\"columnName\\\":\\\"exchange_uri\\\"}],\\\"visible\\\":true,\\\"hideable\\\":false,\\\"name\\\":\\\"exchange_uri\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"phones2\\\"},{\\\"columnName\\\":\\\"database_id\\\"}],\\\"visible\\\":true,\\\"hideable\\\":false,\\\"name\\\":\\\"database_id\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"phones2\\\"},{\\\"columnName\\\":\\\"stanford_gentime\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"stanford_gentime\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"phones2\\\"},{\\\"columnName\\\":\\\"stanford_gentime_iso\\\"}],\\\"visible\\\":true,\\\"hideable\\\":false,\\\"name\\\":\\\"stanford_gentime_iso\\\"}]\"
+                    }
+                ],
+                \"type\": \"orderedColumns\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"OrganizeColumnsCommand\"
+    }
+]""" .
+
+km-dev:TriplesMap_536f315a-4f9b-4c4f-8a21-fcb8f71ebf78 a rr:TriplesMap .
+
+_:node197283gqbx1 km-dev:hasTriplesMap km-dev:TriplesMap_536f315a-4f9b-4c4f-8a21-fcb8f71ebf78 .
+
+km-dev:TriplesMap_536f315a-4f9b-4c4f-8a21-fcb8f71ebf78 km-dev:isPartOfMapping _:node197283gqbx1 .
+
+_:node197283gqbx2 rr:tableName "stanford-features-sample.json" ;
+	a rr:LogicalTable ;
+	km-dev:isPartOfMapping _:node197283gqbx1 .
+
+_:node197283gqbx1 km-dev:hasLogicalTable _:node197283gqbx2 .
+
+km-dev:TriplesMap_536f315a-4f9b-4c4f-8a21-fcb8f71ebf78 rr:logicalTable _:node197283gqbx2 ;
+	rr:subjectMap _:node197283gqbx3 .
+
+_:node197283gqbx1 km-dev:hasSubjectMap _:node197283gqbx3 .
+
+_:node197283gqbx3 km-dev:isPartOfMapping _:node197283gqbx1 ;
+	a rr:SubjectMap ;
+	km-dev:alignmentNodeId "http://memexproxy.com/ontology/Feature1" ;
+	rr:class memex:Feature ;
+	rr:template "{[\"phones2\",\"phone_uri\"]}" ;
+	a km-dev:steinerTreeRootNode .
+
+km-dev:PredicateObjectMap_f8818dab-2dbd-4a36-be3f-45b4325908a8 rr:predicate memex:featureName .
+
+_:node197283gqbx4 rr:constant "phonenumber" ;
+	rr:datatype "http://www.w3.org/2001/XMLSchema#string" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node197283gqbx1 .
+
+_:node197283gqbx1 km-dev:hasObjectMap _:node197283gqbx4 .
+
+km-dev:PredicateObjectMap_f8818dab-2dbd-4a36-be3f-45b4325908a8 rr:objectMap _:node197283gqbx4 .
+
+km-dev:TriplesMap_536f315a-4f9b-4c4f-8a21-fcb8f71ebf78 rr:predicateObjectMap km-dev:PredicateObjectMap_f8818dab-2dbd-4a36-be3f-45b4325908a8 .
+
+km-dev:PredicateObjectMap_f8818dab-2dbd-4a36-be3f-45b4325908a8 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node197283gqbx1 .
+
+_:node197283gqbx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_f8818dab-2dbd-4a36-be3f-45b4325908a8 .
+
+km-dev:PredicateObjectMap_85d7eb73-c479-4f26-a026-ce0292e4553f rr:predicate memex:featureObject .
+
+km-dev:RefObjectMap_85702b05-b672-40fd-b80a-1e033f42ae59 a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_df073cb1-4768-4914-a753-52b27281019d ;
+	km-dev:isPartOfMapping _:node197283gqbx1 .
+
+_:node197283gqbx1 km-dev:hasObjectMap km-dev:RefObjectMap_85702b05-b672-40fd-b80a-1e033f42ae59 .
+
+km-dev:PredicateObjectMap_85d7eb73-c479-4f26-a026-ce0292e4553f rr:objectMap km-dev:RefObjectMap_85702b05-b672-40fd-b80a-1e033f42ae59 .
+
+km-dev:TriplesMap_536f315a-4f9b-4c4f-8a21-fcb8f71ebf78 rr:predicateObjectMap km-dev:PredicateObjectMap_85d7eb73-c479-4f26-a026-ce0292e4553f .
+
+km-dev:PredicateObjectMap_85d7eb73-c479-4f26-a026-ce0292e4553f a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node197283gqbx1 .
+
+_:node197283gqbx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_85d7eb73-c479-4f26-a026-ce0292e4553f .
+
+km-dev:PredicateObjectMap_7d62a75d-9735-46fb-abe2-54546e39f4f9 rr:predicate memex:featureValue .
+
+_:node197283gqbx5 rr:column "[\"phones2\",\"phone_clean\"]" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node197283gqbx1 .
+
+_:node197283gqbx1 km-dev:hasObjectMap _:node197283gqbx5 .
+
+km-dev:PredicateObjectMap_7d62a75d-9735-46fb-abe2-54546e39f4f9 rr:objectMap _:node197283gqbx5 .
+
+km-dev:TriplesMap_536f315a-4f9b-4c4f-8a21-fcb8f71ebf78 rr:predicateObjectMap km-dev:PredicateObjectMap_7d62a75d-9735-46fb-abe2-54546e39f4f9 .
+
+km-dev:PredicateObjectMap_7d62a75d-9735-46fb-abe2-54546e39f4f9 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node197283gqbx1 .
+
+_:node197283gqbx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_7d62a75d-9735-46fb-abe2-54546e39f4f9 .
+
+km-dev:PredicateObjectMap_4ee3da89-8bc0-4f19-bd67-18c2c6f604f8 rr:predicate memex:phonenumber .
+
+_:node197283gqbx6 rr:column "[\"phones2\",\"phone_clean\"]" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node197283gqbx1 .
+
+_:node197283gqbx1 km-dev:hasObjectMap _:node197283gqbx6 .
+
+km-dev:PredicateObjectMap_4ee3da89-8bc0-4f19-bd67-18c2c6f604f8 rr:objectMap _:node197283gqbx6 .
+
+km-dev:TriplesMap_536f315a-4f9b-4c4f-8a21-fcb8f71ebf78 rr:predicateObjectMap km-dev:PredicateObjectMap_4ee3da89-8bc0-4f19-bd67-18c2c6f604f8 .
+
+km-dev:PredicateObjectMap_4ee3da89-8bc0-4f19-bd67-18c2c6f604f8 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node197283gqbx1 .
+
+_:node197283gqbx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_4ee3da89-8bc0-4f19-bd67-18c2c6f604f8 .
+
+km-dev:PredicateObjectMap_2efd8697-113d-418f-92ea-eec8787c9b5f rr:predicate prov:wasGeneratedBy .
+
+km-dev:RefObjectMap_0e806b55-2069-4676-b969-54bdcb18f261 a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_5915c5b9-128e-48df-87a5-9804d418a572 ;
+	km-dev:isPartOfMapping _:node197283gqbx1 .
+
+_:node197283gqbx1 km-dev:hasObjectMap km-dev:RefObjectMap_0e806b55-2069-4676-b969-54bdcb18f261 .
+
+km-dev:PredicateObjectMap_2efd8697-113d-418f-92ea-eec8787c9b5f rr:objectMap km-dev:RefObjectMap_0e806b55-2069-4676-b969-54bdcb18f261 .
+
+km-dev:TriplesMap_536f315a-4f9b-4c4f-8a21-fcb8f71ebf78 rr:predicateObjectMap km-dev:PredicateObjectMap_2efd8697-113d-418f-92ea-eec8787c9b5f .
+
+km-dev:PredicateObjectMap_2efd8697-113d-418f-92ea-eec8787c9b5f a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node197283gqbx1 .
+
+_:node197283gqbx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_2efd8697-113d-418f-92ea-eec8787c9b5f .
+
+km-dev:PredicateObjectMap_b4d60e31-a923-498c-8a8d-c739600d1de2 rr:predicate prov:wasDerivedFrom .
+
+km-dev:RefObjectMap_55ee0f9c-65ea-4eee-886a-df7473f195b3 a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_810a1e75-3dad-421a-8bcf-5f5a062c9cdb ;
+	km-dev:isPartOfMapping _:node197283gqbx1 .
+
+_:node197283gqbx1 km-dev:hasObjectMap km-dev:RefObjectMap_55ee0f9c-65ea-4eee-886a-df7473f195b3 .
+
+km-dev:PredicateObjectMap_b4d60e31-a923-498c-8a8d-c739600d1de2 rr:objectMap km-dev:RefObjectMap_55ee0f9c-65ea-4eee-886a-df7473f195b3 .
+
+km-dev:TriplesMap_536f315a-4f9b-4c4f-8a21-fcb8f71ebf78 rr:predicateObjectMap km-dev:PredicateObjectMap_b4d60e31-a923-498c-8a8d-c739600d1de2 .
+
+km-dev:PredicateObjectMap_b4d60e31-a923-498c-8a8d-c739600d1de2 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node197283gqbx1 .
+
+_:node197283gqbx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_b4d60e31-a923-498c-8a8d-c739600d1de2 .
+
+km-dev:TriplesMap_df073cb1-4768-4914-a753-52b27281019d a rr:TriplesMap .
+
+_:node197283gqbx1 km-dev:hasTriplesMap km-dev:TriplesMap_df073cb1-4768-4914-a753-52b27281019d .
+
+km-dev:TriplesMap_df073cb1-4768-4914-a753-52b27281019d km-dev:isPartOfMapping _:node197283gqbx1 .
+
+_:node197283gqbx7 rr:tableName "stanford-features-sample.json" ;
+	a rr:LogicalTable ;
+	km-dev:isPartOfMapping _:node197283gqbx1 .
+
+_:node197283gqbx1 km-dev:hasLogicalTable _:node197283gqbx7 .
+
+km-dev:TriplesMap_df073cb1-4768-4914-a753-52b27281019d rr:logicalTable _:node197283gqbx7 ;
+	rr:subjectMap _:node197283gqbx8 .
+
+_:node197283gqbx1 km-dev:hasSubjectMap _:node197283gqbx8 .
+
+_:node197283gqbx8 km-dev:isPartOfMapping _:node197283gqbx1 ;
+	a rr:SubjectMap ;
+	km-dev:alignmentNodeId "http://memexproxy.com/ontology/PhoneNumber1" ;
+	rr:class memex:PhoneNumber ;
+	rr:template "{[\"phones2\",\"phone_uri\"]}" .
+
+km-dev:PredicateObjectMap_6616fa2c-438d-467d-9b22-fc01daaeaefc rr:predicate schema:location .
+
+km-dev:RefObjectMap_e72687dc-e470-4411-9576-b61ec1c45260 a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_3d42e9de-5eba-4756-a33b-5a8629572130 ;
+	km-dev:isPartOfMapping _:node197283gqbx1 .
+
+_:node197283gqbx1 km-dev:hasObjectMap km-dev:RefObjectMap_e72687dc-e470-4411-9576-b61ec1c45260 .
+
+km-dev:PredicateObjectMap_6616fa2c-438d-467d-9b22-fc01daaeaefc rr:objectMap km-dev:RefObjectMap_e72687dc-e470-4411-9576-b61ec1c45260 .
+
+km-dev:TriplesMap_df073cb1-4768-4914-a753-52b27281019d rr:predicateObjectMap km-dev:PredicateObjectMap_6616fa2c-438d-467d-9b22-fc01daaeaefc .
+
+km-dev:PredicateObjectMap_6616fa2c-438d-467d-9b22-fc01daaeaefc a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node197283gqbx1 .
+
+_:node197283gqbx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_6616fa2c-438d-467d-9b22-fc01daaeaefc .
+
+km-dev:PredicateObjectMap_0f387161-b6ac-4fc2-b4f0-e662eade81df rr:predicate rdfs:label .
+
+_:node197283gqbx9 rr:column "[\"phones2\",\"phone_clean\"]" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node197283gqbx1 .
+
+_:node197283gqbx1 km-dev:hasObjectMap _:node197283gqbx9 .
+
+km-dev:PredicateObjectMap_0f387161-b6ac-4fc2-b4f0-e662eade81df rr:objectMap _:node197283gqbx9 .
+
+km-dev:TriplesMap_df073cb1-4768-4914-a753-52b27281019d rr:predicateObjectMap km-dev:PredicateObjectMap_0f387161-b6ac-4fc2-b4f0-e662eade81df .
+
+km-dev:PredicateObjectMap_0f387161-b6ac-4fc2-b4f0-e662eade81df a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node197283gqbx1 .
+
+_:node197283gqbx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_0f387161-b6ac-4fc2-b4f0-e662eade81df .
+
+km-dev:TriplesMap_5915c5b9-128e-48df-87a5-9804d418a572 a rr:TriplesMap .
+
+_:node197283gqbx1 km-dev:hasTriplesMap km-dev:TriplesMap_5915c5b9-128e-48df-87a5-9804d418a572 .
+
+km-dev:TriplesMap_5915c5b9-128e-48df-87a5-9804d418a572 km-dev:isPartOfMapping _:node197283gqbx1 .
+
+_:node197283gqbx10 rr:tableName "stanford-features-sample.json" ;
+	a rr:LogicalTable ;
+	km-dev:isPartOfMapping _:node197283gqbx1 .
+
+_:node197283gqbx1 km-dev:hasLogicalTable _:node197283gqbx10 .
+
+km-dev:TriplesMap_5915c5b9-128e-48df-87a5-9804d418a572 rr:logicalTable _:node197283gqbx10 ;
+	rr:subjectMap _:node197283gqbx11 .
+
+_:node197283gqbx1 km-dev:hasSubjectMap _:node197283gqbx11 .
+
+_:node197283gqbx11 km-dev:isPartOfMapping _:node197283gqbx1 ;
+	a rr:SubjectMap ;
+	km-dev:alignmentNodeId "http://www.w3.org/ns/prov#Activity1" ;
+	rr:class prov:Activity ;
+	rr:termType rr:BlankNode ;
+	km-dev:namePrefix "prov:Activity1" .
+
+km-dev:PredicateObjectMap_f3f3007d-745a-4115-96eb-92b2d46f15c5 rr:predicate memex:databaseId .
+
+_:node197283gqbx12 rr:column "[\"phones2\",\"database_id\"]" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node197283gqbx1 .
+
+_:node197283gqbx1 km-dev:hasObjectMap _:node197283gqbx12 .
+
+km-dev:PredicateObjectMap_f3f3007d-745a-4115-96eb-92b2d46f15c5 rr:objectMap _:node197283gqbx12 .
+
+km-dev:TriplesMap_5915c5b9-128e-48df-87a5-9804d418a572 rr:predicateObjectMap km-dev:PredicateObjectMap_f3f3007d-745a-4115-96eb-92b2d46f15c5 .
+
+km-dev:PredicateObjectMap_f3f3007d-745a-4115-96eb-92b2d46f15c5 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node197283gqbx1 .
+
+_:node197283gqbx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_f3f3007d-745a-4115-96eb-92b2d46f15c5 .
+
+km-dev:PredicateObjectMap_1a2d807b-5ba2-486c-847d-565c55b36fd2 rr:predicate prov:endedAtTime .
+
+_:node197283gqbx13 rr:column "[\"phones2\",\"stanford_gentime_iso\"]" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node197283gqbx1 .
+
+_:node197283gqbx1 km-dev:hasObjectMap _:node197283gqbx13 .
+
+km-dev:PredicateObjectMap_1a2d807b-5ba2-486c-847d-565c55b36fd2 rr:objectMap _:node197283gqbx13 .
+
+km-dev:TriplesMap_5915c5b9-128e-48df-87a5-9804d418a572 rr:predicateObjectMap km-dev:PredicateObjectMap_1a2d807b-5ba2-486c-847d-565c55b36fd2 .
+
+km-dev:PredicateObjectMap_1a2d807b-5ba2-486c-847d-565c55b36fd2 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node197283gqbx1 .
+
+_:node197283gqbx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_1a2d807b-5ba2-486c-847d-565c55b36fd2 .
+
+km-dev:PredicateObjectMap_bb854001-3d78-4112-b4d9-85c4af1477e2 rr:predicate prov:wasAttributedTo .
+
+_:node197283gqbx14 rr:constant <http://memex.zapto.org/data/software/extractor/stanford/version/0.1> ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node197283gqbx1 .
+
+_:node197283gqbx1 km-dev:hasObjectMap _:node197283gqbx14 .
+
+km-dev:PredicateObjectMap_bb854001-3d78-4112-b4d9-85c4af1477e2 rr:objectMap _:node197283gqbx14 .
+
+km-dev:TriplesMap_5915c5b9-128e-48df-87a5-9804d418a572 rr:predicateObjectMap km-dev:PredicateObjectMap_bb854001-3d78-4112-b4d9-85c4af1477e2 .
+
+km-dev:PredicateObjectMap_bb854001-3d78-4112-b4d9-85c4af1477e2 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node197283gqbx1 .
+
+_:node197283gqbx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_bb854001-3d78-4112-b4d9-85c4af1477e2 .
+
+km-dev:TriplesMap_3dd11c99-d93c-4b44-b336-faaab2587575 a rr:TriplesMap .
+
+_:node197283gqbx1 km-dev:hasTriplesMap km-dev:TriplesMap_3dd11c99-d93c-4b44-b336-faaab2587575 .
+
+km-dev:TriplesMap_3dd11c99-d93c-4b44-b336-faaab2587575 km-dev:isPartOfMapping _:node197283gqbx1 .
+
+_:node197283gqbx15 rr:tableName "stanford-features-sample.json" ;
+	a rr:LogicalTable ;
+	km-dev:isPartOfMapping _:node197283gqbx1 .
+
+_:node197283gqbx1 km-dev:hasLogicalTable _:node197283gqbx15 .
+
+km-dev:TriplesMap_3dd11c99-d93c-4b44-b336-faaab2587575 rr:logicalTable _:node197283gqbx15 ;
+	rr:subjectMap _:node197283gqbx16 .
+
+_:node197283gqbx1 km-dev:hasSubjectMap _:node197283gqbx16 .
+
+_:node197283gqbx16 km-dev:isPartOfMapping _:node197283gqbx1 ;
+	a rr:SubjectMap ;
+	km-dev:alignmentNodeId "http://memexproxy.com/ontology/FeatureCollection1" ;
+	rr:class memex:FeatureCollection ;
+	rr:template "{crawl_uri}/featurecollection" .
+
+km-dev:PredicateObjectMap_f7a76f5c-013d-4bab-8093-288d25ab413c rr:predicate memex:phonenumber_feature .
+
+km-dev:RefObjectMap_803927c3-c78e-4b1b-9f8b-92ab3914639b a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_536f315a-4f9b-4c4f-8a21-fcb8f71ebf78 ;
+	km-dev:isPartOfMapping _:node197283gqbx1 .
+
+_:node197283gqbx1 km-dev:hasObjectMap km-dev:RefObjectMap_803927c3-c78e-4b1b-9f8b-92ab3914639b .
+
+km-dev:PredicateObjectMap_f7a76f5c-013d-4bab-8093-288d25ab413c rr:objectMap km-dev:RefObjectMap_803927c3-c78e-4b1b-9f8b-92ab3914639b .
+
+km-dev:TriplesMap_3dd11c99-d93c-4b44-b336-faaab2587575 rr:predicateObjectMap km-dev:PredicateObjectMap_f7a76f5c-013d-4bab-8093-288d25ab413c .
+
+km-dev:PredicateObjectMap_f7a76f5c-013d-4bab-8093-288d25ab413c a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node197283gqbx1 .
+
+_:node197283gqbx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_f7a76f5c-013d-4bab-8093-288d25ab413c .
+
+km-dev:TriplesMap_3d42e9de-5eba-4756-a33b-5a8629572130 a rr:TriplesMap .
+
+_:node197283gqbx1 km-dev:hasTriplesMap km-dev:TriplesMap_3d42e9de-5eba-4756-a33b-5a8629572130 .
+
+km-dev:TriplesMap_3d42e9de-5eba-4756-a33b-5a8629572130 km-dev:isPartOfMapping _:node197283gqbx1 .
+
+_:node197283gqbx17 rr:tableName "stanford-features-sample.json" ;
+	a rr:LogicalTable ;
+	km-dev:isPartOfMapping _:node197283gqbx1 .
+
+_:node197283gqbx1 km-dev:hasLogicalTable _:node197283gqbx17 .
+
+km-dev:TriplesMap_3d42e9de-5eba-4756-a33b-5a8629572130 rr:logicalTable _:node197283gqbx17 ;
+	rr:subjectMap _:node197283gqbx18 .
+
+_:node197283gqbx1 km-dev:hasSubjectMap _:node197283gqbx18 .
+
+_:node197283gqbx18 km-dev:isPartOfMapping _:node197283gqbx1 ;
+	a rr:SubjectMap ;
+	km-dev:alignmentNodeId "http://schema.org/Place1" ;
+	rr:class schema:Place ;
+	rr:template "{[\"phones2\",\"exchange_uri\"]}" .
+
+km-dev:TriplesMap_810a1e75-3dad-421a-8bcf-5f5a062c9cdb a rr:TriplesMap .
+
+_:node197283gqbx1 km-dev:hasTriplesMap km-dev:TriplesMap_810a1e75-3dad-421a-8bcf-5f5a062c9cdb .
+
+km-dev:TriplesMap_810a1e75-3dad-421a-8bcf-5f5a062c9cdb km-dev:isPartOfMapping _:node197283gqbx1 .
+
+_:node197283gqbx19 rr:tableName "stanford-features-sample.json" ;
+	a rr:LogicalTable ;
+	km-dev:isPartOfMapping _:node197283gqbx1 .
+
+_:node197283gqbx1 km-dev:hasLogicalTable _:node197283gqbx19 .
+
+km-dev:TriplesMap_810a1e75-3dad-421a-8bcf-5f5a062c9cdb rr:logicalTable _:node197283gqbx19 ;
+	rr:subjectMap _:node197283gqbx20 .
+
+_:node197283gqbx1 km-dev:hasSubjectMap _:node197283gqbx20 .
+
+_:node197283gqbx20 km-dev:isPartOfMapping _:node197283gqbx1 ;
+	a rr:SubjectMap ;
+	km-dev:alignmentNodeId "http://schema.org/WebPage1" ;
+	rr:class schema:WebPage ;
+	rr:template "{crawl_uri}" .
+
+km-dev:PredicateObjectMap_e728cdc0-159d-4836-b0f9-2d73c06fe455 rr:predicate memex:hasFeatureCollection .
+
+km-dev:RefObjectMap_5c73c589-09ef-4291-84ce-a6857e7b022f a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_3dd11c99-d93c-4b44-b336-faaab2587575 ;
+	km-dev:isPartOfMapping _:node197283gqbx1 .
+
+_:node197283gqbx1 km-dev:hasObjectMap km-dev:RefObjectMap_5c73c589-09ef-4291-84ce-a6857e7b022f .
+
+km-dev:PredicateObjectMap_e728cdc0-159d-4836-b0f9-2d73c06fe455 rr:objectMap km-dev:RefObjectMap_5c73c589-09ef-4291-84ce-a6857e7b022f .
+
+km-dev:TriplesMap_810a1e75-3dad-421a-8bcf-5f5a062c9cdb rr:predicateObjectMap km-dev:PredicateObjectMap_e728cdc0-159d-4836-b0f9-2d73c06fe455 .
+
+km-dev:PredicateObjectMap_e728cdc0-159d-4836-b0f9-2d73c06fe455 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node197283gqbx1 .
+
+_:node197283gqbx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_e728cdc0-159d-4836-b0f9-2d73c06fe455 .
