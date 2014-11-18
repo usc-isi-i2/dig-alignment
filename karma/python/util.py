@@ -1,5 +1,6 @@
 import re
-from datetime import datetime, date, time
+from datetime import datetime
+from time import mktime, gmtime
 
 def documentUrl(x):
 	"Return the original document URL from the URL in the document version"
@@ -113,19 +114,46 @@ def tenDigitPhoneNumber(x):
 	"""Return the 10-digit phone number of a phone, as 10 consecutive digits"""
 	return re.sub('[^0-9]+', '', x)
 
-def iso8601date(date, format="%y-%m-%d %H:%M:%s %z"):
-	"""Convert a date to ISO8601 date format"""
+def iso8601date(date, format="%Y-%m-%d %H:%M:%S %Z"):
+	"""Convert a date to ISO8601 date format
+
+input format: YYYY-MM-DD HH:MM:SS GMT (works less reliably for other TZs)
+or            YYYY-MM-DD HH:MM:SS.0
+or            YYYY-MM-DD
+or            epoch (13 digit, indicating ms)
+or            epoch (10 digit, indicating sec)
+output format: iso8601
+
+"""
+
 	try:
-		try:
-			dt = datetime.strptime(date, format)
-		except:
-			try:
-				format = "%y-%m-%d %H:%M:%s.0"
-				dt = datetime.strptime(date, format)
-			except:
-				format = "%y-%m-%d"
-				dt = datetime.strptime(date, format)
-		return dt.isoformat()
+		return datetime.strptime(date, "%Y-%m-%d %H:%M:%S %Z").isoformat()
+	except Exception:
+		pass
+
+	try:
+		return datetime.strptime(date, "%Y-%m-%d %H:%M:%S.0").isoformat()
 	except:
-		return date
+		pass
+
+	try:
+		return datetime.strptime(date, "%Y-%m-%d").isoformat()
+	except:
+		pass
+
+	try:
+		if 1000000000000 < date and date < 9999999999999:
+			# 13 digit epoch
+			return datetime.fromtimestamp(mktime(gmtime(date/1000))).isoformat()
+	except:
+		pass
+
+	try:
+		if 1000000000 < date and date < 9999999999:
+			# 10 digit epoch
+			return datetime.fromtimestamp(mktime(gmtime(date))).isoformat()
+	except:
+		pass
+	# If all else fails, return input
+	return date
 
