@@ -34,7 +34,9 @@ return getValue("phone_clean")
 #### _phone_uri_
 From column: _phones2 / phone_clean2_
 >``` python
-return phone_uri(getValue("phone_clean"))
+uri = phone_uri(getValue("phone_clean"))
+if uri:
+   return getValue("featureCollection_uri") + "/" + uri
 ```
 
 #### _phone_label_
@@ -46,7 +48,7 @@ return getValue("phone_clean")
 #### _phone_uri2_
 From column: _phones2 / phone_label_
 >``` python
-return getValue("phone_uri")
+return phone_uri(getValue("phone_clean"))
 ```
 
 #### _exchange_uri_
