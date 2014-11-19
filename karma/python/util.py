@@ -142,6 +142,7 @@ output format: iso8601
 		pass
 
 	try:
+		date = int(date)
 		if 1000000000000 < date and date < 9999999999999:
 			# 13 digit epoch
 			return datetime.fromtimestamp(mktime(gmtime(date/1000))).isoformat()
@@ -149,6 +150,7 @@ output format: iso8601
 		pass
 
 	try:
+		date = int(date)
 		if 1000000000 < date and date < 9999999999:
 			# 10 digit epoch
 			return datetime.fromtimestamp(mktime(gmtime(date))).isoformat()
