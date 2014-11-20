@@ -43,6 +43,7 @@ From column: _address2_
 uri = getValue("address_uri")
 if(len("uri") > 0):
     return getValue("featurecollection_uri")+"/" + uri
+return ''
 ```
 
 #### _modtime_iso8601_
@@ -50,6 +51,7 @@ From column: _modtime_
 >``` python
 if getValue("address_uri"):
   return iso8601date(getValue("modtime"))
+return ''
 ```
 
 #### _country_uri_
@@ -64,6 +66,7 @@ From column: _modtime_iso8601_
 >``` python
 if getValue("address_uri"):
   return getValue("id")
+return ''
 ```
 
 

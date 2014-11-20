@@ -18,6 +18,7 @@ From column: _modtime_
 >``` python
 if getValue("website"):
   return iso8601date(getValue("modtime"))
+return ''
 ```
 
 #### _website2_
@@ -40,6 +41,7 @@ From column: _modetime_iso8601_
 >``` python
 if getValue("website"):
   return getValue("id")
+return ''
 ```
 
 

@@ -36,6 +36,7 @@ From column: _age_clean2_
 >``` python
 if getValue("age_clean"):
   return getValue("featurecollection_uri")+"/"+age_uri(getValue("age_clean"))
+return ''
 ```
 
 #### _modtime_iso8601_
@@ -43,6 +44,7 @@ From column: _modtime_
 >``` python
 if getValue("age_clean"):
   return iso8601date(getValue("modtime"))
+return ''
 ```
 
 #### _database_id_
@@ -50,6 +52,7 @@ From column: _modtime_iso8601_
 >``` python
 if getValue("age_clean"):
   return getValue("id")
+return ''
 ```
 
 
