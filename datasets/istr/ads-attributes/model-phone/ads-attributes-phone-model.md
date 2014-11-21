@@ -16,7 +16,7 @@ return feature_value(getValue("attribute"), getValue("value"))
 #### _feature_uri_
 From column: _feature_value_
 >``` python
-return feature_uri(getValue("feature_name"), getValue("feature_value"))
+return getValue("featurecollection_uri") + "/" + feature_uri(getValue("feature_name"), getValue("feature_value"))
 ```
 
 #### _phone_value_
@@ -38,6 +38,12 @@ ph = getValue("phone_value")
 if ph:
   return phoneExchangeUri(ph)
 return ''
+```
+
+#### _featurecollection_uri_
+From column: _url_
+>``` python
+return "http://memex.zapto.org/data/page/" +get_url_hash(getValue("url"))+"/"+getValue("timestamp")+"/raw/featurecollection"
 ```
 
 
