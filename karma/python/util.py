@@ -47,10 +47,13 @@ def phoneExchange(phonenumber):
 			result = tenDigitPhone[0:6]
 	return result
 
-
 def phoneExchangeUri(phonenumber):
 	"Return the URI of a phone exchange so that we can join with the phone exchange data"
-	return "phone/exchange/"+phoneExchange(phonenumber)
+	x = phoneExchange(phonenumber)
+	if len(x) > 0:
+	    return "phone/exchange/"+x
+	else:
+	    return ''
 
 def nonAsciiChars(x):
 	"Return a set of the non-ascii chars in x"

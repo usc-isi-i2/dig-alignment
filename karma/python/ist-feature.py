@@ -3,7 +3,7 @@ import re
 import hashlib
 from urllib import quote
 
-#from util import numericOnly, alphaOnly
+# from util import numericOnly, alphaOnly
 
 # for JSON, there would be 
 # six distinguished attributes:
@@ -27,11 +27,30 @@ def clean_phone(x):
      Prefix with country code '+1' at the end.
     """
     if (len(x)>0):
-    	ph = numericOnly(x.strip().lower())
+        x = x.strip().lower()
+        cc = ''
+        if x.find("+") == 0:
+            end1 = x.find(" ")
+            end2 = x.find("-")
+            if end1 == -1: end1 = 10000
+            if end2 == -1: end2 = 10000
+            if end1 != 10000 or end2 != 10000:
+                end = min(end1, end2)
+                cc = x[1:end]
+                ph = numericOnly(x[end+1:])
+            else:
+                ph = numericOnly(x)
+        else:
+            ph =  numericOnly(x)
+
     	# If there are 11 numbers 
     	if (len(ph)==11 and ph[0]=="1"):
-        	ph = ph[1:]
-    	return '+1-' + ph;
+            ph = ph[1:]
+            cc = "1"
+
+        if len(cc) > 0:
+            ph = "+" + cc + "-" + ph
+    	return ph;
     return ''
 
 def phone_uri(x):
@@ -39,22 +58,26 @@ def phone_uri(x):
     as countrycode-phone
     Do not return uri if countrycode is not present
     """
-    x = x.strip().lower()
-    ph = numericOnly(x)
-    final = ''
-	
-    # If there are 11 numbers 
-    if (len(ph)==11 and ph[0]=="1"):
-        ph = ph[1:];
-        final = 'phonenumber/1-' + ph;
-    else:
-    	dashIdx = x.find('-');
-    	if(dashIdx != -1):
-    		cc = numericOnly(x[0:dashIdx].strip());
-    		ph = numericOnly(x[dashIdx+1:].strip());
-    		if(len(cc) > 0 and len(ph) > 0):
-    			final = 'phonenumber/' + cc + '-' + ph
-    return final
+    # x = x.strip().lower()
+    # ph = numericOnly(x)
+    # final = ''
+    #
+    # # If there are 11 numbers
+    # if (len(ph)==11 and ph[0]=="1"):
+    #     ph = ph[1:];
+    #     final = 'phonenumber/1-' + ph;
+    # else:
+    # 	dashIdx = x.find('-');
+    # 	if(dashIdx != -1):
+    # 		cc = numericOnly(x[0:dashIdx].strip());
+    # 		ph = numericOnly(x[dashIdx+1:].strip());
+    # 		if(len(cc) > 0 and len(ph) > 0):
+    # 			final = 'phonenumber/' + cc + '-' + ph
+    # return final
+    x = clean_phone(x)
+    if len(x) > 0:
+        return "phonenumber/" + x
+    return ''
 
 def phonenumber_uri(x):
 	return phone_uri(x)
