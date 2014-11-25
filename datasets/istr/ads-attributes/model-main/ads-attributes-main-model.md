@@ -69,6 +69,15 @@ return ''
 #### _feature_uri_
 From column: _feature_value2_
 >``` python
+uri = getValue("feature_base_uri")
+if uri:
+   return getValue("featurecollection_uri") + "/" + uri
+return ''
+```
+
+#### _feature_base_uri_
+From column: _feature_value2_
+>``` python
 return feature_uri(getValue("feature_name"), getValue("feature_value"))
 ```
 

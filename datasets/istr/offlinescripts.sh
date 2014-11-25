@@ -156,19 +156,17 @@ mvn exec:java -Dexec.mainClass="edu.isi.karma.rdf.OfflineRdfGenerator" -Dexec.ar
 --contextfile /Users/dipsy/github/dig-alignment/datasets/istr/context-for-istr-datasets.json \
 --outputfile /Users/dipsy/github/dig-alignment/datasets/istr/ads-attributes/model-rate/ads-attributes-rate-rdf.n3" -Dexec.classpathScope=compile
 
+#Ads attributes phone
+mvn exec:java -Dexec.mainClass="edu.isi.karma.rdf.OfflineRdfGenerator" -Dexec.args="--sourcetype SQL --dbtype MySQL --hostname 23.101.198.62 --username dipsy --password sqlpassword --portnumber 3306 --dbname memex_small --queryfile /Users/dipsy/github/dig-alignment/datasets/istr/ads-attributes/import.sql --modelfilepath /Users/dipsy/github/dig-alignment/datasets/istr/ads-attributes/model-phone/ads-attributes-phone-model.ttl --jsonoutputfile /Users/dipsy/github/dig-alignment/datasets/istr/ads-attributes/model-phone/ads-attributes-phone-jsonld.json --contextfile /Users/dipsy/github/dig-alignment/datasets/istr/context-for-istr-datasets.json --outputfile /Users/dipsy/github/dig-alignment/datasets/istr/ads-attributes/model-phone/ads-attributes-phone-rdf.n3" -Dexec.classpathScope=compile
+
 ########################################################
 #			Stanford Extractions
 ########################################################
-mvn exec:java -Dexec.mainClass="edu.isi.karma.rdf.OfflineRdfGenerator" -Dexec.args="\
---sourcetype SQL \
---dbtype MySQL \
---hostname 23.101.198.62 \
---username dipsy \
---password sqlpassword \
---portnumber 3306 \
---dbname memex_small \
---queryfile /Users/dipsy/github/dig-alignment/datasets/istr/stanford-extractions/import.sql \
---modelfilepath /Users/dipsy/github/dig-alignment/datasets/istr/stanford-extractions/stanford-features-model.ttl \
---jsonoutputfile /Users/dipsy/github/dig-alignment/datasets/istr/stanford-extractions/x-stanford-features-jsonld.json \
---contextfile /Users/dipsy/github/dig-alignment/datasets/istr/context-for-istr-datasets.json \
---outputfile /Users/dipsy/github/dig-alignment/datasets/istr/stanford-extractions/x-stanford-features-rdf.n3" -Dexec.classpathScope=compile
+#Phone Number
+mvn exec:java -Dexec.mainClass="edu.isi.karma.rdf.OfflineRdfGenerator" -Dexec.args="--sourcetype SQL --dbtype MySQL --hostname 23.101.198.62 --username dipsy --password sqlpassword --portnumber 3306 --dbname memex_small --queryfile /Users/dipsy/github/dig-alignment/datasets/istr/stanford-extractions/import.sql --modelfilepath /Users/dipsy/github/dig-alignment/datasets/istr/stanford-extractions/model-phone/stanford-phone-model.ttl --jsonoutputfile /Users/dipsy/github/dig-alignment/datasets/istr/stanford-extractions/model-phone/stanford-phone-jsonld.json --contextfile /Users/dipsy/github/dig-alignment/datasets/istr/context-for-istr-datasets.json --outputfile /Users/dipsy/github/dig-alignment/datasets/istr/stanford-extractions/model-phone/stanford-phone-rdf.n3" -Dexec.classpathScope=compile
+
+#Person Name
+mvn exec:java -Dexec.mainClass="edu.isi.karma.rdf.OfflineRdfGenerator" -Dexec.args="--sourcetype SQL --dbtype MySQL --hostname 23.101.198.62 --username dipsy --password sqlpassword --portnumber 3306 --dbname memex_small --queryfile /Users/dipsy/github/dig-alignment/datasets/istr/stanford-extractions/import.sql --modelfilepath /Users/dipsy/github/dig-alignment/datasets/istr/stanford-extractions/model-person-name/stanford-person-name-model.ttl --jsonoutputfile /Users/dipsy/github/dig-alignment/datasets/istr/stanford-extractions/model-person-name/stanford-person-name-jsonld.json --contextfile /Users/dipsy/github/dig-alignment/datasets/istr/context-for-istr-datasets.json --outputfile /Users/dipsy/github/dig-alignment/datasets/istr/stanford-extractions/model-person-name/stanford-person-name-rdf.n3" -Dexec.classpathScope=compile
+
+#Address
+mvn exec:java -Dexec.mainClass="edu.isi.karma.rdf.OfflineRdfGenerator" -Dexec.args="--sourcetype SQL --dbtype MySQL --hostname 23.101.198.62 --username dipsy --password sqlpassword --portnumber 3306 --dbname memex_small --queryfile /Users/dipsy/github/dig-alignment/datasets/istr/stanford-extractions/import.sql --modelfilepath /Users/dipsy/github/dig-alignment/datasets/istr/stanford-extractions/model-address/stanford-address-model.ttl --jsonoutputfile /Users/dipsy/github/dig-alignment/datasets/istr/stanford-extractions/model-address/stanford-address-jsonld.json --contextfile /Users/dipsy/github/dig-alignment/datasets/istr/context-for-istr-datasets.json --outputfile /Users/dipsy/github/dig-alignment/datasets/istr/stanford-extractions/model-address/stanford-address-rdf.n3" -Dexec.classpathScope=compile

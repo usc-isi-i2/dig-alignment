@@ -51,6 +51,7 @@ From column: _modtime_
 >``` python
 if getValue("phone_clean"):
   return iso8601date(getValue("modtime"))
+return ''
 ```
 
 #### _exchange_uri_
@@ -58,6 +59,7 @@ From column: _phone_uri_
 >``` python
 if getValue("phone_clean"):
   return phoneExchangeUri(getValue("phone_clean"))
+return ''
 ```
 
 #### _phone_clean2_
@@ -71,6 +73,7 @@ From column: _modetime_iso8601_
 >``` python
 if getValue("phone_clean"):
   return getValue("id")
+return ''
 ```
 
 

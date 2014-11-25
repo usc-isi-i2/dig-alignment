@@ -3,7 +3,7 @@ import re
 import hashlib
 from urllib import quote
 
-#from util import numericOnly, alphaOnly
+# from util import numericOnly, alphaOnly
 
 # for JSON, there would be 
 # six distinguished attributes:
@@ -27,11 +27,30 @@ def clean_phone(x):
      Prefix with country code '+1' at the end.
     """
     if (len(x)>0):
-    	ph = numericOnly(x.strip().lower())
+        x = x.strip().lower()
+        cc = ''
+        if x.find("+") == 0:
+            end1 = x.find(" ")
+            end2 = x.find("-")
+            if end1 == -1: end1 = 10000
+            if end2 == -1: end2 = 10000
+            if end1 != 10000 or end2 != 10000:
+                end = min(end1, end2)
+                cc = x[1:end]
+                ph = numericOnly(x[end+1:])
+            else:
+                ph = numericOnly(x)
+        else:
+            ph =  numericOnly(x)
+
     	# If there are 11 numbers 
     	if (len(ph)==11 and ph[0]=="1"):
-        	ph = ph[1:]
-    	return '+1-' + ph;
+            ph = ph[1:]
+            cc = "1"
+
+        if len(cc) > 0:
+            ph = "+" + cc + "-" + ph
+    	return ph;
     return ''
 
 def phone_uri(x):
@@ -39,22 +58,26 @@ def phone_uri(x):
     as countrycode-phone
     Do not return uri if countrycode is not present
     """
-    x = x.strip().lower()
-    ph = numericOnly(x)
-    final = ''
-	
-    # If there are 11 numbers 
-    if (len(ph)==11 and ph[0]=="1"):
-        ph = ph[1:];
-        final = 'phonenumber/1-' + ph;
-    else:
-    	dashIdx = x.find('-');
-    	if(dashIdx != -1):
-    		cc = numericOnly(x[0:dashIdx].strip());
-    		ph = numericOnly(x[dashIdx+1:].strip());
-    		if(len(cc) > 0 and len(ph) > 0):
-    			final = 'phonenumber/' + cc + '-' + ph
-    return final
+    # x = x.strip().lower()
+    # ph = numericOnly(x)
+    # final = ''
+    #
+    # # If there are 11 numbers
+    # if (len(ph)==11 and ph[0]=="1"):
+    #     ph = ph[1:];
+    #     final = 'phonenumber/1-' + ph;
+    # else:
+    # 	dashIdx = x.find('-');
+    # 	if(dashIdx != -1):
+    # 		cc = numericOnly(x[0:dashIdx].strip());
+    # 		ph = numericOnly(x[dashIdx+1:].strip());
+    # 		if(len(cc) > 0 and len(ph) > 0):
+    # 			final = 'phonenumber/' + cc + '-' + ph
+    # return final
+    x = clean_phone(x)
+    if len(x) > 0:
+        return "phonenumber/" + x
+    return ''
 
 def phonenumber_uri(x):
 	return phone_uri(x)
@@ -174,13 +197,6 @@ def rate_unit(cleaned):
             return "HUR"
     return ''
 
-ethnicity_samples = ["black", "african-american", "latina", "ASIAN", "Martian"]
-
-def test_ethnicity():
-    for b in ethnicity_samples:
-        f = feature_ethnicity(b)
-        print "%r => %r" % (b, f)
-
 # ethnicity 38587
 def clean_ethnicity(x):
     stripped = x.strip().lower().replace(" ","")
@@ -189,14 +205,6 @@ def clean_ethnicity(x):
 def person_ethnicity_uri(cleaned):
     if cleaned:
         return "person_ethnicity/%s" % cleaned
-
-# height    29135
-
-height_samples = ["168", "5'6\"", "6'", "5'7\" - 5'9\""]
-def test_height():
-    for b in height_samples:
-        f = feature_height(b)
-        print "%r => %r" % (b, f)
 
 
 def clean_height(x):
@@ -264,12 +272,6 @@ def person_cupsizeus_uri(cleaned):
 # bust  over
 # bust  Perrrfct
 
-bust_samples = ["34-35", "D", "34&quot;", '34"', "over", "Perrrfct", "34.5"]
-def test_bust():
-    for b in bust_samples:
-        f = feature_bust(b)
-        print "%r => %r" % (b, f)
-
 def clean_bust(x):
     """Bust measured in inches, restricted to [20,50]"""
     def sanityCheck(bust):
@@ -324,7 +326,7 @@ def clean_creditcards(x):
     return stripped
 
 def creditcardaccepted_uri(cleaned):
-    cleaned = clean_creditcards(x)
+    cleaned = clean_creditcards(cleaned)
     if cleaned:
         return "creditcardaccepted/%s" % cleaned
 
@@ -497,12 +499,7 @@ def place_zipcode_uri(cleaned):
         return "place_zipcode/%s" % cleaned
 
 # waist 2468
-waist_samples = ["24 inches", "28\"", "70cm", "70 cm", "26.5", "svelte", "24-25"]
-def test_waist():
-    for b in waist_samples:
-        f = feature_waist(b)
-        print "%r => %r" % (b, f)
-
+# waist_samples = ["24 inches", "28\"", "70cm", "70 cm", "26.5", "svelte", "24-25"]
 
 def clean_waist(x):
     "copied from bust"
@@ -592,11 +589,8 @@ def person_alias_uri(cleaned):
         return "person_alias/%s" % cleaned
 
 # availability  2049
-availability_samples = ["Incall", "Outcall", "Incall Outcall"] 
-def test_availability():
-    for b in availability_samples:
-        f = feature_availability(b)
-        print "%r => %r" % (b, f)
+#availability_samples = ["Incall", "Outcall", "Incall Outcall"]
+
 def clean_availability(x):
     stripped = x.strip().lower()
     return alphaOnly(stripped)
@@ -606,11 +600,8 @@ def person_incalloutcall_uri(cleaned):
         return "person_incalloutcall/%s" % cleaned
 
 # for stanford only
-location_samples = ["Iowa", "New York", "arlington"]
-def test_location():
-    for b in location_samples:
-        f = feature_location(b)
-        print "%r => %r" % (b, f)
+#location_samples = ["Iowa", "New York", "arlington"]
+
 def clean_location(x):
     stripped = x.strip().lower()
     stripped = stripped.replace(" ","_")

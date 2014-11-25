@@ -18,6 +18,7 @@ From column: _modtime_
 >``` python
 if getValue("gender_clean"):
   return iso8601date(getValue("modtime"))
+return ''
 ```
 
 #### _gender_clean_
@@ -45,6 +46,7 @@ From column: _modetime_iso8601_
 >``` python
 if getValue("gender_clean"):
   return getValue("id")
+return ''
 ```
 
 

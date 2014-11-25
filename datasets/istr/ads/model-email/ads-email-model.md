@@ -18,6 +18,7 @@ From column: _modtime_
 >``` python
 if getValue("email_clean"):
   return iso8601date(getValue("modtime"))
+return ''
 ```
 
 #### _email_clean_
@@ -46,6 +47,7 @@ From column: _id_
 >``` python
 if getValue("email_clean"):
   return getValue("id")
+return ''
 ```
 
 
