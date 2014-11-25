@@ -3,8 +3,8 @@ import re
 import hashlib
 from urllib import quote
 
-# from util import numericOnly, alphaOnly
-
+#from util import numericOnly, alphaOnly
+#from addresses import standardize_country
 # for JSON, there would be 
 # six distinguished attributes:
 #
@@ -17,10 +17,6 @@ from urllib import quote
 
 # def nearest2(x):
 #   return 2*(int(1 + x)/2)
-
-# phone
-# phone2    810
-
 def clean_phone(x):
     """Return the phone as a 10 digit number,
      or as close to that as we can make it.
@@ -43,7 +39,7 @@ def clean_phone(x):
         else:
             ph =  numericOnly(x)
 
-    	# If there are 11 numbers 
+    	# If there are 11 numbers
     	if (len(ph)==11 and ph[0]=="1"):
             ph = ph[1:]
             cc = "1"
@@ -58,25 +54,10 @@ def phone_uri(x):
     as countrycode-phone
     Do not return uri if countrycode is not present
     """
-    # x = x.strip().lower()
-    # ph = numericOnly(x)
-    # final = ''
-    #
-    # # If there are 11 numbers
-    # if (len(ph)==11 and ph[0]=="1"):
-    #     ph = ph[1:];
-    #     final = 'phonenumber/1-' + ph;
-    # else:
-    # 	dashIdx = x.find('-');
-    # 	if(dashIdx != -1):
-    # 		cc = numericOnly(x[0:dashIdx].strip());
-    # 		ph = numericOnly(x[dashIdx+1:].strip());
-    # 		if(len(cc) > 0 and len(ph) > 0):
-    # 			final = 'phonenumber/' + cc + '-' + ph
-    # return final
     x = clean_phone(x)
-    if len(x) > 0:
-        return "phonenumber/" + x
+    dashIdx = x.find('-');
+    if(dashIdx != -1):
+        return "phonenumber/" + x[1:]
     return ''
 
 def phonenumber_uri(x):
@@ -489,15 +470,6 @@ def person_travel_uri(cleaned):
     if cleaned:
         return "person_travel/%s" % cleaned
 
-# zip   2734
-def clean_zip(x):
-    stripped = x.strip().lower()
-    return numericOnly(stripped)
-
-def place_zipcode_uri(cleaned):
-    if cleaned:
-        return "place_zipcode/%s" % cleaned
-
 # waist 2468
 # waist_samples = ["24 inches", "28\"", "70cm", "70 cm", "26.5", "svelte", "24-25"]
 
@@ -599,18 +571,6 @@ def person_incalloutcall_uri(cleaned):
     if cleaned:
         return "person_incalloutcall/%s" % cleaned
 
-# for stanford only
-#location_samples = ["Iowa", "New York", "arlington"]
-
-def clean_location(x):
-    stripped = x.strip().lower()
-    stripped = stripped.replace(" ","_")
-    return alphaOnly(stripped)
-
-def place_location_uri(cleaned):
-    if cleaned:
-        return "place_location/%s" % cleaned
-
 
 def get_url_hash(string):
     return hashlib.sha1(string).hexdigest().upper()
@@ -618,30 +578,80 @@ def get_url_hash(string):
 def getCacheBaseUrl():
     return "http://memex.zapto.org/data/"
 
+# zip   2734
+def clean_zip(x):
+    stripped = x.strip().lower()
+    return numericOnly(stripped)
+
+def place_zipcode_uri(cleaned):
+    if cleaned:
+        return "place_zipcode/%s" % cleaned
+# for stanford only
+#location_samples = ["Iowa", "New York", "arlington"]
+
+def clean_location(x):
+    stripped = x.strip().lower()
+    stripped = stripped.title()
+    return alphaOnly(stripped)
+
+def place_location_uri(cleaned):
+    if cleaned:
+        cleaned = cleaned.replace(" ","_")
+        return "place_location/%s" % cleaned
+
 def feature_address(city, state, country):
 	return clean_address(city, state, country, ", ")
 
+def clean_city(city):
+    return clean_location(city)
+
+def clean_state(state, country):
+    state = clean_location(state)
+    if country:
+        state = standardize_state_name(country, state)
+
+    return state
+
+def clean_country(country):
+    country = clean_location(country)
+    country = standardize_country_code(country)
+    return country
+
 def clean_address(city, state, country, sep):
-	city = clean_location(city)
-	usep = ""
-	addr = ""
-	if city:
-		addr = city
-		usep = sep
-	state = clean_location(state)
-	if state:
-		addr = addr + usep + state
-		usep = sep
-	country = clean_location(country)
-	if country:
-		addr = addr + usep + country
-	return addr
+    city = clean_location(city)
+    usep = ""
+    addr = ""
+    if city:
+        addr = city
+        usep = sep
+
+    country = clean_location(country)
+    country = standardize_country_code(country)
+
+    state = clean_location(state)
+    state = standardize_state_code(country, state)
+    if state:
+        addr = addr + usep + state
+        usep = sep
+
+    if country:
+        addr = addr + usep + country
+    return addr
 
 def address_uri(city, state, country):
 	addr = clean_address(city, state, country, "-")
 	if len(addr) > 0:
-		return "address/" + addr
+		addr = addr.replace(" ", "_")
+        return "address/" + addr
 	return ''
+
+def country_uri(country):
+    country = clean_location(country)
+    country = standardize_country_code(country)
+    if country:
+        cc = country.replace(" ", "_")
+        return "country/" + cc
+    return ''
 
 def website_uri(website):
 	if len(website) > 0:
