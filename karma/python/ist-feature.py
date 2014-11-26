@@ -50,15 +50,15 @@ def clean_phone(x):
     return ''
 
 def phone_uri(x):
-    """Return the puri for a phone
+    """Return the uri for a phone
     as countrycode-phone
-    Do not return uri if countrycode is not present
+    Use 'x-' as country code if not present in the number
     """
     x = clean_phone(x)
     dashIdx = x.find('-');
     if(dashIdx != -1):
         return "phonenumber/" + x[1:]
-    return ''
+    return "phonenumber/x-" + x
 
 def phonenumber_uri(x):
 	return phone_uri(x)
