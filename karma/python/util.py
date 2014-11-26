@@ -34,15 +34,17 @@ def toTitleCaseIfUpper(x):
         return x
 
 def nonWhitespace(x):
-    "Return the string cleaning spaces."
+    "Return the string removing all spaces."
     import re
 
-    y = re.sub(r'\s+', ' ', x.strip())
+    y = re.sub(r'\s+', '', x.strip())
     return y
 
 def toTitleCaseCleaned(x):
     "Return the string in title case cleaning spaces."
-    y = nonWhitespace(x)
+    import re
+
+    y = re.sub(r'\s+', ' ', x.strip())
     return y.title()
 
 def nonAsciiChars(x):
