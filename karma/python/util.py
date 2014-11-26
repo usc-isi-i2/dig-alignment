@@ -33,12 +33,16 @@ def toTitleCaseIfUpper(x):
     else:
         return x
 
-
-def toTitleCaseCleaned(x):
-    "Return the string in title case cleaning spaces."
+def nonWhitespace(x):
+    "Return the string cleaning spaces."
     import re
 
     y = re.sub(r'\s+', ' ', x.strip())
+    return y
+
+def toTitleCaseCleaned(x):
+    "Return the string in title case cleaning spaces."
+    y = nonWhitespace(x)
     return y.title()
 
 def nonAsciiChars(x):
@@ -105,6 +109,8 @@ def inOutCallUri(x):
     "Return a URI for a In/Out Call Preference based on the category column"
     return 'inoutcallpreference/' + x
 
+def organization_uri(id):
+    return "organization/" + str(id)
 
 def md5Hash(x):
     "Return md5 hash of x"
