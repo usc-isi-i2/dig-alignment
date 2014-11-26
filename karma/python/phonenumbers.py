@@ -5,3 +5,26 @@ def isUSAreaCode(phonenumber):
     if areacode in us_area_codes:
         return True
     return False
+
+
+def phoneExchange(phonenumber):
+    "Return the first six digits of a phone if it is a 10-digit USA phone, ie, starts with 1-."
+    result = ''
+    if phonenumber.startswith("+1-"):
+        tenDigitPhone = phonenumber[3:]
+        if tenDigitPhone.isdigit() and len(tenDigitPhone.decode("utf-8")) == 10:
+            result = tenDigitPhone[0:6]
+    else:
+        if phonenumber.isdigit() and len(phonenumber.decode("utf-8")) == 10:
+            if isUSAreaCode(phonenumber):
+                result = phonenumber[0:6]
+    return result
+
+
+def phoneExchangeUri(phonenumber):
+    "Return the URI of a phone exchange so that we can join with the phone exchange data"
+    x = phoneExchange(phonenumber)
+    if len(x) > 0:
+        return "phone/exchange/" + x
+    else:
+        return ''
