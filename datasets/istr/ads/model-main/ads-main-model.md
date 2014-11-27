@@ -19,6 +19,12 @@ From column: _posttime_
 return iso8601date(getValue("posttime"))
 ```
 
+#### _sources_uri_
+From column: _sources_id_
+>``` python
+return organization_uri(getValue("sources_id"))
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
@@ -26,6 +32,7 @@ return iso8601date(getValue("posttime"))
 | _cache_uri_ | `uri` | `schema:WebPage1`|
 | _posttime_iso_ | `schema:dateCreated` | `schema:WebPage1`|
 | _snapshot_uri_ | `memex:snapshotUri` | `schema:WebPage1`|
+| _sources_uri_ | `uri` | `schema:Organization1`|
 | _text_ | `schema:text` | `schema:WebPageElement2`|
 | _title_ | `schema:text` | `schema:WebPageElement1`|
 | _url_ | `schema:url` | `schema:WebPage1`|
@@ -36,3 +43,4 @@ return iso8601date(getValue("posttime"))
 |  --- | -------- | ---|
 | `schema:WebPage1` | `memex:hasBodyPart` | `schema:WebPageElement2`|
 | `schema:WebPage1` | `memex:hasTitlePart` | `schema:WebPageElement1`|
+| `schema:WebPage1` | `schema:provider` | `schema:Organization1`|

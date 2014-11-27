@@ -33,6 +33,12 @@ def toTitleCaseIfUpper(x):
     else:
         return x
 
+def nonWhitespace(x):
+    "Return the string removing all spaces."
+    import re
+
+    y = re.sub(r'\s+', '', x.strip())
+    return y
 
 def toTitleCaseCleaned(x):
     "Return the string in title case cleaning spaces."
@@ -105,6 +111,8 @@ def inOutCallUri(x):
     "Return a URI for a In/Out Call Preference based on the category column"
     return 'inoutcallpreference/' + x
 
+def organization_uri(id):
+    return "organization/" + str(id)
 
 def md5Hash(x):
     "Return md5 hash of x"

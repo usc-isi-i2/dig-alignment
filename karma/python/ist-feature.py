@@ -85,8 +85,9 @@ def clean_email(x):
     """Return a clean email address
     """
     if (len(x)>0 and x.find("@") != -1):
-        em = x.strip().lower();
-        return em;
+        em = x.strip().lower()
+        em = nonWhitespace(em)
+        return em
     return ''
 
 def emailaddress_uri(x):
