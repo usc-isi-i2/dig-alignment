@@ -43,7 +43,7 @@ return ''
 #### _featurecollection_uri_
 From column: _url_
 >``` python
-return "http://memex.zapto.org/data/page/" +get_url_hash(getValue("url"))+"/"+getValue("timestamp")+"/raw/featurecollection"
+return "http://memex.zapto.org/data/page/" +get_url_hash(getValue("url"))+"/"+getValue("timestamp")+"/processed/featurecollection"
 ```
 
 
