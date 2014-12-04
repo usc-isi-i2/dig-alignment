@@ -69,10 +69,12 @@ def phone_uri(x):
     Use 'x-' as country code if not present in the number
     """
     x = clean_phone(x)
-    dashIdx = x.find('-');
-    if(dashIdx != -1):
-        return "phonenumber/" + x[1:]
-    return "phonenumber/x-" + x
+    if len(x) > 0:
+        dashIdx = x.find('-');
+        if(dashIdx != -1):
+            return "phonenumber/" + x[1:]
+        return "phonenumber/x-" + x
+    return ''
 
 def phonenumber_uri(x):
 	return phone_uri(x)
