@@ -260,3 +260,16 @@ def standardize_state_name(country, state):
             return ''
 
     return state
+
+def detectCountryCode(phonenumber):
+    if phonenumber.find("+") == 0:
+        ph = phonenumber[1:]
+        for i in range(1, 5):
+            cc = ph[0:i]
+            try:
+                idx = country_dialing_codes.index(cc)
+                return cc
+            except ValueError:
+                idx = -1
+    return None
+

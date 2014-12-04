@@ -5,6 +5,11 @@ function compare_outputs_images {
 	compare_outputs "${BASE_DIR}/ist-images-jsonld.json" "${BASE_DIR}/ist-images-sample-jsonld.json" 
 }
 
+function compare_outputs_sources {
+	BASE_DIR="${DIG_ALIGNMENT_HOME}/datasets/istr/sources"
+	compare_outputs "${BASE_DIR}/sources-jsonld.json" "${BASE_DIR}/sources-sample-jsonld.json" 
+}
+
 function compare_outputs_ads {
 	BASE_DIR="${DIG_ALIGNMENT_HOME}/datasets/istr/ads"
 	compare_outputs "${BASE_DIR}/model-${1}/ads-${1}-jsonld.json" "${BASE_DIR}/model-${1}/ads-${1}-sample-jsonld.json" 
@@ -37,6 +42,12 @@ function run_offline_with_defaults_images {
 	run_offline_with_defaults "Images" "$INPUT_FILE" "${BASE_DIR}/ist-images-model.ttl" "$BASE_DIR/ist-images-sample-jsonld.json" "$BASE_DIR/ist-images-sample-rdf.n3" "http://schema.org/WebPage1"
 }
 
+function run_offline_with_defaults_sources {
+	BASE_DIR="${DIG_ALIGNMENT_HOME}/datasets/istr/sources"
+	INPUT_FILE="${BASE_DIR}/sources-sample.json"
+	run_offline_with_defaults "Sources" "$INPUT_FILE" "${BASE_DIR}/sources-model.ttl" "$BASE_DIR/sources-sample-jsonld.json" "$BASE_DIR/sources-sample-rdf.n3" "http://schema.org/WebPage1"
+}
+
 function run_offline_with_defaults_ads {
 	BASE_DIR="${DIG_ALIGNMENT_HOME}/datasets/istr/ads"
 	run_offline_with_defaults "Ads" "${BASE_DIR}/${2}" "${BASE_DIR}/model-${1}/ads-${1}-model.ttl" "$BASE_DIR/model-${1}/ads-${1}-sample-jsonld.json" "$BASE_DIR/model-${1}/ads-${1}-sample-rdf.n3" "http://schema.org/WebPage1"
@@ -44,7 +55,7 @@ function run_offline_with_defaults_ads {
 
 function run_offline_with_defaults_stanford_extraction {
 	BASE_DIR="${DIG_ALIGNMENT_HOME}/datasets/istr/stanford-extractions"
-	INPUT_FILE="${BASE_DIR}/stanford-features-sample.json"
+	INPUT_FILE="${BASE_DIR}/model-${1}/stanford-${1}-sample.json"
 	run_offline_with_defaults "Stanford-Extractions" "$INPUT_FILE" "${BASE_DIR}/model-${1}/stanford-${1}-model.ttl" "$BASE_DIR/model-${1}/stanford-${1}-sample-jsonld.json" "$BASE_DIR/model-${1}/stanford-${1}-sample-rdf.n3" "http://schema.org/WebPage1"
 }
 
@@ -121,6 +132,11 @@ compare_outputs_ads "gender"
 run_offline_with_defaults_ads "email" "ads-sample.json"
 compare_outputs_ads "email"
 
+########################################################
+#			Sources
+########################################################
+run_offline_with_defaults_sources 
+compare_outputs_sources
 
 ########################################################
 #			Ads-Attributes
@@ -143,9 +159,13 @@ run_offline_with_defaults_stanford_extraction "phone"
 compare_outputs_stanford_extractions "phone"
 
 #Person Name
-run_offline_with_defaults_stanford_extraction "person-name"
-compare_outputs_stanford_extractions "person-name"
+run_offline_with_defaults_stanford_extraction "names"
+compare_outputs_stanford_extractions "names"
 
 #Address
 run_offline_with_defaults_stanford_extraction "address"
 compare_outputs_stanford_extractions "address"
+
+#Address
+run_offline_with_defaults_stanford_extraction "email"
+compare_outputs_stanford_extractions "email"

@@ -17,6 +17,7 @@ from urllib import quote
 
 # def nearest2(x):
 #   return 2*(int(1 + x)/2)
+USPhonePattern = re.compile(r"^\([0-9]{3}\) [0-9]{3}\-[0-9]{4}$")
 def clean_phone(x):
     """Return the phone as a 10 digit number,
      or as close to that as we can make it.
@@ -35,9 +36,22 @@ def clean_phone(x):
                 cc = x[1:end]
                 ph = numericOnly(x[end+1:])
             else:
-                ph = numericOnly(x)
+                testCC = detectCountryCode(x)
+                if testCC:
+                    cc = testCC
+                    ccLen = len(cc)
+                    ph = x[ccLen+1:]
+                    ph = numericOnly(ph)
+                else:
+                    ph = numericOnly(x)
         else:
-            ph =  numericOnly(x)
+            valid = USPhonePattern.match(x)
+            if valid:
+                ph = valid.group()
+                cc = "1"
+                ph = numericOnly(ph)
+            else:
+               ph = numericOnly(x)
 
     	# If there are 11 numbers
     	if (len(ph)==11 and ph[0]=="1"):
