@@ -20,6 +20,11 @@ function compare_outputs_stanford_extractions {
 	compare_outputs "${BASE_DIR}/model-${1}/stanford-${1}-jsonld.json" "${BASE_DIR}/model-${1}/stanford-${1}-sample-jsonld.json" 
 }
 
+function compare_outputs_deobfuscator {
+	BASE_DIR="${DIG_ALIGNMENT_HOME}/datasets/istr/deobfuscator"
+	compare_outputs "${BASE_DIR}/model-${1}/deob-${1}-jsonld.json" "${BASE_DIR}/model-${1}/deob-${1}-sample-jsonld.json" 
+}
+
 function compare_outputs_ads_attributes {
 	BASE_DIR="${DIG_ALIGNMENT_HOME}/datasets/istr/ads-attributes"
 	compare_outputs "${BASE_DIR}/model-${1}/ads-attributes-${1}-jsonld.json" "${BASE_DIR}/model-${1}/ads-attributes-${1}-sample-jsonld.json" 
@@ -57,6 +62,12 @@ function run_offline_with_defaults_stanford_extraction {
 	BASE_DIR="${DIG_ALIGNMENT_HOME}/datasets/istr/stanford-extractions"
 	INPUT_FILE="${BASE_DIR}/model-${1}/stanford-${1}-sample.json"
 	run_offline_with_defaults "Stanford-Extractions" "$INPUT_FILE" "${BASE_DIR}/model-${1}/stanford-${1}-model.ttl" "$BASE_DIR/model-${1}/stanford-${1}-sample-jsonld.json" "$BASE_DIR/model-${1}/stanford-${1}-sample-rdf.n3" "http://schema.org/WebPage1"
+}
+
+function run_offline_with_defaults_deobfuscator {
+	BASE_DIR="${DIG_ALIGNMENT_HOME}/datasets/istr/deobfuscator"
+	INPUT_FILE="${BASE_DIR}/model-${1}/deob-${1}-sample.json"
+	run_offline_with_defaults "Deobfuscator" "$INPUT_FILE" "${BASE_DIR}/model-${1}/deob-${1}-model.ttl" "$BASE_DIR/model-${1}/deob-${1}-sample-jsonld.json" "$BASE_DIR/model-${1}/deob-${1}-sample-rdf.n3" "http://schema.org/WebPage1"
 }
 
 function run_offline_with_defaults_ads_attributes {
@@ -169,3 +180,15 @@ compare_outputs_stanford_extractions "address"
 #Address
 run_offline_with_defaults_stanford_extraction "email"
 compare_outputs_stanford_extractions "email"
+
+
+########################################################
+#			Deobfuscator
+########################################################
+#Body
+run_offline_with_defaults_deobfuscator "body"
+compare_outputs_deobfuscator "body"
+
+#Title
+run_offline_with_defaults_deobfuscator "title"
+compare_outputs_deobfuscator "title"
