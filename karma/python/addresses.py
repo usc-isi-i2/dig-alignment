@@ -94,6 +94,43 @@ country_names = [
     "ZAMBIA", "ZIMBABWE"
 ]
 
+country_names_readable = [
+    "AFGHANISTAN", "ALBANIA", "ALGERIA", "AMERICAN SAMOA", "ANDORRA", "ANGOLA", "ANGUILLA", "ANTARCTICA",
+    "ANTIGUA AND BARBUDA", "ARGENTINA", "ARMENIA", "ARUBA", "AUSTRALIA", "AUSTRIA", "AZERBAIJAN", "BAHAMAS", "BAHRAIN",
+    "BANGLADESH", "BARBADOS", "BELARUS", "BELGIUM", "BELIZE", "BENIN", "BERMUDA", "BHUTAN", "BOLIVIA",
+    "BOSNIA AND HERZEGOWINA", "BOSNIA", "HERZEGOWINA", "BOTSWANA", "BOUVET ISLAND", "NORWAY", "BRAZIL",
+    "BRITISH INDIAN OCEAN TERRITORY", "BRUNEI DARUSSALAM", "BULGARIA", "BURKINA FASO", "BURUNDI", "CAMBODIA",
+    "CAMEROON", "CANADA", "CAPE VERDE", "CAYMAN ISLANDS", "CENTRAL AFRICAN REPUBLIC", "CHAD", "CHILE", "CHINA",
+    "CHRISTMAS ISLAND", "COCOS ISLANDS", "COLOMBIA", "COMOROS", "CONGO", "CONGO, THE DRC", "COOK ISLANDS", "COSTA RICA",
+    "COTE D'IVOIRE", "CROATIA", "HRVATSKA", "CUBA", "CYPRUS", "CZECH REPUBLIC", "DENMARK", "DJIBOUTI", "DOMINICA",
+    "DOMINICAN REPUBLIC", "EAST TIMOR", "ECUADOR", "EGYPT", "EL SALVADOR", "EQUATORIAL GUINEA", "ERITREA", "ESTONIA",
+    "ETHIOPIA", "FALKLAND ISLANDS", "MALVINAS", "FAROE ISLANDS", "FIJI", "FINLAND", "FRANCE", "FRANCE, METROPOLITAN",
+    "FRENCH GUIANA", "FRENCH POLYNESIA", "FRENCH SOUTHERN TERRITORIES", "GABON", "GAMBIA", "GEORGIA", "GERMANY",
+    "GHANA", "GIBRALTAR", "GREECE", "GREENLAND", "GRENADA", "GUADELOUPE", "GUAM", "GUATEMALA", "GUINEA",
+    "GUINEA-BISSAU", "GUYANA", "HAITI", "HEARD AND MC DONALD ISLANDS", "HOLY SEE", "VATICAN CITY STATE", "HONDURAS",
+    "HONG KONG", "HUNGARY", "ICELAND", "INDIA", "INDONESIA", "IRAN", "IRAQ", "IRELAND", "ISRAEL", "ITALY", "JAMAICA",
+    "JAPAN", "JORDAN", "KAZAKHSTAN", "KENYA", "KIRIBATI", "KOREA, D.P.R.O.", "KOREA, REPUBLIC OF", "REPUBLIC OF KOREA",
+    "KUWAIT", "KYRGYZSTAN", "LAOS", "LATVIA", "LEBANON", "LESOTHO", "LIBERIA", "LIBYAN ARAB JAMAHIRIYA",
+    "LIECHTENSTEIN", "LITHUANIA", "LUXEMBOURG", "MACAU", "MACEDONIA", "MADAGASCAR", "MALAWI", "MALAYSIA", "MALDIVES",
+    "MALI", "MALTA", "MARSHALL ISLANDS", "MARTINIQUE", "MAURITANIA", "MAURITIUS", "MAYOTTE", "MEXICO",
+    "MICRONESIA, FEDERATED STATES OF", "FEDERATED STATES OF MICRONESIA", "MOLDOVA, REPUBLIC OF", "REPUBLIC OF MOLDOVA",
+    "MONACO", "MONGOLIA", "MONTENEGRO", "MONTSERRAT", "MOROCCO", "MOZAMBIQUE", "MYANMAR", "BURMA", "NAMIBIA", "NAURU",
+    "NEPAL", "NETHERLANDS", "NETHERLANDS ANTILLES", "NEW CALEDONIA", "NEW ZEALAND", "NICARAGUA", "NIGER", "NIGERIA",
+    "NIUE", "NORFOLK ISLAND", "NORTHERN MARIANA ISLANDS", "NORWAY", "OMAN", "PAKISTAN", "PALAU", "PANAMA",
+    "PAPUA NEW GUINEA", "PARAGUAY", "PERU", "PHILIPPINES", "PITCAIRN", "POLAND", "PORTUGAL", "PUERTO RICO", "QATAR",
+    "REUNION", "ROMANIA", "RUSSIAN FEDERATION", "RWANDA", "SAINT KITTS AND NEVIS", "SAINT LUCIA",
+    "SAINT VINCENT AND THE GRENADINES", "SAMOA", "SAN MARINO", "SAO TOME AND PRINCIPE", "SAUDI ARABIA", "SENEGAL",
+    "SERBIA", "SEYCHELLES", "SIERRA LEONE", "SINGAPORE", "SLOVAKIA", "SLOVAK REPUBLIC", "SLOVENIA", "SOLOMON ISLANDS",
+    "SOMALIA", "SOUTH AFRICA", "SOUTH SUDAN", "SOUTH GEORGIA AND SOUTH S.S.", "SPAIN", "SRI LANKA", "ST. HELENA",
+    "ST. PIERRE AND MIQUELON", "SUDAN", "SURINAME", "SVALBARD AND JAN MAYEN ISLANDS", "SWAZILAND", "SWEDEN",
+    "SWITZERLAND", "SYRIAN ARAB REPUBLIC", "TAIWAN", "TAJIKISTAN", "TANZANIA", "UNITED REPUBLIC OF TANZANIA",
+    "THAILAND", "TOGO", "TOKELAU", "TONGA", "TRINIDAD AND TOBAGO", "TUNISIA", "TURKEY", "TURKMENISTAN",
+    "TURKS AND CAICOS ISLANDS", "TUVALU", "UGANDA", "UKRAINE", "UNITED ARAB EMIRATES", "UNITED KINGDOM",
+    "UNITED STATES", "U.S. MINOR ISLANDS", "URUGUAY", "UZBEKISTAN", "VANUATU", "VENEZUELA", "VIETNAM",
+    "VIRGIN ISLANDS (BRITISH)", "VIRGIN ISLANDS (U.S.)", "WALLIS AND FUTUNA ISLANDS", "WESTERN SAHARA", "YEMEN",
+    "ZAMBIA", "ZIMBABWE"
+]
+
 us_states_names = [
     "ALABAMA", "ALASKA", "ARIZONA", "ARKANSAS", "CALIFORNIA", "COLORADO", "CONNECTICUT", "DELAWARE", "FLORIDA",
     "GEORGIA", "HAWAII", "IDAHO", "ILLINOIS", "INDIANA", "IOWA", "KANSAS", "KENTUCKY", "LOUISIANA", "MAINE", "MARYLAND",
@@ -101,6 +138,15 @@ us_states_names = [
     "NEWHAMPSHIRE", "NEWJERSEY", "NEWMEXICO", "NEWYORK", "NORTHCAROLINA", "NORTHDAKOTA", "OHIO", "OKLAHOMA", "OREGON",
     "PENNSYLVANIA", "RHODEISLAND", "SOUTHCAROLINA", "SOUTHDAKOTA", "TENNESSEE", "TEXAS", "UTAH", "VERMONT", "VIRGINIA",
     "WASHINGTON", "WESTVIRGINIA", "WISCONSIN", "WYOMING"
+]
+
+us_states_names_readable = [
+     "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida",
+    "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland",
+    "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada",
+    "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon",
+    "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia",
+    "Washington", "West Virginia", "Wisconsin", "Wyoming"
 ]
 
 us_states_codes = [
@@ -112,6 +158,11 @@ us_states_codes = [
 canada_states_names = [
     "ALBERTA", "BRITISHCOLUMBIA", "MANITOBA", "NEWBRUNSWICK", "NEWFOUNDLANDANDLABRADOR", "NOVASCOTIA",
     "NORTHWESTTERRITORIES", "NUNAVUT", "ONTARIO", "PRINCEEDWARDISLAND", "QUEBEC", "SASKATCHEWAN", "YUKON"
+]
+
+canada_states_names_readable = [
+    "Alberta", "British Columbia", "Manitoba", "New Brunswick", "Newfoundland and Labrador", "Nova Scotia",
+    "Northwest Territories", "Nunavut", "Ontario", "Prince Edward Island", "Quebec", "Saskatchewan", "Yukon"
 ]
 
 canada_states_codes = [
@@ -137,11 +188,13 @@ def standardize_country_code(country):
         except ValueError:
             idx = -1
     try:
+        country = alphaOnly(country).upper()
         idx = country_names.index(country)
         code = country_codes_2[idx]
         return code
     except ValueError:
         return ''
+
 
 def standardize_country_name(country):
     if(len(country) == 0):
@@ -151,18 +204,19 @@ def standardize_country_name(country):
     if (len(country) == 2):
         try:
             idx = country_codes_2.index(country)
-            return country_names[idx]
+            return country_names_readable[idx]
         except ValueError:
             idx = -1
     if (len(country) == 3):
         try:
             idx = country_codes_3.index(country)
-            return country_names[idx]
+            return country_names_readable[idx]
         except ValueError:
             idx = -1
     try:
+        country = alphaOnly(country).upper()
         idx = country_names.index(country)
-        return country_names[idx]
+        return country_names_readable[idx]
     except ValueError:
         return ''
 
@@ -173,6 +227,7 @@ def standardize_state_code(country, state):
 
     codesArr = []
     namesArr = []
+
     if country == "US":
         codesArr = us_states_codes
         namesArr = us_states_names
@@ -191,6 +246,7 @@ def standardize_state_code(country, state):
                 idx = -1
 
         try:
+            state = alphaOnly(state).upper()
             idx = namesArr.index(state)
             code = codesArr[idx]
             return code
@@ -199,36 +255,6 @@ def standardize_state_code(country, state):
 
     return state
 
-def standardize_state_code(country, state):
-    if(len(state) == 0):
-        return ''
-
-    codesArr = []
-    namesArr = []
-    if country == "US":
-        codesArr = us_states_codes
-        namesArr = us_states_names
-
-    if country == "CA":
-        codesArr = canada_states_codes
-        namesArr = canada_states_names
-
-    if (len(codesArr) > 0):
-        state = state.upper()
-        if (len(state) == 2):
-            try:
-                idx = codesArr.index(state)
-                return codesArr[idx]
-            except ValueError:
-                idx = -1
-
-        try:
-            idx = namesArr.index(state)
-            return codesArr[idx]
-        except ValueError:
-            return ''
-
-    return ''
 
 def standardize_state_name(country, state):
     if(len(state) == 0):
@@ -236,26 +262,31 @@ def standardize_state_name(country, state):
 
     codesArr = []
     namesArr = []
+    namesReadableArr = []
+
     if country == "US":
         codesArr = us_states_codes
         namesArr = us_states_names
+        namesReadableArr = us_states_names_readable
 
     if country == "CA":
         codesArr = canada_states_codes
         namesArr = canada_states_names
+        namesReadableArr = canada_states_names_readable
 
     if (len(codesArr) > 0):
         state = state.upper()
         if (len(state) == 2):
             try:
                 idx = codesArr.index(state)
-                return namesArr[idx]
+                return namesReadableArr[idx]
             except ValueError:
                 idx = -1
 
         try:
+            state = alphaOnly(state).upper()
             idx = namesArr.index(state)
-            return namesArr[idx]
+            return namesReadableArr[idx]
         except ValueError:
             return ''
 
@@ -272,4 +303,5 @@ def detectCountryCode(phonenumber):
             except ValueError:
                 idx = -1
     return None
+
 

@@ -609,11 +609,11 @@ def place_zipcode_uri(cleaned):
 def clean_location(x):
     stripped = x.strip().lower()
     stripped = stripped.title()
-    return alphaOnly(stripped)
+    return toTitleCaseCleaned(stripped)
 
 def place_location_uri(cleaned):
     if cleaned:
-        cleaned = cleaned.replace(" ","_")
+        cleaned = cleaned.replace(" ","_").lower()
         return "place_location/%s" % cleaned
 
 def feature_address(city, state, country):
@@ -658,7 +658,7 @@ def clean_address(city, state, country, sep):
 def address_uri(city, state, country):
 	addr = clean_address(city, state, country, "-")
 	if len(addr) > 0:
-		addr = addr.replace(" ", "_")
+		addr = addr.replace(" ", "_").lower()
         return "address/" + addr
 	return ''
 
