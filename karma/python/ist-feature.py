@@ -608,7 +608,7 @@ def place_zipcode_uri(cleaned):
 
 def clean_location(x):
     stripped = x.strip().lower()
-    stripped = stripped.title()
+    stripped = alphaNumeric(stripped)
     return toTitleCaseCleaned(stripped)
 
 def place_location_uri(cleaned):
