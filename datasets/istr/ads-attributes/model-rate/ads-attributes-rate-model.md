@@ -55,10 +55,18 @@ From column: _url_
 return "http://memex.zapto.org/data/page/" +get_url_hash(getValue("url"))+"/"+getValue("timestamp")+"/processed/featurecollection"
 ```
 
+#### _crawl_url_
+From column: _url_
+>``` python
+return getCacheBaseUrl()+"page/"+get_url_hash(getValue("url"))+"/"+getValue("timestamp")+"/processed"
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
 |  ----- | -------- | ----- |
+| _crawl_url_ | `uri` | `schema:WebPage1`|
+| _featureCollection_uri_ | `uri` | `memex:FeatureCollection1`|
 | _feature_name_ | `memex:featureName` | `memex:Feature1`|
 | _feature_uri_ | `uri` | `memex:Feature1`|
 | _feature_value_ | `memex:featureValue` | `memex:Feature1`|
@@ -73,4 +81,6 @@ return "http://memex.zapto.org/data/page/" +get_url_hash(getValue("url"))+"/"+ge
 | From | Property | To |
 |  --- | -------- | ---|
 | `memex:Feature1` | `memex:featureObject` | `memex:ServiceRate1`|
+| `memex:FeatureCollection1` | `memex:rate_feature` | `memex:Feature1`|
 | `memex:ServiceRate1` | `schema:priceCurrency` | `xsd:USD`|
+| `schema:WebPage1` | `memex:hasFeatureCollection` | `memex:FeatureCollection1`|
