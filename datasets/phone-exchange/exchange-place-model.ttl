@@ -1,28 +1,26 @@
-@prefix dc: <http://purl.org/dc/elements/1.1/> .
-@prefix prov: <http://www.w3.org/ns/prov#> .
-@prefix schemax: <http://topbraid.org/schemax/> .
-@prefix schema: <http://schema.org/> .
-@prefix skos: <http://www.w3.org/2008/05/skos#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix foaf: <http://xmlns.com/foaf/0.1/> .
-@prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix dct: <http://purl.org/dc/terms/> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix schemax: <http://topbraid.org/schemax/> .
+@prefix schema: <http://schema.org/> .
 @prefix memex: <http://memexproxy.com/ontology/> .
-@prefix ht: <http://memexproxy.com/ontology/human-trafficking/> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ht: <http://memexproxy.com/ontology/human-trafficking/> .
 @prefix rr: <http://www.w3.org/ns/r2rml#> .
 @prefix km-dev: <http://isi.edu/integration/karma/dev#> .
 
-_:node193tgrr1vx1 a km-dev:R2RMLMapping ;
+_:node198o3r54mx1 a km-dev:R2RMLMapping ;
 	km-dev:sourceName "exchange-sample.json" ;
-	km-dev:modelPublicationTime "1412961266751"^^xsd:long ;
+	km-dev:modelPublicationTime "1418148549782"^^xsd:long ;
 	km-dev:modelVersion "1.7" ;
 	km-dev:hasInputColumns "[[{\"columnName\":\"areacode_adm1_name\"}],[{\"columnName\":\"exchange_rc_lat\"}],[{\"columnName\":\"exchange_id\"}],[{\"columnName\":\"exchange_rc\"}],[{\"columnName\":\"exchange_rc_lon\"}]]" ;
-	km-dev:hasOutputColumns "[[{\"columnName\":\"areacode_adm1_name\"}],[{\"columnName\":\"geoUri\"}],[{\"columnName\":\"exchange_rc_lat\"}],[{\"columnName\":\"stateUri\"}],[{\"columnName\":\"exchangeUri\"}],[{\"columnName\":\"postalAddressUri\"}],[{\"columnName\":\"city_name\"}],[{\"columnName\":\"exchange_rc_lon\"}]]" ;
+	km-dev:hasOutputColumns "[[{\"columnName\":\"geoUri\"}],[{\"columnName\":\"exchange_rc_lat\"}],[{\"columnName\":\"stateUri\"}],[{\"columnName\":\"exchangeUri\"}],[{\"columnName\":\"postalAddressUri\"}],[{\"columnName\":\"city_name\"}],[{\"columnName\":\"exchange_rc_lon\"}],[{\"columnName\":\"place_label\"}],[{\"columnName\":\"clean_region\"}]]" ;
 	km-dev:hasModelLabel "exchange-place" ;
-	km-dev:hasBaseURI "http://memexproxy.com/data/" ;
+	km-dev:hasBaseURI "http://memex.zapto.org/data/" ;
 	km-dev:hasWorksheetHistory """[
     {
         \"tags\": [\"Transformation\"],
@@ -49,7 +47,7 @@ _:node193tgrr1vx1 a km-dev:R2RMLMapping ;
             },
             {
                 \"name\": \"transformationCode\",
-                \"value\": \"return \\\"exchange/\\\"+getValue(\\\"exchange_id\\\")\",
+                \"value\": \"return \\\"phone/exchange/\\\"+getValue(\\\"exchange_id\\\")\",
                 \"type\": \"other\"
             },
             {
@@ -1744,177 +1742,641 @@ _:node193tgrr1vx1 a km-dev:R2RMLMapping ;
             }
         ],
         \"commandName\": \"SetWorksheetPropertiesCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"properties\",
+                \"value\": {
+                    \"hasServiceProperties\": false,
+                    \"hasPrefix\": false,
+                    \"graphLabel\": \"\",
+                    \"hasBaseURI\": true,
+                    \"baseURI\": \"http://memex.zapto.org/data/\"
+                },
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetWorksheetPropertiesCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"city_name\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"value\": \"place_label\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"value\": \"return getValue(\\\"city_name\\\")+\\\", \\\"+getValue(\\\"areacode_adm1_name\\\")\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"areacode_adm1_name\\\"}]},{\\\"value\\\":[{\\\"columnName\\\":\\\"city_name\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"place_label\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SubmitPythonTransformationCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"place_label\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://www.w3.org/2000/01/rdf-schema#label\",
+                    \"DomainLabel\": \"schema:Place1\",
+                    \"DomainId\": \"http://schema.org/Place1\",
+                    \"DomainUri\": \"http://schema.org/Place\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"place_label\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"place_label\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetSemanticTypeCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"exchange_rc\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"value\": \"return clean_city(getValue(\\\"exchange_rc\\\"))\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"previousCommandId\",
+                \"value\": \"C984\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"targetHNodeId\",
+                \"value\": [{\"columnName\": \"city_name\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"exchange_rc\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"city_name\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SubmitEditPythonTransformationCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"areacode_adm1_name\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"value\": \"clean_region\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"value\": \"return clean_state(getValue(\\\"areacode_adm1_name\\\"), \\\"US\\\")\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"areacode_adm1_name\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"clean_region\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SubmitPythonTransformationCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"areacode_adm1_name\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"value\": \"x = clean_state(getValue(\\\"areacode_adm1_name\\\"), \\\"US\\\")\\nif x:\\n  return x\\nreturn clean_state(getValue(\\\"areacode_adm1_name\\\"), \\\"CA\\\")\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"previousCommandId\",
+                \"value\": \"C1134\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"targetHNodeId\",
+                \"value\": [{\"columnName\": \"clean_region\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"areacode_adm1_name\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"clean_region\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SubmitEditPythonTransformationCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"city_name\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"value\": \"return getValue(\\\"city_name\\\")+\\\", \\\"+getValue(\\\"clean_region\\\")\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"previousCommandId\",
+                \"value\": \"C1092\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"targetHNodeId\",
+                \"value\": [{\"columnName\": \"place_label\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"city_name\\\"}]},{\\\"value\\\":[{\\\"columnName\\\":\\\"clean_region\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"place_label\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SubmitEditPythonTransformationCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"areacode_adm1_name\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": true,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"areacode_adm1_name\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"areacode_adm1_name\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"UnassignSemanticTypeCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"clean_region\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://schema.org/addressRegion\",
+                    \"DomainLabel\": \"schema:PostalAddress1\",
+                    \"DomainId\": \"http://schema.org/PostalAddress1\",
+                    \"DomainUri\": \"http://schema.org/PostalAddress\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"clean_region\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"clean_region\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetSemanticTypeCommand\"
     }
 ]""" .
 
-km-dev:TriplesMap_fc4af107-19ab-47a8-8aec-68f83011ebcc a rr:TriplesMap .
+km-dev:TriplesMap_1a1c08d4-2461-4a23-acc9-ae51e1d78eee a rr:TriplesMap .
 
-_:node193tgrr1vx1 km-dev:hasTriplesMap km-dev:TriplesMap_fc4af107-19ab-47a8-8aec-68f83011ebcc .
+_:node198o3r54mx1 km-dev:hasTriplesMap km-dev:TriplesMap_1a1c08d4-2461-4a23-acc9-ae51e1d78eee .
 
-km-dev:TriplesMap_fc4af107-19ab-47a8-8aec-68f83011ebcc km-dev:isPartOfMapping _:node193tgrr1vx1 .
+km-dev:TriplesMap_1a1c08d4-2461-4a23-acc9-ae51e1d78eee km-dev:isPartOfMapping _:node198o3r54mx1 .
 
-_:node193tgrr1vx2 rr:tableName "exchange-sample.json" ;
+_:node198o3r54mx2 rr:tableName "exchange-sample.json" ;
 	a rr:LogicalTable ;
-	km-dev:isPartOfMapping _:node193tgrr1vx1 .
+	km-dev:isPartOfMapping _:node198o3r54mx1 .
 
-_:node193tgrr1vx1 km-dev:hasLogicalTable _:node193tgrr1vx2 .
+_:node198o3r54mx1 km-dev:hasLogicalTable _:node198o3r54mx2 .
 
-km-dev:TriplesMap_fc4af107-19ab-47a8-8aec-68f83011ebcc rr:logicalTable _:node193tgrr1vx2 ;
-	rr:subjectMap _:node193tgrr1vx3 .
+km-dev:TriplesMap_1a1c08d4-2461-4a23-acc9-ae51e1d78eee rr:logicalTable _:node198o3r54mx2 ;
+	rr:subjectMap _:node198o3r54mx3 .
 
-_:node193tgrr1vx1 km-dev:hasSubjectMap _:node193tgrr1vx3 .
+_:node198o3r54mx1 km-dev:hasSubjectMap _:node198o3r54mx3 .
 
-_:node193tgrr1vx3 km-dev:isPartOfMapping _:node193tgrr1vx1 ;
+_:node198o3r54mx3 km-dev:isPartOfMapping _:node198o3r54mx1 ;
 	a rr:SubjectMap ;
 	km-dev:alignmentNodeId "http://schema.org/GeoCoordinates1" ;
 	rr:class schema:GeoCoordinates ;
 	rr:template "{exchangeUri}/geo" .
 
-km-dev:PredicateObjectMap_0180137a-0749-4bab-a57e-e394c2061bc9 rr:predicate schema:latitude .
+km-dev:PredicateObjectMap_d674c5bc-2d02-4639-8abc-d681e2e8e744 rr:predicate schema:latitude .
 
-_:node193tgrr1vx4 rr:column "exchange_rc_lat" ;
+_:node198o3r54mx4 rr:column "exchange_rc_lat" ;
 	a rr:ObjectMap ;
-	km-dev:isPartOfMapping _:node193tgrr1vx1 .
+	km-dev:isPartOfMapping _:node198o3r54mx1 .
 
-_:node193tgrr1vx1 km-dev:hasObjectMap _:node193tgrr1vx4 .
+_:node198o3r54mx1 km-dev:hasObjectMap _:node198o3r54mx4 .
 
-km-dev:PredicateObjectMap_0180137a-0749-4bab-a57e-e394c2061bc9 rr:objectMap _:node193tgrr1vx4 .
+km-dev:PredicateObjectMap_d674c5bc-2d02-4639-8abc-d681e2e8e744 rr:objectMap _:node198o3r54mx4 .
 
-km-dev:TriplesMap_fc4af107-19ab-47a8-8aec-68f83011ebcc rr:predicateObjectMap km-dev:PredicateObjectMap_0180137a-0749-4bab-a57e-e394c2061bc9 .
+km-dev:TriplesMap_1a1c08d4-2461-4a23-acc9-ae51e1d78eee rr:predicateObjectMap km-dev:PredicateObjectMap_d674c5bc-2d02-4639-8abc-d681e2e8e744 .
 
-km-dev:PredicateObjectMap_0180137a-0749-4bab-a57e-e394c2061bc9 a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node193tgrr1vx1 .
+km-dev:PredicateObjectMap_d674c5bc-2d02-4639-8abc-d681e2e8e744 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node198o3r54mx1 .
 
-_:node193tgrr1vx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_0180137a-0749-4bab-a57e-e394c2061bc9 .
+_:node198o3r54mx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_d674c5bc-2d02-4639-8abc-d681e2e8e744 .
 
-km-dev:PredicateObjectMap_610190b7-e691-4fcf-a5a1-f39bcee6ec7a rr:predicate schema:longitude .
+km-dev:PredicateObjectMap_f6d3001d-6582-424e-89b0-66c1435d5c02 rr:predicate schema:longitude .
 
-_:node193tgrr1vx5 rr:column "exchange_rc_lon" ;
+_:node198o3r54mx5 rr:column "exchange_rc_lon" ;
 	a rr:ObjectMap ;
-	km-dev:isPartOfMapping _:node193tgrr1vx1 .
+	km-dev:isPartOfMapping _:node198o3r54mx1 .
 
-_:node193tgrr1vx1 km-dev:hasObjectMap _:node193tgrr1vx5 .
+_:node198o3r54mx1 km-dev:hasObjectMap _:node198o3r54mx5 .
 
-km-dev:PredicateObjectMap_610190b7-e691-4fcf-a5a1-f39bcee6ec7a rr:objectMap _:node193tgrr1vx5 .
+km-dev:PredicateObjectMap_f6d3001d-6582-424e-89b0-66c1435d5c02 rr:objectMap _:node198o3r54mx5 .
 
-km-dev:TriplesMap_fc4af107-19ab-47a8-8aec-68f83011ebcc rr:predicateObjectMap km-dev:PredicateObjectMap_610190b7-e691-4fcf-a5a1-f39bcee6ec7a .
+km-dev:TriplesMap_1a1c08d4-2461-4a23-acc9-ae51e1d78eee rr:predicateObjectMap km-dev:PredicateObjectMap_f6d3001d-6582-424e-89b0-66c1435d5c02 .
 
-km-dev:PredicateObjectMap_610190b7-e691-4fcf-a5a1-f39bcee6ec7a a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node193tgrr1vx1 .
+km-dev:PredicateObjectMap_f6d3001d-6582-424e-89b0-66c1435d5c02 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node198o3r54mx1 .
 
-_:node193tgrr1vx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_610190b7-e691-4fcf-a5a1-f39bcee6ec7a .
+_:node198o3r54mx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_f6d3001d-6582-424e-89b0-66c1435d5c02 .
 
-km-dev:TriplesMap_32756ba7-abfe-4a62-a6ea-d694b6d40c2a a rr:TriplesMap .
+km-dev:TriplesMap_1568ff84-4ca6-4f12-8a59-b8cb072031b7 a rr:TriplesMap .
 
-_:node193tgrr1vx1 km-dev:hasTriplesMap km-dev:TriplesMap_32756ba7-abfe-4a62-a6ea-d694b6d40c2a .
+_:node198o3r54mx1 km-dev:hasTriplesMap km-dev:TriplesMap_1568ff84-4ca6-4f12-8a59-b8cb072031b7 .
 
-km-dev:TriplesMap_32756ba7-abfe-4a62-a6ea-d694b6d40c2a km-dev:isPartOfMapping _:node193tgrr1vx1 .
+km-dev:TriplesMap_1568ff84-4ca6-4f12-8a59-b8cb072031b7 km-dev:isPartOfMapping _:node198o3r54mx1 .
 
-_:node193tgrr1vx6 rr:tableName "exchange-sample.json" ;
+_:node198o3r54mx6 rr:tableName "exchange-sample.json" ;
 	a rr:LogicalTable ;
-	km-dev:isPartOfMapping _:node193tgrr1vx1 .
+	km-dev:isPartOfMapping _:node198o3r54mx1 .
 
-_:node193tgrr1vx1 km-dev:hasLogicalTable _:node193tgrr1vx6 .
+_:node198o3r54mx1 km-dev:hasLogicalTable _:node198o3r54mx6 .
 
-km-dev:TriplesMap_32756ba7-abfe-4a62-a6ea-d694b6d40c2a rr:logicalTable _:node193tgrr1vx6 ;
-	rr:subjectMap _:node193tgrr1vx7 .
+km-dev:TriplesMap_1568ff84-4ca6-4f12-8a59-b8cb072031b7 rr:logicalTable _:node198o3r54mx6 ;
+	rr:subjectMap _:node198o3r54mx7 .
 
-_:node193tgrr1vx1 km-dev:hasSubjectMap _:node193tgrr1vx7 .
+_:node198o3r54mx1 km-dev:hasSubjectMap _:node198o3r54mx7 .
 
-_:node193tgrr1vx7 km-dev:isPartOfMapping _:node193tgrr1vx1 ;
+_:node198o3r54mx7 km-dev:isPartOfMapping _:node198o3r54mx1 ;
 	a rr:SubjectMap ;
 	km-dev:alignmentNodeId "http://schema.org/Place1" ;
 	rr:class schema:Place ;
-	rr:template "exchange/{exchange_id}" ;
+	rr:template "phone/exchange/{exchange_id}" ;
 	a km-dev:steinerTreeRootNode .
 
-km-dev:PredicateObjectMap_0db12561-1dae-4c1c-b97b-3222957676f2 rr:predicate schema:address .
+km-dev:PredicateObjectMap_4a2ce815-b3e9-4393-a3ab-a87816ee53bb rr:predicate schema:address .
 
-km-dev:RefObjectMap_05bab455-4d6b-457f-88a6-997e36b317ff a rr:RefObjectMap , rr:ObjectMap ;
-	rr:parentTriplesMap km-dev:TriplesMap_6bb8717b-979b-4900-999e-4661ecbffc5e ;
-	km-dev:isPartOfMapping _:node193tgrr1vx1 .
+km-dev:RefObjectMap_c56dc1cc-44c2-4311-b013-ee12e2f3e55d a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_edbd1aef-a85a-43da-a63a-f1aa58aac4c3 ;
+	km-dev:isPartOfMapping _:node198o3r54mx1 .
 
-_:node193tgrr1vx1 km-dev:hasObjectMap km-dev:RefObjectMap_05bab455-4d6b-457f-88a6-997e36b317ff .
+_:node198o3r54mx1 km-dev:hasObjectMap km-dev:RefObjectMap_c56dc1cc-44c2-4311-b013-ee12e2f3e55d .
 
-km-dev:PredicateObjectMap_0db12561-1dae-4c1c-b97b-3222957676f2 rr:objectMap km-dev:RefObjectMap_05bab455-4d6b-457f-88a6-997e36b317ff .
+km-dev:PredicateObjectMap_4a2ce815-b3e9-4393-a3ab-a87816ee53bb rr:objectMap km-dev:RefObjectMap_c56dc1cc-44c2-4311-b013-ee12e2f3e55d .
 
-km-dev:TriplesMap_32756ba7-abfe-4a62-a6ea-d694b6d40c2a rr:predicateObjectMap km-dev:PredicateObjectMap_0db12561-1dae-4c1c-b97b-3222957676f2 .
+km-dev:TriplesMap_1568ff84-4ca6-4f12-8a59-b8cb072031b7 rr:predicateObjectMap km-dev:PredicateObjectMap_4a2ce815-b3e9-4393-a3ab-a87816ee53bb .
 
-km-dev:PredicateObjectMap_0db12561-1dae-4c1c-b97b-3222957676f2 a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node193tgrr1vx1 .
+km-dev:PredicateObjectMap_4a2ce815-b3e9-4393-a3ab-a87816ee53bb a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node198o3r54mx1 .
 
-_:node193tgrr1vx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_0db12561-1dae-4c1c-b97b-3222957676f2 .
+_:node198o3r54mx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_4a2ce815-b3e9-4393-a3ab-a87816ee53bb .
 
-km-dev:PredicateObjectMap_a9167c80-15dc-49b4-99c3-36d47f7953e7 rr:predicate schema:geo .
+km-dev:PredicateObjectMap_af4d8270-b6c0-4a09-9b56-f0970ee84217 rr:predicate schema:geo .
 
-km-dev:RefObjectMap_321110e2-7d9f-4cec-af53-d09059296e87 a rr:RefObjectMap , rr:ObjectMap ;
-	rr:parentTriplesMap km-dev:TriplesMap_fc4af107-19ab-47a8-8aec-68f83011ebcc ;
-	km-dev:isPartOfMapping _:node193tgrr1vx1 .
+km-dev:RefObjectMap_0b129566-789c-4b71-bba4-677fc046a06f a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_1a1c08d4-2461-4a23-acc9-ae51e1d78eee ;
+	km-dev:isPartOfMapping _:node198o3r54mx1 .
 
-_:node193tgrr1vx1 km-dev:hasObjectMap km-dev:RefObjectMap_321110e2-7d9f-4cec-af53-d09059296e87 .
+_:node198o3r54mx1 km-dev:hasObjectMap km-dev:RefObjectMap_0b129566-789c-4b71-bba4-677fc046a06f .
 
-km-dev:PredicateObjectMap_a9167c80-15dc-49b4-99c3-36d47f7953e7 rr:objectMap km-dev:RefObjectMap_321110e2-7d9f-4cec-af53-d09059296e87 .
+km-dev:PredicateObjectMap_af4d8270-b6c0-4a09-9b56-f0970ee84217 rr:objectMap km-dev:RefObjectMap_0b129566-789c-4b71-bba4-677fc046a06f .
 
-km-dev:TriplesMap_32756ba7-abfe-4a62-a6ea-d694b6d40c2a rr:predicateObjectMap km-dev:PredicateObjectMap_a9167c80-15dc-49b4-99c3-36d47f7953e7 .
+km-dev:TriplesMap_1568ff84-4ca6-4f12-8a59-b8cb072031b7 rr:predicateObjectMap km-dev:PredicateObjectMap_af4d8270-b6c0-4a09-9b56-f0970ee84217 .
 
-km-dev:PredicateObjectMap_a9167c80-15dc-49b4-99c3-36d47f7953e7 a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node193tgrr1vx1 .
+km-dev:PredicateObjectMap_af4d8270-b6c0-4a09-9b56-f0970ee84217 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node198o3r54mx1 .
 
-_:node193tgrr1vx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_a9167c80-15dc-49b4-99c3-36d47f7953e7 .
+_:node198o3r54mx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_af4d8270-b6c0-4a09-9b56-f0970ee84217 .
 
-km-dev:TriplesMap_6bb8717b-979b-4900-999e-4661ecbffc5e a rr:TriplesMap .
+km-dev:PredicateObjectMap_006ca91c-9bca-4e6f-942c-7eec5bc28009 rr:predicate rdfs:label .
 
-_:node193tgrr1vx1 km-dev:hasTriplesMap km-dev:TriplesMap_6bb8717b-979b-4900-999e-4661ecbffc5e .
+_:node198o3r54mx8 rr:column "place_label" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node198o3r54mx1 .
 
-km-dev:TriplesMap_6bb8717b-979b-4900-999e-4661ecbffc5e km-dev:isPartOfMapping _:node193tgrr1vx1 .
+_:node198o3r54mx1 km-dev:hasObjectMap _:node198o3r54mx8 .
 
-_:node193tgrr1vx8 rr:tableName "exchange-sample.json" ;
+km-dev:PredicateObjectMap_006ca91c-9bca-4e6f-942c-7eec5bc28009 rr:objectMap _:node198o3r54mx8 .
+
+km-dev:TriplesMap_1568ff84-4ca6-4f12-8a59-b8cb072031b7 rr:predicateObjectMap km-dev:PredicateObjectMap_006ca91c-9bca-4e6f-942c-7eec5bc28009 .
+
+km-dev:PredicateObjectMap_006ca91c-9bca-4e6f-942c-7eec5bc28009 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node198o3r54mx1 .
+
+_:node198o3r54mx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_006ca91c-9bca-4e6f-942c-7eec5bc28009 .
+
+km-dev:TriplesMap_edbd1aef-a85a-43da-a63a-f1aa58aac4c3 a rr:TriplesMap .
+
+_:node198o3r54mx1 km-dev:hasTriplesMap km-dev:TriplesMap_edbd1aef-a85a-43da-a63a-f1aa58aac4c3 .
+
+km-dev:TriplesMap_edbd1aef-a85a-43da-a63a-f1aa58aac4c3 km-dev:isPartOfMapping _:node198o3r54mx1 .
+
+_:node198o3r54mx9 rr:tableName "exchange-sample.json" ;
 	a rr:LogicalTable ;
-	km-dev:isPartOfMapping _:node193tgrr1vx1 .
+	km-dev:isPartOfMapping _:node198o3r54mx1 .
 
-_:node193tgrr1vx1 km-dev:hasLogicalTable _:node193tgrr1vx8 .
+_:node198o3r54mx1 km-dev:hasLogicalTable _:node198o3r54mx9 .
 
-km-dev:TriplesMap_6bb8717b-979b-4900-999e-4661ecbffc5e rr:logicalTable _:node193tgrr1vx8 ;
-	rr:subjectMap _:node193tgrr1vx9 .
+km-dev:TriplesMap_edbd1aef-a85a-43da-a63a-f1aa58aac4c3 rr:logicalTable _:node198o3r54mx9 ;
+	rr:subjectMap _:node198o3r54mx10 .
 
-_:node193tgrr1vx1 km-dev:hasSubjectMap _:node193tgrr1vx9 .
+_:node198o3r54mx1 km-dev:hasSubjectMap _:node198o3r54mx10 .
 
-_:node193tgrr1vx9 km-dev:isPartOfMapping _:node193tgrr1vx1 ;
+_:node198o3r54mx10 km-dev:isPartOfMapping _:node198o3r54mx1 ;
 	a rr:SubjectMap ;
 	km-dev:alignmentNodeId "http://schema.org/PostalAddress1" ;
 	rr:class schema:PostalAddress ;
 	rr:template "{exchangeUri}/postaladdress" .
 
-km-dev:PredicateObjectMap_e64eb340-ad3c-4e5a-bde8-3e6808906da2 rr:predicate schema:addressLocality .
+km-dev:PredicateObjectMap_2def3ced-8725-4857-815d-9cc831532098 rr:predicate schema:addressLocality .
 
-_:node193tgrr1vx10 rr:column "city_name" ;
+_:node198o3r54mx11 rr:column "city_name" ;
 	a rr:ObjectMap ;
-	km-dev:isPartOfMapping _:node193tgrr1vx1 .
+	km-dev:isPartOfMapping _:node198o3r54mx1 .
 
-_:node193tgrr1vx1 km-dev:hasObjectMap _:node193tgrr1vx10 .
+_:node198o3r54mx1 km-dev:hasObjectMap _:node198o3r54mx11 .
 
-km-dev:PredicateObjectMap_e64eb340-ad3c-4e5a-bde8-3e6808906da2 rr:objectMap _:node193tgrr1vx10 .
+km-dev:PredicateObjectMap_2def3ced-8725-4857-815d-9cc831532098 rr:objectMap _:node198o3r54mx11 .
 
-km-dev:TriplesMap_6bb8717b-979b-4900-999e-4661ecbffc5e rr:predicateObjectMap km-dev:PredicateObjectMap_e64eb340-ad3c-4e5a-bde8-3e6808906da2 .
+km-dev:TriplesMap_edbd1aef-a85a-43da-a63a-f1aa58aac4c3 rr:predicateObjectMap km-dev:PredicateObjectMap_2def3ced-8725-4857-815d-9cc831532098 .
 
-km-dev:PredicateObjectMap_e64eb340-ad3c-4e5a-bde8-3e6808906da2 a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node193tgrr1vx1 .
+km-dev:PredicateObjectMap_2def3ced-8725-4857-815d-9cc831532098 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node198o3r54mx1 .
 
-_:node193tgrr1vx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_e64eb340-ad3c-4e5a-bde8-3e6808906da2 .
+_:node198o3r54mx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_2def3ced-8725-4857-815d-9cc831532098 .
 
-km-dev:PredicateObjectMap_25ffaceb-047e-4209-a7f2-b1dfe8112d59 rr:predicate schema:addressRegion .
+km-dev:PredicateObjectMap_926d81fd-b0ce-4b00-8fcb-37fce871b0f1 rr:predicate schema:addressRegion .
 
-_:node193tgrr1vx11 rr:column "areacode_adm1_name" ;
+_:node198o3r54mx12 rr:column "clean_region" ;
 	a rr:ObjectMap ;
-	km-dev:isPartOfMapping _:node193tgrr1vx1 .
+	km-dev:isPartOfMapping _:node198o3r54mx1 .
 
-_:node193tgrr1vx1 km-dev:hasObjectMap _:node193tgrr1vx11 .
+_:node198o3r54mx1 km-dev:hasObjectMap _:node198o3r54mx12 .
 
-km-dev:PredicateObjectMap_25ffaceb-047e-4209-a7f2-b1dfe8112d59 rr:objectMap _:node193tgrr1vx11 .
+km-dev:PredicateObjectMap_926d81fd-b0ce-4b00-8fcb-37fce871b0f1 rr:objectMap _:node198o3r54mx12 .
 
-km-dev:TriplesMap_6bb8717b-979b-4900-999e-4661ecbffc5e rr:predicateObjectMap km-dev:PredicateObjectMap_25ffaceb-047e-4209-a7f2-b1dfe8112d59 .
+km-dev:TriplesMap_edbd1aef-a85a-43da-a63a-f1aa58aac4c3 rr:predicateObjectMap km-dev:PredicateObjectMap_926d81fd-b0ce-4b00-8fcb-37fce871b0f1 .
 
-km-dev:PredicateObjectMap_25ffaceb-047e-4209-a7f2-b1dfe8112d59 a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node193tgrr1vx1 .
+km-dev:PredicateObjectMap_926d81fd-b0ce-4b00-8fcb-37fce871b0f1 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node198o3r54mx1 .
 
-_:node193tgrr1vx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_25ffaceb-047e-4209-a7f2-b1dfe8112d59 .
+_:node198o3r54mx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_926d81fd-b0ce-4b00-8fcb-37fce871b0f1 .
