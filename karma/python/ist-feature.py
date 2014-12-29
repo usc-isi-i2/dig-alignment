@@ -83,7 +83,16 @@ def phonenumber_uri(x):
 def clean_age(x):
     """Return the clean age
     """
-    return x.strip().lower();
+    stripped = x.strip().lower()
+    # take only first value of any range
+    stripped = stripped.split('-')[0].strip()
+    try:
+        age = int(stripped)
+        if age<1 or age>99:
+            return None
+    except:
+        return None
+    return age
 
 def age_uri(x):
 	cx = clean_age(x)
