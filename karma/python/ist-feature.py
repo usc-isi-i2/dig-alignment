@@ -96,8 +96,8 @@ def clean_age(x):
 
 def age_uri(x):
 	cx = clean_age(x)
-	if (len(x)>0):
-		return "person_age/" + cx
+	if (cx>0):
+		return "person_age/" + str(cx)
 	return ''
 	
 def person_age_uri(x):
