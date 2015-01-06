@@ -647,6 +647,11 @@ def clean_state(state, country):
 
 def clean_country(country):
     country = clean_location(country)
+    country = standardize_country_name(country)
+    return country
+
+def country_code(country):
+    country = clean_location(country)
     country = standardize_country_code(country)
     return country
 
@@ -659,10 +664,10 @@ def clean_address(city, state, country, sep):
         usep = sep
 
     country = clean_location(country)
-    country = standardize_country_code(country)
+    country = standardize_country_name(country)
 
     state = clean_location(state)
-    state = standardize_state_code(country, state)
+    state = standardize_state_name(country, state)
     if state:
         addr = addr + usep + state
         usep = sep
@@ -680,9 +685,9 @@ def address_uri(city, state, country):
 
 def country_uri(country):
     country = clean_location(country)
-    country = standardize_country_code(country)
+    country = standardize_country_name(country)
     if country:
-        cc = country.replace(" ", "_")
+        cc = country.replace(" ", "_").lower()
         return "country/" + cc
     return ''
 

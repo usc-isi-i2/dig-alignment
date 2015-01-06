@@ -33,10 +33,16 @@ From column: _country_
 return clean_country(getValue("country"))
 ```
 
+#### _country_code_
+From column: _country_clean_
+>``` python
+return country_code(getValue("country"))
+```
+
 #### _state_clean_
 From column: _country_clean_
 >``` python
-country = getValue("country_clean")
+country = getValue("country_code")
 state = getValue("state")
 if len(state) == 0 and (country == "US" or country == "CA"):
    state = getValue("region")
@@ -93,6 +99,7 @@ return ''
 | _address_uri_ | `uri` | `schema:PostalAddress1`|
 | _city_clean_ | `schema:addressLocality` | `schema:PostalAddress1`|
 | _country_clean_ | `rdfs:label` | `schema:Country1`|
+| _country_code_ | `memex:isoCode` | `schema:Country1`|
 | _country_uri_ | `uri` | `schema:Country1`|
 | _crawl_uri_ | `uri` | `schema:WebPage1`|
 | _database_id_ | `memex:databaseId` | `prov:Activity1`|
