@@ -640,9 +640,9 @@ def clean_state(state, country):
         state_us = standardize_state_name("US", state)
         if len(state_us) > 0:
             state = state_us
-        else:
-            if len(state) == 2:
-                state = state.upper() #upper case state code
+
+    if len(state) == 2:
+        state = state.upper() #upper case state code
 
     return state
 
