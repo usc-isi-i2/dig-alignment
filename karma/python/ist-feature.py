@@ -444,11 +444,11 @@ def person_weight_uri(cleaned):
 
 # name  10042
 def clean_name(x):
-    stripped = x.strip().lower()
-    return alphaOnly(stripped)
+    return toTitleCaseCleaned(x)
 
 def person_name_uri(cleaned):
     if cleaned:
+        cleaned = cleaned.strip().replace(" ", "_").lower()
         return "person_name/%s" % cleaned
 
 # tattoos   8614
@@ -485,6 +485,7 @@ def clean_username(x):
 
 def person_username_uri(cleaned):
     if cleaned:
+        cleaned = cleaned.strip().replace(" ", "_").lower()
         return "person_username/%s" % cleaned
 
 # travel    4727
