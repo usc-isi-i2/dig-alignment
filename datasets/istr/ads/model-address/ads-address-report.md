@@ -1,4 +1,4 @@
-## ads-addresses-sample.json
+## select unix_timestamp(a.importtime)*1000 as timestamp, a.* from ads a where id=138061
 
 ### PyTransforms
 #### _crawl_uri_
@@ -77,8 +77,8 @@ return address_uri(getValue("city_clean"), getValue("state_clean"), getValue("co
 From column: _address_uri_
 >``` python
 uri = getValue("address_uri")
-if(len("uri") > 0):
-    return getValue("featurecollection_uri")+"/" + uri
+if(len(uri) > 0):
+    return getValue("featurecollection_uri") + "/" + uri
 return ''
 ```
 

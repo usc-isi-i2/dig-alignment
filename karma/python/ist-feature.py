@@ -678,11 +678,11 @@ def clean_address(city, state, country, sep):
     return addr
 
 def address_uri(city, state, country):
-	addr = clean_address(city, state, country, "-").strip()
-	if len(addr) > 0:
-		addr = addr.replace(" ", "_").lower()
+    addr = clean_address(city, state, country, "-").strip()
+    if len(addr) > 0:
+        addr = addr.replace(" ", "_").lower()
         return "address/" + addr
-	return ''
+    return ''
 
 def country_uri(country):
     country = clean_location(country)
