@@ -451,6 +451,11 @@ def person_name_uri(cleaned):
         cleaned = cleaned.strip().replace(" ", "_").lower()
         return "person_name/%s" % cleaned
 
+def author_uri(cleaned):
+     if cleaned:
+        cleaned = cleaned.strip().replace(" ", "_").lower()
+        return "author/%s" % cleaned
+
 # tattoos   8614
 def clean_tattoos(x):
     stripped = x.strip().lower()
