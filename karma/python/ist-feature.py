@@ -450,11 +450,14 @@ def person_name_uri(cleaned):
     if cleaned:
         cleaned = cleaned.strip().replace(" ", "_").lower()
         return "person_name/%s" % cleaned
+    return ''
+
 
 def author_uri(cleaned):
-     if cleaned:
+    if cleaned:
         cleaned = cleaned.strip().replace(" ", "_").lower()
         return "author/%s" % cleaned
+    return ''
 
 # tattoos   8614
 def clean_tattoos(x):
@@ -715,6 +718,30 @@ def emailaddress_uri(email):
 		qc = quote(c, safe='')
 		return "emailaddress/" + qc
 	return ''
+
+content_registeries = ["application", "audio", "example", "image",
+                        "message", "model", "multipart", "text", "video"]
+
+def clean_content_type(type):
+    idx = type.find("/")
+    if idx:
+        reg = type[0:idx]
+        if reg in content_registeries:
+            return type
+    return ''
+
+def content_type_uri(cleaned):
+    if cleaned:
+        return "content_type/%s" % cleaned
+    return ''
+
+def clean_content_length(clen):
+   return numericOnly(clen)
+
+def content_length_uri(cleaned):
+    if cleaned:
+        return "content_length/%s" % cleaned
+    return ''
 
 mapFunctions = defaultdict(lambda x: None)
 
