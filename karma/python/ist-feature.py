@@ -743,6 +743,11 @@ def content_length_uri(cleaned):
         return "content_length/%s" % cleaned
     return ''
 
+def publication_year_uri(cleaned):
+    if cleaned:
+        return "publication_year/%s" % cleaned
+    return ''
+
 mapFunctions = defaultdict(lambda x: None)
 
 mapFunctions['phone'] = clean_phone

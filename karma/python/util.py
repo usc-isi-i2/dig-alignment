@@ -177,3 +177,8 @@ output format: iso8601
     # If all else fails, return input
     return date
 
+
+def getYearFromISODate(isoDate):
+    if isoDate:
+        return isoDate[0:4]
+    return ''
