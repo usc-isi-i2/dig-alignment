@@ -1,0 +1,1304 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix schemax: <http://topbraid.org/schemax/> .
+@prefix schema: <http://schema.org/> .
+@prefix memex: <http://memexproxy.com/ontology/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ht: <http://memexproxy.com/ontology/human-trafficking/> .
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix km-dev: <http://isi.edu/integration/karma/dev#> .
+
+_:node19bnm7861x1 a km-dev:R2RMLMapping ;
+	km-dev:sourceName "splash.json" ;
+	km-dev:modelPublicationTime "1421355491521"^^xsd:long ;
+	km-dev:modelVersion "1.7" ;
+	km-dev:hasInputColumns "[[{\"columnName\":\"category\"}],[{\"columnName\":\"resource\"}],[{\"columnName\":\"rawImageURL\"}],[{\"columnName\":\"language\"}],[{\"columnName\":\"rawHTMLURL\"}],[{\"columnName\":\"timestamp\"}],[{\"columnName\":\"extractedText\"}],[{\"columnName\":\"url\"}]]" ;
+	km-dev:hasOutputColumns "[[{\"columnName\":\"category\"}],[{\"columnName\":\"resource\"}],[{\"columnName\":\"rawImageURL\"}],[{\"columnName\":\"language\"}],[{\"columnName\":\"rawHTMLURL\"}],[{\"columnName\":\"cache_uri\"}],[{\"columnName\":\"snapshot_uri\"}],[{\"columnName\":\"extractedText\"}],[{\"columnName\":\"url\"}]]" ;
+	km-dev:hasModelLabel "splash.json" ;
+	km-dev:hasBaseURI "http://localhost:8080/source/" ;
+	km-dev:hasWorksheetHistory """[
+    {
+        \"tags\": [\"Transformation\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"url\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"hTableId\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"value\": \"timestamp\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"defaultValue\",
+                \"value\": \"1396486522000\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"AddColumnCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"timestamp\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"value\": \"cache_uri\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"value\": \"return getCacheBaseUrl()+\\\"page/\\\"+get_url_hash(getValue(\\\"url\\\"))+\\\"/\\\"+getValue(\\\"timestamp\\\")+\\\"/processed\\\"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"isJSONOutput\",
+                \"value\": \"false\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"timestamp\\\"}]},{\\\"value\\\":[{\\\"columnName\\\":\\\"url\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"cache_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SubmitPythonTransformationCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"cache_uri\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"value\": \"snapshot_uri\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"value\": \"return getCacheBaseUrl()+\\\"page/\\\"+get_url_hash(getValue(\\\"url\\\"))+\\\"/\\\"+getValue(\\\"timestamp\\\")+\\\"/raw\\\"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"isJSONOutput\",
+                \"value\": \"false\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"timestamp\\\"}]},{\\\"value\\\":[{\\\"columnName\\\":\\\"url\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"snapshot_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SubmitPythonTransformationCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"cache_uri\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyName\",
+                \"value\": \"isUriOfClass\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyUri\",
+                \"value\": \"http://schema.org/WebPage\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyId\",
+                \"value\": \"http://schema.org/WebPage1 (add)\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://isi.edu/integration/karma/dev#classLink\",
+                    \"DomainLabel\": \"schema:WebPage1 (add)\",
+                    \"DomainId\": \"http://schema.org/WebPage1 (add)\",
+                    \"DomainUri\": \"http://schema.org/WebPage\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"cache_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"cache_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetMetaPropertyCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"snapshot_uri\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://memexproxy.com/ontology/snapshotUri\",
+                    \"DomainLabel\": \"schema:WebPage1\",
+                    \"DomainId\": \"http://schema.org/WebPage1\",
+                    \"DomainUri\": \"http://schema.org/WebPage\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"snapshot_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"snapshot_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetSemanticTypeCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"url\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://schema.org/url\",
+                    \"DomainLabel\": \"schema:WebPage1\",
+                    \"DomainId\": \"http://schema.org/WebPage1\",
+                    \"DomainUri\": \"http://schema.org/WebPage\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"url\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"url\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetSemanticTypeCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"rawHTMLURL\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://memexproxy.com/ontology/cacheUrl\",
+                    \"DomainLabel\": \"schema:WebPage1\",
+                    \"DomainId\": \"http://schema.org/WebPage1\",
+                    \"DomainUri\": \"http://schema.org/WebPage\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"rawHTMLURL\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"rawHTMLURL\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetSemanticTypeCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"initialEdges\",
+                \"value\": [],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"alignmentId\",
+                \"value\": \"WSP5:WS1AL\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newEdges\",
+                \"value\": [{
+                    \"edgeTargetUri\": \"http://schema.org/WebPageElement\",
+                    \"edgeId\": \"http://memexproxy.com/ontology/hasBodyPart\",
+                    \"edgeTargetId\": \"http://schema.org/WebPageElement1 (add)\",
+                    \"edgeSourceId\": \"http://schema.org/WebPage1\",
+                    \"edgeSourceUri\": \"http://schema.org/WebPage1\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"ChangeInternalNodeLinksCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"extractedText\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://schema.org/text\",
+                    \"DomainLabel\": \"schema:WebPageElement1\",
+                    \"DomainId\": \"http://schema.org/WebPageElement1\",
+                    \"DomainUri\": \"http://schema.org/WebPageElement\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"extractedText\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"extractedText\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetSemanticTypeCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"language\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://schema.org/inLanguage\",
+                    \"DomainLabel\": \"schema:WebPage1\",
+                    \"DomainId\": \"http://schema.org/WebPage1\",
+                    \"DomainUri\": \"http://schema.org/WebPage\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"language\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"language\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetSemanticTypeCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"initialEdges\",
+                \"value\": [],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"alignmentId\",
+                \"value\": \"WSP5:WS1AL\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newEdges\",
+                \"value\": [{
+                    \"edgeTargetUri\": \"http://schema.org/Organization\",
+                    \"edgeId\": \"http://schema.org/provider\",
+                    \"edgeTargetId\": \"http://schema.org/Organization1 (add)\",
+                    \"edgeSourceId\": \"http://schema.org/WebPage1\",
+                    \"edgeSourceUri\": \"http://schema.org/WebPage1\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"ChangeInternalNodeLinksCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"resource\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://www.w3.org/2000/01/rdf-schema#label\",
+                    \"DomainLabel\": \"schema:Organization1\",
+                    \"DomainId\": \"http://schema.org/Organization1\",
+                    \"DomainUri\": \"http://schema.org/Organization\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"resource\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"resource\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetSemanticTypeCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"orderedColumns\",
+                \"value\": [
+                    {
+                        \"id\": [{\"columnName\": \"provenance\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"provenance\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"category\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"category\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"rawImageURL\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"rawImageURL\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"username_histogram\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"username_histogram\",
+                        \"children\": \"[{\\\"id\\\":[{\\\"columnName\\\":\\\"username_histogram\\\"},{\\\"columnName\\\":\\\"babies\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"babies\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"username_histogram\\\"},{\\\"columnName\\\":\\\"extreme\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"extreme\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"username_histogram\\\"},{\\\"columnName\\\":\\\"gaze\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"gaze\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"username_histogram\\\"},{\\\"columnName\\\":\\\"boss\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"boss\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"username_histogram\\\"},{\\\"columnName\\\":\\\"Forgotten\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Forgotten\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"username_histogram\\\"},{\\\"columnName\\\":\\\"cob\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"cob\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"username_histogram\\\"},{\\\"columnName\\\":\\\"Bow\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Bow\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"username_histogram\\\"},{\\\"columnName\\\":\\\"dog\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"dog\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"username_histogram\\\"},{\\\"columnName\\\":\\\"German\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"German\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"username_histogram\\\"},{\\\"columnName\\\":\\\"Master\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Master\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"username_histogram\\\"},{\\\"columnName\\\":\\\"Bubble\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Bubble\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"username_histogram\\\"},{\\\"columnName\\\":\\\"master\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"master\\\"}]\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"blackhat_username_histogram\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"blackhat_username_histogram\",
+                        \"children\": \"[{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"skills\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"skills\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Extra\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Extra\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"perpetual\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"perpetual\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"caffeine\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"caffeine\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Bearded\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Bearded\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Free\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Free\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"hatred\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"hatred\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"free\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"free\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"spawn\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"spawn\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"thanks\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"thanks\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"stock\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"stock\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"given\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"given\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"chemical\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"chemical\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"anybody\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"anybody\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Flame\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Flame\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"backyard\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"backyard\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"HatTrick\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"HatTrick\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"rubber\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"rubber\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"extra\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"extra\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"waiting\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"waiting\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Crazy\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Crazy\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"slink\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"slink\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"bearded\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"bearded\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Class\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Class\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"silence\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"silence\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"resolute\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"resolute\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Purple\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Purple\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"radius\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"radius\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"shade\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"shade\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"delusional\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"delusional\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Silver\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Silver\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Danzig\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Danzig\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"realized\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"realized\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"reminder\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"reminder\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Grand\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Grand\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"simple\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"simple\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Salty\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Salty\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Prince\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Prince\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"acclaim\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"acclaim\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"looking\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"looking\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Fancy\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Fancy\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"faster\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"faster\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Crusher\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Crusher\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"easy\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"easy\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Action\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Action\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"smoking\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"smoking\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Frontline\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Frontline\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Caffeine\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Caffeine\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"regen\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"regen\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"obese\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"obese\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"pyramid\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"pyramid\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Lotus\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Lotus\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Swiss\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Swiss\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"selection\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"selection\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Allied\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Allied\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"allied\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"allied\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Tombstone\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Tombstone\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"bongos\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"bongos\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"design\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"design\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Press\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Press\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"sentient\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"sentient\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"edition\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"edition\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"fancy\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"fancy\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Simply\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Simply\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Cobber\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Cobber\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Laser\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Laser\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"download\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"download\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"aware\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"aware\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"alive\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"alive\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Hockey\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Hockey\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"doctor\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"doctor\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Smoking\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Smoking\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"rocket\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"rocket\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"grand\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"grand\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"mixing\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"mixing\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"action\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"action\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"CRAZY\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"CRAZY\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"sneaking\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"sneaking\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"spraypaint\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"spraypaint\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Swarm\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Swarm\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Rancho\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Rancho\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"infantry\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"infantry\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"white\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"white\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Rubber\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Rubber\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Thanks\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Thanks\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"class\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"class\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Visit\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Visit\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Scotland\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Scotland\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Security\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Security\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Lord\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Lord\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"locks\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"locks\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"known\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"known\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"fire!\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"fire!\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"underwater\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"underwater\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"repeat\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"repeat\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"flame\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"flame\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"selected\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"selected\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"protected\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"protected\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Necro\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Necro\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"crazy\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"crazy\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Equalizer\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Equalizer\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"handy\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"handy\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Nutcracker\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Nutcracker\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Minister\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Minister\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Rocket\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Rocket\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"standard\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"standard\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"silver\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"silver\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"cable\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"cable\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"potential\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"potential\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"still\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"still\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"deals\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"deals\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"rules\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"rules\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"squirt\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"squirt\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Underwater\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Underwater\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"briefcase\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"briefcase\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"wedding\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"wedding\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"actual\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"actual\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"blueprint\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"blueprint\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"proxies\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"proxies\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"growth\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"growth\\\"}]\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"resource\"}],
+                        \"visible\": true,
+                        \"hideable\": false,
+                        \"name\": \"resource\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"language\"}],
+                        \"visible\": true,
+                        \"hideable\": false,
+                        \"name\": \"language\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"rawHTMLURL\"}],
+                        \"visible\": true,
+                        \"hideable\": false,
+                        \"name\": \"rawHTMLURL\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"extractedText\"}],
+                        \"visible\": true,
+                        \"hideable\": false,
+                        \"name\": \"extractedText\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"url\"}],
+                        \"visible\": true,
+                        \"hideable\": false,
+                        \"name\": \"url\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"timestamp\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"timestamp\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"cache_uri\"}],
+                        \"visible\": true,
+                        \"hideable\": false,
+                        \"name\": \"cache_uri\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"snapshot_uri\"}],
+                        \"visible\": true,
+                        \"hideable\": false,
+                        \"name\": \"snapshot_uri\"
+                    }
+                ],
+                \"type\": \"orderedColumns\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"OrganizeColumnsCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"category\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://schema.org/category\",
+                    \"DomainLabel\": \"schema:Organization1\",
+                    \"DomainId\": \"http://schema.org/Organization1\",
+                    \"DomainUri\": \"http://schema.org/Organization\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"category\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"category\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetSemanticTypeCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"initialEdges\",
+                \"value\": [],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"alignmentId\",
+                \"value\": \"WSP5:WS1AL\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newEdges\",
+                \"value\": [{
+                    \"edgeTargetUri\": \"http://schema.org/ImageObject\",
+                    \"edgeId\": \"http://memexproxy.com/ontology/hasImagePart\",
+                    \"edgeTargetId\": \"http://schema.org/ImageObject1 (add)\",
+                    \"edgeSourceId\": \"http://schema.org/WebPage1\",
+                    \"edgeSourceUri\": \"http://schema.org/WebPage1\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"ChangeInternalNodeLinksCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"rawImageURL\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://memexproxy.com/ontology/cacheUrl\",
+                    \"DomainLabel\": \"schema:ImageObject1\",
+                    \"DomainId\": \"http://schema.org/ImageObject1\",
+                    \"DomainUri\": \"http://schema.org/ImageObject\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"rawImageURL\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"rawImageURL\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetSemanticTypeCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"orderedColumns\",
+                \"value\": [
+                    {
+                        \"id\": [{\"columnName\": \"provenance\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"provenance\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"rawImageURL\"}],
+                        \"visible\": true,
+                        \"hideable\": false,
+                        \"name\": \"rawImageURL\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"username_histogram\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"username_histogram\",
+                        \"children\": \"[{\\\"id\\\":[{\\\"columnName\\\":\\\"username_histogram\\\"},{\\\"columnName\\\":\\\"babies\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"babies\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"username_histogram\\\"},{\\\"columnName\\\":\\\"extreme\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"extreme\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"username_histogram\\\"},{\\\"columnName\\\":\\\"gaze\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"gaze\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"username_histogram\\\"},{\\\"columnName\\\":\\\"boss\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"boss\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"username_histogram\\\"},{\\\"columnName\\\":\\\"Forgotten\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Forgotten\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"username_histogram\\\"},{\\\"columnName\\\":\\\"cob\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"cob\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"username_histogram\\\"},{\\\"columnName\\\":\\\"Bow\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Bow\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"username_histogram\\\"},{\\\"columnName\\\":\\\"dog\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"dog\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"username_histogram\\\"},{\\\"columnName\\\":\\\"German\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"German\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"username_histogram\\\"},{\\\"columnName\\\":\\\"Master\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Master\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"username_histogram\\\"},{\\\"columnName\\\":\\\"Bubble\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Bubble\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"username_histogram\\\"},{\\\"columnName\\\":\\\"master\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"master\\\"}]\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"blackhat_username_histogram\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"blackhat_username_histogram\",
+                        \"children\": \"[{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"skills\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"skills\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Extra\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Extra\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"perpetual\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"perpetual\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"caffeine\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"caffeine\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Bearded\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Bearded\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Free\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Free\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"hatred\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"hatred\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"free\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"free\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"spawn\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"spawn\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"thanks\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"thanks\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"stock\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"stock\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"given\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"given\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"chemical\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"chemical\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"anybody\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"anybody\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Flame\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Flame\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"backyard\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"backyard\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"HatTrick\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"HatTrick\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"rubber\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"rubber\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"extra\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"extra\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"waiting\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"waiting\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Crazy\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Crazy\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"slink\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"slink\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"bearded\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"bearded\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Class\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Class\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"silence\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"silence\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"resolute\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"resolute\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Purple\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Purple\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"radius\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"radius\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"shade\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"shade\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"delusional\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"delusional\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Silver\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Silver\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Danzig\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Danzig\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"realized\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"realized\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"reminder\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"reminder\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Grand\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Grand\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"simple\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"simple\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Salty\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Salty\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Prince\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Prince\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"acclaim\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"acclaim\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"looking\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"looking\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Fancy\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Fancy\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"faster\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"faster\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Crusher\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Crusher\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"easy\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"easy\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Action\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Action\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"smoking\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"smoking\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Frontline\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Frontline\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Caffeine\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Caffeine\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"regen\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"regen\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"obese\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"obese\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"pyramid\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"pyramid\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Lotus\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Lotus\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Swiss\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Swiss\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"selection\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"selection\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Allied\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Allied\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"allied\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"allied\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Tombstone\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Tombstone\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"bongos\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"bongos\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"design\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"design\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Press\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Press\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"sentient\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"sentient\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"edition\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"edition\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"fancy\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"fancy\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Simply\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Simply\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Cobber\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Cobber\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Laser\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Laser\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"download\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"download\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"aware\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"aware\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"alive\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"alive\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Hockey\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Hockey\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"doctor\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"doctor\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Smoking\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Smoking\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"rocket\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"rocket\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"grand\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"grand\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"mixing\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"mixing\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"action\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"action\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"CRAZY\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"CRAZY\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"sneaking\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"sneaking\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"spraypaint\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"spraypaint\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Swarm\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Swarm\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Rancho\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Rancho\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"infantry\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"infantry\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"white\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"white\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Rubber\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Rubber\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Thanks\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Thanks\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"class\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"class\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Visit\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Visit\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Scotland\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Scotland\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Security\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Security\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Lord\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Lord\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"locks\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"locks\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"known\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"known\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"fire!\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"fire!\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"underwater\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"underwater\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"repeat\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"repeat\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"flame\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"flame\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"selected\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"selected\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"protected\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"protected\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Necro\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Necro\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"crazy\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"crazy\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Equalizer\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Equalizer\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"handy\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"handy\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Nutcracker\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Nutcracker\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Minister\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Minister\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Rocket\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Rocket\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"standard\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"standard\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"silver\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"silver\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"cable\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"cable\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"potential\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"potential\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"still\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"still\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"deals\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"deals\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"rules\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"rules\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"squirt\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"squirt\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"Underwater\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"Underwater\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"briefcase\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"briefcase\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"wedding\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"wedding\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"actual\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"actual\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"blueprint\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"blueprint\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"proxies\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"proxies\\\"},{\\\"id\\\":[{\\\"columnName\\\":\\\"blackhat_username_histogram\\\"},{\\\"columnName\\\":\\\"growth\\\"}],\\\"visible\\\":true,\\\"hideable\\\":true,\\\"name\\\":\\\"growth\\\"}]\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"resource\"}],
+                        \"visible\": true,
+                        \"hideable\": false,
+                        \"name\": \"resource\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"category\"}],
+                        \"visible\": true,
+                        \"hideable\": false,
+                        \"name\": \"category\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"language\"}],
+                        \"visible\": true,
+                        \"hideable\": false,
+                        \"name\": \"language\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"rawHTMLURL\"}],
+                        \"visible\": true,
+                        \"hideable\": false,
+                        \"name\": \"rawHTMLURL\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"extractedText\"}],
+                        \"visible\": true,
+                        \"hideable\": false,
+                        \"name\": \"extractedText\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"url\"}],
+                        \"visible\": true,
+                        \"hideable\": false,
+                        \"name\": \"url\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"timestamp\"}],
+                        \"visible\": true,
+                        \"hideable\": true,
+                        \"name\": \"timestamp\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"cache_uri\"}],
+                        \"visible\": true,
+                        \"hideable\": false,
+                        \"name\": \"cache_uri\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"snapshot_uri\"}],
+                        \"visible\": true,
+                        \"hideable\": false,
+                        \"name\": \"snapshot_uri\"
+                    }
+                ],
+                \"type\": \"orderedColumns\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"OrganizeColumnsCommand\"
+    }
+]""" .
+
+km-dev:TriplesMap_2715aedc-71a6-4963-8e6b-85ab273c43a4 a rr:TriplesMap .
+
+_:node19bnm7861x1 km-dev:hasTriplesMap km-dev:TriplesMap_2715aedc-71a6-4963-8e6b-85ab273c43a4 .
+
+km-dev:TriplesMap_2715aedc-71a6-4963-8e6b-85ab273c43a4 km-dev:isPartOfMapping _:node19bnm7861x1 .
+
+_:node19bnm7861x2 rr:tableName "splash.json" ;
+	a rr:LogicalTable ;
+	km-dev:isPartOfMapping _:node19bnm7861x1 .
+
+_:node19bnm7861x1 km-dev:hasLogicalTable _:node19bnm7861x2 .
+
+km-dev:TriplesMap_2715aedc-71a6-4963-8e6b-85ab273c43a4 rr:logicalTable _:node19bnm7861x2 ;
+	rr:subjectMap _:node19bnm7861x3 .
+
+_:node19bnm7861x1 km-dev:hasSubjectMap _:node19bnm7861x3 .
+
+_:node19bnm7861x3 km-dev:isPartOfMapping _:node19bnm7861x1 ;
+	a rr:SubjectMap ;
+	km-dev:alignmentNodeId "http://schema.org/ImageObject1" ;
+	rr:class schema:ImageObject ;
+	rr:termType rr:BlankNode ;
+	km-dev:namePrefix "schema:ImageObject1" .
+
+km-dev:PredicateObjectMap_1b5304bb-6911-414c-bf51-1371f64675cc rr:predicate memex:cacheUrl .
+
+_:node19bnm7861x4 rr:column "rawImageURL" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node19bnm7861x1 .
+
+_:node19bnm7861x1 km-dev:hasObjectMap _:node19bnm7861x4 .
+
+km-dev:PredicateObjectMap_1b5304bb-6911-414c-bf51-1371f64675cc rr:objectMap _:node19bnm7861x4 .
+
+km-dev:TriplesMap_2715aedc-71a6-4963-8e6b-85ab273c43a4 rr:predicateObjectMap km-dev:PredicateObjectMap_1b5304bb-6911-414c-bf51-1371f64675cc .
+
+km-dev:PredicateObjectMap_1b5304bb-6911-414c-bf51-1371f64675cc a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19bnm7861x1 .
+
+_:node19bnm7861x1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_1b5304bb-6911-414c-bf51-1371f64675cc .
+
+km-dev:TriplesMap_01ee564f-a328-44a4-9851-aa549b7418ab a rr:TriplesMap .
+
+_:node19bnm7861x1 km-dev:hasTriplesMap km-dev:TriplesMap_01ee564f-a328-44a4-9851-aa549b7418ab .
+
+km-dev:TriplesMap_01ee564f-a328-44a4-9851-aa549b7418ab km-dev:isPartOfMapping _:node19bnm7861x1 .
+
+_:node19bnm7861x5 rr:tableName "splash.json" ;
+	a rr:LogicalTable ;
+	km-dev:isPartOfMapping _:node19bnm7861x1 .
+
+_:node19bnm7861x1 km-dev:hasLogicalTable _:node19bnm7861x5 .
+
+km-dev:TriplesMap_01ee564f-a328-44a4-9851-aa549b7418ab rr:logicalTable _:node19bnm7861x5 ;
+	rr:subjectMap _:node19bnm7861x6 .
+
+_:node19bnm7861x1 km-dev:hasSubjectMap _:node19bnm7861x6 .
+
+_:node19bnm7861x6 km-dev:isPartOfMapping _:node19bnm7861x1 ;
+	a rr:SubjectMap ;
+	km-dev:alignmentNodeId "http://schema.org/Organization1" ;
+	rr:class schema:Organization ;
+	rr:termType rr:BlankNode ;
+	km-dev:namePrefix "schema:Organization1" .
+
+km-dev:PredicateObjectMap_dd50cd4c-750f-425e-b6c0-a9d6075de7a0 rr:predicate schema:category .
+
+_:node19bnm7861x7 rr:column "category" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node19bnm7861x1 .
+
+_:node19bnm7861x1 km-dev:hasObjectMap _:node19bnm7861x7 .
+
+km-dev:PredicateObjectMap_dd50cd4c-750f-425e-b6c0-a9d6075de7a0 rr:objectMap _:node19bnm7861x7 .
+
+km-dev:TriplesMap_01ee564f-a328-44a4-9851-aa549b7418ab rr:predicateObjectMap km-dev:PredicateObjectMap_dd50cd4c-750f-425e-b6c0-a9d6075de7a0 .
+
+km-dev:PredicateObjectMap_dd50cd4c-750f-425e-b6c0-a9d6075de7a0 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19bnm7861x1 .
+
+_:node19bnm7861x1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_dd50cd4c-750f-425e-b6c0-a9d6075de7a0 .
+
+km-dev:PredicateObjectMap_fa602bc5-6f82-497d-9871-88ec84e681f7 rr:predicate rdfs:label .
+
+_:node19bnm7861x8 rr:column "resource" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node19bnm7861x1 .
+
+_:node19bnm7861x1 km-dev:hasObjectMap _:node19bnm7861x8 .
+
+km-dev:PredicateObjectMap_fa602bc5-6f82-497d-9871-88ec84e681f7 rr:objectMap _:node19bnm7861x8 .
+
+km-dev:TriplesMap_01ee564f-a328-44a4-9851-aa549b7418ab rr:predicateObjectMap km-dev:PredicateObjectMap_fa602bc5-6f82-497d-9871-88ec84e681f7 .
+
+km-dev:PredicateObjectMap_fa602bc5-6f82-497d-9871-88ec84e681f7 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19bnm7861x1 .
+
+_:node19bnm7861x1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_fa602bc5-6f82-497d-9871-88ec84e681f7 .
+
+km-dev:TriplesMap_233b3002-b431-4283-b3c5-8b5a361708c8 a rr:TriplesMap .
+
+_:node19bnm7861x1 km-dev:hasTriplesMap km-dev:TriplesMap_233b3002-b431-4283-b3c5-8b5a361708c8 .
+
+km-dev:TriplesMap_233b3002-b431-4283-b3c5-8b5a361708c8 km-dev:isPartOfMapping _:node19bnm7861x1 .
+
+_:node19bnm7861x9 rr:tableName "splash.json" ;
+	a rr:LogicalTable ;
+	km-dev:isPartOfMapping _:node19bnm7861x1 .
+
+_:node19bnm7861x1 km-dev:hasLogicalTable _:node19bnm7861x9 .
+
+km-dev:TriplesMap_233b3002-b431-4283-b3c5-8b5a361708c8 rr:logicalTable _:node19bnm7861x9 ;
+	rr:subjectMap _:node19bnm7861x10 .
+
+_:node19bnm7861x1 km-dev:hasSubjectMap _:node19bnm7861x10 .
+
+_:node19bnm7861x10 km-dev:isPartOfMapping _:node19bnm7861x1 ;
+	a rr:SubjectMap ;
+	km-dev:alignmentNodeId "http://schema.org/WebPage1" ;
+	rr:class schema:WebPage ;
+	rr:template "{cache_uri}" ;
+	a km-dev:steinerTreeRootNode .
+
+km-dev:PredicateObjectMap_73763d33-d4c8-492b-a7a6-4c3e1844cd33 rr:predicate memex:cacheUrl .
+
+_:node19bnm7861x11 rr:column "rawHTMLURL" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node19bnm7861x1 .
+
+_:node19bnm7861x1 km-dev:hasObjectMap _:node19bnm7861x11 .
+
+km-dev:PredicateObjectMap_73763d33-d4c8-492b-a7a6-4c3e1844cd33 rr:objectMap _:node19bnm7861x11 .
+
+km-dev:TriplesMap_233b3002-b431-4283-b3c5-8b5a361708c8 rr:predicateObjectMap km-dev:PredicateObjectMap_73763d33-d4c8-492b-a7a6-4c3e1844cd33 .
+
+km-dev:PredicateObjectMap_73763d33-d4c8-492b-a7a6-4c3e1844cd33 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19bnm7861x1 .
+
+_:node19bnm7861x1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_73763d33-d4c8-492b-a7a6-4c3e1844cd33 .
+
+km-dev:PredicateObjectMap_e7dbc38e-202e-4dc9-aa5f-0de759627cb4 rr:predicate memex:hasBodyPart .
+
+km-dev:RefObjectMap_65573898-4d5c-4082-9c25-4ce734d6e75f a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_2c48d9b7-74d4-4578-87cb-6a806370bfaf ;
+	km-dev:isPartOfMapping _:node19bnm7861x1 .
+
+_:node19bnm7861x1 km-dev:hasObjectMap km-dev:RefObjectMap_65573898-4d5c-4082-9c25-4ce734d6e75f .
+
+km-dev:PredicateObjectMap_e7dbc38e-202e-4dc9-aa5f-0de759627cb4 rr:objectMap km-dev:RefObjectMap_65573898-4d5c-4082-9c25-4ce734d6e75f .
+
+km-dev:TriplesMap_233b3002-b431-4283-b3c5-8b5a361708c8 rr:predicateObjectMap km-dev:PredicateObjectMap_e7dbc38e-202e-4dc9-aa5f-0de759627cb4 .
+
+km-dev:PredicateObjectMap_e7dbc38e-202e-4dc9-aa5f-0de759627cb4 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19bnm7861x1 .
+
+_:node19bnm7861x1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_e7dbc38e-202e-4dc9-aa5f-0de759627cb4 .
+
+km-dev:PredicateObjectMap_1d8c24cb-a73d-4b4c-bc20-cc5ada69dec3 rr:predicate memex:hasImagePart .
+
+km-dev:RefObjectMap_cf1dc712-8fb0-42e5-b50e-d6007adf70c4 a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_2715aedc-71a6-4963-8e6b-85ab273c43a4 ;
+	km-dev:isPartOfMapping _:node19bnm7861x1 .
+
+_:node19bnm7861x1 km-dev:hasObjectMap km-dev:RefObjectMap_cf1dc712-8fb0-42e5-b50e-d6007adf70c4 .
+
+km-dev:PredicateObjectMap_1d8c24cb-a73d-4b4c-bc20-cc5ada69dec3 rr:objectMap km-dev:RefObjectMap_cf1dc712-8fb0-42e5-b50e-d6007adf70c4 .
+
+km-dev:TriplesMap_233b3002-b431-4283-b3c5-8b5a361708c8 rr:predicateObjectMap km-dev:PredicateObjectMap_1d8c24cb-a73d-4b4c-bc20-cc5ada69dec3 .
+
+km-dev:PredicateObjectMap_1d8c24cb-a73d-4b4c-bc20-cc5ada69dec3 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19bnm7861x1 .
+
+_:node19bnm7861x1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_1d8c24cb-a73d-4b4c-bc20-cc5ada69dec3 .
+
+km-dev:PredicateObjectMap_bccb4f68-eb4d-48b1-85d8-96a98a311c12 rr:predicate memex:snapshotUri .
+
+_:node19bnm7861x12 rr:column "snapshot_uri" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node19bnm7861x1 .
+
+_:node19bnm7861x1 km-dev:hasObjectMap _:node19bnm7861x12 .
+
+km-dev:PredicateObjectMap_bccb4f68-eb4d-48b1-85d8-96a98a311c12 rr:objectMap _:node19bnm7861x12 .
+
+km-dev:TriplesMap_233b3002-b431-4283-b3c5-8b5a361708c8 rr:predicateObjectMap km-dev:PredicateObjectMap_bccb4f68-eb4d-48b1-85d8-96a98a311c12 .
+
+km-dev:PredicateObjectMap_bccb4f68-eb4d-48b1-85d8-96a98a311c12 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19bnm7861x1 .
+
+_:node19bnm7861x1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_bccb4f68-eb4d-48b1-85d8-96a98a311c12 .
+
+km-dev:PredicateObjectMap_06481788-beca-45bb-ac87-921b4e8267ce rr:predicate schema:inLanguage .
+
+_:node19bnm7861x13 rr:column "language" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node19bnm7861x1 .
+
+_:node19bnm7861x1 km-dev:hasObjectMap _:node19bnm7861x13 .
+
+km-dev:PredicateObjectMap_06481788-beca-45bb-ac87-921b4e8267ce rr:objectMap _:node19bnm7861x13 .
+
+km-dev:TriplesMap_233b3002-b431-4283-b3c5-8b5a361708c8 rr:predicateObjectMap km-dev:PredicateObjectMap_06481788-beca-45bb-ac87-921b4e8267ce .
+
+km-dev:PredicateObjectMap_06481788-beca-45bb-ac87-921b4e8267ce a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19bnm7861x1 .
+
+_:node19bnm7861x1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_06481788-beca-45bb-ac87-921b4e8267ce .
+
+km-dev:PredicateObjectMap_f7217684-323f-46d5-9ed5-acf2da2d089e rr:predicate schema:provider .
+
+km-dev:RefObjectMap_21f59325-4896-403e-bf1b-cb7d57440dd1 a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_01ee564f-a328-44a4-9851-aa549b7418ab ;
+	km-dev:isPartOfMapping _:node19bnm7861x1 .
+
+_:node19bnm7861x1 km-dev:hasObjectMap km-dev:RefObjectMap_21f59325-4896-403e-bf1b-cb7d57440dd1 .
+
+km-dev:PredicateObjectMap_f7217684-323f-46d5-9ed5-acf2da2d089e rr:objectMap km-dev:RefObjectMap_21f59325-4896-403e-bf1b-cb7d57440dd1 .
+
+km-dev:TriplesMap_233b3002-b431-4283-b3c5-8b5a361708c8 rr:predicateObjectMap km-dev:PredicateObjectMap_f7217684-323f-46d5-9ed5-acf2da2d089e .
+
+km-dev:PredicateObjectMap_f7217684-323f-46d5-9ed5-acf2da2d089e a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19bnm7861x1 .
+
+_:node19bnm7861x1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_f7217684-323f-46d5-9ed5-acf2da2d089e .
+
+km-dev:PredicateObjectMap_e1075949-0676-4670-ab24-230cd038ae69 rr:predicate schema:url .
+
+_:node19bnm7861x14 rr:column "url" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node19bnm7861x1 .
+
+_:node19bnm7861x1 km-dev:hasObjectMap _:node19bnm7861x14 .
+
+km-dev:PredicateObjectMap_e1075949-0676-4670-ab24-230cd038ae69 rr:objectMap _:node19bnm7861x14 .
+
+km-dev:TriplesMap_233b3002-b431-4283-b3c5-8b5a361708c8 rr:predicateObjectMap km-dev:PredicateObjectMap_e1075949-0676-4670-ab24-230cd038ae69 .
+
+km-dev:PredicateObjectMap_e1075949-0676-4670-ab24-230cd038ae69 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19bnm7861x1 .
+
+_:node19bnm7861x1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_e1075949-0676-4670-ab24-230cd038ae69 .
+
+km-dev:TriplesMap_2c48d9b7-74d4-4578-87cb-6a806370bfaf a rr:TriplesMap .
+
+_:node19bnm7861x1 km-dev:hasTriplesMap km-dev:TriplesMap_2c48d9b7-74d4-4578-87cb-6a806370bfaf .
+
+km-dev:TriplesMap_2c48d9b7-74d4-4578-87cb-6a806370bfaf km-dev:isPartOfMapping _:node19bnm7861x1 .
+
+_:node19bnm7861x15 rr:tableName "splash.json" ;
+	a rr:LogicalTable ;
+	km-dev:isPartOfMapping _:node19bnm7861x1 .
+
+_:node19bnm7861x1 km-dev:hasLogicalTable _:node19bnm7861x15 .
+
+km-dev:TriplesMap_2c48d9b7-74d4-4578-87cb-6a806370bfaf rr:logicalTable _:node19bnm7861x15 ;
+	rr:subjectMap _:node19bnm7861x16 .
+
+_:node19bnm7861x1 km-dev:hasSubjectMap _:node19bnm7861x16 .
+
+_:node19bnm7861x16 km-dev:isPartOfMapping _:node19bnm7861x1 ;
+	a rr:SubjectMap ;
+	km-dev:alignmentNodeId "http://schema.org/WebPageElement1" ;
+	rr:class schema:WebPageElement ;
+	rr:termType rr:BlankNode ;
+	km-dev:namePrefix "schema:WebPageElement1" .
+
+km-dev:PredicateObjectMap_1d63d408-a622-4b7e-8647-43a1347a7b5e rr:predicate schema:text .
+
+_:node19bnm7861x17 rr:column "extractedText" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node19bnm7861x1 .
+
+_:node19bnm7861x1 km-dev:hasObjectMap _:node19bnm7861x17 .
+
+km-dev:PredicateObjectMap_1d63d408-a622-4b7e-8647-43a1347a7b5e rr:objectMap _:node19bnm7861x17 .
+
+km-dev:TriplesMap_2c48d9b7-74d4-4578-87cb-6a806370bfaf rr:predicateObjectMap km-dev:PredicateObjectMap_1d63d408-a622-4b7e-8647-43a1347a7b5e .
+
+km-dev:PredicateObjectMap_1d63d408-a622-4b7e-8647-43a1347a7b5e a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19bnm7861x1 .
+
+_:node19bnm7861x1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_1d63d408-a622-4b7e-8647-43a1347a7b5e .

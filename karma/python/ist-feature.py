@@ -495,6 +495,13 @@ def person_username_uri(cleaned):
     if cleaned:
         cleaned = cleaned.strip().replace(" ", "_").lower()
         return "person_username/%s" % cleaned
+    return ''
+
+def person_blackhat_username_uri(cleaned):
+    if cleaned:
+        cleaned = cleaned.strip().replace(" ", "_").lower()
+        return "person_blackhat_username/%s" % cleaned
+    return ''
 
 # travel    4727
 def clean_travel(x):
