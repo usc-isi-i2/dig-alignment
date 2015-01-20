@@ -1,4 +1,4 @@
-## msr-data-sample.json
+## x-mrs-full-data-sample.json
 
 ### PyTransforms
 #### _uri_
@@ -28,7 +28,7 @@ return getValue("uri") + "/title"
 #### _dateCreated_
 From column: _year_
 >``` python
-return iso8601date(getValue("year") + "-1-1")
+return iso8601date(numericOnly(getValue("year")) + "-1-1")
 ```
 
 
