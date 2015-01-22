@@ -21,10 +21,17 @@ From column: _chemistry_names / values_
 return getValue("values")
 ```
 
+#### _date_iso_
+From column: _abstract_
+>``` python
+return iso8601date("2014-01-14")
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
 |  ----- | -------- | ----- |
+| _date_iso_ | `prov:endedAtTime` | `prov:Activity2`|
 | _fc_uri_ | `uri` | `memex:FeatureCollection1`|
 | _feature_uri_ | `uri` | `memex:Feature1`|
 | _uri_ | `uri` | `schema:WebPage1`|
@@ -38,6 +45,5 @@ return getValue("values")
 | `memex:Feature1` | `memex:featureName` | `xsd:compound`|
 | `memex:Feature1` | `prov:wasGeneratedBy` | `prov:Activity2`|
 | `memex:FeatureCollection1` | `memex:compound_feature` | `memex:Feature1`|
-| `prov:Activity2` | `prov:endedAtTime` | `xsd:2014-01-14`|
 | `prov:Activity2` | `prov:wasAttributedTo` | `xsd:http://chemicaltagger.ch.cam.ac.uk/`|
 | `schema:WebPage1` | `memex:hasFeatureCollection` | `memex:FeatureCollection1`|
