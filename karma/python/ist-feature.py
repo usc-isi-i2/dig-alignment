@@ -83,12 +83,21 @@ def phonenumber_uri(x):
 def clean_age(x):
     """Return the clean age
     """
-    return x.strip().lower();
+    stripped = x.strip().lower()
+    # take only first value of any range
+    stripped = stripped.split('-')[0].strip()
+    try:
+        age = int(stripped)
+        if age<1 or age>99:
+            return None
+    except:
+        return None
+    return age
 
 def age_uri(x):
 	cx = clean_age(x)
-	if (len(x)>0):
-		return "person_age/" + cx
+	if (cx>0):
+		return "person_age/" + str(cx)
 	return ''
 	
 def person_age_uri(x):
@@ -435,12 +444,20 @@ def person_weight_uri(cleaned):
 
 # name  10042
 def clean_name(x):
-    stripped = x.strip().lower()
-    return alphaOnly(stripped)
+    return toTitleCaseCleaned(x)
 
 def person_name_uri(cleaned):
     if cleaned:
+        cleaned = cleaned.strip().replace(" ", "_").lower()
         return "person_name/%s" % cleaned
+    return ''
+
+
+def author_uri(cleaned):
+    if cleaned:
+        cleaned = cleaned.strip().replace(" ", "_").lower()
+        return "author/%s" % cleaned
+    return ''
 
 # tattoos   8614
 def clean_tattoos(x):
@@ -476,7 +493,15 @@ def clean_username(x):
 
 def person_username_uri(cleaned):
     if cleaned:
+        cleaned = cleaned.strip().replace(" ", "_").lower()
         return "person_username/%s" % cleaned
+    return ''
+
+def person_blackhat_username_uri(cleaned):
+    if cleaned:
+        cleaned = cleaned.strip().replace(" ", "_").lower()
+        return "person_blackhat_username/%s" % cleaned
+    return ''
 
 # travel    4727
 def clean_travel(x):
@@ -608,7 +633,7 @@ def place_zipcode_uri(cleaned):
 
 def clean_location(x):
     stripped = x.strip().lower()
-    stripped = alphaNumeric(stripped)
+    stripped = alphaNumeric(stripped).strip()
     return toTitleCaseCleaned(stripped)
 
 def place_location_uri(cleaned):
@@ -626,10 +651,22 @@ def clean_state(state, country):
     state = clean_location(state)
     if country:
         state = standardize_state_name(country, state)
+    else:
+        state_us = standardize_state_name("US", state)
+        if len(state_us) > 0:
+            state = state_us
+
+    if len(state) == 2:
+        state = state.upper() #upper case state code
 
     return state
 
 def clean_country(country):
+    country = clean_location(country)
+    country = standardize_country_name(country)
+    return country
+
+def country_code(country):
     country = clean_location(country)
     country = standardize_country_code(country)
     return country
@@ -643,10 +680,10 @@ def clean_address(city, state, country, sep):
         usep = sep
 
     country = clean_location(country)
-    country = standardize_country_code(country)
+    country = standardize_country_name(country)
 
     state = clean_location(state)
-    state = standardize_state_code(country, state)
+    state = standardize_state_name(country, state)
     if state:
         addr = addr + usep + state
         usep = sep
@@ -656,17 +693,17 @@ def clean_address(city, state, country, sep):
     return addr
 
 def address_uri(city, state, country):
-	addr = clean_address(city, state, country, "-")
-	if len(addr) > 0:
-		addr = addr.replace(" ", "_").lower()
+    addr = clean_address(city, state, country, "-").strip()
+    if len(addr) > 0:
+        addr = addr.replace(" ", "_").lower()
         return "address/" + addr
-	return ''
+    return ''
 
 def country_uri(country):
     country = clean_location(country)
-    country = standardize_country_code(country)
+    country = standardize_country_name(country)
     if country:
-        cc = country.replace(" ", "_")
+        cc = country.replace(" ", "_").lower()
         return "country/" + cc
     return ''
 
@@ -688,6 +725,35 @@ def emailaddress_uri(email):
 		qc = quote(c, safe='')
 		return "emailaddress/" + qc
 	return ''
+
+content_registeries = ["application", "audio", "example", "image",
+                        "message", "model", "multipart", "text", "video"]
+
+def clean_content_type(type):
+    idx = type.find("/")
+    if idx:
+        reg = type[0:idx]
+        if reg in content_registeries:
+            return type
+    return ''
+
+def content_type_uri(cleaned):
+    if cleaned:
+        return "content_type/%s" % cleaned
+    return ''
+
+def clean_content_length(clen):
+   return numericOnly(clen)
+
+def content_length_uri(cleaned):
+    if cleaned:
+        return "content_length/%s" % cleaned
+    return ''
+
+def publication_year_uri(cleaned):
+    if cleaned:
+        return "publication_year/%s" % cleaned
+    return ''
 
 mapFunctions = defaultdict(lambda x: None)
 

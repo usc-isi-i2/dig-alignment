@@ -126,7 +126,7 @@ def tenDigitPhoneNumber(x):
     return re.sub('[^0-9]+', '', x)
 
 
-def iso8601date(date, format="%Y-%m-%d %H:%M:%S %Z"):
+def iso8601date(date, format=None):
     """Convert a date to ISO8601 date format
 
 input format: YYYY-MM-DD HH:MM:SS GMT (works less reliably for other TZs)
@@ -142,6 +142,12 @@ output format: iso8601
         return datetime.strptime(date, "%Y-%m-%d %H:%M:%S %Z").isoformat()
     except Exception:
         pass
+
+    if format:
+        try:
+            return datetime.strptime(date, format).isoformat()
+        except Exception:
+            pass
 
     try:
         return datetime.strptime(date, "%Y-%m-%d %H:%M:%S.0").isoformat()
@@ -171,3 +177,8 @@ output format: iso8601
     # If all else fails, return input
     return date
 
+
+def getYearFromISODate(isoDate):
+    if isoDate:
+        return isoDate[0:4]
+    return ''

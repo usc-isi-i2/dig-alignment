@@ -95,40 +95,40 @@ country_names = [
 ]
 
 country_names_readable = [
-    "AFGHANISTAN", "ALBANIA", "ALGERIA", "AMERICAN SAMOA", "ANDORRA", "ANGOLA", "ANGUILLA", "ANTARCTICA",
-    "ANTIGUA AND BARBUDA", "ARGENTINA", "ARMENIA", "ARUBA", "AUSTRALIA", "AUSTRIA", "AZERBAIJAN", "BAHAMAS", "BAHRAIN",
-    "BANGLADESH", "BARBADOS", "BELARUS", "BELGIUM", "BELIZE", "BENIN", "BERMUDA", "BHUTAN", "BOLIVIA",
-    "BOSNIA AND HERZEGOWINA", "BOSNIA", "HERZEGOWINA", "BOTSWANA", "BOUVET ISLAND", "NORWAY", "BRAZIL",
-    "BRITISH INDIAN OCEAN TERRITORY", "BRUNEI DARUSSALAM", "BULGARIA", "BURKINA FASO", "BURUNDI", "CAMBODIA",
-    "CAMEROON", "CANADA", "CAPE VERDE", "CAYMAN ISLANDS", "CENTRAL AFRICAN REPUBLIC", "CHAD", "CHILE", "CHINA",
-    "CHRISTMAS ISLAND", "COCOS ISLANDS", "COLOMBIA", "COMOROS", "CONGO", "CONGO, THE DRC", "COOK ISLANDS", "COSTA RICA",
-    "COTE D'IVOIRE", "CROATIA", "HRVATSKA", "CUBA", "CYPRUS", "CZECH REPUBLIC", "DENMARK", "DJIBOUTI", "DOMINICA",
-    "DOMINICAN REPUBLIC", "EAST TIMOR", "ECUADOR", "EGYPT", "EL SALVADOR", "EQUATORIAL GUINEA", "ERITREA", "ESTONIA",
-    "ETHIOPIA", "FALKLAND ISLANDS", "MALVINAS", "FAROE ISLANDS", "FIJI", "FINLAND", "FRANCE", "FRANCE, METROPOLITAN",
-    "FRENCH GUIANA", "FRENCH POLYNESIA", "FRENCH SOUTHERN TERRITORIES", "GABON", "GAMBIA", "GEORGIA", "GERMANY",
-    "GHANA", "GIBRALTAR", "GREECE", "GREENLAND", "GRENADA", "GUADELOUPE", "GUAM", "GUATEMALA", "GUINEA",
-    "GUINEA-BISSAU", "GUYANA", "HAITI", "HEARD AND MC DONALD ISLANDS", "HOLY SEE", "VATICAN CITY STATE", "HONDURAS",
-    "HONG KONG", "HUNGARY", "ICELAND", "INDIA", "INDONESIA", "IRAN", "IRAQ", "IRELAND", "ISRAEL", "ITALY", "JAMAICA",
-    "JAPAN", "JORDAN", "KAZAKHSTAN", "KENYA", "KIRIBATI", "KOREA, D.P.R.O.", "KOREA, REPUBLIC OF", "REPUBLIC OF KOREA",
-    "KUWAIT", "KYRGYZSTAN", "LAOS", "LATVIA", "LEBANON", "LESOTHO", "LIBERIA", "LIBYAN ARAB JAMAHIRIYA",
-    "LIECHTENSTEIN", "LITHUANIA", "LUXEMBOURG", "MACAU", "MACEDONIA", "MADAGASCAR", "MALAWI", "MALAYSIA", "MALDIVES",
-    "MALI", "MALTA", "MARSHALL ISLANDS", "MARTINIQUE", "MAURITANIA", "MAURITIUS", "MAYOTTE", "MEXICO",
-    "MICRONESIA, FEDERATED STATES OF", "FEDERATED STATES OF MICRONESIA", "MOLDOVA, REPUBLIC OF", "REPUBLIC OF MOLDOVA",
-    "MONACO", "MONGOLIA", "MONTENEGRO", "MONTSERRAT", "MOROCCO", "MOZAMBIQUE", "MYANMAR", "BURMA", "NAMIBIA", "NAURU",
-    "NEPAL", "NETHERLANDS", "NETHERLANDS ANTILLES", "NEW CALEDONIA", "NEW ZEALAND", "NICARAGUA", "NIGER", "NIGERIA",
-    "NIUE", "NORFOLK ISLAND", "NORTHERN MARIANA ISLANDS", "NORWAY", "OMAN", "PAKISTAN", "PALAU", "PANAMA",
-    "PAPUA NEW GUINEA", "PARAGUAY", "PERU", "PHILIPPINES", "PITCAIRN", "POLAND", "PORTUGAL", "PUERTO RICO", "QATAR",
-    "REUNION", "ROMANIA", "RUSSIAN FEDERATION", "RWANDA", "SAINT KITTS AND NEVIS", "SAINT LUCIA",
-    "SAINT VINCENT AND THE GRENADINES", "SAMOA", "SAN MARINO", "SAO TOME AND PRINCIPE", "SAUDI ARABIA", "SENEGAL",
-    "SERBIA", "SEYCHELLES", "SIERRA LEONE", "SINGAPORE", "SLOVAKIA", "SLOVAK REPUBLIC", "SLOVENIA", "SOLOMON ISLANDS",
-    "SOMALIA", "SOUTH AFRICA", "SOUTH SUDAN", "SOUTH GEORGIA AND SOUTH S.S.", "SPAIN", "SRI LANKA", "ST. HELENA",
-    "ST. PIERRE AND MIQUELON", "SUDAN", "SURINAME", "SVALBARD AND JAN MAYEN ISLANDS", "SWAZILAND", "SWEDEN",
-    "SWITZERLAND", "SYRIAN ARAB REPUBLIC", "TAIWAN", "TAJIKISTAN", "TANZANIA", "UNITED REPUBLIC OF TANZANIA",
-    "THAILAND", "TOGO", "TOKELAU", "TONGA", "TRINIDAD AND TOBAGO", "TUNISIA", "TURKEY", "TURKMENISTAN",
-    "TURKS AND CAICOS ISLANDS", "TUVALU", "UGANDA", "UKRAINE", "UNITED ARAB EMIRATES", "UNITED KINGDOM",
-    "UNITED STATES", "U.S. MINOR ISLANDS", "URUGUAY", "UZBEKISTAN", "VANUATU", "VENEZUELA", "VIETNAM",
-    "VIRGIN ISLANDS (BRITISH)", "VIRGIN ISLANDS (U.S.)", "WALLIS AND FUTUNA ISLANDS", "WESTERN SAHARA", "YEMEN",
-    "ZAMBIA", "ZIMBABWE"
+    "Afghanistan", "Albania", "Algeria", "American Samoa", "Andorra", "Angola", "Anguilla", "Antarctica",
+    "Antigua And Barbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain",
+    "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia",
+    "Bosnia And Herzegowina", "Bosnia", "Herzegowina", "Botswana", "Bouvet Island", "Norway", "Brazil",
+    "British Indian Ocean Territory", "Brunei Darussalam", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia",
+    "Cameroon", "Canada", "Cape Verde", "Cayman Islands", "Central African Republic", "Chad", "Chile", "China",
+    "Christmas Island", "Cocos Islands", "Colombia", "Comoros", "Congo", "Congo, The Drc", "Cook Islands", "Costa Rica",
+    "Cote D'ivoire", "Croatia", "Hrvatska", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica",
+    "Dominican Republic", "East Timor", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia",
+    "Ethiopia", "Falkland Islands", "Malvinas", "Faroe Islands", "Fiji", "Finland", "France", "France, Metropolitan",
+    "French Guiana", "French Polynesia", "French Southern Territories", "Gabon", "Gambia", "Georgia", "Germany",
+    "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guadeloupe", "Guam", "Guatemala", "Guinea",
+    "Guinea-bissau", "Guyana", "Haiti", "Heard And Mc Donald Islands", "Holy See", "Vatican City State", "Honduras",
+    "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy", "Jamaica",
+    "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Korea, D.p.r.o.", "North Korea", "Korea, Republic Of", "South Korea", "Republic Of Korea",
+    "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libyan Arab Jamahiriya",
+    "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Macedonia", "Madagascar", "Malawi", "Malaysia", "Maldives",
+    "Mali", "Malta", "Marshall Islands", "Martinique", "Mauritania", "Mauritius", "Mayotte", "Mexico",
+    "Micronesia, Federated States Of", "Federated States Of Micronesia", "Moldova, Republic Of", "Republic Of Moldova",
+    "Monaco", "Mongolia", "Montenegro", "Montserrat", "Morocco", "Mozambique", "Myanmar", "Burma", "Namibia", "Nauru",
+    "Nepal", "Netherlands", "Netherlands Antilles", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria",
+    "Niue", "Norfolk Island", "Northern Mariana Islands", "Norway", "Oman", "Pakistan", "Palau", "Panama",
+    "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Pitcairn", "Poland", "Portugal", "Puerto Rico", "Qatar",
+    "Reunion", "Romania", "Russian Federation", "Rwanda", "Saint Kitts And Nevis", "Saint Lucia",
+    "Saint Vincent And The Grenadines", "Samoa", "San Marino", "Sao Tome And Principe", "Saudi Arabia", "Senegal",
+    "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovak Republic", "Slovenia", "Solomon Islands",
+    "Somalia", "South Africa", "South Sudan", "South Georgia And South S.S.", "Spain", "Sri Lanka", "St. Helena",
+    "St. Pierre And Miquelon", "Sudan", "Suriname", "Svalbard and Jan Mayen Islands", "Swaziland", "Sweden",
+    "Switzerland", "Syrian Arab Republic", "Taiwan", "Tajikistan", "Tanzania", "United Republic Of Tanzania",
+    "Thailand", "Togo", "Tokelau", "Tonga", "Trinidad And Tobago", "Tunisia", "Turkey", "Turkmenistan",
+    "Turks And Caicos Islands", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom",
+    "United States", "U.S. Minor Islands", "Uruguay", "Uzbekistan", "Vanuatu", "Venezuela", "Vietnam",
+    "Virgin Islands (British)", "Virgin Islands (U.S.)", "Wallis And Futuna Islands", "Western Sahara", "Yemen",
+    "Zambia", "Zimbabwe"
 ]
 
 us_states_names = [
@@ -228,11 +228,11 @@ def standardize_state_code(country, state):
     codesArr = []
     namesArr = []
 
-    if country == "US":
+    if country == "US" or country == "United States":
         codesArr = us_states_codes
         namesArr = us_states_names
 
-    if country == "CA":
+    if country == "CA" or country == "Canada":
         codesArr = canada_states_codes
         namesArr = canada_states_names
 
@@ -264,12 +264,12 @@ def standardize_state_name(country, state):
     namesArr = []
     namesReadableArr = []
 
-    if country == "US":
+    if country == "US" or country == "United States":
         codesArr = us_states_codes
         namesArr = us_states_names
         namesReadableArr = us_states_names_readable
 
-    if country == "CA":
+    if country == "CA" or country == "Canada":
         codesArr = canada_states_codes
         namesArr = canada_states_names
         namesReadableArr = canada_states_names_readable
