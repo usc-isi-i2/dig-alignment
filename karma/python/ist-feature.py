@@ -707,6 +707,12 @@ def country_uri(country):
         return "country/" + cc
     return ''
 
+def clean_website(website):
+    x = nonWhitespace(website)
+    if x:
+        return x.lower()
+    return ''
+
 def website_uri(website):
 	if len(website) > 0:
 		uri = quote(website, safe='')
@@ -754,6 +760,16 @@ def publication_year_uri(cleaned):
     if cleaned:
         return "publication_year/%s" % cleaned
     return ''
+
+def clean_organization(org):
+    return toTitleCaseCleaned(org)
+
+def organization_name_uri(cleaned):
+    if cleaned:
+        for_uri = cleaned.replace(" ", "_").lower()
+        return "organization/name/%s"  % for_uri
+    return ''
+
 
 mapFunctions = defaultdict(lambda x: None)
 
