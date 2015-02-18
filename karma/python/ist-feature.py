@@ -444,7 +444,10 @@ def person_weight_uri(cleaned):
 
 # name  10042
 def clean_name(x):
-    return toTitleCaseCleaned(x)
+    x = toTitleCaseCleaned(x)
+    if isSymbol(x[0:1]):
+        return ''
+    return x
 
 def person_name_uri(cleaned):
     if cleaned:
@@ -762,7 +765,10 @@ def publication_year_uri(cleaned):
     return ''
 
 def clean_organization(org):
-    return toTitleCaseCleaned(org)
+    x = toTitleCaseCleaned(org)
+    if isSymbol(x[0:1]):
+         return ''
+    return x
 
 def organization_name_uri(cleaned):
     if cleaned:
