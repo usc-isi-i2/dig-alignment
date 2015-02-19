@@ -41,12 +41,36 @@ if getValue("text"):
 return ''
 ```
 
+#### _import_time_
+From column: _timestamp_
+>``` python
+return iso8601date(getValue("timestamp"), "%f")
+```
+
+#### _dateMostLikelyCreated_
+From column: _posttime_iso_
+>``` python
+posttime = getValue("posttime_iso")
+if posttime:
+  return posttime
+return getValue("import_time")
+```
+
+#### _modtime_iso_
+From column: _modtime_
+>``` python
+return iso8601date(getValue("modtime"))
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
 |  ----- | -------- | ----- |
 | _body_uri_ | `uri` | `schema:WebPageElement2`|
 | _cache_uri_ | `uri` | `schema:WebPage1`|
+| _dateMostLikelyCreated_ | `memex:dateMostLikelyCreated` | `schema:WebPage1`|
+| _import_time_ | `memex:dateCrawled` | `schema:WebPage1`|
+| _modtime_iso_ | `schema:dateModified` | `schema:WebPage1`|
 | _posttime_iso_ | `schema:dateCreated` | `schema:WebPage1`|
 | _snapshot_uri_ | `memex:snapshotUri` | `schema:WebPage1`|
 | _sources_uri_ | `uri` | `schema:Organization1`|

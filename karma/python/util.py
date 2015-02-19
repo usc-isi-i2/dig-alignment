@@ -82,6 +82,10 @@ def alphaOnly(x):
     "Remove non-alphabetic chars from the string x"
     return re.sub('[^A-Za-z]+', '', x)
 
+def isSymbol(char1):
+    if char1.isalnum():
+        return False
+    return True
 
 def fingerprintString(x):
     "Make a fingerprint liek the one google refine makes"

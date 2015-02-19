@@ -444,7 +444,10 @@ def person_weight_uri(cleaned):
 
 # name  10042
 def clean_name(x):
-    return toTitleCaseCleaned(x)
+    x = toTitleCaseCleaned(x)
+    if isSymbol(x[0:1]):
+        return ''
+    return x
 
 def person_name_uri(cleaned):
     if cleaned:
@@ -707,6 +710,12 @@ def country_uri(country):
         return "country/" + cc
     return ''
 
+def clean_website(website):
+    x = nonWhitespace(website)
+    if x:
+        return x.lower()
+    return ''
+
 def website_uri(website):
 	if len(website) > 0:
 		uri = quote(website, safe='')
@@ -754,6 +763,19 @@ def publication_year_uri(cleaned):
     if cleaned:
         return "publication_year/%s" % cleaned
     return ''
+
+def clean_organization(org):
+    x = toTitleCaseCleaned(org)
+    if isSymbol(x[0:1]):
+         return ''
+    return x
+
+def organization_name_uri(cleaned):
+    if cleaned:
+        for_uri = cleaned.replace(" ", "_").lower()
+        return "organization/name/%s"  % for_uri
+    return ''
+
 
 mapFunctions = defaultdict(lambda x: None)
 
