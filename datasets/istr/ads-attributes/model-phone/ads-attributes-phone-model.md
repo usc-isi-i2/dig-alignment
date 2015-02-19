@@ -43,13 +43,13 @@ return ''
 #### _featurecollection_uri_
 From column: _url_
 >``` python
-return "http://memex.zapto.org/data/page/" +get_url_hash(getValue("url"))+"/"+getValue("timestamp")+"/processed/featurecollection"
+return getHTBaseUrl()+"page/" +get_url_hash(getValue("url"))+"/"+getValue("timestamp")+"/processed/featurecollection"
 ```
 
 #### _crawl_url_
 From column: _url_
 >``` python
-return getCacheBaseUrl()+"page/"+get_url_hash(getValue("url"))+"/"+getValue("timestamp")+"/processed"
+return getHTBaseUrl()+"page/"+get_url_hash(getValue("url"))+"/"+getValue("timestamp")+"/processed"
 ```
 
 #### _phone_cc_
