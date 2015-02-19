@@ -4,7 +4,7 @@
 #### _ad_uri_
 From column: _url_
 >``` python
-return getCacheBaseUrl()+"page/"+get_url_hash(getValue("url"))+"/"+getValue("ad_timestamp")+"/processed"
+return getHTBaseUrl()+"page/"+get_url_hash(getValue("url"))+"/"+getValue("ad_timestamp")+"/processed"
 ```
 
 #### _featureCollection_uri_
@@ -109,5 +109,5 @@ return getLocalPhoneNumber(getValue("phone_clean"))
 | `memex:Feature1` | `prov:wasDerivedFrom` | `schema:WebPage1`|
 | `memex:FeatureCollection1` | `memex:phonenumber_feature` | `memex:Feature1`|
 | `memex:PhoneNumber1` | `schema:location` | `schema:Place1`|
-| `prov:Activity1` | `prov:wasAttributedTo` | `xsd:http://memex.zapto.org/data/software/extractor/stanford/version/1`|
+| `prov:Activity1` | `prov:wasAttributedTo` | `xsd:http://dig.isi.edu/ht/data/software/extractor/stanford/version/1`|
 | `schema:WebPage1` | `memex:hasFeatureCollection` | `memex:FeatureCollection1`|
