@@ -52,6 +52,18 @@ From column: _url_
 return getCacheBaseUrl()+"page/"+get_url_hash(getValue("url"))+"/"+getValue("timestamp")+"/processed"
 ```
 
+#### _phone_cc_
+From column: _phone_value_
+>``` python
+return getPhoneCountryCode(getValue("phone_value"))
+```
+
+#### _phone_local_
+From column: _phone_cc_
+>``` python
+return getLocalPhoneNumber(getValue("phone_value"))
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
@@ -62,6 +74,8 @@ return getCacheBaseUrl()+"page/"+get_url_hash(getValue("url"))+"/"+getValue("tim
 | _feature_uri_ | `uri` | `memex:Feature1`|
 | _feature_value_ | `memex:featureValue` | `memex:Feature1`|
 | _featurecollection_uri_ | `uri` | `memex:FeatureCollection1`|
+| _phone_cc_ | `memex:countryDialingCode` | `memex:PhoneNumber1`|
+| _phone_local_ | `memex:localPhoneNumber` | `memex:PhoneNumber1`|
 | _phone_uri_ | `uri` | `memex:PhoneNumber1`|
 | _phone_value_ | `rdfs:label` | `memex:PhoneNumber1`|
 

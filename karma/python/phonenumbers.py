@@ -36,7 +36,7 @@ def getPhoneCountryCode(phone_clean):
         if cc.startswith("+"):
             cc = cc[1:]
         return cc
-    return None
+    return ''
 
 def getLocalPhoneNumber(phone_clean):
     idx = phone_clean.find("-")
