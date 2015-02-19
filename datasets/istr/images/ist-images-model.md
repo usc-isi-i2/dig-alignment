@@ -4,19 +4,19 @@
 #### _ad_crawl_uri_
 From column: _ad_url_
 >``` python
-return getCacheBaseUrl() + "page/"+get_url_hash(getValue("ad_url"))+"/"+getValue("ad_timestamp") + "/processed"
+return getHTBaseUrl() + "page/"+get_url_hash(getValue("ad_url"))+"/"+getValue("ad_timestamp") + "/processed"
 ```
 
 #### _image_uri_
 From column: _url_
 >``` python
-return getCacheBaseUrl() + "image/"+get_url_hash(getValue("url"))+"/"+getValue("ad_timestamp") + "/processed"
+return getHTBaseUrl() + "image/"+get_url_hash(getValue("url"))+"/"+getValue("ad_timestamp") + "/processed"
 ```
 
 #### _image_snapshot_uri_
 From column: _image_uri_
 >``` python
-return getCacheBaseUrl() + "image/"+get_url_hash(getValue("url"))+"/"+getValue("ad_timestamp") + "/raw"
+return getHTBaseUrl() + "image/"+get_url_hash(getValue("url"))+"/"+getValue("ad_timestamp") + "/raw"
 ```
 
 #### _modtime_iso_
@@ -49,6 +49,6 @@ return ''
 ### Links
 | From | Property | To |
 |  --- | -------- | ---|
-| `prov:Activity1` | `prov:wasAttributedTo` | `xsd:http://memex.zapto.org/data/software/extractor/ist/ist-images-database/version/unknown`|
+| `prov:Activity1` | `prov:wasAttributedTo` | `xsd:http://dig.isi.edu/ht/data/software/extractor/ist/ist-images-database/version/unknown`|
 | `schema:ImageObject1` | `prov:wasGeneratedBy` | `prov:Activity1`|
 | `schema:WebPage1` | `memex:hasImagePart` | `schema:ImageObject1`|
