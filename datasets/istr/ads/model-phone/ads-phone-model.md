@@ -10,7 +10,7 @@ return "page/"+get_url_hash(getValue("url"))+"/"+getValue("timestamp")+"/process
 #### _snapshot_uri_
 From column: _crawl_uri_
 >``` python
-return "http://memex.zapto.org/data/page/"+get_url_hash(getValue("url"))+"/"+getValue("timestamp")+"/raw"
+return getHTBaseUrl()+"page/"+get_url_hash(getValue("url"))+"/"+getValue("timestamp")+"/raw"
 ```
 
 #### _featurecollection_uri_
@@ -76,6 +76,18 @@ if getValue("phone_clean"):
 return ''
 ```
 
+#### _phone_cc_
+From column: _phone_clean2_
+>``` python
+return getPhoneCountryCode(getValue("phone_clean"))
+```
+
+#### _phone_local_
+From column: _phone_clean2_
+>``` python
+return getLocalPhoneNumber(getValue("phone_clean"))
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
@@ -85,10 +97,12 @@ return ''
 | _exchange_uri_ | `uri` | `schema:Place1`|
 | _featurecollection_uri_ | `uri` | `memex:FeatureCollection1`|
 | _modetime_iso8601_ | `prov:endedAtTime` | `prov:Activity1`|
+| _phone_cc_ | `memex:countryDialingCode` | `memex:PhoneNumber1`|
 | _phone_clean_ | `memex:phonenumber` | `memex:Feature1`|
 | _phone_clean1_ | `memex:featureValue` | `memex:Feature1`|
 | _phone_clean2_ | `rdfs:label` | `memex:PhoneNumber1`|
 | _phone_feature_uri_ | `uri` | `memex:Feature1`|
+| _phone_local_ | `memex:localPhoneNumber` | `memex:PhoneNumber1`|
 | _phone_uri_ | `uri` | `memex:PhoneNumber1`|
 | _snapshot_uri_ | `memex:snapshotUri` | `schema:WebPage1`|
 
@@ -102,5 +116,5 @@ return ''
 | `memex:Feature1` | `prov:wasDerivedFrom` | `schema:WebPage1`|
 | `memex:FeatureCollection1` | `memex:phonenumber_feature` | `memex:Feature1`|
 | `memex:PhoneNumber1` | `schema:location` | `schema:Place1`|
-| `prov:Activity1` | `prov:wasAttributedTo` | `xsd:http://memex.zapto.org/data/software/extractor/ist/version/unknown`|
+| `prov:Activity1` | `prov:wasAttributedTo` | `xsd:http://dig.isi.edu/ht/data/software/extractor/ist/version/unknown`|
 | `schema:WebPage1` | `memex:hasFeatureCollection` | `memex:FeatureCollection1`|

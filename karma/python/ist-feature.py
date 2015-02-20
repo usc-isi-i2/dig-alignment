@@ -623,6 +623,9 @@ def get_url_hash(string):
 def getCacheBaseUrl():
     return "http://memex.zapto.org/data/"
 
+def getHTBaseUrl():
+    return "http://dig.isi.edu/ht/data/"
+
 # zip   2734
 def clean_zip(x):
     stripped = x.strip().lower()
