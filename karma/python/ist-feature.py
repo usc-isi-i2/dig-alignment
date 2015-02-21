@@ -621,10 +621,14 @@ def get_url_hash(string):
     return hashlib.sha1(string).hexdigest().upper()
 
 def getCacheBaseUrl():
-    return "http://memex.zapto.org/data/"
+    # This must be completed by the baseUri in the workflow
+    # return "http://memex.zapto.org/data/"
+    return ""
 
 def getHTBaseUrl():
-    return "http://dig.isi.edu/ht/data/"
+    # This must be completed by the baseUri in the workflow
+    # return "http://dig.isi.edu/ht/data/"
+    return ""
 
 # zip   2734
 def clean_zip(x):
