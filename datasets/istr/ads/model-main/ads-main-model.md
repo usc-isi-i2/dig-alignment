@@ -4,13 +4,13 @@
 #### _cache_uri_
 From column: _url_
 >``` python
-return getHTBaseUrl()+"page/"+get_url_hash(getValue("url"))+"/"+getValue("timestamp")+"/processed"
+return "page/"+get_url_hash(getValue("url"))+"/"+getValue("timestamp")+"/processed"
 ```
 
 #### _snapshot_uri_
 From column: _cache_uri_
 >``` python
-return getHTBaseUrl()+"page/"+get_url_hash(getValue("url"))+"/"+getValue("timestamp")+"/raw"
+return "page/"+get_url_hash(getValue("url"))+"/"+getValue("timestamp")+"/raw"
 ```
 
 #### _posttime_iso_
