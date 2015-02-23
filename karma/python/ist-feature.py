@@ -320,12 +320,13 @@ def clean_piercings(x):
     stripped = re.sub("below the belt", "belowthebelt", stripped)
     return stripped.split(' ')
 
-def commaList(l):
-    return ",".join(l)
+def pipeList(l):
+    return "|".join(l)
 
 def person_piercings_uri(cleaned):
     if cleaned:
-        return ",".join(["person_piercings/%s" % c for c in cleaned])
+        return "person_piercings/%s" % cleaned
+    return ''
 
 # creditcards   18272
 def clean_creditcards(x):
@@ -434,7 +435,7 @@ unmarked weight < 90 is interpreted as kg, >=90 as lb"""
             # return sanityCheck(nearest2(lb_to_kg(num)))
             # no binning
             return sanityCheck(lb_to_kg(num))
-    
+
     except Exception, e:
         return None
 
@@ -574,7 +575,7 @@ def clean_waist(x):
             # return sanityCheck(nearest2(inch_to_cm(num)))
             # no binning
             return sanityCheck(inch_to_cm(num))
-    
+
     except Exception, e:
         return None
 
@@ -796,7 +797,7 @@ mapFunctions['hair'] = clean_hair
 mapFunctions['build'] = clean_build
 mapFunctions['cup'] = clean_cup
 mapFunctions['bust'] = clean_bust
-mapFunctions['piercings'] = lambda x: commaList(clean_piercings(x))
+mapFunctions['piercings'] = lambda x: pipeList(clean_piercings(x))
 mapFunctions['creditcards'] = clean_creditcards
 mapFunctions['hairlength'] = clean_hairlength
 mapFunctions['hairtype'] = clean_hairtype
