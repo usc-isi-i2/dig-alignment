@@ -627,6 +627,9 @@ def getCacheBaseUrl():
 def getHTBaseUrl():
     return "http://dig.isi.edu/ht/data/"
 
+def getMRSBaseUrl():
+    return "http://dig.isi.edu/mrs/data/"
+
 # zip   2734
 def clean_zip(x):
     stripped = x.strip().lower()
