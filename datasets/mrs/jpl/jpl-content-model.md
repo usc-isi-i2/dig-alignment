@@ -1,8 +1,8 @@
-## jpl-sample.json
+## x-crawl.dyndns.org.9134.mrs-solr.pdf-1.json
 
 ### PyTransforms
 #### _aid_
-From column: _response / docs / id_
+From column: _id_
 >``` python
 url = getValue("id")
 idx = url.find("aid=")
@@ -16,13 +16,13 @@ return ""
 ```
 
 #### _uri_
-From column: _response / docs / aid_
+From column: _aid_
 >``` python
 return "page/" + getValue("aid") + "/processed"
 ```
 
 #### _body_uri_
-From column: _response / docs / dc_title_
+From column: _content / values_
 >``` python
 return getValue("uri") + "/body"
 ```
@@ -31,7 +31,6 @@ return getValue("uri") + "/body"
 ### Semantic Types
 | Column | Property | Class |
 |  ----- | -------- | ----- |
-| _body_uri_ | `uri` | `schema:WebPageElement1`|
 | _uri_ | `uri` | `schema:WebPage1`|
 | _values_ | `schema:text` | `schema:WebPageElement1`|
 
