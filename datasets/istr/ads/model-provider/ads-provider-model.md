@@ -16,7 +16,7 @@ return getValue("uri")+"/featurecollection"
 #### _source_name_
 From column: _sources_id_
 >``` python
-return getWebsiteDomain(getValue("url"))
+return getProviderName(getValue("sources_id"), getValue("url"))
 ```
 
 #### _source_name2_
