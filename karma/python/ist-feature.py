@@ -783,6 +783,11 @@ def organization_name_uri(cleaned):
         return "organization/name/%s"  % for_uri
     return ''
 
+def provider_uri(cleaned):
+    if cleaned:
+        x = cleaned.replace(" ", "_").lower()
+        return "provider/%s" % x
+    return ''
 
 mapFunctions = defaultdict(lambda x: None)
 

@@ -1,7 +1,7 @@
 import re
 from datetime import datetime
 from time import mktime, gmtime
-
+from urlparse import urlparse
 
 def documentUrl(x):
     "Return the original document URL from the URL in the document version"
@@ -185,4 +185,14 @@ output format: iso8601
 def getYearFromISODate(isoDate):
     if isoDate:
         return isoDate[0:4]
+    return ''
+
+def getWebsiteDomain(url):
+    parsed_uri = urlparse(url)
+    if parsed_uri:
+        domain = parsed_uri.netloc
+        if domain:
+            if domain.startswith("www."):
+                domain = domain[4:]
+            return domain
     return ''

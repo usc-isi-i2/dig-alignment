@@ -10,7 +10,7 @@ return "page/"+get_url_hash(getValue("url"))+"/"+getValue("timestamp")+"/process
 #### _snapshot_uri_
 From column: _cache_uri_
 >``` python
-return "page/"+get_url_hash(getValue("url"))+"/"+getValue("timestamp")+"/raw"
+return getHTBaseUrl() + "page/"+get_url_hash(getValue("url"))+"/"+getValue("timestamp")+"/raw"
 ```
 
 #### _posttime_iso_
