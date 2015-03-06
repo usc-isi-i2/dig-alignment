@@ -63,6 +63,7 @@ return ""
 ### Links
 | From | Property | To |
 |  --- | -------- | ---|
+| `memex:Feature1` | `memex:featureName` | `xsd:publication_year`|
 | `memex:Feature1` | `prov:wasGeneratedBy` | `prov:Activity1`|
 | `memex:Feature1` | `prov:wasDerivedFrom` | `schema:WebPage1`|
 | `memex:FeatureCollection1` | `memex:publication_year_feature` | `memex:Feature1`|
