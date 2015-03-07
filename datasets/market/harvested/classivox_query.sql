@@ -1,0 +1,1 @@
+select distinct(mid(url,8,locate('.',url)-8)) as classivox_sitekey from ads where sources_id=3 limit 500

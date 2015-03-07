@@ -1,0 +1,1 @@
+select distinct(mid(url,8,locate('.',url)-8)) as craigslist_sitekey from ads where sources_id=2 limit 685;

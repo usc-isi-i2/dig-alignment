@@ -1,0 +1,1 @@
+select distinct mid(url,32,locate('/',url,33)-32) from ads where sources_id=30;
