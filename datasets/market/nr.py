@@ -10,7 +10,7 @@ def isGenderMarker(t):
 def isRaceEthnicMarker(t):
     return t in ["white", "black", "asian", "latin", "latino", "latina", "hispanic", "indian", "other", "european", "oriental", "russian", "mixed",""]
 
-def isCompundRaceEthnicMarker(t):
+def isCompoundRaceEthnicMarker(t):
     return t in [["middle","eastern"]]
 
 TEST=[
@@ -97,7 +97,7 @@ def processAgency(line):
         pass
     return recordLocations(terms[-3:])
 
-def stripNumericSuffix(terms):
+def trimNumericSuffix(terms):
     suffix = None
     try:
         i = int(terms[-1])
@@ -107,7 +107,7 @@ def stripNumericSuffix(terms):
         pass
     return (suffix, terms)
 
-def stripGenderMarker(terms):
+def trimGenderMarker(terms):
     marker = None
     try:
         if isGenderMarker(terms[-1]):
@@ -117,10 +117,10 @@ def stripGenderMarker(terms):
         pass
     return (marker, terms)
     
-def stripRaceEthnicMarker(terms):
+def trimRaceEthnicMarker(terms):
     marker = None
     try:
-        if isCompoundRaceEthnicMarker(terms[-2]):
+        if isCompoundRaceEthnicMarker(terms[-2:]):
             marker = "-".join(terms[-2:])
             terms.pop()
             terms.pop()
@@ -157,7 +157,34 @@ def processEscort(line):
         print >> sys.stderr, "Give up on %r: [%s]" % (line, e)
         return 0
     return cands
-            
+
+def processEscort(line):
+    cands = 0
+    try:
+        terms = line.split('-')[1:]
+        (suffix, terms) = trimNumericSuffix(terms)
+        (gender, terms) = trimGenderMarker(terms)
+        if gender:
+            GENDER[gender] += 1
+        (raceEthnic, terms) = trimRaceEthnicMarker(terms)
+        if raceEthnic:
+            RACEETHNIC[raceEthnic] += 1
+        cands = recordLocations(terms[-3:])
+    except Exception as e:
+        print >> sys.stderr, "Give up on escort %r: [%s]" % (line, e)
+        return 0
+    return cands
+
+def processAgency(line):
+    cands = 0
+    try:
+        terms = line.split('-')[1:]
+        (suffix, terms) = trimNumericSuffix(terms)
+        cands = recordLocations(terms[-3:])
+    except Exception as e:
+        print >> sys.stderr, "Give up on agency %r: [%s]" % (line, e)
+        return 0
+    return cands
 
 def main():
     for line in TEST:
@@ -209,5 +236,4 @@ def dumpAll():
 
 # call main() if this is run as standalone
 if __name__ == "__main__":
-    sys.exit(mainlines([TEST[-1]]))
-    sys.exit(maintest())
+    sys.exit(mainfile(limit=700000))
