@@ -7551,6 +7551,24 @@ market_id_to_market_info  = {'AUO': ['United States',
                                      'Datahub.io/dataset/open-flights']
                              }
 
+# with open('thefile.csv', 'rb') as f:
+#   data = list(csv.reader(f))
+
+# import collections
+# counter = collections.defaultdict(int)
+# for row in data:
+#     counter[row[0]] += 1
+
+import csv
+with open('market.csv', 'w') as f:
+    writer = csv.writer(f)
+    for (k,v) in market_id_to_market_info.iteritems():
+        if len(v) <> 10:
+            print >> sys.stderr, "Problem with row %s" % v
+        else:
+            writer.writerow(v)
+exit()
+
 market_id_to_market_info_strings  = {'AUO': """['United States',
                                      'Alabama',
                                      'Auburn',
@@ -25237,6 +25255,8 @@ naughtyreviews_sitekey_to_marketid = {
                                       ("rio", "grande", "valley",): "BRO"
                                       }
 
+from util import echo
+@echo
 def process(url):
     bits = url.split('/')
     service = bits[3]
@@ -25278,6 +25298,8 @@ def process(url):
 #         cands += 1
 #     return cands
 
+from util import echo
+@echo
 def lookupSitekey(terms):
     sk3 = naughtyreviews_sitekey_to_marketid.get(tuple(terms[-3:]))
     if sk3:
@@ -25333,6 +25355,7 @@ def trimRaceEthnicMarker(terms):
         pass
     return (marker, terms)
 
+@echo
 def processEscort(line):
     cands = 0
     try:
@@ -25361,6 +25384,7 @@ def processMassage(line):
     terms = line.split('-')[1:]
     return lookupSitekey(terms[-3:])
 
+@echo
 def naughtyreviews_url_to_marketid(url):
     """http://longisland.naughtyreviews.com/FemaleEscorts/s-mny-oo-chics-but-oo-nn-lik-oo-me-19/40317377"""
     try:
@@ -25369,6 +25393,7 @@ def naughtyreviews_url_to_marketid(url):
         print >> sys.stderr, e
         return None
 
+@echo
 def determineMarketNaughtyreviews(url, title, city, state):
     marketid = naughtyreviews_url_to_marketid(url)
     if marketid:
@@ -27714,6 +27739,10 @@ TESTCASES = [
 
 ]
 
+
+# TESTCASES = [
+# ["naughtyreviews","http://www.naughtyreviews.com/escorts/vanessa-houston-latin-shemale", None, None, None]
+# ]
 
 def main():
     for row in TESTCASES:
