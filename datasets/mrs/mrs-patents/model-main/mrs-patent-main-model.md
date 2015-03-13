@@ -1,4 +1,4 @@
-## 1,2-Polybutadiene.json
+## mrs-patent-data-sample.json
 
 ### PyTransforms
 #### _uri_
@@ -50,6 +50,15 @@ return "image/"+get_url_hash(getValue("values"))+"/processed"
 
 ```
 
+#### _values_
+From column: _Thumbnail Image / values_
+>``` python
+url =  getValue("values")
+url = url[0:]
+url = 'http:' + url
+return url
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
@@ -59,6 +68,7 @@ return "image/"+get_url_hash(getValue("values"))+"/processed"
 | _Patent Title_ | `schema:text` | `schema:WebPageElement2`|
 | _abstract_uri_ | `uri` | `schema:WebPageElement1`|
 | _image_uri1_ | `uri` | `schema:ImageObject1`|
+| _publicationUri_ | `memex:publicationUri` | `schema:WebPage1`|
 | _title_uri_ | `uri` | `schema:WebPageElement2`|
 | _uri_ | `uri` | `schema:WebPage1`|
 | _url_ | `schema:url` | `schema:WebPage1`|
