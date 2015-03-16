@@ -5825,8 +5825,12 @@ def determineMarket(source, url, title, city, state):
         source = int(source)
     except:
         pass
-    handler = handlers_by_source[sources_by_id.get(source, source)]
-    return handler(url, title, city, state)
+    try:
+        handler = handlers_by_source[sources_by_id.get(source, source)]
+        return handler(url, title, city, state)
+    except:
+        pass
+    return None
 
 
 TESTCASES_XML = """
@@ -6308,3 +6312,11 @@ def boilerplate_url_to_sitekey(url):
 def determineMarketBoilerplate(url, title, city, state):
     return marketid_to_market_tupleboilerplate_sitekey_to_marketid[boilerplate_url_to_sitekey(url)])
 '''
+
+"""intended use:
+
+create python transform 'marketinfo':
+
+return determineMarket(getValue('sources_id'), getValue('url'), getValue('title'), getValue('city'), getValue('state'))
+
+"""
