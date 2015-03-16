@@ -57,7 +57,7 @@ market_id_to_market_info = {
   'OOL': [1120, 'Australia', 'Queensland', 'OOL', 'Coolangatta', 'Gold Coast', -28.164444, 153.504722, 21, 'Australia/Brisbane', 'datahub.io/dataset/open-flights'],
   'GRZ': [1130, 'Austria', 'Styria', 'GRZ', 'Graz', 'Graz', 46.991067, 15.439628, 1115, 'Europe/Vienna', 'Datahub.io/dataset/open-flights'],
   'SZG': [1140, 'Austria', 'Salzburg', 'SZG', 'Salzburg', 'Salzburg', 47.793304, 13.004333, 1411, 'Europe/Vienna', 'Datahub.io/dataset/open-flights'],
-  'LNZ': [1150, 'Austria', 'Oberösterreich', 'LNZ', 'Linz', 'Linz', 48.233219, 14.187511, 978, 'Europe/Vienna', 'Datahub.io/dataset/open-flights'],
+  'LNZ': [1150, 'Austria', 'Oberoesterreich', 'LNZ', 'Linz', 'Linz', 48.233219, 14.187511, 978, 'Europe/Vienna', 'Datahub.io/dataset/open-flights'],
   'HOH': [1160, 'Austria', 'Vorarlberg', 'HOH', 'Dornbirn', 'Hohenems-Dornbirn Airport', 47.3845, 9.6998, 1352, 'Europe/Vienna', 'Datahub.io/dataset/open-flights'],
   'VIE': [1170, 'Austria', 'Vienna', 'VIE', 'Vienna', 'Schwechat', 48.110278, 16.569722, 600, 'Europe/Vienna', 'datahub.io/dataset/open-flights'],
   'NAS': [1180, 'Bahamas', 'New Providences', 'NAS', 'Nassau', 'Lynden Pindling Intl', 25.038958, -77.466231, 16, 'America/Nassau', 'Datahub.io/dataset/open-flights'],
@@ -69,9 +69,9 @@ market_id_to_market_info = {
   'REC': [1240, 'Brazil', 'Pernambuco', 'REC', 'Recife', 'Guararapes Gilberto Freyre Intl', -8.126794, -34.923039, 33, 'America/Fortaleza', 'datahub.io/dataset/open-flights'],
   'SSA': [1250, 'Brazil', 'Bahia', 'SSA', 'Salvador', 'Deputado Luis Eduardo Magalhaes', -12.910994, -38.331044, 64, 'America/Fortaleza', 'datahub.io/dataset/open-flights'],
   'POA': [1260, 'Brazil', 'Rio Grande do Sul', 'POA', 'Porto Alegre', 'Salgado Filho', -29.994428, -51.171428, 11, 'America/Sao_Paulo', 'datahub.io/dataset/open-flights'],
-  'CWB': [1270, 'Brazil', 'Paraná', 'CWB', 'Curitiba', 'Afonso Pena', -25.528475, -49.175775, 2988, 'America/Sao_Paulo', 'datahub.io/dataset/open-flights'],
+  'CWB': [1270, 'Brazil', 'Parana', 'CWB', 'Curitiba', 'Afonso Pena', -25.528475, -49.175775, 2988, 'America/Sao_Paulo', 'datahub.io/dataset/open-flights'],
   'BSB': [1280, 'Brazil', 'Federal District', 'BSB', 'Brasilia', 'Presidente Juscelino Kubitschek', -15.8711, -47.918625, 3479, 'America/Sao_Paulo', 'datahub.io/dataset/open-flights'],
-  'FOR': [1290, 'Brazil', 'Ceará', 'FOR', 'Fortaleza', 'Pinto Martins Intl', -3.776283, -38.532556, 82, 'America/Fortaleza', 'datahub.io/dataset/open-flights'],
+  'FOR': [1290, 'Brazil', 'Ceara', 'FOR', 'Fortaleza', 'Pinto Martins Intl', -3.776283, -38.532556, 82, 'America/Fortaleza', 'datahub.io/dataset/open-flights'],
   'CNF': [1300, 'Brazil', 'Minas Gerais', 'CNF', 'Belo Horizonte', 'Tancredo Neves Intl', -19.63375, -43.968856, 2715, 'America/Sao_Paulo', 'datahub.io/dataset/open-flights'],
   'SOF': [1310, 'Bulgaria', 'Sofia City', 'SOF', 'Sofia', 'Sofia', 42.695194, 23.406167, 1742, 'Europe/Sofia', 'datahub.io/dataset/open-flights'],
   'YYC': [1320, 'Canada', 'Alberta', 'YYC', 'Calgary', 'Calgary Intl', 51.113888, -114.020278, 3557, 'America/Edmonton', 'datahub.io/dataset/open-flights'],
@@ -127,7 +127,7 @@ market_id_to_market_info = {
   'YXE': [1820, 'Canada', 'Saskatchewan', 'YXE', 'Saskatoon', 'Saskatoon J G Diefenbaker Intl', 52.170834, -106.699722, 1653, 'America/Regina', 'datahub.io/dataset/open-flights'],
   'YQR': [1830, 'Canada', 'Saskatchewan', 'YQR', 'Regina', 'Regina Intl', 50.431944, -104.665833, 1894, 'America/Regina', 'datahub.io/dataset/open-flights'],
   'YXY': [1840, 'Canada', 'Yukon Territory', 'YXY', 'Whitehorse', 'Whitehorse Intl', 60.709553, -135.067269, 2317, 'America/Vancouver', 'datahub.io/dataset/open-flights'],
-  'SCL': [1850, 'Chile', 'Región Metropolitana', 'SCL', 'Santiago', 'Arturo Merino Benitez Intl', -33.392975, -70.785803, 1555, 'America/Santiago', 'datahub.io/dataset/open-flights'],
+  'SCL': [1850, 'Chile', 'Region Metropolitana', 'SCL', 'Santiago', 'Arturo Merino Benitez Intl', -33.392975, -70.785803, 1555, 'America/Santiago', 'datahub.io/dataset/open-flights'],
   'CTU': [1860, 'China', 'Sichuan', 'CTU', 'Chengdu', 'Shuangliu', 30.578528, 103.947086, 1625, 'Asia/Chongqing', 'datahub.io/dataset/open-flights'],
   'CAN': [1870, 'China', 'Guangdong', 'CAN', 'Guangzhou', 'Baiyun Intl', 23.392436, 113.298786, 50, 'Asia/Chongqing', 'datahub.io/dataset/open-flights'],
   'SZX': [1880, 'China', 'Guangdong', 'SZX', 'Shenzhen', 'Baoan Intl', 22.639258, 113.810664, 13, 'Asia/Chongqing', 'datahub.io/dataset/open-flights'],
@@ -142,10 +142,10 @@ market_id_to_market_info = {
   'PEK': [1970, 'China', 'Beijing Municipality', 'PEK', 'Beijing', 'Capital Intl', 40.080111, 116.584556, 116, 'Asia/Chongqing', 'datahub.io/dataset/open-flights'],
   'HKG': [1980, 'China', 'Hong Kong Special Administrative Region', 'HKG', 'Hong Kong', 'Hong Kong Intl', 22.308919, 113.914603, 28, 'Asia/Hong_Kong', 'datahub.io/dataset/open-flights'],
   'BOG': [1990, 'Colombia', 'Distrito Capital', 'BOG', 'Bogota', 'Eldorado Intl', 4.701594, -74.146947, 8361, 'America/Bogota', 'datahub.io/dataset/open-flights'],
-  'SJO': [2000, 'Costa Rica', 'San José', 'SJO', 'San Jose', 'Juan Santamaria Intl', 9.993861, -84.208806, 3021, 'America/Costa_Rica', 'datahub.io/dataset/open-flights'],
+  'SJO': [2000, 'Costa Rica', 'San Jose', 'SJO', 'San Jose', 'Juan Santamaria Intl', 9.993861, -84.208806, 3021, 'America/Costa_Rica', 'datahub.io/dataset/open-flights'],
   'ZAG': [2010, 'Croatia', 'Zagreb', 'ZAG', 'Zagreb', 'Zagreb', 45.742931, 16.068778, 353, 'Europe/Zagreb', 'datahub.io/dataset/open-flights'],
   'PRG': [2020, 'Czech Republic', 'Prague', 'PRG', 'Prague', 'Ruzyne', 50.100833, 14.26, 1247, 'Europe/Prague', 'datahub.io/dataset/open-flights'],
-  'CPH': [2030, 'Denmark', 'Øresund', 'CPH', 'Copenhagen', 'Kastrup', 55.617917, 12.655972, 17, 'Europe/Copenhagen', 'datahub.io/dataset/open-flights'],
+  'CPH': [2030, 'Denmark', 'Oresund', 'CPH', 'Copenhagen', 'Kastrup', 55.617917, 12.655972, 17, 'Europe/Copenhagen', 'datahub.io/dataset/open-flights'],
   'SDQ': [2040, 'Dominican Republic', 'Distrito Nacional', 'SDQ', 'Santo Domingo', 'Las Americas Intl', 18.429664, -69.668925, 59, 'America/Santo_Domingo', 'datahub.io/dataset/open-flights'],
   'UIO': [2050, 'Ecuador', 'Pichincha', 'UIO', 'Quito', 'Mariscal Sucre Intl', -0.141144, -78.488214, 9228, 'America/Guayaquil', 'datahub.io/dataset/open-flights'],
   'CAI': [2060, 'Egypt', 'Cairo', 'CAI', 'Cairo', 'Cairo Intl', 30.121944, 31.405556, 382, 'Africa/Cairo', 'datahub.io/dataset/open-flights'],
@@ -153,26 +153,26 @@ market_id_to_market_info = {
   'ADD': [2080, 'Ethiopia', 'Addis Ababa', 'ADD', 'Addis Ababa', 'Bole Intl', 8.977889, 38.799319, 7656, 'Africa/Addis_Ababa', 'datahub.io/dataset/open-flights'],
   'HEL': [2090, 'Finland', 'Uusimaa', 'HEL', 'Helsinki', 'Helsinki Vantaa', 60.317222, 24.963333, 179, 'Europe/Helsinki', 'datahub.io/dataset/open-flights'],
   'URO': [2100, 'France', 'Seine-Maritime', 'URO', 'Rouen', 'Vallee De Seine', 49.384172, 1.1748, 512, 'Europe/Paris', 'datahub.io/dataset/open-flights'],
-  'MRS': [2110, 'France', 'Bouches-du-Rhône', 'MRS', 'Marseille', 'Provence', 43.435555, 5.213611, 74, 'Europe/Paris', 'datahub.io/dataset/open-flights'],
+  'MRS': [2110, 'France', 'Bouches-du-Rhone', 'MRS', 'Marseille', 'Provence', 43.435555, 5.213611, 74, 'Europe/Paris', 'datahub.io/dataset/open-flights'],
   'AJA': [2120, 'France', 'Corse', 'AJA', 'Ajaccio', 'Campo Dell Oro', 41.923637, 8.802917, 18, 'Europe/Paris', 'Datahub.io/dataset/open-flights'],
   'TLS': [2130, 'France', 'Haute-Garonne', 'TLS', 'Toulouse', 'Blagnac', 43.629075, 1.363819, 499, 'Europe/Paris', 'datahub.io/dataset/open-flights'],
-  'MPL': [2140, 'France', 'Hérault', 'MPL', 'Montpellier', 'Mediterranee', 43.576194, 3.963014, 17, 'Europe/Paris', 'datahub.io/dataset/open-flights'],
+  'MPL': [2140, 'France', 'Herault', 'MPL', 'Montpellier', 'Mediterranee', 43.576194, 3.963014, 17, 'Europe/Paris', 'datahub.io/dataset/open-flights'],
   'NTE': [2150, 'France', 'Loire-Atlantique', 'NTE', 'Nantes', 'Nantes Atlantique', 47.153189, -1.610725, 90, 'Europe/Paris', 'datahub.io/dataset/open-flights'],
   'NCE': [2160, 'France', 'Alpes-Maritimes', 'NCE', 'Nice', "Cote D\\'Azur", 43.658411, 7.215872, 12, 'Europe/Paris', 'datahub.io/dataset/open-flights'],
   'LIL': [2170, 'France', 'Nord', 'LIL', 'Lille', 'Lesquin', 50.561942, 3.089444, 157, 'Europe/Paris', 'datahub.io/dataset/open-flights'],
   'RNS': [2180, 'France', 'Ille-et-Vilaine', 'RNS', 'Rennes', 'St Jacques', 48.069508, -1.734794, 124, 'Europe/Paris', 'datahub.io/dataset/open-flights'],
   'CDG': [2190, 'France', 'Paris', 'CDG', 'Paris', 'Charles De Gaulle', 49.012779, 2.55, 392, 'Europe/Paris', 'datahub.io/dataset/open-flights'],
-  'GNB': [2200, 'France', 'Isère', 'GNB', 'Grenoble', 'Saint Geoirs', 45.362944, 5.329375, 1302, 'Europe/Paris', 'datahub.io/dataset/open-flights'],
+  'GNB': [2200, 'France', 'Isere', 'GNB', 'Grenoble', 'Saint Geoirs', 45.362944, 5.329375, 1302, 'Europe/Paris', 'datahub.io/dataset/open-flights'],
   'BOD': [2210, 'France', 'Gironde', 'BOD', 'Bordeaux', 'Merignac', 44.828335, -0.715556, 162, 'Europe/Paris', 'datahub.io/dataset/open-flights'],
   'SXB': [2220, 'France', 'Bas-Rhin', 'SXB', 'Strasbourg', 'Entzheim', 48.538319, 7.628233, 505, 'Europe/Paris', 'datahub.io/dataset/open-flights'],
-  'LYS': [2230, 'France', 'Rhône', 'LYS', 'Lyon', 'Saint Exupery', 45.726387, 5.090833, 821, 'Europe/Paris', 'datahub.io/dataset/open-flights'],
+  'LYS': [2230, 'France', 'Rhone', 'LYS', 'Lyon', 'Saint Exupery', 45.726387, 5.090833, 821, 'Europe/Paris', 'datahub.io/dataset/open-flights'],
   'RLG': [2240, 'Germany', 'Mecklenburg-Vorpommern', 'RLG', 'Laage', 'Laage', 53.918167, 12.278333, 138, 'Europe/Berlin', 'Datahub.io/dataset/open-flights'],
-  'HDB': [2250, 'Germany', 'Baden-Württemberg', 'HDB', 'Heidelberg', 'Heidelberg', 49.393333, 8.6525, 0, 'Europe/Berlin', 'datahub.io/dataset/open-flights'],
+  'HDB': [2250, 'Germany', 'Baden-Wuerttemberg', 'HDB', 'Heidelberg', 'Heidelberg', 49.393333, 8.6525, 0, 'Europe/Berlin', 'datahub.io/dataset/open-flights'],
   'SZW': [2260, 'Germany', 'Mecklenburg-Vorpommern', 'SZW', 'Parchim', 'Schwerin Parchim', 53.426997, 11.783436, 166, 'Europe/Berlin', 'Datahub.io/dataset/open-flights'],
   'RMS': [2270, 'Germany', 'Rhineland-Palatinate', 'RMS', 'Kaiserslautern', 'Ramstein Ab', 49.436911, 7.600283, 776, 'Europe/Berlin', 'datahub.io/dataset/open-flights'],
   'KEL': [2280, 'Germany', 'Schleswig-Holstein', 'KEL', 'Kiel', 'Kiel Holtenau', 54.3795, 10.145167, 101, 'Europe/Berlin', 'Datahub.io/dataset/open-flights'],
-  'FKB': [2290, 'Germany', 'Baden-Württemberg', 'FKB', 'Karlsruhe', 'Baden Airpark', 48.7793, 8.08048, 407, 'Europe/Berlin', 'Datahub.io/dataset/open-flights'],
-  'MHG': [2300, 'Germany', 'Baden-Württemberg', 'MHG', 'Mannheim', 'Mannheim City', 49.472706, 8.514264, 309, 'Europe/Berlin', 'Datahub.io/dataset/open-flights'],
+  'FKB': [2290, 'Germany', 'Baden-Wuerttemberg', 'FKB', 'Karlsruhe', 'Baden Airpark', 48.7793, 8.08048, 407, 'Europe/Berlin', 'Datahub.io/dataset/open-flights'],
+  'MHG': [2300, 'Germany', 'Baden-Wuerttemberg', 'MHG', 'Mannheim', 'Mannheim City', 49.472706, 8.514264, 309, 'Europe/Berlin', 'Datahub.io/dataset/open-flights'],
   'DRS': [2310, 'Germany', 'Saxony', 'DRS', 'Dresden', 'Dresden', 51.132767, 13.767161, 755, 'Europe/Berlin', 'datahub.io/dataset/open-flights'],
   'BRE': [2320, 'Germany', 'Bremen', 'BRE', 'Bremen', 'Neuenland', 53.0475, 8.786667, 14, 'Europe/Berlin', 'datahub.io/dataset/open-flights'],
   'TXL': [2330, 'Germany', 'Berlin', 'TXL', 'Berlin', 'Tegel', 52.559686, 13.287711, 122, 'Europe/Berlin', 'datahub.io/dataset/open-flights'],
@@ -184,7 +184,7 @@ market_id_to_market_info = {
   'DUS': [2390, 'Germany', 'North Rhine-Westphalia', 'DUS', 'Duesseldorf', 'Dusseldorf', 51.289453, 6.766775, 147, 'Europe/Berlin', 'datahub.io/dataset/open-flights'],
   'HAJ': [2400, 'Germany', 'Lower Saxony', 'HAJ', 'Hannover', 'Hannover', 52.461056, 9.685078, 183, 'Europe/Berlin', 'datahub.io/dataset/open-flights'],
   'HAM': [2410, 'Germany', 'Hamburg', 'HAM', 'Hamburg', 'Hamburg', 53.630389, 9.988228, 53, 'Europe/Berlin', 'datahub.io/dataset/open-flights'],
-  'STR': [2420, 'Germany', 'Baden-Württemberg', 'STR', 'Stuttgart', 'Stuttgart', 48.689878, 9.221964, 1276, 'Europe/Berlin', 'datahub.io/dataset/open-flights'],
+  'STR': [2420, 'Germany', 'Baden-Wuerttemberg', 'STR', 'Stuttgart', 'Stuttgart', 48.689878, 9.221964, 1276, 'Europe/Berlin', 'datahub.io/dataset/open-flights'],
   'CGN': [2430, 'Germany', 'North Rhine-Westphalia', 'CGN', 'Cologne', 'Koln Bonn', 50.865917, 7.142744, 302, 'Europe/Berlin', 'datahub.io/dataset/open-flights'],
   'LEJ': [2440, 'Germany', 'Saxony', 'LEJ', 'Leipzig', 'Leipzig Halle', 51.432447, 12.241633, 465, 'Europe/Berlin', 'datahub.io/dataset/open-flights'],
   'ACC': [2450, 'Ghana', 'Greater Accra', 'ACC', 'Accra', 'Kotoka Intl', 5.605186, -0.166786, 205, 'Africa/Accra', 'datahub.io/dataset/open-flights'],
@@ -260,7 +260,7 @@ market_id_to_market_info = {
   'GDL': [3150, 'Mexico', 'Jalisco', 'GDL', 'Guadalajara', 'Don Miguel Hidalgo Y Costilla Intl', 20.5218, -103.311167, 5016, 'America/Mexico_City', 'datahub.io/dataset/open-flights'],
   'MEX': [3160, 'Mexico', 'Distrito Federal', 'MEX', 'Mexico City', 'Licenciado Benito Juarez Intl', 19.436303, -99.072097, 7316, 'America/Mexico_City', 'datahub.io/dataset/open-flights'],
   'PVR': [3170, 'Mexico', 'Jalisco', 'PVR', 'Puerto Vallarta', 'Licenciado Gustavo Diaz Ordaz Intl', 20.680083, -105.254167, 23, 'America/Mexico_City', 'datahub.io/dataset/open-flights'],
-  'MTY': [3180, 'Mexico', 'Nuevo León', 'MTY', 'Monterrey', 'General Mariano Escobedo Intl', 25.778489, -100.106878, 1278, 'America/Mexico_City', 'datahub.io/dataset/open-flights'],
+  'MTY': [3180, 'Mexico', 'Nuevo Leon', 'MTY', 'Monterrey', 'General Mariano Escobedo Intl', 25.778489, -100.106878, 1278, 'America/Mexico_City', 'datahub.io/dataset/open-flights'],
   'TIJ': [3190, 'Mexico', 'Baja California', 'TIJ', 'Tijuana', 'General Abelardo L Rodriguez Intl', 32.541064, -116.970158, 489, 'America/Tijuana', 'datahub.io/dataset/open-flights'],
   'CUU': [3200, 'Mexico', 'Chihuahua', 'CUU', 'Chihuahua', 'General R Fierro Villalobos Intl', 28.702875, -105.964567, 4462, 'America/Mazatlan', 'datahub.io/dataset/open-flights'],
   'CMN': [3210, 'Morocco', 'Grand Casablanca', 'CMN', 'Casablanca', 'Mohammed V Intl', 33.367467, -7.589967, 656, 'Africa/Casablanca', 'datahub.io/dataset/open-flights'],
@@ -784,26 +784,6 @@ market_id_to_market_info = {
   'CCS': [8390, 'Venezuela', 'Capital District', 'CCS', 'Caracas', 'Simon Bolivar Intl', 10.603117, -66.990583, 235, 'America/Caracas', 'datahub.io/dataset/open-flights'],
   'SGN': [8400, 'Vietnam', 'Ho Chi Minh City', 'SGN', 'Ho Chi Minh City', 'Tansonnhat Intl', 10.818797, 106.651856, 33, 'Asia/Saigon', 'datahub.io/dataset/open-flights']
 }
-
-# def mykey(x):
-#     return x[0:2]
-
-# l = []
-# for k,v in market_id_to_market_info.iteritems():
-#     try:
-#         r = [v[0], v[1], v[3], v[2], v[4], v[5], v[6], v[7], v[8], v[9]]
-#     except Exception as e:
-#         print "There is a problem with %s" % k
-#     l.append(r)
-# l.sort(key=mykey)
-# j=1000
-# with open('/tmp/missing_region.txt', 'w') as f:
-#     for t in l:
-#         print """'%s': %r,""" % (t[2], [j] + t)
-#         if t[0]==t[1]:
-#             print >> f, """'%s': %r,""" % (t[2], [j] + t)
-#         j+=10
-#     exit()
 
 def clean(x):
     return str(x).replace(' ', '')
@@ -3581,9 +3561,6 @@ def naughtyreviews_url_to_marketid(url):
         print >> sys.stderr, e
         return None
 
-# def determineMarketBackpage(url, title, city, state):
-#     return marketid_to_market_tuple,"url",backpage_sitekey_to_marketid[backpage_url_to_sitekey(url)])
-
 def determineMarketNaughtyreviews(url, title, city, state):
     marketid = naughtyreviews_url_to_marketid(url)
     if marketid:
@@ -5831,472 +5808,6 @@ def determineMarket(source, url, title, city, state):
     except:
         pass
     return None
-
-
-TESTCASES_XML = """
-<resultset statement="select sources_id, url, title, city, state from ads where rand(1)&gt;0.999 and sources_id=1 limit 3;" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <row>
-	<field name="sources_id">1</field>
-	<field name="url">http://albany.backpage.com/FemaleEscorts/passion-yr-oo-atifaction-oo-i-y-oo-1-priority-oo-y-b0dy-i-flwlss-21/12495941</field>
-	<field name="title">â™¥Passionâ™¥ YÃµâ“¤R Â°oâ™¥oÂ° Â§ATIÂ§FACTION Â°oâ™¥oÂ° IÂ§ â„³y oâ™¥o #1 PRIORITY â™›â¤oâ™¥o â„³Y B0DY IÂ§ Fl@wlâ‚¬ss - albany escorts - backpage.com</field>
-	<field name="city">albany</field>
-	<field name="state" xsi:nil="true" />
-  </row>
-  <row>
-	<field name="sources_id">1</field>
-	<field name="url">http://queens.backpage.com/FemaleEscorts/slim-sexy-chocolate-drop-come-play-with-her-22/43750968</field>
-	<field name="title">!!!!!!! Slim Sexy Chocolate Drop!!!!! Come Play With Her - queens escorts - backpage.com</field>
-	<field name="city">queens</field>
-	<field name="state" xsi:nil="true" />
-  </row>
-  <row>
-	<field name="sources_id">1</field>
-	<field name="url">http://longisland.backpage.com/FemaleEscorts/great-body-rub-wonder_-m-a-g-i-c_-h-a-n-d-s-_-29/24392419</field>
-	<field name="title">&amp;#9733;&amp;#9733; Great Body Rub  Wonder__ M a g i c__ H a n d s _&amp;#9733; &amp;#9733; - long island escorts - backpage.com</field>
-	<field name="city">longÂ island</field>
-	<field name="state" xsi:nil="true" />
-  </row>
-  <row>
-	<field name="sources_id">2</field>
-	<field name="url">http://bham.craigslist.org/cas/4209753359.html</field>
-	<field name="title">Country boy lovin! - w4m</field>
-	<field name="city">Birmingham</field>
-	<field name="state">alabama</field>
-  </row>
-  <row>
-	<field name="sources_id">2</field>
-	<field name="url">http://juneau.craigslist.org/cas/4171573516.html</field>
-	<field name="title">cleaning services - w4m</field>
-	<field name="city">juneau</field>
-	<field name="state">Alaska</field>
-  </row>
-  <row>
-	<field name="sources_id">2</field>
-	<field name="url">http://littlerock.craigslist.org/cas/4206819843.html</field>
-	<field name="title">whats up for tonight - w4m</field>
-	<field name="city" xsi:nil="true" />
-	<field name="state" xsi:nil="true" />
-  </row>
-  <row>
-	<field name="sources_id">3</field>
-	<field name="url">http://lexington.classivox.com/t/sex-guide/859-553-3365-just-a-reminder-mia-is-now-taking-appointments-now-38/358536/</field>
-	<field name="title">Just a reminder Mia is now taking appointments  - lexington sex guide</field>
-	<field name="city">lexington</field>
-	<field name="state">kentucky</field>
-  </row>
-  <row>
-	<field name="sources_id">3</field>
-	<field name="url">http://pittsburgh.classivox.com/t/female-escorts/-hey-we-have-specials-today-or-massages-4126-07-1975/370287/</field>
-	<field name="title">hey we have specials today or massages 41 - pittsburgh female escorts</field>
-	<field name="city">pittsburgh</field>
-	<field name="state">pennsylvania</field>
-  </row>
-  <row>
-	<field name="sources_id">3</field>
-	<field name="url">http://toronto.classivox.com/t/female-escorts/-bella-welcome-to-the-ultimate-experience-im/370954/</field>
-	<field name="title">??????? BELLA ??????? Welcome to the ultimat - toronto female escorts</field>
-	<field name="city">toronto</field>
-	<field name="state">ontario</field>
-  </row>
-  <row>
-	<field name="sources_id">4</field>
-	<field name="url">http://www.myproviderguide.com/escorts/birmingham/free-posts/w4m/5538151_miss-mya.html</field>
-	<field name="title">832-929-6197 - Birmingham AL Escorts - miss Mya 22 - 5538151 - My Provider Guide</field>
-	<field name="city">birmingham</field>
-	<field name="state" xsi:nil="true" />
-  </row>
-  <row>
-	<field name="sources_id">4</field>
-	<field name="url">http://www.myproviderguide.com/escorts/sierra-vista/free-posts/w4m/5165518_sexy-big-busted-redhead-girl.html</field>
-	<field name="title">602-592-7002 - Sierra Vista AZ Escorts - sexy big busted redhead girl 29 - 5165518 - My Provider Guide</field>
-	<field name="city">sierra-vista</field>
-	<field name="state" xsi:nil="true" />
-  </row>
-  <row>
-	<field name="sources_id">4</field>
-	<field name="url">http://www.myproviderguide.com/escorts/chico/free-posts/w4m/5430901_up-for-a-mutually-beneficial-a.html</field>
-	<field name="title">arrangement - Chico CA Escorts - Up for a Mutually Beneficial Arrangement - 5430901 - My Provider Guide</field>
-	<field name="city">chico</field>
-	<field name="state" xsi:nil="true" />
-  </row>
-  <row>
-	<field name="sources_id">5</field>
-	<field name="url">http://www.naughtyreviews.com/escorts/chloe-birmingham-white-female-1</field>
-	<field name="title">Chloe - 205-310-7105  Escort in Birmingham</field>
-	<field name="city">Birmingham</field>
-	<field name="state">alabama</field>
-  </row>
-  <row>
-	<field name="sources_id">5</field>
-	<field name="url">http://www.naughtyreviews.com/escorts/dana-davis-palmdale-black-female</field>
-	<field name="title">Dana Davis - 818-915-9213 Escort in Palmdale</field>
-	<field name="city">Palmdale</field>
-	<field name="state">california</field>
-  </row>
-  <row>
-	<field name="sources_id">5</field>
-	<field name="url">http://www.naughtyreviews.com/escorts/caroline-costello-richmond-white-female</field>
-	<field name="title">Caroline Costello - 804-313-9123 Escort in Richmond</field>
-	<field name="city">Richmond</field>
-	<field name="state">virginia</field>
-  </row>
-  <row>
-	<field name="sources_id">6</field>
-	<field name="url">http://classifieds.myredbook.com/classified.php?adid=412127</field>
-	<field name="title">HiddenJewel 707-393-8549 : West Santa Rosa/ Sebastopol : Massage</field>
-	<field name="city">West Santa Rosa/ Sebastopol</field>
-	<field name="state" xsi:nil="true" />
-  </row>
-  <row>
-	<field name="sources_id">6</field>
-	<field name="url">http://classifieds.myredbook.com/classified.php?adid=586335</field>
-	<field name="title">Tia_Phoenixx 412-512-3654 : Eugene, Portland, Seattle :</field>
-	<field name="city">Eugene, Portland, Seattle</field>
-	<field name="state" xsi:nil="true" />
-  </row>
-  <row>
-	<field name="sources_id">6</field>
-	<field name="url">http://classifieds.myredbook.com/classified.php?adid=574660</field>
-	<field name="title">BriannaSunshine 415-886-7887 : San Francisco and bay area outcalls :</field>
-	<field name="city">San Francisco and bay area outcalls</field>
-	<field name="state" xsi:nil="true" />
-  </row>
-  <row>
-	<field name="sources_id">7</field>
-	<field name="url">http://www.cityvibe.com/birmingham/Escorts/really-petite-very-exotic-insanely-erotic-absolutley-satisfying-100-real-23/1574731</field>
-	<field name="title">Birmingham Escorts - Female Escorts Alabama - Cityvibe - __ Really Petite __ Very Exotic __ Insanely Erotic __ Absolutley Satisfying __ 100% REaL - 23</field>
-	<field name="city">birmingham</field>
-	<field name="state" xsi:nil="true" />
-  </row>
-  <row>
-	<field name="sources_id">7</field>
-	<field name="url">http://www.cityvibe.com/losangeles/PremiumEscorts/ariel-wla-gfe-incalloutcall/396104</field>
-	<field name="title">Los Angeles Escorts - Premium Escorts California - Cityvibe - Ariel - W.L.A.-G.F.E. Incall/Outcall</field>
-	<field name="city" xsi:nil="true" />
-	<field name="state" xsi:nil="true" />
-  </row>
-  <row>
-	<field name="sources_id">7</field>
-	<field name="url">http://www.cityvibe.com/sanfrancisco/Escorts/mizisland-visiting-the-east-bay-and-sf-area/1568611</field>
-	<field name="title">San Francisco Escorts - Female Escorts California - Cityvibe - MizIsland Visiting The East Bay And SF Area</field>
-	<field name="city">san francisco</field>
-	<field name="state" xsi:nil="true" />
-  </row>
-  <row>
-	<field name="sources_id">8</field>
-	<field name="url">http://massagetroll.com/auburn-massages/256-608-1040/?pid=7164973</field>
-	<field name="title">256-608-1040: Relax and unwind with the best body rub!! 28</field>
-	<field name="city">Auburn</field>
-	<field name="state">Alabama</field>
-  </row>
-  <row>
-	<field name="sources_id">8</field>
-	<field name="url">http://massagetroll.com/flagstaff-massages/480-267-5248/?pid=20876871</field>
-	<field name="title">480-267-5248: Specials specials 24</field>
-	<field name="city">Flagstaff</field>
-	<field name="state">Arizona</field>
-  </row>
-  <row>
-	<field name="sources_id">8</field>
-	<field name="url">http://massagetroll.com/sanfrancisco-massages/408-641-1859/?pid=16299331</field>
-	<field name="title">408-641-1859: new women in town dont miss out 29</field>
-	<field name="city">Sanfrancisco</field>
-	<field name="state">California</field>
-  </row>
-  <row>
-	<field name="sources_id">10</field>
-	<field name="url">http://cityxguide.com/bahama-playmates-ladies-for-gentlemens-new-rates-19/</field>
-	<field name="title">Cityxguide</field>
-	<field name="city">Nassau</field>
-	<field name="state">New Providence</field>
-  </row>
-  <row>
-	<field name="sources_id">10</field>
-	<field name="url">http://cityxguide.com/ms-v-bootyful-juicy-whitegirl-with-an-amazing-mouth-specials-23/</field>
-	<field name="title">Cityxguide</field>
-	<field name="city">Milwaukee</field>
-	<field name="state">Wisconsin</field>
-  </row>
-  <row>
-	<field name="sources_id">10</field>
-	<field name="url">http://cityxguide.com/load-lover-37/</field>
-	<field name="title">Cityxguide</field>
-	<field name="city">Corpus Christi</field>
-	<field name="state">Texas</field>
-  </row>
-  <row>
-	<field name="sources_id">12</field>
-	<field name="url">http://www.rubads.com/u-n-f-g-t-t-b-l-blonde-e-x-p-i-n-c-580-352-4745---massage--birmingham-91377</field>
-	<field name="title">U N F G T T B L Blonde E X P I N C 580-352-4745 - Massage  Birmingham</field>
-	<field name="city">Birmingham</field>
-	<field name="state">alaska</field>
-  </row>
-  <row>
-	<field name="sources_id">12</field>
-	<field name="url">http://www.rubads.com/aliciamilani-415-341-5001---concord--massage-50779</field>
-	<field name="title">AliciaMilani 415-341-5001 - Concord  Massage</field>
-	<field name="city">Concord</field>
-	<field name="state">california</field>
-  </row>
-  <row>
-	<field name="sources_id">12</field>
-	<field name="url">http://www.rubads.com/roxyr_18-408-706-1275---massage--morgan-hill-45929</field>
-	<field name="title">RoxyR_18 408-706-1275 - Massage  Morgan Hill</field>
-	<field name="city">Morgan Hill</field>
-	<field name="state">california</field>
-  </row>
-  <row>
-	<field name="sources_id">14</field>
-	<field name="url">http://sipsap.com/model_page_cast.php?talent_id=665178&amp;s=7edd1e974363de058a03d74829accb9f</field>
-	<field name="title">Escort Profile New Orleans Outcall Strip-tease Denver Escorts Honolulu Esco</field>
-	<field name="city">palm springs</field>
-	<field name="state">California</field>
-  </row>
-  <row>
-	<field name="sources_id">14</field>
-	<field name="url">http://sipsap.com/model_page_cast.php?talent_id=675969&amp;s=03db631bc43881951a572122dda70e9c</field>
-	<field name="title">Escort Profile Escort Services Los Angeles Outcall Mistress Escorts-VIP Phi</field>
-	<field name="city">Atlanta</field>
-	<field name="state">Georgia</field>
-  </row>
-  <row>
-	<field name="sources_id">14</field>
-	<field name="url">http://sipsap.com/model_page_cast.php?talent_id=675420&amp;s=8e467de2d08e9ff3f47afebf49d387ef</field>
-	<field name="title">Escort Profile Escort-agencies Call Girl Services Vip-Escorts Mistress Comp</field>
-	<field name="city">Los Angeles</field>
-	<field name="state">California</field>
-  </row>
-  <row>
-	<field name="sources_id">15</field>
-	<field name="url">http://602-321-2061.escortsincollege.com/any-one-for-a-full-cup-of-juice-1707452.html</field>
-	<field name="title">602-321-2061 - Escort ad in Flagstaff, Arizona | Any One For A Full Cup Of Juice</field>
-	<field name="city">Flagstaff</field>
-	<field name="state">Arizona</field>
-  </row>
-  <row>
-	<field name="sources_id">15</field>
-	<field name="url">http://707-241-3258.escortsincollege.com/pecails-specails-specail-two-girls-specails-1060983.html</field>
-	<field name="title">707-241-3258 - Escort ad in Flagstaff, Arizona | $ Pecails Specails Specail Two Girls Specails</field>
-	<field name="city">Flagstaff</field>
-	<field name="state">Arizona</field>
-  </row>
-  <row>
-	<field name="sources_id">15</field>
-	<field name="url">http://623-432-9116.escortsincollege.com/new-chic-on-backpage-wait-til-you-get-a-load-of-her-1756923.html</field>
-	<field name="title">623-432-9116 - Escort ad in Phoenix, Arizona | New Chic On Backpage Wait Til You Get A Load Of Her</field>
-	<field name="city">Phoenix</field>
-	<field name="state">Arizona</field>
-  </row>
-  <row>
-	<field name="sources_id">16</field>
-	<field name="url">http://480-652-1939.escortphonelist.com/im-the-best-that-u-n-e-v-e-r-had-blonde-thick-thighs-big-b00ty-w-curves-c-ll-now-1710184.html</field>
-	<field name="title">480-652-1939 - Escort ad in Flagstaff, Arizona | I'm The Best That (u) N E V E R Had!! Blonde Thick Thighs Big B00ty W Curves C Ll Now!</field>
-	<field name="city">Flagstaff</field>
-	<field name="state">Arizona</field>
-  </row>
-  <row>
-	<field name="sources_id">16</field>
-	<field name="url">http://480-316-0406.escortphonelist.com/1-premiere-escort-agency-is-now-hiring-southern-comfort-1221146.html</field>
-	<field name="title">480-316-0406 - Escort ad in Flagstaff, Arizona | #1 Premiere Escort Agency Is Now Hiring! Southern Comfort</field>
-	<field name="city">Flagstaff</field>
-	<field name="state">Arizona</field>
-  </row>
-  <row>
-	<field name="sources_id">16</field>
-	<field name="url">http://619-581-3269.escortphonelist.com/double-trouble-sexy-mixed-barbie-curvy-latin-freaks-incall-available-now-1780116.html</field>
-	<field name="title">619-581-3269 - Escort ad in Phoenix, Arizona | Double Trouble Sexy Mixed Barbie &amp;&amp; Curvy Latin Freaks Incall Available Now</field>
-	<field name="city">Phoenix</field>
-	<field name="state">Arizona</field>
-  </row>
-  <row>
-	<field name="sources_id">17</field>
-	<field name="url">http://eroticmugshots.com/birmingham-escorts/256-642-1389/?pid=9734745</field>
-	<field name="title">256-642-1389</field>
-	<field name="city">Birmingham</field>
-	<field name="state">Alabama</field>
-  </row>
-  <row>
-	<field name="sources_id">17</field>
-	<field name="url">http://eroticmugshots.com/birmingham-escorts/205-266-0048/?pid=9580660</field>
-	<field name="title">205-266-0048</field>
-	<field name="city">Birmingham</field>
-	<field name="state">Alabama</field>
-  </row>
-  <row>
-	<field name="sources_id">17</field>
-	<field name="url">http://eroticmugshots.com/macon-escorts/404-308-6499/?pid=22002677</field>
-	<field name="title">404-308-6499</field>
-	<field name="city">Valdosta</field>
-	<field name="state">Georgia</field>
-  </row>
-  <row>
-	<field name="sources_id">18</field>
-	<field name="url">http://escortads.xxx/205-720-9614/?pid=9887849</field>
-	<field name="title">205-720-9614 - B00TY HiPs Thighs Titts Face B00TY - 25 at EscortAds.xxx</field>
-	<field name="city">Birmingham</field>
-	<field name="state">Alabama</field>
-  </row>
-  <row>
-	<field name="sources_id">18</field>
-	<field name="url">http://escortads.xxx/757-372-3143/?pid=15303383</field>
-	<field name="title">757-372-3143 - LEAVING . Town Soon . THE BOOTY you have been &quot;DREAMING&quot; ABOUT O.LED Up &amp; ReADy OMG - 69 at EscortAds.xxx</field>
-	<field name="city">Atlanta</field>
-	<field name="state">Georgia</field>
-  </row>
-  <row>
-	<field name="sources_id">18</field>
-	<field name="url">http://escortads.xxx/256-702-6636/?pid=10019409</field>
-	<field name="title">256-702-6636 - Hot Kk Sxy Scis - 24 at EscortAds.xxx</field>
-	<field name="city">Orlando</field>
-	<field name="state">Florida</field>
-  </row>
-  <row>
-	<field name="sources_id">19</field>
-	<field name="url">http://escortsin.ca/587-889-5971/?pid=8012513</field>
-	<field name="title">587-889-5971 - S T U N N N G SEXXY SLIM AVA!L N0W SOUTH DUO 20 | 587-889-5971 on EscortsIn.CA</field>
-	<field name="city">Edmonton</field>
-	<field name="state">Alberta</field>
-  </row>
-  <row>
-	<field name="sources_id">19</field>
-	<field name="url">http://escortsin.ca/587-889-3641/?pid=8119378</field>
-	<field name="title">587-889-3641 - Sascha Lee is Back! Sexy Petite Ebony New Number 5878893641 20 | 587-889-3641 on EscortsIn.CA</field>
-	<field name="city">Lethbridge</field>
-	<field name="state">Alberta</field>
-  </row>
-  <row>
-	<field name="sources_id">19</field>
-	<field name="url">http://escortsin.ca/647-500-5747/?pid=2496642</field>
-	<field name="title">647-500-5747 - Lacy Lovelle VISITING MOOSE JAW! Smokin HOT blue eyed BUSTY 34D brunette! May 1&amp;2 27 | 647-500-5747 on EscortsIn.CA</field>
-	<field name="city">Regina</field>
-	<field name="state">Saskatchewan</field>
-  </row>
-  <row>
-	<field name="sources_id">20</field>
-	<field name="url">http://escortsinthe.us/205-720-9614/?pid=9837721</field>
-	<field name="title">205-720-9614 - BooTy HipS ThiGhS SeXy SNoWBunnY CaLL mE iF You SeeN mE b4 25 | 205-720-9614 on EscortsInThe.US</field>
-	<field name="city">Birmingham</field>
-	<field name="state">Alabama</field>
-  </row>
-  <row>
-	<field name="sources_id">20</field>
-	<field name="url">http://escortsinthe.us/850-284-6254/?pid=7227578</field>
-	<field name="title">850-284-6254 - Take ur pick or double trouble 50 100 150 come play!! 22 | 850-284-6254 on EscortsInThe.US</field>
-	<field name="city">Baltimore</field>
-	<field name="state">Maryland</field>
-  </row>
-  <row>
-	<field name="sources_id">20</field>
-	<field name="url">http://escortsinthe.us/678-600-0781/?pid=10224181</field>
-	<field name="title">678-600-0781 - ALL ThE GoOdNesS YoU NeEd In YoUR LiFe seXy AZZ $$$ !! 25 | 678-600-0781 on EscortsInThe.US</field>
-	<field name="city">Reno</field>
-	<field name="state">Nevada</field>
-  </row>
-  <row>
-	<field name="sources_id">21</field>
-	<field name="url">http://liveescortreviews.com/ad/huntsville/931-292-2380/1/3302</field>
-	<field name="title">Live Escort Reviews - 931-292-2380 - SPECIALS, Sensual desires? $$100 Mission Fulfilled! - 22</field>
-	<field name="city">Huntsville</field>
-	<field name="state">alabama</field>
-  </row>
-  <row>
-	<field name="sources_id">21</field>
-	<field name="url">http://liveescortreviews.com/ad/huntsville/256-398-0859/1/2938</field>
-	<field name="title">Live Escort Reviews - 256-398-0859 - Vip Club/Shannon - 34</field>
-	<field name="city">Huntsville</field>
-	<field name="state">alabama</field>
-  </row>
-  <row>
-	<field name="sources_id">21</field>
-	<field name="url">http://liveescortreviews.com/ad/huntsville/256-642-6542/2/2752</field>
-	<field name="title">Live Escort Reviews - 256-642-6542 - Wanna Play!!! :) :) :) - 20</field>
-	<field name="city">Huntsville</field>
-	<field name="state">alabama</field>
-  </row>
-  <row>
-	<field name="sources_id">25</field>
-	<field name="url">http://adultsearch.com/georgia/atlanta//female-escorts/933002</field>
-	<field name="title">404-852-9428 Naughty Natalie Atlanta, Georgia Female Escorts</field>
-	<field name="city">Atlanta</field>
-	<field name="state">Georgia</field>
-  </row>
-  <row>
-	<field name="sources_id">25</field>
-	<field name="url">http://adultsearch.com/massachusetts/boston//female-escorts/137864</field>
-	<field name="title">781-913-0562 Kelly Boston, Massachusetts Female Escorts</field>
-	<field name="city">Boston</field>
-	<field name="state">Massachusetts</field>
-  </row>
-  <row>
-	<field name="sources_id">25</field>
-	<field name="url">http://adultsearch.com/texas/houston//body-rubs/406038</field>
-	<field name="title">832-350-3843 LISA Houston, Texas Body Rubs</field>
-	<field name="city">Houston</field>
-	<field name="state" xsi:nil="true" />
-  </row>
-  <row>
-	<field name="sources_id">30</field>
-	<field name="url">https://jobs.justlanded.com/en/Ghana/Designers-Creative/I-Need-Job-In-China-Graphic-Design-Or-Photography-Or-Teachin</field>
-	<field name="title">I Need Job In China Graphic Design Or Photography Or Teachin: Designers &amp;amp; Creative jobs in Ghana</field>
-	<field name="city" xsi:nil="true" />
-	<field name="state" xsi:nil="true" />
-  </row>
-  <row>
-	<field name="sources_id">31</field>
-	<field name="url">http://www.gmdu.net/corp-833925.html</field>
-	<field name="title">New World Commercial Enterprises Pvt. Ltd</field>
-	<field name="city" xsi:nil="true" />
-	<field name="state" xsi:nil="true" />
-  </row>
-  <row>
-	<field name="sources_id">31</field>
-	<field name="url">http://www.gmdu.net/corp-131673.html</field>
-	<field name="title">PSSB Marketing Service Agency</field>
-	<field name="city" xsi:nil="true" />
-	<field name="state" xsi:nil="true" />
-  </row>
-  <row>
-	<field name="sources_id">33</field>
-	<field name="url">http://manpowervacancy.com/index.php?page=directory&amp;id=37</field>
-	<field name="title">Manpower Drirectory Nepal, Manpower Demand Nepal, Manpower vacancy, Foreign job Nepal, Overseas Job Nepal, Saudi Job Nepal, Dubai, Malaysia, UAE Job Nepal - Al Naseer Overseas Pvt. Ltd.</field>
-	<field name="city" xsi:nil="true" />
-	<field name="state" xsi:nil="true" />
-  </row>
-  <row>
-	<field name="sources_id">33</field>
-	<field name="url">http://manpowervacancy.com/index.php?page=job_detail&amp;id=1336</field>
-	<field name="title">Manpower Drirectory Nepal, Manpower Demand Nepal, Manpower vacancy, Foreign job Nepal, Overseas Job Nepal, Saudi Job Nepal, Dubai, Malaysia, UAE Job Nepal -</field>
-	<field name="city" xsi:nil="true" />
-	<field name="state" xsi:nil="true" />
-  </row>
-</resultset>
-"""
-
-import xml.etree.ElementTree as ET
-root = ET.fromstring(TESTCASES_XML)
-
-TESTCASES = []
-for row in root:
-    TESTCASES.append([elt.text for elt in row])
-
-VERBOSE = False
-def main():
-    for row in TESTCASES:
-        (sources_id,url,title,city,state) = row
-        if VERBOSE:
-            print sources_id,
-        market = determineMarket(sources_id, url, title, city,state)
-        if market and isinstance(market, list) and len(market)==12:
-            if VERBOSE:
-                print "success"
-        else:
-            if VERBOSE:
-                print "Failed on row %s" % row
-
-# call main() if this is run as standalone
-if __name__ == "__main__":
-    sys.exit(main())
-
 
 '''
 ### BOILERPLATE
