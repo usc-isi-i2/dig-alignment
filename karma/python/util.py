@@ -9,6 +9,10 @@ def documentUrl(x):
     return 'http://' + x[x.find('/', i + 6) + 1:]
 
 
+def getCurrentTime():
+    return datetime.today().strftime("%Y-%m-%d %H:%M:%S")
+
+
 def countryUri(x):
     "Return a URI for a country given its name."
     import re

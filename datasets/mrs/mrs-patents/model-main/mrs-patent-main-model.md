@@ -59,6 +59,12 @@ url = 'http:' + url
 return url
 ```
 
+#### _modtime_
+From column: _modtime_
+>``` python
+return iso8601date(getCurrentTime(), "%Y-%m-%d %H:%M:%S")
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
@@ -68,6 +74,7 @@ return url
 | _Patent Title_ | `schema:text` | `schema:WebPageElement2`|
 | _abstract_uri_ | `uri` | `schema:WebPageElement1`|
 | _image_uri1_ | `uri` | `schema:ImageObject1`|
+| _modtime_ | `prov:endedAtTime` | `prov:Activity1`|
 | _publicationUri_ | `memex:publicationUri` | `schema:WebPage1`|
 | _title_uri_ | `uri` | `schema:WebPageElement2`|
 | _uri_ | `uri` | `schema:WebPage1`|
@@ -78,6 +85,8 @@ return url
 ### Links
 | From | Property | To |
 |  --- | -------- | ---|
+| `prov:Activity1` | `prov:wasAttributedTo` | `xsd:http://dig.isi.edu/mrs/data/api/google`|
+| `schema:ImageObject1` | `prov:wasGeneratedBy` | `prov:Activity1`|
 | `schema:WebPage1` | `memex:hasAbstractPart` | `schema:WebPageElement1`|
 | `schema:WebPage1` | `memex:hasBodyPart` | `schema:WebPageElement3`|
 | `schema:WebPage1` | `memex:hasImagePart` | `schema:ImageObject1`|
