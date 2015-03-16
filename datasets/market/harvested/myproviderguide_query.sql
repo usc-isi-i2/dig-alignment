@@ -1,1 +1,0 @@
-mysql> select distinct mid(url,1+locate('/',url,32),1+locate('/',url,40)-locate('/',url,32)-2) from ads where sources_id=4 limit 387;

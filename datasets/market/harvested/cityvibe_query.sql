@@ -1,1 +1,0 @@
-select distinct mid(url,1+locate('/',url,22),locate('/',url,25)-locate('/',url,22)-1) from ads where sources_id=7 limit 600;
