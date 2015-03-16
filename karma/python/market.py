@@ -5828,158 +5828,8 @@ def determineMarket(source, url, title, city, state):
     handler = handlers_by_source[sources_by_id.get(source, source)]
     return handler(url, title, city, state)
 
-##################################################################
 
-# TESTCASES = [
-# ["backpage", "http://longisland.backpage.com/FemaleEscorts/s-mny-oo-chics-but-oo-nn-lik-oo-me-19/40317377", None, None, None],
-# ["backpage", "http://bronx.backpage.com/FemaleEscorts/i-love-doing-this-lets-explore-unrushed-fun-try-somrthing-new-19-year-old-sexy-latin-19/42033905", None, None, None],
-# ["backpage", "http://buffalo.backpage.com/FemaleEscorts/rockstar-chick-available-now-22/10960004", None, None, None],
-# ["backpage", "http://manhattan.backpage.com/FemaleEscorts/sexi-hot-phat-booty-i-am-so-hot-babe-lets-get-our-freak-on-babe-beautiful-michel-29/43436197", None, None, None],
-# ["backpage", "http://binghamton.backpage.com/FemaleEscorts/new-38dd-caribbeanbeauty-hot-like-fire-lve-2party-lets-get-kinky-24/1286614", None, None, None],
-
-# ["craigslist", "http://bham.craigslist.org/cas/4209753359.html", None, None, None],
-# ["craigslist", "http://juneau.craigslist.org/cas/4171573516.html", None, None, None],
-# ["craigslist", "http://littlerock.craigslist.org/cas/4206819843.html", None, None, None],
-# ["craigslist", "http://cosprings.craigslist.org/cas/4169982413.html", None, None, None],
-# ["craigslist", "http://desmoines.craigslist.org/cas/4212904849.html", None, None, None],
-
-# ["classivox","http://lexington.classivox.com/t/sex-guide/859-553-3365-just-a-reminder-mia-is-now-taking-appointments-now-38/358536/", None, None, None],
-# ["classivox","http://pittsburgh.classivox.com/t/female-escorts/-hey-we-have-specials-today-or-massages-4126-07-1975/370287/", None, None, None],
-# ["classivox","http://toronto.classivox.com/t/female-escorts/-bella-welcome-to-the-ultimate-experience-im/370954/", None, None, None],
-# ["classivox","http://washington-dc.classivox.com/t/female-escorts/-hey-guys-im-back-intown-im-london-a-beautiful/372711/", None, None, None],
-# ["classivox","http://augusta.classivox.com/t/female-escorts/706-538-7452-hi-guys-my-name-is-nikki-i-am-new-to/376531/", None, None, None],
-
-# ["myproviderguide","http://www.myproviderguide.com/escorts/birmingham/free-posts/w4m/5538151_miss-mya.html",None, None, None],
-# ["myproviderguide","http://www.myproviderguide.com/escorts/sierra-vista/free-posts/w4m/5165518_sexy-big-busted-redhead-girl.html",None, None, None],
-# ["myproviderguide","http://www.myproviderguide.com/escorts/chico/free-posts/w4m/5430901_up-for-a-mutually-beneficial-a.html",None, None, None],
-# ["myproviderguide","http://www.myproviderguide.com/escorts/san-fernando-valley/free-posts/w4m/2898312_your-new-atf-omg-ava-monroe.html",None, None, None],
-# ["myproviderguide","http://www.myproviderguide.com/escorts/valdosta/free-posts/w4m/5436370_sweet-sexy-stunning-let-s-play.html",None, None, None],
-
-# ["naughtyreviews","http://www.naughtyreviews.com/escorts/chloe-birmingham-white-female-1", None, None, None],
-# ["naughtyreviews","http://www.naughtyreviews.com/escorts/dana-davis-palmdale-black-female", None, None, None],
-# ["naughtyreviews","http://www.naughtyreviews.com/escorts/caroline-costello-richmond-white-female", None, None, None],
-# ["naughtyreviews","http://www.naughtyreviews.com/escorts/ohare-goddess-chicago-white-female", None, None, None],
-# ["naughtyreviews","http://www.naughtyreviews.com/escorts/playful-penn-erie-white-female", None, None, None],
-# ["naughtyreviews","http://www.naughtyreviews.com/escorts/vanessa-houston-latin-shemale", None, None, None],
-# ["naughtyreviews","http://www.naughtyreviews.com/escorts/brianna-birmingham-white-female-0", None, None, None],
-# ["naughtyreviews","http://www.naughtyreviews.com/escorts/vanessa-houston-latin-shemale", None, None, None],
-# ["naughtyreviews","http://www.naughtyreviews.com/companions/juliette-jakarta-asian-shemale", None, None, None],
-# ["naughtyreviews","http://www.naughtyreviews.com/companions/chanel-dayton-mixed-female", None, None, None],
-# ["naughtyreviews","http://www.naughtyreviews.com/escort-agencies/my-exotic-escape-cleveland", None, None, None],
-# ["naughtyreviews","http://www.naughtyreviews.com/escort-agencies/bogus-agency-new-orleans-0", None, None, None],
-# ["naughtyreviews","http://www.naughtyreviews.com/massage-parlors/renton-spadivine-temple-seattle", None, None, None],
-# ["naughtyreviews","http://www.naughtyreviews.com/escorts/lebanese-middle-eastern-beauty-san-diego-middle-eastern-female", None, None, None],
-
-# ["eroticmugshots","http://eroticmugshots.com/birmingham-escorts/256-642-1389/?pid=9734745", None, None, None],
-# ["eroticmugshots","http://eroticmugshots.com/birmingham-escorts/205-266-0048/?pid=9580660", None, None, None],
-# ["eroticmugshots","http://eroticmugshots.com/macon-escorts/404-308-6499/?pid=22002677", None, None, None],
-# ["eroticmugshots","http://eroticmugshots.com/ftlauderdale-escorts/765-520-6437/?pid=8232257", None, None, None],
-# ["eroticmugshots","http://eroticmugshots.com/houston-escorts/719-492-9016/?pid=6887627", None, None, None],
-
-# ["liveescortreviews", "http://liveescortreviews.com/ad/huntsville/256-585-7212/14/2351", None, None, None],
-# ["liveescortreviews", "http://liveescortreviews.com/ad/phoenix/602-432-9586/14/86334", None, None, None],
-# ["liveescortreviews", "http://liveescortreviews.com/ad/phoenix/602-487-2432/49/72000", None, None, None],
-# ["liveescortreviews", "http://liveescortreviews.com/ad/denver/720-621-0548/36/71638", None, None, None],
-# ["liveescortreviews", "http://liveescortreviews.com/ad/denver/720-625-0460/49/70273", None, None, None],
-# ["liveescortreviews", "http://liveescortreviews.com/ad/daytona/702-637-9016/5/3463", None, None, None],
-
-# ["escortsincollege", None, "602-321-2061 - Escort ad in Flagstaff, Arizona | Any One For A Full Cup Of Juice", None, None],
-# ["escortsincollege", None, "707-241-3258 - Escort ad in Flagstaff, Arizona | $ Pecails Specails Specail Two Girls Specails", None, None],
-# ["escortsincollege", None, "623-432-9116 - Escort ad in Phoenix, Arizona | New Chic On Backpage Wait Til You Get A Load Of Her", None, None],
-# ["escortsincollege", None, "619-717-9773 - Escort ad in Flagstaff, Arizona | Busty & Petite Exotic Or Erotic", None, None],
-# ["escortsincollege", None, "202-277-7628 - Escort ad in Atlanta, Georgia | Visiting Visiting Visiting", None, None],
-
-# ["escortphonelist", None, "480-652-1939 - Escort ad in Flagstaff, Arizona | I'm The Best That (u) N E V E R Had!! Blonde Thick Thighs Big B00ty W Curves C Ll Now!", None, None],
-# ["escortphonelist", None, "480-316-0406 - Escort ad in Flagstaff, Arizona | #1 Premiere Escort Agency Is Now Hiring! Southern Comfort", None, None],
-# ["escortphonelist", None, "619-581-3269 - Escort ad in Phoenix, Arizona | Double Trouble Sexy Mixed Barbie && Curvy Latin Freaks Incall Available Now", None, None],
-# ["escortphonelist", None, "602-845-9280 - Escort ad in Phoenix, Arizona | Stop!!!! New Exotic Babe 100 Real Pics ) 80$pecials Ready For You Tonight! !! Incall Outcall", None, None],
-# ["escortphonelist", None, "602-330-8931 - Escort ad in Phoenix, Arizona | Sexy Latina With Huge Ll Natural Ddd's $100 !!", None, None],
-
-# ["escortadsxxx", None, None, "Birmingham", "Alabama"],
-# ["escortadsxxx", None, None, "Atlanta", "Georgia"],
-# ["escortadsxxx", None, None, "Savannah", "Georgia"],
-# ["escortadsxxx", None, None, "Orlando", "Florida"],
-# ["escortadsxxx", None, None, "Virginia Beach", "Virginia"],
-
-# ["escortsinca", None, None, "Edmonton", "Alberta"],
-# ["escortsinca", None, None, "Lethbridge", "Alberta"],
-# ["escortsinca", None, None, "Regina", "Saskatchewan"],
-# ["escortsinca", None, None, "Fort Mcmurray", "Alberta"],
-# ["escortsinca", None, None, "Toronto", "Ontario"],
-
-# ["escortsintheus", None, None, "Birmingham", "Alabama"],
-# ["escortsintheus", None, None, "Baltimore", "Maryland"],
-# ["escortsintheus", None, None, "Reno", "Nevada"],
-# ["escortsintheus", None, None, "Montgomery", "Alabama"],
-# ["escortsintheus", None, None, None, None],
-
-# ["massagetroll", "http://massagetroll.com/auburn-massages/256-608-1040/?pid=7164973", None, None, None],
-# ["massagetroll", "http://massagetroll.com/flagstaff-massages/480-267-5248/?pid=20876871", None, None, None],
-# ["massagetroll", "http://massagetroll.com/sanfrancisco-massages/408-641-1859/?pid=16299331", None, None, None],
-# ["massagetroll", "http://massagetroll.com/ventura-massages/678-949-6764/?pid=39604831", None, None, None],
-# ["massagetroll", "http://massagetroll.com/fortmyers-massages/786-488-6466/?pid=12048202", None, None, None],
-
-# ["eroticmugshots", "http://eroticmugshots.com/birmingham-escorts/256-642-1389/?pid=9734745", None, None, None],
-# ["eroticmugshots", "http://eroticmugshots.com/birmingham-escorts/205-266-0048/?pid=9580660", None, None, None],
-# ["eroticmugshots", "http://eroticmugshots.com/macon-escorts/404-308-6499/?pid=22002677", None, None, None],
-# ["eroticmugshots", "http://eroticmugshots.com/ftlauderdale-escorts/765-520-6437/?pid=8232257", None, None, None],
-# ["eroticmugshots", "http://eroticmugshots.com/houston-escorts/719-492-9016/?pid=6887627", None, None, None],
-
-# ["cityvibe", "http://www.cityvibe.com/birmingham/Escorts/really-petite-very-exotic-insanely-erotic-absolutley-satisfying-100-real-23/1574731", None, None, None],
-# ["cityvibe", "http://www.cityvibe.com/losangeles/PremiumEscorts/ariel-wla-gfe-incalloutcall/396104", None, None, None],
-# ["cityvibe", "http://www.cityvibe.com/sanfrancisco/Escorts/mizisland-visiting-the-east-bay-and-sf-area/1568611", None, None, None],
-# ["cityvibe", "http://www.cityvibe.com/northbayca/Escorts/sexy-sassy-february-bikini-model/1552503", None, None, None],
-# ["cityvibe", "http://www.cityvibe.com/chicago/Escorts/direct-to-you-the-perfect-treat/1569024", None, None, None],
-
-# ["backpage","http://hudsonvalley.backpage.com/FemaleEscorts/extreme-pleasures-23/12893063",None,None,None]
-# ]
-
-# TESTCASES = [
-# ["1","http://albany.backpage.com/FemaleEscorts/passion-yr-oo-atifaction-oo-i-y-oo-1-priority-oo-y-b0dy-i-flwlss-21/12495941","albany","","albany",""],
-# ["1","http://queens.backpage.com/FemaleEscorts/slim-sexy-chocolate-drop-come-play-with-her-22/43750968","queens","","queens",""],
-# ["2","http://bham.craigslist.org/cas/4209753359.html","Birmingham","alabama","","United States of America"],
-# ["2","http://juneau.craigslist.org/cas/4171573516.html","juneau","Alaska","","United States of America"],
-# ["3","http://lexington.classivox.com/t/sex-guide/859-553-3365-just-a-reminder-mia-is-now-taking-appointments-now-38/358536/","lexington","kentucky","","United States"],
-# ["3","http://pittsburgh.classivox.com/t/female-escorts/-hey-we-have-specials-today-or-massages-4126-07-1975/370287/","pittsburgh","pennsylvania","","United States"],
-# ["4","http://www.myproviderguide.com/escorts/birmingham/free-posts/w4m/5538151_miss-mya.html","birmingham","","",""],
-# ["4","http://www.myproviderguide.com/escorts/sierra-vista/free-posts/w4m/5165518_sexy-big-busted-redhead-girl.html","sierra-vista","","",""],
-# ["5","http://www.naughtyreviews.com/escorts/chloe-birmingham-white-female-1","Birmingham","alabama","AL",""],
-# ["5","http://www.naughtyreviews.com/escorts/dana-davis-palmdale-black-female","Palmdale","california","CA",""],
-# ["6","http://classifieds.myredbook.com/classified.php?adid=412127","West Santa Rosa/ Sebastopol","","",""],
-# ["6","http://classifieds.myredbook.com/classified.php?adid=586335","Eugene, Portland, Seattle","","",""],
-# ["7","http://www.cityvibe.com/birmingham/Escorts/really-petite-very-exotic-insanely-erotic-absolutley-satisfying-100-real-23/1574731","birmingham","","alabama",""],
-# ["7","http://www.cityvibe.com/losangeles/PremiumEscorts/ariel-wla-gfe-incalloutcall/396104","","","california",""],
-# ["8","http://massagetroll.com/auburn-massages/256-608-1040/?pid=7164973","Auburn","Alabama","",""],
-# ["8","http://massagetroll.com/flagstaff-massages/480-267-5248/?pid=20876871","Flagstaff","Arizona","",""],
-# ["10","http://cityxguide.com/bahama-playmates-ladies-for-gentlemens-new-rates-19/","Nassau","New Providence","",""],
-# ["10","http://cityxguide.com/ms-v-bootyful-juicy-whitegirl-with-an-amazing-mouth-specials-23/","Milwaukee","Wisconsin","",""],
-# ["12","http://www.rubads.com/aliciamilani-415-341-5001---concord--massage-50779","Concord","california","",""],
-# ["14","http://sipsap.com/model_page_cast.php?talent_id=665178&s=7edd1e974363de058a03d74829accb9f","palm springs","California","","United States"],
-# ["14","http://sipsap.com/model_page_cast.php?talent_id=675969&s=03db631bc43881951a572122dda70e9c","Atlanta","Georgia","","United States"],
-# ["15","http://602-321-2061.escortsincollege.com/any-one-for-a-full-cup-of-juice-1707452.html","Flagstaff","Arizona","",""],
-# ["15","http://707-241-3258.escortsincollege.com/pecails-specails-specail-two-girls-specails-1060983.html","Flagstaff","Arizona","",""],
-# ["16","http://480-652-1939.escortphonelist.com/im-the-best-that-u-n-e-v-e-r-had-blonde-thick-thighs-big-b00ty-w-curves-c-ll-now-1710184.html","Flagstaff","Arizona","",""],
-# ["16","http://480-316-0406.escortphonelist.com/1-premiere-escort-agency-is-now-hiring-southern-comfort-1221146.html","Flagstaff","Arizona","",""],
-# ["17","http://eroticmugshots.com/birmingham-escorts/256-642-1389/?pid=9734745","Birmingham","Alabama","","United States"],
-# ["17","http://eroticmugshots.com/birmingham-escorts/205-266-0048/?pid=9580660","Birmingham","Alabama","","United States"],
-# ["18","http://escortads.xxx/205-720-9614/?pid=9887849","Birmingham","Alabama","","United States"],
-# ["18","http://escortads.xxx/757-372-3143/?pid=15303383","Atlanta","Georgia","","United States"],
-# ["19","http://escortsin.ca/587-889-5971/?pid=8012513","Edmonton","Alberta","","Canada"],
-# ["19","http://escortsin.ca/587-889-3641/?pid=8119378","Lethbridge","Alberta","","Canada"],
-# ["20","http://escortsinthe.us/205-720-9614/?pid=9837721","Birmingham","Alabama","","United States"],
-# ["20","http://escortsinthe.us/850-284-6254/?pid=7227578","Baltimore","Maryland","","United States"],
-# ["21","http://liveescortreviews.com/ad/huntsville/931-292-2380/1/3302","Huntsville","alabama","",""],
-# ["21","http://liveescortreviews.com/ad/huntsville/256-398-0859/1/2938","Huntsville","alabama","",""],
-# ["25","http://adultsearch.com/georgia/atlanta//female-escorts/933002","Atlanta","Georgia","Georgia","United States of America"],
-# ["25","http://adultsearch.com/massachusetts/boston//female-escorts/137864","Boston","Massachusetts","Massachusetts","United States of America"],
-# ["30","https://jobs.justlanded.com/en/Ghana/Designers-Creative/I-Need-Job-In-China-Graphic-Design-Or-Photography-Or-Teachin","","","Akkra Ghana","Ghana"],
-# ["31","http://www.gmdu.net/corp-833925.html","","","Nepal",""],
-# ["31","http://www.gmdu.net/corp-131673.html","","","Malaysia",""],
-# ["33","http://manpowervacancy.com/index.php?page=directory&id=37","","","",""],
-# ["33","http://manpowervacancy.com/index.php?page=job_detail&id=1336","","","","UAE"]
-# ]
-
-xmldata = """
+TESTCASES_XML = """
 <resultset statement="select sources_id, url, title, city, state from ads where rand(1)&gt;0.999 and sources_id=1 limit 3;" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <row>
 	<field name="sources_id">1</field>
@@ -5988,7 +5838,6 @@ xmldata = """
 	<field name="city">albany</field>
 	<field name="state" xsi:nil="true" />
   </row>
-
   <row>
 	<field name="sources_id">1</field>
 	<field name="url">http://queens.backpage.com/FemaleEscorts/slim-sexy-chocolate-drop-come-play-with-her-22/43750968</field>
@@ -5996,7 +5845,6 @@ xmldata = """
 	<field name="city">queens</field>
 	<field name="state" xsi:nil="true" />
   </row>
-
   <row>
 	<field name="sources_id">1</field>
 	<field name="url">http://longisland.backpage.com/FemaleEscorts/great-body-rub-wonder_-m-a-g-i-c_-h-a-n-d-s-_-29/24392419</field>
@@ -6004,12 +5852,6 @@ xmldata = """
 	<field name="city">longÂ island</field>
 	<field name="state" xsi:nil="true" />
   </row>
-
-
-
-
-
-
   <row>
 	<field name="sources_id">2</field>
 	<field name="url">http://bham.craigslist.org/cas/4209753359.html</field>
@@ -6017,7 +5859,6 @@ xmldata = """
 	<field name="city">Birmingham</field>
 	<field name="state">alabama</field>
   </row>
-
   <row>
 	<field name="sources_id">2</field>
 	<field name="url">http://juneau.craigslist.org/cas/4171573516.html</field>
@@ -6025,7 +5866,6 @@ xmldata = """
 	<field name="city">juneau</field>
 	<field name="state">Alaska</field>
   </row>
-
   <row>
 	<field name="sources_id">2</field>
 	<field name="url">http://littlerock.craigslist.org/cas/4206819843.html</field>
@@ -6033,12 +5873,6 @@ xmldata = """
 	<field name="city" xsi:nil="true" />
 	<field name="state" xsi:nil="true" />
   </row>
-
-
-
-
-
-
   <row>
 	<field name="sources_id">3</field>
 	<field name="url">http://lexington.classivox.com/t/sex-guide/859-553-3365-just-a-reminder-mia-is-now-taking-appointments-now-38/358536/</field>
@@ -6046,7 +5880,6 @@ xmldata = """
 	<field name="city">lexington</field>
 	<field name="state">kentucky</field>
   </row>
-
   <row>
 	<field name="sources_id">3</field>
 	<field name="url">http://pittsburgh.classivox.com/t/female-escorts/-hey-we-have-specials-today-or-massages-4126-07-1975/370287/</field>
@@ -6054,7 +5887,6 @@ xmldata = """
 	<field name="city">pittsburgh</field>
 	<field name="state">pennsylvania</field>
   </row>
-
   <row>
 	<field name="sources_id">3</field>
 	<field name="url">http://toronto.classivox.com/t/female-escorts/-bella-welcome-to-the-ultimate-experience-im/370954/</field>
@@ -6062,12 +5894,6 @@ xmldata = """
 	<field name="city">toronto</field>
 	<field name="state">ontario</field>
   </row>
-
-
-
-
-
-
   <row>
 	<field name="sources_id">4</field>
 	<field name="url">http://www.myproviderguide.com/escorts/birmingham/free-posts/w4m/5538151_miss-mya.html</field>
@@ -6075,7 +5901,6 @@ xmldata = """
 	<field name="city">birmingham</field>
 	<field name="state" xsi:nil="true" />
   </row>
-
   <row>
 	<field name="sources_id">4</field>
 	<field name="url">http://www.myproviderguide.com/escorts/sierra-vista/free-posts/w4m/5165518_sexy-big-busted-redhead-girl.html</field>
@@ -6083,7 +5908,6 @@ xmldata = """
 	<field name="city">sierra-vista</field>
 	<field name="state" xsi:nil="true" />
   </row>
-
   <row>
 	<field name="sources_id">4</field>
 	<field name="url">http://www.myproviderguide.com/escorts/chico/free-posts/w4m/5430901_up-for-a-mutually-beneficial-a.html</field>
@@ -6091,12 +5915,6 @@ xmldata = """
 	<field name="city">chico</field>
 	<field name="state" xsi:nil="true" />
   </row>
-
-
-
-
-
-
   <row>
 	<field name="sources_id">5</field>
 	<field name="url">http://www.naughtyreviews.com/escorts/chloe-birmingham-white-female-1</field>
@@ -6104,7 +5922,6 @@ xmldata = """
 	<field name="city">Birmingham</field>
 	<field name="state">alabama</field>
   </row>
-
   <row>
 	<field name="sources_id">5</field>
 	<field name="url">http://www.naughtyreviews.com/escorts/dana-davis-palmdale-black-female</field>
@@ -6112,7 +5929,6 @@ xmldata = """
 	<field name="city">Palmdale</field>
 	<field name="state">california</field>
   </row>
-
   <row>
 	<field name="sources_id">5</field>
 	<field name="url">http://www.naughtyreviews.com/escorts/caroline-costello-richmond-white-female</field>
@@ -6120,12 +5936,6 @@ xmldata = """
 	<field name="city">Richmond</field>
 	<field name="state">virginia</field>
   </row>
-
-
-
-
-
-
   <row>
 	<field name="sources_id">6</field>
 	<field name="url">http://classifieds.myredbook.com/classified.php?adid=412127</field>
@@ -6133,7 +5943,6 @@ xmldata = """
 	<field name="city">West Santa Rosa/ Sebastopol</field>
 	<field name="state" xsi:nil="true" />
   </row>
-
   <row>
 	<field name="sources_id">6</field>
 	<field name="url">http://classifieds.myredbook.com/classified.php?adid=586335</field>
@@ -6141,7 +5950,6 @@ xmldata = """
 	<field name="city">Eugene, Portland, Seattle</field>
 	<field name="state" xsi:nil="true" />
   </row>
-
   <row>
 	<field name="sources_id">6</field>
 	<field name="url">http://classifieds.myredbook.com/classified.php?adid=574660</field>
@@ -6149,12 +5957,6 @@ xmldata = """
 	<field name="city">San Francisco and bay area outcalls</field>
 	<field name="state" xsi:nil="true" />
   </row>
-
-
-
-
-
-
   <row>
 	<field name="sources_id">7</field>
 	<field name="url">http://www.cityvibe.com/birmingham/Escorts/really-petite-very-exotic-insanely-erotic-absolutley-satisfying-100-real-23/1574731</field>
@@ -6162,7 +5964,6 @@ xmldata = """
 	<field name="city">birmingham</field>
 	<field name="state" xsi:nil="true" />
   </row>
-
   <row>
 	<field name="sources_id">7</field>
 	<field name="url">http://www.cityvibe.com/losangeles/PremiumEscorts/ariel-wla-gfe-incalloutcall/396104</field>
@@ -6170,7 +5971,6 @@ xmldata = """
 	<field name="city" xsi:nil="true" />
 	<field name="state" xsi:nil="true" />
   </row>
-
   <row>
 	<field name="sources_id">7</field>
 	<field name="url">http://www.cityvibe.com/sanfrancisco/Escorts/mizisland-visiting-the-east-bay-and-sf-area/1568611</field>
@@ -6178,12 +5978,6 @@ xmldata = """
 	<field name="city">san francisco</field>
 	<field name="state" xsi:nil="true" />
   </row>
-
-
-
-
-
-
   <row>
 	<field name="sources_id">8</field>
 	<field name="url">http://massagetroll.com/auburn-massages/256-608-1040/?pid=7164973</field>
@@ -6191,7 +5985,6 @@ xmldata = """
 	<field name="city">Auburn</field>
 	<field name="state">Alabama</field>
   </row>
-
   <row>
 	<field name="sources_id">8</field>
 	<field name="url">http://massagetroll.com/flagstaff-massages/480-267-5248/?pid=20876871</field>
@@ -6199,7 +5992,6 @@ xmldata = """
 	<field name="city">Flagstaff</field>
 	<field name="state">Arizona</field>
   </row>
-
   <row>
 	<field name="sources_id">8</field>
 	<field name="url">http://massagetroll.com/sanfrancisco-massages/408-641-1859/?pid=16299331</field>
@@ -6207,17 +5999,6 @@ xmldata = """
 	<field name="city">Sanfrancisco</field>
 	<field name="state">California</field>
   </row>
-
-
-
-
-
-
-
-
-
-
-
   <row>
 	<field name="sources_id">10</field>
 	<field name="url">http://cityxguide.com/bahama-playmates-ladies-for-gentlemens-new-rates-19/</field>
@@ -6225,7 +6006,6 @@ xmldata = """
 	<field name="city">Nassau</field>
 	<field name="state">New Providence</field>
   </row>
-
   <row>
 	<field name="sources_id">10</field>
 	<field name="url">http://cityxguide.com/ms-v-bootyful-juicy-whitegirl-with-an-amazing-mouth-specials-23/</field>
@@ -6233,7 +6013,6 @@ xmldata = """
 	<field name="city">Milwaukee</field>
 	<field name="state">Wisconsin</field>
   </row>
-
   <row>
 	<field name="sources_id">10</field>
 	<field name="url">http://cityxguide.com/load-lover-37/</field>
@@ -6241,7 +6020,6 @@ xmldata = """
 	<field name="city">Corpus Christi</field>
 	<field name="state">Texas</field>
   </row>
-
   <row>
 	<field name="sources_id">12</field>
 	<field name="url">http://www.rubads.com/u-n-f-g-t-t-b-l-blonde-e-x-p-i-n-c-580-352-4745---massage--birmingham-91377</field>
@@ -6249,7 +6027,6 @@ xmldata = """
 	<field name="city">Birmingham</field>
 	<field name="state">alaska</field>
   </row>
-
   <row>
 	<field name="sources_id">12</field>
 	<field name="url">http://www.rubads.com/aliciamilani-415-341-5001---concord--massage-50779</field>
@@ -6257,7 +6034,6 @@ xmldata = """
 	<field name="city">Concord</field>
 	<field name="state">california</field>
   </row>
-
   <row>
 	<field name="sources_id">12</field>
 	<field name="url">http://www.rubads.com/roxyr_18-408-706-1275---massage--morgan-hill-45929</field>
@@ -6265,16 +6041,6 @@ xmldata = """
 	<field name="city">Morgan Hill</field>
 	<field name="state">california</field>
   </row>
-
-
-
-
-
-
-
-
-
-
   <row>
 	<field name="sources_id">14</field>
 	<field name="url">http://sipsap.com/model_page_cast.php?talent_id=665178&amp;s=7edd1e974363de058a03d74829accb9f</field>
@@ -6282,7 +6048,6 @@ xmldata = """
 	<field name="city">palm springs</field>
 	<field name="state">California</field>
   </row>
-
   <row>
 	<field name="sources_id">14</field>
 	<field name="url">http://sipsap.com/model_page_cast.php?talent_id=675969&amp;s=03db631bc43881951a572122dda70e9c</field>
@@ -6290,7 +6055,6 @@ xmldata = """
 	<field name="city">Atlanta</field>
 	<field name="state">Georgia</field>
   </row>
-
   <row>
 	<field name="sources_id">14</field>
 	<field name="url">http://sipsap.com/model_page_cast.php?talent_id=675420&amp;s=8e467de2d08e9ff3f47afebf49d387ef</field>
@@ -6298,12 +6062,6 @@ xmldata = """
 	<field name="city">Los Angeles</field>
 	<field name="state">California</field>
   </row>
-
-
-
-
-
-
   <row>
 	<field name="sources_id">15</field>
 	<field name="url">http://602-321-2061.escortsincollege.com/any-one-for-a-full-cup-of-juice-1707452.html</field>
@@ -6311,7 +6069,6 @@ xmldata = """
 	<field name="city">Flagstaff</field>
 	<field name="state">Arizona</field>
   </row>
-
   <row>
 	<field name="sources_id">15</field>
 	<field name="url">http://707-241-3258.escortsincollege.com/pecails-specails-specail-two-girls-specails-1060983.html</field>
@@ -6319,7 +6076,6 @@ xmldata = """
 	<field name="city">Flagstaff</field>
 	<field name="state">Arizona</field>
   </row>
-
   <row>
 	<field name="sources_id">15</field>
 	<field name="url">http://623-432-9116.escortsincollege.com/new-chic-on-backpage-wait-til-you-get-a-load-of-her-1756923.html</field>
@@ -6327,12 +6083,6 @@ xmldata = """
 	<field name="city">Phoenix</field>
 	<field name="state">Arizona</field>
   </row>
-
-
-
-
-
-
   <row>
 	<field name="sources_id">16</field>
 	<field name="url">http://480-652-1939.escortphonelist.com/im-the-best-that-u-n-e-v-e-r-had-blonde-thick-thighs-big-b00ty-w-curves-c-ll-now-1710184.html</field>
@@ -6340,7 +6090,6 @@ xmldata = """
 	<field name="city">Flagstaff</field>
 	<field name="state">Arizona</field>
   </row>
-
   <row>
 	<field name="sources_id">16</field>
 	<field name="url">http://480-316-0406.escortphonelist.com/1-premiere-escort-agency-is-now-hiring-southern-comfort-1221146.html</field>
@@ -6348,7 +6097,6 @@ xmldata = """
 	<field name="city">Flagstaff</field>
 	<field name="state">Arizona</field>
   </row>
-
   <row>
 	<field name="sources_id">16</field>
 	<field name="url">http://619-581-3269.escortphonelist.com/double-trouble-sexy-mixed-barbie-curvy-latin-freaks-incall-available-now-1780116.html</field>
@@ -6356,12 +6104,6 @@ xmldata = """
 	<field name="city">Phoenix</field>
 	<field name="state">Arizona</field>
   </row>
-
-
-
-
-
-
   <row>
 	<field name="sources_id">17</field>
 	<field name="url">http://eroticmugshots.com/birmingham-escorts/256-642-1389/?pid=9734745</field>
@@ -6369,7 +6111,6 @@ xmldata = """
 	<field name="city">Birmingham</field>
 	<field name="state">Alabama</field>
   </row>
-
   <row>
 	<field name="sources_id">17</field>
 	<field name="url">http://eroticmugshots.com/birmingham-escorts/205-266-0048/?pid=9580660</field>
@@ -6377,7 +6118,6 @@ xmldata = """
 	<field name="city">Birmingham</field>
 	<field name="state">Alabama</field>
   </row>
-
   <row>
 	<field name="sources_id">17</field>
 	<field name="url">http://eroticmugshots.com/macon-escorts/404-308-6499/?pid=22002677</field>
@@ -6385,12 +6125,6 @@ xmldata = """
 	<field name="city">Valdosta</field>
 	<field name="state">Georgia</field>
   </row>
-
-
-
-
-
-
   <row>
 	<field name="sources_id">18</field>
 	<field name="url">http://escortads.xxx/205-720-9614/?pid=9887849</field>
@@ -6398,7 +6132,6 @@ xmldata = """
 	<field name="city">Birmingham</field>
 	<field name="state">Alabama</field>
   </row>
-
   <row>
 	<field name="sources_id">18</field>
 	<field name="url">http://escortads.xxx/757-372-3143/?pid=15303383</field>
@@ -6406,7 +6139,6 @@ xmldata = """
 	<field name="city">Atlanta</field>
 	<field name="state">Georgia</field>
   </row>
-
   <row>
 	<field name="sources_id">18</field>
 	<field name="url">http://escortads.xxx/256-702-6636/?pid=10019409</field>
@@ -6414,12 +6146,6 @@ xmldata = """
 	<field name="city">Orlando</field>
 	<field name="state">Florida</field>
   </row>
-
-
-
-
-
-
   <row>
 	<field name="sources_id">19</field>
 	<field name="url">http://escortsin.ca/587-889-5971/?pid=8012513</field>
@@ -6427,7 +6153,6 @@ xmldata = """
 	<field name="city">Edmonton</field>
 	<field name="state">Alberta</field>
   </row>
-
   <row>
 	<field name="sources_id">19</field>
 	<field name="url">http://escortsin.ca/587-889-3641/?pid=8119378</field>
@@ -6435,7 +6160,6 @@ xmldata = """
 	<field name="city">Lethbridge</field>
 	<field name="state">Alberta</field>
   </row>
-
   <row>
 	<field name="sources_id">19</field>
 	<field name="url">http://escortsin.ca/647-500-5747/?pid=2496642</field>
@@ -6443,12 +6167,6 @@ xmldata = """
 	<field name="city">Regina</field>
 	<field name="state">Saskatchewan</field>
   </row>
-
-
-
-
-
-
   <row>
 	<field name="sources_id">20</field>
 	<field name="url">http://escortsinthe.us/205-720-9614/?pid=9837721</field>
@@ -6456,7 +6174,6 @@ xmldata = """
 	<field name="city">Birmingham</field>
 	<field name="state">Alabama</field>
   </row>
-
   <row>
 	<field name="sources_id">20</field>
 	<field name="url">http://escortsinthe.us/850-284-6254/?pid=7227578</field>
@@ -6464,7 +6181,6 @@ xmldata = """
 	<field name="city">Baltimore</field>
 	<field name="state">Maryland</field>
   </row>
-
   <row>
 	<field name="sources_id">20</field>
 	<field name="url">http://escortsinthe.us/678-600-0781/?pid=10224181</field>
@@ -6472,12 +6188,6 @@ xmldata = """
 	<field name="city">Reno</field>
 	<field name="state">Nevada</field>
   </row>
-
-
-
-
-
-
   <row>
 	<field name="sources_id">21</field>
 	<field name="url">http://liveescortreviews.com/ad/huntsville/931-292-2380/1/3302</field>
@@ -6485,7 +6195,6 @@ xmldata = """
 	<field name="city">Huntsville</field>
 	<field name="state">alabama</field>
   </row>
-
   <row>
 	<field name="sources_id">21</field>
 	<field name="url">http://liveescortreviews.com/ad/huntsville/256-398-0859/1/2938</field>
@@ -6493,7 +6202,6 @@ xmldata = """
 	<field name="city">Huntsville</field>
 	<field name="state">alabama</field>
   </row>
-
   <row>
 	<field name="sources_id">21</field>
 	<field name="url">http://liveescortreviews.com/ad/huntsville/256-642-6542/2/2752</field>
@@ -6501,24 +6209,6 @@ xmldata = """
 	<field name="city">Huntsville</field>
 	<field name="state">alabama</field>
   </row>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   <row>
 	<field name="sources_id">25</field>
 	<field name="url">http://adultsearch.com/georgia/atlanta//female-escorts/933002</field>
@@ -6526,7 +6216,6 @@ xmldata = """
 	<field name="city">Atlanta</field>
 	<field name="state">Georgia</field>
   </row>
-
   <row>
 	<field name="sources_id">25</field>
 	<field name="url">http://adultsearch.com/massachusetts/boston//female-escorts/137864</field>
@@ -6534,7 +6223,6 @@ xmldata = """
 	<field name="city">Boston</field>
 	<field name="state">Massachusetts</field>
   </row>
-
   <row>
 	<field name="sources_id">25</field>
 	<field name="url">http://adultsearch.com/texas/houston//body-rubs/406038</field>
@@ -6542,28 +6230,6 @@ xmldata = """
 	<field name="city">Houston</field>
 	<field name="state" xsi:nil="true" />
   </row>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   <row>
 	<field name="sources_id">30</field>
 	<field name="url">https://jobs.justlanded.com/en/Ghana/Designers-Creative/I-Need-Job-In-China-Graphic-Design-Or-Photography-Or-Teachin</field>
@@ -6571,12 +6237,6 @@ xmldata = """
 	<field name="city" xsi:nil="true" />
 	<field name="state" xsi:nil="true" />
   </row>
-
-
-
-
-
-
   <row>
 	<field name="sources_id">31</field>
 	<field name="url">http://www.gmdu.net/corp-833925.html</field>
@@ -6584,7 +6244,6 @@ xmldata = """
 	<field name="city" xsi:nil="true" />
 	<field name="state" xsi:nil="true" />
   </row>
-
   <row>
 	<field name="sources_id">31</field>
 	<field name="url">http://www.gmdu.net/corp-131673.html</field>
@@ -6592,16 +6251,6 @@ xmldata = """
 	<field name="city" xsi:nil="true" />
 	<field name="state" xsi:nil="true" />
   </row>
-
-
-
-
-
-
-
-
-
-
   <row>
 	<field name="sources_id">33</field>
 	<field name="url">http://manpowervacancy.com/index.php?page=directory&amp;id=37</field>
@@ -6609,7 +6258,6 @@ xmldata = """
 	<field name="city" xsi:nil="true" />
 	<field name="state" xsi:nil="true" />
   </row>
-
   <row>
 	<field name="sources_id">33</field>
 	<field name="url">http://manpowervacancy.com/index.php?page=job_detail&amp;id=1336</field>
@@ -6621,21 +6269,25 @@ xmldata = """
 """
 
 import xml.etree.ElementTree as ET
-root = ET.fromstring(xmldata)
+root = ET.fromstring(TESTCASES_XML)
 
 TESTCASES = []
 for row in root:
     TESTCASES.append([elt.text for elt in row])
 
+VERBOSE = False
 def main():
     for row in TESTCASES:
         (sources_id,url,title,city,state) = row
-        print sources_id,
+        if VERBOSE:
+            print sources_id,
         market = determineMarket(sources_id, url, title, city,state)
         if market and isinstance(market, list) and len(market)==12:
-            pass
+            if VERBOSE:
+                print "success"
         else:
-            print "Failed on row %s" % row
+            if VERBOSE:
+                print "Failed on row %s" % row
 
 # call main() if this is run as standalone
 if __name__ == "__main__":
