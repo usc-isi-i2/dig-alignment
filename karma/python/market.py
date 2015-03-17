@@ -113,24 +113,6 @@ sources_by_id = {
                  34: "gulfjobsbank",
                  35: "ec21"}
 
-
-
-market_id_to_market_info = {
-  'ALB': [6670, 'United States', 'New York', 'ALB', 'Albany', 'Albany Intl', 42.748267, -73.801692, 285, 'America/New_York', 'datahub.io/dataset/open-flights'],
-  'JFK': [6600, 'United States', 'New York', 'JFK', 'New York', 'John F Kennedy Intl', 40.639751, -73.778925, 13, 'America/New_York', 'datahub.io/dataset/open-flights'],
-  'ISP': [6680, 'United States', 'New York', 'ISP', 'Brookhaven', 'Long Island Mac Arthur', 40.79525, -73.100222, 99, 'America/New_York', 'datahub.io/dataset/open-flights'],
-  'FHU': [4230, 'United States', 'Arizona', 'FHU', 'Fort Huachuca', 'Sierra Vista Muni Libby Aaf', 31.588472, -110.344389, 4719, 'America/Phoenix', 'datahub.io/dataset/open-flights'],
-  'CIC': [4700, 'United States', 'California', 'CIC', 'Chico', 'Chico Muni', 39.795383, -121.858422, 238, 'America/Los_Angeles', 'datahub.io/dataset/open-flights'],
-  'BHM': [4100, 'United States', 'Alabama', 'BHM', 'Birmingham', 'Birmingham Intl', 33.562942, -86.75355, 644, 'America/Chicago', 'datahub.io/dataset/open-flights'],
-  'RIC': [8030, 'United States', 'Virginia', 'RIC', 'Richmond', 'Richmond Intl', 37.505167, -77.319667, 167, 'America/New_York', 'datahub.io/dataset/open-flights'],
-  'JNU': [4150, 'United States', 'Alaska', 'JNU', 'Juneau', 'Juneau Intl', 58.354972, -134.576278, 21, 'America/Anchorage', 'datahub.io/dataset/open-flights'],
-  'LIT': [4300, 'United States', 'Arkansas', 'LIT', 'Little Rock', 'Adams Fld', 34.729444, -92.224306, 262, 'America/Chicago', 'datahub.io/dataset/open-flights'],
-  'LEX': [5730, 'United States', 'Kentucky', 'LEX', 'Lexington', 'Blue Grass', 38.0365, -84.605889, 979, 'America/New_York', 'datahub.io/dataset/open-flights'],
-  'YYZ': [1640, 'Canada', 'Ontario', 'YYZ', 'Toronto', 'Lester B Pearson Intl', 43.677223, -79.630556, 569, 'America/Toronto', 'datahub.io/dataset/open-flights'],
-  'PIT': [7320, 'United States', 'Pennsylvania', 'PIT', 'Pittsburgh', 'Pittsburgh Intl', 40.491467, -80.232872, 1204, 'America/New_York', 'datahub.io/dataset/open-flights'],
-  'PMD': [4680, 'United States', 'California', 'PMD', 'Palmdale', 'Palmdale Rgnl Usaf Plt 42', 34.629391, -118.08456, 2543, 'America/Los_Angeles', 'Datahub.io/dataset/open-flights']
-  }
-
 def clean(x):
     return str(x).replace(' ', '')
 
