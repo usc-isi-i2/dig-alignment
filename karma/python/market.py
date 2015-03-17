@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 import sys
-import urlparse
+from urlparse import urlparse
 
 sources_by_id = {
                  1: "backpage",
@@ -1543,7 +1543,7 @@ backpage_sitekey_to_marketid = {
 
 def backpage_url_to_sitekey(url):
     """http://longisland.backpage.com/FemaleEscorts/s-mny-oo-chics-but-oo-nn-lik-oo-me-19/40317377"""
-    (scheme, netloc, path, params, query, fragment) = urlparse.urlparse(url)
+    (scheme, netloc, path, params, query, fragment) = urlparse(url)
     sitekey = netloc.split('.')[0]
     return sitekey
 
@@ -2266,7 +2266,7 @@ craigslist_sitekey_to_marketid = {
 
 def craigslist_url_to_sitekey(url):
     """http://longisland.craigslist.com/FemaleEscorts/s-mny-oo-chics-but-oo-nn-lik-oo-me-19/40317377"""
-    (scheme, netloc, path, params, query, fragment) = urlparse.urlparse(url)
+    (scheme, netloc, path, params, query, fragment) = urlparse(url)
     sitekey = netloc.split('.')[0]
     return sitekey
 
@@ -2672,7 +2672,7 @@ classivox_sitekey_to_marketid = {
 
 def classivox_url_to_sitekey(url):
     """http://longisland.classivox.com/FemaleEscorts/s-mny-oo-chics-but-oo-nn-lik-oo-me-19/40317377"""
-    (scheme, netloc, path, params, query, fragment) = urlparse.urlparse(url)
+    (scheme, netloc, path, params, query, fragment) = urlparse(url)
     sitekey = netloc.split('.')[0]
     return sitekey
 
@@ -3072,7 +3072,7 @@ myproviderguide_sitekey_to_marketid = {
 
 def myproviderguide_url_to_sitekey(url):
     """http://longisland.myproviderguide.com/FemaleEscorts/s-mny-oo-chics-but-oo-nn-lik-oo-me-19/40317377"""
-    (scheme, netloc, path, params, query, fragment) = urlparse.urlparse(url)
+    (scheme, netloc, path, params, query, fragment) = urlparse(url)
     dirs = path.split('/')
     return dirs[2]
 
@@ -4175,7 +4175,7 @@ cityvibe_sitekey_to_marketid = {
 
 def cityvibe_url_to_sitekey(url):
     """http://www.cityvibe.com/losangeles/PremiumEscorts/ariel-wla-gfe-incalloutcall/396104"""
-    (scheme, netloc, path, params, query, fragment) = urlparse.urlparse(url)
+    (scheme, netloc, path, params, query, fragment) = urlparse(url)
     sitekey = path.split('/')[1]
     return sitekey
 
@@ -5079,7 +5079,7 @@ eroticmugshots_massagetroll_sitekey_to_marketid = {
 
 def eroticmugshots_url_to_sitekey(url):
     """http://eroticmugshots_massagetroll.com/houston-escorts/719-492-9016/?pid=6887627"""
-    (scheme, netloc, path, params, query, fragment) = urlparse.urlparse(url)
+    (scheme, netloc, path, params, query, fragment) = urlparse(url)
     d = path.split('/')[1]
     if d.endswith('-escorts'):
         return d[0:-8]
@@ -5088,7 +5088,7 @@ def eroticmugshots_url_to_sitekey(url):
 
 def massagetroll_url_to_sitekey(url):
     """http://eroticmugshots_massagetroll.com/houston-escorts/719-492-9016/?pid=6887627"""
-    (scheme, netloc, path, params, query, fragment) = urlparse.urlparse(url)
+    (scheme, netloc, path, params, query, fragment) = urlparse(url)
     d = path.split('/')[1]
     if d.endswith('-massages'):
         return d[0:-9]
@@ -5710,7 +5710,7 @@ liveescortreviews_sitekey_to_marketid = {
 
 def liveescortreviews_url_to_sitekey(url):
     """http://liveescortreviews.com/ad/daytona/702-637-9016/5/3463"""
-    (scheme, netloc, path, params, query, fragment) = urlparse.urlparse(url)
+    (scheme, netloc, path, params, query, fragment) = urlparse(url)
     sitekey = path.split('/')[2]
     return sitekey
 
@@ -5796,14 +5796,15 @@ handlers_by_source = {
                       "gulfjobsbank": determineMarketGulfjobsbank,
                       "ec21": determineMarketEc21}
 
-def determineMarket(source, url, title, city, state):
+def determineMarket(source, url, title, city, state, idx=0):
     try:
         source = int(source)
     except:
         pass
     try:
         handler = handlers_by_source[sources_by_id.get(source, source)]
-        return handler(url, title, city, state)
+        l = handler(url, title, city, state)
+        return str(l) if idx==None else l[idx]
     except:
         pass
     return None
@@ -5815,7 +5816,7 @@ boilerplate_sitekey_to_marketid = {"zurich": "ZRH"}
 
 def boilerplate_url_to_sitekey(url):
     """http://longisland.boilerplate.com/FemaleEscorts/s-mny-oo-chics-but-oo-nn-lik-oo-me-19/40317377"""
-    (scheme, netloc, path, params, query, fragment) = urlparse.urlparse(url)
+    (scheme, netloc, path, params, query, fragment) = urlparse(url)
     sitekey = netloc.split('.')[0]
     return sitekey
 
