@@ -205,3 +205,9 @@ def getWebsiteDomain(url):
                 domain = domain[4:]
             return domain
     return ''
+
+def getTextHash(text):
+    if text:
+        string = asciiChars(text) #text.decode('unicode_escape').encode('ascii','ignore') #Remove the non-ascii chars
+        return hashlib.sha1(string).hexdigest().upper()
+    return ''

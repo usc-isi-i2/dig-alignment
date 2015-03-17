@@ -62,10 +62,29 @@ From column: _modtime_
 return iso8601date(getValue("modtime"))
 ```
 
+#### _title_hash_
+From column: _title_
+>``` python
+return getTextHash(getValue("title"))
+```
+
+#### _body_hash_
+From column: _text_
+>``` python
+return getTextHash(getValue("text"))
+```
+
+#### _webpage_hash_
+From column: _body_uri_
+>``` python
+return getValue("title_hash") + "_" +  getValue("body_hash")
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
 |  ----- | -------- | ----- |
+| _body_hash_ | `memex:textChecksum` | `schema:WebPageElement2`|
 | _body_uri_ | `uri` | `schema:WebPageElement2`|
 | _cache_uri_ | `uri` | `schema:WebPage1`|
 | _dateMostLikelyCreated_ | `memex:dateMostLikelyCreated` | `schema:WebPage1`|
@@ -76,8 +95,10 @@ return iso8601date(getValue("modtime"))
 | _sources_uri_ | `uri` | `schema:Organization1`|
 | _text_ | `schema:text` | `schema:WebPageElement2`|
 | _title_ | `schema:text` | `schema:WebPageElement1`|
+| _title_hash_ | `memex:textChecksum` | `schema:WebPageElement1`|
 | _title_uri_ | `uri` | `schema:WebPageElement1`|
 | _url_ | `schema:url` | `schema:WebPage1`|
+| _webpage_hash_ | `memex:textChecksum` | `schema:WebPage1`|
 
 
 ### Links
