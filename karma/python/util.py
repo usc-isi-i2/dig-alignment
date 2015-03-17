@@ -9,6 +9,10 @@ def documentUrl(x):
     return 'http://' + x[x.find('/', i + 6) + 1:]
 
 
+def getCurrentTime():
+    return datetime.today().strftime("%Y-%m-%d %H:%M:%S")
+
+
 def countryUri(x):
     "Return a URI for a country given its name."
     import re
@@ -81,6 +85,11 @@ def numericOnly(x):
 def alphaOnly(x):
     "Remove non-alphabetic chars from the string x"
     return re.sub('[^A-Za-z]+', '', x)
+
+def alphaOnlyPreserveSpace(x):
+    x = re.sub('[^A-Za-z\s]+', '', x)
+    y = re.sub(r'\s+', ' ', x.strip())
+    return y
 
 def isSymbol(char1):
     if char1.isalnum():
@@ -195,4 +204,10 @@ def getWebsiteDomain(url):
             if domain.startswith("www."):
                 domain = domain[4:]
             return domain
+    return ''
+
+def getTextHash(text):
+    if text:
+        string = asciiChars(text) #text.decode('unicode_escape').encode('ascii','ignore') #Remove the non-ascii chars
+        return hashlib.sha1(string).hexdigest().upper()
     return ''

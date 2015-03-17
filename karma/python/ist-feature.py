@@ -248,11 +248,11 @@ def person_height_uri(cleaned):
 # hair  22078
 def clean_hair(x):
     stripped = x.strip().lower()
-    return alphaOnly(stripped)
+    return alphaOnlyPreserveSpace(stripped)
 
 def person_haircolor_uri(cleaned):
     if cleaned:
-        return "person_haircolor/%s" % cleaned
+        return "person_haircolor/%s" % cleaned.replace(" ","_")
 
 # build 21842
 def clean_build(x):
@@ -350,20 +350,20 @@ def person_hairlength_uri(cleaned):
 # hairtype  17945
 def clean_hairtype(x):
     stripped = x.strip().lower()
-    return alphaOnly(stripped)
+    return alphaOnlyPreserveSpace(stripped)
 
 def person_hairtype_uri(cleaned):
     if cleaned:
-        return "person_hairtype/%s" % cleaned
+        return "person_hairtype/%s" % cleaned.replace(" ","_")
 
 # eyes  16723
 def clean_eyes(x):
     stripped = x.strip().lower()
-    return alphaOnly(stripped)
+    return alphaOnlyPreserveSpace(stripped)
 
 def person_eyecolor_uri(cleaned):
     if cleaned:
-        return "person_eyecolor/%s" % cleaned
+        return "person_eyecolor/%s" % cleaned.replace(" ","_")
 
 # weight    13316
 def clean_weight(x):
@@ -823,6 +823,7 @@ mapFunctions['hips'] = clean_hips
 mapFunctions['alias'] = clean_alias
 mapFunctions['availability'] = clean_availability
 mapFunctions['location'] = clean_location
+mapFunctions['userlocation'] = clean_location
 
 def feature_value(attributeName, value):
     try:
