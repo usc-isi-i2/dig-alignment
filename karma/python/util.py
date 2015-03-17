@@ -86,6 +86,11 @@ def alphaOnly(x):
     "Remove non-alphabetic chars from the string x"
     return re.sub('[^A-Za-z]+', '', x)
 
+def alphaOnlyPreserveSpace(x):
+    x = re.sub('[^A-Za-z\s]+', '', x)
+    y = re.sub(r'\s+', ' ', x.strip())
+    return y
+
 def isSymbol(char1):
     if char1.isalnum():
         return False
