@@ -188,7 +188,7 @@ output format: iso8601
     except:
         pass
     # If all else fails, return input
-    return date
+    return ''
 
 
 def getYearFromISODate(isoDate):
