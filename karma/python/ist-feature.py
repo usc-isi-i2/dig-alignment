@@ -619,7 +619,7 @@ def person_incalloutcall_uri(cleaned):
 
 
 def get_url_hash(string):
-    return hashlib.sha1(string).hexdigest().upper()
+    return hashlib.sha1(string.encode('utf-8')).hexdigest().upper()
 
 def getCacheBaseUrl():
     return "http://memex.zapto.org/data/"
