@@ -1,0 +1,148 @@
+@prefix memex: <http://memexproxy.com/ontology/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix schema: <http://schema.org/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix dgeo: <http://dig.isi.edu/geo> .
+
+<http://memexproxy.com/ontology/> rdf:type owl:Ontology .
+
+
+#########################################################
+#
+# Classes
+#
+#########################################################
+
+dgeo:GazetteerEntry rdf:type owl:Class ; 
+	rdfs:subClassOf schema:Thing ;
+	rdfs:label "GazetteerEntry"@en ;
+	rdfs:comment """An entry in Geonames or other gazetteer"""
+	.
+
+dgeo:Period rdf:type owl:Class ; 
+	rdfs:subClassOf dgeo:GazetteerEntry ;
+	rdfs:label "Period"@en ;
+	rdfs:comment """Geo entity over a time extent """
+	.
+
+dgeo:PopulatedPlace rdf:type owl:Class ; 
+	rdfs:subClassOf dgeo:Period ;
+	rdfs:label "PopulatedPlace"@en ;
+	rdfs:comment """Any PPL."""
+	.
+
+dgeo:AdministrativeArea rdf:type owl:Class ; 
+	rdfs:subClassOf dgeo:Period ;
+	rdfs:label "AdministrativeArea"@en ;
+	rdfs:comment """State, region, etc."""
+	.
+
+dgeo:Country rdf:type owl:Class ; 
+	rdfs:subClassOf dgeo:AdministrativeArea ;
+	rdfs:comment """Nation state."""
+	.
+
+dgeo:Adm1 rdf:type owl:Class ; 
+	rdfs:subClassOf dgeo:AdministrativeArea ;
+	rdfs:comment """First-level administrative subdivision: state, province, departement, lander, etc"""
+	.
+
+dgeo:Adm2 rdf:type owl:Class ; 
+	rdfs:subClassOf dgeo:AdministrativeArea ;
+	rdfs:comment """Second-level administrative subdivision: county, parish, township, oblast."""
+	.
+
+dgeo:PostalCode rdf:type owl:Class ; 
+	rdfs:label "PostalCode"@en ;
+	rdfs:comment """Zipcode, etc.  Not a string?""" ;
+	.
+
+dgeo:City rdf:type owl:Class ; 
+	rdfs:label "City"@en ;
+	rdfs:comment """City, village, locality, census-designated place, etc."""
+	.
+
+dgeo:Geometry rdf:type owl:Class ; 
+	rdfs:label "Geometry"@en ;
+	rdfs:comment """Should be 1:1 with some GazetteerEntry"""
+	.
+	
+#########################################################
+#
+# Object Properties
+#
+#########################################################
+
+dgeo:topoFallsWithin rdf:type owl:ObjectProperty ; 
+	rdfs:label "topoFallsWithin"@en ;
+	rdfs:domain dgeo:Period ; 
+	rdfs:range dgeo:Period ;
+	owl:inverseOf dgeo:topoSurrounds ;
+	rdfs:comment """Topological relation of one geo being inside another"""
+	.
+
+dgeo:topoSurrounds rdf:type owl:ObjectProperty ; 
+	rdfs:label "topoSurrounds"@en ;
+	rdfs:domain dgeo:Period ;
+	rdfs:range dgeo:Period ; 
+	owl:inverseOf dgeo:topoFallsWithin ;
+	rdfs:comment "Inverse of dgeo:topoFallsWithin." 
+	.
+
+dgeo:phenoPartOf rdf:type owl:ObjectProperty ; 
+	rdfs:label "phenoPartOf"@en ;
+	rdfs:domain dgeo:Period ; 
+	rdfs:range dgeo:Period ;
+	owl:inverseOf dgeo:phenoHasPart ;
+	rdfs:comment """Phenological relation of one geo being inside another"""
+	.
+
+dgeo:phenoHasPart rdf:type owl:ObjectProperty ; 
+	rdfs:label "phenoHasPart"@en ;
+	rdfs:domain dgeo:Period ;
+	rdfs:range dgeo:Period ; 
+	owl:inverseOf dgeo:phenoPartOf ;
+	rdfs:comment "Inverse of dgeo:phenoPartOf." 
+	.
+
+dgeo:hasGeometry rdf:type owl:ObjectProperty ; 
+	rdfs:label "hasGeometry"@en ;
+	rdfs:domain dgeo:GazetteerEntry ;
+	rdfs:range dgeo:Geometry ;
+	rdfs:comment """Geometry of a gazetteer entry""" 
+	.
+
+dgeo:geometryOf rdf:type owl:ObjectProperty ; 
+	rdfs:label "geometryOf"@en ;
+	rdfs:domain dgeo:Geometry ;
+	rdfs:range dgeo:GazetteerEntry ;
+	rdfs:comment """Gazetteer entry of this geometry"""
+	.
+
+#########################################################
+#
+# Data Properties
+#
+#########################################################
+
+dgeo:hasAppellation rdf:type owl:DatatypeProperty ;
+	rdfs:domain dgeo:GazetteerEntry ;
+	rdfs:label "hasAppellation"@en ;
+	rdfs:comment"""any name used for a geo object"""
+	.
+
+dgeo:hasPreferredAppellation rdf:type owl:DatatypeProperty ;
+	rdfs:domain dgeo:GazetteerEntry ;
+	rdfs:label "hasPreferredAppellation"@en ;
+	rdfs:comment"""primary name used for a geo object"""
+	.
+
+dgeo:hasSerialization rdf:type owl:DatatypeProperty ;
+	rdfs:label "hasSerialization"@en ;
+	rdfs:comment """WKT, GeoJSON, etc. string"""
+	.
+
