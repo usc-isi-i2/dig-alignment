@@ -5,75 +5,75 @@ from urlparse import urlparse
 
 # forward
 
-def determineMarketBackpage(*args):
+def dtMktBackpage(*args):
     pass
-def determineMarketCraigslist(*args):
+def dtMktCraigslist(*args):
     pass
-def determineMarketClassivox(*args):
+def dtMktClassivox(*args):
     pass
-def determineMarketMyproviderguide(*args):
+def dtMktMyproviderguide(*args):
     pass
-def determineMarketNaughtyreviews(*args):
+def dtMktNaughtyreviews(*args):
     pass
-def determineMarketRedbook(*args):
+def dtMktRedbook(*args):
     pass
-def determineMarketCityvibe(*args):
+def dtMktCityvibe(*args):
     pass
-def determineMarketMassagetroll(*args):
+def dtMktMassagetroll(*args):
     pass
-def determineMarketRedbook_forum(*args):
+def dtMktRedbook_forum(*args):
     pass
-def determineMarketCityxguide(*args):
+def dtMktCityxguide(*args):
     pass
-def determineMarketCityxguideforum(*args):
+def dtMktCityxguideforum(*args):
     pass
-def determineMarketRubads(*args):
+def dtMktRubads(*args):
     pass
-def determineMarketAnunico(*args):
+def dtMktAnunico(*args):
     pass
-def determineMarketSipsap(*args):
+def dtMktSipsap(*args):
     pass
-def determineMarketEscortsincollege(*args):
+def dtMktEscortsincollege(*args):
     pass
-def determineMarketEscortphonelist(*args):
+def dtMktEscortphonelist(*args):
     pass
-def determineMarketEroticmugshots(*args):
+def dtMktEroticmugshots(*args):
     pass
-def determineMarketEscortadsxxx(*args):
+def dtMktEscortadsxxx(*args):
     pass
-def determineMarketEscortsinca(*args):
+def dtMktEscortsinca(*args):
     pass
-def determineMarketEscortsintheus(*args):
+def dtMktEscortsintheus(*args):
     pass
-def determineMarketLiveescortreviews(*args):
+def dtMktLiveescortreviews(*args):
     pass
-def determineMarketMyproviderguideforum(*args):
+def dtMktMyproviderguideforum(*args):
     pass
-def determineMarketUsasexguide(*args):
+def dtMktUsasexguide(*args):
     pass
-def determineMarketEroticreview(*args):
+def dtMktEroticreview(*args):
     pass
-def determineMarketAdultsearch(*args):
+def dtMktAdultsearch(*args):
     pass
-def determineMarketHappymassage(*args):
+def dtMktHappymassage(*args):
     pass
-def determineMarketUtopiaguide(*args):
+def dtMktUtopiaguide(*args):
     pass
-def determineMarketMissingkids(*args):
+def dtMktMissingkids(*args):
     pass
-def determineMarketAlibaba(*args):
+def dtMktAlibaba(*args):
     pass
-def determineMarketJustlanded(*args):
+def dtMktJustlanded(*args):
     pass
-def determineMarketGmdu(*args):
+def dtMktGmdu(*args):
     pass
-def determineMarketTradekey(*args):
+def dtMktTradekey(*args):
     pass
-def determineMarketManpowervacancy(*args):
+def dtMktManpowervacancy(*args):
     pass
-def determineMarketGulfjobsbank(*args):
+def dtMktGulfjobsbank(*args):
     pass
-def determineMarketEc21(*args):
+def dtMktEc21(*args):
     pass
 
 sources_by_id = {
@@ -139,6 +139,11 @@ def marketid_to_market_tuple(source_columns, marketid):
         escape = "mtmt3"
         return escape
 
+def mkSrcMktUri(source_columns, sourcename, sitekey, base='http://dig.isi.edu/'):
+    if not isinstance(source_columns, list):
+        source_columns=[source_columns]
+    return "%s/sourcemarket/%s/%s/%s" % (base, sourcename, '-'.join(source_columns), sitekey)
+
 ### BACKPAGE
 
 backpage_sitekey_to_marketid = {
@@ -153,8 +158,10 @@ def backpage_url_to_sitekey(url):
     sitekey = netloc.split('.')[0]
     return sitekey
 
-def determineMarketBackpage(url, title, city, state):
+def dtMktBackpage(url, title, city, state):
     return marketid_to_market_tuple("url",backpage_sitekey_to_marketid[backpage_url_to_sitekey(url)])
+def dtMktBackpage(url, title, city, state):
+    return mkSrcMktUri("url","backpage",backpage_url_to_sitekey(url))
 
 ## MYPROVIDERGUIDE
 
@@ -553,8 +560,8 @@ def myproviderguide_url_to_sitekey(url):
     dirs = path.split('/')
     return dirs[2]
 
-def determineMarketMyproviderguide(url, title, city, state):
-    return marketid_to_market_tuple("url", myproviderguide_sitekey_to_marketid[myproviderguide_url_to_sitekey(url)])
+def dtMktMyproviderguide(url, title, city, state):
+    return mkSrcMktUri("url", "myproviderguide", myproviderguide_url_to_sitekey(url)])
 
 ### CRAIGSLIST
 
@@ -1276,8 +1283,8 @@ def craigslist_url_to_sitekey(url):
     sitekey = netloc.split('.')[0]
     return sitekey
 
-def determineMarketCraigslist(url, title, city, state):
-    return marketid_to_market_tuple("url", craigslist_sitekey_to_marketid[craigslist_url_to_sitekey(url)])
+def dtMktCraigslist(url, title, city, state):
+    return mkSrcMktUri("url", "craigslist", craigslist_url_to_sitekey(url)])
 
 ### CLASSIVOX
 
@@ -1682,8 +1689,8 @@ def classivox_url_to_sitekey(url):
     sitekey = netloc.split('.')[0]
     return sitekey
 
-def determineMarketClassivox(url, title, city, state):
-    return marketid_to_market_tuple("url", classivox_sitekey_to_marketid[classivox_url_to_sitekey(url)])
+def dtMktClassivox(url, title, city, state):
+    return mkSrcMktUri("url", "classivox", classivox_url_to_sitekey(url)])
 
 ### NAUGHTYREVIEWS
 
@@ -2166,53 +2173,50 @@ def naughtyreviews_url_to_marketid(url):
         print >> sys.stderr, e
         return None
 
-def determineMarketNaughtyreviews(url, title, city, state):
-    marketid = naughtyreviews_url_to_marketid(url)
-    if marketid:
-        return marketid_to_market_tuple("url", marketid)
-    else:
-        return None
+def dtMktNaughtyreviews(url, title, city, state):
+    # return mkSrcMktUri("url", "maughtreviews", "???")
+    pass
 
 ### GENERIC
 
 handlers_by_source = {
-                      "backpage": determineMarketBackpage,
-                      "craigslist": determineMarketCraigslist,
-                      "classivox": determineMarketClassivox,
-                      "myproviderguide": determineMarketMyproviderguide,
-                      "naughtyreviews": determineMarketNaughtyreviews,
-                      "redbook": determineMarketRedbook,
-                      "cityvibe": determineMarketCityvibe,
-                      "massagetroll": determineMarketMassagetroll,
-                      "redbook_forum": determineMarketRedbook_forum,
-                      "cityxguide": determineMarketCityxguide,
-                      "cityxguideforum": determineMarketCityxguideforum,
-                      "rubads": determineMarketRubads,
-                      "anunico": determineMarketAnunico,
-                      "sipsap": determineMarketSipsap,
-                      "escortsincollege": determineMarketEscortsincollege,
-                      "escortphonelist": determineMarketEscortphonelist,
-                      "eroticmugshots": determineMarketEroticmugshots,
-                      "escortadsxxx": determineMarketEscortadsxxx,
-                      "escortsinca": determineMarketEscortsinca,
-                      "escortsintheus": determineMarketEscortsintheus,
-                      "liveescortreviews": determineMarketLiveescortreviews,
-                      "myproviderguideforum": determineMarketMyproviderguideforum,
-                      "usasexguide": determineMarketUsasexguide,
-                      "eroticreview": determineMarketEroticreview,
-                      "adultsearch": determineMarketAdultsearch,
-                      "happymassage": determineMarketHappymassage,
-                      "utopiaguide": determineMarketUtopiaguide,
-                      "missingkids": determineMarketMissingkids,
-                      "alibaba": determineMarketAlibaba,
-                      "justlanded": determineMarketJustlanded,
-                      "gmdu": determineMarketGmdu,
-                      "tradekey": determineMarketTradekey,
-                      "manpowervacancy": determineMarketManpowervacancy,
-                      "gulfjobsbank": determineMarketGulfjobsbank,
-                      "ec21": determineMarketEc21}
+                      "backpage": dtMktBackpage,
+                      "craigslist": dtMktCraigslist,
+                      "classivox": dtMktClassivox,
+                      "myproviderguide": dtMktMyproviderguide,
+                      "naughtyreviews": dtMktNaughtyreviews,
+                      "redbook": dtMktRedbook,
+                      "cityvibe": dtMktCityvibe,
+                      "massagetroll": dtMktMassagetroll,
+                      "redbook_forum": dtMktRedbook_forum,
+                      "cityxguide": dtMktCityxguide,
+                      "cityxguideforum": dtMktCityxguideforum,
+                      "rubads": dtMktRubads,
+                      "anunico": dtMktAnunico,
+                      "sipsap": dtMktSipsap,
+                      "escortsincollege": dtMktEscortsincollege,
+                      "escortphonelist": dtMktEscortphonelist,
+                      "eroticmugshots": dtMktEroticmugshots,
+                      "escortadsxxx": dtMktEscortadsxxx,
+                      "escortsinca": dtMktEscortsinca,
+                      "escortsintheus": dtMktEscortsintheus,
+                      "liveescortreviews": dtMktLiveescortreviews,
+                      "myproviderguideforum": dtMktMyproviderguideforum,
+                      "usasexguide": dtMktUsasexguide,
+                      "eroticreview": dtMktEroticreview,
+                      "adultsearch": dtMktAdultsearch,
+                      "happymassage": dtMktHappymassage,
+                      "utopiaguide": dtMktUtopiaguide,
+                      "missingkids": dtMktMissingkids,
+                      "alibaba": dtMktAlibaba,
+                      "justlanded": dtMktJustlanded,
+                      "gmdu": dtMktGmdu,
+                      "tradekey": dtMktTradekey,
+                      "manpowervacancy": dtMktManpowervacancy,
+                      "gulfjobsbank": dtMktGulfjobsbank,
+                      "ec21": dtMktEc21}
 
-def determineMarket(source, url, title, city, state, idx=None):
+def dtMkt(source, url, title, city, state, idx=None):
     try:
         source = int(source)
     except:
@@ -2225,5 +2229,7 @@ def determineMarket(source, url, title, city, state, idx=None):
         else:
             return l[idx]
     except Exception as e:
-        pass
+        print >> sys.stderr, e
     return None
+
+print dtMkt('backpage',"""http://longisland.backpage.com/FemaleEscorts/s-mny-oo-chics-but-oo-nn-lik-oo-me-19/40317377""", "Hello", "Long Island", "New York")
