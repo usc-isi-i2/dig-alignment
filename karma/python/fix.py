@@ -2,7 +2,6 @@
 
 import sys
 from urlparse import urlparse
-from pymodutil import echo
 
 sources_by_id = {
                  1: "backpage",
