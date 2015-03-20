@@ -4665,59 +4665,59 @@ l = []
 
 # url
 for k,v in backpage_sitekey_to_marketid.iteritems():
-    l.append(['http://dig.isi.edu/sourcemarket/backpage/%s/%s' % ('url',k), 'http://dig.isi.edu/market/%s' % v])
+    l.append(['http://dig.isi.edu/sourcemarket/backpage/%s' % (k), 'http://dig.isi.edu/market/%s' % v])
 
 # url
 for k,v in craigslist_sitekey_to_marketid.iteritems():
-    l.append(['http://dig.isi.edu/sourcemarket/craigslist/%s/%s' % ('url',k), 'http://dig.isi.edu/market/%s' %v])
+    l.append(['http://dig.isi.edu/sourcemarket/craigslist/%s' % (k), 'http://dig.isi.edu/market/%s' %v])
 
 # url
 for k,v in classivox_sitekey_to_marketid.iteritems():
-    l.append(['http://dig.isi.edu/sourcemarket/classivox/%s/%s' % ('url',k), 'http://dig.isi.edu/market/%s' %v])
+    l.append(['http://dig.isi.edu/sourcemarket/classivox/%s' % (k), 'http://dig.isi.edu/market/%s' %v])
 
 # url
 for k,v in myproviderguide_sitekey_to_marketid.iteritems():
-    l.append(['http://dig.isi.edu/sourcemarket/myproviderguide/%s/%s' % ('url',k), 'http://dig.isi.edu/market/%s' %v])
+    l.append(['http://dig.isi.edu/sourcemarket/myproviderguide/%s' % (k), 'http://dig.isi.edu/market/%s' %v])
 
 # 1,2,or3-tuple: from url
 for k,v in naughtyreviews_sitekey_to_marketid.iteritems():
-    l.append(['http://dig.isi.edu/sourcemarket/naughtyreviews/%s/%s' % ('url','/'.join(k)), 'http://dig.isi.edu/market/%s' %v])
+    l.append(['http://dig.isi.edu/sourcemarket/naughtyreviews/%s' % ('/'.join(k)), 'http://dig.isi.edu/market/%s' %v])
 
 # url
 for k,v in cityvibe_sitekey_to_marketid.iteritems():
-    l.append(['http://dig.isi.edu/sourcemarket/cityvibe/%s/%s' % ('url',k), 'http://dig.isi.edu/market/%s' %v])
+    l.append(['http://dig.isi.edu/sourcemarket/cityvibe/%s' % (k), 'http://dig.isi.edu/market/%s' %v])
 
 # "city, state" string: from title
 for k,v in escortsincollege_sitekey_to_marketid.iteritems():
-    l.append(['http://dig.isi.edu/sourcemarket/escortsincollege/%s/%s' % ('title',k.replace(',','/').replace(' ','')), 'http://dig.isi.edu/market/%s' %v])
+    l.append(['http://dig.isi.edu/sourcemarket/escortsincollege/%s' % (k.replace(',','/').replace(' ','')), 'http://dig.isi.edu/market/%s' %v])
 
 # "city, state" string: from title
 for k,v in escortphonelist_sitekey_to_marketid.iteritems():
-    l.append(['http://dig.isi.edu/sourcemarket/escortphonelist/%s/%s' % ('title',k.replace(',','/').replace(' ','')), 'http://dig.isi.edu/market/%s' %v])
+    l.append(['http://dig.isi.edu/sourcemarket/escortphonelist/%s' % (k.replace(',','/').replace(' ','')), 'http://dig.isi.edu/market/%s' %v])
 
 # url
 for k,v in eroticmugshots_sitekey_to_marketid.iteritems():
-    l.append(['http://dig.isi.edu/sourcemarket/eroticmugshots/%s/%s' % ('url',k), 'http://dig.isi.edu/market/%s' %v])
+    l.append(['http://dig.isi.edu/sourcemarket/eroticmugshots/%s' % (k), 'http://dig.isi.edu/market/%s' %v])
 
 # url
 for k,v in massagetroll_sitekey_to_marketid.iteritems():
-    l.append(['http://dig.isi.edu/sourcemarket/eroticmugshots/%s/%s' % ('url',k), 'http://dig.isi.edu/market/%s' %v])
+    l.append(['http://dig.isi.edu/sourcemarket/eroticmugshots/%s' % (k), 'http://dig.isi.edu/market/%s' %v])
 
 # ('City', 'State') 2-tuple: from columns city, state
 for k,v in escortadsxxx_sitekey_to_marketid.iteritems():
-    l.append(['http://dig.isi.edu/sourcemarket/escortadsxxx/%s/%s/%s' % ('citystate', k[0].replace(' ',''), k[1].replace(' ','')), 'http://dig.isi.edu/market/%s' %v])
+    l.append(['http://dig.isi.edu/sourcemarket/escortadsxxx/%s/%s' % (k[0].replace(' ',''), k[1].replace(' ','')), 'http://dig.isi.edu/market/%s' %v])
 
 # ('City', 'State') 2-tuple: from columns city, state
 for k,v in escortsinca_sitekey_to_marketid.iteritems():
-    l.append(['http://dig.isi.edu/sourcemarket/escortsinca/%s/%s/%s' % ('citystate', k[0].replace(' ',''), k[1].replace(' ','')), 'http://dig.isi.edu/market/%s' %v])
+    l.append(['http://dig.isi.edu/sourcemarket/escortsinca/%s/%s' % (k[0].replace(' ',''), k[1].replace(' ','')), 'http://dig.isi.edu/market/%s' %v])
 
 # ('City', 'State') 2-tuple: from columns city, state
 for k,v in escortsintheus_sitekey_to_marketid.iteritems():
-    l.append(['http://dig.isi.edu/sourcemarket/escortsintheus/%s/%s/%s' % ('citystate', k[0].replace(' ',''), k[1].replace(' ','')), 'http://dig.isi.edu/market/%s' %v])
+    l.append(['http://dig.isi.edu/sourcemarket/escortsintheus/%s/%s' % (k[0].replace(' ',''), k[1].replace(' ','')), 'http://dig.isi.edu/market/%s' %v])
 
 # url sitekey
 for k,v in liveescortreviews_sitekey_to_marketid.iteritems():
-    l.append(['http://dig.isi.edu/sourcemarket/liveescortreviews/%s/%s' % ('url',k), 'http://dig.isi.edu/market/%s' %v])
+    l.append(['http://dig.isi.edu/sourcemarket/liveescortreviews/%s' % (k), 'http://dig.isi.edu/market/%s' %v])
 
 import json
 with open('sitekeymappings.json', 'w') as f:
