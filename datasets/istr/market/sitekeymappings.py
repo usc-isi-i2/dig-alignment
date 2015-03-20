@@ -4719,6 +4719,22 @@ for k,v in escortsintheus_sitekey_to_marketid.iteritems():
 for k,v in liveescortreviews_sitekey_to_marketid.iteritems():
     l.append(['http://dig.isi.edu/sourcemarket/liveescortreviews/%s' % (k), 'http://dig.isi.edu/market/%s' %v])
 
+
 import json
-with open('sitekeymappings.json', 'w') as f:
-    json.dump(l, f, indent=4)
+with open('sitekeymappings2.json', 'w') as f:
+    print >> f, '['
+    k = len(l)
+    for row in l:
+        sourcemarket_uri = row[0]
+        print type(sourcemarket_uri)
+        market_uri = row[1]
+        d = {'sourcemarket_uri': sourcemarket_uri,
+             'market_uri': market_uri}
+        json.dump(d, f, indent=4)
+        k -= 1
+        if k>0:
+            print >> f, ","
+        else:
+            print >> f
+    print >> f, ']'
+
