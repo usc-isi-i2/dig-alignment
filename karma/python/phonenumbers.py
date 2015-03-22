@@ -28,3 +28,19 @@ def phoneExchangeUri(phonenumber):
         return "phone/exchange/" + x
     else:
         return ''
+
+def getPhoneCountryCode(phone_clean):
+    idx = phone_clean.find("-")
+    if idx != -1:
+        cc = phone_clean[0:idx]
+        if cc.startswith("+"):
+            cc = cc[1:]
+        return cc
+    return ''
+
+def getLocalPhoneNumber(phone_clean):
+    idx = phone_clean.find("-")
+    if idx != -1:
+        return phone_clean[idx+1:]
+    return phone_clean
+

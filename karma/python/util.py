@@ -1,12 +1,16 @@
 import re
 from datetime import datetime
 from time import mktime, gmtime
-
+from urlparse import urlparse
 
 def documentUrl(x):
     "Return the original document URL from the URL in the document version"
     i = x.find('churl')
     return 'http://' + x[x.find('/', i + 6) + 1:]
+
+
+def getCurrentTime():
+    return datetime.today().strftime("%Y-%m-%d %H:%M:%S")
 
 
 def countryUri(x):
@@ -82,6 +86,15 @@ def alphaOnly(x):
     "Remove non-alphabetic chars from the string x"
     return re.sub('[^A-Za-z]+', '', x)
 
+def alphaOnlyPreserveSpace(x):
+    x = re.sub('[^A-Za-z\s]+', '', x)
+    y = re.sub(r'\s+', ' ', x.strip())
+    return y
+
+def isSymbol(char1):
+    if char1.isalnum():
+        return False
+    return True
 
 def fingerprintString(x):
     "Make a fingerprint liek the one google refine makes"
@@ -181,4 +194,20 @@ output format: iso8601
 def getYearFromISODate(isoDate):
     if isoDate:
         return isoDate[0:4]
+    return ''
+
+def getWebsiteDomain(url):
+    parsed_uri = urlparse(url)
+    if parsed_uri:
+        domain = parsed_uri.netloc
+        if domain:
+            if domain.startswith("www."):
+                domain = domain[4:]
+            return domain
+    return ''
+
+def getTextHash(text):
+    if text:
+        string = asciiChars(text) #text.decode('unicode_escape').encode('ascii','ignore') #Remove the non-ascii chars
+        return hashlib.sha1(string).hexdigest().upper()
     return ''

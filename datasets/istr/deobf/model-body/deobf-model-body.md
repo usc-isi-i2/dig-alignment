@@ -1,4 +1,4 @@
-## deob-body-sample.json
+## deobf-body-sample.json
 
 ### PyTransforms
 #### _webpage_uri_
@@ -54,6 +54,6 @@ return ''
 | `memex:Feature1` | `prov:wasDerivedFrom` | `schema:WebPageElement1`|
 | `memex:Feature1` | `prov:wasGeneratedBy` | `prov:Activity1`|
 | `memex:FeatureCollection1` | `memex:text_body_clean_feature` | `memex:Feature1`|
-| `prov:Activity1` | `prov:wasAttributedTo` | `xsd:http://memex.zapto.org/data/software/deobfuscator/isi/version/0.1`|
+| `prov:Activity1` | `prov:wasAttributedTo` | `xsd:http://dig.isi.edu/ht/data/software/deobfuscator/isi/version/0.1`|
 | `schema:WebPage1` | `memex:hasFeatureCollection` | `memex:FeatureCollection1`|
 | `schema:WebPage1` | `memex:hasBodyPart` | `schema:WebPageElement1`|

@@ -58,7 +58,7 @@ return getValue("crawl_url") + "/featurecollection"
 #### _crawl_url_
 From column: _url_
 >``` python
-return getCacheBaseUrl()+"page/"+get_url_hash(getValue("url"))+"/"+getValue("timestamp")+"/processed"
+return getHTBaseUrl()+"page/"+get_url_hash(getValue("url"))+"/"+getValue("timestamp")+"/processed"
 ```
 
 

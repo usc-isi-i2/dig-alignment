@@ -13,14 +13,14 @@
 @prefix rr: <http://www.w3.org/ns/r2rml#> .
 @prefix km-dev: <http://isi.edu/integration/karma/dev#> .
 
-_:node19bkstbl6x1 a km-dev:R2RMLMapping ;
+_:node19flqfgtux1 a km-dev:R2RMLMapping ;
 	km-dev:sourceName "mrs-data-sample.json" ;
-	km-dev:modelPublicationTime "1421261844135"^^xsd:long ;
+	km-dev:modelPublicationTime "1425587815358"^^xsd:long ;
 	km-dev:modelVersion "1.7" ;
-	km-dev:hasInputColumns "[[{\"columnName\":\"year\"}],[{\"columnName\":\"url\"}],[{\"columnName\":\"doi\"}]]" ;
-	km-dev:hasOutputColumns "[[{\"columnName\":\"year_clean2\"}],[{\"columnName\":\"year_uri\"}],[{\"columnName\":\"uri\"}],[{\"columnName\":\"featurecollection_uri\"}],[{\"columnName\":\"year_clean\"}],[{\"columnName\":\"doi\"}]]" ;
+	km-dev:hasInputColumns "[[{\"columnName\":\"aid\"}],[{\"columnName\":\"year\"}],[{\"columnName\":\"doi\"}]]" ;
+	km-dev:hasOutputColumns "[[{\"columnName\":\"aid\"}],[{\"columnName\":\"year_uri\"}],[{\"columnName\":\"year_clean2\"}],[{\"columnName\":\"featurecollection_uri\"}],[{\"columnName\":\"year_clean\"}],[{\"columnName\":\"doi\"}],[{\"columnName\":\"uri\"}]]" ;
 	km-dev:hasModelLabel "mrs-data-sample.json" ;
-	km-dev:hasBaseURI "http://localhost:8080/source/" ;
+	km-dev:hasBaseURI "http://dig.isi.edu/mrs/data/" ;
 	km-dev:hasWorksheetHistory """[
     {
         \"tags\": [\"Transformation\"],
@@ -1016,235 +1016,765 @@ _:node19bkstbl6x1 a km-dev:R2RMLMapping ;
             }
         ],
         \"commandName\": \"OrganizeColumnsCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"url\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"value\": \"aid\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"value\": \"url = getValue(\\\"url\\\")\\nidx = url.find(\\\"aid=\\\")\\nif idx != -1:\\n   aid = url[idx+4:]\\n   idx = aid.find(\\\"&\\\")\\n   if idx != -1:\\n      aid = aid[0:idx]\\n   return aid\\nreturn \\\"\\\"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"isJSONOutput\",
+                \"value\": \"false\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"url\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"aid\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SubmitPythonTransformationCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"properties\",
+                \"value\": {
+                    \"hasServiceProperties\": false,
+                    \"hasPrefix\": false,
+                    \"graphLabel\": \"\",
+                    \"hasBaseURI\": true,
+                    \"baseURI\": \"http://dig.isi.edu/mrs/data/\"
+                },
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetWorksheetPropertiesCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"url\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"value\": \"return \\\"page/\\\"+getValue(\\\"aid\\\")+\\\"/processed\\\"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"previousCommandId\",
+                \"value\": \"C2774\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"targetHNodeId\",
+                \"value\": [{\"columnName\": \"uri\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"isJSONOutput\",
+                \"value\": \"false\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"aid\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SubmitEditPythonTransformationCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"uri\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"value\": \"return getValue(\\\"uri\\\") + \\\"/ featurecollection\\\"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"previousCommandId\",
+                \"value\": \"C3087\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"targetHNodeId\",
+                \"value\": [{\"columnName\": \"featurecollection_uri\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"isJSONOutput\",
+                \"value\": \"false\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"featurecollection_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SubmitEditPythonTransformationCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"uri\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"value\": \"return getValue(\\\"uri\\\") + \\\"/featurecollection\\\"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"previousCommandId\",
+                \"value\": \"C3423\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"targetHNodeId\",
+                \"value\": [{\"columnName\": \"featurecollection_uri\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"isJSONOutput\",
+                \"value\": \"false\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"featurecollection_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SubmitEditPythonTransformationCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"year_clean2\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"value\": \"uri = publication_year_uri(getValue(\\\"year_clean\\\"))\\nif uri:\\n  return getValue(\\\"featurecollection_uri\\\") + \\\"/ \\\" + uri\\nreturn ''\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"previousCommandId\",
+                \"value\": \"C3193\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"targetHNodeId\",
+                \"value\": [{\"columnName\": \"year_uri\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"isJSONOutput\",
+                \"value\": \"false\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"featurecollection_uri\\\"}]},{\\\"value\\\":[{\\\"columnName\\\":\\\"year_clean\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"year_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SubmitEditPythonTransformationCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"year_clean2\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"value\": \"uri = publication_year_uri(getValue(\\\"year_clean\\\"))\\nif uri:\\n  return getValue(\\\"featurecollection_uri\\\") + \\\"/\\\" + uri\\nreturn ''\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"previousCommandId\",
+                \"value\": \"C3429\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"targetHNodeId\",
+                \"value\": [{\"columnName\": \"year_uri\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"isJSONOutput\",
+                \"value\": \"false\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"featurecollection_uri\\\"}]},{\\\"value\\\":[{\\\"columnName\\\":\\\"year_clean\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"year_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SubmitEditPythonTransformationCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"literalValue\",
+                \"value\": \"http://dig.isi.edu/mrs/data/software/mrs/version/0.1\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"literalType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"nodeId\",
+                \"value\": \"http://memex.zapto.org/data/software/msr/version/0.11\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"isUri\",
+                \"value\": true,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"AddLiteralNodeCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"literalValue\",
+                \"value\": \"publication_year\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"literalType\",
+                \"value\": \"xsd:string\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"isUri\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"AddLiteralNodeCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"initialEdges\",
+                \"value\": [],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newEdges\",
+                \"value\": [{
+                    \"edgeTargetUri\": \"publication_year\",
+                    \"edgeId\": \"http://memexproxy.com/ontology/featureName\",
+                    \"edgeTargetId\": \"publication_year1\",
+                    \"edgeSourceId\": \"http://memexproxy.com/ontology/Feature1\",
+                    \"edgeSourceUri\": \"http://memexproxy.com/ontology/Feature\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"ChangeInternalNodeLinksCommand\"
     }
 ]""" .
 
-km-dev:TriplesMap_6afe16d4-3904-4f52-879d-bfb21e15b035 a rr:TriplesMap .
+km-dev:TriplesMap_7dfd49ad-1ce2-465d-8816-ec4cae39881a a rr:TriplesMap .
 
-_:node19bkstbl6x1 km-dev:hasTriplesMap km-dev:TriplesMap_6afe16d4-3904-4f52-879d-bfb21e15b035 .
+_:node19flqfgtux1 km-dev:hasTriplesMap km-dev:TriplesMap_7dfd49ad-1ce2-465d-8816-ec4cae39881a .
 
-km-dev:TriplesMap_6afe16d4-3904-4f52-879d-bfb21e15b035 km-dev:isPartOfMapping _:node19bkstbl6x1 .
+km-dev:TriplesMap_7dfd49ad-1ce2-465d-8816-ec4cae39881a km-dev:isPartOfMapping _:node19flqfgtux1 .
 
-_:node19bkstbl6x2 rr:tableName "mrs-data-sample.json" ;
+_:node19flqfgtux2 rr:tableName "mrs-data-sample.json" ;
 	a rr:LogicalTable ;
-	km-dev:isPartOfMapping _:node19bkstbl6x1 .
+	km-dev:isPartOfMapping _:node19flqfgtux1 .
 
-_:node19bkstbl6x1 km-dev:hasLogicalTable _:node19bkstbl6x2 .
+_:node19flqfgtux1 km-dev:hasLogicalTable _:node19flqfgtux2 .
 
-km-dev:TriplesMap_6afe16d4-3904-4f52-879d-bfb21e15b035 rr:logicalTable _:node19bkstbl6x2 ;
-	rr:subjectMap _:node19bkstbl6x3 .
+km-dev:TriplesMap_7dfd49ad-1ce2-465d-8816-ec4cae39881a rr:logicalTable _:node19flqfgtux2 ;
+	rr:subjectMap _:node19flqfgtux3 .
 
-_:node19bkstbl6x1 km-dev:hasSubjectMap _:node19bkstbl6x3 .
+_:node19flqfgtux1 km-dev:hasSubjectMap _:node19flqfgtux3 .
 
-_:node19bkstbl6x3 km-dev:isPartOfMapping _:node19bkstbl6x1 ;
+_:node19flqfgtux3 km-dev:isPartOfMapping _:node19flqfgtux1 ;
 	a rr:SubjectMap ;
 	km-dev:alignmentNodeId "http://memexproxy.com/ontology/Feature1" ;
 	rr:class memex:Feature ;
 	rr:template "{year_uri}" ;
 	a km-dev:steinerTreeRootNode .
 
-km-dev:PredicateObjectMap_ee33ab77-f8c4-48b4-8722-c53cd5c7f08e rr:predicate memex:featureValue .
+km-dev:PredicateObjectMap_05521e4a-a6f9-4e9b-b0f0-c91cf5a23332 rr:predicate memex:featureName .
 
-_:node19bkstbl6x4 rr:column "year_clean" ;
+_:node19flqfgtux4 rr:constant "publication_year" ;
+	rr:datatype "http://www.w3.org/2001/XMLSchema#string" ;
 	a rr:ObjectMap ;
-	km-dev:isPartOfMapping _:node19bkstbl6x1 .
+	km-dev:isPartOfMapping _:node19flqfgtux1 .
 
-_:node19bkstbl6x1 km-dev:hasObjectMap _:node19bkstbl6x4 .
+_:node19flqfgtux1 km-dev:hasObjectMap _:node19flqfgtux4 .
 
-km-dev:PredicateObjectMap_ee33ab77-f8c4-48b4-8722-c53cd5c7f08e rr:objectMap _:node19bkstbl6x4 .
+km-dev:PredicateObjectMap_05521e4a-a6f9-4e9b-b0f0-c91cf5a23332 rr:objectMap _:node19flqfgtux4 .
 
-km-dev:TriplesMap_6afe16d4-3904-4f52-879d-bfb21e15b035 rr:predicateObjectMap km-dev:PredicateObjectMap_ee33ab77-f8c4-48b4-8722-c53cd5c7f08e .
+km-dev:TriplesMap_7dfd49ad-1ce2-465d-8816-ec4cae39881a rr:predicateObjectMap km-dev:PredicateObjectMap_05521e4a-a6f9-4e9b-b0f0-c91cf5a23332 .
 
-km-dev:PredicateObjectMap_ee33ab77-f8c4-48b4-8722-c53cd5c7f08e a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node19bkstbl6x1 .
+km-dev:PredicateObjectMap_05521e4a-a6f9-4e9b-b0f0-c91cf5a23332 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19flqfgtux1 .
 
-_:node19bkstbl6x1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_ee33ab77-f8c4-48b4-8722-c53cd5c7f08e .
+_:node19flqfgtux1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_05521e4a-a6f9-4e9b-b0f0-c91cf5a23332 .
 
-km-dev:PredicateObjectMap_c5e8b91b-42d8-437b-a748-5a9a74119411 rr:predicate memex:publication_year .
+km-dev:PredicateObjectMap_27d584e6-cf5a-441e-8c47-b676f97cfd13 rr:predicate memex:featureValue .
 
-_:node19bkstbl6x5 rr:column "year_clean" ;
+_:node19flqfgtux5 rr:column "year_clean" ;
 	a rr:ObjectMap ;
-	km-dev:isPartOfMapping _:node19bkstbl6x1 .
+	km-dev:isPartOfMapping _:node19flqfgtux1 .
 
-_:node19bkstbl6x1 km-dev:hasObjectMap _:node19bkstbl6x5 .
+_:node19flqfgtux1 km-dev:hasObjectMap _:node19flqfgtux5 .
 
-km-dev:PredicateObjectMap_c5e8b91b-42d8-437b-a748-5a9a74119411 rr:objectMap _:node19bkstbl6x5 .
+km-dev:PredicateObjectMap_27d584e6-cf5a-441e-8c47-b676f97cfd13 rr:objectMap _:node19flqfgtux5 .
 
-km-dev:TriplesMap_6afe16d4-3904-4f52-879d-bfb21e15b035 rr:predicateObjectMap km-dev:PredicateObjectMap_c5e8b91b-42d8-437b-a748-5a9a74119411 .
+km-dev:TriplesMap_7dfd49ad-1ce2-465d-8816-ec4cae39881a rr:predicateObjectMap km-dev:PredicateObjectMap_27d584e6-cf5a-441e-8c47-b676f97cfd13 .
 
-km-dev:PredicateObjectMap_c5e8b91b-42d8-437b-a748-5a9a74119411 a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node19bkstbl6x1 .
+km-dev:PredicateObjectMap_27d584e6-cf5a-441e-8c47-b676f97cfd13 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19flqfgtux1 .
 
-_:node19bkstbl6x1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_c5e8b91b-42d8-437b-a748-5a9a74119411 .
+_:node19flqfgtux1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_27d584e6-cf5a-441e-8c47-b676f97cfd13 .
 
-km-dev:PredicateObjectMap_6c48f259-5aaf-4d1a-9768-5a3edbdfacba rr:predicate prov:wasGeneratedBy .
+km-dev:PredicateObjectMap_7c328748-9e24-4151-ad72-514dd43da0d8 rr:predicate memex:publication_year .
 
-km-dev:RefObjectMap_458d1fdc-d842-409e-b26a-b6b970251c27 a rr:RefObjectMap , rr:ObjectMap ;
-	rr:parentTriplesMap km-dev:TriplesMap_d669c88f-6378-4461-b5c1-3f1408e60ad8 ;
-	km-dev:isPartOfMapping _:node19bkstbl6x1 .
+_:node19flqfgtux6 rr:column "year_clean" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node19flqfgtux1 .
 
-_:node19bkstbl6x1 km-dev:hasObjectMap km-dev:RefObjectMap_458d1fdc-d842-409e-b26a-b6b970251c27 .
+_:node19flqfgtux1 km-dev:hasObjectMap _:node19flqfgtux6 .
 
-km-dev:PredicateObjectMap_6c48f259-5aaf-4d1a-9768-5a3edbdfacba rr:objectMap km-dev:RefObjectMap_458d1fdc-d842-409e-b26a-b6b970251c27 .
+km-dev:PredicateObjectMap_7c328748-9e24-4151-ad72-514dd43da0d8 rr:objectMap _:node19flqfgtux6 .
 
-km-dev:TriplesMap_6afe16d4-3904-4f52-879d-bfb21e15b035 rr:predicateObjectMap km-dev:PredicateObjectMap_6c48f259-5aaf-4d1a-9768-5a3edbdfacba .
+km-dev:TriplesMap_7dfd49ad-1ce2-465d-8816-ec4cae39881a rr:predicateObjectMap km-dev:PredicateObjectMap_7c328748-9e24-4151-ad72-514dd43da0d8 .
 
-km-dev:PredicateObjectMap_6c48f259-5aaf-4d1a-9768-5a3edbdfacba a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node19bkstbl6x1 .
+km-dev:PredicateObjectMap_7c328748-9e24-4151-ad72-514dd43da0d8 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19flqfgtux1 .
 
-_:node19bkstbl6x1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_6c48f259-5aaf-4d1a-9768-5a3edbdfacba .
+_:node19flqfgtux1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_7c328748-9e24-4151-ad72-514dd43da0d8 .
 
-km-dev:PredicateObjectMap_56918782-52f3-48dc-95c5-4ad522566ed4 rr:predicate prov:wasDerivedFrom .
+km-dev:PredicateObjectMap_18d95948-ff5c-49bb-baa9-f63debbe30c2 rr:predicate prov:wasGeneratedBy .
 
-km-dev:RefObjectMap_6b12ac15-fe19-48c3-916e-83b5200cd267 a rr:RefObjectMap , rr:ObjectMap ;
-	rr:parentTriplesMap km-dev:TriplesMap_77b02996-a2f2-4cb8-b552-f57881d35cdf ;
-	km-dev:isPartOfMapping _:node19bkstbl6x1 .
+km-dev:RefObjectMap_be358050-9cf5-46fc-88c9-6a06cbb65b0d a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_26079c02-a019-4219-91a0-fc8d41abf75b ;
+	km-dev:isPartOfMapping _:node19flqfgtux1 .
 
-_:node19bkstbl6x1 km-dev:hasObjectMap km-dev:RefObjectMap_6b12ac15-fe19-48c3-916e-83b5200cd267 .
+_:node19flqfgtux1 km-dev:hasObjectMap km-dev:RefObjectMap_be358050-9cf5-46fc-88c9-6a06cbb65b0d .
 
-km-dev:PredicateObjectMap_56918782-52f3-48dc-95c5-4ad522566ed4 rr:objectMap km-dev:RefObjectMap_6b12ac15-fe19-48c3-916e-83b5200cd267 .
+km-dev:PredicateObjectMap_18d95948-ff5c-49bb-baa9-f63debbe30c2 rr:objectMap km-dev:RefObjectMap_be358050-9cf5-46fc-88c9-6a06cbb65b0d .
 
-km-dev:TriplesMap_6afe16d4-3904-4f52-879d-bfb21e15b035 rr:predicateObjectMap km-dev:PredicateObjectMap_56918782-52f3-48dc-95c5-4ad522566ed4 .
+km-dev:TriplesMap_7dfd49ad-1ce2-465d-8816-ec4cae39881a rr:predicateObjectMap km-dev:PredicateObjectMap_18d95948-ff5c-49bb-baa9-f63debbe30c2 .
 
-km-dev:PredicateObjectMap_56918782-52f3-48dc-95c5-4ad522566ed4 a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node19bkstbl6x1 .
+km-dev:PredicateObjectMap_18d95948-ff5c-49bb-baa9-f63debbe30c2 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19flqfgtux1 .
 
-_:node19bkstbl6x1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_56918782-52f3-48dc-95c5-4ad522566ed4 .
+_:node19flqfgtux1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_18d95948-ff5c-49bb-baa9-f63debbe30c2 .
 
-km-dev:TriplesMap_d669c88f-6378-4461-b5c1-3f1408e60ad8 a rr:TriplesMap .
+km-dev:PredicateObjectMap_0dc9b407-92a8-423d-88a6-1527b77a8868 rr:predicate prov:wasDerivedFrom .
 
-_:node19bkstbl6x1 km-dev:hasTriplesMap km-dev:TriplesMap_d669c88f-6378-4461-b5c1-3f1408e60ad8 .
+km-dev:RefObjectMap_e6c8683a-cbba-4b67-b273-1133b5f49b4f a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_d1fe84dd-a2b9-4b16-8311-6fef1aade5c6 ;
+	km-dev:isPartOfMapping _:node19flqfgtux1 .
 
-km-dev:TriplesMap_d669c88f-6378-4461-b5c1-3f1408e60ad8 km-dev:isPartOfMapping _:node19bkstbl6x1 .
+_:node19flqfgtux1 km-dev:hasObjectMap km-dev:RefObjectMap_e6c8683a-cbba-4b67-b273-1133b5f49b4f .
 
-_:node19bkstbl6x6 rr:tableName "mrs-data-sample.json" ;
+km-dev:PredicateObjectMap_0dc9b407-92a8-423d-88a6-1527b77a8868 rr:objectMap km-dev:RefObjectMap_e6c8683a-cbba-4b67-b273-1133b5f49b4f .
+
+km-dev:TriplesMap_7dfd49ad-1ce2-465d-8816-ec4cae39881a rr:predicateObjectMap km-dev:PredicateObjectMap_0dc9b407-92a8-423d-88a6-1527b77a8868 .
+
+km-dev:PredicateObjectMap_0dc9b407-92a8-423d-88a6-1527b77a8868 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19flqfgtux1 .
+
+_:node19flqfgtux1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_0dc9b407-92a8-423d-88a6-1527b77a8868 .
+
+km-dev:TriplesMap_26079c02-a019-4219-91a0-fc8d41abf75b a rr:TriplesMap .
+
+_:node19flqfgtux1 km-dev:hasTriplesMap km-dev:TriplesMap_26079c02-a019-4219-91a0-fc8d41abf75b .
+
+km-dev:TriplesMap_26079c02-a019-4219-91a0-fc8d41abf75b km-dev:isPartOfMapping _:node19flqfgtux1 .
+
+_:node19flqfgtux7 rr:tableName "mrs-data-sample.json" ;
 	a rr:LogicalTable ;
-	km-dev:isPartOfMapping _:node19bkstbl6x1 .
+	km-dev:isPartOfMapping _:node19flqfgtux1 .
 
-_:node19bkstbl6x1 km-dev:hasLogicalTable _:node19bkstbl6x6 .
+_:node19flqfgtux1 km-dev:hasLogicalTable _:node19flqfgtux7 .
 
-km-dev:TriplesMap_d669c88f-6378-4461-b5c1-3f1408e60ad8 rr:logicalTable _:node19bkstbl6x6 ;
-	rr:subjectMap _:node19bkstbl6x7 .
+km-dev:TriplesMap_26079c02-a019-4219-91a0-fc8d41abf75b rr:logicalTable _:node19flqfgtux7 ;
+	rr:subjectMap _:node19flqfgtux8 .
 
-_:node19bkstbl6x1 km-dev:hasSubjectMap _:node19bkstbl6x7 .
+_:node19flqfgtux1 km-dev:hasSubjectMap _:node19flqfgtux8 .
 
-_:node19bkstbl6x7 km-dev:isPartOfMapping _:node19bkstbl6x1 ;
+_:node19flqfgtux8 km-dev:isPartOfMapping _:node19flqfgtux1 ;
 	a rr:SubjectMap ;
 	km-dev:alignmentNodeId "http://www.w3.org/ns/prov#Activity1" ;
 	rr:class prov:Activity ;
 	rr:termType rr:BlankNode ;
 	km-dev:namePrefix "prov:Activity1" .
 
-km-dev:PredicateObjectMap_ee529a93-6f3d-4d0b-827d-2447f2d643d5 rr:predicate memex:databaseId .
+km-dev:PredicateObjectMap_6253c1bf-6bfb-4d05-ade3-c4371a05d251 rr:predicate memex:databaseId .
 
-_:node19bkstbl6x8 rr:column "doi" ;
+_:node19flqfgtux9 rr:column "doi" ;
 	a rr:ObjectMap ;
-	km-dev:isPartOfMapping _:node19bkstbl6x1 .
+	km-dev:isPartOfMapping _:node19flqfgtux1 .
 
-_:node19bkstbl6x1 km-dev:hasObjectMap _:node19bkstbl6x8 .
+_:node19flqfgtux1 km-dev:hasObjectMap _:node19flqfgtux9 .
 
-km-dev:PredicateObjectMap_ee529a93-6f3d-4d0b-827d-2447f2d643d5 rr:objectMap _:node19bkstbl6x8 .
+km-dev:PredicateObjectMap_6253c1bf-6bfb-4d05-ade3-c4371a05d251 rr:objectMap _:node19flqfgtux9 .
 
-km-dev:TriplesMap_d669c88f-6378-4461-b5c1-3f1408e60ad8 rr:predicateObjectMap km-dev:PredicateObjectMap_ee529a93-6f3d-4d0b-827d-2447f2d643d5 .
+km-dev:TriplesMap_26079c02-a019-4219-91a0-fc8d41abf75b rr:predicateObjectMap km-dev:PredicateObjectMap_6253c1bf-6bfb-4d05-ade3-c4371a05d251 .
 
-km-dev:PredicateObjectMap_ee529a93-6f3d-4d0b-827d-2447f2d643d5 a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node19bkstbl6x1 .
+km-dev:PredicateObjectMap_6253c1bf-6bfb-4d05-ade3-c4371a05d251 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19flqfgtux1 .
 
-_:node19bkstbl6x1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_ee529a93-6f3d-4d0b-827d-2447f2d643d5 .
+_:node19flqfgtux1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_6253c1bf-6bfb-4d05-ade3-c4371a05d251 .
 
-km-dev:PredicateObjectMap_4b9687d6-2ec5-4e7a-86f1-976df72d41b2 rr:predicate prov:wasAttributedTo .
+km-dev:PredicateObjectMap_6f6c8407-69e2-4f27-9d28-86447503fd6a rr:predicate prov:wasAttributedTo .
 
-_:node19bkstbl6x9 rr:constant <http://memex.zapto.org/data/software/msr/version/0.1> ;
+_:node19flqfgtux10 rr:constant <http://dig.isi.edu/mrs/data/software/mrs/version/0.1> ;
 	a rr:ObjectMap ;
-	km-dev:isPartOfMapping _:node19bkstbl6x1 .
+	km-dev:isPartOfMapping _:node19flqfgtux1 .
 
-_:node19bkstbl6x1 km-dev:hasObjectMap _:node19bkstbl6x9 .
+_:node19flqfgtux1 km-dev:hasObjectMap _:node19flqfgtux10 .
 
-km-dev:PredicateObjectMap_4b9687d6-2ec5-4e7a-86f1-976df72d41b2 rr:objectMap _:node19bkstbl6x9 .
+km-dev:PredicateObjectMap_6f6c8407-69e2-4f27-9d28-86447503fd6a rr:objectMap _:node19flqfgtux10 .
 
-km-dev:TriplesMap_d669c88f-6378-4461-b5c1-3f1408e60ad8 rr:predicateObjectMap km-dev:PredicateObjectMap_4b9687d6-2ec5-4e7a-86f1-976df72d41b2 .
+km-dev:TriplesMap_26079c02-a019-4219-91a0-fc8d41abf75b rr:predicateObjectMap km-dev:PredicateObjectMap_6f6c8407-69e2-4f27-9d28-86447503fd6a .
 
-km-dev:PredicateObjectMap_4b9687d6-2ec5-4e7a-86f1-976df72d41b2 a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node19bkstbl6x1 .
+km-dev:PredicateObjectMap_6f6c8407-69e2-4f27-9d28-86447503fd6a a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19flqfgtux1 .
 
-_:node19bkstbl6x1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_4b9687d6-2ec5-4e7a-86f1-976df72d41b2 .
+_:node19flqfgtux1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_6f6c8407-69e2-4f27-9d28-86447503fd6a .
 
-km-dev:TriplesMap_df544140-c296-4d76-822b-d45723ed6f3c a rr:TriplesMap .
+km-dev:TriplesMap_d5cecf35-2347-4378-a43f-6736d575d4f9 a rr:TriplesMap .
 
-_:node19bkstbl6x1 km-dev:hasTriplesMap km-dev:TriplesMap_df544140-c296-4d76-822b-d45723ed6f3c .
+_:node19flqfgtux1 km-dev:hasTriplesMap km-dev:TriplesMap_d5cecf35-2347-4378-a43f-6736d575d4f9 .
 
-km-dev:TriplesMap_df544140-c296-4d76-822b-d45723ed6f3c km-dev:isPartOfMapping _:node19bkstbl6x1 .
+km-dev:TriplesMap_d5cecf35-2347-4378-a43f-6736d575d4f9 km-dev:isPartOfMapping _:node19flqfgtux1 .
 
-_:node19bkstbl6x10 rr:tableName "mrs-data-sample.json" ;
+_:node19flqfgtux11 rr:tableName "mrs-data-sample.json" ;
 	a rr:LogicalTable ;
-	km-dev:isPartOfMapping _:node19bkstbl6x1 .
+	km-dev:isPartOfMapping _:node19flqfgtux1 .
 
-_:node19bkstbl6x1 km-dev:hasLogicalTable _:node19bkstbl6x10 .
+_:node19flqfgtux1 km-dev:hasLogicalTable _:node19flqfgtux11 .
 
-km-dev:TriplesMap_df544140-c296-4d76-822b-d45723ed6f3c rr:logicalTable _:node19bkstbl6x10 ;
-	rr:subjectMap _:node19bkstbl6x11 .
+km-dev:TriplesMap_d5cecf35-2347-4378-a43f-6736d575d4f9 rr:logicalTable _:node19flqfgtux11 ;
+	rr:subjectMap _:node19flqfgtux12 .
 
-_:node19bkstbl6x1 km-dev:hasSubjectMap _:node19bkstbl6x11 .
+_:node19flqfgtux1 km-dev:hasSubjectMap _:node19flqfgtux12 .
 
-_:node19bkstbl6x11 km-dev:isPartOfMapping _:node19bkstbl6x1 ;
+_:node19flqfgtux12 km-dev:isPartOfMapping _:node19flqfgtux1 ;
 	a rr:SubjectMap ;
 	km-dev:alignmentNodeId "http://memexproxy.com/ontology/FeatureCollection1" ;
 	rr:class memex:FeatureCollection ;
 	rr:template "{uri}/featurecollection" .
 
-km-dev:PredicateObjectMap_63fd3427-0877-42b5-aefa-b4753debb8a2 rr:predicate memex:publication_year_feature .
+km-dev:PredicateObjectMap_fc344936-dd9a-4eb6-b22f-97ef70c7c4d1 rr:predicate memex:publication_year_feature .
 
-km-dev:RefObjectMap_3e81f1c7-079f-49d5-bafc-8e3c0277e5b9 a rr:RefObjectMap , rr:ObjectMap ;
-	rr:parentTriplesMap km-dev:TriplesMap_6afe16d4-3904-4f52-879d-bfb21e15b035 ;
-	km-dev:isPartOfMapping _:node19bkstbl6x1 .
+km-dev:RefObjectMap_4ad93be7-80a2-4bed-ad84-fa69225ba600 a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_7dfd49ad-1ce2-465d-8816-ec4cae39881a ;
+	km-dev:isPartOfMapping _:node19flqfgtux1 .
 
-_:node19bkstbl6x1 km-dev:hasObjectMap km-dev:RefObjectMap_3e81f1c7-079f-49d5-bafc-8e3c0277e5b9 .
+_:node19flqfgtux1 km-dev:hasObjectMap km-dev:RefObjectMap_4ad93be7-80a2-4bed-ad84-fa69225ba600 .
 
-km-dev:PredicateObjectMap_63fd3427-0877-42b5-aefa-b4753debb8a2 rr:objectMap km-dev:RefObjectMap_3e81f1c7-079f-49d5-bafc-8e3c0277e5b9 .
+km-dev:PredicateObjectMap_fc344936-dd9a-4eb6-b22f-97ef70c7c4d1 rr:objectMap km-dev:RefObjectMap_4ad93be7-80a2-4bed-ad84-fa69225ba600 .
 
-km-dev:TriplesMap_df544140-c296-4d76-822b-d45723ed6f3c rr:predicateObjectMap km-dev:PredicateObjectMap_63fd3427-0877-42b5-aefa-b4753debb8a2 .
+km-dev:TriplesMap_d5cecf35-2347-4378-a43f-6736d575d4f9 rr:predicateObjectMap km-dev:PredicateObjectMap_fc344936-dd9a-4eb6-b22f-97ef70c7c4d1 .
 
-km-dev:PredicateObjectMap_63fd3427-0877-42b5-aefa-b4753debb8a2 a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node19bkstbl6x1 .
+km-dev:PredicateObjectMap_fc344936-dd9a-4eb6-b22f-97ef70c7c4d1 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19flqfgtux1 .
 
-_:node19bkstbl6x1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_63fd3427-0877-42b5-aefa-b4753debb8a2 .
+_:node19flqfgtux1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_fc344936-dd9a-4eb6-b22f-97ef70c7c4d1 .
 
-km-dev:TriplesMap_77b02996-a2f2-4cb8-b552-f57881d35cdf a rr:TriplesMap .
+km-dev:TriplesMap_d1fe84dd-a2b9-4b16-8311-6fef1aade5c6 a rr:TriplesMap .
 
-_:node19bkstbl6x1 km-dev:hasTriplesMap km-dev:TriplesMap_77b02996-a2f2-4cb8-b552-f57881d35cdf .
+_:node19flqfgtux1 km-dev:hasTriplesMap km-dev:TriplesMap_d1fe84dd-a2b9-4b16-8311-6fef1aade5c6 .
 
-km-dev:TriplesMap_77b02996-a2f2-4cb8-b552-f57881d35cdf km-dev:isPartOfMapping _:node19bkstbl6x1 .
+km-dev:TriplesMap_d1fe84dd-a2b9-4b16-8311-6fef1aade5c6 km-dev:isPartOfMapping _:node19flqfgtux1 .
 
-_:node19bkstbl6x12 rr:tableName "mrs-data-sample.json" ;
+_:node19flqfgtux13 rr:tableName "mrs-data-sample.json" ;
 	a rr:LogicalTable ;
-	km-dev:isPartOfMapping _:node19bkstbl6x1 .
+	km-dev:isPartOfMapping _:node19flqfgtux1 .
 
-_:node19bkstbl6x1 km-dev:hasLogicalTable _:node19bkstbl6x12 .
+_:node19flqfgtux1 km-dev:hasLogicalTable _:node19flqfgtux13 .
 
-km-dev:TriplesMap_77b02996-a2f2-4cb8-b552-f57881d35cdf rr:logicalTable _:node19bkstbl6x12 ;
-	rr:subjectMap _:node19bkstbl6x13 .
+km-dev:TriplesMap_d1fe84dd-a2b9-4b16-8311-6fef1aade5c6 rr:logicalTable _:node19flqfgtux13 ;
+	rr:subjectMap _:node19flqfgtux14 .
 
-_:node19bkstbl6x1 km-dev:hasSubjectMap _:node19bkstbl6x13 .
+_:node19flqfgtux1 km-dev:hasSubjectMap _:node19flqfgtux14 .
 
-_:node19bkstbl6x13 km-dev:isPartOfMapping _:node19bkstbl6x1 ;
+_:node19flqfgtux14 km-dev:isPartOfMapping _:node19flqfgtux1 ;
 	a rr:SubjectMap ;
 	km-dev:alignmentNodeId "http://schema.org/WebPage1" ;
 	rr:class schema:WebPage ;
-	rr:template "{uri}" .
+	rr:template "page/{aid}/processed" .
 
-km-dev:PredicateObjectMap_04c3bfc4-d623-4b16-ba63-93c19a22d0c9 rr:predicate memex:hasFeatureCollection .
+km-dev:PredicateObjectMap_21f9888c-87fc-42f3-80fa-c01a3365ebb0 rr:predicate memex:hasFeatureCollection .
 
-km-dev:RefObjectMap_bbc7c741-6586-4ff2-be25-44bf42cc6b8c a rr:RefObjectMap , rr:ObjectMap ;
-	rr:parentTriplesMap km-dev:TriplesMap_df544140-c296-4d76-822b-d45723ed6f3c ;
-	km-dev:isPartOfMapping _:node19bkstbl6x1 .
+km-dev:RefObjectMap_6306ad42-607b-4be4-b956-8e65ba9cb09c a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_d5cecf35-2347-4378-a43f-6736d575d4f9 ;
+	km-dev:isPartOfMapping _:node19flqfgtux1 .
 
-_:node19bkstbl6x1 km-dev:hasObjectMap km-dev:RefObjectMap_bbc7c741-6586-4ff2-be25-44bf42cc6b8c .
+_:node19flqfgtux1 km-dev:hasObjectMap km-dev:RefObjectMap_6306ad42-607b-4be4-b956-8e65ba9cb09c .
 
-km-dev:PredicateObjectMap_04c3bfc4-d623-4b16-ba63-93c19a22d0c9 rr:objectMap km-dev:RefObjectMap_bbc7c741-6586-4ff2-be25-44bf42cc6b8c .
+km-dev:PredicateObjectMap_21f9888c-87fc-42f3-80fa-c01a3365ebb0 rr:objectMap km-dev:RefObjectMap_6306ad42-607b-4be4-b956-8e65ba9cb09c .
 
-km-dev:TriplesMap_77b02996-a2f2-4cb8-b552-f57881d35cdf rr:predicateObjectMap km-dev:PredicateObjectMap_04c3bfc4-d623-4b16-ba63-93c19a22d0c9 .
+km-dev:TriplesMap_d1fe84dd-a2b9-4b16-8311-6fef1aade5c6 rr:predicateObjectMap km-dev:PredicateObjectMap_21f9888c-87fc-42f3-80fa-c01a3365ebb0 .
 
-km-dev:PredicateObjectMap_04c3bfc4-d623-4b16-ba63-93c19a22d0c9 a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node19bkstbl6x1 .
+km-dev:PredicateObjectMap_21f9888c-87fc-42f3-80fa-c01a3365ebb0 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19flqfgtux1 .
 
-_:node19bkstbl6x1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_04c3bfc4-d623-4b16-ba63-93c19a22d0c9 .
+_:node19flqfgtux1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_21f9888c-87fc-42f3-80fa-c01a3365ebb0 .

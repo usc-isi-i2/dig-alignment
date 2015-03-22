@@ -4,7 +4,7 @@
 #### _crawl_uri_
 From column: _url_
 >``` python
-return getCacheBaseUrl()+"page/"+get_url_hash(getValue("url"))+"/"+getValue("timestamp")+"/processed"
+return getHTBaseUrl()+"page/"+get_url_hash(getValue("url"))+"/"+getValue("timestamp")+"/processed"
 ```
 
 #### _feature_collection_property_
@@ -81,20 +81,41 @@ From column: _feature_value2_
 return feature_uri(getValue("feature_name"), getValue("feature_value"))
 ```
 
+#### _multiFeatureValue2_
+From column: _multiFeatureValue / Values_
+>``` python
+return getValue("Values")
+```
+
+#### _multiFeature_base_uri_
+From column: _multiFeatureValue / multiFeatureValue2_
+>``` python
+return feature_uri(getValue("feature_name"), getValue("multiFeatureValue2"))
+```
+
+#### _multi_feature_uri_
+From column: _multiFeatureValue / multiFeature_base_uri_
+>``` python
+uri = getValue("multiFeature_base_uri")
+if uri:
+   return getValue("featurecollection_uri") + "/" + uri
+return ''
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
 |  ----- | -------- | ----- |
+| _Values_ | `memex:featureValue` | `memex:Feature1`|
 | _crawl_uri_ | `uri` | `schema:WebPage1`|
 | _database_id_ | `memex:databaseId` | `prov:Activity1`|
 | _feature_collection_property_ | `km-dev:objectPropertySpecialization` | `memex:FeatureCollection1`|
 | _feature_name_ | `memex:featureName` | `memex:Feature1`|
 | _feature_name_property_ | `km-dev:dataPropertyOfColumnLink` | `memex:Feature1`|
-| _feature_uri_ | `uri` | `memex:Feature1`|
-| _feature_value_ | `memex:featureValue` | `memex:Feature1`|
-| _feature_value2_ | `memex:featureValue` | `memex:Feature1`|
 | _featurecollection_uri_ | `uri` | `memex:FeatureCollection1`|
 | _modtime_iso_ | `prov:endedAtTime` | `prov:Activity1`|
+| _multiFeatureValue2_ | `memex:featureValue` | `memex:Feature1`|
+| _multi_feature_uri_ | `uri` | `memex:Feature1`|
 
 
 ### Links
@@ -103,5 +124,5 @@ return feature_uri(getValue("feature_name"), getValue("feature_value"))
 | `memex:Feature1` | `prov:wasGeneratedBy` | `prov:Activity1`|
 | `memex:Feature1` | `prov:wasDerivedFrom` | `schema:WebPage1`|
 | `memex:FeatureCollection1` | `memex:hasFeatures` | `memex:Feature1`|
-| `prov:Activity1` | `prov:wasAttributedTo` | `xsd:http://memex.zapto.org/data/software/extractor/ist/attributes/version/unknown`|
+| `prov:Activity1` | `prov:wasAttributedTo` | `xsd:http://dig.isi.edu/ht/data/software/extractor/ist/attributes/version/unknown`|
 | `schema:WebPage1` | `memex:hasFeatureCollection` | `memex:FeatureCollection1`|

@@ -248,11 +248,11 @@ def person_height_uri(cleaned):
 # hair  22078
 def clean_hair(x):
     stripped = x.strip().lower()
-    return alphaOnly(stripped)
+    return alphaOnlyPreserveSpace(stripped)
 
 def person_haircolor_uri(cleaned):
     if cleaned:
-        return "person_haircolor/%s" % cleaned
+        return "person_haircolor/%s" % cleaned.replace(" ","_")
 
 # build 21842
 def clean_build(x):
@@ -320,12 +320,13 @@ def clean_piercings(x):
     stripped = re.sub("below the belt", "belowthebelt", stripped)
     return stripped.split(' ')
 
-def commaList(l):
-    return ",".join(l)
+def pipeList(l):
+    return "|".join(l)
 
 def person_piercings_uri(cleaned):
     if cleaned:
-        return ",".join(["person_piercings/%s" % c for c in cleaned])
+        return "person_piercings/%s" % cleaned
+    return ''
 
 # creditcards   18272
 def clean_creditcards(x):
@@ -349,20 +350,20 @@ def person_hairlength_uri(cleaned):
 # hairtype  17945
 def clean_hairtype(x):
     stripped = x.strip().lower()
-    return alphaOnly(stripped)
+    return alphaOnlyPreserveSpace(stripped)
 
 def person_hairtype_uri(cleaned):
     if cleaned:
-        return "person_hairtype/%s" % cleaned
+        return "person_hairtype/%s" % cleaned.replace(" ","_")
 
 # eyes  16723
 def clean_eyes(x):
     stripped = x.strip().lower()
-    return alphaOnly(stripped)
+    return alphaOnlyPreserveSpace(stripped)
 
 def person_eyecolor_uri(cleaned):
     if cleaned:
-        return "person_eyecolor/%s" % cleaned
+        return "person_eyecolor/%s" % cleaned.replace(" ","_")
 
 # weight    13316
 def clean_weight(x):
@@ -434,7 +435,7 @@ unmarked weight < 90 is interpreted as kg, >=90 as lb"""
             # return sanityCheck(nearest2(lb_to_kg(num)))
             # no binning
             return sanityCheck(lb_to_kg(num))
-    
+
     except Exception, e:
         return None
 
@@ -444,7 +445,10 @@ def person_weight_uri(cleaned):
 
 # name  10042
 def clean_name(x):
-    return toTitleCaseCleaned(x)
+    x = toTitleCaseCleaned(x)
+    if isSymbol(x[0:1]):
+        return ''
+    return x
 
 def person_name_uri(cleaned):
     if cleaned:
@@ -571,7 +575,7 @@ def clean_waist(x):
             # return sanityCheck(nearest2(inch_to_cm(num)))
             # no binning
             return sanityCheck(inch_to_cm(num))
-    
+
     except Exception, e:
         return None
 
@@ -619,6 +623,12 @@ def get_url_hash(string):
 
 def getCacheBaseUrl():
     return "http://memex.zapto.org/data/"
+
+def getHTBaseUrl():
+    return "http://dig.isi.edu/ht/data/"
+
+def getMRSBaseUrl():
+    return "http://dig.isi.edu/mrs/data/"
 
 # zip   2734
 def clean_zip(x):
@@ -707,6 +717,12 @@ def country_uri(country):
         return "country/" + cc
     return ''
 
+def clean_website(website):
+    x = nonWhitespace(website)
+    if x:
+        return x.lower()
+    return ''
+
 def website_uri(website):
 	if len(website) > 0:
 		uri = quote(website, safe='')
@@ -755,6 +771,24 @@ def publication_year_uri(cleaned):
         return "publication_year/%s" % cleaned
     return ''
 
+def clean_organization(org):
+    x = toTitleCaseCleaned(org)
+    if isSymbol(x[0:1]):
+         return ''
+    return x
+
+def organization_name_uri(cleaned):
+    if cleaned:
+        for_uri = cleaned.replace(" ", "_").lower()
+        return "organization/name/%s"  % for_uri
+    return ''
+
+def provider_uri(cleaned):
+    if cleaned:
+        x = cleaned.replace(" ", "_").lower()
+        return "provider/%s" % x
+    return ''
+
 mapFunctions = defaultdict(lambda x: None)
 
 mapFunctions['phone'] = clean_phone
@@ -771,7 +805,7 @@ mapFunctions['hair'] = clean_hair
 mapFunctions['build'] = clean_build
 mapFunctions['cup'] = clean_cup
 mapFunctions['bust'] = clean_bust
-mapFunctions['piercings'] = lambda x: commaList(clean_piercings(x))
+mapFunctions['piercings'] = lambda x: pipeList(clean_piercings(x))
 mapFunctions['creditcards'] = clean_creditcards
 mapFunctions['hairlength'] = clean_hairlength
 mapFunctions['hairtype'] = clean_hairtype
@@ -789,6 +823,7 @@ mapFunctions['hips'] = clean_hips
 mapFunctions['alias'] = clean_alias
 mapFunctions['availability'] = clean_availability
 mapFunctions['location'] = clean_location
+mapFunctions['userlocation'] = clean_location
 
 def feature_value(attributeName, value):
     try:
