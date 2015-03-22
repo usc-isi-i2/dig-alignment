@@ -188,7 +188,7 @@ output format: iso8601
     except:
         pass
     # If all else fails, return input
-    return date
+    return ''
 
 
 def getYearFromISODate(isoDate):
@@ -208,6 +208,5 @@ def getWebsiteDomain(url):
 
 def getTextHash(text):
     if text:
-        string = asciiChars(text) #text.decode('unicode_escape').encode('ascii','ignore') #Remove the non-ascii chars
-        return hashlib.sha1(string).hexdigest().upper()
+        return hashlib.sha1(text.encode('utf-8')).hexdigest().upper()
     return ''
