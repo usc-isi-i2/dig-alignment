@@ -1,28 +1,30 @@
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix schemax: <http://topbraid.org/schemax/> .
+@prefix crm: <http://www.cidoc-crm.org/rdfs/cidoc_crm_v6.0-draft-2015January.rdfs> .
+@prefix schema: <http://schema.org/> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix dct: <http://purl.org/dc/terms/> .
-@prefix dc: <http://purl.org/dc/elements/1.1/> .
-@prefix dgeo: <http://dig.isi.edu/geo> .
-@prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix schemax: <http://topbraid.org/schemax/> .
-@prefix schema: <http://schema.org/> .
+@prefix dgeo: <http://dig.isi.edu/dgeo#> .
 @prefix memex: <http://memexproxy.com/ontology/> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix ht: <http://memexproxy.com/ontology/human-trafficking/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix rr: <http://www.w3.org/ns/r2rml#> .
 @prefix km-dev: <http://isi.edu/integration/karma/dev#> .
 
-_:node19gsh1co8x1 a km-dev:R2RMLMapping ;
-	km-dev:sourceName "adm2area.csv" ;
-	km-dev:modelPublicationTime "1426886537992"^^xsd:long ;
-	km-dev:modelVersion "1.7" ;
-	km-dev:hasInputColumns "[]" ;
-	km-dev:hasOutputColumns "[[{\"columnName\":\"adm2area_code_uri\"}],[{\"columnName\":\"gazetteer_entry_uri\"}]]" ;
-	km-dev:hasModelLabel "adm2area.csv" ;
-	km-dev:hasBaseURI "http://localhost:8080/source/" ;
-	km-dev:hasWorksheetHistory """[
+_:node19h11q8h0x1 a km-dev:R2RMLMapping ;
+		  km-dev:sourceName "adm2area.csv" ;
+		  km-dev:modelPublicationTime "1427038347808"^^xsd:long ;
+		  km-dev:modelVersion "1.7" ;
+		  km-dev:hasInputColumns "[[{\"columnName\":\"geonameid\"}],[{\"columnName\":\"code\"}],[{\"columnName\":\"name\"}]]" ;
+		  km-dev:hasOutputColumns "[[{\"columnName\":\"geonameid\"}],[{\"columnName\":\"adm1code\"}],[{\"columnName\":\"name\"}],[{\"columnName\":\"adm2area_code_uri\"}],[{\"columnName\":\"adm1area_code_uri\"}],[{\"columnName\":\"gazetteer_entry_uri\"}]]" ;
+		  km-dev:hasModelLabel "adm2area.csv" ;
+		  km-dev:hasBaseURI "http://localhost:8080/source/" ;
+		  km-dev:hasWorksheetHistory """[
     {
         \"tags\": [\"Transformation\"],
         \"inputParameters\": [
@@ -124,5 +126,526 @@ _:node19gsh1co8x1 a km-dev:R2RMLMapping ;
             }
         ],
         \"commandName\": \"SubmitPythonTransformationCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"gazetteer_entry_uri\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyName\",
+                \"value\": \"isUriOfClass\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyUri\",
+                \"value\": \"http://dig.isi.edu/dgeo#Adm2Area\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyId\",
+                \"value\": \"http://dig.isi.edu/dgeo#Adm2Area1 (add)\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://isi.edu/integration/karma/dev#classLink\",
+                    \"DomainLabel\": \"dgeo:Adm2Area1 (add)\",
+                    \"DomainId\": \"http://dig.isi.edu/dgeo#Adm2Area1 (add)\",
+                    \"DomainUri\": \"http://dig.isi.edu/dgeo#Adm2Area\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"gazetteer_entry_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"gazetteer_entry_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetMetaPropertyCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"geonameid\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://memexproxy.com/ontology/databaseId\",
+                    \"DomainLabel\": \"dgeo:Adm2Area2 (add)\",
+                    \"DomainId\": \"http://dig.isi.edu/dgeo#Adm2Area2 (add)\",
+                    \"DomainUri\": \"http://dig.isi.edu/dgeo#Adm2Area\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"geonameid\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"geonameid\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetSemanticTypeCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"geonameid\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://memexproxy.com/ontology/databaseId\",
+                    \"DomainLabel\": \"dgeo:Adm2Area1\",
+                    \"DomainId\": \"http://dig.isi.edu/dgeo#Adm2Area1\",
+                    \"DomainUri\": \"http://dig.isi.edu/dgeo#Adm2Area\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"geonameid\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"geonameid\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetSemanticTypeCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"name\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://dig.isi.edu/dgeo#hasPreferredName\",
+                    \"DomainLabel\": \"dgeo:Adm2Area1\",
+                    \"DomainId\": \"http://dig.isi.edu/dgeo#Adm2Area1\",
+                    \"DomainUri\": \"http://dig.isi.edu/dgeo#Adm2Area\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"name\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"name\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetSemanticTypeCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"adm2area_code_uri\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://dig.isi.edu/dgeo#adm2areaCodeUri\",
+                    \"DomainLabel\": \"dgeo:Adm2Area1\",
+                    \"DomainId\": \"http://dig.isi.edu/dgeo#Adm2Area1\",
+                    \"DomainUri\": \"http://dig.isi.edu/dgeo#Adm2Area\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"adm2area_code_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"adm2area_code_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetSemanticTypeCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"code\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"value\": \"adm1code\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"value\": \"a2code = getValue(\\\"code\\\")\\np = a2code.rfind(\\\".\\\")\\nreturn a2code[0:p]\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"isJSONOutput\",
+                \"value\": \"false\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"code\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"adm1code\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SubmitPythonTransformationCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"adm1code\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"value\": \"adm1area_code_uri\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"value\": \"return \\\"http://dig.isi.edu/adm1areaCode/\\\" + getValue(\\\"adm1code\\\")\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"isJSONOutput\",
+                \"value\": \"false\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"adm1code\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"adm1area_code_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SubmitPythonTransformationCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"adm1area_code_uri\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://dig.isi.edu/dgeo#adm1areaCodeUri\",
+                    \"DomainLabel\": \"dgeo:Adm2Area1\",
+                    \"DomainId\": \"http://dig.isi.edu/dgeo#Adm2Area1\",
+                    \"DomainUri\": \"http://dig.isi.edu/dgeo#Adm2Area\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"adm1area_code_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"adm1area_code_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetSemanticTypeCommand\"
     }
 ]""" .
+
+km-dev:TriplesMap_dcf8bc1f-7ab6-4ee9-a4ac-95413d44a06c a rr:TriplesMap .
+
+_:node19h11q8h0x1 km-dev:hasTriplesMap km-dev:TriplesMap_dcf8bc1f-7ab6-4ee9-a4ac-95413d44a06c .
+
+km-dev:TriplesMap_dcf8bc1f-7ab6-4ee9-a4ac-95413d44a06c km-dev:isPartOfMapping _:node19h11q8h0x1 .
+
+_:node19h11q8h0x2 rr:tableName "adm2area.csv" ;
+		  a rr:LogicalTable ;
+		  km-dev:isPartOfMapping _:node19h11q8h0x1 .
+
+_:node19h11q8h0x1 km-dev:hasLogicalTable _:node19h11q8h0x2 .
+
+km-dev:TriplesMap_dcf8bc1f-7ab6-4ee9-a4ac-95413d44a06c rr:logicalTable _:node19h11q8h0x2 ;
+						       rr:subjectMap _:node19h11q8h0x3 .
+
+_:node19h11q8h0x1 km-dev:hasSubjectMap _:node19h11q8h0x3 .
+
+_:node19h11q8h0x3 km-dev:isPartOfMapping _:node19h11q8h0x1 ;
+		  a rr:SubjectMap ;
+		  km-dev:alignmentNodeId "http://dig.isi.edu/dgeo#Adm2Area1" ;
+		  rr:class dgeo:Adm2Area ;
+		  rr:template "http://dig.isi.edu/GazetteerEntry/{geonameid}" ;
+		  a km-dev:steinerTreeRootNode .
+
+km-dev:PredicateObjectMap_4772ac4a-4cf5-4605-a748-b85ec3cd451d rr:predicate dgeo:adm1areaCodeUri .
+
+_:node19h11q8h0x4 rr:constant "http://dig.isi.edu/adm1areaCode/{adm1code}" ;
+		  a rr:ObjectMap ;
+		  km-dev:isPartOfMapping _:node19h11q8h0x1 .
+
+_:node19h11q8h0x1 km-dev:hasObjectMap _:node19h11q8h0x4 .
+
+km-dev:PredicateObjectMap_4772ac4a-4cf5-4605-a748-b85ec3cd451d rr:objectMap _:node19h11q8h0x4 .
+
+km-dev:TriplesMap_dcf8bc1f-7ab6-4ee9-a4ac-95413d44a06c rr:predicateObjectMap km-dev:PredicateObjectMap_4772ac4a-4cf5-4605-a748-b85ec3cd451d .
+
+km-dev:PredicateObjectMap_4772ac4a-4cf5-4605-a748-b85ec3cd451d a rr:PredicateObjectMap ;
+							       km-dev:isPartOfMapping _:node19h11q8h0x1 .
+
+_:node19h11q8h0x1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_4772ac4a-4cf5-4605-a748-b85ec3cd451d .
+
+km-dev:PredicateObjectMap_f1aa05e1-e890-4001-bcce-43f0f74ce322 rr:predicate dgeo:adm2areaCodeUri .
+
+_:node19h11q8h0x5 rr:constant "http://dig.isi.edu/Adm2AreaCode/{code}" ;
+		  a rr:ObjectMap ;
+		  km-dev:isPartOfMapping _:node19h11q8h0x1 .
+
+_:node19h11q8h0x1 km-dev:hasObjectMap _:node19h11q8h0x5 .
+
+km-dev:PredicateObjectMap_f1aa05e1-e890-4001-bcce-43f0f74ce322 rr:objectMap _:node19h11q8h0x5 .
+
+km-dev:TriplesMap_dcf8bc1f-7ab6-4ee9-a4ac-95413d44a06c rr:predicateObjectMap km-dev:PredicateObjectMap_f1aa05e1-e890-4001-bcce-43f0f74ce322 .
+
+km-dev:PredicateObjectMap_f1aa05e1-e890-4001-bcce-43f0f74ce322 a rr:PredicateObjectMap ;
+							       km-dev:isPartOfMapping _:node19h11q8h0x1 .
+
+_:node19h11q8h0x1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_f1aa05e1-e890-4001-bcce-43f0f74ce322 .
+
+km-dev:PredicateObjectMap_dedfa9b4-9d71-425b-bf03-77456662966c rr:predicate dgeo:hasPreferredName .
+
+_:node19h11q8h0x6 rr:column "name" ;
+		  a rr:ObjectMap ;
+		  km-dev:isPartOfMapping _:node19h11q8h0x1 .
+
+_:node19h11q8h0x1 km-dev:hasObjectMap _:node19h11q8h0x6 .
+
+km-dev:PredicateObjectMap_dedfa9b4-9d71-425b-bf03-77456662966c rr:objectMap _:node19h11q8h0x6 .
+
+km-dev:TriplesMap_dcf8bc1f-7ab6-4ee9-a4ac-95413d44a06c rr:predicateObjectMap km-dev:PredicateObjectMap_dedfa9b4-9d71-425b-bf03-77456662966c .
+
+km-dev:PredicateObjectMap_dedfa9b4-9d71-425b-bf03-77456662966c a rr:PredicateObjectMap ;
+							       km-dev:isPartOfMapping _:node19h11q8h0x1 .
+
+_:node19h11q8h0x1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_dedfa9b4-9d71-425b-bf03-77456662966c .
+
+km-dev:PredicateObjectMap_ad48c9bc-320f-4fa3-823e-4cc34cf823c2 rr:predicate memex:databaseId .
+
+_:node19h11q8h0x7 rr:column "geonameid" ;
+		  a rr:ObjectMap ;
+		  km-dev:isPartOfMapping _:node19h11q8h0x1 .
+
+_:node19h11q8h0x1 km-dev:hasObjectMap _:node19h11q8h0x7 .
+
+km-dev:PredicateObjectMap_ad48c9bc-320f-4fa3-823e-4cc34cf823c2 rr:objectMap _:node19h11q8h0x7 .
+
+km-dev:TriplesMap_dcf8bc1f-7ab6-4ee9-a4ac-95413d44a06c rr:predicateObjectMap km-dev:PredicateObjectMap_ad48c9bc-320f-4fa3-823e-4cc34cf823c2 .
+
+km-dev:PredicateObjectMap_ad48c9bc-320f-4fa3-823e-4cc34cf823c2 a rr:PredicateObjectMap ;
+							       km-dev:isPartOfMapping _:node19h11q8h0x1 .
+
+_:node19h11q8h0x1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_ad48c9bc-320f-4fa3-823e-4cc34cf823c2 .
