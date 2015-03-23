@@ -16,12 +16,12 @@
 @prefix rr: <http://www.w3.org/ns/r2rml#> .
 @prefix km-dev: <http://isi.edu/integration/karma/dev#> .
 
-_:node19h2g2pqox1 a km-dev:R2RMLMapping ;
+_:node19h3s24eqx1 a km-dev:R2RMLMapping ;
 	km-dev:sourceName "adm2area.csv" ;
-	km-dev:modelPublicationTime "1427086862168"^^xsd:long ;
+	km-dev:modelPublicationTime "1427132977626"^^xsd:long ;
 	km-dev:modelVersion "1.7" ;
 	km-dev:hasInputColumns "[[{\"columnName\":\"code\"}],[{\"columnName\":\"name\"}],[{\"columnName\":\"geonameid\"}]]" ;
-	km-dev:hasOutputColumns "[[{\"columnName\":\"code\"}],[{\"columnName\":\"adm1code\"}],[{\"columnName\":\"name\"}],[{\"columnName\":\"adm2area_code_uri\"}],[{\"columnName\":\"geonameid\"}],[{\"columnName\":\"gazetteer_entry_uri\"}],[{\"columnName\":\"adm1area_code_uri\"}]]" ;
+	km-dev:hasOutputColumns "[[{\"columnName\":\"code\"}],[{\"columnName\":\"adm1code\"}],[{\"columnName\":\"name\"}],[{\"columnName\":\"adm2area_code_uri\"}],[{\"columnName\":\"geonameid\"}],[{\"columnName\":\"country_code\"}],[{\"columnName\":\"gazetteer_entry_uri\"}],[{\"columnName\":\"adm1area_code_uri\"}]]" ;
 	km-dev:hasModelLabel "adm2area.csv" ;
 	km-dev:hasBaseURI "http://localhost:8080/source/" ;
 	km-dev:hasWorksheetHistory """[
@@ -659,131 +659,251 @@ _:node19h2g2pqox1 a km-dev:R2RMLMapping ;
             }
         ],
         \"commandName\": \"SetSemanticTypeCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"adm1code\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"value\": \"country_code\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"value\": \"a2code = getValue(\\\"adm1code\\\")\\np = a2code.rfind(\\\".\\\")\\nreturn a2code[0:p]\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"isJSONOutput\",
+                \"value\": \"false\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"adm1code\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"country_code\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SubmitPythonTransformationCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"country_code\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://dig.isi.edu/dgeo#country_code\",
+                    \"DomainLabel\": \"dgeo:Adm2Area1\",
+                    \"DomainId\": \"http://dig.isi.edu/dgeo#Adm2Area1\",
+                    \"DomainUri\": \"http://dig.isi.edu/dgeo#Adm2Area\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"country_code\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"country_code\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetSemanticTypeCommand\"
     }
 ]""" .
 
-km-dev:TriplesMap_d380b1f9-ca0b-4942-aa94-35b99cde083e a rr:TriplesMap .
+km-dev:TriplesMap_45624006-2f9e-41f6-a270-e01a9a993ca1 a rr:TriplesMap .
 
-_:node19h2g2pqox1 km-dev:hasTriplesMap km-dev:TriplesMap_d380b1f9-ca0b-4942-aa94-35b99cde083e .
+_:node19h3s24eqx1 km-dev:hasTriplesMap km-dev:TriplesMap_45624006-2f9e-41f6-a270-e01a9a993ca1 .
 
-km-dev:TriplesMap_d380b1f9-ca0b-4942-aa94-35b99cde083e km-dev:isPartOfMapping _:node19h2g2pqox1 .
+km-dev:TriplesMap_45624006-2f9e-41f6-a270-e01a9a993ca1 km-dev:isPartOfMapping _:node19h3s24eqx1 .
 
-_:node19h2g2pqox2 rr:tableName "adm2area.csv" ;
+_:node19h3s24eqx2 rr:tableName "adm2area.csv" ;
 	a rr:LogicalTable ;
-	km-dev:isPartOfMapping _:node19h2g2pqox1 .
+	km-dev:isPartOfMapping _:node19h3s24eqx1 .
 
-_:node19h2g2pqox1 km-dev:hasLogicalTable _:node19h2g2pqox2 .
+_:node19h3s24eqx1 km-dev:hasLogicalTable _:node19h3s24eqx2 .
 
-km-dev:TriplesMap_d380b1f9-ca0b-4942-aa94-35b99cde083e rr:logicalTable _:node19h2g2pqox2 ;
-	rr:subjectMap _:node19h2g2pqox3 .
+km-dev:TriplesMap_45624006-2f9e-41f6-a270-e01a9a993ca1 rr:logicalTable _:node19h3s24eqx2 ;
+	rr:subjectMap _:node19h3s24eqx3 .
 
-_:node19h2g2pqox1 km-dev:hasSubjectMap _:node19h2g2pqox3 .
+_:node19h3s24eqx1 km-dev:hasSubjectMap _:node19h3s24eqx3 .
 
-_:node19h2g2pqox3 km-dev:isPartOfMapping _:node19h2g2pqox1 ;
+_:node19h3s24eqx3 km-dev:isPartOfMapping _:node19h3s24eqx1 ;
 	a rr:SubjectMap ;
 	km-dev:alignmentNodeId "http://dig.isi.edu/dgeo#Adm2Area1" ;
 	rr:class dgeo:Adm2Area ;
 	rr:template "http://dig.isi.edu/GazetteerEntry/{geonameid}" ;
 	a km-dev:steinerTreeRootNode .
 
-km-dev:PredicateObjectMap_ecfb3cf8-1e2f-45b2-b9be-d57672f3cfe3 rr:predicate dgeo:adm1areaCodeUri .
+km-dev:PredicateObjectMap_98a3c35f-aa1a-4e33-9005-bfd2c0dad75a rr:predicate dgeo:adm1areaCodeUri .
 
-_:node19h2g2pqox4 rr:constant "http://dig.isi.edu/adm1areaCode/{adm1code}" ;
+_:node19h3s24eqx4 rr:constant "http://dig.isi.edu/adm1areaCode/{adm1code}" ;
 	a rr:ObjectMap ;
-	km-dev:isPartOfMapping _:node19h2g2pqox1 .
+	km-dev:isPartOfMapping _:node19h3s24eqx1 .
 
-_:node19h2g2pqox1 km-dev:hasObjectMap _:node19h2g2pqox4 .
+_:node19h3s24eqx1 km-dev:hasObjectMap _:node19h3s24eqx4 .
 
-km-dev:PredicateObjectMap_ecfb3cf8-1e2f-45b2-b9be-d57672f3cfe3 rr:objectMap _:node19h2g2pqox4 .
+km-dev:PredicateObjectMap_98a3c35f-aa1a-4e33-9005-bfd2c0dad75a rr:objectMap _:node19h3s24eqx4 .
 
-km-dev:TriplesMap_d380b1f9-ca0b-4942-aa94-35b99cde083e rr:predicateObjectMap km-dev:PredicateObjectMap_ecfb3cf8-1e2f-45b2-b9be-d57672f3cfe3 .
+km-dev:TriplesMap_45624006-2f9e-41f6-a270-e01a9a993ca1 rr:predicateObjectMap km-dev:PredicateObjectMap_98a3c35f-aa1a-4e33-9005-bfd2c0dad75a .
 
-km-dev:PredicateObjectMap_ecfb3cf8-1e2f-45b2-b9be-d57672f3cfe3 a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node19h2g2pqox1 .
+km-dev:PredicateObjectMap_98a3c35f-aa1a-4e33-9005-bfd2c0dad75a a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19h3s24eqx1 .
 
-_:node19h2g2pqox1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_ecfb3cf8-1e2f-45b2-b9be-d57672f3cfe3 .
+_:node19h3s24eqx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_98a3c35f-aa1a-4e33-9005-bfd2c0dad75a .
 
-km-dev:PredicateObjectMap_50326449-1172-4a45-b505-eabaf35dfb8d rr:predicate dgeo:adm2areaCodeUri .
+km-dev:PredicateObjectMap_63b00ef2-0eac-4365-b10e-a26226b3d9bb rr:predicate dgeo:adm2areaCodeUri .
 
-_:node19h2g2pqox5 rr:constant "http://dig.isi.edu/Adm2AreaCode/{code}" ;
+_:node19h3s24eqx5 rr:constant "http://dig.isi.edu/Adm2AreaCode/{code}" ;
 	a rr:ObjectMap ;
-	km-dev:isPartOfMapping _:node19h2g2pqox1 .
+	km-dev:isPartOfMapping _:node19h3s24eqx1 .
 
-_:node19h2g2pqox1 km-dev:hasObjectMap _:node19h2g2pqox5 .
+_:node19h3s24eqx1 km-dev:hasObjectMap _:node19h3s24eqx5 .
 
-km-dev:PredicateObjectMap_50326449-1172-4a45-b505-eabaf35dfb8d rr:objectMap _:node19h2g2pqox5 .
+km-dev:PredicateObjectMap_63b00ef2-0eac-4365-b10e-a26226b3d9bb rr:objectMap _:node19h3s24eqx5 .
 
-km-dev:TriplesMap_d380b1f9-ca0b-4942-aa94-35b99cde083e rr:predicateObjectMap km-dev:PredicateObjectMap_50326449-1172-4a45-b505-eabaf35dfb8d .
+km-dev:TriplesMap_45624006-2f9e-41f6-a270-e01a9a993ca1 rr:predicateObjectMap km-dev:PredicateObjectMap_63b00ef2-0eac-4365-b10e-a26226b3d9bb .
 
-km-dev:PredicateObjectMap_50326449-1172-4a45-b505-eabaf35dfb8d a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node19h2g2pqox1 .
+km-dev:PredicateObjectMap_63b00ef2-0eac-4365-b10e-a26226b3d9bb a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19h3s24eqx1 .
 
-_:node19h2g2pqox1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_50326449-1172-4a45-b505-eabaf35dfb8d .
+_:node19h3s24eqx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_63b00ef2-0eac-4365-b10e-a26226b3d9bb .
 
-km-dev:PredicateObjectMap_9e2a26d8-e072-4237-a711-23790c6fbb98 rr:predicate dgeo:admin1_code .
+km-dev:PredicateObjectMap_202b10f5-9ca7-409e-bfaf-7356b34af39e rr:predicate dgeo:admin1_code .
 
-_:node19h2g2pqox6 rr:column "adm1code" ;
+_:node19h3s24eqx6 rr:column "adm1code" ;
 	a rr:ObjectMap ;
-	km-dev:isPartOfMapping _:node19h2g2pqox1 .
+	km-dev:isPartOfMapping _:node19h3s24eqx1 .
 
-_:node19h2g2pqox1 km-dev:hasObjectMap _:node19h2g2pqox6 .
+_:node19h3s24eqx1 km-dev:hasObjectMap _:node19h3s24eqx6 .
 
-km-dev:PredicateObjectMap_9e2a26d8-e072-4237-a711-23790c6fbb98 rr:objectMap _:node19h2g2pqox6 .
+km-dev:PredicateObjectMap_202b10f5-9ca7-409e-bfaf-7356b34af39e rr:objectMap _:node19h3s24eqx6 .
 
-km-dev:TriplesMap_d380b1f9-ca0b-4942-aa94-35b99cde083e rr:predicateObjectMap km-dev:PredicateObjectMap_9e2a26d8-e072-4237-a711-23790c6fbb98 .
+km-dev:TriplesMap_45624006-2f9e-41f6-a270-e01a9a993ca1 rr:predicateObjectMap km-dev:PredicateObjectMap_202b10f5-9ca7-409e-bfaf-7356b34af39e .
 
-km-dev:PredicateObjectMap_9e2a26d8-e072-4237-a711-23790c6fbb98 a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node19h2g2pqox1 .
+km-dev:PredicateObjectMap_202b10f5-9ca7-409e-bfaf-7356b34af39e a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19h3s24eqx1 .
 
-_:node19h2g2pqox1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_9e2a26d8-e072-4237-a711-23790c6fbb98 .
+_:node19h3s24eqx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_202b10f5-9ca7-409e-bfaf-7356b34af39e .
 
-km-dev:PredicateObjectMap_d6a90cd0-0d82-4059-beee-649c18740ae0 rr:predicate dgeo:admin2_code .
+km-dev:PredicateObjectMap_bbdfbf49-6b64-479e-a033-ae060694f320 rr:predicate dgeo:admin2_code .
 
-_:node19h2g2pqox7 rr:column "code" ;
+_:node19h3s24eqx7 rr:column "code" ;
 	a rr:ObjectMap ;
-	km-dev:isPartOfMapping _:node19h2g2pqox1 .
+	km-dev:isPartOfMapping _:node19h3s24eqx1 .
 
-_:node19h2g2pqox1 km-dev:hasObjectMap _:node19h2g2pqox7 .
+_:node19h3s24eqx1 km-dev:hasObjectMap _:node19h3s24eqx7 .
 
-km-dev:PredicateObjectMap_d6a90cd0-0d82-4059-beee-649c18740ae0 rr:objectMap _:node19h2g2pqox7 .
+km-dev:PredicateObjectMap_bbdfbf49-6b64-479e-a033-ae060694f320 rr:objectMap _:node19h3s24eqx7 .
 
-km-dev:TriplesMap_d380b1f9-ca0b-4942-aa94-35b99cde083e rr:predicateObjectMap km-dev:PredicateObjectMap_d6a90cd0-0d82-4059-beee-649c18740ae0 .
+km-dev:TriplesMap_45624006-2f9e-41f6-a270-e01a9a993ca1 rr:predicateObjectMap km-dev:PredicateObjectMap_bbdfbf49-6b64-479e-a033-ae060694f320 .
 
-km-dev:PredicateObjectMap_d6a90cd0-0d82-4059-beee-649c18740ae0 a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node19h2g2pqox1 .
+km-dev:PredicateObjectMap_bbdfbf49-6b64-479e-a033-ae060694f320 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19h3s24eqx1 .
 
-_:node19h2g2pqox1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_d6a90cd0-0d82-4059-beee-649c18740ae0 .
+_:node19h3s24eqx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_bbdfbf49-6b64-479e-a033-ae060694f320 .
 
-km-dev:PredicateObjectMap_fe3bb36f-5dca-450d-8306-d744066dfdc8 rr:predicate dgeo:hasPreferredName .
+km-dev:PredicateObjectMap_4a7c5d97-8b04-4b13-a079-01331eb34e21 rr:predicate dgeo:country_code .
 
-_:node19h2g2pqox8 rr:column "name" ;
+_:node19h3s24eqx8 rr:column "country_code" ;
 	a rr:ObjectMap ;
-	km-dev:isPartOfMapping _:node19h2g2pqox1 .
+	km-dev:isPartOfMapping _:node19h3s24eqx1 .
 
-_:node19h2g2pqox1 km-dev:hasObjectMap _:node19h2g2pqox8 .
+_:node19h3s24eqx1 km-dev:hasObjectMap _:node19h3s24eqx8 .
 
-km-dev:PredicateObjectMap_fe3bb36f-5dca-450d-8306-d744066dfdc8 rr:objectMap _:node19h2g2pqox8 .
+km-dev:PredicateObjectMap_4a7c5d97-8b04-4b13-a079-01331eb34e21 rr:objectMap _:node19h3s24eqx8 .
 
-km-dev:TriplesMap_d380b1f9-ca0b-4942-aa94-35b99cde083e rr:predicateObjectMap km-dev:PredicateObjectMap_fe3bb36f-5dca-450d-8306-d744066dfdc8 .
+km-dev:TriplesMap_45624006-2f9e-41f6-a270-e01a9a993ca1 rr:predicateObjectMap km-dev:PredicateObjectMap_4a7c5d97-8b04-4b13-a079-01331eb34e21 .
 
-km-dev:PredicateObjectMap_fe3bb36f-5dca-450d-8306-d744066dfdc8 a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node19h2g2pqox1 .
+km-dev:PredicateObjectMap_4a7c5d97-8b04-4b13-a079-01331eb34e21 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19h3s24eqx1 .
 
-_:node19h2g2pqox1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_fe3bb36f-5dca-450d-8306-d744066dfdc8 .
+_:node19h3s24eqx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_4a7c5d97-8b04-4b13-a079-01331eb34e21 .
 
-km-dev:PredicateObjectMap_e59235db-ad08-4856-9fe9-5216a5f902f5 rr:predicate memex:databaseId .
+km-dev:PredicateObjectMap_e93e3593-adef-4585-92bc-0e821cf5e2df rr:predicate dgeo:hasPreferredName .
 
-_:node19h2g2pqox9 rr:column "geonameid" ;
+_:node19h3s24eqx9 rr:column "name" ;
 	a rr:ObjectMap ;
-	km-dev:isPartOfMapping _:node19h2g2pqox1 .
+	km-dev:isPartOfMapping _:node19h3s24eqx1 .
 
-_:node19h2g2pqox1 km-dev:hasObjectMap _:node19h2g2pqox9 .
+_:node19h3s24eqx1 km-dev:hasObjectMap _:node19h3s24eqx9 .
 
-km-dev:PredicateObjectMap_e59235db-ad08-4856-9fe9-5216a5f902f5 rr:objectMap _:node19h2g2pqox9 .
+km-dev:PredicateObjectMap_e93e3593-adef-4585-92bc-0e821cf5e2df rr:objectMap _:node19h3s24eqx9 .
 
-km-dev:TriplesMap_d380b1f9-ca0b-4942-aa94-35b99cde083e rr:predicateObjectMap km-dev:PredicateObjectMap_e59235db-ad08-4856-9fe9-5216a5f902f5 .
+km-dev:TriplesMap_45624006-2f9e-41f6-a270-e01a9a993ca1 rr:predicateObjectMap km-dev:PredicateObjectMap_e93e3593-adef-4585-92bc-0e821cf5e2df .
 
-km-dev:PredicateObjectMap_e59235db-ad08-4856-9fe9-5216a5f902f5 a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node19h2g2pqox1 .
+km-dev:PredicateObjectMap_e93e3593-adef-4585-92bc-0e821cf5e2df a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19h3s24eqx1 .
 
-_:node19h2g2pqox1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_e59235db-ad08-4856-9fe9-5216a5f902f5 .
+_:node19h3s24eqx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_e93e3593-adef-4585-92bc-0e821cf5e2df .
+
+km-dev:PredicateObjectMap_079211fe-4c71-40ec-bee8-b6d1b6061810 rr:predicate memex:databaseId .
+
+_:node19h3s24eqx10 rr:column "geonameid" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node19h3s24eqx1 .
+
+_:node19h3s24eqx1 km-dev:hasObjectMap _:node19h3s24eqx10 .
+
+km-dev:PredicateObjectMap_079211fe-4c71-40ec-bee8-b6d1b6061810 rr:objectMap _:node19h3s24eqx10 .
+
+km-dev:TriplesMap_45624006-2f9e-41f6-a270-e01a9a993ca1 rr:predicateObjectMap km-dev:PredicateObjectMap_079211fe-4c71-40ec-bee8-b6d1b6061810 .
+
+km-dev:PredicateObjectMap_079211fe-4c71-40ec-bee8-b6d1b6061810 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19h3s24eqx1 .
+
+_:node19h3s24eqx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_079211fe-4c71-40ec-bee8-b6d1b6061810 .
