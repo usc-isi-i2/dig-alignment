@@ -16,12 +16,12 @@
 @prefix rr: <http://www.w3.org/ns/r2rml#> .
 @prefix km-dev: <http://isi.edu/integration/karma/dev#> .
 
-_:node19h2c8lbfx1 a km-dev:R2RMLMapping ;
+_:node19h2cn84ox1 a km-dev:R2RMLMapping ;
 	km-dev:sourceName "city.csv" ;
-	km-dev:modelPublicationTime "1427082859887"^^xsd:long ;
+	km-dev:modelPublicationTime "1427083337881"^^xsd:long ;
 	km-dev:modelVersion "1.7" ;
-	km-dev:hasInputColumns "[[{\"columnName\":\"latitude\"}],[{\"columnName\":\"longitude\"}],[{\"columnName\":\"alternate_names_list\"},{\"columnName\":\"Values\"}],[{\"columnName\":\"name\"}],[{\"columnName\":\"geoname_id\"}]]" ;
-	km-dev:hasOutputColumns "[[{\"columnName\":\"gazetteer_entry_uri\"}],[{\"columnName\":\"latitude\"}],[{\"columnName\":\"longitude\"}],[{\"columnName\":\"alternate_names_list\"},{\"columnName\":\"Values\"}],[{\"columnName\":\"name\"}],[{\"columnName\":\"geoname_id\"}]]" ;
+	km-dev:hasInputColumns "[[{\"columnName\":\"admin1_code\"}],[{\"columnName\":\"admin2_code\"}],[{\"columnName\":\"latitude\"}],[{\"columnName\":\"longitude\"}],[{\"columnName\":\"population\"}],[{\"columnName\":\"elevation\"}],[{\"columnName\":\"modification_date\"}],[{\"columnName\":\"dem\"}],[{\"columnName\":\"alternate_names_list\"},{\"columnName\":\"Values\"}],[{\"columnName\":\"timezone\"}],[{\"columnName\":\"name\"}],[{\"columnName\":\"country_code\"}],[{\"columnName\":\"geoname_id\"}]]" ;
+	km-dev:hasOutputColumns "[[{\"columnName\":\"gazetteer_entry_uri\"}],[{\"columnName\":\"latitude\"}],[{\"columnName\":\"longitude\"}],[{\"columnName\":\"population\"}],[{\"columnName\":\"elevation\"}],[{\"columnName\":\"modification_date\"}],[{\"columnName\":\"dem\"}],[{\"columnName\":\"full_adm2_code\"}],[{\"columnName\":\"alternate_names_list\"},{\"columnName\":\"Values\"}],[{\"columnName\":\"timezone\"}],[{\"columnName\":\"full_adm1_code\"}],[{\"columnName\":\"name\"}],[{\"columnName\":\"country_code\"}],[{\"columnName\":\"geoname_id\"}]]" ;
 	km-dev:hasModelLabel "city.csv" ;
 	km-dev:hasBaseURI "http://localhost:8080/source/" ;
 	km-dev:hasWorksheetHistory """[
@@ -637,114 +637,777 @@ _:node19h2c8lbfx1 a km-dev:R2RMLMapping ;
             }
         ],
         \"commandName\": \"SetSemanticTypeCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"country_code\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://dig.isi.edu/dgeo#country_code\",
+                    \"DomainLabel\": \"dgeo:City1\",
+                    \"DomainId\": \"http://dig.isi.edu/dgeo#City1\",
+                    \"DomainUri\": \"http://dig.isi.edu/dgeo#City\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"country_code\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"country_code\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetSemanticTypeCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"admin1_code\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"value\": \"full_adm1_code\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"value\": \"return getValue(\\\"country_code\\\") + \\\".\\\" + getValue(\\\"admin1_code\\\")\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"isJSONOutput\",
+                \"value\": \"false\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"admin1_code\\\"}]},{\\\"value\\\":[{\\\"columnName\\\":\\\"country_code\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"full_adm1_code\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SubmitPythonTransformationCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"admin2_code\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"value\": \"full_adm2_code\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"value\": \"return getValue(\\\"full_adm1_code\\\") + \\\".\\\" + getValue(\\\"admin2_code\\\")\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"isJSONOutput\",
+                \"value\": \"false\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"admin2_code\\\"}]},{\\\"value\\\":[{\\\"columnName\\\":\\\"full_adm1_code\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"full_adm2_code\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SubmitPythonTransformationCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"full_adm1_code\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [
+                    {
+                        \"isPrimary\": true,
+                        \"FullType\": \"http://dig.isi.edu/dgeo#adm1areaCodeUri\",
+                        \"DomainLabel\": \"dgeo:Adm1Area1 (add)\",
+                        \"DomainId\": \"http://dig.isi.edu/dgeo#Adm1Area1\",
+                        \"DomainUri\": \"http://dig.isi.edu/dgeo#Adm1Area\"
+                    },
+                    {
+                        \"isPrimary\": false,
+                        \"FullType\": \"http://dig.isi.edu/dgeo#admin1_code\",
+                        \"DomainLabel\": \"dgeo:City1\",
+                        \"DomainId\": \"http://dig.isi.edu/dgeo#City1\",
+                        \"DomainUri\": \"http://dig.isi.edu/dgeo#City\"
+                    }
+                ],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"full_adm1_code\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"full_adm1_code\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetSemanticTypeCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"full_adm2_code\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://dig.isi.edu/dgeo#admin1_code\",
+                    \"DomainLabel\": \"dgeo:City1\",
+                    \"DomainId\": \"http://dig.isi.edu/dgeo#City1\",
+                    \"DomainUri\": \"http://dig.isi.edu/dgeo#City\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"full_adm2_code\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"full_adm2_code\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetSemanticTypeCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"population\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://dig.isi.edu/dgeo#population\",
+                    \"DomainLabel\": \"dgeo:City1\",
+                    \"DomainId\": \"http://dig.isi.edu/dgeo#City1\",
+                    \"DomainUri\": \"http://dig.isi.edu/dgeo#City\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"population\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"population\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetSemanticTypeCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"elevation\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://dig.isi.edu/dgeo#population\",
+                    \"DomainLabel\": \"dgeo:City1\",
+                    \"DomainId\": \"http://dig.isi.edu/dgeo#City1\",
+                    \"DomainUri\": \"http://dig.isi.edu/dgeo#City\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"elevation\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"elevation\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetSemanticTypeCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"dem\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://dig.isi.edu/dgeo#dem\",
+                    \"DomainLabel\": \"dgeo:City1\",
+                    \"DomainId\": \"http://dig.isi.edu/dgeo#City1\",
+                    \"DomainUri\": \"http://dig.isi.edu/dgeo#City\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"dem\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"dem\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetSemanticTypeCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"timezone\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://dig.isi.edu/dgeo#timezone\",
+                    \"DomainLabel\": \"dgeo:City1\",
+                    \"DomainId\": \"http://dig.isi.edu/dgeo#City1\",
+                    \"DomainUri\": \"http://dig.isi.edu/dgeo#City\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"timezone\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"timezone\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetSemanticTypeCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"modification_date\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://dig.isi.edu/dgeo#modification_date\",
+                    \"DomainLabel\": \"dgeo:City1\",
+                    \"DomainId\": \"http://dig.isi.edu/dgeo#City1\",
+                    \"DomainUri\": \"http://dig.isi.edu/dgeo#City\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"modification_date\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"modification_date\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetSemanticTypeCommand\"
     }
 ]""" .
 
-km-dev:TriplesMap_a14587c2-d3ab-4ec7-b494-a41b2af5dc40 a rr:TriplesMap .
+km-dev:TriplesMap_541d2103-3df7-4459-8c95-0a9eeea1dbb5 a rr:TriplesMap .
 
-_:node19h2c8lbfx1 km-dev:hasTriplesMap km-dev:TriplesMap_a14587c2-d3ab-4ec7-b494-a41b2af5dc40 .
+_:node19h2cn84ox1 km-dev:hasTriplesMap km-dev:TriplesMap_541d2103-3df7-4459-8c95-0a9eeea1dbb5 .
 
-km-dev:TriplesMap_a14587c2-d3ab-4ec7-b494-a41b2af5dc40 km-dev:isPartOfMapping _:node19h2c8lbfx1 .
+km-dev:TriplesMap_541d2103-3df7-4459-8c95-0a9eeea1dbb5 km-dev:isPartOfMapping _:node19h2cn84ox1 .
 
-_:node19h2c8lbfx2 rr:tableName "city.csv" ;
+_:node19h2cn84ox2 rr:tableName "city.csv" ;
 	a rr:LogicalTable ;
-	km-dev:isPartOfMapping _:node19h2c8lbfx1 .
+	km-dev:isPartOfMapping _:node19h2cn84ox1 .
 
-_:node19h2c8lbfx1 km-dev:hasLogicalTable _:node19h2c8lbfx2 .
+_:node19h2cn84ox1 km-dev:hasLogicalTable _:node19h2cn84ox2 .
 
-km-dev:TriplesMap_a14587c2-d3ab-4ec7-b494-a41b2af5dc40 rr:logicalTable _:node19h2c8lbfx2 ;
-	rr:subjectMap _:node19h2c8lbfx3 .
+km-dev:TriplesMap_541d2103-3df7-4459-8c95-0a9eeea1dbb5 rr:logicalTable _:node19h2cn84ox2 ;
+	rr:subjectMap _:node19h2cn84ox3 .
 
-_:node19h2c8lbfx1 km-dev:hasSubjectMap _:node19h2c8lbfx3 .
+_:node19h2cn84ox1 km-dev:hasSubjectMap _:node19h2cn84ox3 .
 
-_:node19h2c8lbfx3 km-dev:isPartOfMapping _:node19h2c8lbfx1 ;
+_:node19h2cn84ox3 km-dev:isPartOfMapping _:node19h2cn84ox1 ;
 	a rr:SubjectMap ;
 	km-dev:alignmentNodeId "http://dig.isi.edu/dgeo#City1" ;
 	rr:class dgeo:City ;
 	rr:template "http://dig.isi.edu/GazetteerEntry/{geoname_id}" ;
 	a km-dev:steinerTreeRootNode .
 
-km-dev:PredicateObjectMap_100a49b0-b2e4-49f2-a68c-f42fe7e3fabf rr:predicate dgeo:hasName .
+km-dev:PredicateObjectMap_be93f16d-8da2-4d23-8b36-e589d4e27abb rr:predicate dgeo:admin1_code .
 
-_:node19h2c8lbfx4 rr:column "[\"alternate_names_list\",\"Values\"]" ;
+_:node19h2cn84ox4 rr:constant "{country_code}.{admin1_code}" ;
 	a rr:ObjectMap ;
-	km-dev:isPartOfMapping _:node19h2c8lbfx1 .
+	km-dev:isPartOfMapping _:node19h2cn84ox1 .
 
-_:node19h2c8lbfx1 km-dev:hasObjectMap _:node19h2c8lbfx4 .
+_:node19h2cn84ox1 km-dev:hasObjectMap _:node19h2cn84ox4 .
 
-km-dev:PredicateObjectMap_100a49b0-b2e4-49f2-a68c-f42fe7e3fabf rr:objectMap _:node19h2c8lbfx4 .
+km-dev:PredicateObjectMap_be93f16d-8da2-4d23-8b36-e589d4e27abb rr:objectMap _:node19h2cn84ox4 .
 
-km-dev:TriplesMap_a14587c2-d3ab-4ec7-b494-a41b2af5dc40 rr:predicateObjectMap km-dev:PredicateObjectMap_100a49b0-b2e4-49f2-a68c-f42fe7e3fabf .
+km-dev:TriplesMap_541d2103-3df7-4459-8c95-0a9eeea1dbb5 rr:predicateObjectMap km-dev:PredicateObjectMap_be93f16d-8da2-4d23-8b36-e589d4e27abb .
 
-km-dev:PredicateObjectMap_100a49b0-b2e4-49f2-a68c-f42fe7e3fabf a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node19h2c8lbfx1 .
+km-dev:PredicateObjectMap_be93f16d-8da2-4d23-8b36-e589d4e27abb a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19h2cn84ox1 .
 
-_:node19h2c8lbfx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_100a49b0-b2e4-49f2-a68c-f42fe7e3fabf .
+_:node19h2cn84ox1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_be93f16d-8da2-4d23-8b36-e589d4e27abb .
 
-km-dev:PredicateObjectMap_b14da085-7f51-4c6e-a45c-1c04c584b120 rr:predicate dgeo:hasPreferredName .
+km-dev:PredicateObjectMap_a80ee7f0-24c6-4ce2-9570-af54262de9ab rr:predicate dgeo:admin1_code .
 
-_:node19h2c8lbfx5 rr:column "name" ;
+_:node19h2cn84ox5 rr:constant "{full_adm1_code}.{admin2_code}" ;
 	a rr:ObjectMap ;
-	km-dev:isPartOfMapping _:node19h2c8lbfx1 .
+	km-dev:isPartOfMapping _:node19h2cn84ox1 .
 
-_:node19h2c8lbfx1 km-dev:hasObjectMap _:node19h2c8lbfx5 .
+_:node19h2cn84ox1 km-dev:hasObjectMap _:node19h2cn84ox5 .
 
-km-dev:PredicateObjectMap_b14da085-7f51-4c6e-a45c-1c04c584b120 rr:objectMap _:node19h2c8lbfx5 .
+km-dev:PredicateObjectMap_a80ee7f0-24c6-4ce2-9570-af54262de9ab rr:objectMap _:node19h2cn84ox5 .
 
-km-dev:TriplesMap_a14587c2-d3ab-4ec7-b494-a41b2af5dc40 rr:predicateObjectMap km-dev:PredicateObjectMap_b14da085-7f51-4c6e-a45c-1c04c584b120 .
+km-dev:TriplesMap_541d2103-3df7-4459-8c95-0a9eeea1dbb5 rr:predicateObjectMap km-dev:PredicateObjectMap_a80ee7f0-24c6-4ce2-9570-af54262de9ab .
 
-km-dev:PredicateObjectMap_b14da085-7f51-4c6e-a45c-1c04c584b120 a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node19h2c8lbfx1 .
+km-dev:PredicateObjectMap_a80ee7f0-24c6-4ce2-9570-af54262de9ab a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19h2cn84ox1 .
 
-_:node19h2c8lbfx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_b14da085-7f51-4c6e-a45c-1c04c584b120 .
+_:node19h2cn84ox1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_a80ee7f0-24c6-4ce2-9570-af54262de9ab .
 
-km-dev:PredicateObjectMap_3d52d98d-a6ff-4075-9c1d-80840cae6725 rr:predicate dgeo:longitude .
+km-dev:PredicateObjectMap_ee101440-caee-49f8-866c-cb849560cf16 rr:predicate dgeo:country_code .
 
-_:node19h2c8lbfx6 rr:column "latitude" ;
+_:node19h2cn84ox6 rr:column "country_code" ;
 	a rr:ObjectMap ;
-	km-dev:isPartOfMapping _:node19h2c8lbfx1 .
+	km-dev:isPartOfMapping _:node19h2cn84ox1 .
 
-_:node19h2c8lbfx1 km-dev:hasObjectMap _:node19h2c8lbfx6 .
+_:node19h2cn84ox1 km-dev:hasObjectMap _:node19h2cn84ox6 .
 
-km-dev:PredicateObjectMap_3d52d98d-a6ff-4075-9c1d-80840cae6725 rr:objectMap _:node19h2c8lbfx6 .
+km-dev:PredicateObjectMap_ee101440-caee-49f8-866c-cb849560cf16 rr:objectMap _:node19h2cn84ox6 .
 
-km-dev:TriplesMap_a14587c2-d3ab-4ec7-b494-a41b2af5dc40 rr:predicateObjectMap km-dev:PredicateObjectMap_3d52d98d-a6ff-4075-9c1d-80840cae6725 .
+km-dev:TriplesMap_541d2103-3df7-4459-8c95-0a9eeea1dbb5 rr:predicateObjectMap km-dev:PredicateObjectMap_ee101440-caee-49f8-866c-cb849560cf16 .
 
-km-dev:PredicateObjectMap_3d52d98d-a6ff-4075-9c1d-80840cae6725 a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node19h2c8lbfx1 .
+km-dev:PredicateObjectMap_ee101440-caee-49f8-866c-cb849560cf16 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19h2cn84ox1 .
 
-_:node19h2c8lbfx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_3d52d98d-a6ff-4075-9c1d-80840cae6725 .
+_:node19h2cn84ox1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_ee101440-caee-49f8-866c-cb849560cf16 .
 
-km-dev:PredicateObjectMap_78693a53-f818-4355-a262-26e54cf32ae4 rr:predicate dgeo:longitude .
+km-dev:PredicateObjectMap_3f9ae656-7e69-4d9e-b494-51bba443d738 rr:predicate dgeo:dem .
 
-_:node19h2c8lbfx7 rr:column "longitude" ;
+_:node19h2cn84ox7 rr:column "dem" ;
 	a rr:ObjectMap ;
-	km-dev:isPartOfMapping _:node19h2c8lbfx1 .
+	km-dev:isPartOfMapping _:node19h2cn84ox1 .
 
-_:node19h2c8lbfx1 km-dev:hasObjectMap _:node19h2c8lbfx7 .
+_:node19h2cn84ox1 km-dev:hasObjectMap _:node19h2cn84ox7 .
 
-km-dev:PredicateObjectMap_78693a53-f818-4355-a262-26e54cf32ae4 rr:objectMap _:node19h2c8lbfx7 .
+km-dev:PredicateObjectMap_3f9ae656-7e69-4d9e-b494-51bba443d738 rr:objectMap _:node19h2cn84ox7 .
 
-km-dev:TriplesMap_a14587c2-d3ab-4ec7-b494-a41b2af5dc40 rr:predicateObjectMap km-dev:PredicateObjectMap_78693a53-f818-4355-a262-26e54cf32ae4 .
+km-dev:TriplesMap_541d2103-3df7-4459-8c95-0a9eeea1dbb5 rr:predicateObjectMap km-dev:PredicateObjectMap_3f9ae656-7e69-4d9e-b494-51bba443d738 .
 
-km-dev:PredicateObjectMap_78693a53-f818-4355-a262-26e54cf32ae4 a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node19h2c8lbfx1 .
+km-dev:PredicateObjectMap_3f9ae656-7e69-4d9e-b494-51bba443d738 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19h2cn84ox1 .
 
-_:node19h2c8lbfx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_78693a53-f818-4355-a262-26e54cf32ae4 .
+_:node19h2cn84ox1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_3f9ae656-7e69-4d9e-b494-51bba443d738 .
 
-km-dev:PredicateObjectMap_2a27dd44-3a23-4c60-9ea0-af5da4764a93 rr:predicate memex:databaseId .
+km-dev:PredicateObjectMap_92621052-713a-459d-9890-7c327280169f rr:predicate dgeo:hasName .
 
-_:node19h2c8lbfx8 rr:column "geoname_id" ;
+_:node19h2cn84ox8 rr:column "[\"alternate_names_list\",\"Values\"]" ;
 	a rr:ObjectMap ;
-	km-dev:isPartOfMapping _:node19h2c8lbfx1 .
+	km-dev:isPartOfMapping _:node19h2cn84ox1 .
 
-_:node19h2c8lbfx1 km-dev:hasObjectMap _:node19h2c8lbfx8 .
+_:node19h2cn84ox1 km-dev:hasObjectMap _:node19h2cn84ox8 .
 
-km-dev:PredicateObjectMap_2a27dd44-3a23-4c60-9ea0-af5da4764a93 rr:objectMap _:node19h2c8lbfx8 .
+km-dev:PredicateObjectMap_92621052-713a-459d-9890-7c327280169f rr:objectMap _:node19h2cn84ox8 .
 
-km-dev:TriplesMap_a14587c2-d3ab-4ec7-b494-a41b2af5dc40 rr:predicateObjectMap km-dev:PredicateObjectMap_2a27dd44-3a23-4c60-9ea0-af5da4764a93 .
+km-dev:TriplesMap_541d2103-3df7-4459-8c95-0a9eeea1dbb5 rr:predicateObjectMap km-dev:PredicateObjectMap_92621052-713a-459d-9890-7c327280169f .
 
-km-dev:PredicateObjectMap_2a27dd44-3a23-4c60-9ea0-af5da4764a93 a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node19h2c8lbfx1 .
+km-dev:PredicateObjectMap_92621052-713a-459d-9890-7c327280169f a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19h2cn84ox1 .
 
-_:node19h2c8lbfx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_2a27dd44-3a23-4c60-9ea0-af5da4764a93 .
+_:node19h2cn84ox1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_92621052-713a-459d-9890-7c327280169f .
+
+km-dev:PredicateObjectMap_b94c70b3-728e-4dba-a51f-1d92fc70bd83 rr:predicate dgeo:hasPreferredName .
+
+_:node19h2cn84ox9 rr:column "name" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node19h2cn84ox1 .
+
+_:node19h2cn84ox1 km-dev:hasObjectMap _:node19h2cn84ox9 .
+
+km-dev:PredicateObjectMap_b94c70b3-728e-4dba-a51f-1d92fc70bd83 rr:objectMap _:node19h2cn84ox9 .
+
+km-dev:TriplesMap_541d2103-3df7-4459-8c95-0a9eeea1dbb5 rr:predicateObjectMap km-dev:PredicateObjectMap_b94c70b3-728e-4dba-a51f-1d92fc70bd83 .
+
+km-dev:PredicateObjectMap_b94c70b3-728e-4dba-a51f-1d92fc70bd83 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19h2cn84ox1 .
+
+_:node19h2cn84ox1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_b94c70b3-728e-4dba-a51f-1d92fc70bd83 .
+
+km-dev:PredicateObjectMap_1903dace-6eb2-480d-87d0-2308bdc8161a rr:predicate dgeo:longitude .
+
+_:node19h2cn84ox10 rr:column "latitude" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node19h2cn84ox1 .
+
+_:node19h2cn84ox1 km-dev:hasObjectMap _:node19h2cn84ox10 .
+
+km-dev:PredicateObjectMap_1903dace-6eb2-480d-87d0-2308bdc8161a rr:objectMap _:node19h2cn84ox10 .
+
+km-dev:TriplesMap_541d2103-3df7-4459-8c95-0a9eeea1dbb5 rr:predicateObjectMap km-dev:PredicateObjectMap_1903dace-6eb2-480d-87d0-2308bdc8161a .
+
+km-dev:PredicateObjectMap_1903dace-6eb2-480d-87d0-2308bdc8161a a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19h2cn84ox1 .
+
+_:node19h2cn84ox1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_1903dace-6eb2-480d-87d0-2308bdc8161a .
+
+km-dev:PredicateObjectMap_a6317572-33b0-4d95-840c-4c87ce4108f6 rr:predicate dgeo:longitude .
+
+_:node19h2cn84ox11 rr:column "longitude" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node19h2cn84ox1 .
+
+_:node19h2cn84ox1 km-dev:hasObjectMap _:node19h2cn84ox11 .
+
+km-dev:PredicateObjectMap_a6317572-33b0-4d95-840c-4c87ce4108f6 rr:objectMap _:node19h2cn84ox11 .
+
+km-dev:TriplesMap_541d2103-3df7-4459-8c95-0a9eeea1dbb5 rr:predicateObjectMap km-dev:PredicateObjectMap_a6317572-33b0-4d95-840c-4c87ce4108f6 .
+
+km-dev:PredicateObjectMap_a6317572-33b0-4d95-840c-4c87ce4108f6 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19h2cn84ox1 .
+
+_:node19h2cn84ox1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_a6317572-33b0-4d95-840c-4c87ce4108f6 .
+
+km-dev:PredicateObjectMap_311a9e4d-56d2-410c-b0d1-4845ac10591f rr:predicate dgeo:modification_date .
+
+_:node19h2cn84ox12 rr:column "modification_date" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node19h2cn84ox1 .
+
+_:node19h2cn84ox1 km-dev:hasObjectMap _:node19h2cn84ox12 .
+
+km-dev:PredicateObjectMap_311a9e4d-56d2-410c-b0d1-4845ac10591f rr:objectMap _:node19h2cn84ox12 .
+
+km-dev:TriplesMap_541d2103-3df7-4459-8c95-0a9eeea1dbb5 rr:predicateObjectMap km-dev:PredicateObjectMap_311a9e4d-56d2-410c-b0d1-4845ac10591f .
+
+km-dev:PredicateObjectMap_311a9e4d-56d2-410c-b0d1-4845ac10591f a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19h2cn84ox1 .
+
+_:node19h2cn84ox1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_311a9e4d-56d2-410c-b0d1-4845ac10591f .
+
+km-dev:PredicateObjectMap_031b4c6c-826c-4b54-8b0a-990eaeadd6dd rr:predicate dgeo:population .
+
+_:node19h2cn84ox13 rr:column "population" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node19h2cn84ox1 .
+
+_:node19h2cn84ox1 km-dev:hasObjectMap _:node19h2cn84ox13 .
+
+km-dev:PredicateObjectMap_031b4c6c-826c-4b54-8b0a-990eaeadd6dd rr:objectMap _:node19h2cn84ox13 .
+
+km-dev:TriplesMap_541d2103-3df7-4459-8c95-0a9eeea1dbb5 rr:predicateObjectMap km-dev:PredicateObjectMap_031b4c6c-826c-4b54-8b0a-990eaeadd6dd .
+
+km-dev:PredicateObjectMap_031b4c6c-826c-4b54-8b0a-990eaeadd6dd a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19h2cn84ox1 .
+
+_:node19h2cn84ox1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_031b4c6c-826c-4b54-8b0a-990eaeadd6dd .
+
+km-dev:PredicateObjectMap_07cad70f-21dd-420d-91b9-bc0a0712d1b0 rr:predicate dgeo:population .
+
+_:node19h2cn84ox14 rr:column "elevation" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node19h2cn84ox1 .
+
+_:node19h2cn84ox1 km-dev:hasObjectMap _:node19h2cn84ox14 .
+
+km-dev:PredicateObjectMap_07cad70f-21dd-420d-91b9-bc0a0712d1b0 rr:objectMap _:node19h2cn84ox14 .
+
+km-dev:TriplesMap_541d2103-3df7-4459-8c95-0a9eeea1dbb5 rr:predicateObjectMap km-dev:PredicateObjectMap_07cad70f-21dd-420d-91b9-bc0a0712d1b0 .
+
+km-dev:PredicateObjectMap_07cad70f-21dd-420d-91b9-bc0a0712d1b0 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19h2cn84ox1 .
+
+_:node19h2cn84ox1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_07cad70f-21dd-420d-91b9-bc0a0712d1b0 .
+
+km-dev:PredicateObjectMap_9426a3df-ff8d-498e-944d-5f0cea27340e rr:predicate dgeo:timezone .
+
+_:node19h2cn84ox15 rr:column "timezone" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node19h2cn84ox1 .
+
+_:node19h2cn84ox1 km-dev:hasObjectMap _:node19h2cn84ox15 .
+
+km-dev:PredicateObjectMap_9426a3df-ff8d-498e-944d-5f0cea27340e rr:objectMap _:node19h2cn84ox15 .
+
+km-dev:TriplesMap_541d2103-3df7-4459-8c95-0a9eeea1dbb5 rr:predicateObjectMap km-dev:PredicateObjectMap_9426a3df-ff8d-498e-944d-5f0cea27340e .
+
+km-dev:PredicateObjectMap_9426a3df-ff8d-498e-944d-5f0cea27340e a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19h2cn84ox1 .
+
+_:node19h2cn84ox1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_9426a3df-ff8d-498e-944d-5f0cea27340e .
+
+km-dev:PredicateObjectMap_ce4ab17e-7dd0-4270-9d3b-b12fe845ef48 rr:predicate memex:databaseId .
+
+_:node19h2cn84ox16 rr:column "geoname_id" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node19h2cn84ox1 .
+
+_:node19h2cn84ox1 km-dev:hasObjectMap _:node19h2cn84ox16 .
+
+km-dev:PredicateObjectMap_ce4ab17e-7dd0-4270-9d3b-b12fe845ef48 rr:objectMap _:node19h2cn84ox16 .
+
+km-dev:TriplesMap_541d2103-3df7-4459-8c95-0a9eeea1dbb5 rr:predicateObjectMap km-dev:PredicateObjectMap_ce4ab17e-7dd0-4270-9d3b-b12fe845ef48 .
+
+km-dev:PredicateObjectMap_ce4ab17e-7dd0-4270-9d3b-b12fe845ef48 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19h2cn84ox1 .
+
+_:node19h2cn84ox1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_ce4ab17e-7dd0-4270-9d3b-b12fe845ef48 .
