@@ -336,7 +336,7 @@ def trimNumericSuffix(terms):
         i = int(terms[-1])
         suffix = terms[-1]
         terms.pop()
-    except ValueError as e:
+    except ValueError,e:
         pass
     return (suffix, terms)
 
@@ -346,7 +346,7 @@ def trimGenderMarker(terms):
         if isGenderMarker(terms[-1]):
             marker = terms[-1]
             terms.pop()
-    except ValueError as e:
+    except ValueError,e:
         pass
     return (marker, terms)
     
@@ -360,7 +360,7 @@ def trimRaceEthnicMarker(terms):
         elif isRaceEthnicMarker(terms[-1]):
             marker = terms[-1]
             terms.pop()
-    except ValueError as e:
+    except ValueError,e:
         pass
     return (marker, terms)
 
@@ -372,7 +372,7 @@ def processEscort(line):
         (gender, terms) = trimGenderMarker(terms)
         (raceEthnic, terms) = trimRaceEthnicMarker(terms)
         cands = findSitekey(terms[-3:])
-    except Exception as e:
+    except Exception,e:
         print >> sys.stderr, "Give up on escort %r: [%s]" % (line, e)
         return 0
     return cands
@@ -383,7 +383,7 @@ def processAgency(line):
         terms = line.split('-')[1:]
         (suffix, terms) = trimNumericSuffix(terms)
         cands = findSitekey(terms[-3:])
-    except Exception as e:
+    except Exception,e:
         print >> sys.stderr, "Give up on agency %r: [%s]" % (line, e)
         return 0
     return cands
@@ -396,7 +396,7 @@ def naughtyreviews_url_to_marketid(url):
     """http://longisland.naughtyreviews.com/FemaleEscorts/s-mny-oo-chics-but-oo-nn-lik-oo-me-19/40317377"""
     try:
         return process(url)
-    except Exception as e:
+    except Exception,e:
         print >> sys.stderr, e
         return None
 
@@ -404,7 +404,7 @@ def naughtyreviews_url_to_sitekey(url):
     """http://longisland.naughtyreviews.com/FemaleEscorts/s-mny-oo-chics-but-oo-nn-lik-oo-me-19/40317377"""
     try:
         return process(url)
-    except Exception as e:
+    except Exception,e:
         print >> sys.stderr, e
         return None
 
