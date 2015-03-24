@@ -879,4 +879,6 @@ def main():
 
 # call main() if this is run as standalone
 if __name__ == "__main__":
-    sys.exit(main())
+    if False:
+        # should detect something like passing in a 'test' argument
+        sys.exit(main())
