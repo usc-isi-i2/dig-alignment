@@ -65,6 +65,24 @@ From column: _modtime_
 return iso8601date(getCurrentTime(), "%Y-%m-%d %H:%M:%S")
 ```
 
+#### _publicationdate_
+From column: _publicationdate_
+>``` python
+return iso8601date(getValue("Publication Date"), '%b %d, %Y')
+```
+
+#### _citedUris_
+From column: _CitedPatents / citedUris_
+>``` python
+return "page/" + getValue("values") + "/processed"
+```
+
+#### _referencedByUris_
+From column: _ReferencedBy / referencedByUris_
+>``` python
+return "page/" + getValue("values").strip() + "/processed"
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
@@ -73,9 +91,12 @@ return iso8601date(getCurrentTime(), "%Y-%m-%d %H:%M:%S")
 | _Description_ | `schema:text` | `schema:WebPageElement3`|
 | _Patent Title_ | `schema:text` | `schema:WebPageElement2`|
 | _abstract_uri_ | `uri` | `schema:WebPageElement1`|
+| _citedUris_ | `uri` | `schema:WebPage2`|
 | _image_uri1_ | `uri` | `schema:ImageObject1`|
 | _modtime_ | `prov:endedAtTime` | `prov:Activity1`|
 | _publicationUri_ | `memex:publicationUri` | `schema:WebPage1`|
+| _publicationdate_ | `schema:datePublished` | `schema:WebPage1`|
+| _referencedByUris_ | `uri` | `schema:WebPage3`|
 | _title_uri_ | `uri` | `schema:WebPageElement2`|
 | _uri_ | `uri` | `schema:WebPage1`|
 | _url_ | `schema:url` | `schema:WebPage1`|
@@ -91,3 +112,5 @@ return iso8601date(getCurrentTime(), "%Y-%m-%d %H:%M:%S")
 | `schema:WebPage1` | `memex:hasBodyPart` | `schema:WebPageElement3`|
 | `schema:WebPage1` | `memex:hasImagePart` | `schema:ImageObject1`|
 | `schema:WebPage1` | `memex:hasTitlePart` | `schema:WebPageElement2`|
+| `schema:WebPage1` | `memex:isCitationOf` | `schema:WebPage3`|
+| `schema:WebPage1` | `schema:citation` | `schema:WebPage2`|
