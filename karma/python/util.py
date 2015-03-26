@@ -86,6 +86,11 @@ def alphaOnly(x):
     "Remove non-alphabetic chars from the string x"
     return re.sub('[^A-Za-z]+', '', x)
 
+def alphaOnlyPreserveSpace(x):
+    x = re.sub('[^A-Za-z\s]+', '', x)
+    y = re.sub(r'\s+', ' ', x.strip())
+    return y
+
 def isSymbol(char1):
     if char1.isalnum():
         return False
@@ -183,7 +188,7 @@ output format: iso8601
     except:
         pass
     # If all else fails, return input
-    return date
+    return ''
 
 
 def getYearFromISODate(isoDate):
@@ -199,4 +204,9 @@ def getWebsiteDomain(url):
             if domain.startswith("www."):
                 domain = domain[4:]
             return domain
+    return ''
+
+def getTextHash(text):
+    if text:
+        return hashlib.sha1(text.encode('utf-8')).hexdigest().upper()
     return ''

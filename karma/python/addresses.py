@@ -122,7 +122,7 @@ country_names_readable = [
     "Saint Vincent And The Grenadines", "Samoa", "San Marino", "Sao Tome And Principe", "Saudi Arabia", "Senegal",
     "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovak Republic", "Slovenia", "Solomon Islands",
     "Somalia", "South Africa", "South Sudan", "South Georgia And South S.S.", "Spain", "Sri Lanka", "St. Helena",
-    "St. Pierre And Miquelon", "Sudan", "Suriname", "Svalbard and Jan Mayen Islands", "Swaziland", "Sweden",
+     "St. Pierre And Miquelon", "Sudan", "Suriname", "Svalbard and Jan Mayen Islands", "Swaziland", "Sweden",
     "Switzerland", "Syrian Arab Republic", "Taiwan", "Tajikistan", "Tanzania", "United Republic Of Tanzania",
     "Thailand", "Togo", "Tokelau", "Tonga", "Trinidad And Tobago", "Tunisia", "Turkey", "Turkmenistan",
     "Turks And Caicos Islands", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom",

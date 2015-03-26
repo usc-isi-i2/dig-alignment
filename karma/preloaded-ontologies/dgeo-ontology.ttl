@@ -1,0 +1,406 @@
+@prefix memex: <http://memexproxy.com/ontology/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix schema: <http://schema.org/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix dgeo: <http://dig.isi.edu/ontology/dgeo/> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix crm: <http://www.cidoc-crm.org/rdfs/cidoc_crm_v6.0-draft-2015January.rdfs> .
+
+<http://dig.isi.edu/ontology/dgeo/> rdf:type owl:Ontology .
+
+
+#########################################################
+#
+# Classes
+#
+#########################################################
+
+dgeo:GazetteerEntry rdf:type owl:Class ; 
+	rdfs:subClassOf schema:Thing ;
+	rdfs:label "GazetteerEntry"@en ;
+	rdfs:comment """An entry in Geonames or other gazetteer"""
+	.
+
+dgeo:Period rdf:type owl:Class ; 
+	rdfs:subClassOf dgeo:GazetteerEntry ;
+	rdfs:label "Period"@en ;
+	rdfs:comment """Geo entity over a time extent """
+	.
+
+dgeo:PopulatedPlace rdf:type owl:Class ; 
+	rdfs:subClassOf dgeo:Period ;
+	rdfs:label "PopulatedPlace"@en ;
+	rdfs:comment """Any PPL."""
+	.
+
+dgeo:AdministrativeArea rdf:type owl:Class ; 
+	rdfs:subClassOf dgeo:Period ;
+	rdfs:label "AdministrativeArea"@en ;
+	rdfs:comment """State, region, etc."""
+	.
+
+dgeo:Country rdf:type owl:Class ; 
+	rdfs:subClassOf dgeo:AdministrativeArea ;
+	rdfs:comment """Nation state."""
+	.
+
+dgeo:Adm1Area rdf:type owl:Class ; 
+	rdfs:subClassOf dgeo:AdministrativeArea ;
+	rdfs:comment """First-level administrative subdivision: state, province, departement, lander, etc"""
+	.
+
+dgeo:Adm2Area rdf:type owl:Class ; 
+	rdfs:subClassOf dgeo:AdministrativeArea ;
+	rdfs:comment """Second-level administrative subdivision: county, parish, township, oblast."""
+	.
+
+dgeo:PostalCode rdf:type owl:Class ; 
+	rdfs:label "PostalCode"@en ;
+	rdfs:comment """Zipcode, etc.  Not a string?""" ;
+	.
+
+dgeo:City rdf:type owl:Class ; 
+	rdfs:label "City"@en ;
+	rdfs:comment """City, village, locality, census-designated place, etc."""
+	.
+
+dgeo:Geometry rdf:type owl:Class ; 
+	rdfs:label "Geometry"@en ;
+	rdfs:comment """Should be 1:1 with some GazetteerEntry"""
+	.
+	
+#########################################################
+#
+# Object Properties
+#
+#########################################################
+
+dgeo:topoFallsWithin rdf:type owl:ObjectProperty ; 
+	rdfs:label "topoFallsWithin"@en ;
+	rdfs:domain dgeo:Period ; 
+	rdfs:range dgeo:Period ;
+	owl:inverseOf dgeo:topoSurrounds ;
+	rdfs:comment """Topological relation of one geo being inside another"""
+	.
+
+dgeo:topoSurrounds rdf:type owl:ObjectProperty ; 
+	rdfs:label "topoSurrounds"@en ;
+	rdfs:domain dgeo:Period ;
+	rdfs:range dgeo:Period ; 
+	owl:inverseOf dgeo:topoFallsWithin ;
+	rdfs:comment "Inverse of dgeo:topoFallsWithin." 
+	.
+
+dgeo:phenoPartOf rdf:type owl:ObjectProperty ; 
+	rdfs:label "phenoPartOf"@en ;
+	rdfs:domain dgeo:Period ; 
+	rdfs:range dgeo:Period ;
+	owl:inverseOf dgeo:phenoHasPart ;
+	rdfs:comment """Phenological relation of one geo being inside another"""
+	.
+
+dgeo:phenoHasPart rdf:type owl:ObjectProperty ; 
+	rdfs:label "phenoHasPart"@en ;
+	rdfs:domain dgeo:Period ;
+	rdfs:range dgeo:Period ; 
+	owl:inverseOf dgeo:phenoPartOf ;
+	rdfs:comment "Inverse of dgeo:phenoPartOf." 
+	.
+
+dgeo:hasGeometry rdf:type owl:ObjectProperty ; 
+	rdfs:label "hasGeometry"@en ;
+	rdfs:domain dgeo:GazetteerEntry ;
+	rdfs:range dgeo:Geometry ;
+	rdfs:comment """Geometry of a gazetteer entry""" 
+	.
+
+dgeo:geometryOf rdf:type owl:ObjectProperty ; 
+	rdfs:label "geometryOf"@en ;
+	rdfs:domain dgeo:Geometry ;
+	rdfs:range dgeo:GazetteerEntry ;
+	rdfs:comment """Gazetteer entry of this geometry"""
+	.
+
+#########################################################
+#
+# Data Properties
+#
+#########################################################
+
+dgeo:hasName rdf:type owl:DatatypeProperty ;
+	rdfs:domain dgeo:GazetteerEntry ;
+	rdfs:label "hasName"@en ;
+	rdfs:comment """any name used for a geo object"""
+	.
+
+dgeo:hasPreferredName rdf:type owl:DatatypeProperty ;
+	rdfs:domain dgeo:GazetteerEntry ;
+	rdfs:label "hasPreferredName"@en ;
+	rdfs:comment """primary name used for a geo object"""
+	.
+
+dgeo:hasSerialization rdf:type owl:DatatypeProperty ;
+	rdfs:domain dgeo:Geometry ;
+	rdfs:label "hasSerialization"@en ;
+	rdfs:comment """WKT, GeoJSON, etc. string"""
+	.
+
+dgeo:adm2areaCodeUri rdf:type owl:DatatypeProperty ;
+	rdfs:domain dgeo:GazetteerEntry ;
+	rdfs:label "adm2areaCodeUri"@en ;
+	rdfs:comment """As a string for now: e.g., http://dig.isi.edu/Adm2AreaCode/US.CA.023"""
+	.
+
+dgeo:adm1areaCodeUri rdf:type owl:DatatypeProperty ;
+	rdfs:domain dgeo:GazetteerEntry ;
+	rdfs:label "adm1areaCodeUri"@en ;
+	rdfs:comment """As a string for now: e.g., http://dig.isi.edu/Adm1AreaCode/US.023"""
+	.
+
+dgeo:countryCodeUri rdf:type owl:DatatypeProperty ;
+	rdfs:domain dgeo:GazetteerEntry ;
+	rdfs:label "countryCodeUri"@en ;
+	rdfs:comment """As a string for now: e.g., http://dig.isi.edu/CountryCode/US"""
+	.
+
+## THESE ARE INTENDED FOR USE IN COUNTRY TABLE, BUT MAY HAVE WIDER APPLICABILITY
+
+dgeo:iso3166CountryCode rdf:type owl:DatatypeProperty ;
+	rdfs:domain dgeo:GazetteerEntry ;
+	rdfs:label "iso_alpha2"@en ;
+	rdfs:comment """iso_alpha2"""
+	.
+
+dgeo:iso_alpha2 rdf:type owl:DatatypeProperty ;
+	rdfs:domain dgeo:GazetteerEntry ;
+	rdfs:label "iso_alpha2"@en ;
+	rdfs:comment """iso_alpha2"""
+	.
+
+dgeo:iso_alpha3 rdf:type owl:DatatypeProperty ;
+	rdfs:domain dgeo:GazetteerEntry ;
+	rdfs:label "iso_alpha3"@en ;
+	rdfs:comment """iso_alpha3"""
+	.
+
+dgeo:iso_numeric rdf:type owl:DatatypeProperty ;
+	rdfs:domain dgeo:GazetteerEntry ;
+	rdfs:label "iso_numeric"@en ;
+	rdfs:comment """iso_numeric"""
+	.
+
+dgeo:fips_code rdf:type owl:DatatypeProperty ;
+	rdfs:domain dgeo:GazetteerEntry ;
+	rdfs:label "fips_code"@en ;
+	rdfs:comment """fips_code"""
+	.
+
+dgeo:country rdf:type owl:DatatypeProperty ;
+	rdfs:domain dgeo:GazetteerEntry ;
+	rdfs:label "country"@en ;
+	rdfs:comment """country"""
+	.
+
+dgeo:capital rdf:type owl:DatatypeProperty ;
+	rdfs:domain dgeo:GazetteerEntry ;
+	rdfs:label "capital"@en ;
+	rdfs:comment """capital"""
+	.
+
+dgeo:areainsqkm rdf:type owl:DatatypeProperty ;
+	rdfs:domain dgeo:GazetteerEntry ;
+	rdfs:label "areainsqkm"@en ;
+	rdfs:comment """areainsqkm"""
+	.
+
+dgeo:population rdf:type owl:DatatypeProperty ;
+	rdfs:domain dgeo:GazetteerEntry ;
+	rdfs:label "population"@en ;
+	rdfs:comment """population"""
+	.
+
+dgeo:continent rdf:type owl:DatatypeProperty ;
+	rdfs:domain dgeo:GazetteerEntry ;
+	rdfs:label "continent"@en ;
+	rdfs:comment """continent"""
+        .
+
+dgeo:tld rdf:type owl:DatatypeProperty ;
+	rdfs:domain dgeo:GazetteerEntry ;
+	rdfs:label "tld"@en ;
+	rdfs:comment """tld"""
+	.
+
+dgeo:currency_code rdf:type owl:DatatypeProperty ;
+	rdfs:domain dgeo:GazetteerEntry ;
+	rdfs:label "currency_code"@en ;
+	rdfs:comment """currency_code"""
+	.
+
+dgeo:currency_name rdf:type owl:DatatypeProperty ;
+	rdfs:domain dgeo:GazetteerEntry ;
+	rdfs:label "currency_name"@en ;
+	rdfs:comment """currency_name"""
+	.
+
+dgeo:phone rdf:type owl:DatatypeProperty ;
+	rdfs:domain dgeo:GazetteerEntry ;	   
+	rdfs:label "phone"@en ;
+	rdfs:comment """phone"""
+	.
+
+dgeo:postal rdf:type owl:DatatypeProperty ;
+	    rdfs:label "postal"@en ;
+	    rdfs:comment """postal"""
+	    .
+
+dgeo:postalregex rdf:type owl:DatatypeProperty ;
+	rdfs:domain dgeo:GazetteerEntry ;
+	rdfs:label "postalregex"@en ;
+	rdfs:comment """postalregex"""
+	.
+
+dgeo:languages rdf:type owl:DatatypeProperty ;
+	rdfs:domain dgeo:GazetteerEntry ;
+	rdfs:label "languages"@en ;
+	rdfs:comment """languages"""
+	.
+
+dgeo:geonameid rdf:type owl:DatatypeProperty ;
+	rdfs:domain dgeo:GazetteerEntry ;
+	rdfs:label "geonameid"@en ;
+	rdfs:comment """geonameid"""
+	.
+
+dgeo:neighbour rdf:type owl:DatatypeProperty ;
+	rdfs:domain dgeo:GazetteerEntry ;
+	rdfs:label "neighbour"@en ;
+	rdfs:comment """neighbour"""
+	.
+
+dgeo:equivalent_fips_code rdf:type owl:DatatypeProperty ;
+	rdfs:domain dgeo:GazetteerEntry ;
+	rdfs:label "equivalent_fips_code"@en ;
+	rdfs:comment """equivalent_fips_code"""
+	.
+
+## THESE ARE INTENDED FOR USE IN COUNTRY TABLE, BUT MAY HAVE WIDER APPLICABILITY
+
+   
+dgeo:geoname_id rdf:type owl:DatatypeProperty; 
+        rdfs:domain dgeo:GazetteerEntry ;
+        rdfs:label "geoname_id"@en ;
+        rdfs:comment """geoname_id"""
+        .
+
+dgeo:name rdf:type owl:DatatypeProperty; 
+        rdfs:domain dgeo:GazetteerEntry ;
+        rdfs:label "name"@en ;
+        rdfs:comment """name"""
+        .
+
+dgeo:ascii_name rdf:type owl:DatatypeProperty; 
+        rdfs:domain dgeo:GazetteerEntry ;
+        rdfs:label "ascii_name"@en ;
+        rdfs:comment """ascii_name"""
+        .
+
+dgeo:alternate_names rdf:type owl:DatatypeProperty; 
+        rdfs:domain dgeo:GazetteerEntry ;
+        rdfs:label "alternate_names"@en ;
+        rdfs:comment """alternate_names"""
+        .
+
+dgeo:latitude rdf:type owl:DatatypeProperty; 
+        rdfs:domain dgeo:GazetteerEntry ;
+        rdfs:label "latitude"@en ;
+        rdfs:comment """latitude"""
+        .
+
+dgeo:longitude rdf:type owl:DatatypeProperty; 
+        rdfs:domain dgeo:GazetteerEntry ;
+        rdfs:label "longitude"@en ;
+        rdfs:comment """longitude"""
+        .
+
+dgeo:feature_class rdf:type owl:DatatypeProperty; 
+        rdfs:domain dgeo:GazetteerEntry ;
+        rdfs:label "feature_class"@en ;
+        rdfs:comment """feature_class"""
+        .
+
+dgeo:feature_code rdf:type owl:DatatypeProperty; 
+        rdfs:domain dgeo:GazetteerEntry ;
+        rdfs:label "feature_code"@en ;
+        rdfs:comment """feature_code"""
+        .
+
+dgeo:country_code rdf:type owl:DatatypeProperty; 
+        rdfs:domain dgeo:GazetteerEntry ;
+        rdfs:label "country_code"@en ;
+        rdfs:comment """country_code"""
+        .
+
+dgeo:cc2 rdf:type owl:DatatypeProperty; 
+        rdfs:domain dgeo:GazetteerEntry ;
+        rdfs:label "cc2"@en ;
+        rdfs:comment """cc2"""
+        .
+
+dgeo:admin1_code rdf:type owl:DatatypeProperty; 
+        rdfs:domain dgeo:GazetteerEntry ;
+        rdfs:label "admin1_code"@en ;
+        rdfs:comment """admin1_code"""
+        .
+
+dgeo:admin2_code rdf:type owl:DatatypeProperty; 
+        rdfs:domain dgeo:GazetteerEntry ;
+        rdfs:label "admin2_code"@en ;
+        rdfs:comment """admin2_code"""
+        .
+
+dgeo:admin3_code rdf:type owl:DatatypeProperty; 
+        rdfs:domain dgeo:GazetteerEntry ;
+        rdfs:label "admin3_code"@en ;
+        rdfs:comment """admin3_code"""
+        .
+
+dgeo:admin4_code rdf:type owl:DatatypeProperty; 
+        rdfs:domain dgeo:GazetteerEntry ;
+        rdfs:label "admin4_code"@en ;
+        rdfs:comment """admin4_code"""
+        .
+
+dgeo:population rdf:type owl:DatatypeProperty; 
+        rdfs:domain dgeo:GazetteerEntry ;
+        rdfs:label "population"@en ;
+        rdfs:comment """population"""
+        .
+
+dgeo:elevation rdf:type owl:DatatypeProperty; 
+        rdfs:domain dgeo:GazetteerEntry ;
+        rdfs:label "elevation"@en ;
+        rdfs:comment """elevation"""
+        .
+
+dgeo:dem rdf:type owl:DatatypeProperty; 
+        rdfs:domain dgeo:GazetteerEntry ;
+        rdfs:label "dem"@en ;
+        rdfs:comment """dem"""
+        .
+
+dgeo:timezone rdf:type owl:DatatypeProperty; 
+        rdfs:domain dgeo:GazetteerEntry ;
+        rdfs:label "timezone"@en ;
+        rdfs:comment """timezone"""
+        .
+
+dgeo:modification_date rdf:type owl:DatatypeProperty; 
+        rdfs:domain dgeo:GazetteerEntry ;
+        rdfs:label "modification_date"@en ;
+        rdfs:comment """modification_date"""
+        .
