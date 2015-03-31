@@ -92,13 +92,13 @@ return getValue("citedUris") + "/identifier"
 #### _identifierLabels_
 From column: _CitedPatents / identifierLabels_
 >``` python
-return getValue("values")
+return getValue("values").strip()
 ```
 
 #### _referencedbyLabels_
 From column: _ReferencedBy / referencedbyLabels_
 >``` python
-return getValue("values")
+return getValue("values").strip()
 ```
 
 #### _referenceIdentifierUris_
