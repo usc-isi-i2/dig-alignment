@@ -83,6 +83,56 @@ From column: _ReferencedBy / referencedByUris_
 return "page/" + getValue("values").strip() + "/processed"
 ```
 
+#### _identifierUri_
+From column: _CitedPatents / identifierUri_
+>``` python
+return getValue("citedUris") + "/identifier"
+```
+
+#### _identifierLabels_
+From column: _CitedPatents / identifierLabels_
+>``` python
+return getValue("values")
+```
+
+#### _referencedbyLabels_
+From column: _ReferencedBy / referencedbyLabels_
+>``` python
+return getValue("values")
+```
+
+#### _referenceIdentifierUris_
+From column: _ReferencedBy / referenceIdentifierUris_
+>``` python
+return getValue("referencedByUris") + "/identifier"
+```
+
+#### _publicationNumberRevision_
+From column: _publicationNumberRevision_
+>``` python
+return getValue("Publication Number")
+```
+
+#### _publicationLabel_
+From column: _publicationLabel_
+>``` python
+publicationNumber =  getValue("Publication Number")
+patentId = publicationNumber.split(' ')
+return patentId[0].strip()
+```
+
+#### _identifierUri1_
+From column: _identifierUri1_
+>``` python
+return getValue("uri") + "/identifier"
+```
+
+#### _publicationUriIdentifier_
+From column: _publicationUriIdentifier_
+>``` python
+return getValue("publicationUri") + "identifier"
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
@@ -92,11 +142,19 @@ return "page/" + getValue("values").strip() + "/processed"
 | _Patent Title_ | `schema:text` | `schema:WebPageElement2`|
 | _abstract_uri_ | `uri` | `schema:WebPageElement1`|
 | _citedUris_ | `uri` | `schema:WebPage2`|
+| _identifierLabels_ | `rdfs:label` | `memex:Identifier1`|
+| _identifierUri_ | `uri` | `memex:Identifier1`|
+| _identifierUri1_ | `uri` | `memex:Identifier3`|
 | _image_uri1_ | `uri` | `schema:ImageObject1`|
 | _modtime_ | `prov:endedAtTime` | `prov:Activity1`|
+| _publicationLabel_ | `rdfs:label` | `memex:Identifier4`|
+| _publicationNumberRevision_ | `rdfs:label` | `memex:Identifier3`|
 | _publicationUri_ | `memex:publicationUri` | `schema:WebPage1`|
+| _publicationUriIdentifier_ | `uri` | `memex:Identifier4`|
 | _publicationdate_ | `schema:datePublished` | `schema:WebPage1`|
+| _referenceIdentifierUris_ | `uri` | `memex:Identifier2`|
 | _referencedByUris_ | `uri` | `schema:WebPage3`|
+| _referencedbyLabels_ | `rdfs:label` | `memex:Identifier2`|
 | _title_uri_ | `uri` | `schema:WebPageElement2`|
 | _uri_ | `uri` | `schema:WebPage1`|
 | _url_ | `schema:url` | `schema:WebPage1`|
@@ -106,11 +164,19 @@ return "page/" + getValue("values").strip() + "/processed"
 ### Links
 | From | Property | To |
 |  --- | -------- | ---|
+| `memex:Identifier1` | `memex:hasType` | `xsd:http://dig.isi.edu/mrs/data/thesauri/identifier/patentid`|
+| `memex:Identifier2` | `memex:hasType` | `xsd:http://dig.isi.edu/mrs/data/thesauri/identifier/patentid`|
+| `memex:Identifier3` | `memex:hasType` | `xsd:http://dig.isi.edu/mrs/data/thesauri/identifier/patentid/revision`|
+| `memex:Identifier4` | `memex:hasType` | `xsd:http://dig.isi.edu/mrs/data/thesauri/identifier/patentid`|
 | `prov:Activity1` | `prov:wasAttributedTo` | `xsd:http://dig.isi.edu/mrs/data/api/google`|
 | `schema:ImageObject1` | `prov:wasGeneratedBy` | `prov:Activity1`|
 | `schema:WebPage1` | `memex:hasAbstractPart` | `schema:WebPageElement1`|
 | `schema:WebPage1` | `memex:hasBodyPart` | `schema:WebPageElement3`|
+| `schema:WebPage1` | `memex:hasIdentifier` | `memex:Identifier3`|
+| `schema:WebPage1` | `memex:hasIdentifier` | `memex:Identifier4`|
 | `schema:WebPage1` | `memex:hasImagePart` | `schema:ImageObject1`|
 | `schema:WebPage1` | `memex:hasTitlePart` | `schema:WebPageElement2`|
 | `schema:WebPage1` | `memex:isCitationOf` | `schema:WebPage3`|
 | `schema:WebPage1` | `schema:citation` | `schema:WebPage2`|
+| `schema:WebPage2` | `memex:hasIdentifier` | `memex:Identifier1`|
+| `schema:WebPage3` | `memex:hasIdentifier` | `memex:Identifier2`|
