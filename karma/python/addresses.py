@@ -220,6 +220,62 @@ def standardize_country_name(country):
     except ValueError:
         return ''
 
+#For Patents - Return the actual issuing authority if it's not a country
+def standardize_wipocountry_name(country):
+    if(len(country) == 0):
+        return ''
+
+    country = country.upper()
+
+    if (country == 'OA'):
+        return 'African Intellectual Property Organization'
+    if (country == 'AP'):
+        return 'African Regional IP Organization'
+    if (country == 'BX'):
+        return 'Benelux Office for Intellectual Property'
+    if (country == 'BQ'):
+        return 'Bonaire, Saint Eustatius and Saba'
+    if (country == 'DD'):
+        return 'German Democratic Republic'
+    if (country == 'GC'):
+        return 'Gulf Cooperation Council'
+    if (country == 'IB'):
+        return 'International Bureau of WIPO'
+    if (country == 'TP'):
+        return 'International Technology Disclosures'
+    if (country == 'SX'):
+        return 'Sint Maarten'
+    if (country == 'QZ'):
+        return 'Community Plant Variety Office (EU)'
+    if (country == 'EA'):
+        return 'Eurasian Patent Organization'
+    if (country == 'EP'):
+        return 'European Patent Office'
+    if (country == 'XN'):
+        return 'Nordic Patent Institute'
+    if (country == 'TL'):
+        return 'Timor–Leste'
+    if (country == 'WO'):
+        return 'World Intellectual Property Organization'
+    if (len(country) == 2):
+        try:
+            idx = country_codes_2.index(country)
+            return country_names_readable[idx]
+        except ValueError:
+            idx = -1
+    if (len(country) == 3):
+        try:
+            idx = country_codes_3.index(country)
+            return country_names_readable[idx]
+        except ValueError:
+            idx = -1
+    try:
+        country = alphaOnly(country).upper()
+        idx = country_names.index(country)
+        return country_names_readable[idx]
+    except ValueError:
+        return ''
+
 
 def standardize_state_code(country, state):
     if(len(state) == 0):
