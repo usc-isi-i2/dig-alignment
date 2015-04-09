@@ -20,7 +20,7 @@ From column: _publicationUri_
 >``` python
 publicationNumber =  getValue("Publication Number")
 patentNumber = publicationNumber.split(' ')
-return "page/" + patentNumber[0] + "/processed/"
+return getMRSBaseUrl() + "page/" + patentNumber[0] + "/processed/"
 ```
 
 #### _abstract_uri_
@@ -133,6 +133,12 @@ From column: _publicationUriIdentifier_
 return getValue("publicationUri") + "identifier"
 ```
 
+#### _cacheurl_
+From column: _Thumbnail Image / cacheurl_
+>``` python
+return getValue("values")
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
@@ -141,6 +147,7 @@ return getValue("publicationUri") + "identifier"
 | _Description_ | `schema:text` | `schema:WebPageElement3`|
 | _Patent Title_ | `schema:text` | `schema:WebPageElement2`|
 | _abstract_uri_ | `uri` | `schema:WebPageElement1`|
+| _cacheurl_ | `memex:cacheUrl` | `schema:ImageObject1`|
 | _citedUris_ | `uri` | `schema:WebPage2`|
 | _identifierLabels_ | `rdfs:label` | `memex:Identifier1`|
 | _identifierUri_ | `uri` | `memex:Identifier1`|
