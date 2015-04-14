@@ -23,9 +23,21 @@ memex:URLEntity rdf:type owl:Class ;
 	Each time we dereference a URL we get a schema:CreativeWork, which we call a memex:snapshot"""
 	.
 
-memex:Identifier rdf:type owl:Class ; 
+memex:Appellation rdf:type owl:Class ;
+	rdfs:label "Appellation"@en ;
+	rdfs:comment """A string to refer to an entity."""
+	.
+
+memex:Name rdf:type owl:Class ;
+	rdfs:subClassOf memex:Appellation ;
+	rdfs:label "Name"@en ;
+	rdfs:comment """Represents the Name of an entity."""
+	.
+
+memex:Identifier rdf:type owl:Class ;
+	rdfs:subClassOf memex:Appellation ;
 	rdfs:label "Identifier"@en ;
-	rdfs:comment """An identifier of something."""
+	rdfs:comment """Identifier of an entity"""	
 	.
 
 memex:PhoneNumber rdf:type owl:Class ; 
@@ -97,6 +109,7 @@ memex:BinaryFeature rdf:type owl:Class ;
 schema:PostalAddress rdf:type owl:Class ;
 	rdfs:subClassOf memex:Feature ;
 	.
+
 	
 #########################################################
 #
@@ -263,6 +276,24 @@ memex:featureObject rdf:type owl:ObjectProperty ;
 	rdfs:label "featureObject"@en ;
 	rdfs:domain memex:Feature ;
 	rdfs:comment """The value of a feature represented as an object."""
+	.
+
+memex:hasName rdf:type owl:ObjectProperty ; 
+	rdfs:label "hasName"@en ;
+	rdfs:range memex:Name ;
+	rdfs:comment """The Name of an entity"""
+	.
+
+memex:hasIdentifier rdf:type owl:ObjectProperty ; 
+	rdfs:label "hasIdentifier"@en ;
+	rdfs:range memex:Identifier ;
+	rdfs:comment """The Identifier of an entity"""
+	.
+
+memex:hasType rdf:type owl:ObjectProperty ; 
+	rdfs:label "hasType"@en ;
+	rdfs:range skos:Concept ;
+	rdfs:comment """The Type of an entity"""
 	.
 
 memex:ServiceRate rdf:type owl:Class ;
