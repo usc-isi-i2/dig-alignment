@@ -47,12 +47,23 @@ def atf_fc_uri(article_uri):
     """URI of feature collection"""
     return article_uri+"/featurecollection"
 
-
-def atf_parse_city_state(city_state):
+def atf_get_city(city_state):
     if "," in city_state:
-        return [x.strip() for x in city_state.split(",")]
+        return city_state.split(",")[0]
     else:
-        return [city_state, ""]
+        return city_state
+
+def atf_get_state(city_state):
+    if "," in city_state:
+        return city_state.split(",")[1]
+    else:
+        return ""
+
+def atf_address_uri(city, state, country):
+    return address_uri(city, state, country)
+
+def atf_clean_post_count(post_count):
+    return numericOnly(post_count)
 
 import re
 
@@ -234,7 +245,6 @@ WEAPONS_PHRASES = ['gun',
                    'bomb',
                    'artillery']
 
-
 def isInt(s):
     try:
         int(s)
@@ -245,9 +255,9 @@ def isInt(s):
 
 WEAPONS_PHRASES = [w for w in WEAPONS_PHRASES if not isInt(w)]
 # restore a few numbers
-WEAPONS_PHRASES = WEAPONS_PHRASES + ["45", ".45", "38", "50", "3006", ".22"]
+WEAPONS_PHRASES = WEAPONS_PHRASES + ["45", ".45", "38", "50", "3006", ".22", "22", "357"]
 # add a few missing popular items
-WEAPONS_PHRASES = WEAPONS_PHRASES + ['uzi', 'ammo', 'ammunition']
+WEAPONS_PHRASES = WEAPONS_PHRASES + ['uzi', 'ammo', 'ammunition', 'stoner', 'scar17']
 WEAPONS_PATTERNS = [re.compile(r"""\b%s\b""" % ph, re.IGNORECASE) for ph in WEAPONS_PHRASES]
 
 test_text = """New In Box Walther UZI .22LR RIFLE 20+1 $349.99"""
@@ -262,3 +272,11 @@ def weapons_words(text, patterns=WEAPONS_PATTERNS, phrases=WEAPONS_PHRASES):
     return matches
 
 # print weapons_words(test_text)
+
+def get_weapons(*texts):
+    all_text = " ".join([strip_tags(t) for t in texts])
+    return "|".join(weapons_words(all_text))
+
+def get_prices(*texts):
+    all_text = " ".join([strip_tags(t) for t in texts])
+    
