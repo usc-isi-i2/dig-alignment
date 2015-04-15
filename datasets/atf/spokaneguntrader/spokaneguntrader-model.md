@@ -19,16 +19,28 @@ From column: _posts / post_id_
 return atf_article_uri(getValue("url"), getValue("post_id"))
 ```
 
-#### _fc_uri_
-From column: _posts / username_
->``` python
-return atf_fc_uri(getValue("article_uri"))
-```
-
 #### _username2_
 From column: _posts / username_
 >``` python
 return getValue("username")
+```
+
+#### _fc_uri_
+From column: _posts / username2_
+>``` python
+return atf_fc_uri(getValue("article_uri"))
+```
+
+#### _city_
+From column: _posts / Unfold: label / city, state: / Values_
+>``` python
+return atf_get_city(getValue("Values"))
+```
+
+#### _state_
+From column: _posts / Unfold: label / city, state: / city_
+>``` python
+return atf_get_state(getValue("Values"))
 ```
 
 #### _joined_iso_
