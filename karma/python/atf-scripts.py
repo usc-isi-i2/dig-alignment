@@ -1,4 +1,3 @@
-import datetime
 # Scripts for modeling ATF data.
 
 def atf_article_uri(url, post_id):
@@ -9,15 +8,11 @@ test_date = "Wed Feb 11, 2015 10:31 am"
 
 def atf_date_created(date):
     """Put the date in ISO format"""
-    d = datetime.datetime.strptime(date, "%a %b %d, %Y %I:%M %p")
-    return d.isoformat()
-
+    return iso8601date(date, "%a %b %d, %Y %I:%M %p")
 
 def atf_joined_date(date):
     """Put the date in ISO format"""
-    d = datetime.datetime.strptime(date, "%a %b %d, %Y %I:%M %p")
-    return d.isoformat()
-
+    return iso8601date(date, "%a %b %d, %Y %I:%M %p")
 
 from HTMLParser import HTMLParser
 
