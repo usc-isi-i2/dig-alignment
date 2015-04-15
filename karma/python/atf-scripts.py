@@ -9,6 +9,16 @@ def atf_date_created(date):
 	return date
 
 
+def atf_joined_date(date):
+	"""Put the date in ISO format"""
+	return date
+
+
 def signature_clean(text):
 	"""Strip HTML"""
 	return text
+
+
+def atf_fc_uri(article_uri):
+	"""URI of feature collection"""
+	return article_uri+"/featurecollection"
