@@ -46,3 +46,10 @@ def signature_clean(text):
 def atf_fc_uri(article_uri):
     """URI of feature collection"""
     return article_uri+"/featurecollection"
+
+
+def atf_parse_city_state(city_state):
+    if "," in city_state:
+        return [x.strip() for x in city_state.split(",")]
+    else:
+        return [city_state, ""]
