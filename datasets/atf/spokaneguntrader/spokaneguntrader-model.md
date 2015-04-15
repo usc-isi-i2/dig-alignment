@@ -55,11 +55,64 @@ From column: _posts / Unfold: label / joined: / joined_iso_
 return getValue("joined_iso")
 ```
 
+#### _country_
+From column: _posts / Unfold: label / city, state: / state_
+>``` python
+return "US"
+```
+
+#### _address_uri_
+From column: _posts / Unfold: label / city, state: / country_
+>``` python
+return atf_address_uri(getValue("city"), getValue("state"), getValue("country"))
+```
+
+#### _clean_address_
+From column: _posts / Unfold: label / city, state: / country_
+>``` python
+return clean_address(getValue("city"), getValue("state"), getValue("country"), ",")
+```
+
+#### _clean_address2_
+From column: _posts / Unfold: label / city, state: / clean_address_
+>``` python
+return getValue("clean_address")
+```
+
+#### _clean_post_count_
+From column: _posts / Unfold: label / posts: / Values_
+>``` python
+return atf_clean_post_count(getValue("Values"))
+```
+
+#### _clean_post_count2_
+From column: _posts / Unfold: label / posts: / clean_post_count_
+>``` python
+return getValue("clean_post_count")
+```
+
+#### _joined_weapons_
+From column: _posts / Unfold: label / Glue_1 / Values_1_
+>``` python
+return get_weapons(getValue("Values"), getValue("Values_1"), getValue("topic_title"), getValue("title"), getValue("signature_clean"), getValue("content"))
+```
+
+#### _weapons2_
+From column: _posts / Unfold: label / Glue_1 / weapons / Values_
+>``` python
+return getValue("Values")
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
 |  ----- | -------- | ----- |
+| _Values_ | `memex:weaponsMentioned` | `memex:Feature5`|
 | _article_uri_ | `uri` | `schema:Article1`|
+| _clean_address_ | `memex:featureValue` | `memex:Feature3`|
+| _clean_address2_ | `memex:place_postalAddress` | `memex:Feature3`|
+| _clean_post_count_ | `memex:featureValue` | `memex:Feature4`|
+| _clean_post_count2_ | `memex:person_postCount` | `memex:Feature4`|
 | _content_ | `schema:text` | `schema:WebPageElement2`|
 | _dateCreated_ | `schema:dateCreated` | `schema:Article1`|
 | _fc_uri_ | `uri` | `memex:FeatureCollection1`|
@@ -69,6 +122,7 @@ return getValue("joined_iso")
 | _title_ | `schema:text` | `schema:WebPageElement1`|
 | _username_ | `memex:featureValue` | `memex:Feature1`|
 | _username2_ | `memex:person_username` | `memex:Feature1`|
+| _weapons2_ | `memex:featureValue` | `memex:Feature5`|
 
 
 ### Links
@@ -76,8 +130,14 @@ return getValue("joined_iso")
 |  --- | -------- | ---|
 | `memex:Feature1` | `memex:featureName` | `xsd:person_username`|
 | `memex:Feature2` | `memex:featureName` | `xsd:enrollment_date`|
+| `memex:Feature3` | `memex:featureName` | `xsd:place_postalAddress`|
+| `memex:Feature4` | `memex:featureName` | `xsd:person_postCount`|
+| `memex:Feature5` | `memex:featureName` | `xsd:weaponsMentioned_feature`|
 | `memex:FeatureCollection1` | `memex:enrollment_date_feature` | `memex:Feature2`|
+| `memex:FeatureCollection1` | `memex:person_postCount_feature` | `memex:Feature4`|
 | `memex:FeatureCollection1` | `memex:person_username_feature` | `memex:Feature1`|
+| `memex:FeatureCollection1` | `memex:place_postalAddress_feature` | `memex:Feature3`|
+| `memex:FeatureCollection1` | `memex:weaponsMentioned_feature` | `memex:Feature5`|
 | `schema:Article1` | `memex:hasBodyPart` | `schema:WebPageElement2`|
 | `schema:Article1` | `memex:hasFeatureCollection` | `memex:FeatureCollection1`|
 | `schema:Article1` | `memex:hasSignaturePart` | `schema:WebPageElement3`|
