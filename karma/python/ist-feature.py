@@ -652,7 +652,7 @@ def place_location_uri(cleaned):
         return "place_location/%s" % cleaned
 
 def feature_address(city, state, country):
-	return clean_address(city, state, country, ", ")
+    return clean_address(city, state, country, ", ")
 
 def clean_city(city):
     return clean_location(city)
