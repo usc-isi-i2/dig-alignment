@@ -303,9 +303,9 @@ def atf_body_clean(text):
     return strip_tags(text).strip()
 
 def onion_name_to_provider_name(onion):
-    if onion in ["k5zq47j6wd3wdvjq.onion"]:
+    if onion   in ["k5zq47j6wd3wdvjq.onion"]:
         return "evolution"
-    elif onion in [""]:
+    elif onion in ["i25c62nvu4cgeqyz.onion"]:
         return "evolution-forums"
     else:
         return onion
