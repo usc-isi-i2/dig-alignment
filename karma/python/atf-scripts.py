@@ -293,7 +293,7 @@ def get_prices(*texts):
             for m in r.findall(t):
                 print t,r,m
                 matches.append(m.replace('$ ','$').replace(',',''))
-    return matches
+    return "|".join(matches)
 
 # print get_prices(*test_prices)
 
