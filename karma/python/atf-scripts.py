@@ -277,6 +277,23 @@ def get_weapons(*texts):
     all_text = " ".join([strip_tags(t) for t in texts])
     return "|".join(weapons_words(all_text))
 
+test_prices = ["I like to spend $50 for a sword, $75.00 for ammo, $ 100.00 for rifle, $ 1,000 for lunch, and BTC 2.468 to donate to Edward Snowden.", 
+               "I make $60K a year on Herbalife.  Ask me how!",
+               "JPY 500000 is more than CHF 200.5"]
+
+PRICE_REGEXPS = [re.compile(r'''\$\s*(?:\d{1,3},\s?)*\d{1,3}(?:(?:\.\d+)|[KkMm])?''', re.IGNORECASE),
+                 re.compile(r'''(?:BTC|XBT|XBC|EUR|USD|CHF|GBP|JPY)\s*\d{1,7}(?:\.\d+)?''', re.IGNORECASE),
+                 re.compile(r'''\d{1,7}(?:\.\d+)?\s*(?:BTC|XBT|XBC|EUR|USD|CHF|GBP|JPY)''', re.IGNORECASE)
+                 ]
+
 def get_prices(*texts):
-    all_text = " ".join([strip_tags(t) for t in texts])
-    
+    matches = []
+    for t in texts:
+        for r in PRICE_REGEXPS:
+            for m in r.findall(t):
+                print t,r,m
+                matches.append(m.replace('$ ','$').replace(',',''))
+    return matches
+
+# print get_prices(*test_prices)
+
