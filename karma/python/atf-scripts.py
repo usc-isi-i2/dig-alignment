@@ -283,21 +283,34 @@ def get_weapons(*texts):
 
 test_prices = ["I like to spend $50 for a sword, $75.00 for ammo, $ 100.00 for rifle, $ 1,000 for lunch, and BTC 2.468 to donate to Edward Snowden.", 
                "I make $60K a year on Herbalife.  Ask me how!",
-               "JPY 500000 is more than CHF 200.5"]
+               "JPY 500000 is more than CHF 200.5",
+               "2.5 BTC or BTC 4.5"]
 
-PRICE_REGEXPS = [re.compile(r'''\$\s*(?:\d{1,3},\s?)*\d{1,3}(?:(?:\.\d+)|[KkMm])?''', re.IGNORECASE),
-                 re.compile(r'''(?:BTC|XBT|XBC|EUR|USD|CHF|GBP|JPY)\s*\d{1,7}(?:\.\d+)?''', re.IGNORECASE),
-                 re.compile(r'''\d{1,7}(?:\.\d+)?\s*(?:BTC|XBT|XBC|EUR|USD|CHF|GBP|JPY)''', re.IGNORECASE)
-                 ]
+DOLLAR_PRICE_REGEXPS = [re.compile(r'''\$\s*(?:\d{1,3},\s?)*\d{1,3}(?:(?:\.\d+)|[KkMm])?''', re.IGNORECASE),
+                        re.compile(r'''USD\s*\d{1,7}(?:\.\d+)?''', re.IGNORECASE),
+                        re.compile(r'''\d{1,7}(?:\.\d+)?\s*USD''', re.IGNORECASE)
+                        ]
 
-def get_prices(*texts):
+BITCOIN_PRICE_REGEXPS = [re.compile(r'''(?:BTC|XBT|XBC)\s*\d{1,7}(?:\.\d+)?''', re.IGNORECASE),
+                         re.compile(r'''\d{1,7}(?:\.\d+)?\s*(?:BTC|XBT|XBC)''', re.IGNORECASE)
+                         ]
+
+def get_dollar_prices(*texts):
     matches = []
     for t in texts:
-        for r in PRICE_REGEXPS:
+        for r in DOLLAR_PRICE_REGEXPS:
             for m in r.findall(t):
-                print t,r,m
-                matches.append(m.replace('$ ','$').replace(',',''))
+                matches.append(m.replace('$ ','$').replace(',','').replace('$','').replace('K',"000").replace('k',"000").replace("M","000").replace('m',"000"))
     return "|".join(matches)
+
+def get_bitcoin_prices(*texts):
+    matches = []
+    for t in texts:
+        for r in BITCOIN_PRICE_REGEXPS:
+            for m in r.findall(t):
+                matches.append(m.replace('BTC','').replace('XBT','').replace('XBC','').replace(' ',''))
+    return "|".join(matches)
+
 
 # print get_prices(*test_prices)
 
@@ -321,4 +334,6 @@ def atf_provider_name(uri):
         return onion_name_to_provider_name(domain)
     else:
         return domain
-        
+
+# print test_prices, get_dollar_prices(*test_prices)
+# print test_prices, get_bitcoin_prices(*test_prices)
