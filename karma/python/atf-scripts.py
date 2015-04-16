@@ -258,7 +258,7 @@ WEAPONS_PHRASES = [w for w in WEAPONS_PHRASES if not isInt(w)]
 WEAPONS_PHRASES = WEAPONS_PHRASES + ["45", ".45", "38", "50", "3006", ".22", "22", "357"]
 # add a few missing popular items
 WEAPONS_PHRASES = WEAPONS_PHRASES + ['uzi', 'ammo', 'ammunition', 'stoner', 'scar17', 'taser', 'tazer', 
-                                     'Tokarev', 'glock', 'AK-47', 'AK 47']
+                                     'Tokarev', 'glock', 'AK-47', 'AK 47', 'luger', 'P38']
 WEAPONS_PATTERNS = [re.compile(r"""\b%s\b""" % ph, re.IGNORECASE) for ph in WEAPONS_PHRASES]
 
 test_text = """New In Box Walther UZI .22LR RIFLE 20+1 $349.99"""
@@ -301,3 +301,14 @@ def get_prices(*texts):
 def atf_body_clean(text):
     """Strip HTML"""
     return strip_tags(text).strip()
+
+def onion_name_to_provider_name(onion):
+    if onion in ["k5zq47j6wd3wdvjq.onion"]:
+        return "evolution"
+    elif onion in [""]:
+        return "evolution-forums"
+    else:
+        return onion
+
+def atf_provider_name(uri):
+    return getWebsiteDomain(uri)
