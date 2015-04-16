@@ -6,13 +6,16 @@ def atf_article_uri(url, post_id):
 
 test_date = "Wed Feb 11, 2015 10:31 am"
 
-def atf_date_created(date):
+def atf_date_created(date, format="%a %b %d, %Y %I:%M %p"):
     """Put the date in ISO format"""
-    return iso8601date(date, "%a %b %d, %Y %I:%M %p")
+    return iso8601date(date, format)
 
 def atf_joined_date(date):
     """Put the date in ISO format"""
     return iso8601date(date, "%a %b %d, %Y %I:%M %p")
+
+test_date2 = "Wednesday, March 18, 2015 10:33 AM"
+test_format2 = "%A, %B %d, %Y %I:%M %p"
 
 from HTMLParser import HTMLParser
 
