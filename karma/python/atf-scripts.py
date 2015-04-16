@@ -10,9 +10,9 @@ def atf_date_created(date, format="%a %b %d, %Y %I:%M %p"):
     """Put the date in ISO format"""
     return iso8601date(date, format)
 
-def atf_joined_date(date):
+def atf_joined_date(date, format="%a %b %d, %Y %I:%M %p"):
     """Put the date in ISO format"""
-    return iso8601date(date, "%a %b %d, %Y %I:%M %p")
+    return iso8601date(date, format)
 
 test_date2 = "Wednesday, March 18, 2015 10:33 AM"
 test_format2 = "%A, %B %d, %Y %I:%M %p"
@@ -261,7 +261,8 @@ WEAPONS_PHRASES = [w for w in WEAPONS_PHRASES if not isInt(w)]
 WEAPONS_PHRASES = WEAPONS_PHRASES + ["45", ".45", "38", "50", "3006", ".22", "22", "357"]
 # add a few missing popular items
 WEAPONS_PHRASES = WEAPONS_PHRASES + ['uzi', 'ammo', 'ammunition', 'stoner', 'scar17', 'taser', 'tazer', 
-                                     'Tokarev', 'glock', 'AK-47', 'AK 47', 'luger', 'P38', 'spdmstr']
+                                     'Tokarev', 'glock', 'AK-47', 'AK 47', 'luger', 'P38', 'spdmstr', 
+                                     'AR15', 'AR-15']
 WEAPONS_PATTERNS = [re.compile(r"""\b%s\b""" % ph, re.IGNORECASE) for ph in WEAPONS_PHRASES]
 
 test_text = """New In Box Walther UZI .22LR RIFLE 20+1 $349.99"""
@@ -302,6 +303,9 @@ def get_dollar_prices(*texts):
             for m in r.findall(t):
                 matches.append(m.replace('$ ','$').replace(',','').replace('$','').replace('K',"000").replace('k',"000").replace("M","000").replace('m',"000"))
     return "|".join(matches)
+
+def get_prices(*texts):
+    return get_dollar_prices(*texts)
 
 def get_bitcoin_prices(*texts):
     matches = []
