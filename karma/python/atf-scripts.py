@@ -262,7 +262,18 @@ WEAPONS_PHRASES = WEAPONS_PHRASES + ["45", ".45", "38", "50", "3006", ".22", "22
 # add a few missing popular items
 WEAPONS_PHRASES = WEAPONS_PHRASES + ['uzi', 'ammo', 'ammunition', 'stoner', 'scar17', 'taser', 'tazer', 
                                      'Tokarev', 'glock', 'AK-47', 'AK 47', 'luger', 'P38', 'spdmstr', 
-                                     'AR15', 'AR-15']
+                                     'AR15', 'AR-15', 'AMT', 'Trejo', 'Armatix', 'Astra', 'Bechowiec',
+                                     'Bauer', 'Benelli', 'Versa', 'Browning', 'BUL', 'Caracal', 'Zamorana',
+                                     'Wesson', 'Danuvia', 'Musgrave', 'Vektor', 'Enfield',
+                                     'FEG', 'FN', 'Herstal', 'Gabilondo', 'Urresti', 'Makarov', 'Izhevsk',
+                                     'Sauer', 'KBP', 'Kimber', 'MAB', 'Mauser', 'MAC-10', 'MAC-11',
+                                     'MAC10', 'MAC11', 'Pindad',
+                                     'RPC', 'Bonifacio', 'Steyr',
+                                     'Tanfoglio', 'Tula', "CZ",
+                                     "\x010CZ", 'RSAF', 'Webley',
+                                     'Norinco', 'Akdal', 'Famars',
+                                     'Marlin']
+
 WEAPONS_PATTERNS = [re.compile(r"""\b%s\b""" % ph, re.IGNORECASE) for ph in WEAPONS_PHRASES]
 
 test_text = """New In Box Walther UZI .22LR RIFLE 20+1 $349.99"""
