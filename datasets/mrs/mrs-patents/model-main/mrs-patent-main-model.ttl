@@ -1,24 +1,27 @@
-@prefix dct: <http://purl.org/dc/terms/> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix crm: <http://www.cidoc-crm.org/rdfs/cidoc_crm_v6.0-draft-2015January.rdfs> .
+@prefix schema: <http://schema.org/> .
+@prefix dgeo: <http://dig.isi.edu/ontology/dgeo/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ht: <http://memexproxy.com/ontology/human-trafficking/> .
+@prefix dct: <http://purl.org/dc/terms/> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix memex: <http://memexproxy.com/ontology/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix schemax: <http://topbraid.org/schemax/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
-@prefix schema: <http://schema.org/> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix ht: <http://memexproxy.com/ontology/human-trafficking/> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rr: <http://www.w3.org/ns/r2rml#> .
 @prefix km-dev: <http://isi.edu/integration/karma/dev#> .
 
-_:node19h9mnhokx1 a km-dev:R2RMLMapping ;
+_:node19ig640gfx1 a km-dev:R2RMLMapping ;
 	km-dev:sourceName "mrs-patent-data-sample.json" ;
-	km-dev:modelPublicationTime "1427328714516"^^xsd:long ;
+	km-dev:modelPublicationTime "1428619919887"^^xsd:long ;
 	km-dev:modelVersion "1.7" ;
 	km-dev:hasInputColumns "[[{\"columnName\":\"Thumbnail Image\"},{\"columnName\":\"values\"}],[{\"columnName\":\"Publication Date\"}],[{\"columnName\":\"modtime\"}],[{\"columnName\":\"Patent Title\"}],[{\"columnName\":\"Description\"}],[{\"columnName\":\"URL\"}],[{\"columnName\":\"CitedPatents\"},{\"columnName\":\"values\"}],[{\"columnName\":\"ReferencedBy\"},{\"columnName\":\"values\"}],[{\"columnName\":\"Abstract\"}],[{\"columnName\":\"Publication Number\"}]]" ;
-	km-dev:hasOutputColumns "[[{\"columnName\":\"Thumbnail Image\"},{\"columnName\":\"values\"}],[{\"columnName\":\"Patent Title\"}],[{\"columnName\":\"Description\"}],[{\"columnName\":\"Abstract\"}],[{\"columnName\":\"abstract_uri\"}],[{\"columnName\":\"CitedPatents\"},{\"columnName\":\"citedUris\"}],[{\"columnName\":\"Thumbnail Image\"},{\"columnName\":\"image_uri1\"}],[{\"columnName\":\"ReferencedBy\"},{\"columnName\":\"referencedByUris\"}],[{\"columnName\":\"modtime\"}],[{\"columnName\":\"title_uri\"}],[{\"columnName\":\"publicationdate\"}],[{\"columnName\":\"url\"}],[{\"columnName\":\"image_uri\"}],[{\"columnName\":\"uri\"}],[{\"columnName\":\"publicationUri\"}]]" ;
+	km-dev:hasOutputColumns "[[{\"columnName\":\"publicationLabel\"}],[{\"columnName\":\"Thumbnail Image\"},{\"columnName\":\"values\"}],[{\"columnName\":\"Patent Title\"}],[{\"columnName\":\"Description\"}],[{\"columnName\":\"publicationUriIdentifier\"}],[{\"columnName\":\"Abstract\"}],[{\"columnName\":\"ReferencedBy\"},{\"columnName\":\"referencedbyLabels\"}],[{\"columnName\":\"publicationNumberRevision\"}],[{\"columnName\":\"CitedPatents\"},{\"columnName\":\"identifierLabels\"}],[{\"columnName\":\"ReferencedBy\"},{\"columnName\":\"referenceIdentifierUris\"}],[{\"columnName\":\"abstract_uri\"}],[{\"columnName\":\"CitedPatents\"},{\"columnName\":\"citedUris\"}],[{\"columnName\":\"Thumbnail Image\"},{\"columnName\":\"image_uri1\"}],[{\"columnName\":\"modtime\"}],[{\"columnName\":\"ReferencedBy\"},{\"columnName\":\"referencedByUris\"}],[{\"columnName\":\"title_uri\"}],[{\"columnName\":\"publicationdate\"}],[{\"columnName\":\"url\"}],[{\"columnName\":\"image_uri\"}],[{\"columnName\":\"CitedPatents\"},{\"columnName\":\"identifierUri\"}],[{\"columnName\":\"identifierUri1\"}],[{\"columnName\":\"uri\"}],[{\"columnName\":\"Thumbnail Image\"},{\"columnName\":\"cacheurl\"}],[{\"columnName\":\"publicationUri\"}]]" ;
 	km-dev:hasModelLabel "mrs-patent-data-sample.json" ;
 	km-dev:hasBaseURI "http://localhost:8080/source/" ;
 	km-dev:hasWorksheetHistory """[
@@ -490,7 +493,7 @@ _:node19h9mnhokx1 a km-dev:R2RMLMapping ;
             {
                 \"name\": \"transformationCode\",
                 \"type\": \"other\",
-                \"value\": \"publicationNumber =  getValue(\\\"Publication Number\\\")\\npatentNumber = publicationNumber.split(' ')\\nreturn \\\"page/\\\" + patentNumber[0] + \\\"/processed/\\\"\"
+                \"value\": \"publicationNumber =  getValue(\\\"Publication Number\\\")\\npatentNumber = publicationNumber.split(' ')\\nreturn getMRSBaseUrl() + \\\"page/\\\" + patentNumber[0] + \\\"/processed/\\\"\"
             },
             {
                 \"name\": \"errorDefaultValue\",
@@ -2713,464 +2716,3020 @@ _:node19h9mnhokx1 a km-dev:R2RMLMapping ;
             }
         ],
         \"tags\": [\"Modeling\"]
+    },
+    {
+        \"commandName\": \"ChangeInternalNodeLinksCommand\",
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"initialEdges\",
+                \"type\": \"other\",
+                \"value\": []
+            },
+            {
+                \"name\": \"alignmentId\",
+                \"type\": \"other\",
+                \"value\": \"WSP1:WS1AL\"
+            },
+            {
+                \"name\": \"newEdges\",
+                \"type\": \"other\",
+                \"value\": [{
+                    \"edgeTargetId\": \"http://memexproxy.com/ontology/Identifier1 (add)\",
+                    \"edgeId\": \"http://memexproxy.com/ontology/hasIdentifier\",
+                    \"edgeTargetUri\": \"http://memexproxy.com/ontology/Identifier\",
+                    \"edgeSourceId\": \"http://schema.org/WebPage2\",
+                    \"edgeSourceUri\": \"http://schema.org/WebPage2\"
+                }]
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            }
+        ],
+        \"tags\": [\"Modeling\"]
+    },
+    {
+        \"commandName\": \"AddColumnCommand\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"CitedPatents\"},
+                    {\"columnName\": \"citedUris\"}
+                ]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"hTableId\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"type\": \"other\",
+                \"value\": \"identifierUri\"
+            },
+            {
+                \"name\": \"defaultValue\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            }
+        ],
+        \"tags\": [\"Transformation\"]
+    },
+    {
+        \"commandName\": \"SubmitPythonTransformationCommand\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"CitedPatents\"},
+                    {\"columnName\": \"identifierUri\"}
+                ]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"type\": \"other\",
+                \"value\": \"identifierUri\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"type\": \"other\",
+                \"value\": \"return getValue(\\\"citedUris\\\") + \\\"/identifier\\\"\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"isJSONOutput\",
+                \"type\": \"other\",
+                \"value\": \"false\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"CitedPatents\\\"},{\\\"columnName\\\":\\\"citedUris\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"CitedPatents\\\"},{\\\"columnName\\\":\\\"identifierUri\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"Transformation\"]
+    },
+    {
+        \"commandName\": \"SetMetaPropertyCommand\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"CitedPatents\"},
+                    {\"columnName\": \"identifierUri\"}
+                ]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"metaPropertyName\",
+                \"type\": \"other\",
+                \"value\": \"isUriOfClass\"
+            },
+            {
+                \"name\": \"metaPropertyUri\",
+                \"type\": \"other\",
+                \"value\": \"http://memexproxy.com/ontology/Identifier\"
+            },
+            {
+                \"name\": \"metaPropertyId\",
+                \"type\": \"other\",
+                \"value\": \"http://memexproxy.com/ontology/Identifier1\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"type\": \"other\",
+                \"value\": [{
+                    \"DomainUri\": \"http://memexproxy.com/ontology/Identifier\",
+                    \"DomainId\": \"http://memexproxy.com/ontology/Identifier1\",
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://isi.edu/integration/karma/dev#classLink\",
+                    \"DomainLabel\": \"memex:Identifier1\"
+                }]
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"type\": \"other\",
+                \"value\": false
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"CitedPatents\\\"},{\\\"columnName\\\":\\\"identifierUri\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"CitedPatents\\\"},{\\\"columnName\\\":\\\"identifierUri\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"Modeling\"]
+    },
+    {
+        \"commandName\": \"AddColumnCommand\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"CitedPatents\"},
+                    {\"columnName\": \"values\"}
+                ]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"hTableId\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"type\": \"other\",
+                \"value\": \"identifierLabels\"
+            },
+            {
+                \"name\": \"defaultValue\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            }
+        ],
+        \"tags\": [\"Transformation\"]
+    },
+    {
+        \"commandName\": \"SubmitPythonTransformationCommand\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"CitedPatents\"},
+                    {\"columnName\": \"identifierLabels\"}
+                ]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"type\": \"other\",
+                \"value\": \"identifierLabels\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"type\": \"other\",
+                \"value\": \"return getValue(\\\"values\\\").strip()\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"isJSONOutput\",
+                \"type\": \"other\",
+                \"value\": \"false\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"CitedPatents\\\"},{\\\"columnName\\\":\\\"values\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"CitedPatents\\\"},{\\\"columnName\\\":\\\"identifierLabels\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"Transformation\"]
+    },
+    {
+        \"commandName\": \"SetSemanticTypeCommand\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"CitedPatents\"},
+                    {\"columnName\": \"identifierLabels\"}
+                ]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"type\": \"other\",
+                \"value\": [{
+                    \"DomainUri\": \"http://memexproxy.com/ontology/Identifier\",
+                    \"DomainId\": \"http://memexproxy.com/ontology/Identifier1\",
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://www.w3.org/2000/01/rdf-schema#label\",
+                    \"DomainLabel\": \"memex:Identifier1\"
+                }]
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"type\": \"other\",
+                \"value\": false
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"CitedPatents\\\"},{\\\"columnName\\\":\\\"identifierLabels\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"CitedPatents\\\"},{\\\"columnName\\\":\\\"identifierLabels\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"Modeling\"]
+    },
+    {
+        \"commandName\": \"AddLiteralNodeCommand\",
+        \"inputParameters\": [
+            {
+                \"name\": \"literalValue\",
+                \"type\": \"other\",
+                \"value\": \"http://dig.isi.edu/mrs/data/thesauri/identifier/patentid\"
+            },
+            {
+                \"name\": \"literalType\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"isUri\",
+                \"type\": \"other\",
+                \"value\": true
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            }
+        ],
+        \"tags\": [\"Modeling\"]
+    },
+    {
+        \"commandName\": \"ChangeInternalNodeLinksCommand\",
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"initialEdges\",
+                \"type\": \"other\",
+                \"value\": []
+            },
+            {
+                \"name\": \"newEdges\",
+                \"type\": \"other\",
+                \"value\": [{
+                    \"edgeTargetId\": \"http://dig.isi.edu/mrs/data/thesauri/identifier/patentid1\",
+                    \"edgeId\": \"http://memexproxy.com/ontology/hasType\",
+                    \"edgeTargetUri\": \"http://dig.isi.edu/mrs/data/thesauri/identifier/patentid\",
+                    \"edgeSourceId\": \"http://memexproxy.com/ontology/Identifier1\",
+                    \"edgeSourceUri\": \"http://memexproxy.com/ontology/Identifier\"
+                }]
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            }
+        ],
+        \"tags\": [\"Modeling\"]
+    },
+    {
+        \"commandName\": \"AddColumnCommand\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"ReferencedBy\"},
+                    {\"columnName\": \"values\"}
+                ]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"hTableId\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"type\": \"other\",
+                \"value\": \"referencedbyLabels\"
+            },
+            {
+                \"name\": \"defaultValue\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            }
+        ],
+        \"tags\": [\"Transformation\"]
+    },
+    {
+        \"commandName\": \"SubmitPythonTransformationCommand\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"ReferencedBy\"},
+                    {\"columnName\": \"referencedbyLabels\"}
+                ]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"type\": \"other\",
+                \"value\": \"referencedbyLabels\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"type\": \"other\",
+                \"value\": \"return getValue(\\\"values\\\").strip()\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"isJSONOutput\",
+                \"type\": \"other\",
+                \"value\": \"false\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"ReferencedBy\\\"},{\\\"columnName\\\":\\\"values\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"ReferencedBy\\\"},{\\\"columnName\\\":\\\"referencedbyLabels\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"Transformation\"]
+    },
+    {
+        \"commandName\": \"AddColumnCommand\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"ReferencedBy\"},
+                    {\"columnName\": \"referencedByUris\"}
+                ]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"hTableId\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"type\": \"other\",
+                \"value\": \"referenceIdentifierUris\"
+            },
+            {
+                \"name\": \"defaultValue\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            }
+        ],
+        \"tags\": [\"Transformation\"]
+    },
+    {
+        \"commandName\": \"SubmitPythonTransformationCommand\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"ReferencedBy\"},
+                    {\"columnName\": \"referenceIdentifierUris\"}
+                ]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"type\": \"other\",
+                \"value\": \"referenceIdentifierUris\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"type\": \"other\",
+                \"value\": \"return getValue(\\\"referencedByUris\\\") + \\\"/identifier\\\"\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"isJSONOutput\",
+                \"type\": \"other\",
+                \"value\": \"false\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"ReferencedBy\\\"},{\\\"columnName\\\":\\\"referencedByUris\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"ReferencedBy\\\"},{\\\"columnName\\\":\\\"referenceIdentifierUris\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"Transformation\"]
+    },
+    {
+        \"commandName\": \"ChangeInternalNodeLinksCommand\",
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"initialEdges\",
+                \"type\": \"other\",
+                \"value\": []
+            },
+            {
+                \"name\": \"alignmentId\",
+                \"type\": \"other\",
+                \"value\": \"WSP1:WS1AL\"
+            },
+            {
+                \"name\": \"newEdges\",
+                \"type\": \"other\",
+                \"value\": [{
+                    \"edgeTargetId\": \"http://memexproxy.com/ontology/Identifier2 (add)\",
+                    \"edgeId\": \"http://memexproxy.com/ontology/hasIdentifier\",
+                    \"edgeTargetUri\": \"http://memexproxy.com/ontology/Identifier\",
+                    \"edgeSourceId\": \"http://schema.org/WebPage3\",
+                    \"edgeSourceUri\": \"http://schema.org/WebPage3\"
+                }]
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            }
+        ],
+        \"tags\": [\"Modeling\"]
+    },
+    {
+        \"commandName\": \"SetSemanticTypeCommand\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"ReferencedBy\"},
+                    {\"columnName\": \"referencedbyLabels\"}
+                ]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"type\": \"other\",
+                \"value\": [{
+                    \"DomainUri\": \"http://memexproxy.com/ontology/Identifier\",
+                    \"DomainId\": \"http://memexproxy.com/ontology/Identifier2\",
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://www.w3.org/2000/01/rdf-schema#label\",
+                    \"DomainLabel\": \"memex:Identifier2\"
+                }]
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"type\": \"other\",
+                \"value\": false
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"ReferencedBy\\\"},{\\\"columnName\\\":\\\"referencedbyLabels\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"ReferencedBy\\\"},{\\\"columnName\\\":\\\"referencedbyLabels\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"Modeling\"]
+    },
+    {
+        \"commandName\": \"SetMetaPropertyCommand\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"ReferencedBy\"},
+                    {\"columnName\": \"referenceIdentifierUris\"}
+                ]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"metaPropertyName\",
+                \"type\": \"other\",
+                \"value\": \"isUriOfClass\"
+            },
+            {
+                \"name\": \"metaPropertyUri\",
+                \"type\": \"other\",
+                \"value\": \"http://memexproxy.com/ontology/Identifier\"
+            },
+            {
+                \"name\": \"metaPropertyId\",
+                \"type\": \"other\",
+                \"value\": \"http://memexproxy.com/ontology/Identifier2\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"type\": \"other\",
+                \"value\": [{
+                    \"DomainUri\": \"http://memexproxy.com/ontology/Identifier\",
+                    \"DomainId\": \"http://memexproxy.com/ontology/Identifier2\",
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://isi.edu/integration/karma/dev#classLink\",
+                    \"DomainLabel\": \"memex:Identifier2\"
+                }]
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"type\": \"other\",
+                \"value\": false
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"ReferencedBy\\\"},{\\\"columnName\\\":\\\"referenceIdentifierUris\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"ReferencedBy\\\"},{\\\"columnName\\\":\\\"referenceIdentifierUris\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"Modeling\"]
+    },
+    {
+        \"commandName\": \"AddLiteralNodeCommand\",
+        \"inputParameters\": [
+            {
+                \"name\": \"literalValue\",
+                \"type\": \"other\",
+                \"value\": \"http://dig.isi.edu/mrs/data/thesauri/identifier/patentid\"
+            },
+            {
+                \"name\": \"literalType\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"isUri\",
+                \"type\": \"other\",
+                \"value\": true
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            }
+        ],
+        \"tags\": [\"Modeling\"]
+    },
+    {
+        \"commandName\": \"ChangeInternalNodeLinksCommand\",
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"initialEdges\",
+                \"type\": \"other\",
+                \"value\": []
+            },
+            {
+                \"name\": \"newEdges\",
+                \"type\": \"other\",
+                \"value\": [{
+                    \"edgeTargetId\": \"http://dig.isi.edu/mrs/data/thesauri/identifier/patentid2\",
+                    \"edgeId\": \"http://memexproxy.com/ontology/hasType\",
+                    \"edgeTargetUri\": \"http://dig.isi.edu/mrs/data/thesauri/identifier/patentid\",
+                    \"edgeSourceId\": \"http://memexproxy.com/ontology/Identifier2\",
+                    \"edgeSourceUri\": \"http://memexproxy.com/ontology/Identifier\"
+                }]
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            }
+        ],
+        \"tags\": [\"Modeling\"]
+    },
+    {
+        \"commandName\": \"AddColumnCommand\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"Publication Number\"}]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"hTableId\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"type\": \"other\",
+                \"value\": \"publicationNumberRevision\"
+            },
+            {
+                \"name\": \"defaultValue\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            }
+        ],
+        \"tags\": [\"Transformation\"]
+    },
+    {
+        \"commandName\": \"SubmitPythonTransformationCommand\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"publicationNumberRevision\"}]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"type\": \"other\",
+                \"value\": \"publicationNumberRevision\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"type\": \"other\",
+                \"value\": \"return getValue(\\\"Publication Number\\\")\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"isJSONOutput\",
+                \"type\": \"other\",
+                \"value\": \"false\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"Publication Number\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"publicationNumberRevision\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"Transformation\"]
+    },
+    {
+        \"commandName\": \"AddColumnCommand\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"Publication Number\"}]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"hTableId\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"type\": \"other\",
+                \"value\": \"publicationLabel\"
+            },
+            {
+                \"name\": \"defaultValue\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            }
+        ],
+        \"tags\": [\"Transformation\"]
+    },
+    {
+        \"commandName\": \"SubmitPythonTransformationCommand\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"publicationLabel\"}]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"type\": \"other\",
+                \"value\": \"publicationLabel\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"type\": \"other\",
+                \"value\": \"publicationNumber =  getValue(\\\"Publication Number\\\")\\npatentId = publicationNumber.split(' ')\\nreturn patentId[0].strip()\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"isJSONOutput\",
+                \"type\": \"other\",
+                \"value\": \"false\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"Publication Number\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"publicationLabel\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"Transformation\"]
+    },
+    {
+        \"commandName\": \"ChangeInternalNodeLinksCommand\",
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"initialEdges\",
+                \"type\": \"other\",
+                \"value\": []
+            },
+            {
+                \"name\": \"alignmentId\",
+                \"type\": \"other\",
+                \"value\": \"WSP1:WS1AL\"
+            },
+            {
+                \"name\": \"newEdges\",
+                \"type\": \"other\",
+                \"value\": [{
+                    \"edgeTargetId\": \"http://memexproxy.com/ontology/Identifier3 (add)\",
+                    \"edgeId\": \"http://memexproxy.com/ontology/hasIdentifier\",
+                    \"edgeTargetUri\": \"http://memexproxy.com/ontology/Identifier\",
+                    \"edgeSourceId\": \"http://schema.org/WebPage1\",
+                    \"edgeSourceUri\": \"http://schema.org/WebPage1\"
+                }]
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            }
+        ],
+        \"tags\": [\"Modeling\"]
+    },
+    {
+        \"commandName\": \"AddColumnCommand\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"uri\"}]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"hTableId\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"type\": \"other\",
+                \"value\": \"identifierUri1\"
+            },
+            {
+                \"name\": \"defaultValue\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            }
+        ],
+        \"tags\": [\"Transformation\"]
+    },
+    {
+        \"commandName\": \"SubmitPythonTransformationCommand\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"identifierUri1\"}]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"type\": \"other\",
+                \"value\": \"identifierUri1\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"type\": \"other\",
+                \"value\": \"return getValue(\\\"uri\\\") + \\\"/identifier\\\"\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"isJSONOutput\",
+                \"type\": \"other\",
+                \"value\": \"false\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"uri\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"identifierUri1\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"Transformation\"]
+    },
+    {
+        \"commandName\": \"AddColumnCommand\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"publicationUri\"}]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"hTableId\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"type\": \"other\",
+                \"value\": \"publicationUriIdentifier\"
+            },
+            {
+                \"name\": \"defaultValue\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            }
+        ],
+        \"tags\": [\"Transformation\"]
+    },
+    {
+        \"commandName\": \"SubmitPythonTransformationCommand\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"publicationUriIdentifier\"}]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"type\": \"other\",
+                \"value\": \"publicationUriIdentifier\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"type\": \"other\",
+                \"value\": \"return getValue(\\\"publicationUri\\\") + \\\"identifier\\\"\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"isJSONOutput\",
+                \"type\": \"other\",
+                \"value\": \"false\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"publicationUri\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"publicationUriIdentifier\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"Transformation\"]
+    },
+    {
+        \"commandName\": \"SetMetaPropertyCommand\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"identifierUri1\"}]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"metaPropertyName\",
+                \"type\": \"other\",
+                \"value\": \"isUriOfClass\"
+            },
+            {
+                \"name\": \"metaPropertyUri\",
+                \"type\": \"other\",
+                \"value\": \"http://memexproxy.com/ontology/Identifier\"
+            },
+            {
+                \"name\": \"metaPropertyId\",
+                \"type\": \"other\",
+                \"value\": \"http://memexproxy.com/ontology/Identifier3\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"type\": \"other\",
+                \"value\": [{
+                    \"DomainUri\": \"http://memexproxy.com/ontology/Identifier\",
+                    \"DomainId\": \"http://memexproxy.com/ontology/Identifier3\",
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://isi.edu/integration/karma/dev#classLink\",
+                    \"DomainLabel\": \"memex:Identifier3\"
+                }]
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"type\": \"other\",
+                \"value\": false
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"identifierUri1\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"identifierUri1\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"Modeling\"]
+    },
+    {
+        \"commandName\": \"SetSemanticTypeCommand\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"publicationNumberRevision\"}]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"type\": \"other\",
+                \"value\": [{
+                    \"DomainUri\": \"http://memexproxy.com/ontology/Identifier\",
+                    \"DomainId\": \"http://memexproxy.com/ontology/Identifier3\",
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://www.w3.org/2000/01/rdf-schema#label\",
+                    \"DomainLabel\": \"memex:Identifier3\"
+                }]
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"type\": \"other\",
+                \"value\": false
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"publicationNumberRevision\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"publicationNumberRevision\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"Modeling\"]
+    },
+    {
+        \"commandName\": \"AddLiteralNodeCommand\",
+        \"inputParameters\": [
+            {
+                \"name\": \"literalValue\",
+                \"type\": \"other\",
+                \"value\": \"http://dig.isi.edu/mrs/data/thesauri/identifier/patentid/withrevision\"
+            },
+            {
+                \"name\": \"literalType\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"isUri\",
+                \"type\": \"other\",
+                \"value\": true
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            }
+        ],
+        \"tags\": [\"Modeling\"]
+    },
+    {
+        \"commandName\": \"ChangeInternalNodeLinksCommand\",
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"initialEdges\",
+                \"type\": \"other\",
+                \"value\": []
+            },
+            {
+                \"name\": \"newEdges\",
+                \"type\": \"other\",
+                \"value\": [{
+                    \"edgeTargetId\": \"http://dig.isi.edu/mrs/data/thesauri/identifier/patentid/withrevision1\",
+                    \"edgeId\": \"http://memexproxy.com/ontology/hasType\",
+                    \"edgeTargetUri\": \"http://dig.isi.edu/mrs/data/thesauri/identifier/patentid/withrevision\",
+                    \"edgeSourceId\": \"http://memexproxy.com/ontology/Identifier3\",
+                    \"edgeSourceUri\": \"http://memexproxy.com/ontology/Identifier\"
+                }]
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            }
+        ],
+        \"tags\": [\"Modeling\"]
+    },
+    {
+        \"commandName\": \"ChangeInternalNodeLinksCommand\",
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"initialEdges\",
+                \"type\": \"other\",
+                \"value\": []
+            },
+            {
+                \"name\": \"alignmentId\",
+                \"type\": \"other\",
+                \"value\": \"WSP1:WS1AL\"
+            },
+            {
+                \"name\": \"newEdges\",
+                \"type\": \"other\",
+                \"value\": [{
+                    \"edgeTargetId\": \"http://memexproxy.com/ontology/Identifier4 (add)\",
+                    \"edgeId\": \"http://memexproxy.com/ontology/hasIdentifier\",
+                    \"edgeTargetUri\": \"http://memexproxy.com/ontology/Identifier\",
+                    \"edgeSourceId\": \"http://schema.org/WebPage1\",
+                    \"edgeSourceUri\": \"http://schema.org/WebPage1\"
+                }]
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            }
+        ],
+        \"tags\": [\"Modeling\"]
+    },
+    {
+        \"commandName\": \"SetSemanticTypeCommand\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"publicationLabel\"}]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"type\": \"other\",
+                \"value\": [{
+                    \"DomainUri\": \"http://memexproxy.com/ontology/Identifier\",
+                    \"DomainId\": \"http://memexproxy.com/ontology/Identifier4\",
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://www.w3.org/2000/01/rdf-schema#label\",
+                    \"DomainLabel\": \"memex:Identifier4\"
+                }]
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"type\": \"other\",
+                \"value\": false
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"publicationLabel\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"publicationLabel\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"Modeling\"]
+    },
+    {
+        \"commandName\": \"SetMetaPropertyCommand\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"publicationUriIdentifier\"}]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"metaPropertyName\",
+                \"type\": \"other\",
+                \"value\": \"isUriOfClass\"
+            },
+            {
+                \"name\": \"metaPropertyUri\",
+                \"type\": \"other\",
+                \"value\": \"http://memexproxy.com/ontology/Identifier\"
+            },
+            {
+                \"name\": \"metaPropertyId\",
+                \"type\": \"other\",
+                \"value\": \"http://memexproxy.com/ontology/Identifier4\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"type\": \"other\",
+                \"value\": [{
+                    \"DomainUri\": \"http://memexproxy.com/ontology/Identifier\",
+                    \"DomainId\": \"http://memexproxy.com/ontology/Identifier4\",
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://isi.edu/integration/karma/dev#classLink\",
+                    \"DomainLabel\": \"memex:Identifier4\"
+                }]
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"type\": \"other\",
+                \"value\": false
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"publicationUriIdentifier\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"publicationUriIdentifier\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"Modeling\"]
+    },
+    {
+        \"commandName\": \"AddLiteralNodeCommand\",
+        \"inputParameters\": [
+            {
+                \"name\": \"literalValue\",
+                \"type\": \"other\",
+                \"value\": \"http://dig.isi.edu/mrs/data/thesauri/identifier/patentid\"
+            },
+            {
+                \"name\": \"literalType\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"isUri\",
+                \"type\": \"other\",
+                \"value\": true
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            }
+        ],
+        \"tags\": [\"Modeling\"]
+    },
+    {
+        \"commandName\": \"ChangeInternalNodeLinksCommand\",
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"initialEdges\",
+                \"type\": \"other\",
+                \"value\": []
+            },
+            {
+                \"name\": \"newEdges\",
+                \"type\": \"other\",
+                \"value\": [{
+                    \"edgeTargetId\": \"http://dig.isi.edu/mrs/data/thesauri/identifier/patentid3\",
+                    \"edgeId\": \"http://memexproxy.com/ontology/hasType\",
+                    \"edgeTargetUri\": \"http://dig.isi.edu/mrs/data/thesauri/identifier/patentid\",
+                    \"edgeSourceId\": \"http://memexproxy.com/ontology/Identifier4\",
+                    \"edgeSourceUri\": \"http://memexproxy.com/ontology/Identifier\"
+                }]
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            }
+        ],
+        \"tags\": [\"Modeling\"]
+    },
+    {
+        \"commandName\": \"AddLiteralNodeCommand\",
+        \"inputParameters\": [
+            {
+                \"name\": \"literalValue\",
+                \"type\": \"other\",
+                \"value\": \"http://dig.isi.edu/mrs/data/thesauri/identifier/patentid/revision\"
+            },
+            {
+                \"name\": \"literalType\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"nodeId\",
+                \"type\": \"other\",
+                \"value\": \"http://dig.isi.edu/mrs/data/thesauri/identifier/patentid/withrevision1\"
+            },
+            {
+                \"name\": \"isUri\",
+                \"type\": \"other\",
+                \"value\": false
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            }
+        ],
+        \"tags\": [\"Modeling\"]
+    },
+    {
+        \"commandName\": \"SubmitEditPythonTransformationCommand\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"publicationLabel\"}]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"type\": \"other\",
+                \"value\": \"publicationNumber =  getValue(\\\"Publication Number\\\")\\npatentId = publicationNumber.split(' ')\\nreturn patentId[0].strip()\"
+            },
+            {
+                \"name\": \"previousCommandId\",
+                \"type\": \"other\",
+                \"value\": \"C4211\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"targetHNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"publicationLabel\"}]
+            },
+            {
+                \"name\": \"isJSONOutput\",
+                \"type\": \"other\",
+                \"value\": \"false\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"Publication Number\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"publicationLabel\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"Transformation\"]
+    },
+    {
+        \"commandName\": \"SubmitEditPythonTransformationCommand\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"ReferencedBy\"},
+                    {\"columnName\": \"referencedbyLabels\"}
+                ]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"type\": \"other\",
+                \"value\": \"return getValue(\\\"values\\\").strip()\"
+            },
+            {
+                \"name\": \"previousCommandId\",
+                \"type\": \"other\",
+                \"value\": \"C3809\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"targetHNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"ReferencedBy\"},
+                    {\"columnName\": \"referencedbyLabels\"}
+                ]
+            },
+            {
+                \"name\": \"isJSONOutput\",
+                \"type\": \"other\",
+                \"value\": \"false\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"ReferencedBy\\\"},{\\\"columnName\\\":\\\"values\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"ReferencedBy\\\"},{\\\"columnName\\\":\\\"referencedbyLabels\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"Transformation\"]
+    },
+    {
+        \"commandName\": \"SubmitEditPythonTransformationCommand\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"CitedPatents\"},
+                    {\"columnName\": \"identifierLabels\"}
+                ]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"type\": \"other\",
+                \"value\": \"return getValue(\\\"values\\\").strip()\"
+            },
+            {
+                \"name\": \"previousCommandId\",
+                \"type\": \"other\",
+                \"value\": \"C3616\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"targetHNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"CitedPatents\"},
+                    {\"columnName\": \"identifierLabels\"}
+                ]
+            },
+            {
+                \"name\": \"isJSONOutput\",
+                \"type\": \"other\",
+                \"value\": \"false\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"CitedPatents\\\"},{\\\"columnName\\\":\\\"values\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"CitedPatents\\\"},{\\\"columnName\\\":\\\"identifierLabels\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"Transformation\"]
+    },
+    {
+        \"commandName\": \"AddColumnCommand\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"Thumbnail Image\"},
+                    {\"columnName\": \"values\"}
+                ]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"hTableId\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"type\": \"other\",
+                \"value\": \"cacheurl\"
+            },
+            {
+                \"name\": \"defaultValue\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            }
+        ],
+        \"tags\": [\"Transformation\"]
+    },
+    {
+        \"commandName\": \"SubmitPythonTransformationCommand\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"Thumbnail Image\"},
+                    {\"columnName\": \"cacheurl\"}
+                ]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"type\": \"other\",
+                \"value\": \"cacheurl\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"type\": \"other\",
+                \"value\": \"return getValue(\\\"values\\\")\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"isJSONOutput\",
+                \"type\": \"other\",
+                \"value\": \"false\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"Thumbnail Image\\\"},{\\\"columnName\\\":\\\"values\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"Thumbnail Image\\\"},{\\\"columnName\\\":\\\"cacheurl\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"Transformation\"]
+    },
+    {
+        \"commandName\": \"SetSemanticTypeCommand\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"Thumbnail Image\"},
+                    {\"columnName\": \"cacheurl\"}
+                ]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"type\": \"other\",
+                \"value\": [{
+                    \"DomainUri\": \"http://schema.org/ImageObject\",
+                    \"DomainId\": \"http://schema.org/ImageObject1\",
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://memexproxy.com/ontology/cacheUrl\",
+                    \"DomainLabel\": \"schema:ImageObject1\"
+                }]
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"type\": \"other\",
+                \"value\": false
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"Thumbnail Image\\\"},{\\\"columnName\\\":\\\"cacheurl\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"Thumbnail Image\\\"},{\\\"columnName\\\":\\\"cacheurl\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"Modeling\"]
+    },
+    {
+        \"commandName\": \"SubmitEditPythonTransformationCommand\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"publicationUri\"}]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"type\": \"other\",
+                \"value\": \"publicationNumber =  getValue(\\\"Publication Number\\\")\\npatentNumber = publicationNumber.split(' ')\\nreturn getMRSBaseUrl() + \\\"page/\\\" + patentNumber[0] + \\\"/processed/\\\"\"
+            },
+            {
+                \"name\": \"previousCommandId\",
+                \"type\": \"other\",
+                \"value\": \"C2206\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"targetHNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"publicationUri\"}]
+            },
+            {
+                \"name\": \"isJSONOutput\",
+                \"type\": \"other\",
+                \"value\": \"false\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"Publication Number\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"publicationUri\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"Transformation\"]
     }
 ]""" .
 
-km-dev:TriplesMap_ee348a33-e441-411b-b25c-2580d34853eb a rr:TriplesMap .
+km-dev:TriplesMap_908be0e5-7d21-4688-bbd7-3dc54c44f9c7 a rr:TriplesMap .
 
-_:node19h9mnhokx1 km-dev:hasTriplesMap km-dev:TriplesMap_ee348a33-e441-411b-b25c-2580d34853eb .
+_:node19ig640gfx1 km-dev:hasTriplesMap km-dev:TriplesMap_908be0e5-7d21-4688-bbd7-3dc54c44f9c7 .
 
-km-dev:TriplesMap_ee348a33-e441-411b-b25c-2580d34853eb km-dev:isPartOfMapping _:node19h9mnhokx1 .
+km-dev:TriplesMap_908be0e5-7d21-4688-bbd7-3dc54c44f9c7 km-dev:isPartOfMapping _:node19ig640gfx1 .
 
-_:node19h9mnhokx2 rr:tableName "mrs-patent-data-sample.json" ;
+_:node19ig640gfx2 rr:tableName "mrs-patent-data-sample.json" ;
 	a rr:LogicalTable ;
-	km-dev:isPartOfMapping _:node19h9mnhokx1 .
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
 
-_:node19h9mnhokx1 km-dev:hasLogicalTable _:node19h9mnhokx2 .
+_:node19ig640gfx1 km-dev:hasLogicalTable _:node19ig640gfx2 .
 
-km-dev:TriplesMap_ee348a33-e441-411b-b25c-2580d34853eb rr:logicalTable _:node19h9mnhokx2 ;
-	rr:subjectMap _:node19h9mnhokx3 .
+km-dev:TriplesMap_908be0e5-7d21-4688-bbd7-3dc54c44f9c7 rr:logicalTable _:node19ig640gfx2 ;
+	rr:subjectMap _:node19ig640gfx3 .
 
-_:node19h9mnhokx1 km-dev:hasSubjectMap _:node19h9mnhokx3 .
+_:node19ig640gfx1 km-dev:hasSubjectMap _:node19ig640gfx3 .
 
-_:node19h9mnhokx3 km-dev:isPartOfMapping _:node19h9mnhokx1 ;
+_:node19ig640gfx3 km-dev:isPartOfMapping _:node19ig640gfx1 ;
+	a rr:SubjectMap ;
+	km-dev:alignmentNodeId "http://memexproxy.com/ontology/Identifier1" ;
+	rr:class memex:Identifier ;
+	rr:template "{[\"CitedPatents\",\"citedUris\"]}/identifier" .
+
+km-dev:PredicateObjectMap_5a85b29b-6d9b-41b4-b33d-f6f8aa367e55 rr:predicate memex:hasType .
+
+_:node19ig640gfx4 rr:constant <http://dig.isi.edu/mrs/data/thesauri/identifier/patentid> ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
+
+_:node19ig640gfx1 km-dev:hasObjectMap _:node19ig640gfx4 .
+
+km-dev:PredicateObjectMap_5a85b29b-6d9b-41b4-b33d-f6f8aa367e55 rr:objectMap _:node19ig640gfx4 .
+
+km-dev:TriplesMap_908be0e5-7d21-4688-bbd7-3dc54c44f9c7 rr:predicateObjectMap km-dev:PredicateObjectMap_5a85b29b-6d9b-41b4-b33d-f6f8aa367e55 .
+
+km-dev:PredicateObjectMap_5a85b29b-6d9b-41b4-b33d-f6f8aa367e55 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
+
+_:node19ig640gfx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_5a85b29b-6d9b-41b4-b33d-f6f8aa367e55 .
+
+km-dev:PredicateObjectMap_acd0a24e-6ae0-4b7e-83cf-55f91fb98c67 rr:predicate rdfs:label .
+
+_:node19ig640gfx5 rr:column "[\"CitedPatents\",\"identifierLabels\"]" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
+
+_:node19ig640gfx1 km-dev:hasObjectMap _:node19ig640gfx5 .
+
+km-dev:PredicateObjectMap_acd0a24e-6ae0-4b7e-83cf-55f91fb98c67 rr:objectMap _:node19ig640gfx5 .
+
+km-dev:TriplesMap_908be0e5-7d21-4688-bbd7-3dc54c44f9c7 rr:predicateObjectMap km-dev:PredicateObjectMap_acd0a24e-6ae0-4b7e-83cf-55f91fb98c67 .
+
+km-dev:PredicateObjectMap_acd0a24e-6ae0-4b7e-83cf-55f91fb98c67 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
+
+_:node19ig640gfx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_acd0a24e-6ae0-4b7e-83cf-55f91fb98c67 .
+
+km-dev:TriplesMap_d6443641-a087-4760-870c-b632266f0bca a rr:TriplesMap .
+
+_:node19ig640gfx1 km-dev:hasTriplesMap km-dev:TriplesMap_d6443641-a087-4760-870c-b632266f0bca .
+
+km-dev:TriplesMap_d6443641-a087-4760-870c-b632266f0bca km-dev:isPartOfMapping _:node19ig640gfx1 .
+
+_:node19ig640gfx6 rr:tableName "mrs-patent-data-sample.json" ;
+	a rr:LogicalTable ;
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
+
+_:node19ig640gfx1 km-dev:hasLogicalTable _:node19ig640gfx6 .
+
+km-dev:TriplesMap_d6443641-a087-4760-870c-b632266f0bca rr:logicalTable _:node19ig640gfx6 ;
+	rr:subjectMap _:node19ig640gfx7 .
+
+_:node19ig640gfx1 km-dev:hasSubjectMap _:node19ig640gfx7 .
+
+_:node19ig640gfx7 km-dev:isPartOfMapping _:node19ig640gfx1 ;
+	a rr:SubjectMap ;
+	km-dev:alignmentNodeId "http://memexproxy.com/ontology/Identifier2" ;
+	rr:class memex:Identifier ;
+	rr:template "{[\"ReferencedBy\",\"referencedByUris\"]}/identifier" .
+
+km-dev:PredicateObjectMap_2372d274-c567-46a6-bf10-7178ea4125a1 rr:predicate memex:hasType .
+
+_:node19ig640gfx8 rr:constant <http://dig.isi.edu/mrs/data/thesauri/identifier/patentid> ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
+
+_:node19ig640gfx1 km-dev:hasObjectMap _:node19ig640gfx8 .
+
+km-dev:PredicateObjectMap_2372d274-c567-46a6-bf10-7178ea4125a1 rr:objectMap _:node19ig640gfx8 .
+
+km-dev:TriplesMap_d6443641-a087-4760-870c-b632266f0bca rr:predicateObjectMap km-dev:PredicateObjectMap_2372d274-c567-46a6-bf10-7178ea4125a1 .
+
+km-dev:PredicateObjectMap_2372d274-c567-46a6-bf10-7178ea4125a1 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
+
+_:node19ig640gfx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_2372d274-c567-46a6-bf10-7178ea4125a1 .
+
+km-dev:PredicateObjectMap_c6566600-3f12-48c2-8400-6538b1db7aa6 rr:predicate rdfs:label .
+
+_:node19ig640gfx9 rr:column "[\"ReferencedBy\",\"referencedbyLabels\"]" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
+
+_:node19ig640gfx1 km-dev:hasObjectMap _:node19ig640gfx9 .
+
+km-dev:PredicateObjectMap_c6566600-3f12-48c2-8400-6538b1db7aa6 rr:objectMap _:node19ig640gfx9 .
+
+km-dev:TriplesMap_d6443641-a087-4760-870c-b632266f0bca rr:predicateObjectMap km-dev:PredicateObjectMap_c6566600-3f12-48c2-8400-6538b1db7aa6 .
+
+km-dev:PredicateObjectMap_c6566600-3f12-48c2-8400-6538b1db7aa6 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
+
+_:node19ig640gfx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_c6566600-3f12-48c2-8400-6538b1db7aa6 .
+
+km-dev:TriplesMap_65604266-44f4-4749-909c-01d8a8dc8f58 a rr:TriplesMap .
+
+_:node19ig640gfx1 km-dev:hasTriplesMap km-dev:TriplesMap_65604266-44f4-4749-909c-01d8a8dc8f58 .
+
+km-dev:TriplesMap_65604266-44f4-4749-909c-01d8a8dc8f58 km-dev:isPartOfMapping _:node19ig640gfx1 .
+
+_:node19ig640gfx10 rr:tableName "mrs-patent-data-sample.json" ;
+	a rr:LogicalTable ;
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
+
+_:node19ig640gfx1 km-dev:hasLogicalTable _:node19ig640gfx10 .
+
+km-dev:TriplesMap_65604266-44f4-4749-909c-01d8a8dc8f58 rr:logicalTable _:node19ig640gfx10 ;
+	rr:subjectMap _:node19ig640gfx11 .
+
+_:node19ig640gfx1 km-dev:hasSubjectMap _:node19ig640gfx11 .
+
+_:node19ig640gfx11 km-dev:isPartOfMapping _:node19ig640gfx1 ;
+	a rr:SubjectMap ;
+	km-dev:alignmentNodeId "http://memexproxy.com/ontology/Identifier3" ;
+	rr:class memex:Identifier ;
+	rr:template "{uri}/identifier" .
+
+km-dev:PredicateObjectMap_ccfb065e-26d2-42e9-8f27-7fb853236d5b rr:predicate memex:hasType .
+
+_:node19ig640gfx12 rr:constant "http://dig.isi.edu/mrs/data/thesauri/identifier/patentid/revision" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
+
+_:node19ig640gfx1 km-dev:hasObjectMap _:node19ig640gfx12 .
+
+km-dev:PredicateObjectMap_ccfb065e-26d2-42e9-8f27-7fb853236d5b rr:objectMap _:node19ig640gfx12 .
+
+km-dev:TriplesMap_65604266-44f4-4749-909c-01d8a8dc8f58 rr:predicateObjectMap km-dev:PredicateObjectMap_ccfb065e-26d2-42e9-8f27-7fb853236d5b .
+
+km-dev:PredicateObjectMap_ccfb065e-26d2-42e9-8f27-7fb853236d5b a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
+
+_:node19ig640gfx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_ccfb065e-26d2-42e9-8f27-7fb853236d5b .
+
+km-dev:PredicateObjectMap_60a91a2d-41c3-4f73-b9c4-cbe1e69ec667 rr:predicate rdfs:label .
+
+_:node19ig640gfx13 rr:column "publicationNumberRevision" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
+
+_:node19ig640gfx1 km-dev:hasObjectMap _:node19ig640gfx13 .
+
+km-dev:PredicateObjectMap_60a91a2d-41c3-4f73-b9c4-cbe1e69ec667 rr:objectMap _:node19ig640gfx13 .
+
+km-dev:TriplesMap_65604266-44f4-4749-909c-01d8a8dc8f58 rr:predicateObjectMap km-dev:PredicateObjectMap_60a91a2d-41c3-4f73-b9c4-cbe1e69ec667 .
+
+km-dev:PredicateObjectMap_60a91a2d-41c3-4f73-b9c4-cbe1e69ec667 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
+
+_:node19ig640gfx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_60a91a2d-41c3-4f73-b9c4-cbe1e69ec667 .
+
+km-dev:TriplesMap_071b07da-27da-4542-ae29-4daadeb8bae0 a rr:TriplesMap .
+
+_:node19ig640gfx1 km-dev:hasTriplesMap km-dev:TriplesMap_071b07da-27da-4542-ae29-4daadeb8bae0 .
+
+km-dev:TriplesMap_071b07da-27da-4542-ae29-4daadeb8bae0 km-dev:isPartOfMapping _:node19ig640gfx1 .
+
+_:node19ig640gfx14 rr:tableName "mrs-patent-data-sample.json" ;
+	a rr:LogicalTable ;
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
+
+_:node19ig640gfx1 km-dev:hasLogicalTable _:node19ig640gfx14 .
+
+km-dev:TriplesMap_071b07da-27da-4542-ae29-4daadeb8bae0 rr:logicalTable _:node19ig640gfx14 ;
+	rr:subjectMap _:node19ig640gfx15 .
+
+_:node19ig640gfx1 km-dev:hasSubjectMap _:node19ig640gfx15 .
+
+_:node19ig640gfx15 km-dev:isPartOfMapping _:node19ig640gfx1 ;
+	a rr:SubjectMap ;
+	km-dev:alignmentNodeId "http://memexproxy.com/ontology/Identifier4" ;
+	rr:class memex:Identifier ;
+	rr:template "{publicationUri}identifier" .
+
+km-dev:PredicateObjectMap_133e2384-0221-4a43-a1e8-85d9809facec rr:predicate memex:hasType .
+
+_:node19ig640gfx16 rr:constant <http://dig.isi.edu/mrs/data/thesauri/identifier/patentid> ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
+
+_:node19ig640gfx1 km-dev:hasObjectMap _:node19ig640gfx16 .
+
+km-dev:PredicateObjectMap_133e2384-0221-4a43-a1e8-85d9809facec rr:objectMap _:node19ig640gfx16 .
+
+km-dev:TriplesMap_071b07da-27da-4542-ae29-4daadeb8bae0 rr:predicateObjectMap km-dev:PredicateObjectMap_133e2384-0221-4a43-a1e8-85d9809facec .
+
+km-dev:PredicateObjectMap_133e2384-0221-4a43-a1e8-85d9809facec a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
+
+_:node19ig640gfx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_133e2384-0221-4a43-a1e8-85d9809facec .
+
+km-dev:PredicateObjectMap_d6e9d485-0b1a-4e0e-af11-f1d4a1d3463d rr:predicate rdfs:label .
+
+_:node19ig640gfx17 rr:column "publicationLabel" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
+
+_:node19ig640gfx1 km-dev:hasObjectMap _:node19ig640gfx17 .
+
+km-dev:PredicateObjectMap_d6e9d485-0b1a-4e0e-af11-f1d4a1d3463d rr:objectMap _:node19ig640gfx17 .
+
+km-dev:TriplesMap_071b07da-27da-4542-ae29-4daadeb8bae0 rr:predicateObjectMap km-dev:PredicateObjectMap_d6e9d485-0b1a-4e0e-af11-f1d4a1d3463d .
+
+km-dev:PredicateObjectMap_d6e9d485-0b1a-4e0e-af11-f1d4a1d3463d a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
+
+_:node19ig640gfx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_d6e9d485-0b1a-4e0e-af11-f1d4a1d3463d .
+
+km-dev:TriplesMap_2f997da3-df9f-4005-a521-57d10a1bd9b3 a rr:TriplesMap .
+
+_:node19ig640gfx1 km-dev:hasTriplesMap km-dev:TriplesMap_2f997da3-df9f-4005-a521-57d10a1bd9b3 .
+
+km-dev:TriplesMap_2f997da3-df9f-4005-a521-57d10a1bd9b3 km-dev:isPartOfMapping _:node19ig640gfx1 .
+
+_:node19ig640gfx18 rr:tableName "mrs-patent-data-sample.json" ;
+	a rr:LogicalTable ;
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
+
+_:node19ig640gfx1 km-dev:hasLogicalTable _:node19ig640gfx18 .
+
+km-dev:TriplesMap_2f997da3-df9f-4005-a521-57d10a1bd9b3 rr:logicalTable _:node19ig640gfx18 ;
+	rr:subjectMap _:node19ig640gfx19 .
+
+_:node19ig640gfx1 km-dev:hasSubjectMap _:node19ig640gfx19 .
+
+_:node19ig640gfx19 km-dev:isPartOfMapping _:node19ig640gfx1 ;
 	a rr:SubjectMap ;
 	km-dev:alignmentNodeId "http://schema.org/ImageObject1" ;
 	rr:class schema:ImageObject ;
 	rr:template "{[\"Thumbnail Image\",\"image_uri1\"]}" .
 
-km-dev:PredicateObjectMap_6c57de7d-3ffb-4951-a7f1-840d5aead529 rr:predicate schema:url .
+km-dev:PredicateObjectMap_704ecc09-27e4-4cfe-861b-a967e4946cb0 rr:predicate memex:cacheUrl .
 
-_:node19h9mnhokx4 rr:column "[\"Thumbnail Image\",\"values\"]" ;
+_:node19ig640gfx20 rr:column "[\"Thumbnail Image\",\"values\"]" ;
 	a rr:ObjectMap ;
-	km-dev:isPartOfMapping _:node19h9mnhokx1 .
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
 
-_:node19h9mnhokx1 km-dev:hasObjectMap _:node19h9mnhokx4 .
+_:node19ig640gfx1 km-dev:hasObjectMap _:node19ig640gfx20 .
 
-km-dev:PredicateObjectMap_6c57de7d-3ffb-4951-a7f1-840d5aead529 rr:objectMap _:node19h9mnhokx4 .
+km-dev:PredicateObjectMap_704ecc09-27e4-4cfe-861b-a967e4946cb0 rr:objectMap _:node19ig640gfx20 .
 
-km-dev:TriplesMap_ee348a33-e441-411b-b25c-2580d34853eb rr:predicateObjectMap km-dev:PredicateObjectMap_6c57de7d-3ffb-4951-a7f1-840d5aead529 .
+km-dev:TriplesMap_2f997da3-df9f-4005-a521-57d10a1bd9b3 rr:predicateObjectMap km-dev:PredicateObjectMap_704ecc09-27e4-4cfe-861b-a967e4946cb0 .
 
-km-dev:PredicateObjectMap_6c57de7d-3ffb-4951-a7f1-840d5aead529 a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node19h9mnhokx1 .
+km-dev:PredicateObjectMap_704ecc09-27e4-4cfe-861b-a967e4946cb0 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
 
-_:node19h9mnhokx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_6c57de7d-3ffb-4951-a7f1-840d5aead529 .
+_:node19ig640gfx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_704ecc09-27e4-4cfe-861b-a967e4946cb0 .
 
-km-dev:PredicateObjectMap_67b54a88-d691-483e-b7ee-7542262f1374 rr:predicate prov:wasGeneratedBy .
+km-dev:PredicateObjectMap_11bac733-b89d-454f-9953-6ab50974cce5 rr:predicate schema:url .
 
-km-dev:RefObjectMap_efeb660d-61fe-43a8-b53c-1f829d58c59e a rr:RefObjectMap , rr:ObjectMap ;
-	rr:parentTriplesMap km-dev:TriplesMap_9f698014-8bcc-486f-b397-89d8acb93573 ;
-	km-dev:isPartOfMapping _:node19h9mnhokx1 .
+_:node19ig640gfx21 rr:column "[\"Thumbnail Image\",\"values\"]" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
 
-_:node19h9mnhokx1 km-dev:hasObjectMap km-dev:RefObjectMap_efeb660d-61fe-43a8-b53c-1f829d58c59e .
+_:node19ig640gfx1 km-dev:hasObjectMap _:node19ig640gfx21 .
 
-km-dev:PredicateObjectMap_67b54a88-d691-483e-b7ee-7542262f1374 rr:objectMap km-dev:RefObjectMap_efeb660d-61fe-43a8-b53c-1f829d58c59e .
+km-dev:PredicateObjectMap_11bac733-b89d-454f-9953-6ab50974cce5 rr:objectMap _:node19ig640gfx21 .
 
-km-dev:TriplesMap_ee348a33-e441-411b-b25c-2580d34853eb rr:predicateObjectMap km-dev:PredicateObjectMap_67b54a88-d691-483e-b7ee-7542262f1374 .
+km-dev:TriplesMap_2f997da3-df9f-4005-a521-57d10a1bd9b3 rr:predicateObjectMap km-dev:PredicateObjectMap_11bac733-b89d-454f-9953-6ab50974cce5 .
 
-km-dev:PredicateObjectMap_67b54a88-d691-483e-b7ee-7542262f1374 a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node19h9mnhokx1 .
+km-dev:PredicateObjectMap_11bac733-b89d-454f-9953-6ab50974cce5 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
 
-_:node19h9mnhokx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_67b54a88-d691-483e-b7ee-7542262f1374 .
+_:node19ig640gfx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_11bac733-b89d-454f-9953-6ab50974cce5 .
 
-km-dev:TriplesMap_9f698014-8bcc-486f-b397-89d8acb93573 a rr:TriplesMap .
+km-dev:PredicateObjectMap_f6625951-a0b1-4f20-a6c4-cb25f206cd10 rr:predicate prov:wasGeneratedBy .
 
-_:node19h9mnhokx1 km-dev:hasTriplesMap km-dev:TriplesMap_9f698014-8bcc-486f-b397-89d8acb93573 .
+km-dev:RefObjectMap_09d21cf9-8afe-47ed-a75e-ed2219e9f431 a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_2749cccd-1012-4cef-aa12-ead9f766a035 ;
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
 
-km-dev:TriplesMap_9f698014-8bcc-486f-b397-89d8acb93573 km-dev:isPartOfMapping _:node19h9mnhokx1 .
+_:node19ig640gfx1 km-dev:hasObjectMap km-dev:RefObjectMap_09d21cf9-8afe-47ed-a75e-ed2219e9f431 .
 
-_:node19h9mnhokx5 rr:tableName "mrs-patent-data-sample.json" ;
+km-dev:PredicateObjectMap_f6625951-a0b1-4f20-a6c4-cb25f206cd10 rr:objectMap km-dev:RefObjectMap_09d21cf9-8afe-47ed-a75e-ed2219e9f431 .
+
+km-dev:TriplesMap_2f997da3-df9f-4005-a521-57d10a1bd9b3 rr:predicateObjectMap km-dev:PredicateObjectMap_f6625951-a0b1-4f20-a6c4-cb25f206cd10 .
+
+km-dev:PredicateObjectMap_f6625951-a0b1-4f20-a6c4-cb25f206cd10 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
+
+_:node19ig640gfx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_f6625951-a0b1-4f20-a6c4-cb25f206cd10 .
+
+km-dev:TriplesMap_2749cccd-1012-4cef-aa12-ead9f766a035 a rr:TriplesMap .
+
+_:node19ig640gfx1 km-dev:hasTriplesMap km-dev:TriplesMap_2749cccd-1012-4cef-aa12-ead9f766a035 .
+
+km-dev:TriplesMap_2749cccd-1012-4cef-aa12-ead9f766a035 km-dev:isPartOfMapping _:node19ig640gfx1 .
+
+_:node19ig640gfx22 rr:tableName "mrs-patent-data-sample.json" ;
 	a rr:LogicalTable ;
-	km-dev:isPartOfMapping _:node19h9mnhokx1 .
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
 
-_:node19h9mnhokx1 km-dev:hasLogicalTable _:node19h9mnhokx5 .
+_:node19ig640gfx1 km-dev:hasLogicalTable _:node19ig640gfx22 .
 
-km-dev:TriplesMap_9f698014-8bcc-486f-b397-89d8acb93573 rr:logicalTable _:node19h9mnhokx5 ;
-	rr:subjectMap _:node19h9mnhokx6 .
+km-dev:TriplesMap_2749cccd-1012-4cef-aa12-ead9f766a035 rr:logicalTable _:node19ig640gfx22 ;
+	rr:subjectMap _:node19ig640gfx23 .
 
-_:node19h9mnhokx1 km-dev:hasSubjectMap _:node19h9mnhokx6 .
+_:node19ig640gfx1 km-dev:hasSubjectMap _:node19ig640gfx23 .
 
-_:node19h9mnhokx6 km-dev:isPartOfMapping _:node19h9mnhokx1 ;
+_:node19ig640gfx23 km-dev:isPartOfMapping _:node19ig640gfx1 ;
 	a rr:SubjectMap ;
 	km-dev:alignmentNodeId "http://www.w3.org/ns/prov#Activity1" ;
 	rr:class prov:Activity ;
 	rr:termType rr:BlankNode ;
 	km-dev:namePrefix "prov:Activity1" .
 
-km-dev:PredicateObjectMap_c4ca9cc3-4730-4d56-8133-abf5a1f4a460 rr:predicate prov:endedAtTime .
+km-dev:PredicateObjectMap_de6b7ce2-8013-495b-9c19-f14b667d62f8 rr:predicate prov:endedAtTime .
 
-_:node19h9mnhokx7 rr:column "modtime" ;
+_:node19ig640gfx24 rr:column "modtime" ;
 	a rr:ObjectMap ;
-	km-dev:isPartOfMapping _:node19h9mnhokx1 .
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
 
-_:node19h9mnhokx1 km-dev:hasObjectMap _:node19h9mnhokx7 .
+_:node19ig640gfx1 km-dev:hasObjectMap _:node19ig640gfx24 .
 
-km-dev:PredicateObjectMap_c4ca9cc3-4730-4d56-8133-abf5a1f4a460 rr:objectMap _:node19h9mnhokx7 .
+km-dev:PredicateObjectMap_de6b7ce2-8013-495b-9c19-f14b667d62f8 rr:objectMap _:node19ig640gfx24 .
 
-km-dev:TriplesMap_9f698014-8bcc-486f-b397-89d8acb93573 rr:predicateObjectMap km-dev:PredicateObjectMap_c4ca9cc3-4730-4d56-8133-abf5a1f4a460 .
+km-dev:TriplesMap_2749cccd-1012-4cef-aa12-ead9f766a035 rr:predicateObjectMap km-dev:PredicateObjectMap_de6b7ce2-8013-495b-9c19-f14b667d62f8 .
 
-km-dev:PredicateObjectMap_c4ca9cc3-4730-4d56-8133-abf5a1f4a460 a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node19h9mnhokx1 .
+km-dev:PredicateObjectMap_de6b7ce2-8013-495b-9c19-f14b667d62f8 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
 
-_:node19h9mnhokx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_c4ca9cc3-4730-4d56-8133-abf5a1f4a460 .
+_:node19ig640gfx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_de6b7ce2-8013-495b-9c19-f14b667d62f8 .
 
-km-dev:PredicateObjectMap_0656bf04-8a37-4dd7-b575-d55f59b76e4b rr:predicate prov:wasAttributedTo .
+km-dev:PredicateObjectMap_931d73a8-ba95-41aa-8e3a-07d5e908421b rr:predicate prov:wasAttributedTo .
 
-_:node19h9mnhokx8 rr:constant <http://dig.isi.edu/mrs/data/api/google> ;
+_:node19ig640gfx25 rr:constant <http://dig.isi.edu/mrs/data/api/google> ;
 	a rr:ObjectMap ;
-	km-dev:isPartOfMapping _:node19h9mnhokx1 .
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
 
-_:node19h9mnhokx1 km-dev:hasObjectMap _:node19h9mnhokx8 .
+_:node19ig640gfx1 km-dev:hasObjectMap _:node19ig640gfx25 .
 
-km-dev:PredicateObjectMap_0656bf04-8a37-4dd7-b575-d55f59b76e4b rr:objectMap _:node19h9mnhokx8 .
+km-dev:PredicateObjectMap_931d73a8-ba95-41aa-8e3a-07d5e908421b rr:objectMap _:node19ig640gfx25 .
 
-km-dev:TriplesMap_9f698014-8bcc-486f-b397-89d8acb93573 rr:predicateObjectMap km-dev:PredicateObjectMap_0656bf04-8a37-4dd7-b575-d55f59b76e4b .
+km-dev:TriplesMap_2749cccd-1012-4cef-aa12-ead9f766a035 rr:predicateObjectMap km-dev:PredicateObjectMap_931d73a8-ba95-41aa-8e3a-07d5e908421b .
 
-km-dev:PredicateObjectMap_0656bf04-8a37-4dd7-b575-d55f59b76e4b a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node19h9mnhokx1 .
+km-dev:PredicateObjectMap_931d73a8-ba95-41aa-8e3a-07d5e908421b a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
 
-_:node19h9mnhokx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_0656bf04-8a37-4dd7-b575-d55f59b76e4b .
+_:node19ig640gfx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_931d73a8-ba95-41aa-8e3a-07d5e908421b .
 
-km-dev:TriplesMap_af7c0ebc-4a16-41cf-9311-813cedc8aa31 a rr:TriplesMap .
+km-dev:TriplesMap_45fb2915-4325-412c-af73-5ad498213af4 a rr:TriplesMap .
 
-_:node19h9mnhokx1 km-dev:hasTriplesMap km-dev:TriplesMap_af7c0ebc-4a16-41cf-9311-813cedc8aa31 .
+_:node19ig640gfx1 km-dev:hasTriplesMap km-dev:TriplesMap_45fb2915-4325-412c-af73-5ad498213af4 .
 
-km-dev:TriplesMap_af7c0ebc-4a16-41cf-9311-813cedc8aa31 km-dev:isPartOfMapping _:node19h9mnhokx1 .
+km-dev:TriplesMap_45fb2915-4325-412c-af73-5ad498213af4 km-dev:isPartOfMapping _:node19ig640gfx1 .
 
-_:node19h9mnhokx9 rr:tableName "mrs-patent-data-sample.json" ;
+_:node19ig640gfx26 rr:tableName "mrs-patent-data-sample.json" ;
 	a rr:LogicalTable ;
-	km-dev:isPartOfMapping _:node19h9mnhokx1 .
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
 
-_:node19h9mnhokx1 km-dev:hasLogicalTable _:node19h9mnhokx9 .
+_:node19ig640gfx1 km-dev:hasLogicalTable _:node19ig640gfx26 .
 
-km-dev:TriplesMap_af7c0ebc-4a16-41cf-9311-813cedc8aa31 rr:logicalTable _:node19h9mnhokx9 ;
-	rr:subjectMap _:node19h9mnhokx10 .
+km-dev:TriplesMap_45fb2915-4325-412c-af73-5ad498213af4 rr:logicalTable _:node19ig640gfx26 ;
+	rr:subjectMap _:node19ig640gfx27 .
 
-_:node19h9mnhokx1 km-dev:hasSubjectMap _:node19h9mnhokx10 .
+_:node19ig640gfx1 km-dev:hasSubjectMap _:node19ig640gfx27 .
 
-_:node19h9mnhokx10 km-dev:isPartOfMapping _:node19h9mnhokx1 ;
+_:node19ig640gfx27 km-dev:isPartOfMapping _:node19ig640gfx1 ;
 	a rr:SubjectMap ;
 	km-dev:alignmentNodeId "http://schema.org/WebPage1" ;
 	rr:class schema:WebPage ;
 	rr:template "{uri}" ;
 	a km-dev:steinerTreeRootNode .
 
-km-dev:PredicateObjectMap_cf6b4a2f-0936-446d-b714-81a1ab2336a6 rr:predicate memex:hasAbstractPart .
+km-dev:PredicateObjectMap_73b5994d-d86e-4b99-a88b-bd32d3cdd6f3 rr:predicate memex:hasAbstractPart .
 
-km-dev:RefObjectMap_e4dde90d-c4d4-45f0-bd3c-b51b57acc21f a rr:RefObjectMap , rr:ObjectMap ;
-	rr:parentTriplesMap km-dev:TriplesMap_c3e92fc7-d1b0-4903-ae82-162f9ba6a0f3 ;
-	km-dev:isPartOfMapping _:node19h9mnhokx1 .
+km-dev:RefObjectMap_b5271468-60a7-4928-a778-c6460a7c5f33 a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_1a8f3279-f637-40a4-924b-c456454b6b41 ;
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
 
-_:node19h9mnhokx1 km-dev:hasObjectMap km-dev:RefObjectMap_e4dde90d-c4d4-45f0-bd3c-b51b57acc21f .
+_:node19ig640gfx1 km-dev:hasObjectMap km-dev:RefObjectMap_b5271468-60a7-4928-a778-c6460a7c5f33 .
 
-km-dev:PredicateObjectMap_cf6b4a2f-0936-446d-b714-81a1ab2336a6 rr:objectMap km-dev:RefObjectMap_e4dde90d-c4d4-45f0-bd3c-b51b57acc21f .
+km-dev:PredicateObjectMap_73b5994d-d86e-4b99-a88b-bd32d3cdd6f3 rr:objectMap km-dev:RefObjectMap_b5271468-60a7-4928-a778-c6460a7c5f33 .
 
-km-dev:TriplesMap_af7c0ebc-4a16-41cf-9311-813cedc8aa31 rr:predicateObjectMap km-dev:PredicateObjectMap_cf6b4a2f-0936-446d-b714-81a1ab2336a6 .
+km-dev:TriplesMap_45fb2915-4325-412c-af73-5ad498213af4 rr:predicateObjectMap km-dev:PredicateObjectMap_73b5994d-d86e-4b99-a88b-bd32d3cdd6f3 .
 
-km-dev:PredicateObjectMap_cf6b4a2f-0936-446d-b714-81a1ab2336a6 a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node19h9mnhokx1 .
+km-dev:PredicateObjectMap_73b5994d-d86e-4b99-a88b-bd32d3cdd6f3 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
 
-_:node19h9mnhokx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_cf6b4a2f-0936-446d-b714-81a1ab2336a6 .
+_:node19ig640gfx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_73b5994d-d86e-4b99-a88b-bd32d3cdd6f3 .
 
-km-dev:PredicateObjectMap_07c2c5ce-1153-49e0-808e-b496c85c6abe rr:predicate memex:hasBodyPart .
+km-dev:PredicateObjectMap_3dd26ac2-84f1-4cad-9246-52183e18a9bf rr:predicate memex:hasBodyPart .
 
-km-dev:RefObjectMap_ae3b4670-38c3-4869-9496-a81585fe4589 a rr:RefObjectMap , rr:ObjectMap ;
-	rr:parentTriplesMap km-dev:TriplesMap_343f2f28-b039-46c8-bd8c-867dd425e48a ;
-	km-dev:isPartOfMapping _:node19h9mnhokx1 .
+km-dev:RefObjectMap_9c06b9e5-b96c-4591-9695-c0a002eed323 a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_c711197e-3149-4613-a1ff-e8cb5d980ec5 ;
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
 
-_:node19h9mnhokx1 km-dev:hasObjectMap km-dev:RefObjectMap_ae3b4670-38c3-4869-9496-a81585fe4589 .
+_:node19ig640gfx1 km-dev:hasObjectMap km-dev:RefObjectMap_9c06b9e5-b96c-4591-9695-c0a002eed323 .
 
-km-dev:PredicateObjectMap_07c2c5ce-1153-49e0-808e-b496c85c6abe rr:objectMap km-dev:RefObjectMap_ae3b4670-38c3-4869-9496-a81585fe4589 .
+km-dev:PredicateObjectMap_3dd26ac2-84f1-4cad-9246-52183e18a9bf rr:objectMap km-dev:RefObjectMap_9c06b9e5-b96c-4591-9695-c0a002eed323 .
 
-km-dev:TriplesMap_af7c0ebc-4a16-41cf-9311-813cedc8aa31 rr:predicateObjectMap km-dev:PredicateObjectMap_07c2c5ce-1153-49e0-808e-b496c85c6abe .
+km-dev:TriplesMap_45fb2915-4325-412c-af73-5ad498213af4 rr:predicateObjectMap km-dev:PredicateObjectMap_3dd26ac2-84f1-4cad-9246-52183e18a9bf .
 
-km-dev:PredicateObjectMap_07c2c5ce-1153-49e0-808e-b496c85c6abe a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node19h9mnhokx1 .
+km-dev:PredicateObjectMap_3dd26ac2-84f1-4cad-9246-52183e18a9bf a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
 
-_:node19h9mnhokx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_07c2c5ce-1153-49e0-808e-b496c85c6abe .
+_:node19ig640gfx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_3dd26ac2-84f1-4cad-9246-52183e18a9bf .
 
-km-dev:PredicateObjectMap_4a7811d5-b8cd-4b21-99f0-08744cfe3cf7 rr:predicate memex:hasImagePart .
+km-dev:PredicateObjectMap_09c33e52-4306-4a52-9817-04e92dd808e1 rr:predicate memex:hasIdentifier .
 
-km-dev:RefObjectMap_968f3b5d-e1d4-4197-9e07-112d40ea9266 a rr:RefObjectMap , rr:ObjectMap ;
-	rr:parentTriplesMap km-dev:TriplesMap_ee348a33-e441-411b-b25c-2580d34853eb ;
-	km-dev:isPartOfMapping _:node19h9mnhokx1 .
+km-dev:RefObjectMap_b3441b57-9b05-4961-9af2-2958511d6262 a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_65604266-44f4-4749-909c-01d8a8dc8f58 ;
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
 
-_:node19h9mnhokx1 km-dev:hasObjectMap km-dev:RefObjectMap_968f3b5d-e1d4-4197-9e07-112d40ea9266 .
+_:node19ig640gfx1 km-dev:hasObjectMap km-dev:RefObjectMap_b3441b57-9b05-4961-9af2-2958511d6262 .
 
-km-dev:PredicateObjectMap_4a7811d5-b8cd-4b21-99f0-08744cfe3cf7 rr:objectMap km-dev:RefObjectMap_968f3b5d-e1d4-4197-9e07-112d40ea9266 .
+km-dev:PredicateObjectMap_09c33e52-4306-4a52-9817-04e92dd808e1 rr:objectMap km-dev:RefObjectMap_b3441b57-9b05-4961-9af2-2958511d6262 .
 
-km-dev:TriplesMap_af7c0ebc-4a16-41cf-9311-813cedc8aa31 rr:predicateObjectMap km-dev:PredicateObjectMap_4a7811d5-b8cd-4b21-99f0-08744cfe3cf7 .
+km-dev:TriplesMap_45fb2915-4325-412c-af73-5ad498213af4 rr:predicateObjectMap km-dev:PredicateObjectMap_09c33e52-4306-4a52-9817-04e92dd808e1 .
 
-km-dev:PredicateObjectMap_4a7811d5-b8cd-4b21-99f0-08744cfe3cf7 a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node19h9mnhokx1 .
+km-dev:PredicateObjectMap_09c33e52-4306-4a52-9817-04e92dd808e1 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
 
-_:node19h9mnhokx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_4a7811d5-b8cd-4b21-99f0-08744cfe3cf7 .
+_:node19ig640gfx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_09c33e52-4306-4a52-9817-04e92dd808e1 .
 
-km-dev:PredicateObjectMap_f417c2ab-301b-4c30-9eee-2c56cafb74b0 rr:predicate memex:hasTitlePart .
+km-dev:PredicateObjectMap_787f69ed-ebac-41ca-b6fa-692f91101c2d rr:predicate memex:hasIdentifier .
 
-km-dev:RefObjectMap_a536332f-498b-4373-8bf5-e4ee5523a35a a rr:RefObjectMap , rr:ObjectMap ;
-	rr:parentTriplesMap km-dev:TriplesMap_5681767e-cad2-439e-af93-4d4f99a3412f ;
-	km-dev:isPartOfMapping _:node19h9mnhokx1 .
+km-dev:RefObjectMap_ae3ecef6-2cea-44f8-9dd6-d6cc21f7ab80 a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_071b07da-27da-4542-ae29-4daadeb8bae0 ;
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
 
-_:node19h9mnhokx1 km-dev:hasObjectMap km-dev:RefObjectMap_a536332f-498b-4373-8bf5-e4ee5523a35a .
+_:node19ig640gfx1 km-dev:hasObjectMap km-dev:RefObjectMap_ae3ecef6-2cea-44f8-9dd6-d6cc21f7ab80 .
 
-km-dev:PredicateObjectMap_f417c2ab-301b-4c30-9eee-2c56cafb74b0 rr:objectMap km-dev:RefObjectMap_a536332f-498b-4373-8bf5-e4ee5523a35a .
+km-dev:PredicateObjectMap_787f69ed-ebac-41ca-b6fa-692f91101c2d rr:objectMap km-dev:RefObjectMap_ae3ecef6-2cea-44f8-9dd6-d6cc21f7ab80 .
 
-km-dev:TriplesMap_af7c0ebc-4a16-41cf-9311-813cedc8aa31 rr:predicateObjectMap km-dev:PredicateObjectMap_f417c2ab-301b-4c30-9eee-2c56cafb74b0 .
+km-dev:TriplesMap_45fb2915-4325-412c-af73-5ad498213af4 rr:predicateObjectMap km-dev:PredicateObjectMap_787f69ed-ebac-41ca-b6fa-692f91101c2d .
 
-km-dev:PredicateObjectMap_f417c2ab-301b-4c30-9eee-2c56cafb74b0 a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node19h9mnhokx1 .
+km-dev:PredicateObjectMap_787f69ed-ebac-41ca-b6fa-692f91101c2d a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
 
-_:node19h9mnhokx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_f417c2ab-301b-4c30-9eee-2c56cafb74b0 .
+_:node19ig640gfx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_787f69ed-ebac-41ca-b6fa-692f91101c2d .
 
-km-dev:PredicateObjectMap_5bd29cfb-6b89-45f0-b68a-9cfbaf1fcdc5 rr:predicate memex:isCitationOf .
+km-dev:PredicateObjectMap_df63ec57-d8ae-42ab-aee6-4b8128cef26a rr:predicate memex:hasImagePart .
 
-km-dev:RefObjectMap_57f2d46f-5081-4839-9f5e-f51040920e75 a rr:RefObjectMap , rr:ObjectMap ;
-	rr:parentTriplesMap km-dev:TriplesMap_b919641a-9635-4920-9edd-92d2e8bbef3a ;
-	km-dev:isPartOfMapping _:node19h9mnhokx1 .
+km-dev:RefObjectMap_b64a4cae-24e7-4375-bddf-4204760b002a a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_2f997da3-df9f-4005-a521-57d10a1bd9b3 ;
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
 
-_:node19h9mnhokx1 km-dev:hasObjectMap km-dev:RefObjectMap_57f2d46f-5081-4839-9f5e-f51040920e75 .
+_:node19ig640gfx1 km-dev:hasObjectMap km-dev:RefObjectMap_b64a4cae-24e7-4375-bddf-4204760b002a .
 
-km-dev:PredicateObjectMap_5bd29cfb-6b89-45f0-b68a-9cfbaf1fcdc5 rr:objectMap km-dev:RefObjectMap_57f2d46f-5081-4839-9f5e-f51040920e75 .
+km-dev:PredicateObjectMap_df63ec57-d8ae-42ab-aee6-4b8128cef26a rr:objectMap km-dev:RefObjectMap_b64a4cae-24e7-4375-bddf-4204760b002a .
 
-km-dev:TriplesMap_af7c0ebc-4a16-41cf-9311-813cedc8aa31 rr:predicateObjectMap km-dev:PredicateObjectMap_5bd29cfb-6b89-45f0-b68a-9cfbaf1fcdc5 .
+km-dev:TriplesMap_45fb2915-4325-412c-af73-5ad498213af4 rr:predicateObjectMap km-dev:PredicateObjectMap_df63ec57-d8ae-42ab-aee6-4b8128cef26a .
 
-km-dev:PredicateObjectMap_5bd29cfb-6b89-45f0-b68a-9cfbaf1fcdc5 a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node19h9mnhokx1 .
+km-dev:PredicateObjectMap_df63ec57-d8ae-42ab-aee6-4b8128cef26a a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
 
-_:node19h9mnhokx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_5bd29cfb-6b89-45f0-b68a-9cfbaf1fcdc5 .
+_:node19ig640gfx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_df63ec57-d8ae-42ab-aee6-4b8128cef26a .
 
-km-dev:PredicateObjectMap_40936691-854c-460c-bfca-5c34309ede58 rr:predicate memex:publicationUri .
+km-dev:PredicateObjectMap_04564566-fdcc-4481-8b15-5c4c4ba3171d rr:predicate memex:hasTitlePart .
 
-_:node19h9mnhokx11 rr:column "publicationUri" ;
+km-dev:RefObjectMap_a53a05f1-aa2c-461b-b8d9-da8ccf496830 a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_8d362222-f1a0-498a-b9e0-4e22e060fbca ;
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
+
+_:node19ig640gfx1 km-dev:hasObjectMap km-dev:RefObjectMap_a53a05f1-aa2c-461b-b8d9-da8ccf496830 .
+
+km-dev:PredicateObjectMap_04564566-fdcc-4481-8b15-5c4c4ba3171d rr:objectMap km-dev:RefObjectMap_a53a05f1-aa2c-461b-b8d9-da8ccf496830 .
+
+km-dev:TriplesMap_45fb2915-4325-412c-af73-5ad498213af4 rr:predicateObjectMap km-dev:PredicateObjectMap_04564566-fdcc-4481-8b15-5c4c4ba3171d .
+
+km-dev:PredicateObjectMap_04564566-fdcc-4481-8b15-5c4c4ba3171d a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
+
+_:node19ig640gfx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_04564566-fdcc-4481-8b15-5c4c4ba3171d .
+
+km-dev:PredicateObjectMap_cee0ad3d-42f6-4d9f-9dc9-4a3b933df7d1 rr:predicate memex:isCitationOf .
+
+km-dev:RefObjectMap_6f6a5b48-10c6-4e78-9800-d8aee3598e13 a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_ece637b1-2d33-4146-b699-fa2b2caebbe5 ;
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
+
+_:node19ig640gfx1 km-dev:hasObjectMap km-dev:RefObjectMap_6f6a5b48-10c6-4e78-9800-d8aee3598e13 .
+
+km-dev:PredicateObjectMap_cee0ad3d-42f6-4d9f-9dc9-4a3b933df7d1 rr:objectMap km-dev:RefObjectMap_6f6a5b48-10c6-4e78-9800-d8aee3598e13 .
+
+km-dev:TriplesMap_45fb2915-4325-412c-af73-5ad498213af4 rr:predicateObjectMap km-dev:PredicateObjectMap_cee0ad3d-42f6-4d9f-9dc9-4a3b933df7d1 .
+
+km-dev:PredicateObjectMap_cee0ad3d-42f6-4d9f-9dc9-4a3b933df7d1 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
+
+_:node19ig640gfx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_cee0ad3d-42f6-4d9f-9dc9-4a3b933df7d1 .
+
+km-dev:PredicateObjectMap_36918d48-295d-4dfd-b7e2-8bc6dc35e6e3 rr:predicate memex:publicationUri .
+
+_:node19ig640gfx28 rr:column "publicationUri" ;
 	a rr:ObjectMap ;
-	km-dev:isPartOfMapping _:node19h9mnhokx1 .
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
 
-_:node19h9mnhokx1 km-dev:hasObjectMap _:node19h9mnhokx11 .
+_:node19ig640gfx1 km-dev:hasObjectMap _:node19ig640gfx28 .
 
-km-dev:PredicateObjectMap_40936691-854c-460c-bfca-5c34309ede58 rr:objectMap _:node19h9mnhokx11 .
+km-dev:PredicateObjectMap_36918d48-295d-4dfd-b7e2-8bc6dc35e6e3 rr:objectMap _:node19ig640gfx28 .
 
-km-dev:TriplesMap_af7c0ebc-4a16-41cf-9311-813cedc8aa31 rr:predicateObjectMap km-dev:PredicateObjectMap_40936691-854c-460c-bfca-5c34309ede58 .
+km-dev:TriplesMap_45fb2915-4325-412c-af73-5ad498213af4 rr:predicateObjectMap km-dev:PredicateObjectMap_36918d48-295d-4dfd-b7e2-8bc6dc35e6e3 .
 
-km-dev:PredicateObjectMap_40936691-854c-460c-bfca-5c34309ede58 a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node19h9mnhokx1 .
+km-dev:PredicateObjectMap_36918d48-295d-4dfd-b7e2-8bc6dc35e6e3 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
 
-_:node19h9mnhokx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_40936691-854c-460c-bfca-5c34309ede58 .
+_:node19ig640gfx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_36918d48-295d-4dfd-b7e2-8bc6dc35e6e3 .
 
-km-dev:PredicateObjectMap_4bafb115-1fc6-499c-b896-8088e411a935 rr:predicate schema:citation .
+km-dev:PredicateObjectMap_777ef0ea-82fb-4b80-b0b5-f92ebcc96881 rr:predicate schema:citation .
 
-km-dev:RefObjectMap_01bcec94-6e66-438d-8e06-8b1b373ad0d6 a rr:RefObjectMap , rr:ObjectMap ;
-	rr:parentTriplesMap km-dev:TriplesMap_c7f6c675-4e73-4b4b-8ab6-aca02f59275b ;
-	km-dev:isPartOfMapping _:node19h9mnhokx1 .
+km-dev:RefObjectMap_7d3cc3b2-486e-436f-9a44-9ebe04dad5a2 a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_8a105ae4-a6a4-4327-a33c-6ae27b8fd011 ;
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
 
-_:node19h9mnhokx1 km-dev:hasObjectMap km-dev:RefObjectMap_01bcec94-6e66-438d-8e06-8b1b373ad0d6 .
+_:node19ig640gfx1 km-dev:hasObjectMap km-dev:RefObjectMap_7d3cc3b2-486e-436f-9a44-9ebe04dad5a2 .
 
-km-dev:PredicateObjectMap_4bafb115-1fc6-499c-b896-8088e411a935 rr:objectMap km-dev:RefObjectMap_01bcec94-6e66-438d-8e06-8b1b373ad0d6 .
+km-dev:PredicateObjectMap_777ef0ea-82fb-4b80-b0b5-f92ebcc96881 rr:objectMap km-dev:RefObjectMap_7d3cc3b2-486e-436f-9a44-9ebe04dad5a2 .
 
-km-dev:TriplesMap_af7c0ebc-4a16-41cf-9311-813cedc8aa31 rr:predicateObjectMap km-dev:PredicateObjectMap_4bafb115-1fc6-499c-b896-8088e411a935 .
+km-dev:TriplesMap_45fb2915-4325-412c-af73-5ad498213af4 rr:predicateObjectMap km-dev:PredicateObjectMap_777ef0ea-82fb-4b80-b0b5-f92ebcc96881 .
 
-km-dev:PredicateObjectMap_4bafb115-1fc6-499c-b896-8088e411a935 a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node19h9mnhokx1 .
+km-dev:PredicateObjectMap_777ef0ea-82fb-4b80-b0b5-f92ebcc96881 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
 
-_:node19h9mnhokx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_4bafb115-1fc6-499c-b896-8088e411a935 .
+_:node19ig640gfx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_777ef0ea-82fb-4b80-b0b5-f92ebcc96881 .
 
-km-dev:PredicateObjectMap_fb7e1a17-5a71-4402-9157-caf50e4cc125 rr:predicate schema:datePublished .
+km-dev:PredicateObjectMap_31e44bea-dd9c-4f4a-852c-592978b04633 rr:predicate schema:datePublished .
 
-_:node19h9mnhokx12 rr:column "publicationdate" ;
+_:node19ig640gfx29 rr:column "publicationdate" ;
 	a rr:ObjectMap ;
-	km-dev:isPartOfMapping _:node19h9mnhokx1 .
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
 
-_:node19h9mnhokx1 km-dev:hasObjectMap _:node19h9mnhokx12 .
+_:node19ig640gfx1 km-dev:hasObjectMap _:node19ig640gfx29 .
 
-km-dev:PredicateObjectMap_fb7e1a17-5a71-4402-9157-caf50e4cc125 rr:objectMap _:node19h9mnhokx12 .
+km-dev:PredicateObjectMap_31e44bea-dd9c-4f4a-852c-592978b04633 rr:objectMap _:node19ig640gfx29 .
 
-km-dev:TriplesMap_af7c0ebc-4a16-41cf-9311-813cedc8aa31 rr:predicateObjectMap km-dev:PredicateObjectMap_fb7e1a17-5a71-4402-9157-caf50e4cc125 .
+km-dev:TriplesMap_45fb2915-4325-412c-af73-5ad498213af4 rr:predicateObjectMap km-dev:PredicateObjectMap_31e44bea-dd9c-4f4a-852c-592978b04633 .
 
-km-dev:PredicateObjectMap_fb7e1a17-5a71-4402-9157-caf50e4cc125 a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node19h9mnhokx1 .
+km-dev:PredicateObjectMap_31e44bea-dd9c-4f4a-852c-592978b04633 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
 
-_:node19h9mnhokx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_fb7e1a17-5a71-4402-9157-caf50e4cc125 .
+_:node19ig640gfx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_31e44bea-dd9c-4f4a-852c-592978b04633 .
 
-km-dev:PredicateObjectMap_859e9c23-739a-4bc0-a494-73ab22ab52d6 rr:predicate schema:url .
+km-dev:PredicateObjectMap_00df3415-9878-4faf-b015-15d4037371b0 rr:predicate schema:url .
 
-_:node19h9mnhokx13 rr:column "URL" ;
+_:node19ig640gfx30 rr:column "URL" ;
 	a rr:ObjectMap ;
-	km-dev:isPartOfMapping _:node19h9mnhokx1 .
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
 
-_:node19h9mnhokx1 km-dev:hasObjectMap _:node19h9mnhokx13 .
+_:node19ig640gfx1 km-dev:hasObjectMap _:node19ig640gfx30 .
 
-km-dev:PredicateObjectMap_859e9c23-739a-4bc0-a494-73ab22ab52d6 rr:objectMap _:node19h9mnhokx13 .
+km-dev:PredicateObjectMap_00df3415-9878-4faf-b015-15d4037371b0 rr:objectMap _:node19ig640gfx30 .
 
-km-dev:TriplesMap_af7c0ebc-4a16-41cf-9311-813cedc8aa31 rr:predicateObjectMap km-dev:PredicateObjectMap_859e9c23-739a-4bc0-a494-73ab22ab52d6 .
+km-dev:TriplesMap_45fb2915-4325-412c-af73-5ad498213af4 rr:predicateObjectMap km-dev:PredicateObjectMap_00df3415-9878-4faf-b015-15d4037371b0 .
 
-km-dev:PredicateObjectMap_859e9c23-739a-4bc0-a494-73ab22ab52d6 a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node19h9mnhokx1 .
+km-dev:PredicateObjectMap_00df3415-9878-4faf-b015-15d4037371b0 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
 
-_:node19h9mnhokx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_859e9c23-739a-4bc0-a494-73ab22ab52d6 .
+_:node19ig640gfx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_00df3415-9878-4faf-b015-15d4037371b0 .
 
-km-dev:TriplesMap_c3e92fc7-d1b0-4903-ae82-162f9ba6a0f3 a rr:TriplesMap .
+km-dev:TriplesMap_1a8f3279-f637-40a4-924b-c456454b6b41 a rr:TriplesMap .
 
-_:node19h9mnhokx1 km-dev:hasTriplesMap km-dev:TriplesMap_c3e92fc7-d1b0-4903-ae82-162f9ba6a0f3 .
+_:node19ig640gfx1 km-dev:hasTriplesMap km-dev:TriplesMap_1a8f3279-f637-40a4-924b-c456454b6b41 .
 
-km-dev:TriplesMap_c3e92fc7-d1b0-4903-ae82-162f9ba6a0f3 km-dev:isPartOfMapping _:node19h9mnhokx1 .
+km-dev:TriplesMap_1a8f3279-f637-40a4-924b-c456454b6b41 km-dev:isPartOfMapping _:node19ig640gfx1 .
 
-_:node19h9mnhokx14 rr:tableName "mrs-patent-data-sample.json" ;
+_:node19ig640gfx31 rr:tableName "mrs-patent-data-sample.json" ;
 	a rr:LogicalTable ;
-	km-dev:isPartOfMapping _:node19h9mnhokx1 .
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
 
-_:node19h9mnhokx1 km-dev:hasLogicalTable _:node19h9mnhokx14 .
+_:node19ig640gfx1 km-dev:hasLogicalTable _:node19ig640gfx31 .
 
-km-dev:TriplesMap_c3e92fc7-d1b0-4903-ae82-162f9ba6a0f3 rr:logicalTable _:node19h9mnhokx14 ;
-	rr:subjectMap _:node19h9mnhokx15 .
+km-dev:TriplesMap_1a8f3279-f637-40a4-924b-c456454b6b41 rr:logicalTable _:node19ig640gfx31 ;
+	rr:subjectMap _:node19ig640gfx32 .
 
-_:node19h9mnhokx1 km-dev:hasSubjectMap _:node19h9mnhokx15 .
+_:node19ig640gfx1 km-dev:hasSubjectMap _:node19ig640gfx32 .
 
-_:node19h9mnhokx15 km-dev:isPartOfMapping _:node19h9mnhokx1 ;
+_:node19ig640gfx32 km-dev:isPartOfMapping _:node19ig640gfx1 ;
 	a rr:SubjectMap ;
 	km-dev:alignmentNodeId "http://schema.org/WebPageElement1" ;
 	rr:class schema:WebPageElement ;
 	rr:template "{uri}/abstract" .
 
-km-dev:PredicateObjectMap_fa27434d-1f4e-4c4d-9787-cd89e3a3fa3c rr:predicate schema:text .
+km-dev:PredicateObjectMap_2e9678ef-01cd-42f2-8a8e-08e1e13362f9 rr:predicate schema:text .
 
-_:node19h9mnhokx16 rr:column "Abstract" ;
+_:node19ig640gfx33 rr:column "Abstract" ;
 	a rr:ObjectMap ;
-	km-dev:isPartOfMapping _:node19h9mnhokx1 .
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
 
-_:node19h9mnhokx1 km-dev:hasObjectMap _:node19h9mnhokx16 .
+_:node19ig640gfx1 km-dev:hasObjectMap _:node19ig640gfx33 .
 
-km-dev:PredicateObjectMap_fa27434d-1f4e-4c4d-9787-cd89e3a3fa3c rr:objectMap _:node19h9mnhokx16 .
+km-dev:PredicateObjectMap_2e9678ef-01cd-42f2-8a8e-08e1e13362f9 rr:objectMap _:node19ig640gfx33 .
 
-km-dev:TriplesMap_c3e92fc7-d1b0-4903-ae82-162f9ba6a0f3 rr:predicateObjectMap km-dev:PredicateObjectMap_fa27434d-1f4e-4c4d-9787-cd89e3a3fa3c .
+km-dev:TriplesMap_1a8f3279-f637-40a4-924b-c456454b6b41 rr:predicateObjectMap km-dev:PredicateObjectMap_2e9678ef-01cd-42f2-8a8e-08e1e13362f9 .
 
-km-dev:PredicateObjectMap_fa27434d-1f4e-4c4d-9787-cd89e3a3fa3c a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node19h9mnhokx1 .
+km-dev:PredicateObjectMap_2e9678ef-01cd-42f2-8a8e-08e1e13362f9 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
 
-_:node19h9mnhokx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_fa27434d-1f4e-4c4d-9787-cd89e3a3fa3c .
+_:node19ig640gfx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_2e9678ef-01cd-42f2-8a8e-08e1e13362f9 .
 
-km-dev:TriplesMap_343f2f28-b039-46c8-bd8c-867dd425e48a a rr:TriplesMap .
+km-dev:TriplesMap_c711197e-3149-4613-a1ff-e8cb5d980ec5 a rr:TriplesMap .
 
-_:node19h9mnhokx1 km-dev:hasTriplesMap km-dev:TriplesMap_343f2f28-b039-46c8-bd8c-867dd425e48a .
+_:node19ig640gfx1 km-dev:hasTriplesMap km-dev:TriplesMap_c711197e-3149-4613-a1ff-e8cb5d980ec5 .
 
-km-dev:TriplesMap_343f2f28-b039-46c8-bd8c-867dd425e48a km-dev:isPartOfMapping _:node19h9mnhokx1 .
+km-dev:TriplesMap_c711197e-3149-4613-a1ff-e8cb5d980ec5 km-dev:isPartOfMapping _:node19ig640gfx1 .
 
-_:node19h9mnhokx17 rr:tableName "mrs-patent-data-sample.json" ;
+_:node19ig640gfx34 rr:tableName "mrs-patent-data-sample.json" ;
 	a rr:LogicalTable ;
-	km-dev:isPartOfMapping _:node19h9mnhokx1 .
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
 
-_:node19h9mnhokx1 km-dev:hasLogicalTable _:node19h9mnhokx17 .
+_:node19ig640gfx1 km-dev:hasLogicalTable _:node19ig640gfx34 .
 
-km-dev:TriplesMap_343f2f28-b039-46c8-bd8c-867dd425e48a rr:logicalTable _:node19h9mnhokx17 ;
-	rr:subjectMap _:node19h9mnhokx18 .
+km-dev:TriplesMap_c711197e-3149-4613-a1ff-e8cb5d980ec5 rr:logicalTable _:node19ig640gfx34 ;
+	rr:subjectMap _:node19ig640gfx35 .
 
-_:node19h9mnhokx1 km-dev:hasSubjectMap _:node19h9mnhokx18 .
+_:node19ig640gfx1 km-dev:hasSubjectMap _:node19ig640gfx35 .
 
-_:node19h9mnhokx18 km-dev:isPartOfMapping _:node19h9mnhokx1 ;
+_:node19ig640gfx35 km-dev:isPartOfMapping _:node19ig640gfx1 ;
 	a rr:SubjectMap ;
 	km-dev:alignmentNodeId "http://schema.org/WebPageElement3" ;
 	rr:class schema:WebPageElement ;
 	rr:termType rr:BlankNode ;
 	km-dev:namePrefix "schema:WebPageElement3" .
 
-km-dev:PredicateObjectMap_a77ec00c-648b-438d-b5a2-d182932f003d rr:predicate schema:text .
+km-dev:PredicateObjectMap_9d9900c1-85fd-44fe-b292-71c452ac5aeb rr:predicate schema:text .
 
-_:node19h9mnhokx19 rr:column "Description" ;
+_:node19ig640gfx36 rr:column "Description" ;
 	a rr:ObjectMap ;
-	km-dev:isPartOfMapping _:node19h9mnhokx1 .
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
 
-_:node19h9mnhokx1 km-dev:hasObjectMap _:node19h9mnhokx19 .
+_:node19ig640gfx1 km-dev:hasObjectMap _:node19ig640gfx36 .
 
-km-dev:PredicateObjectMap_a77ec00c-648b-438d-b5a2-d182932f003d rr:objectMap _:node19h9mnhokx19 .
+km-dev:PredicateObjectMap_9d9900c1-85fd-44fe-b292-71c452ac5aeb rr:objectMap _:node19ig640gfx36 .
 
-km-dev:TriplesMap_343f2f28-b039-46c8-bd8c-867dd425e48a rr:predicateObjectMap km-dev:PredicateObjectMap_a77ec00c-648b-438d-b5a2-d182932f003d .
+km-dev:TriplesMap_c711197e-3149-4613-a1ff-e8cb5d980ec5 rr:predicateObjectMap km-dev:PredicateObjectMap_9d9900c1-85fd-44fe-b292-71c452ac5aeb .
 
-km-dev:PredicateObjectMap_a77ec00c-648b-438d-b5a2-d182932f003d a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node19h9mnhokx1 .
+km-dev:PredicateObjectMap_9d9900c1-85fd-44fe-b292-71c452ac5aeb a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
 
-_:node19h9mnhokx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_a77ec00c-648b-438d-b5a2-d182932f003d .
+_:node19ig640gfx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_9d9900c1-85fd-44fe-b292-71c452ac5aeb .
 
-km-dev:TriplesMap_5681767e-cad2-439e-af93-4d4f99a3412f a rr:TriplesMap .
+km-dev:TriplesMap_8d362222-f1a0-498a-b9e0-4e22e060fbca a rr:TriplesMap .
 
-_:node19h9mnhokx1 km-dev:hasTriplesMap km-dev:TriplesMap_5681767e-cad2-439e-af93-4d4f99a3412f .
+_:node19ig640gfx1 km-dev:hasTriplesMap km-dev:TriplesMap_8d362222-f1a0-498a-b9e0-4e22e060fbca .
 
-km-dev:TriplesMap_5681767e-cad2-439e-af93-4d4f99a3412f km-dev:isPartOfMapping _:node19h9mnhokx1 .
+km-dev:TriplesMap_8d362222-f1a0-498a-b9e0-4e22e060fbca km-dev:isPartOfMapping _:node19ig640gfx1 .
 
-_:node19h9mnhokx20 rr:tableName "mrs-patent-data-sample.json" ;
+_:node19ig640gfx37 rr:tableName "mrs-patent-data-sample.json" ;
 	a rr:LogicalTable ;
-	km-dev:isPartOfMapping _:node19h9mnhokx1 .
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
 
-_:node19h9mnhokx1 km-dev:hasLogicalTable _:node19h9mnhokx20 .
+_:node19ig640gfx1 km-dev:hasLogicalTable _:node19ig640gfx37 .
 
-km-dev:TriplesMap_5681767e-cad2-439e-af93-4d4f99a3412f rr:logicalTable _:node19h9mnhokx20 ;
-	rr:subjectMap _:node19h9mnhokx21 .
+km-dev:TriplesMap_8d362222-f1a0-498a-b9e0-4e22e060fbca rr:logicalTable _:node19ig640gfx37 ;
+	rr:subjectMap _:node19ig640gfx38 .
 
-_:node19h9mnhokx1 km-dev:hasSubjectMap _:node19h9mnhokx21 .
+_:node19ig640gfx1 km-dev:hasSubjectMap _:node19ig640gfx38 .
 
-_:node19h9mnhokx21 km-dev:isPartOfMapping _:node19h9mnhokx1 ;
+_:node19ig640gfx38 km-dev:isPartOfMapping _:node19ig640gfx1 ;
 	a rr:SubjectMap ;
 	km-dev:alignmentNodeId "http://schema.org/WebPageElement2" ;
 	rr:class schema:WebPageElement ;
 	rr:template "{uri}/title" .
 
-km-dev:PredicateObjectMap_4dfa999b-e75b-4c5d-a63a-a58f0a91bf6c rr:predicate schema:text .
+km-dev:PredicateObjectMap_09921ee1-0922-474b-ba9b-6ed66cece7cd rr:predicate schema:text .
 
-_:node19h9mnhokx22 rr:column "Patent Title" ;
+_:node19ig640gfx39 rr:column "Patent Title" ;
 	a rr:ObjectMap ;
-	km-dev:isPartOfMapping _:node19h9mnhokx1 .
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
 
-_:node19h9mnhokx1 km-dev:hasObjectMap _:node19h9mnhokx22 .
+_:node19ig640gfx1 km-dev:hasObjectMap _:node19ig640gfx39 .
 
-km-dev:PredicateObjectMap_4dfa999b-e75b-4c5d-a63a-a58f0a91bf6c rr:objectMap _:node19h9mnhokx22 .
+km-dev:PredicateObjectMap_09921ee1-0922-474b-ba9b-6ed66cece7cd rr:objectMap _:node19ig640gfx39 .
 
-km-dev:TriplesMap_5681767e-cad2-439e-af93-4d4f99a3412f rr:predicateObjectMap km-dev:PredicateObjectMap_4dfa999b-e75b-4c5d-a63a-a58f0a91bf6c .
+km-dev:TriplesMap_8d362222-f1a0-498a-b9e0-4e22e060fbca rr:predicateObjectMap km-dev:PredicateObjectMap_09921ee1-0922-474b-ba9b-6ed66cece7cd .
 
-km-dev:PredicateObjectMap_4dfa999b-e75b-4c5d-a63a-a58f0a91bf6c a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node19h9mnhokx1 .
+km-dev:PredicateObjectMap_09921ee1-0922-474b-ba9b-6ed66cece7cd a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
 
-_:node19h9mnhokx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_4dfa999b-e75b-4c5d-a63a-a58f0a91bf6c .
+_:node19ig640gfx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_09921ee1-0922-474b-ba9b-6ed66cece7cd .
 
-km-dev:TriplesMap_b919641a-9635-4920-9edd-92d2e8bbef3a a rr:TriplesMap .
+km-dev:TriplesMap_ece637b1-2d33-4146-b699-fa2b2caebbe5 a rr:TriplesMap .
 
-_:node19h9mnhokx1 km-dev:hasTriplesMap km-dev:TriplesMap_b919641a-9635-4920-9edd-92d2e8bbef3a .
+_:node19ig640gfx1 km-dev:hasTriplesMap km-dev:TriplesMap_ece637b1-2d33-4146-b699-fa2b2caebbe5 .
 
-km-dev:TriplesMap_b919641a-9635-4920-9edd-92d2e8bbef3a km-dev:isPartOfMapping _:node19h9mnhokx1 .
+km-dev:TriplesMap_ece637b1-2d33-4146-b699-fa2b2caebbe5 km-dev:isPartOfMapping _:node19ig640gfx1 .
 
-_:node19h9mnhokx23 rr:tableName "mrs-patent-data-sample.json" ;
+_:node19ig640gfx40 rr:tableName "mrs-patent-data-sample.json" ;
 	a rr:LogicalTable ;
-	km-dev:isPartOfMapping _:node19h9mnhokx1 .
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
 
-_:node19h9mnhokx1 km-dev:hasLogicalTable _:node19h9mnhokx23 .
+_:node19ig640gfx1 km-dev:hasLogicalTable _:node19ig640gfx40 .
 
-km-dev:TriplesMap_b919641a-9635-4920-9edd-92d2e8bbef3a rr:logicalTable _:node19h9mnhokx23 ;
-	rr:subjectMap _:node19h9mnhokx24 .
+km-dev:TriplesMap_ece637b1-2d33-4146-b699-fa2b2caebbe5 rr:logicalTable _:node19ig640gfx40 ;
+	rr:subjectMap _:node19ig640gfx41 .
 
-_:node19h9mnhokx1 km-dev:hasSubjectMap _:node19h9mnhokx24 .
+_:node19ig640gfx1 km-dev:hasSubjectMap _:node19ig640gfx41 .
 
-_:node19h9mnhokx24 km-dev:isPartOfMapping _:node19h9mnhokx1 ;
+_:node19ig640gfx41 km-dev:isPartOfMapping _:node19ig640gfx1 ;
 	a rr:SubjectMap ;
 	km-dev:alignmentNodeId "http://schema.org/WebPage3" ;
 	rr:class schema:WebPage ;
 	rr:template "{[\"ReferencedBy\",\"referencedByUris\"]}" .
 
-km-dev:TriplesMap_c7f6c675-4e73-4b4b-8ab6-aca02f59275b a rr:TriplesMap .
+km-dev:PredicateObjectMap_ff38885d-42ec-4016-b3e0-a3877bf29520 rr:predicate memex:hasIdentifier .
 
-_:node19h9mnhokx1 km-dev:hasTriplesMap km-dev:TriplesMap_c7f6c675-4e73-4b4b-8ab6-aca02f59275b .
+km-dev:RefObjectMap_d76b3491-a1ec-4607-bfc7-89b7299cd7d2 a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_d6443641-a087-4760-870c-b632266f0bca ;
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
 
-km-dev:TriplesMap_c7f6c675-4e73-4b4b-8ab6-aca02f59275b km-dev:isPartOfMapping _:node19h9mnhokx1 .
+_:node19ig640gfx1 km-dev:hasObjectMap km-dev:RefObjectMap_d76b3491-a1ec-4607-bfc7-89b7299cd7d2 .
 
-_:node19h9mnhokx25 rr:tableName "mrs-patent-data-sample.json" ;
+km-dev:PredicateObjectMap_ff38885d-42ec-4016-b3e0-a3877bf29520 rr:objectMap km-dev:RefObjectMap_d76b3491-a1ec-4607-bfc7-89b7299cd7d2 .
+
+km-dev:TriplesMap_ece637b1-2d33-4146-b699-fa2b2caebbe5 rr:predicateObjectMap km-dev:PredicateObjectMap_ff38885d-42ec-4016-b3e0-a3877bf29520 .
+
+km-dev:PredicateObjectMap_ff38885d-42ec-4016-b3e0-a3877bf29520 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
+
+_:node19ig640gfx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_ff38885d-42ec-4016-b3e0-a3877bf29520 .
+
+km-dev:TriplesMap_8a105ae4-a6a4-4327-a33c-6ae27b8fd011 a rr:TriplesMap .
+
+_:node19ig640gfx1 km-dev:hasTriplesMap km-dev:TriplesMap_8a105ae4-a6a4-4327-a33c-6ae27b8fd011 .
+
+km-dev:TriplesMap_8a105ae4-a6a4-4327-a33c-6ae27b8fd011 km-dev:isPartOfMapping _:node19ig640gfx1 .
+
+_:node19ig640gfx42 rr:tableName "mrs-patent-data-sample.json" ;
 	a rr:LogicalTable ;
-	km-dev:isPartOfMapping _:node19h9mnhokx1 .
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
 
-_:node19h9mnhokx1 km-dev:hasLogicalTable _:node19h9mnhokx25 .
+_:node19ig640gfx1 km-dev:hasLogicalTable _:node19ig640gfx42 .
 
-km-dev:TriplesMap_c7f6c675-4e73-4b4b-8ab6-aca02f59275b rr:logicalTable _:node19h9mnhokx25 ;
-	rr:subjectMap _:node19h9mnhokx26 .
+km-dev:TriplesMap_8a105ae4-a6a4-4327-a33c-6ae27b8fd011 rr:logicalTable _:node19ig640gfx42 ;
+	rr:subjectMap _:node19ig640gfx43 .
 
-_:node19h9mnhokx1 km-dev:hasSubjectMap _:node19h9mnhokx26 .
+_:node19ig640gfx1 km-dev:hasSubjectMap _:node19ig640gfx43 .
 
-_:node19h9mnhokx26 km-dev:isPartOfMapping _:node19h9mnhokx1 ;
+_:node19ig640gfx43 km-dev:isPartOfMapping _:node19ig640gfx1 ;
 	a rr:SubjectMap ;
 	km-dev:alignmentNodeId "http://schema.org/WebPage2" ;
 	rr:class schema:WebPage ;
 	rr:template "page/{[\"CitedPatents\",\"values\"]}/processed" .
+
+km-dev:PredicateObjectMap_04810e05-dda9-4db4-b8c5-cebe0740aabe rr:predicate memex:hasIdentifier .
+
+km-dev:RefObjectMap_6cb02a15-0377-46a6-8cb7-ba1ccb9a5d61 a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_908be0e5-7d21-4688-bbd7-3dc54c44f9c7 ;
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
+
+_:node19ig640gfx1 km-dev:hasObjectMap km-dev:RefObjectMap_6cb02a15-0377-46a6-8cb7-ba1ccb9a5d61 .
+
+km-dev:PredicateObjectMap_04810e05-dda9-4db4-b8c5-cebe0740aabe rr:objectMap km-dev:RefObjectMap_6cb02a15-0377-46a6-8cb7-ba1ccb9a5d61 .
+
+km-dev:TriplesMap_8a105ae4-a6a4-4327-a33c-6ae27b8fd011 rr:predicateObjectMap km-dev:PredicateObjectMap_04810e05-dda9-4db4-b8c5-cebe0740aabe .
+
+km-dev:PredicateObjectMap_04810e05-dda9-4db4-b8c5-cebe0740aabe a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19ig640gfx1 .
+
+_:node19ig640gfx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_04810e05-dda9-4db4-b8c5-cebe0740aabe .

@@ -789,6 +789,11 @@ def provider_uri(cleaned):
         return "provider/%s" % x
     return ''
 
+def cluster_body_uri(uri):
+    if uri:
+        return "cluster/body/lsh/%s" % uri
+    return ''
+
 mapFunctions = defaultdict(lambda x: None)
 
 mapFunctions['phone'] = clean_phone
