@@ -88,6 +88,7 @@ return getValue("title_hash") + "_" +  getValue("body_hash")
 | _body_uri_ | `uri` | `schema:WebPageElement2`|
 | _cache_uri_ | `uri` | `schema:WebPage1`|
 | _dateMostLikelyCreated_ | `memex:dateMostLikelyCreated` | `schema:WebPage1`|
+| _id_ | `rdfs:label` | `memex:Identifier1`|
 | _import_time_ | `memex:dateCrawled` | `schema:WebPage1`|
 | _modtime_iso_ | `schema:dateModified` | `schema:WebPage1`|
 | _posttime_iso_ | `schema:dateCreated` | `schema:WebPage1`|
@@ -104,6 +105,8 @@ return getValue("title_hash") + "_" +  getValue("body_hash")
 ### Links
 | From | Property | To |
 |  --- | -------- | ---|
+| `memex:Identifier1` | `memex:hasType` | `xsd:http://dig.isi.edu/ht/data/thesaurus/identifier/ht-database`|
 | `schema:WebPage1` | `memex:hasBodyPart` | `schema:WebPageElement2`|
+| `schema:WebPage1` | `memex:hasIdentifier` | `memex:Identifier1`|
 | `schema:WebPage1` | `memex:hasTitlePart` | `schema:WebPageElement1`|
 | `schema:WebPage1` | `schema:provider` | `schema:Organization1`|
