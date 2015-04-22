@@ -17,6 +17,8 @@ def atf_joined_date(date, format="%a %b %d, %Y %I:%M %p"):
 test_date2 = "Wednesday, March 18, 2015 10:33 AM"
 test_format2 = "%A, %B %d, %Y %I:%M %p"
 
+test_date3 = "2014-01-14 02:52:44"
+
 from HTMLParser import HTMLParser
 
 class HTMLStripper(HTMLParser):
@@ -352,3 +354,5 @@ def atf_provider_name(uri):
 
 # print test_prices, get_dollar_prices(*test_prices)
 # print test_prices, get_bitcoin_prices(*test_prices)
+
+
