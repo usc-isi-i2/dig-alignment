@@ -64,6 +64,12 @@ From column: _phone_cc_
 return getLocalPhoneNumber(getValue("phone_value"))
 ```
 
+#### _feature_value2_
+From column: _feature_value_
+>``` python
+return  getValue("feature_value")
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
@@ -73,6 +79,7 @@ return getLocalPhoneNumber(getValue("phone_value"))
 | _feature_name_ | `memex:featureName` | `memex:Feature1`|
 | _feature_uri_ | `uri` | `memex:Feature1`|
 | _feature_value_ | `memex:featureValue` | `memex:Feature1`|
+| _feature_value2_ | `memex:phonenumber` | `memex:Feature1`|
 | _featurecollection_uri_ | `uri` | `memex:FeatureCollection1`|
 | _phone_cc_ | `memex:countryDialingCode` | `memex:PhoneNumber1`|
 | _phone_local_ | `memex:localPhoneNumber` | `memex:PhoneNumber1`|
