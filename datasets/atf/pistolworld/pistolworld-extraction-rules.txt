@@ -1,0 +1,92 @@
+[
+  {
+    "begin_regex": "\\&bull; View topic \\-",
+    "end_regex": "\\</title\\>",
+    "name": "topic_title",
+    "rule_type": "ItemRule"
+  },
+  {
+    "begin_regex": "\"postauthor\"",
+    "end_regex": "\\<div id=\"pagefooter\"\\>\\</div\\>",
+    "iter_begin_regex": "\"postauthor\"\\>",
+    "iter_end_regex": "\"postauthor\"\\>",
+    "name": "posts",
+    "no_first_begin_iter_rule": true,
+    "no_last_end_iter_rule": true,
+    "rule_type": "IterationRule",
+    "sub_rules": [
+      {
+        "begin_regex": "ost subject:\\</b\\>",
+        "end_regex": "<\\/div\\>",
+        "name": "title",
+        "rule_type": "ItemRule"
+      },
+      {
+        "begin_regex": "\\<td\\>\\s+\\<div class=\"postbody\"\\>",
+        "end_regex": "\\</div\\>\n\n",
+        "name": "content",
+        "rule_type": "ItemRule"
+      },
+      {
+        "begin_regex": "\\<div class=\"postbody\"\\>\\<br /\\>_________________",
+        "end_regex": "\\</div\\>\\s+\\<br clear=\"all",
+        "name": "signature",
+        "rule_type": "ItemRule"
+      },
+      {
+        "begin_regex": "\\<td class=\"postdetails\"\\>",
+        "end_regex": "\\</td\\>",
+        "name": "user_tag",
+        "rule_type": "ItemRule"
+      },
+      {
+        "begin_regex": "osted:\\</b\\>",
+        "end_regex": "\\</div\\>",
+        "name": "date_posted",
+        "rule_type": "ItemRule"
+      },
+      {
+        "begin_regex": "",
+        "end_regex": "\\</b\\>",
+        "name": "username",
+        "rule_type": "ItemRule"
+      },
+      {
+        "begin_regex": "viewtopic.php\\?p=",
+        "end_regex": "#",
+        "name": "post_id",
+        "rule_type": "ItemRule"
+      },
+      {
+        "begin_regex": "\\<span class=\"postdetails\"\\>",
+        "end_regex": "\\</span\\>",
+        "name": "user_attributes",
+        "rule_type": "IterationRule",
+        "iter_begin_regex": "<br />",
+        "iter_end_regex": "<br />",
+        "no_first_begin_iter_rule": false,
+        "no_last_end_iter_rule": true,
+        "sub_rules": [
+          {
+            "begin_regex": "\\<b\\>",
+            "end_regex": "\\</b\\>",
+  	        "name": "label",
+  	        "rule_type": "ItemRule"
+          },
+          {
+            "begin_regex": "\\</b\\>",
+            "end_regex": "",
+  	        "name": "value",
+  	        "rule_type": "ItemRule"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "begin_regex": "feed\\.php\\?f=.*?\\&amp;t=",
+    "end_regex": "\"",
+    "name": "topic_id",
+    "rule_type": "ItemRule"
+  }
+]
