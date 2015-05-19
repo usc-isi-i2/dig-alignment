@@ -120,7 +120,12 @@ memex:Cluster rdf:type owl:Class ;
 	rdfs:label "Cluster"@en ;
 	rdfs:comment """Represents a cluster of Features"""
     . 
-	
+
+memex:Post rdf:type owl:Class ;
+	rdfs:subClassOf schema:CreativeWork ;
+	rdfs:comment """A post in a forum."""
+	.
+
 #########################################################
 #
 # Object Properties
@@ -330,6 +335,20 @@ memex:SimilarObject rdf:type owl:Class ;
 	rdfs:comment """Represents an object that is similar to another object""" ;
 	rdfs:subClassOf schema:CreativeWork ;
 	rdfs:subClassOf memex:Feature ;
+	.
+
+memex:hasPost rdf:type owl:ObjectProperty ; 
+	rdfs:label "hasReplyPart"@en ;
+	rdfs:subPropertyOf schema:hasPart ;
+	rdfs:domain memex:Thread ;
+	rdfs:range memex:Post ;
+	rdfs:comment "Identifies a post belonging to a memex:Thread."
+	.
+
+memex:isPostOf rdf:type owl:ObjectProperty ; 
+	rdfs:label "isPostOf"@en ;
+	owl:inverseOf memex:hasReplyPart ;
+	rdfs:comment "Identifies the parent memex:Thread of a memex:Post."
 	.
 
 #########################################################
