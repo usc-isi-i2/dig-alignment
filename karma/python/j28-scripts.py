@@ -11,15 +11,24 @@ except:
 
 
 def j28ThreadUri(threadUrl):
-    return "thread/" + get_url_hash(threadUrl)
+    if threadUrl:
+        return "thread/" + get_url_hash(threadUrl)
+    else:
+        return ""
 
 def j28PostUri(postUrl):
     """Canonicalize postURL to drop query and fragment"""
-    (scheme, netloc, path, params, query, fragment) = urlparse(postUrl)
-    return "post/" + get_url_hash(urlunparse( (scheme, netloc, path, params, query, "") ))
+    if postUrl:
+        (scheme, netloc, path, params, query, fragment) = urlparse(postUrl)
+        return "post/" + get_url_hash(urlunparse( (scheme, netloc, path, params, query, "") ))
+    else:
+        return ""
 
 def j28ImageUri(url):
-    return "image/" + get_url_hash(url)
+    if url:
+        return "image/" + get_url_hash(url)
+    else:
+        return ""
 
 def j28FeatureProperty():
     """the name of the property"""
