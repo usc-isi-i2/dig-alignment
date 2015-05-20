@@ -4,11 +4,20 @@
 
 # function to 
 
+try:
+    from urlparse import urlunparse, urljoin
+except:
+    pass
+
+
 def j28ThreadUri(threadUrl):
     return "thread/" + get_url_hash(threadUrl)
 
 def j28PostUri(postUrl):
-    return "post/" + get_url_hash(postUrl)
+    """Canonicalize postURL to drop query and fragment"""
+    (scheme, netloc, path, params, query, fragment) = urlparse(postUrl)
+    return "post/" + get_url_hash(urlunparse( (scheme, netloc, path, params, "", "") ))
+
 
 def j28FeatureProperty():
     """the name of the property"""
@@ -49,16 +58,7 @@ SITEROOTS = {"airgunadvice.net": "http://www.airgunadvice.net",
 def j28SiteRoot(sourceName):
     return SITEROOTS.get(sourceName, "")
 
-try:
-    from urlparse import urlparse
-except:
-    pass
-try:
-    from urlparse import urljoin
-except:
-    pass
-
 def j28ThreadLinkAbsolute(siteRoot, threadLink):
-    return str(urljoin(siteRoot, threadLink))
+    return urljoin(siteRoot, threadLink)
 
 
