@@ -20,7 +20,13 @@ def j28PostUri(postUrl):
     """Canonicalize postURL to drop query and fragment"""
     if postUrl:
         (scheme, netloc, path, params, query, fragment) = urlparse(postUrl)
-        return "post/" + get_url_hash(urlunparse( (scheme, netloc, path, params, query, "") ))
+        # something like p=123#p456
+        # means post p456 in context of (original? parent?) p123
+        # but for us p=123#p456 and p=789#p456 are equivalent (and equivalent to p=456 with no fragment)
+        # So this doesn't work
+        # return "post/" + get_url_hash(urlunparse( (scheme, netloc, path, params, query, "") ))
+        # So I will hash the entire URL and hope it joins nicely on the XML source
+        return "post/" + get_url_hash(urlunparse( (scheme, netloc, path, params, query, fragment) ))
     else:
         return ""
 
