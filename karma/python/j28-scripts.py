@@ -62,3 +62,5 @@ def j28ThreadLinkAbsolute(siteRoot, threadLink):
     return urljoin(siteRoot, threadLink)
 
 
+def j28FcUri(uri):
+    return atf_fc_uri(uri)
