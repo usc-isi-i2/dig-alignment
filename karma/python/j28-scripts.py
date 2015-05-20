@@ -1,14 +1,14 @@
 # Three models
-# JSON data models THREAd to provide
-# 
-
-# function to 
+# JSON data providing Thread
+# JSON data providing Post
+# XML data providing Post
 
 try:
     from urlparse import urlunparse, urljoin
 except:
     pass
 
+### JSON-specific
 
 def j28ThreadUri(threadUrl):
     if threadUrl:
@@ -72,8 +72,8 @@ J28SITEROOTS = {"airgunadvice.net": "http://www.airgunadvice.net",
                 "treasurestatearms.com": "http://www.treasurestatearms.com/phpbb3",
                 "utahconcealedcarry.com": "http://www.utahconcealedcarry.com"}
 
-HG2SITEROOTS = {"smf_abraxasgacelesox.onion": "http://www.smf_abraxasgacelesox.onion",
-                "phpbb_z34uj4opd3tejafn.onion": "http://phpbb_z34uj4opd3tejafn.onion"}
+HG2SITEROOTS = {"smf_abraxasgacelesox.onion": "http://abraxasgacelesox.onion",
+                "phpbb_z34uj4opd3tejafn.onion": "http://z34uj4opd3tejafn.onion"}
 
 ## To avoid changing model, just append those new entries to original
 
@@ -91,4 +91,51 @@ def j28ThreadLinkAbsolute(siteRoot, threadLink):
 
 def j28FcUri(uri):
     return atf_fc_uri(uri)
+
+##################################################################
+
+# XML-specific
+
+def filterPostUri(name, content):
+    if name=='url':
+        return j28PostUri(content)
+    else:
+        return ''
+
+J28XMLFEATURENAMES =  {"action": "transationTypesMentioned",
+                       "email_domain": "emailDomainsMentioned",
+                       "firearm_type": "firearmTypesMentioned",
+                       # is actually the source name, not forum within a source
+                       # already handled as 
+                       "forum_name": "forum_name",
+                       "from_user": "fromUser",
+                       "to_user": "toUsers",
+                       # memex ontology
+                       "keyword": "keywords",
+                       "phone": "phonenumber",
+                       # already handled elsewhere as Post.hasBodyPart
+                       "post_content": placePostalAddress,
+                       # this is the location mentioned in the text
+                       "post_location": None,
+                       # modeled as Thread.hasTitlePart
+                       "thread_name": None,
+                       # ignore, seems an artifact of forum processing
+                       "id": None,
+                       # used to generate URI only
+                       "url": None,
+                       # this is the location of the post author
+                       # already handled elsewhere as Post.placePostalAddress
+                       "user_location": None,
+                       # ignore, redundant with 
+                       "year": None}
+
+def j28xmlFeatureName(name):
+    return J28XMLFEATURENAMES.get(name, "")
+
+def j28xmlFeatureCollectionLinkName(name):
+    fn = j28xmlFeatureName(name)
+    if fn:
+        return fn + "_feature"
+    else:
+        return ""
 
