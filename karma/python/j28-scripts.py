@@ -67,7 +67,7 @@ J28SITEROOTS = {"airgunadvice.net": "http://www.airgunadvice.net",
                 "utahconcealedcarry.com": "http://www.utahconcealedcarry.com"}
 
 HG2SITEROOTS = {"smf_abraxasgacelesox.onion": "http://www.smf_abraxasgacelesox.onion",
-                "phpbb_z34uj4opd3tejafn.onion": "http://phpbb_z34uj4opd3tejafn.onion",
+                "phpbb_z34uj4opd3tejafn.onion": "http://phpbb_z34uj4opd3tejafn.onion"}
 
 ## To avoid changing model, just append those new entries to original
 
