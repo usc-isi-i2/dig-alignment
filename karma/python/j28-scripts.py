@@ -18,6 +18,8 @@ def j28PostUri(postUrl):
     (scheme, netloc, path, params, query, fragment) = urlparse(postUrl)
     return "post/" + get_url_hash(urlunparse( (scheme, netloc, path, params, "", "") ))
 
+def j28ImageUri(url):
+    return "image/" + get_url_hash(url)
 
 def j28FeatureProperty():
     """the name of the property"""
@@ -64,3 +66,4 @@ def j28ThreadLinkAbsolute(siteRoot, threadLink):
 
 def j28FcUri(uri):
     return atf_fc_uri(uri)
+
