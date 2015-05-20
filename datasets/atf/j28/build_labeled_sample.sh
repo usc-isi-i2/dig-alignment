@@ -2,7 +2,6 @@
 
 COUNT=5
 TEMPFILE=$(mktemp -t "$0")
-TEMPFILE="abc.def"
 touch ${TEMPFILE}
 
 head -${COUNT} airgunadvice.net.json | sed -e 's#^{#{"originalfile": "airgunadvice.net.json",#' >> ${TEMPFILE}
