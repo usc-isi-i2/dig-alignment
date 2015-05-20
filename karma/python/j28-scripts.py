@@ -16,7 +16,7 @@ def j28ThreadUri(threadUrl):
 def j28PostUri(postUrl):
     """Canonicalize postURL to drop query and fragment"""
     (scheme, netloc, path, params, query, fragment) = urlparse(postUrl)
-    return "post/" + get_url_hash(urlunparse( (scheme, netloc, path, params, "", "") ))
+    return "post/" + get_url_hash(urlunparse( (scheme, netloc, path, params, query, "") ))
 
 def j28ImageUri(url):
     return "image/" + get_url_hash(url)
