@@ -42,7 +42,7 @@ sed -i '.bak2' '$s/,$//' ${TEMPFILE}
 
 # now add a [ ] around it
 
-{ echo "[" ; cat ${DIR}/${TEMPFILE} ; echo "]" ; } > ${DIR}/labeled_j28json_all.json
+{ echo "[" ; cat ${TEMPFILE} ; echo "]" ; } > ${DIR}/labeled_j28json_all.json
 
 rm ${TEMPFILE}
 rm ${TEMPFILE}.bak*
