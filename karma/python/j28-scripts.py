@@ -138,7 +138,7 @@ def j28xmlFeatureName(name):
 
 def j28xmlFeatureNameUri(fn):
     if fn:
-        return "http://dig.isi.edu/ontology/" + fn
+        return "http://memexproxy.com/ontology/" + fn
     else:
         return ""
 
@@ -152,12 +152,12 @@ def j28xmlFeatureCollectionUri(uri):
 def j28xmlFeatureCollectionLinkName(name):
     fn = j28xmlFeatureName(name)
     if fn:
-        return "http://dig.isi.edu/ontology/" + fn + "_feature"
+        return "http://memexproxy.com/ontology/" + fn + "_feature"
     else:
         return ""
 
 def j28xmlFeatureCollectionLinkNameUri(fn):
     if fn:
-        return "http://dig.isi.edu/ontology/" + fn
+        return "http://memexproxy.com/ontology/" + fn
     else:
         return ""
