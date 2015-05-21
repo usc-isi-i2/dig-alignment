@@ -2,7 +2,7 @@
 
 splitter=/opt/local/libexec/perl5.16/sitebin/xml_split
 size='100M'
-dir=/Users/philpot/Documents/project/dig-alignment/datasets/atf/j28json
+dir=/Users/philpot/Documents/project/dig-alignment/datasets/atf/j28xml
 
 # Large files:
 # split into chunks of about size 100M
