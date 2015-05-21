@@ -104,7 +104,7 @@ def filterPostUri(name, content):
 
 J28XMLFEATURENAMES =  {"action": "transactionTypesMentioned",
                        "email_domain": "emailDomainsMentioned",
-                       "firearm_type": "firearmTypesMentioned",
+                       "firearm_type": "weaponsMentioned",
                        # is actually the source name, not forum within a source
                        # already handled as Thread.website
                        "forum_name": None,
