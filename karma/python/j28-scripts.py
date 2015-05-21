@@ -136,6 +136,19 @@ def j28xmlFeatureName(name):
     except Exception as e:
         return ""
 
+def j28xmlFeatureNameUri(fn):
+    if fn:
+        return "http://dig.isi.edu/ontology/" + fn
+    else:
+        return ""
+
+def j28xmlFeatureCollectionUri(uri):
+    if uri:
+        return atf_fc_uri(uri)
+    else:
+        return ""                               
+
+
 def j28xmlFeatureCollectionLinkName(name):
     fn = j28xmlFeatureName(name)
     if fn:
@@ -143,3 +156,8 @@ def j28xmlFeatureCollectionLinkName(name):
     else:
         return ""
 
+def j28xmlFeatureCollectionLinkNameUri(fn):
+    if fn:
+        return "http://dig.isi.edu/ontology/" + fn
+    else:
+        return ""
