@@ -106,17 +106,17 @@ J28XMLFEATURENAMES =  {"action": "transationTypesMentioned",
                        "email_domain": "emailDomainsMentioned",
                        "firearm_type": "firearmTypesMentioned",
                        # is actually the source name, not forum within a source
-                       # already handled as 
-                       "forum_name": "forum_name",
+                       # already handled as as source?
+                       "forum_name": None,
                        "from_user": "fromUser",
                        "to_user": "toUsers",
                        # memex ontology
                        "keyword": "keywords",
                        "phone": "phonenumber",
                        # already handled elsewhere as Post.hasBodyPart
-                       "post_content": placePostalAddress,
+                       "post_content": None,
                        # this is the location mentioned in the text
-                       "post_location": None,
+                       "post_location": "placePostalAddress",
                        # modeled as Thread.hasTitlePart
                        "thread_name": None,
                        # ignore, seems an artifact of forum processing
@@ -130,10 +130,15 @@ J28XMLFEATURENAMES =  {"action": "transationTypesMentioned",
                        "year": None}
 
 def j28xmlFeatureName(name):
-    return J28XMLFEATURENAMES.get(name, "")
+    try:
+        fn = J28XMLFEATURENAMES.get(name, "")
+        return fn or ""
+    except Exception as e:
+        return "bobo"
 
 def j28xmlFeatureCollectionLinkName(name):
     fn = j28xmlFeatureName(name)
+    return "x" + "y"
     if fn:
         return fn + "_feature"
     else:
