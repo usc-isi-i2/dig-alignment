@@ -10,82 +10,82 @@ dir=/Users/philpot/Documents/project/dig-alignment/datasets/atf/j28xml
 
 echo ducksouth.com.xml
 ${splitter} -s${size} ${dir}/ducksouth.com.xml
-rm ${dir}/ducksouth.com.xml-00.xml
+rm ${dir}/ducksouth.com-00.xml
 sed -i '' '1d;$d' ${dir}/ducksouth.com-*.xml
 
 echo levergunscommunity.com.xml
 ${splitter} -s${size} ${dir}/levergunscommunity.com.xml
-rm ${dir}/levergunscommunity.com.xml-00.xml
+rm ${dir}/levergunscommunity.com-00.xml
 sed -i '' '1d;$d' ${dir}/levergunscommunity.com-*.xml
 
 echo texaschlforum.com.xml
 ${splitter} -s${size} ${dir}/texaschlforum.com.xml
-rm ${dir}/texaschlforum.com.xml-00.xml
+rm ${dir}/texaschlforum.com-00.xml
 sed -i '' '1d;$d' ${dir}/texaschlforum.com-*.xml
 
 echo tndeer.com.xml
 ${splitter} -s${size} ${dir}/tndeer.com.xml
-rm ${dir}/tndeer.com.xml-00.xml
+rm ${dir}/tndeer.com-00.xml
 sed -i '' '1d;$d' ${dir}/tndeer.com-*.xml
 
 echo ohioccwforums.org.xml
 ${splitter} -s${size} ${dir}/ohioccwforums.org.xml
-rm ${dir}/ohioccwforums.org.xml-00.xml
+rm ${dir}/ohioccwforums.org-00.xml
 sed -i '' '1d;$d' ${dir}/ohioccwforums.org-*.xml
 
 echo theliberalgunclub.com.xml
 ${splitter} -s${size} ${dir}/theliberalgunclub.com.xml
-rm ${dir}/theliberalgunclub.com.xml-00.xml
+rm ${dir}/theliberalgunclub.com-00.xml
 sed -i '' '1d;$d' ${dir}/theliberalgunclub.com-*.xml
 
 echo comebackalive.com.xml
 ${splitter} -s${size} ${dir}/comebackalive.com.xml
-rm ${dir}/comebackalive.com.xml-00.xml
+rm ${dir}/comebackalive.com-00.xml
 sed -i '' '1d;$d' ${dir}/comebackalive.com-*.xml
 
 echo nosler.com.xml
 ${splitter} -s${size} ${dir}/nosler.com.xml
-rm ${dir}/nosler.com.xml-00.xml
+rm ${dir}/nosler.com-00.xml
 sed -i '' '1d;$d' ${dir}/nosler.com-*.xml
 
 echo americanpreppersnetwork.net.xml
 ${splitter} -s${size} ${dir}/americanpreppersnetwork.net.xml
-rm ${dir}/americanpreppersnetwork.net.xml-00.xml
+rm ${dir}/americanpreppersnetwork.net-00.xml
 sed -i '' '1d;$d' ${dir}/americanpreppersnetwork.net-*.xml
 
 echo isthmus.com.xml
 ${splitter} -s${size} ${dir}/isthmus.com.xml
-rm ${dir}/isthmus.com.xml-00.xml
+rm ${dir}/isthmus.com-00.xml
 sed -i '' '1d;$d' ${dir}/isthmus.com-*.xml
 
 echo nodakoutdoors.com.xml
 ${splitter} -s${size} ${dir}/nodakoutdoors.com.xml
-rm ${dir}/nodakoutdoors.com.xml-00.xml
+rm ${dir}/nodakoutdoors.com-00.xml
 sed -i '' '1d;$d' ${dir}/nodakoutdoors.com-*.xml
 
 echo utahconcealedcarry.com.xml
 ${splitter} -s${size} ${dir}/utahconcealedcarry.com.xml
-rm ${dir}/utahconcealedcarry.com.xml-00.xml
+rm ${dir}/utahconcealedcarry.com-00.xml
 sed -i '' '1d;$d' ${dir}/utahconcealedcarry.com-*.xml
 
 echo modernmuzzleloader.com.xml
 ${splitter} -s${size} ${dir}/modernmuzzleloader.com.xml
-rm ${dir}/modernmuzzleloader.com.xml-00.xml
+rm ${dir}/modernmuzzleloader.com-00.xml
 sed -i '' '1d;$d' ${dir}/modernmuzzleloader.com-*.xml
 
 echo spokaneguntrader.com.xml
 ${splitter} -s${size} ${dir}/spokaneguntrader.com.xml
-rm ${dir}/spokaneguntrader.com.xml-00.xml
+rm ${dir}/spokaneguntrader.com-00.xml
 sed -i '' '1d;$d' ${dir}/spokaneguntrader.com-*.xml
 
 echo gobblernation.com.xml
 ${splitter} -s${size} ${dir}/gobblernation.com.xml
-rm ${dir}/gobblernation.com.xml-00.xml
+rm ${dir}/gobblernation.com-00.xml
 sed -i '' '1d;$d' ${dir}/gobblernation.com-*.xml
 
 echo kentuckyarmoryclub.com.xml
 ${splitter} -s${size} ${dir}/kentuckyarmoryclub.com.xml
-rm ${dir}/kentuckyarmoryclub.com.xml-00.xml
+rm ${dir}/kentuckyarmoryclub.com-00.xml
 sed -i '' '1d;$d' ${dir}/kentuckyarmoryclub.com-*.xml
 
 echo airgunadvice.net.xml
