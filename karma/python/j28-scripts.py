@@ -102,11 +102,11 @@ def filterPostUri(name, content):
     else:
         return ''
 
-J28XMLFEATURENAMES =  {"action": "transationTypesMentioned",
+J28XMLFEATURENAMES =  {"action": "transactionTypesMentioned",
                        "email_domain": "emailDomainsMentioned",
                        "firearm_type": "firearmTypesMentioned",
                        # is actually the source name, not forum within a source
-                       # already handled as as source?
+                       # already handled as Thread.website
                        "forum_name": None,
                        "from_user": "fromUser",
                        "to_user": "toUsers",
@@ -134,11 +134,10 @@ def j28xmlFeatureName(name):
         fn = J28XMLFEATURENAMES.get(name, "")
         return fn or ""
     except Exception as e:
-        return "bobo"
+        return ""
 
 def j28xmlFeatureCollectionLinkName(name):
     fn = j28xmlFeatureName(name)
-    return "x" + "y"
     if fn:
         return fn + "_feature"
     else:
