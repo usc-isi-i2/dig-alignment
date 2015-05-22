@@ -13,12 +13,12 @@
 @prefix rr: <http://www.w3.org/ns/r2rml#> .
 @prefix km-dev: <http://isi.edu/integration/karma/dev#> .
 
-_:node19luemv9ix1 a km-dev:R2RMLMapping ;
+_:node19lulssekx1 a km-dev:R2RMLMapping ;
 	km-dev:sourceName "evolution-forums-sample.json" ;
-	km-dev:modelPublicationTime "1432319917362"^^xsd:long ;
+	km-dev:modelPublicationTime "1432327451092"^^xsd:long ;
 	km-dev:modelVersion "1.7" ;
-	km-dev:hasInputColumns "[[{\"columnName\":\"posts\"},{\"columnName\":\"post_id\"}],[{\"columnName\":\"posts\"},{\"columnName\":\"weapons_split\"},{\"columnName\":\"Values\"}],[{\"columnName\":\"url\"}]]" ;
-	km-dev:hasOutputColumns "[[{\"columnName\":\"posts\"},{\"columnName\":\"weapons_split\"},{\"columnName\":\"weapons_split2\"}],[{\"columnName\":\"posts\"},{\"columnName\":\"post_uri\"}],[{\"columnName\":\"uri\"}],[{\"columnName\":\"posts\"},{\"columnName\":\"fc_uri\"}],[{\"columnName\":\"posts\"},{\"columnName\":\"weapons_split\"},{\"columnName\":\"Values\"}],[{\"columnName\":\"posts\"},{\"columnName\":\"clean_content\"}],[{\"columnName\":\"posts\"},{\"columnName\":\"weapons\"}]]" ;
+	km-dev:hasInputColumns "[[{\"columnName\":\"posts\"},{\"columnName\":\"weapons_split\"},{\"columnName\":\"Values\"}],[{\"columnName\":\"posts\"},{\"columnName\":\"post_id\"}],[{\"columnName\":\"url\"}]]" ;
+	km-dev:hasOutputColumns "[[{\"columnName\":\"posts\"},{\"columnName\":\"post_uri\"}],[{\"columnName\":\"posts\"},{\"columnName\":\"weapons_split\"},{\"columnName\":\"weapons_split2\"}],[{\"columnName\":\"uri\"}],[{\"columnName\":\"posts\"},{\"columnName\":\"fc_uri\"}],[{\"columnName\":\"posts\"},{\"columnName\":\"weapons_split\"},{\"columnName\":\"Values\"}],[{\"columnName\":\"posts\"},{\"columnName\":\"clean_content\"}],[{\"columnName\":\"posts\"},{\"columnName\":\"weapons\"}],[{\"columnName\":\"posts\"},{\"columnName\":\"weapons_split\"},{\"columnName\":\"weapons_uri\"}]]" ;
 	km-dev:hasModelLabel "evolution-forums-sample.json" ;
 	km-dev:hasBaseURI "http://dig.isi.edu/atf/data/page/" ;
 	km-dev:hasWorksheetHistory """[
@@ -1087,202 +1087,329 @@ _:node19luemv9ix1 a km-dev:R2RMLMapping ;
             }
         ],
         \"commandName\": \"ChangeInternalNodeLinksCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"posts\"},
+                    {\"columnName\": \"weapons_split\"},
+                    {\"columnName\": \"weapons_split2\"}
+                ],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"value\": \"weapons_uri\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"value\": \"uri = weaponsMentioned_uri(getValue(\\\"Values\\\"))\\nif uri:\\n  return getValue(\\\"fc_uri\\\") + \\\"/\\\" + uri\\nreturn ''\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"isJSONOutput\",
+                \"value\": \"false\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"posts\\\"},{\\\"columnName\\\":\\\"fc_uri\\\"}]},{\\\"value\\\":[{\\\"columnName\\\":\\\"posts\\\"},{\\\"columnName\\\":\\\"weapons_split\\\"},{\\\"columnName\\\":\\\"Values\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"posts\\\"},{\\\"columnName\\\":\\\"weapons_split\\\"},{\\\"columnName\\\":\\\"weapons_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SubmitPythonTransformationCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"posts\"},
+                    {\"columnName\": \"weapons_split\"},
+                    {\"columnName\": \"weapons_uri\"}
+                ],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyName\",
+                \"value\": \"isUriOfClass\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyUri\",
+                \"value\": \"http://memexproxy.com/ontology/Feature\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyId\",
+                \"value\": \"http://memexproxy.com/ontology/Feature1\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://isi.edu/integration/karma/dev#classLink\",
+                    \"DomainLabel\": \"memex:Feature1\",
+                    \"DomainId\": \"http://memexproxy.com/ontology/Feature1\",
+                    \"DomainUri\": \"http://memexproxy.com/ontology/Feature\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"posts\\\"},{\\\"columnName\\\":\\\"weapons_split\\\"},{\\\"columnName\\\":\\\"weapons_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"posts\\\"},{\\\"columnName\\\":\\\"weapons_split\\\"},{\\\"columnName\\\":\\\"weapons_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetMetaPropertyCommand\"
     }
 ]""" .
 
-km-dev:TriplesMap_c28fe880-8929-4976-a6ba-a3aa1c9e15cf a rr:TriplesMap .
+km-dev:TriplesMap_4b282265-27ff-4105-b289-899ce2bedeb5 a rr:TriplesMap .
 
-_:node19luemv9ix1 km-dev:hasTriplesMap km-dev:TriplesMap_c28fe880-8929-4976-a6ba-a3aa1c9e15cf .
+_:node19lulssekx1 km-dev:hasTriplesMap km-dev:TriplesMap_4b282265-27ff-4105-b289-899ce2bedeb5 .
 
-km-dev:TriplesMap_c28fe880-8929-4976-a6ba-a3aa1c9e15cf km-dev:isPartOfMapping _:node19luemv9ix1 .
+km-dev:TriplesMap_4b282265-27ff-4105-b289-899ce2bedeb5 km-dev:isPartOfMapping _:node19lulssekx1 .
 
-_:node19luemv9ix2 rr:tableName "evolution-forums-sample.json" ;
+_:node19lulssekx2 rr:tableName "evolution-forums-sample.json" ;
 	a rr:LogicalTable ;
-	km-dev:isPartOfMapping _:node19luemv9ix1 .
+	km-dev:isPartOfMapping _:node19lulssekx1 .
 
-_:node19luemv9ix1 km-dev:hasLogicalTable _:node19luemv9ix2 .
+_:node19lulssekx1 km-dev:hasLogicalTable _:node19lulssekx2 .
 
-km-dev:TriplesMap_c28fe880-8929-4976-a6ba-a3aa1c9e15cf rr:logicalTable _:node19luemv9ix2 ;
-	rr:subjectMap _:node19luemv9ix3 .
+km-dev:TriplesMap_4b282265-27ff-4105-b289-899ce2bedeb5 rr:logicalTable _:node19lulssekx2 ;
+	rr:subjectMap _:node19lulssekx3 .
 
-_:node19luemv9ix1 km-dev:hasSubjectMap _:node19luemv9ix3 .
+_:node19lulssekx1 km-dev:hasSubjectMap _:node19lulssekx3 .
 
-_:node19luemv9ix3 km-dev:isPartOfMapping _:node19luemv9ix1 ;
+_:node19lulssekx3 km-dev:isPartOfMapping _:node19lulssekx1 ;
 	a rr:SubjectMap ;
 	km-dev:alignmentNodeId "http://memexproxy.com/ontology/Feature1" ;
 	rr:class memex:Feature ;
-	rr:termType rr:BlankNode ;
-	km-dev:namePrefix "memex:Feature1" .
+	rr:template "{[\"posts\",\"weapons_split\",\"weapons_uri\"]}" .
 
-km-dev:PredicateObjectMap_9b6287b7-6b1e-48f2-8631-0c5f0ba276c0 rr:predicate memex:featureName .
+km-dev:PredicateObjectMap_43562f83-2391-46a6-afe8-1ac9a697ba04 rr:predicate memex:featureName .
 
-_:node19luemv9ix4 rr:constant "weaponsMentioned" ;
+_:node19lulssekx4 rr:constant "weaponsMentioned" ;
 	rr:datatype "http://www.w3.org/2001/XMLSchema#string" ;
 	a rr:ObjectMap ;
-	km-dev:isPartOfMapping _:node19luemv9ix1 .
+	km-dev:isPartOfMapping _:node19lulssekx1 .
 
-_:node19luemv9ix1 km-dev:hasObjectMap _:node19luemv9ix4 .
+_:node19lulssekx1 km-dev:hasObjectMap _:node19lulssekx4 .
 
-km-dev:PredicateObjectMap_9b6287b7-6b1e-48f2-8631-0c5f0ba276c0 rr:objectMap _:node19luemv9ix4 .
+km-dev:PredicateObjectMap_43562f83-2391-46a6-afe8-1ac9a697ba04 rr:objectMap _:node19lulssekx4 .
 
-km-dev:TriplesMap_c28fe880-8929-4976-a6ba-a3aa1c9e15cf rr:predicateObjectMap km-dev:PredicateObjectMap_9b6287b7-6b1e-48f2-8631-0c5f0ba276c0 .
+km-dev:TriplesMap_4b282265-27ff-4105-b289-899ce2bedeb5 rr:predicateObjectMap km-dev:PredicateObjectMap_43562f83-2391-46a6-afe8-1ac9a697ba04 .
 
-km-dev:PredicateObjectMap_9b6287b7-6b1e-48f2-8631-0c5f0ba276c0 a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node19luemv9ix1 .
+km-dev:PredicateObjectMap_43562f83-2391-46a6-afe8-1ac9a697ba04 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19lulssekx1 .
 
-_:node19luemv9ix1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_9b6287b7-6b1e-48f2-8631-0c5f0ba276c0 .
+_:node19lulssekx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_43562f83-2391-46a6-afe8-1ac9a697ba04 .
 
-km-dev:PredicateObjectMap_ff06d1e0-58ba-4cf2-84ba-22027d6ea4af rr:predicate memex:featureValue .
+km-dev:PredicateObjectMap_cd364418-6717-485b-b192-dee8861d8cc8 rr:predicate memex:featureValue .
 
-_:node19luemv9ix5 rr:column "[\"posts\",\"weapons_split\",\"Values\"]" ;
+_:node19lulssekx5 rr:column "[\"posts\",\"weapons_split\",\"Values\"]" ;
 	a rr:ObjectMap ;
-	km-dev:isPartOfMapping _:node19luemv9ix1 .
+	km-dev:isPartOfMapping _:node19lulssekx1 .
 
-_:node19luemv9ix1 km-dev:hasObjectMap _:node19luemv9ix5 .
+_:node19lulssekx1 km-dev:hasObjectMap _:node19lulssekx5 .
 
-km-dev:PredicateObjectMap_ff06d1e0-58ba-4cf2-84ba-22027d6ea4af rr:objectMap _:node19luemv9ix5 .
+km-dev:PredicateObjectMap_cd364418-6717-485b-b192-dee8861d8cc8 rr:objectMap _:node19lulssekx5 .
 
-km-dev:TriplesMap_c28fe880-8929-4976-a6ba-a3aa1c9e15cf rr:predicateObjectMap km-dev:PredicateObjectMap_ff06d1e0-58ba-4cf2-84ba-22027d6ea4af .
+km-dev:TriplesMap_4b282265-27ff-4105-b289-899ce2bedeb5 rr:predicateObjectMap km-dev:PredicateObjectMap_cd364418-6717-485b-b192-dee8861d8cc8 .
 
-km-dev:PredicateObjectMap_ff06d1e0-58ba-4cf2-84ba-22027d6ea4af a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node19luemv9ix1 .
+km-dev:PredicateObjectMap_cd364418-6717-485b-b192-dee8861d8cc8 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19lulssekx1 .
 
-_:node19luemv9ix1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_ff06d1e0-58ba-4cf2-84ba-22027d6ea4af .
+_:node19lulssekx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_cd364418-6717-485b-b192-dee8861d8cc8 .
 
-km-dev:PredicateObjectMap_0f373162-fa61-4ae3-bb06-953f97e3bcab rr:predicate memex:weaponsMentioned .
+km-dev:PredicateObjectMap_96008b18-7b8e-429f-9073-b8beedb060b8 rr:predicate memex:weaponsMentioned .
 
-_:node19luemv9ix6 rr:column "[\"posts\",\"weapons_split\",\"Values\"]" ;
+_:node19lulssekx6 rr:column "[\"posts\",\"weapons_split\",\"Values\"]" ;
 	a rr:ObjectMap ;
-	km-dev:isPartOfMapping _:node19luemv9ix1 .
+	km-dev:isPartOfMapping _:node19lulssekx1 .
 
-_:node19luemv9ix1 km-dev:hasObjectMap _:node19luemv9ix6 .
+_:node19lulssekx1 km-dev:hasObjectMap _:node19lulssekx6 .
 
-km-dev:PredicateObjectMap_0f373162-fa61-4ae3-bb06-953f97e3bcab rr:objectMap _:node19luemv9ix6 .
+km-dev:PredicateObjectMap_96008b18-7b8e-429f-9073-b8beedb060b8 rr:objectMap _:node19lulssekx6 .
 
-km-dev:TriplesMap_c28fe880-8929-4976-a6ba-a3aa1c9e15cf rr:predicateObjectMap km-dev:PredicateObjectMap_0f373162-fa61-4ae3-bb06-953f97e3bcab .
+km-dev:TriplesMap_4b282265-27ff-4105-b289-899ce2bedeb5 rr:predicateObjectMap km-dev:PredicateObjectMap_96008b18-7b8e-429f-9073-b8beedb060b8 .
 
-km-dev:PredicateObjectMap_0f373162-fa61-4ae3-bb06-953f97e3bcab a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node19luemv9ix1 .
+km-dev:PredicateObjectMap_96008b18-7b8e-429f-9073-b8beedb060b8 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19lulssekx1 .
 
-_:node19luemv9ix1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_0f373162-fa61-4ae3-bb06-953f97e3bcab .
+_:node19lulssekx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_96008b18-7b8e-429f-9073-b8beedb060b8 .
 
-km-dev:TriplesMap_ab75d47e-2907-4ae4-8979-7d400ed6fb52 a rr:TriplesMap .
+km-dev:TriplesMap_80331223-1d8c-4db0-9b3c-89184451f9f6 a rr:TriplesMap .
 
-_:node19luemv9ix1 km-dev:hasTriplesMap km-dev:TriplesMap_ab75d47e-2907-4ae4-8979-7d400ed6fb52 .
+_:node19lulssekx1 km-dev:hasTriplesMap km-dev:TriplesMap_80331223-1d8c-4db0-9b3c-89184451f9f6 .
 
-km-dev:TriplesMap_ab75d47e-2907-4ae4-8979-7d400ed6fb52 km-dev:isPartOfMapping _:node19luemv9ix1 .
+km-dev:TriplesMap_80331223-1d8c-4db0-9b3c-89184451f9f6 km-dev:isPartOfMapping _:node19lulssekx1 .
 
-_:node19luemv9ix7 rr:tableName "evolution-forums-sample.json" ;
+_:node19lulssekx7 rr:tableName "evolution-forums-sample.json" ;
 	a rr:LogicalTable ;
-	km-dev:isPartOfMapping _:node19luemv9ix1 .
+	km-dev:isPartOfMapping _:node19lulssekx1 .
 
-_:node19luemv9ix1 km-dev:hasLogicalTable _:node19luemv9ix7 .
+_:node19lulssekx1 km-dev:hasLogicalTable _:node19lulssekx7 .
 
-km-dev:TriplesMap_ab75d47e-2907-4ae4-8979-7d400ed6fb52 rr:logicalTable _:node19luemv9ix7 ;
-	rr:subjectMap _:node19luemv9ix8 .
+km-dev:TriplesMap_80331223-1d8c-4db0-9b3c-89184451f9f6 rr:logicalTable _:node19lulssekx7 ;
+	rr:subjectMap _:node19lulssekx8 .
 
-_:node19luemv9ix1 km-dev:hasSubjectMap _:node19luemv9ix8 .
+_:node19lulssekx1 km-dev:hasSubjectMap _:node19lulssekx8 .
 
-_:node19luemv9ix8 km-dev:isPartOfMapping _:node19luemv9ix1 ;
+_:node19lulssekx8 km-dev:isPartOfMapping _:node19lulssekx1 ;
 	a rr:SubjectMap ;
 	km-dev:alignmentNodeId "http://memexproxy.com/ontology/FeatureCollection1" ;
 	rr:class memex:FeatureCollection ;
 	rr:template "{[\"posts\",\"fc_uri\"]}" .
 
-km-dev:PredicateObjectMap_b9518517-b7bc-493e-a3d1-f65130e688f0 rr:predicate memex:weaponsMentioned_feature .
+km-dev:PredicateObjectMap_8a77bd6d-cf04-482e-9b4c-8e407ca3b904 rr:predicate memex:weaponsMentioned_feature .
 
-km-dev:RefObjectMap_7fdc57c9-1758-4d06-94e2-3612c190a817 a rr:RefObjectMap , rr:ObjectMap ;
-	rr:parentTriplesMap km-dev:TriplesMap_c28fe880-8929-4976-a6ba-a3aa1c9e15cf ;
-	km-dev:isPartOfMapping _:node19luemv9ix1 .
+km-dev:RefObjectMap_c5ad6dae-86c5-4e8f-82d6-caa3b59c1f7d a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_4b282265-27ff-4105-b289-899ce2bedeb5 ;
+	km-dev:isPartOfMapping _:node19lulssekx1 .
 
-_:node19luemv9ix1 km-dev:hasObjectMap km-dev:RefObjectMap_7fdc57c9-1758-4d06-94e2-3612c190a817 .
+_:node19lulssekx1 km-dev:hasObjectMap km-dev:RefObjectMap_c5ad6dae-86c5-4e8f-82d6-caa3b59c1f7d .
 
-km-dev:PredicateObjectMap_b9518517-b7bc-493e-a3d1-f65130e688f0 rr:objectMap km-dev:RefObjectMap_7fdc57c9-1758-4d06-94e2-3612c190a817 .
+km-dev:PredicateObjectMap_8a77bd6d-cf04-482e-9b4c-8e407ca3b904 rr:objectMap km-dev:RefObjectMap_c5ad6dae-86c5-4e8f-82d6-caa3b59c1f7d .
 
-km-dev:TriplesMap_ab75d47e-2907-4ae4-8979-7d400ed6fb52 rr:predicateObjectMap km-dev:PredicateObjectMap_b9518517-b7bc-493e-a3d1-f65130e688f0 .
+km-dev:TriplesMap_80331223-1d8c-4db0-9b3c-89184451f9f6 rr:predicateObjectMap km-dev:PredicateObjectMap_8a77bd6d-cf04-482e-9b4c-8e407ca3b904 .
 
-km-dev:PredicateObjectMap_b9518517-b7bc-493e-a3d1-f65130e688f0 a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node19luemv9ix1 .
+km-dev:PredicateObjectMap_8a77bd6d-cf04-482e-9b4c-8e407ca3b904 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19lulssekx1 .
 
-_:node19luemv9ix1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_b9518517-b7bc-493e-a3d1-f65130e688f0 .
+_:node19lulssekx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_8a77bd6d-cf04-482e-9b4c-8e407ca3b904 .
 
-km-dev:TriplesMap_1710ce67-7771-4e10-9dd6-204243d7726e a rr:TriplesMap .
+km-dev:TriplesMap_36d379fd-81a2-40f0-9dee-97ce95aad321 a rr:TriplesMap .
 
-_:node19luemv9ix1 km-dev:hasTriplesMap km-dev:TriplesMap_1710ce67-7771-4e10-9dd6-204243d7726e .
+_:node19lulssekx1 km-dev:hasTriplesMap km-dev:TriplesMap_36d379fd-81a2-40f0-9dee-97ce95aad321 .
 
-km-dev:TriplesMap_1710ce67-7771-4e10-9dd6-204243d7726e km-dev:isPartOfMapping _:node19luemv9ix1 .
+km-dev:TriplesMap_36d379fd-81a2-40f0-9dee-97ce95aad321 km-dev:isPartOfMapping _:node19lulssekx1 .
 
-_:node19luemv9ix9 rr:tableName "evolution-forums-sample.json" ;
+_:node19lulssekx9 rr:tableName "evolution-forums-sample.json" ;
 	a rr:LogicalTable ;
-	km-dev:isPartOfMapping _:node19luemv9ix1 .
+	km-dev:isPartOfMapping _:node19lulssekx1 .
 
-_:node19luemv9ix1 km-dev:hasLogicalTable _:node19luemv9ix9 .
+_:node19lulssekx1 km-dev:hasLogicalTable _:node19lulssekx9 .
 
-km-dev:TriplesMap_1710ce67-7771-4e10-9dd6-204243d7726e rr:logicalTable _:node19luemv9ix9 ;
-	rr:subjectMap _:node19luemv9ix10 .
+km-dev:TriplesMap_36d379fd-81a2-40f0-9dee-97ce95aad321 rr:logicalTable _:node19lulssekx9 ;
+	rr:subjectMap _:node19lulssekx10 .
 
-_:node19luemv9ix1 km-dev:hasSubjectMap _:node19luemv9ix10 .
+_:node19lulssekx1 km-dev:hasSubjectMap _:node19lulssekx10 .
 
-_:node19luemv9ix10 km-dev:isPartOfMapping _:node19luemv9ix1 ;
+_:node19lulssekx10 km-dev:isPartOfMapping _:node19lulssekx1 ;
 	a rr:SubjectMap ;
 	km-dev:alignmentNodeId "http://memexproxy.com/ontology/Post1" ;
 	rr:class memex:Post ;
 	rr:template "{[\"posts\",\"post_uri\"]}" .
 
-km-dev:PredicateObjectMap_b3ed821c-421e-4e4f-ad6c-b30ac78b335e rr:predicate memex:hasFeatureCollection .
+km-dev:PredicateObjectMap_20457a13-61dc-43d3-97c2-ce7b41fb7a3e rr:predicate memex:hasFeatureCollection .
 
-km-dev:RefObjectMap_cb810efd-4ca5-4220-a3e6-aa4630671f5e a rr:RefObjectMap , rr:ObjectMap ;
-	rr:parentTriplesMap km-dev:TriplesMap_ab75d47e-2907-4ae4-8979-7d400ed6fb52 ;
-	km-dev:isPartOfMapping _:node19luemv9ix1 .
+km-dev:RefObjectMap_8846d75c-ece1-4560-b8ce-33576164549c a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_80331223-1d8c-4db0-9b3c-89184451f9f6 ;
+	km-dev:isPartOfMapping _:node19lulssekx1 .
 
-_:node19luemv9ix1 km-dev:hasObjectMap km-dev:RefObjectMap_cb810efd-4ca5-4220-a3e6-aa4630671f5e .
+_:node19lulssekx1 km-dev:hasObjectMap km-dev:RefObjectMap_8846d75c-ece1-4560-b8ce-33576164549c .
 
-km-dev:PredicateObjectMap_b3ed821c-421e-4e4f-ad6c-b30ac78b335e rr:objectMap km-dev:RefObjectMap_cb810efd-4ca5-4220-a3e6-aa4630671f5e .
+km-dev:PredicateObjectMap_20457a13-61dc-43d3-97c2-ce7b41fb7a3e rr:objectMap km-dev:RefObjectMap_8846d75c-ece1-4560-b8ce-33576164549c .
 
-km-dev:TriplesMap_1710ce67-7771-4e10-9dd6-204243d7726e rr:predicateObjectMap km-dev:PredicateObjectMap_b3ed821c-421e-4e4f-ad6c-b30ac78b335e .
+km-dev:TriplesMap_36d379fd-81a2-40f0-9dee-97ce95aad321 rr:predicateObjectMap km-dev:PredicateObjectMap_20457a13-61dc-43d3-97c2-ce7b41fb7a3e .
 
-km-dev:PredicateObjectMap_b3ed821c-421e-4e4f-ad6c-b30ac78b335e a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node19luemv9ix1 .
+km-dev:PredicateObjectMap_20457a13-61dc-43d3-97c2-ce7b41fb7a3e a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19lulssekx1 .
 
-_:node19luemv9ix1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_b3ed821c-421e-4e4f-ad6c-b30ac78b335e .
+_:node19lulssekx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_20457a13-61dc-43d3-97c2-ce7b41fb7a3e .
 
-km-dev:TriplesMap_a175db7f-22b4-4efc-9951-ff32bd197503 a rr:TriplesMap .
+km-dev:TriplesMap_4511bfcd-bd15-4bd7-bbb8-b04d0cc18f95 a rr:TriplesMap .
 
-_:node19luemv9ix1 km-dev:hasTriplesMap km-dev:TriplesMap_a175db7f-22b4-4efc-9951-ff32bd197503 .
+_:node19lulssekx1 km-dev:hasTriplesMap km-dev:TriplesMap_4511bfcd-bd15-4bd7-bbb8-b04d0cc18f95 .
 
-km-dev:TriplesMap_a175db7f-22b4-4efc-9951-ff32bd197503 km-dev:isPartOfMapping _:node19luemv9ix1 .
+km-dev:TriplesMap_4511bfcd-bd15-4bd7-bbb8-b04d0cc18f95 km-dev:isPartOfMapping _:node19lulssekx1 .
 
-_:node19luemv9ix11 rr:tableName "evolution-forums-sample.json" ;
+_:node19lulssekx11 rr:tableName "evolution-forums-sample.json" ;
 	a rr:LogicalTable ;
-	km-dev:isPartOfMapping _:node19luemv9ix1 .
+	km-dev:isPartOfMapping _:node19lulssekx1 .
 
-_:node19luemv9ix1 km-dev:hasLogicalTable _:node19luemv9ix11 .
+_:node19lulssekx1 km-dev:hasLogicalTable _:node19lulssekx11 .
 
-km-dev:TriplesMap_a175db7f-22b4-4efc-9951-ff32bd197503 rr:logicalTable _:node19luemv9ix11 ;
-	rr:subjectMap _:node19luemv9ix12 .
+km-dev:TriplesMap_4511bfcd-bd15-4bd7-bbb8-b04d0cc18f95 rr:logicalTable _:node19lulssekx11 ;
+	rr:subjectMap _:node19lulssekx12 .
 
-_:node19luemv9ix1 km-dev:hasSubjectMap _:node19luemv9ix12 .
+_:node19lulssekx1 km-dev:hasSubjectMap _:node19lulssekx12 .
 
-_:node19luemv9ix12 km-dev:isPartOfMapping _:node19luemv9ix1 ;
+_:node19lulssekx12 km-dev:isPartOfMapping _:node19lulssekx1 ;
 	a rr:SubjectMap ;
 	km-dev:alignmentNodeId "http://memexproxy.com/ontology/Thread1" ;
 	rr:class memex:Thread ;
 	rr:template "{uri}" ;
 	a km-dev:steinerTreeRootNode .
 
-km-dev:PredicateObjectMap_686f8c56-554d-424e-b5c3-05b943866fc3 rr:predicate memex:hasPost .
+km-dev:PredicateObjectMap_e3791397-a38f-4ad4-8625-3ac990dbbb38 rr:predicate memex:hasPost .
 
-km-dev:RefObjectMap_cd3fa5b1-a197-476b-94a4-fac3550d5925 a rr:RefObjectMap , rr:ObjectMap ;
-	rr:parentTriplesMap km-dev:TriplesMap_1710ce67-7771-4e10-9dd6-204243d7726e ;
-	km-dev:isPartOfMapping _:node19luemv9ix1 .
+km-dev:RefObjectMap_83b4985d-0722-43a3-8bab-3dcd374df563 a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_36d379fd-81a2-40f0-9dee-97ce95aad321 ;
+	km-dev:isPartOfMapping _:node19lulssekx1 .
 
-_:node19luemv9ix1 km-dev:hasObjectMap km-dev:RefObjectMap_cd3fa5b1-a197-476b-94a4-fac3550d5925 .
+_:node19lulssekx1 km-dev:hasObjectMap km-dev:RefObjectMap_83b4985d-0722-43a3-8bab-3dcd374df563 .
 
-km-dev:PredicateObjectMap_686f8c56-554d-424e-b5c3-05b943866fc3 rr:objectMap km-dev:RefObjectMap_cd3fa5b1-a197-476b-94a4-fac3550d5925 .
+km-dev:PredicateObjectMap_e3791397-a38f-4ad4-8625-3ac990dbbb38 rr:objectMap km-dev:RefObjectMap_83b4985d-0722-43a3-8bab-3dcd374df563 .
 
-km-dev:TriplesMap_a175db7f-22b4-4efc-9951-ff32bd197503 rr:predicateObjectMap km-dev:PredicateObjectMap_686f8c56-554d-424e-b5c3-05b943866fc3 .
+km-dev:TriplesMap_4511bfcd-bd15-4bd7-bbb8-b04d0cc18f95 rr:predicateObjectMap km-dev:PredicateObjectMap_e3791397-a38f-4ad4-8625-3ac990dbbb38 .
 
-km-dev:PredicateObjectMap_686f8c56-554d-424e-b5c3-05b943866fc3 a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node19luemv9ix1 .
+km-dev:PredicateObjectMap_e3791397-a38f-4ad4-8625-3ac990dbbb38 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19lulssekx1 .
 
-_:node19luemv9ix1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_686f8c56-554d-424e-b5c3-05b943866fc3 .
+_:node19lulssekx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_e3791397-a38f-4ad4-8625-3ac990dbbb38 .

@@ -61,20 +61,60 @@ From column: _posts / Unfold: label / registered / registered_date_
 return getValue("registered_date")
 ```
 
+#### _user_uri_
+From column: _posts / user_id2_
+>``` python
+uri = person_userid_uri(getValue("user_id"))
+if uri:
+  return getValue("fc_uri") + "/" + uri
+return ''
+```
+
+#### _post_count_uri_
+From column: _posts / Unfold: label / posts / post_count2_
+>``` python
+uri = person_postcount_uri(getValue("post_count"))
+if uri:
+  return getValue("fc_uri") + "/" + uri
+return ''
+```
+
+#### _enrollment_uri_
+From column: _posts / Unfold: label / registered / registered_date2_
+>``` python
+uri = enrollment_date_uri(getValue("registered_date"))
+if uri:
+  return getValue("fc_uri") + "/" + uri
+return ''
+```
+
+#### _fromUser_uri_
+From column: _posts / Unfold: label / from / from_copy_
+>``` python
+uri = fromUser_uri(getValue("from_copy"))
+if uri:
+  return getValue("fc_uri") + "/" + uri
+return ''
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
 |  ----- | -------- | ----- |
+| _enrollment_uri_ | `uri` | `memex:Feature4`|
 | _fc_uri_ | `uri` | `memex:FeatureCollection1`|
+| _fromUser_uri_ | `uri` | `memex:Feature1`|
 | _from_copy_ | `memex:fromUser` | `memex:Feature1`|
 | _post_count_ | `memex:featureValue` | `memex:Feature3`|
 | _post_count2_ | `memex:person_postCount` | `memex:Feature3`|
+| _post_count_uri_ | `uri` | `memex:Feature3`|
 | _post_uri_ | `uri` | `memex:Post1`|
 | _registered_date_ | `memex:enrollment_date` | `memex:Feature4`|
 | _registered_date2_ | `memex:featureValue` | `memex:Feature4`|
 | _uri_ | `uri` | `memex:Thread1`|
 | _user_id_ | `memex:person_userid` | `memex:Feature2`|
 | _user_id2_ | `memex:featureValue` | `memex:Feature2`|
+| _user_uri_ | `uri` | `memex:Feature2`|
 | _values_clean_ | `memex:featureValue` | `memex:Feature1`|
 
 

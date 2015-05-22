@@ -37,6 +37,15 @@ From column: _posts / weapons_split / Values_
 return getValue("Values")
 ```
 
+#### _weapons_uri_
+From column: _posts / weapons_split / weapons_split2_
+>``` python
+uri = weaponsMentioned_uri(getValue("Values"))
+if uri:
+  return getValue("fc_uri") + "/" + uri
+return ''
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
@@ -46,6 +55,7 @@ return getValue("Values")
 | _post_uri_ | `uri` | `memex:Post1`|
 | _uri_ | `uri` | `memex:Thread1`|
 | _weapons_split2_ | `memex:weaponsMentioned` | `memex:Feature1`|
+| _weapons_uri_ | `uri` | `memex:Feature1`|
 
 
 ### Links

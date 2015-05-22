@@ -360,6 +360,36 @@ def atf_provider_name(uri):
     else:
         return domain
 
+def person_userid_uri(cleaned):
+    if cleaned:
+        cleaned = cleaned.strip().replace(" ", "_").lower()
+        return "person_userid/%s" % cleaned
+    return ''
+
+def person_postcount_uri(cleaned):
+    if cleaned:
+        cleaned = cleaned.strip().replace(" ", "_").lower()
+        return "person_postcount/%s" % cleaned
+    return ''
+
+def enrollment_date_uri(cleaned):
+    if cleaned:
+        cleaned = cleaned.strip().replace(" ", "_").replace(":", "-").lower()
+        return "enrollment_date/%s" % cleaned
+    return ''
+
+def fromUser_uri(cleaned):
+    if cleaned:
+        cleaned = cleaned.strip().replace(" ", "_").lower()
+        return "fromUser/%s" % cleaned
+    return ''
+
+def weaponsMentioned_uri(cleaned):
+    if cleaned:
+        cleaned = cleaned.strip().replace(" ", "_").lower()
+        return "weaponsMentioned/%s" % cleaned
+    return ''
+
 # print test_prices, get_dollar_prices(*test_prices)
 # print test_prices, get_bitcoin_prices(*test_prices)
 

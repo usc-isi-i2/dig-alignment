@@ -19,11 +19,18 @@ From column: _posts / post_uri_
 return atf_fc_uri(getValue("post_uri"))
 ```
 
+#### _feature_uri_
+From column: _posts / fc_uri_
+>``` python
+return getValue("fc_uri") + "/" + provider_uri("evolution-forums")
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
 |  ----- | -------- | ----- |
 | _fc_uri_ | `uri` | `memex:FeatureCollection1`|
+| _feature_uri_ | `uri` | `memex:Feature1`|
 | _post_uri_ | `uri` | `memex:Post1`|
 | _uri_ | `uri` | `memex:Thread1`|
 
