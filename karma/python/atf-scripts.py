@@ -3,6 +3,8 @@
 def atf_article_uri(url, post_id):
     return get_url_hash(url)+"/"+post_id
 
+def atf_thread_uri(url):
+    return get_url_hash(url)
 
 test_date = "Wed Feb 11, 2015 10:31 am"
 
