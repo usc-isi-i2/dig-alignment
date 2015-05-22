@@ -37,13 +37,41 @@ From column: _posts / user_id_
 return getValue("user_id")
 ```
 
+#### _post_count_
+From column: _posts / Unfold: label / posts / Values_
+>``` python
+return numericOnly(getValue("Values"))
+```
+
+#### _post_count2_
+From column: _posts / Unfold: label / posts / post_count_
+>``` python
+return getValue("post_count")
+```
+
+#### _registered_date_
+From column: _posts / Unfold: label / registered / Values_
+>``` python
+return iso8601date(getValue("Values"), "%Y-%M-%D")
+```
+
+#### _registered_date2_
+From column: _posts / Unfold: label / registered / registered_date_
+>``` python
+return getValue("registered_date")
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
 |  ----- | -------- | ----- |
 | _fc_uri_ | `uri` | `memex:FeatureCollection1`|
 | _from_copy_ | `memex:fromUser` | `memex:Feature1`|
+| _post_count_ | `memex:featureValue` | `memex:Feature3`|
+| _post_count2_ | `memex:person_postCount` | `memex:Feature3`|
 | _post_uri_ | `uri` | `memex:Post1`|
+| _registered_date_ | `memex:enrollment_date` | `memex:Feature4`|
+| _registered_date2_ | `memex:featureValue` | `memex:Feature4`|
 | _uri_ | `uri` | `memex:Thread1`|
 | _user_id_ | `memex:person_userid` | `memex:Feature2`|
 | _user_id2_ | `memex:featureValue` | `memex:Feature2`|
@@ -55,7 +83,11 @@ return getValue("user_id")
 |  --- | -------- | ---|
 | `memex:Feature1` | `memex:featureName` | `xsd:fromUser`|
 | `memex:Feature2` | `memex:featureName` | `xsd:person_userid`|
+| `memex:Feature3` | `memex:featureName` | `xsd:person_postCount`|
+| `memex:Feature4` | `memex:featureName` | `xsd:enrollment_date`|
+| `memex:FeatureCollection1` | `memex:enrollment_date_feature` | `memex:Feature4`|
 | `memex:FeatureCollection1` | `memex:fromUser_feature` | `memex:Feature1`|
+| `memex:FeatureCollection1` | `memex:person_postCount_feature` | `memex:Feature3`|
 | `memex:FeatureCollection1` | `memex:person_userid_feature` | `memex:Feature2`|
 | `memex:Post1` | `memex:hasFeatureCollection` | `memex:FeatureCollection1`|
 | `memex:Thread1` | `memex:hasPost` | `memex:Post1`|
