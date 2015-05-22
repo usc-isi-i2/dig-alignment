@@ -72,6 +72,12 @@ def atf_address_uri(city, state, country):
 def atf_clean_post_count(post_count):
     return numericOnly(post_count)
 
+def atf_clean_from_user(user):
+    user = user.strip()
+    if user == "-" or user == "N/A":
+        user = ''
+    return user
+
 import re
 
 WEAPONS_PHRASES = ['gun',
