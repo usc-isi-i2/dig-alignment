@@ -72,6 +72,12 @@ def atf_address_uri(city, state, country):
 def atf_clean_post_count(post_count):
     return numericOnly(post_count)
 
+def atf_clean_from_user(user):
+    user = user.strip()
+    if user == "-" or user == "N/A":
+        user = ''
+    return user
+
 import re
 
 WEAPONS_PHRASES = ['gun',
@@ -353,6 +359,36 @@ def atf_provider_name(uri):
         return onion_name_to_provider_name(domain)
     else:
         return domain
+
+def person_userid_uri(cleaned):
+    if cleaned:
+        cleaned = cleaned.strip().replace(" ", "_").lower()
+        return "person_userid/%s" % cleaned
+    return ''
+
+def person_postcount_uri(cleaned):
+    if cleaned:
+        cleaned = cleaned.strip().replace(" ", "_").lower()
+        return "person_postcount/%s" % cleaned
+    return ''
+
+def enrollment_date_uri(cleaned):
+    if cleaned:
+        cleaned = cleaned.strip().replace(" ", "_").replace(":", "-").lower()
+        return "enrollment_date/%s" % cleaned
+    return ''
+
+def fromUser_uri(cleaned):
+    if cleaned:
+        cleaned = cleaned.strip().replace(" ", "_").lower()
+        return "fromUser/%s" % cleaned
+    return ''
+
+def weaponsMentioned_uri(cleaned):
+    if cleaned:
+        cleaned = cleaned.strip().replace(" ", "_").lower()
+        return "weaponsMentioned/%s" % cleaned
+    return ''
 
 # print test_prices, get_dollar_prices(*test_prices)
 # print test_prices, get_bitcoin_prices(*test_prices)
