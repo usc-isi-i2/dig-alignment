@@ -154,6 +154,12 @@ From column: _images / image_snapshot_uri_
 return getHTBaseUrl() + "image/"+get_url_hash(getValue("url"))+"/"+getValue("importime") + "/raw"
 ```
 
+#### _import_time2_
+From column: _import_time2_
+>``` python
+return iso8601date(getValue("importime"), "%f")
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
@@ -172,6 +178,7 @@ return getHTBaseUrl() + "image/"+get_url_hash(getValue("url"))+"/"+getValue("imp
 | _image_uri_ | `uri` | `schema:ImageObject1`|
 | _imageurl_ | `schema:url` | `schema:ImageObject1`|
 | _import_time_ | `memex:dateCrawled` | `schema:WebPage1`|
+| _import_time2_ | `prov:endedAtTime` | `prov:Activity1`|
 | _phone_cc_ | `memex:countryDialingCode` | `memex:PhoneNumber1`|
 | _phone_clean_ | `memex:phonenumber` | `memex:Feature3`|
 | _phone_clean1_ | `memex:featureValue` | `memex:Feature3`|
@@ -184,6 +191,7 @@ return getHTBaseUrl() + "image/"+get_url_hash(getValue("url"))+"/"+getValue("imp
 | _title_ | `schema:text` | `schema:WebPageElement2`|
 | _title_uri_ | `uri` | `schema:WebPageElement2`|
 | _url_ | `schema:url` | `schema:WebPage1`|
+| _username_ | `foaf:name` | `prov:Person1`|
 | _values_ | `memex:website` | `memex:Feature1`|
 | _website2_ | `memex:featureValue` | `memex:Feature1`|
 | _website_feature_uri_ | `uri` | `memex:Feature1`|
@@ -201,7 +209,10 @@ return getHTBaseUrl() + "image/"+get_url_hash(getValue("url"))+"/"+getValue("imp
 | `memex:FeatureCollection1` | `memex:person_age_feature` | `memex:Feature2`|
 | `memex:FeatureCollection1` | `memex:phonenumber_feature` | `memex:Feature3`|
 | `memex:FeatureCollection1` | `memex:website_feature` | `memex:Feature1`|
+| `prov:Activity1` | `prov:wasAssociatedWith` | `prov:Person1`|
+| `prov:Activity1` | `prov:wasAttributedTo` | `xsd:http://ingest.dig.isi.edu:5000/ingest/webpage`|
 | `schema:WebPage1` | `memex:hasBodyPart` | `schema:WebPageElement1`|
 | `schema:WebPage1` | `memex:hasFeatureCollection` | `memex:FeatureCollection1`|
 | `schema:WebPage1` | `memex:hasImagePart` | `schema:ImageObject1`|
 | `schema:WebPage1` | `memex:hasTitlePart` | `schema:WebPageElement2`|
+| `schema:WebPage1` | `prov:wasGeneratedBy` | `prov:Activity1`|
