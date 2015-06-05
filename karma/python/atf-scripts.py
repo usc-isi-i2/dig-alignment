@@ -1158,7 +1158,7 @@ def weapons_words(text, patterns=WEAPONS_PATTERNS, phrases=WEAPONS_PHRASES):
 
 # print weapons_words(test_text)
 
-def get_weapons(*texts):
+def get_atf_weapons(*texts):
     all_text = " ".join([strip_tags(t) for t in texts])
     return "|".join(weapons_words(all_text))
 
@@ -1280,3 +1280,10 @@ def keywordsMentioned_uri(cleaned):
 
 # print test_prices, get_dollar_prices(*test_prices)
 # print test_prices, get_bitcoin_prices(*test_prices)
+
+##################################################################
+
+def get_weapons(*texts):
+    atf_weapons = get_atf_weapons(*texts)
+    keywords = get_keywords(*texts)
+    return ("%s|%s" % (atf_weapons, keywords)).strip("|")
