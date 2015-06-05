@@ -223,6 +223,42 @@ if (len(height)>0):
 return ''
 ```
 
+#### _person_username_
+From column: _person_username_
+>``` python
+return clean_name(getValue("username"))
+```
+
+#### _person_username_uri_
+From column: _person_username_uri_
+>``` python
+name = getValue("person_username")
+if (len(name)>0):
+  return getValue("featurecollection_uri")+"/" + person_name_uri(name)
+return ''
+```
+
+#### _ethnicity1_
+From column: _ethnicity / ethnicity1_
+>``` python
+return clean_ethnicity(getValue("values"))
+```
+
+#### _ethnicity2_
+From column: _ethnicity / ethnicity2_
+>``` python
+return getValue("ethnicity1")
+```
+
+#### _ethnicity_feature_uri_
+From column: _ethnicity / ethnicity_feature_uri_
+>``` python
+ethnicity = getValue("ethnicity1")
+if (len(ethnicity)>0):
+  return getValue("featurecollection_uri")+"/" + person_ethnicity_uri(ethnicity)
+return ''
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
@@ -236,6 +272,9 @@ return ''
 | _email_clean_ | `memex:emailaddress` | `memex:Feature4`|
 | _email_clean2_ | `memex:featureValue` | `memex:Feature4`|
 | _email_feature_uri_ | `uri` | `memex:Feature4`|
+| _ethnicity1_ | `memex:person_ethnicity` | `memex:Feature8`|
+| _ethnicity2_ | `memex:featureValue` | `memex:Feature8`|
+| _ethnicity_feature_uri_ | `uri` | `memex:Feature8`|
 | _featurecollection_uri_ | `uri` | `memex:FeatureCollection1`|
 | _height_feature_uri_ | `uri` | `memex:Feature7`|
 | _heights_ | `memex:person_height` | `memex:Feature7`|
@@ -248,6 +287,7 @@ return ''
 | _name_feature_uri_ | `uri` | `memex:Feature5`|
 | _names_ | `memex:person_name` | `memex:Feature5`|
 | _names2_ | `memex:featureValue` | `memex:Feature5`|
+| _person_username_uri_ | `uri` | `schema:Person1`|
 | _phone_cc_ | `memex:countryDialingCode` | `memex:PhoneNumber1`|
 | _phone_clean_ | `memex:phonenumber` | `memex:Feature3`|
 | _phone_clean1_ | `memex:featureValue` | `memex:Feature3`|
@@ -260,7 +300,6 @@ return ''
 | _title_ | `schema:text` | `schema:WebPageElement2`|
 | _title_uri_ | `uri` | `schema:WebPageElement2`|
 | _url_ | `schema:url` | `schema:WebPage1`|
-| _username_ | `foaf:name` | `prov:Person1`|
 | _values_ | `memex:website` | `memex:Feature1`|
 | _website2_ | `memex:featureValue` | `memex:Feature1`|
 | _website_feature_uri_ | `uri` | `memex:Feature1`|
@@ -280,14 +319,16 @@ return ''
 | `memex:Feature5` | `memex:featureName` | `xsd:provider_name`|
 | `memex:Feature6` | `memex:featureName` | `xsd:person_weight`|
 | `memex:Feature7` | `memex:featureName` | `xsd:person_height`|
+| `memex:Feature8` | `memex:featureName` | `xsd:person_ethnicity`|
 | `memex:FeatureCollection1` | `memex:emailaddress_feature` | `memex:Feature4`|
 | `memex:FeatureCollection1` | `memex:person_age_feature` | `memex:Feature2`|
+| `memex:FeatureCollection1` | `memex:person_ethnicity_feature` | `memex:Feature8`|
 | `memex:FeatureCollection1` | `memex:person_height_feature` | `memex:Feature7`|
 | `memex:FeatureCollection1` | `memex:person_name_feature` | `memex:Feature5`|
 | `memex:FeatureCollection1` | `memex:person_weight_feature` | `memex:Feature6`|
 | `memex:FeatureCollection1` | `memex:phonenumber_feature` | `memex:Feature3`|
 | `memex:FeatureCollection1` | `memex:website_feature` | `memex:Feature1`|
-| `prov:Activity1` | `prov:wasAssociatedWith` | `prov:Person1`|
+| `prov:Activity1` | `prov:wasAssociatedWith` | `schema:Person1`|
 | `prov:Activity1` | `prov:wasAttributedTo` | `xsd:http://ingest.dig.isi.edu:5000/ingest/webpage`|
 | `schema:WebPage1` | `memex:hasBodyPart` | `schema:WebPageElement1`|
 | `schema:WebPage1` | `memex:hasFeatureCollection` | `memex:FeatureCollection1`|
