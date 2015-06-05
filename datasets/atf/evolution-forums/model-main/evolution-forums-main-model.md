@@ -50,10 +50,10 @@ return iso8601date(getValue("date_posted"), "%Y-%m-%d %H:%M:%S")
 ### Links
 | From | Property | To |
 |  --- | -------- | ---|
+| `memex:Post1` | `memex:hasBodyPart` | `schema:WebPageElement3`|
 | `memex:Post1` | `memex:hasIdentifier` | `memex:Identifier2`|
 | `memex:Post1` | `memex:hasSignaturePart` | `schema:WebPageElement4`|
 | `memex:Post1` | `memex:hasTitlePart` | `schema:WebPageElement2`|
 | `memex:Thread1` | `memex:hasIdentifier` | `memex:Identifier1`|
 | `memex:Thread1` | `memex:hasPost` | `memex:Post1`|
 | `memex:Thread1` | `memex:hasTitlePart` | `schema:WebPageElement1`|
-| `schema:WebPageElement2` | `memex:hasBodyPart` | `schema:WebPageElement3`|
