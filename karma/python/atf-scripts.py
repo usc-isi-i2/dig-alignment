@@ -1278,6 +1278,12 @@ def keywordsMentioned_uri(cleaned):
         return "keywordsMentioned/%s" % cleaned
     return ''
 
+def place_postalAddress_uri(cleaned):
+    if cleaned:
+        cleaned = cleaned.strip().replace(" ", "_").lower()
+        return "place_postalAddress/%s" % cleaned
+    return ''
+
 # print test_prices, get_dollar_prices(*test_prices)
 # print test_prices, get_bitcoin_prices(*test_prices)
 

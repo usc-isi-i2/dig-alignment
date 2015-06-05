@@ -161,3 +161,50 @@ def j28xmlFeatureCollectionLinkNameUri(fn):
         return "http://memexproxy.com/ontology/" + fn
     else:
         return ""
+
+##################################################################
+
+J28SITEROOTS = {"airgunadvice.net": "http://www.airgunadvice.net",
+                "americanpreppersnetwork.net": "http://americanpreppersnetwork.net",
+                "arguntrader.com": "http://arguntrader.com",
+                "claytargetclassifieds.com": "http://www.claytargetclassifieds.com",
+                "comebackalive.com": "http://cafe.comebackalive.com",
+                "ducksouth.com": "http://www.ducksouth.com/phpbb",
+                "gobblernation.com": "http://www.gobblernation.com/phpBB3",
+                "henryfirearms.org": "http://http://www.henryfirearms.org/henrybb/",
+                "isthmus.com": "http://forum.isthmus.com",
+                "kentuckyarmoryclub.com": "http://kentuckyarmoryclub.com",
+                "levergunscommunity.com": "http://levergunscommunity.com",
+                "marauderairrifle.com": "http://marauderairrifle.com/forum",
+                "modernmuzzleloader.com": "http://modernmuzzleloader.com/forum",
+                "newmexicoguntrader.net": "http://newmexicoguntrader.net",
+                "nodakoutdoors.com": "http://nodakoutdoors.com/forums",
+                "nosler.com": "http://forum.nosler.com",
+                "ohioccwforums.org": "http://ohioccwforums.org",
+                "pistolworld.com": "http://pistolworld.com/bbs",
+                "remingtonsociety.com": "http://www.remingtonsociety.com/forums",
+                "rossi-rifleman.com": "http://www.rossi-rifleman.com",
+                "silencerforum.com": "http://www.silencerforum.com",
+                "spokaneguntrader.com": "http://www.spokaneguntrader.com",
+                "texaschlforum.com": "http://www.texaschlforum.com",
+                "tfaonline.org": "http://www.tfaonline.org/forum",
+                "theliberalgunclub.com": "http://www.theliberalgunclub.com/phpBB3",
+                "tndeer.com": "http://www.tndeer.com/forums",
+                "treasurestatearms.com": "http://www.treasurestatearms.com/phpbb3",
+                "utahconcealedcarry.com": "http://www.utahconcealedcarry.com"}
+
+def inferSourceName(threadUrl, postUrl):
+    """Canonicalize postURL to drop query and fragment"""
+    try:
+        (scheme, netloc, path, params, query, fragment) = urlparse(postUrl)
+        if netloc:
+            return '.'.join(netloc.split('.')[-2:])
+    except:
+        pass
+    try:
+        (scheme, netloc, path, params, query, fragment) = urlparse(threadUrl)
+        if netloc:
+            return '.'.join(netloc.split('.')[-2:])
+    except:
+        pass
+    return ""
