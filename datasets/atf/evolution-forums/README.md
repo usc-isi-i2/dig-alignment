@@ -5,23 +5,38 @@ Data Source: https://memexproxy.com/wiki/pages/viewpage.action?title=Data+Catalo
 Data Type: Raw HTML files
 
 The data is extracted using Inferlink's extraction code.
-a. Copy the data to DT cluster
-b. Run extractor on hadoop:
+a. Copy the data to DT cluster and unzip it
+ssh -i ~/keypairs/diglshhadoop-01.pem ubuntu@10.3.2.99
+Copy data to /ISI/atf and then unzip
+
+b. Convert data to sequence file
+cd /ISI/Web-Karma/karma-mr
+edit /ISI/atf/genseq.properties to update the input and output folders
+run > nohup /ISI/Web-Karma/karma-mr/start-covert.sh &
+to convert to sequence files.
+start-convert.sh executes:
+mvn exec:java -Dexec.mainClass="edu.isi.karma.mapreduce.driver.InputFileDirectoryader" -Dexec.args="/ISI/atf/genseq.properties" -Dexec.classpathScope=compile
+
+c. Make sure the output of the above is in
+/home/worker/extractor-ingest/evolution-forums
+
+d. Execute the 'extract-atf-evolution-forums' workflow on Hue
+
+or run the following hadoop job: 
 nohup time hadoop jar /usr/lib/hadoop-mapreduce/hadoop-streaming.jar \
     -D mapred.map.tasks=100 \
     -D mapred.reduce.tasks=500 \
-    -libjars /home/ubuntu/landmark-extraction/karma-mr.jar \
-    -file /home/ubuntu/landmark-extraction/src/mr_landmark_html_mapper.py \
-    -cacheFile hdfs://memex-nn1:8020/user/ubuntu/landmark-extractions/rules/evolution-forums_rules.txt#rules.txt \
-    -cacheFile hdfs://memex-nn1:8020/user/ubuntu/landmark-extractions/rules/evolution-forums_urls.txt#urls.txt \
-    -file /home/ubuntu/landmark-extraction/src/landmark.mod \
-    -mapper /home/ubuntu/landmark-extraction/src/mr_landmark_html_mapper.py \
-    -file /home/ubuntu/landmark-extraction/src/mr_landmark_reducer.py \
-    -reducer /home/ubuntu/landmark-extraction/src/mr_landmark_reducer.py \
-    -input /user/ubuntu/landmark-extractions/input/evolution-forums/* \
-    -output /user/ubuntu/landmark-extractions/output/evolution-forums \
-    -inputformat edu.isi.karma.mapreduce.inputformat.HTMLInputFormat &
+    -libjars /home/worker/landmark-extraction/karma-mr.jar \
+    -file /home/worker/landmark-extraction/mr_landmark_seq_mapper.py \
+    -file /home/worker/landmark-extraction/rules/evolution-forums\rules.txt
+    -file /home/worker/landmark-extraction/rules/evolution-forums\urls.txt
+    -file /home/worker/landmark-extraction/landmark.mod \
+    -mapper /home/worker/landmark-extraction/mr_landmark_seq_mapper.py \
+    -file /home/worker/landmark-extraction/mr_landmark_reducer.py \
+    -reducer /home/worker/landmark-extraction/mr_landmark_reducer.py \
+    -input /user/worker/landmark-extractions/input/evolution-forums/* \
+    -output /user/woker/ingest/atf/evolution-forums/test01/ \
+    -inputformat edu.isi.karma.mapreduce.inputformat.SequenceFileAsLineInputFormat &
 
-c. Put the output of the above into the required folder for the workflow and then run the Karma workflow
 
 
