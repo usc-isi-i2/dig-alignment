@@ -160,6 +160,69 @@ From column: _import_time2_
 return iso8601date(getValue("importime"), "%f")
 ```
 
+#### _names2_
+From column: _name / names2_
+>``` python
+return clean_name(getValue("values"))
+```
+
+#### _name_feature_uri_
+From column: _name / name_feature_uri_
+>``` python
+name = getValue("values")
+if (len(name)>0):
+  return getValue("featurecollection_uri")+"/" + person_name_uri(name)
+return ''
+```
+
+#### _names_
+From column: _name / names_
+>``` python
+return clean_name(getValue("values"))
+```
+
+#### _weights_
+From column: _weight / weights_
+>``` python
+return clean_weight(getValue("values"))
+```
+
+#### _weights2_
+From column: _weight / weights2_
+>``` python
+return clean_weight(getValue("values"))
+```
+
+#### _weight_feature_uri_
+From column: _weight / weight_feature_uri_
+>``` python
+weight = getValue("weights")
+if (len(weight)>0):
+  return getValue("featurecollection_uri")+"/" + person_weight_uri(weight)
+return ''
+```
+
+#### _heights_
+From column: _height / heights_
+>``` python
+return clean_height(getValue("values"))
+```
+
+#### _heights2_
+From column: _height / heights2_
+>``` python
+return clean_height(getValue("values"))
+```
+
+#### _height_feature_uri_
+From column: _height / height_feature_uri_
+>``` python
+height = getValue("heights")
+if (len(height)>0):
+  return getValue("featurecollection_uri")+"/" + person_height_uri(height)
+return ''
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
@@ -174,11 +237,17 @@ return iso8601date(getValue("importime"), "%f")
 | _email_clean2_ | `memex:featureValue` | `memex:Feature4`|
 | _email_feature_uri_ | `uri` | `memex:Feature4`|
 | _featurecollection_uri_ | `uri` | `memex:FeatureCollection1`|
+| _height_feature_uri_ | `uri` | `memex:Feature7`|
+| _heights_ | `memex:person_height` | `memex:Feature7`|
+| _heights2_ | `memex:featureValue` | `memex:Feature7`|
 | _image_snapshot_uri_ | `memex:snapshotUri` | `schema:ImageObject1`|
 | _image_uri_ | `uri` | `schema:ImageObject1`|
 | _imageurl_ | `schema:url` | `schema:ImageObject1`|
 | _import_time_ | `memex:dateCrawled` | `schema:WebPage1`|
 | _import_time2_ | `prov:endedAtTime` | `prov:Activity1`|
+| _name_feature_uri_ | `uri` | `memex:Feature5`|
+| _names_ | `memex:person_name` | `memex:Feature5`|
+| _names2_ | `memex:featureValue` | `memex:Feature5`|
 | _phone_cc_ | `memex:countryDialingCode` | `memex:PhoneNumber1`|
 | _phone_clean_ | `memex:phonenumber` | `memex:Feature3`|
 | _phone_clean1_ | `memex:featureValue` | `memex:Feature3`|
@@ -195,6 +264,9 @@ return iso8601date(getValue("importime"), "%f")
 | _values_ | `memex:website` | `memex:Feature1`|
 | _website2_ | `memex:featureValue` | `memex:Feature1`|
 | _website_feature_uri_ | `uri` | `memex:Feature1`|
+| _weight_feature_uri_ | `uri` | `memex:Feature6`|
+| _weights_ | `memex:person_weight` | `memex:Feature6`|
+| _weights2_ | `memex:featureValue` | `memex:Feature6`|
 
 
 ### Links
@@ -205,8 +277,14 @@ return iso8601date(getValue("importime"), "%f")
 | `memex:Feature3` | `memex:featureName` | `xsd:phonenumber`|
 | `memex:Feature3` | `memex:featureObject` | `memex:PhoneNumber1`|
 | `memex:Feature4` | `memex:featureName` | `xsd:emailaddress`|
+| `memex:Feature5` | `memex:featureName` | `xsd:provider_name`|
+| `memex:Feature6` | `memex:featureName` | `xsd:person_weight`|
+| `memex:Feature7` | `memex:featureName` | `xsd:person_height`|
 | `memex:FeatureCollection1` | `memex:emailaddress_feature` | `memex:Feature4`|
 | `memex:FeatureCollection1` | `memex:person_age_feature` | `memex:Feature2`|
+| `memex:FeatureCollection1` | `memex:person_height_feature` | `memex:Feature7`|
+| `memex:FeatureCollection1` | `memex:person_name_feature` | `memex:Feature5`|
+| `memex:FeatureCollection1` | `memex:person_weight_feature` | `memex:Feature6`|
 | `memex:FeatureCollection1` | `memex:phonenumber_feature` | `memex:Feature3`|
 | `memex:FeatureCollection1` | `memex:website_feature` | `memex:Feature1`|
 | `prov:Activity1` | `prov:wasAssociatedWith` | `prov:Person1`|
