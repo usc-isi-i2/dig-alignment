@@ -129,6 +129,11 @@ J28XMLFEATURENAMES =  {"action": "transactionTypesMentioned",
                        # ignore, redundant with 
                        "year": None}
 
+J28XMLFEATURENAMES={"action": "transactionTypesMentioned",
+                    "firearm_type": "weaponsMentioned",
+                    "phone": "phonenumber",
+                    "post_location": "placePostalAddress"}
+
 def j28xmlFeatureName(name):
     try:
         fn = J28XMLFEATURENAMES.get(name, "")
