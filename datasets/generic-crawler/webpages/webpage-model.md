@@ -234,7 +234,7 @@ From column: _person_username_uri_
 >``` python
 name = getValue("person_username")
 if (len(name)>0):
-  return getValue("featurecollection_uri")+"/" + person_name_uri(name)
+  return person_name_uri(name)
 return ''
 ```
 
@@ -296,6 +296,7 @@ return ''
 | _phone_local_ | `memex:localPhoneNumber` | `memex:PhoneNumber1`|
 | _phone_uri_ | `uri` | `memex:PhoneNumber1`|
 | _s3imageurl_ | `memex:cacheUrl` | `schema:ImageObject1`|
+| _screenshot_ | `schema:screenshot` | `schema:WebPage1`|
 | _snapshot_uri_ | `memex:snapshotUri` | `schema:WebPage1`|
 | _title_ | `schema:text` | `schema:WebPageElement2`|
 | _title_uri_ | `uri` | `schema:WebPageElement2`|
