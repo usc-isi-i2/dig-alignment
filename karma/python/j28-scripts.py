@@ -89,6 +89,9 @@ def j28SiteRoot(sourceName):
 def j28ThreadLinkAbsolute(siteRoot, threadLink):
     return urljoin(siteRoot, threadLink)
 
+def j28PostLinkAbsolute(siteRoot, postLink):
+    return urljoin(siteRoot, postLink)
+
 def j28FcUri(uri):
     return atf_fc_uri(uri)
 
@@ -116,7 +119,7 @@ J28XMLFEATURENAMES =  {"action": "transactionTypesMentioned",
                        # already handled elsewhere as Post.hasBodyPart
                        "post_content": None,
                        # this is the location mentioned in the text
-                       "post_location": "placePostalAddress",
+                       "post_location": "place_postalAddress",
                        # modeled as Thread.hasTitlePart
                        "thread_name": None,
                        # ignore, seems an artifact of forum processing
@@ -124,7 +127,7 @@ J28XMLFEATURENAMES =  {"action": "transactionTypesMentioned",
                        # used to generate URI only
                        "url": None,
                        # this is the location of the post author
-                       # already handled elsewhere as Post.placePostalAddress
+                       # already handled elsewhere as Post.place_postalAddress
                        "user_location": None,
                        # ignore, redundant with 
                        "year": None}
@@ -132,7 +135,7 @@ J28XMLFEATURENAMES =  {"action": "transactionTypesMentioned",
 J28XMLFEATURENAMES={"action": "transactionTypesMentioned",
                     "firearm_type": "weaponsMentioned",
                     "phone": "phonenumber",
-                    "post_location": "placePostalAddress"}
+                    "post_location": "place_postalAddress"}
 
 def j28xmlFeatureName(name):
     try:
