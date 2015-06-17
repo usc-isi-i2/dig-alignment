@@ -41,7 +41,7 @@
 
 ## Publish
 
-* publish-es
+* publish_es
  * read from /aggregate/$DATASET/$TRIAL
  * write to elastic search
 
