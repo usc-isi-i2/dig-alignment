@@ -1,7 +1,8 @@
 #!/usr/bin/python
 
-import sys
-from urlparse import urlparse
+# these are already there from util.py
+# import sys
+# from urlparse import urlparse
 
 sources_by_id = {
                  1: "backpage",
