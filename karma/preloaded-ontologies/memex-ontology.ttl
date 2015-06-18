@@ -34,6 +34,18 @@ memex:Name rdf:type owl:Class ;
 	rdfs:comment """Represents the Name of an entity."""
 	.
 
+memex:PersonOrOrganization rdf:type owl:Class ;
+	rdfs:comment """A placeholder for a person or an organization."""
+	.
+
+schema:Organization rdf:type owl:Class ;
+	rdfs:subClassOf schema:PersonOrOrganization ;
+	.
+
+schema:Person rdf:type owl:Class ;
+	rdfs:subClassOf schema:PersonOrOrganization ;
+	.
+
 memex:Identifier rdf:type owl:Class ;
 	rdfs:subClassOf memex:Appellation ;
 	rdfs:label "Identifier"@en ;
@@ -88,6 +100,7 @@ memex:Boolean rdf:type owl:Class ;
 
 memex:Feature rdf:type owl:Class ; 
 	rdfs:label "Feature"@en ;
+	rdfs:subClassOf schema:Role ;
 	rdfs:comment """Represents a feature. Typically, features are derived from extractions
 	from Web pages. Their purpose is to represent information about an entity when the 
 	identity of the entity is still unknown."""
@@ -126,6 +139,18 @@ memex:Post rdf:type owl:Class ;
 	rdfs:comment """A post in a forum."""
 	.
 
+
+memex:Patent rdf:type owl:Class ;
+	rdfs:subClassOf schema:CreativeWork ;
+	rdfs:comment """A patent."""
+	.
+
+memex:CourtDocument rdf:type owl:Class ;
+	rdfs:subClassOf schema:CreativeWork ;
+	rdfs:comment """A document from a legal proceeding."""
+	.
+
+
 #########################################################
 #
 # Object Properties
@@ -146,19 +171,6 @@ memex:isSnapshotOf rdf:type owl:ObjectProperty ;
 	rdfs:range memex:URLEntity ; 
 	owl:inverseOf memex:snapshot ;
 	rdfs:comment "Inverse of memex:snapshot." 
-	.
-
-memex:identifier rdf:type owl:ObjectProperty ; 
-	rdfs:label "identifier"@en ;
-	rdfs:range memex:Identifier ;
-	rdfs:comment "An identifier of an entity." 
-	.
-
-memex:preferredIdentifier rdf:type owl:ObjectProperty ; 
-	rdfs:subPropertyOf memex:identifier ;
-	rdfs:label "preferredIdentifier"@en ;
-	rdfs:range memex:Identifier ;
-	rdfs:comment "The preferred identifier of an entity." 
 	.
 
 memex:hasTitlePart rdf:type owl:ObjectProperty ; 
@@ -220,6 +232,20 @@ memex:hasSignaturePart rdf:type owl:ObjectProperty ;
 memex:isSignaturePartOf rdf:type owl:ObjectProperty ; 
 	rdfs:label "isSignaturePartOf"@en ;
 	owl:inverseOf memex:hasSignaturePart ;
+	rdfs:comment "Identifies the work that this is a part of." 
+	.
+
+memex:hasClaimPart rdf:type owl:ObjectProperty ; 
+	rdfs:label "hasClaimPart"@en ;
+	rdfs:subPropertyOf schema:hasPart ;
+	owl:inverseOf memex:isClaimPartOf ;
+	rdfs:comment "Identifies a claim part of a schema:CreativeWork." 
+	.
+
+memex:isClaimPartOf rdf:type owl:ObjectProperty ; 
+	rdfs:label "isClaimPartOf"@en ;
+	rdfs:subPropertyOf schema:isPartOf ;
+	owl:inverseOf memex:hasClaimPart ;
 	rdfs:comment "Identifies the work that this is a part of." 
 	.
 
