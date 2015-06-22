@@ -21,13 +21,50 @@ function compare_outputs_stanford_extractions {
 }
 
 function compare_outputs_deobfuscator {
-	BASE_DIR="${DIG_ALIGNMENT_HOME}/datasets/istr/deobfuscator"
-	compare_outputs "${BASE_DIR}/model-${1}/deob-${1}-jsonld.json" "${BASE_DIR}/model-${1}/deob-${1}-sample-jsonld.json" 
+	BASE_DIR="${DIG_ALIGNMENT_HOME}/datasets/istr/deobf"
+	compare_outputs "${BASE_DIR}/model-${1}/deobf-${1}-jsonld.json" "${BASE_DIR}/model-${1}/deobf-${1}-sample-jsonld.json" 
 }
 
 function compare_outputs_ads_attributes {
 	BASE_DIR="${DIG_ALIGNMENT_HOME}/datasets/istr/ads-attributes"
 	compare_outputs "${BASE_DIR}/model-${1}/ads-attributes-${1}-jsonld.json" "${BASE_DIR}/model-${1}/ads-attributes-${1}-sample-jsonld.json" 
+}
+
+function remove_outputs_images {
+	BASE_DIR="${DIG_ALIGNMENT_HOME}/datasets/istr/images"
+	remove_outputs "${BASE_DIR}/ist-images-sample-jsonld.json" 
+}
+
+function remove_outputs_sources {
+	BASE_DIR="${DIG_ALIGNMENT_HOME}/datasets/istr/sources"
+	remove_outputs "${BASE_DIR}/sources-sample-jsonld.json" 
+}
+
+function remove_outputs_ads {
+	BASE_DIR="${DIG_ALIGNMENT_HOME}/datasets/istr/ads"
+	remove_outputs "${BASE_DIR}/model-${1}/ads-${1}-sample-jsonld.json" 
+}
+
+function remove_outputs_stanford_extractions {
+	BASE_DIR="${DIG_ALIGNMENT_HOME}/datasets/istr/stanford-extractions"
+	remove_outputs "${BASE_DIR}/model-${1}/stanford-${1}-sample-jsonld.json" 
+}
+
+function remove_outputs_deobfuscator {
+	BASE_DIR="${DIG_ALIGNMENT_HOME}/datasets/istr/deobf"
+	remove_outputs "${BASE_DIR}/model-${1}/deobf-${1}-sample-jsonld.json" 
+}
+
+function remove_outputs_ads_attributes {
+	BASE_DIR="${DIG_ALIGNMENT_HOME}/datasets/istr/ads-attributes"
+	remove_outputs "${BASE_DIR}/model-${1}/ads-attributes-${1}-sample-jsonld.json" 
+}
+
+function remove_outputs {
+	if [ -f ${1} ]
+	then
+		rm ${1}
+	fi
 }
 
 function compare_outputs {
@@ -65,9 +102,9 @@ function run_offline_with_defaults_stanford_extraction {
 }
 
 function run_offline_with_defaults_deobfuscator {
-	BASE_DIR="${DIG_ALIGNMENT_HOME}/datasets/istr/deobfuscator"
-	INPUT_FILE="${BASE_DIR}/model-${1}/deob-${1}-sample.json"
-	run_offline_with_defaults "Deobfuscator" "$INPUT_FILE" "${BASE_DIR}/model-${1}/deob-${1}-model.ttl" "$BASE_DIR/model-${1}/deob-${1}-sample-jsonld.json" "$BASE_DIR/model-${1}/deob-${1}-sample-rdf.n3" "http://schema.org/WebPage1"
+	BASE_DIR="${DIG_ALIGNMENT_HOME}/datasets/istr/deobf"
+	INPUT_FILE="${BASE_DIR}/model-${1}/deobf-${1}-sample.json"
+	run_offline_with_defaults "Deobfuscator" "$INPUT_FILE" "${BASE_DIR}/model-${1}/deobf-model-${1}.ttl" "$BASE_DIR/model-${1}/deobf-${1}-sample-jsonld.json" "$BASE_DIR/model-${1}/deobf-${1}-sample-rdf.n3" "http://schema.org/WebPage1"
 }
 
 function run_offline_with_defaults_ads_attributes {
@@ -107,58 +144,72 @@ else
 fi	
 }
 
+rm karma.out
+rm karma.err
 ########################################################
 #			Images
 ########################################################
+remove_outputs_images
 run_offline_with_defaults_images 
 compare_outputs_images
 
 ########################################################
 #			Ads
 ########################################################
+remove_outputs_ads "main"
 run_offline_with_defaults_ads "main" "ads-sample.json"
 compare_outputs_ads "main"
 
 #Ads phone
+remove_outputs_ads "phone"
 run_offline_with_defaults_ads "phone" "ads-sample.json"
 compare_outputs_ads "phone"
 
 #Ads address
+remove_outputs_ads "address"
 run_offline_with_defaults_ads "address" "model-address/ads-addresses-sample.json"
 compare_outputs_ads "address"
 
 #Ads age
+remove_outputs_ads "age"
 run_offline_with_defaults_ads "age" "ads-sample.json"
 compare_outputs_ads "age"
 
 #Ads website
+remove_outputs_ads "website"
 run_offline_with_defaults_ads "website" "ads-sample.json"
 compare_outputs_ads "website"
 
 #Ads gender
+remove_outputs_ads "gender"
 run_offline_with_defaults_ads "gender" "ads-sample.json"
 compare_outputs_ads "gender"
 
 #Ads email
+remove_outputs_ads "email"
 run_offline_with_defaults_ads "email" "ads-sample.json"
 compare_outputs_ads "email"
 
 ########################################################
 #			Sources
 ########################################################
+remove_outputs_sources
 run_offline_with_defaults_sources 
 compare_outputs_sources
 
 ########################################################
 #			Ads-Attributes
 ########################################################
+remove_outputs_ads_attributes "main"
 run_offline_with_defaults_ads_attributes "main"
 compare_outputs_ads_attributes "main"
 
-run_offline_with_defaults_ads_attributes_features "rate"
+remove_outputs_ads_attributes "rate"
+run_offline_with_defaults_ads_attributes "rate"
 compare_outputs_ads_attributes "rate"
 
-run_offline_with_defaults_ads_attributes_features "phone"
+remove_outputs_ads_attributes "phone"
+run_offline_with_defaults_ads_attributes "phone"
 compare_outputs_ads_attributes "phone"
 
 
@@ -166,18 +217,22 @@ compare_outputs_ads_attributes "phone"
 #			Stanford Extractions
 ########################################################
 #Phone Number
+remove_outputs_stanford_extractions "phone"
 run_offline_with_defaults_stanford_extraction "phone"
 compare_outputs_stanford_extractions "phone"
 
 #Person Name
+remove_outputs_stanford_extractions "names"
 run_offline_with_defaults_stanford_extraction "names"
 compare_outputs_stanford_extractions "names"
 
 #Address
+remove_outputs_stanford_extractions "address"
 run_offline_with_defaults_stanford_extraction "address"
 compare_outputs_stanford_extractions "address"
 
 #Address
+remove_outputs_stanford_extractions "email"
 run_offline_with_defaults_stanford_extraction "email"
 compare_outputs_stanford_extractions "email"
 
@@ -186,9 +241,11 @@ compare_outputs_stanford_extractions "email"
 #			Deobfuscator
 ########################################################
 #Body
+remove_outputs_deobfuscator "body"
 run_offline_with_defaults_deobfuscator "body"
 compare_outputs_deobfuscator "body"
 
 #Title
+remove_outputs_deobfuscator "title"
 run_offline_with_defaults_deobfuscator "title"
 compare_outputs_deobfuscator "title"
