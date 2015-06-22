@@ -1,0 +1,45 @@
+[
+    {
+        "name": "title",
+        "rule_type": "RegexRule",
+        "begin_regex": "14px;\" href=\"/guns_for_sale.*?>.*?b>",
+        "end_regex": "\\</"
+    },
+    {
+        "name": "listing_id",
+        "rule_type": "RegexRule",
+        "begin_regex": "ID#:",
+        "end_regex": "-"
+    },
+    {
+        "name": "description",
+        "rule_type": "RegexRule",
+        "begin_regex": "color: #999;\"\\>.*?\\<p\\>",
+        "end_regex": "\\</p\\>\\</div\\>"
+    },
+	{
+        "begin_regex": "\\<!-- start contact details --\\>",
+        "end_regex": "\\</table\\>\\s+\\</div\\> ",
+        "iter_begin_regex": "\\<b style",
+        "iter_end_regex": "\\</tr\\>",
+        "name": "info",
+        "no_first_begin_iter_rule": false,
+        "no_last_end_iter_rule": false,
+        "rule_type": "IterationRule",
+        "sub_rules": [
+            {
+                "begin_regex": "\\>",
+                "end_regex": "\\</b",
+                "name": "label",
+                "rule_type": "ItemRule"
+            },
+            {
+                "begin_regex": "\\<td.*?\\>",
+                "end_regex": "\\</td\\>",
+                "name": "value",
+                "rule_type": "ItemRule",
+                "removehtml": true
+            }
+        ]
+    }
+]

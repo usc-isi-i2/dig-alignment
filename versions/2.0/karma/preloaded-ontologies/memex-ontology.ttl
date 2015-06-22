@@ -1,0 +1,380 @@
+@prefix memex: <http://memexproxy.com/ontology/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix schema: <http://schema.org/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+
+<http://memexproxy.com/ontology/> rdf:type owl:Ontology .
+
+
+#########################################################
+#
+# Classes
+#
+#########################################################
+
+memex:Appellation rdf:type owl:Class ;
+	rdfs:label "Appellation"@en ;
+	rdfs:comment """A string to refer to an entity."""
+	.
+
+memex:Name rdf:type owl:Class ;
+	rdfs:subClassOf memex:Appellation ;
+	rdfs:label "Name"@en ;
+	rdfs:comment """Represents the Name of an entity."""
+	.
+
+memex:PersonOrOrganization rdf:type owl:Class ;
+	rdfs:comment """A placeholder for a person or an organization."""
+	.
+
+schema:Organization rdf:type owl:Class ;
+	rdfs:subClassOf memex:PersonOrOrganization ;
+	.
+
+schema:Person rdf:type owl:Class ;
+	rdfs:subClassOf memex:PersonOrOrganization ;
+	.
+
+memex:Identifier rdf:type owl:Class ;
+	rdfs:subClassOf memex:Appellation ;
+	rdfs:label "Identifier"@en ;
+	rdfs:comment """Identifier of an entity"""	
+	.
+
+memex:PhoneNumber rdf:type owl:Class ; 
+	rdfs:subClassOf memex:Identifier ;
+	rdfs:label "PhoneNumber"@en ;
+	skos:note """Still wavering whether a phone number is a subclass of Identifier.
+	Clearly not an appropriate identifier for a person given that numbers get recycled.""" ;
+	rdfs:comment """A phone number."""
+	.
+
+memex:EmailAddress rdf:type owl:Class ; 
+	rdfs:subClassOf memex:Identifier ;
+	rdfs:label "EmailAddress"@en ;
+	skos:note """Still wavering whether an email address is a subclass of Identifier.""" ;
+	rdfs:comment """An email address."""
+	.
+
+memex:PersonName rdf:type owl:Class ; 
+	rdfs:label "PersonName"@en ;
+	rdfs:subClassOf memex:Appellation ;
+	skos:note """Defining as a class so that we can represent different names and record the type of name""" ;
+	rdfs:comment """A person name."""
+	.
+
+memex:Ethnicity rdf:type owl:Class ; 
+	rdfs:label "Ethnicity"@en ;
+	rdfs:comment """Represents Identity with or membership in a particular racial, national,
+	 or cultural group and observance of that group's customs, beliefs, and language."""
+	.
+
+memex:AgeGroup rdf:type owl:Class ; 
+	rdfs:label "AgeGroup"@en ;
+	rdfs:comment """Represents an age group, such as young, old, child."""
+	.
+
+memex:Preference rdf:type owl:Class ; 
+	rdfs:label "Preference"@en ;
+	rdfs:comment """Represents a preference that af Person or Organization may have
+	about a certain subject."""
+	.
+
+memex:Boolean rdf:type owl:Class ; 
+	rdfs:label "Boolean"@en ;
+	rdfs:comment """Represents a Boolean value.
+	The admissible instances are http://memexproxy.com/data/boolean/true and false."""
+	.
+
+
+memex:Thread rdf:type owl:Class ;
+	rdfs:subClassOf schema:CreativeWork ;
+	rdfs:comment """A thread in a forum or other kind of set of articles"""
+	.
+
+memex:Cluster rdf:type owl:Class ;
+	rdfs:label "Cluster"@en ;
+	rdfs:comment """Represents a cluster of objects"""
+    . 
+
+memex:Post rdf:type owl:Class ;
+	rdfs:subClassOf schema:CreativeWork ;
+	rdfs:comment """A post in a forum."""
+	.
+
+
+memex:Patent rdf:type owl:Class ;
+	rdfs:subClassOf schema:CreativeWork ;
+	rdfs:comment """A patent."""
+	.
+
+memex:CourtDocument rdf:type owl:Class ;
+	rdfs:subClassOf schema:CreativeWork ;
+	rdfs:comment """A document from a legal proceeding."""
+	.
+
+memex:ServiceRate rdf:type owl:Class ;
+	rdfs:label "ServiceRate"@en ;
+	rdfs:comment """Represents the monetary Rate charged for a Service""" ;
+	rdfs:subClassOf schema:UnitPriceSpecification ;
+	rdfs:subClassOf memex:Feature ;
+	.
+
+memex:SimilarObject rdf:type owl:Class ;
+	rdfs:label "SimilarObject"@en ;
+	rdfs:comment """Represents an object that is similar to another object""" ;
+	rdfs:subClassOf schema:CreativeWork ;
+	rdfs:subClassOf memex:Feature ;
+	.
+
+
+#########################################################
+#
+# Object Properties
+#
+#########################################################
+
+memex:snapshot rdf:type owl:ObjectProperty ; 
+	rdfs:label "snapshot"@en ;
+	rdfs:domain schema:URL ; 
+	rdfs:range schema:CreativeWork ;
+	owl:inverseOf memex:isSnapshotOf ;
+	rdfs:comment "Identifies a resource download from a url." 
+	.
+
+memex:isSnapshotOf rdf:type owl:ObjectProperty ; 
+	rdfs:label "isSnapshotOf"@en ;
+	rdfs:domain schema:CreativeWork ;
+	rdfs:range schema:URL ; 
+	owl:inverseOf memex:snapshot ;
+	rdfs:comment "Inverse of memex:snapshot." 
+	.
+
+memex:hasTitlePart rdf:type owl:ObjectProperty ; 
+	rdfs:label "hasTitlePart"@en ;
+	rdfs:subPropertyOf schema:hasPart ;
+	rdfs:comment "Identifies the title part of a schema:CreativeWork." 
+	.
+
+memex:isTitlePartOf rdf:type owl:ObjectProperty ; 
+	rdfs:label "isTitlePartOf"@en ;
+	owl:inverseOf  memex:hasTitlePart ;
+	rdfs:comment "Identifies the title part of a schema:CreativeWork." 
+	.
+
+memex:hasAbstractPart rdf:type owl:ObjectProperty ; 
+	rdfs:label "hasAbstractPart"@en ;
+	rdfs:subPropertyOf schema:hasPart ;
+	rdfs:comment "Identifies the abstract part of a schema:CreativeWork." 
+	.
+
+memex:isAbstractPartOf rdf:type owl:ObjectProperty ; 
+	rdfs:label "isAbstractPartOf"@en ;
+	owl:inverseOf  memex:hasAbstractPart ;
+	rdfs:comment "Identifies the abstract part of a schema:CreativeWork." 
+	.
+
+memex:hasBodyPart rdf:type owl:ObjectProperty ; 
+	rdfs:label "hasBodyPart"@en ;
+	rdfs:subPropertyOf schema:hasPart ;
+	rdfs:comment "Identifies the body part of a schema:CreativeWork."
+	.
+
+memex:isBodyPartOf rdf:type owl:ObjectProperty ; 
+	rdfs:label "isBodyPartOf"@en ;
+	owl:inverseOf memex:hasBodyPart ;
+	rdfs:comment "Identifies the body part of a schema:CreativeWork." 
+	.
+
+memex:hasImagePart rdf:type owl:ObjectProperty ; 
+	rdfs:label "hasImagePart"@en ;
+	rdfs:subPropertyOf schema:hasPart ;
+	rdfs:range schema:ImageObject ;
+	rdfs:comment "Identifies an ImageObject that is part of a schema:CreativeWork." 
+	.
+
+memex:isImagePartOf rdf:type owl:ObjectProperty ; 
+	rdfs:label "isImagePartOf"@en ;
+	owl:inverseOf memex:hasImagePart ;
+	rdfs:range schema:ImageObject ;
+	rdfs:comment "Identifies an ImageObject that is part of a schema:CreativeWork." 
+	.
+
+memex:hasSignaturePart rdf:type owl:ObjectProperty ; 
+	rdfs:label "hasSignaturePart"@en ;
+	owl:inverseOf memex:isSignaturePartOf ;
+	rdfs:comment "Identifies a signature part of a schema:CreativeWork." 
+	.
+
+memex:isSignaturePartOf rdf:type owl:ObjectProperty ; 
+	rdfs:label "isSignaturePartOf"@en ;
+	owl:inverseOf memex:hasSignaturePart ;
+	rdfs:comment "Identifies the work that this is a part of." 
+	.
+
+memex:hasClaimPart rdf:type owl:ObjectProperty ; 
+	rdfs:label "hasClaimPart"@en ;
+	rdfs:subPropertyOf schema:hasPart ;
+	owl:inverseOf memex:isClaimPartOf ;
+	rdfs:comment "Identifies a claim part of a schema:CreativeWork." 
+	.
+
+memex:isClaimPartOf rdf:type owl:ObjectProperty ; 
+	rdfs:label "isClaimPartOf"@en ;
+	rdfs:subPropertyOf schema:isPartOf ;
+	owl:inverseOf memex:hasClaimPart ;
+	rdfs:comment "Identifies the work that this is a part of." 
+	.
+
+memex:primaryLocation rdf:type owl:ObjectProperty ; 
+	rdfs:label "postingLocation"@en ;
+	rdfs:subPropertyOf schema:mentions ;
+	rdfs:domain schema:CreativeWork ;
+	rdfs:range schema:Place ;
+	rdfs:comment "The primary location associated with a schema:CreativeWork." 
+	.
+
+memex:ethnicity rdf:type owl:ObjectProperty ; 
+	rdfs:label "ethnicity"@en ;
+	rdfs:domain schema:Person ;
+	rdfs:range memex:Ethnicity ;
+	rdfs:comment "The ethnicity of a person." 
+	.
+
+memex:age rdf:type owl:ObjectProperty ; 
+	rdfs:label "age"@en ;
+	rdfs:domain schema:Person ;
+	rdfs:range memex:Age ;
+	rdfs:comment "The age of a person." 
+	.
+
+memex:preferenceQualifier rdf:type owl:ObjectProperty ; 
+	rdfs:label "preferenceQualifier"@en ;
+	rdfs:domain memex:Preference ;
+	rdfs:comment """The qualifier of a preference. 
+	The values in the range are URIs that form a controlled vocabulary;
+	they include values such as http://..../preferencequalifier/only"""
+	.
+
+memex:preferenceSubject rdf:type owl:ObjectProperty ; 
+	rdfs:label "preferenceSubject"@en ;
+	rdfs:domain memex:Preference ;
+	rdfs:comment """The thing about which a preference is stated. 
+	The values in the range are URIs that form a controlled vocabulary;
+	they include values such as http://..../agegroup/young"""
+	.
+
+memex:identifier rdf:type owl:ObjectProperty ; 
+	rdfs:label "identifier"@en ;
+	rdfs:range memex:Identifier ;
+	rdfs:comment """The Identifier of an entity"""
+	.
+
+memex:type rdf:type owl:ObjectProperty ; 
+	rdfs:label "type"@en ;
+	rdfs:range skos:Concept ;
+	rdfs:comment """The Type of an entity"""
+	.
+
+memex:hasPost rdf:type owl:ObjectProperty ; 
+	rdfs:label "hasReplyPart"@en ;
+	rdfs:subPropertyOf schema:hasPart ;
+	rdfs:domain memex:Thread ;
+	rdfs:range memex:Post ;
+	rdfs:comment "Identifies a post belonging to a memex:Thread."
+	.
+
+memex:isPostOf rdf:type owl:ObjectProperty ; 
+	rdfs:label "isPostOf"@en ;
+	owl:inverseOf memex:hasReplyPart ;
+	rdfs:comment "Identifies the parent memex:Thread of a memex:Post."
+	.
+
+#########################################################
+#
+# Data Properties
+#
+#########################################################
+
+memex:isoCode rdf:type rdf:Property ;
+	rdfs:label "isoCode"@en ;
+	skos:note """The ISO Code for things like Country etc.""" ;
+	rdfs:comment "The ISO code of a resource." 
+	.
+
+memex:cacheUrl rdf:type rdf:Property ;
+	rdfs:label "cacheUrl"@en ;
+	rdfs:subPropertyOf schema:url ;
+	rdfs:comment "The URL of a cached version of a resource." 
+	.
+
+memex:tenDigitPhoneNumber rdf:type rdf:Property ;
+	rdfs:label "tenDigitPhoneNumber"@en ;
+	rdfs:domain memex:PhoneNumber ;
+	rdfs:comment "The 10 digit number of a USA phone number." 
+	.
+
+memex:confidence rdf:type owl:DataTypeProeprty ;
+	rdfs:label "confidence"@en ;
+	rdfs:comment "Confidence value associated with mention"
+	.
+
+memex:snapshotUri rdf:type rdf:Property ;
+	rdfs:label "snapshotUri"@en ;
+	rdfs:domain schema:CreativeWork ;
+	rdfs:comment "The cache snapshot URI for the Creative Work"
+	.
+
+
+memex:dateCrawled rdf:type rdf:Property ;
+	rdfs:label "dateCrawled"@en ;
+	rdfs:comment "The Date the CreativeWork was crawled" ;
+	rdfs:domain schema:CreativeWork ;
+	.
+
+memex:dateMostLikelyCreated rdf:type rdf:Property ;
+	rdfs:label "dateMostLikelyCreated"@en ;
+	rdfs:comment "The Date the CreativeWork was post likelt created, which could be the posttime if available, else import time" ;
+	rdfs:domain schema:CreativeWork ;
+	.
+
+memex:countryDialingCode rdf:type rdf:Property ;
+    rdfs:label "countryDialingCode"@en ;
+	rdfs:comment "The dialing code for a Country" ;
+	rdfs:domain memex:PhoneNumber
+	.
+
+memex:localPhoneNumber rdf:type rdf:Property ;
+    rdfs:label "localPhoneNumber"@en ;
+	rdfs:comment "Phone Number without the country code" ;
+	rdfs:domain memex:PhoneNumber
+	.
+
+memex:digitalObjectIdentifier rdf:type rdf:Property ;
+    rdfs:label "digitalObjectIdentifier"@en ;
+	rdfs:comment "Unique Identifier for an Object" ;
+	rdfs:domain schema:CreativeWork
+	.
+
+memex:textChecksum rdf:type rdf:Property ;
+    rdfs:label "textChecksum"@en ;
+	rdfs:comment "MD5 or SHA checksum of the text of the CreativeWork" ;
+	rdfs:domain schema:CreativeWork
+	.
+
+memex:numberOfItems rdf:type rdf:Property ;
+    rdfs:label "numberOfItems"@en ;
+	rdfs:comment "Number of Items in a Cluster" ;
+	rdfs:domain memex:Cluster
+	.
+
+
+
+
+
+
+
