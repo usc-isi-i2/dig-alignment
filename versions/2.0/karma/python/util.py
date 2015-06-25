@@ -86,6 +86,11 @@ def alphaOnly(x):
     "Remove non-alphabetic chars from the string x"
     return re.sub('[^A-Za-z]+', '', x)
 
+def removeAlpha(x):
+    "Remove alphabetic chars from the string x"
+    return re.sub('[A-Za-z]+', '', x)
+
+
 def alphaOnlyPreserveSpace(x):
     x = re.sub('[^A-Za-z\s]+', '', x)
     y = re.sub(r'\s+', ' ', x.strip())
@@ -153,6 +158,11 @@ output format: iso8601
 
     try:
         return datetime.strptime(date, "%Y-%m-%d %H:%M:%S %Z").isoformat()
+    except Exception:
+        pass
+
+    try:
+        return datetime.strptime(date, "%A, %b %d, %Y").isoformat()
     except Exception:
         pass
 
