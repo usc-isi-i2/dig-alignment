@@ -1,28 +1,16 @@
 ## armslist-sample.json
 
 ### PyTransforms
-#### _cleanprice_
-From column: _Unfold: label / price / cleanprice_
+#### _label_fields_
+From column: _fields / label_
 >``` python
-return cleanPrice(getValue("Values"))
+return getValue("label")
 ```
 
-#### _currency_
-From column: _Unfold: label / price / currency_
+#### _label_info_
+From column: _info / label_
 >``` python
-return getCurrency(getValue("Values"))
-```
-
-#### _listedOnDate_
-From column: _Unfold: label / listed on / listedOnDate_
->``` python
-return iso8601date(getValue("Values"))
-```
-
-#### _cleanRegistrationDate_
-From column: _Unfold: label / account / Values_
->``` python
-return iso8601date(removeAlpha(getValue("Values")).strip(),"%m/%d/%Y")
+return getValue("label")
 ```
 
 #### _transactionType_
@@ -37,20 +25,47 @@ From column: _transactionType_
 return getTransactionActor(getValue("transactionType"))
 ```
 
+#### _cleanRegistrationDate_
+From column: _Unfold: label_info / account / Values_
+>``` python
+return iso8601date(removeAlpha(getValue("Values")).strip(),"%m/%d/%Y")
+```
+
+#### _listedOnDate_
+From column: _Unfold: label_info / listed on / Values_
+>``` python
+return iso8601date(getValue("Values"))
+```
+
+#### _currency_
+From column: _Unfold: label_info / price / Values_
+>``` python
+return getCurrency(getValue("Values"))
+```
+
+#### _cleanPrice_
+From column: _Unfold: label_info / price / Values_
+>``` python
+return cleanPrice(getValue("Values"))
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
 |  ----- | -------- | ----- |
-| _Values_ | `schema:category` | `schema:Product1`|
+| _Values_ | `schema:name` | `schema:PostalAddress1`|
 | _Values_ | `schema:description` | `memex:PersonOrOrganization1`|
+| _Values_ | `schema:category` | `schema:Product1`|
+| _Values_ | `schema:keywords` | `schema:Product1`|
 | _Values_ | `schema:keywords` | `schema:Product1`|
 | _Values_ | `schema:manufacturer` | `schema:Product1`|
 | _Values_ | `schema:keywords` | `schema:Product1`|
-| _Values_ | `schema:keywords` | `schema:Product1`|
-| _cleanprice_ | `schema:price` | `schema:Offer1`|
+| _cleanPrice_ | `schema:price` | `schema:Offer1`|
+| _cleanRegistrationDate_ | `schema:startDate` | `schema:OrganizationRole1`|
 | _currency_ | `schema:priceCurrency` | `schema:Offer1`|
 | _description_ | `schema:description` | `schema:Offer1`|
 | _listedOnDate_ | `schema:availabilityStarts` | `schema:Offer1`|
+| _listing_id_ | `schema:name` | `memex:Identifier1`|
 | _rawtextdetectedlanguage_ | `schema:inLanguage` | `schema:Offer1`|
 | _title_ | `schema:name` | `schema:Offer1`|
 | _transactionActor_ | `km-dev:objectPropertySpecialization` | `schema:Offer1`|
@@ -61,5 +76,12 @@ return getTransactionActor(getValue("transactionType"))
 ### Links
 | From | Property | To |
 |  --- | -------- | ---|
+| `memex:Identifier1` | `memex:hasType` | `xsd:http://dig.isi.edu/weapons/data/thesaurus/identifier/armslist`|
+| `memex:PersonOrOrganization1` | `schema:memberOf` | `schema:OrganizationRole1`|
+| `schema:Offer1` | `memex:identifier` | `memex:Identifier1`|
+| `schema:Offer1` | `schema:availableAtOrFrom` | `schema:Place1`|
 | `schema:Offer1` | `schema:itemOffered` | `schema:Product1`|
 | `schema:Offer1` | `schema:seller` | `memex:PersonOrOrganization1`|
+| `schema:Organization1` | `schema:name` | `xsd:www.armslist.com`|
+| `schema:OrganizationRole1` | `schema:memberOf` | `schema:Organization1`|
+| `schema:Place1` | `schema:address` | `schema:PostalAddress1`|
