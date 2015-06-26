@@ -50,9 +50,12 @@ return getValue("Values") + " Texas"
 |  --- | -------- | ---|
 | `memex:Identifier1` | `memex:hasType` | `xsd:http://dig.isi.edu/weapons/data/thesaurus/identifier/dallasguns`|
 | `memex:PersonOrOrganization1` | `schema:contactPoint` | `schema:ContactPoint1`|
+| `memex:PersonOrOrganization1` | `schema:memberOf` | `schema:OrganizationRole1`|
 | `schema:ContactPoint1` | `schema:telephone` | `memex:PhoneNumber1`|
 | `schema:Offer1` | `memex:identifier` | `memex:Identifier1`|
 | `schema:Offer1` | `schema:availableAtOrFrom` | `schema:Place1`|
 | `schema:Offer1` | `schema:itemOffered` | `schema:Product1`|
 | `schema:Offer1` | `schema:seller` | `memex:PersonOrOrganization1`|
+| `schema:Organization1` | `schema:name` | `xsd:www.dallasguns.com`|
+| `schema:OrganizationRole1` | `schema:memberOf` | `schema:Organization1`|
 | `schema:Place1` | `schema:address` | `schema:PostalAddress1`|
