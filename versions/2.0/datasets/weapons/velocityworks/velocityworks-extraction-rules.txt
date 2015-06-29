@@ -1,0 +1,62 @@
+[
+  {
+    "begin_regex": "class=\"pricenum.*?\"\\>\\$",
+    "end_regex": "\\</div",
+    "name": "price",
+    "rule_type": "ItemRule"
+  },
+  {
+    "begin_regex": "\\<td\\s+colspan.*?=\"2.*?\"\\>",
+    "end_regex": "\\</td",
+    "name": "description",
+    "rule_type": "ItemRule"
+  },
+  {
+    "begin_regex": "amp;products.*?\"headerNavigation\".*?\\>",
+    "end_regex": "\\</a",
+    "name": "title",
+    "rule_type": "ItemRule"
+  },
+{
+        "begin_regex": "DETAILS:",
+        "end_regex": "\\</table\\>\\</div\\>",
+        "iter_begin_regex": "\\<tr\\>",
+        "iter_end_regex": "\\</tr\\>",
+        "name": "details",
+        "no_first_begin_iter_rule": false,
+        "no_last_end_iter_rule": false,
+        "rule_type": "IterationRule",
+        "sub_rules": [
+            {
+                "begin_regex": "\\<td\\>",
+                "end_regex": ":\\</td\\>\\s*\\<td\\>",
+                "name": "label",
+                "rule_type": "ItemRule"
+            },
+            {
+                "begin_regex": "\\</td\\>\\s*\\<td\\>",
+                "end_regex": "\\</td\\>",
+                "name": "value",
+                "rule_type": "ItemRule"
+            }
+        ]
+    },
+	{
+		"begin_regex": "",
+		"end_regex": "",
+		"iter_begin_regex": "\\<img",
+		"iter_end_regex": "\\>",
+		"name": "images",
+		"no_first_begin_iter_rule": false,
+		"no_last_end_iter_rule": false,
+		"rule_type": "IterationRule",
+		"sub_rules": [
+			{
+				"begin_regex": "src=[\"|']",
+				"end_regex": "\"|'",
+				"name": "src",
+				"rule_type": "ItemRule"
+			}
+		]
+	}
+]
