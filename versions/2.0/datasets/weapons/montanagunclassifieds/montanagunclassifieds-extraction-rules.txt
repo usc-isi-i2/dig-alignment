@@ -1,0 +1,81 @@
+[
+  {
+    "begin_regex": "\\*\\s+Begin\\s+Version.*?5\\.3.*?adid=",
+    "end_regex": "\\&cityid=",
+    "name": "post_number",
+    "rule_type": "ItemRule"
+  },
+  {
+    "begin_regex": "\"\\>\\s+\\<p\\>",
+    "end_regex": "\\</p",
+    "name": "description",
+    "rule_type": "ItemRule"
+  },
+  {
+    "begin_regex": "\\+Sans'.*?/css'.*?\\>.*?\\<title\\>",
+    "end_regex": "\\-\\s+Montana\\s+Gun",
+    "name": "title",
+    "rule_type": "ItemRule"
+  },
+  {
+    "begin_regex": "\\>Expires\\<.*?/b\\>.*?,.*?\\<table",
+    "end_regex": "\\</table",
+    "iter_begin_regex": "\\<tr\\>",
+    "iter_end_regex": "\\</tr\\>",
+    "name": "fields",
+    "no_first_begin_iter_rule": false,
+    "no_last_end_iter_rule": false,
+    "rule_type": "IterationRule",
+    "sub_rules": [
+      {
+        "begin_regex": "\\<td\\>\\<b\\>",
+        "end_regex": "\\</b\\>",
+        "name": "label",
+        "rule_type": "ItemRule"
+      },
+      {
+        "begin_regex": "\\<td\\>:",
+        "end_regex": "\\</td\\>",
+        "name": "value",
+        "rule_type": "ItemRule"
+      }
+    ]
+  },
+  {
+    "begin_regex": "\\>Expires\\<.*?/b\\>.*?:",
+    "end_regex": "\\<br\\>",
+    "name": "expires",
+    "rule_type": "ItemRule"
+  },
+  {
+    "begin_regex": "=\"posttitle.*?\\<br\\>",
+    "end_regex": "\\</div",
+    "name": "location",
+    "rule_type": "ItemRule",
+    "removehtml": true
+  },
+  {
+    "begin_regex": "b\\>Posted.*?\\</b.*?:",
+    "end_regex": "\\&",
+    "name": "posted",
+    "rule_type": "ItemRule"
+  },
+	{
+		"begin_regex": "",
+		"end_regex": "",
+		"iter_begin_regex": "\\<img",
+		"iter_end_regex": "\\>",
+		"name": "images",
+		"no_first_begin_iter_rule": false,
+		"no_last_end_iter_rule": false,
+		"rule_type": "IterationRule",
+		"sub_rules": [
+			{
+				"begin_regex": "src=[\"|']",
+				"end_regex": "\"|'",
+				"name": "src",
+				"rule_type": "ItemRule"
+			}
+		]
+	}
+]
