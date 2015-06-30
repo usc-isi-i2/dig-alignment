@@ -1,0 +1,87 @@
+[
+  {
+    "begin_regex": "\\>Listed\\s+by.*?/\"\\>",
+    "end_regex": "\\</a",
+    "name": "username",
+    "rule_type": "ItemRule"
+  },
+  {
+    "begin_regex": "\\>Listed\\s+by.*?/author/",
+    "end_regex": "/\"\\>",
+    "name": "user_id",
+    "rule_type": "ItemRule"
+  },
+  {
+    "begin_regex": "\"\\s+/\\>\\s+\\<title.*?\\>",
+    "end_regex": "\\-\\s+Kentucky\\s+Indiana",
+    "name": "title",
+    "rule_type": "ItemRule"
+  },
+  {
+    "begin_regex": "Since:\\<.*?/span\\>",
+    "end_regex": "\\</li",
+    "name": "member_since",
+    "rule_type": "ItemRule"
+  },
+  {
+    "begin_regex": "head\"\\>.*?\\<p\\s+class.*?\"\\>",
+    "end_regex": "\\</p",
+    "name": "price",
+    "rule_type": "ItemRule"
+  },
+  {
+    "begin_regex": "Description\\</h3\\>",
+    "end_regex": "\\<div class",
+    "name": "description",
+    "rule_type": "ItemRule",
+    "removehtml": true
+  },
+  {
+    "begin_regex": "=\"bigright.*?ul\\>",
+    "end_regex": "\\<br/\\>",
+    "iter_begin_regex": "\\<li",
+    "iter_end_regex": "\\</li",
+    "name": "details",
+    "no_first_begin_iter_rule": true,
+    "no_last_end_iter_rule": false,
+    "rule_type": "IterationRule",
+	"sub_rules": [
+        {
+            "begin_regex": "\\<span\\>",
+            "end_regex": "\\</span\\>",
+            "name": "label",
+            "rule_type": "ItemRule"
+        },
+        {
+            "begin_regex": "/span\\>",
+            "end_regex": "",
+            "name": "value",
+            "rule_type": "ItemRule"
+        }
+    ]
+  },
+  {
+    "begin_regex": "javascript\"\\>var\\s+address.*?=\\s+\"",
+    "end_regex": "\";\\<",
+    "name": "address",
+    "rule_type": "ItemRule"
+  },
+	{
+		"begin_regex": "",
+		"end_regex": "",
+		"iter_begin_regex": "\\<img",
+		"iter_end_regex": "\\>",
+		"name": "images",
+		"no_first_begin_iter_rule": false,
+		"no_last_end_iter_rule": false,
+		"rule_type": "IterationRule",
+		"sub_rules": [
+			{
+				"begin_regex": "src=[\"|']",
+				"end_regex": "\"|'",
+				"name": "src",
+				"rule_type": "ItemRule"
+			}
+		]
+	}
+]
