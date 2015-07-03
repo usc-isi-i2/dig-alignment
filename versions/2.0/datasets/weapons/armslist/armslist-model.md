@@ -49,19 +49,26 @@ From column: _Unfold: label_info / price / Values_
 return cleanPrice(getValue("Values"))
 ```
 
+#### _cleanimgurl_
+From column: _images / src_
+>``` python
+return al_clean_image_url(getValue("src"))
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
 |  ----- | -------- | ----- |
-| _Values_ | `schema:name` | `schema:PostalAddress1`|
-| _Values_ | `schema:description` | `memex:PersonOrOrganization1`|
 | _Values_ | `schema:category` | `schema:Product1`|
 | _Values_ | `schema:keywords` | `schema:Product1`|
-| _Values_ | `schema:keywords` | `schema:Product1`|
 | _Values_ | `schema:manufacturer` | `schema:Product1`|
+| _Values_ | `schema:description` | `memex:PersonOrOrganization1`|
+| _Values_ | `schema:name` | `schema:PostalAddress1`|
+| _Values_ | `schema:keywords` | `schema:Product1`|
 | _Values_ | `schema:keywords` | `schema:Product1`|
 | _cleanPrice_ | `schema:price` | `schema:Offer1`|
 | _cleanRegistrationDate_ | `schema:startDate` | `schema:OrganizationRole1`|
+| _cleanimgurl_ | `schema:url` | `schema:ImageObject1`|
 | _currency_ | `schema:priceCurrency` | `schema:Offer1`|
 | _description_ | `schema:description` | `schema:Offer1`|
 | _listedOnDate_ | `schema:availabilityStarts` | `schema:Offer1`|
@@ -81,7 +88,9 @@ return cleanPrice(getValue("Values"))
 | `schema:Offer1` | `memex:identifier` | `memex:Identifier1`|
 | `schema:Offer1` | `schema:availableAtOrFrom` | `schema:Place1`|
 | `schema:Offer1` | `schema:itemOffered` | `schema:Product1`|
+| `schema:Offer1` | `schema:publisher` | `schema:Organization1`|
 | `schema:Offer1` | `schema:seller` | `memex:PersonOrOrganization1`|
-| `schema:Organization1` | `schema:name` | `xsd:www.armslist.com`|
+| `schema:Organization1` | `schema:name` | `xsd:armslist.com`|
 | `schema:OrganizationRole1` | `schema:memberOf` | `schema:Organization1`|
 | `schema:Place1` | `schema:address` | `schema:PostalAddress1`|
+| `schema:Product1` | `schema:image` | `schema:ImageObject1`|
