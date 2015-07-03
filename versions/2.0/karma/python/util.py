@@ -183,6 +183,21 @@ output format: iso8601
         pass
 
     try:
+        return datetime.strptime(date, "%b %d, %Y").isoformat()
+    except:
+        pass
+
+    try:
+        return datetime.strptime(date, "%B %d, %Y").isoformat()
+    except:
+        pass
+
+    try:
+        return datetime.strptime(date, "%B %d, %Y %I:%M %p").isoformat()
+    except:
+        pass
+        
+    try:
         date = int(date)
         if 1000000000000 < date and date < 9999999999999:
             # 13 digit epoch
