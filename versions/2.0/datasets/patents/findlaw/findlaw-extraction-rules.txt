@@ -1,0 +1,82 @@
+[
+  {
+    "begin_regex": "pp_card_name.*?\\>",
+    "end_regex": "\\</",
+    "name": "name",
+    "rule_type": "ItemRule"
+  },
+  {
+    "begin_regex": "\\>Address\\</div\\>",
+    "end_regex": "</span>\\s*</div>",
+    "name": "address",
+    "rule_type": "ItemRule",
+    "sub_rules": [
+	  {
+	    "begin_regex": "streetAddress\"\\>",
+	    "end_regex": "\\</",
+	    "name": "street1",
+	    "rule_type": "ItemRule",
+	    "removehtml": true
+	  },
+	  {
+	    "begin_regex": "streetAddress\"\\>.*?streetAddress\"\\>",
+	    "end_regex": "\\</",
+	    "name": "street2",
+	    "rule_type": "ItemRule",
+	    "removehtml": true
+	  },
+	  {
+	    "begin_regex": "addressLocality\"\\>",
+	    "end_regex": "\\</",
+	    "name": "city",
+	    "rule_type": "ItemRule"
+	  },
+	  {
+	    "begin_regex": "addressRegion\"\\>",
+	    "end_regex": "\\</",
+	    "name": "state",
+	    "rule_type": "ItemRule"
+	  },
+	  {
+	    "begin_regex": "postalCode\"\\>",
+	    "end_regex": "\\</",
+	    "name": "zipcode",
+	    "rule_type": "ItemRule"
+	  }
+    ]
+  },
+  {
+    "begin_regex": "block_content_header\"\\>Websites",
+    "end_regex": "</span>\\s*</div>",
+    "iter_begin_regex": "\\<a.*?\\>",
+    "iter_end_regex": "\\</a",
+    "name": "urls",
+    "no_first_begin_iter_rule": false,
+    "no_last_end_iter_rule": false,
+    "rule_type": "IterationRule"
+  },
+  {
+    "begin_regex": "\\>People\\</div\\>",
+    "end_regex": "</span>\\s*</div>",
+    "iter_begin_regex": "\\<a.*?\\>",
+    "iter_end_regex": "\\</span\\>\\<span",
+    "name": "people",
+    "no_first_begin_iter_rule": false,
+    "no_last_end_iter_rule": false,
+    "rule_type": "IterationRule",
+    "sub_rules": [
+	  {
+	    "begin_regex": "member\"\\>",
+	    "end_regex": "\\</",
+	    "name": "name",
+	    "rule_type": "ItemRule"
+	  },
+	  {
+	    "begin_regex": "\\</a\\>\\s+\\(",
+	    "end_regex": "\\)",
+	    "name": "title",
+	    "rule_type": "ItemRule"
+	  }
+    ]
+  }
+]

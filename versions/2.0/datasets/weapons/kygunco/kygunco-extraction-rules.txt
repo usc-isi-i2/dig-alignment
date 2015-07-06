@@ -1,0 +1,68 @@
+[
+  {
+    "begin_regex": "itemprop=\"name.*?\"\\>.*?#",
+    "end_regex": "\\</h2",
+    "name": "item_number",
+    "rule_type": "ItemRule"
+  },
+  {
+    "begin_regex": "span\\s+id=\"retail.*?\\>\\<strong.*?\\>\\$",
+    "end_regex": "\\</",
+    "name": "price",
+    "rule_type": "ItemRule"
+  },
+  {
+    "begin_regex": "\\-tab\"\\>.*?=\"infoTXT.*?\"\\>",
+    "end_regex": "\\>\\s+\\<!",
+    "name": "description",
+    "rule_type": "ItemRule"
+  },
+  {
+    "begin_regex": "\\>\\s+\\<tbody",
+    "end_regex": "\\</tbody",
+    "iter_begin_regex": "\\<tr\\>",
+    "iter_end_regex": "\\</tr\\>",
+    "name": "details",
+    "no_first_begin_iter_rule": false,
+    "no_last_end_iter_rule": false,
+    "rule_type": "IterationRule",
+	"sub_rules": [
+        {
+            "begin_regex": "\\<strong\\>",
+            "end_regex": "\\</strong\\>",
+            "name": "label",
+            "rule_type": "ItemRule"
+        },
+        {
+            "begin_regex": "\\</td\\>.*?10px;\"\\>",
+            "end_regex": "\\</td\\>",
+            "name": "value",
+            "rule_type": "ItemRule"
+        }
+    ]
+  },
+  {
+    "begin_regex": "\"\\s+/\\>\\s+\\<title.*?\\>",
+    "end_regex": "\\</title",
+    "name": "title",
+    "rule_type": "ItemRule"
+  },
+	{
+		"begin_regex": "",
+		"end_regex": "",
+		"iter_begin_regex": "\\<img",
+		"iter_end_regex": "\\>",
+		"name": "images",
+		"no_first_begin_iter_rule": false,
+		"no_last_end_iter_rule": false,
+		"rule_type": "IterationRule",
+		"sub_rules": [
+			{
+				"begin_regex": "src=[\"|']",
+				"end_regex": "\"|'",
+				"name": "src",
+				"rule_type": "ItemRule"
+			}
+		]
+	}
+]

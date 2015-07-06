@@ -1,0 +1,81 @@
+[
+  {
+    "begin_regex": "rel=\"canonical.*?\"\\s+href=.*?/",
+    "end_regex": "\"\\>\\s+\\<",
+    "name": "SKU",
+    "rule_type": "ItemRule"
+  },
+  {
+    "begin_regex": "Description\\</.*?h3\\>\\s+\\<.*?p\\>",
+    "end_regex": "\\</p",
+    "name": "description",
+    "rule_type": "ItemRule",
+    "removehtml": true
+  },
+  {
+    "begin_regex": "=\"product\\-detail.*?\"\\>\\s+\\<.*?h2\\>",
+    "end_regex": "\\</h2",
+    "name": "title",
+    "rule_type": "ItemRule"
+  },
+  {
+    "begin_regex": ":none\"\\s+value.*?=\"\\$",
+    "end_regex": "\"\\s+/\\>",
+    "name": "price",
+    "rule_type": "ItemRule"
+  },
+  {
+    "begin_regex": "\"\\>Manufacturer\\s+No.*?right\"\\>",
+    "end_regex": "\\</td",
+    "name": "manufacturer_no",
+    "rule_type": "ItemRule"
+  },
+  {
+    "begin_regex": "\"\\>SKU.*?class=\"left.*?\\>\\s+\\<td.*?\"\\>",
+    "end_regex": "\\</td",
+    "name": "manufacturer",
+    "rule_type": "ItemRule"
+  },
+  {
+    "begin_regex": "\\<table id='attributes'\\>",
+    "end_regex": "\\</table",
+    "iter_begin_regex": "\\<tr\\>",
+    "iter_end_regex": "\\</tr\\>",
+    "name": "details",
+    "no_first_begin_iter_rule": false,
+    "no_last_end_iter_rule": false,
+    "rule_type": "IterationRule",
+	"sub_rules": [
+        {
+            "begin_regex": "left'\\>",
+            "end_regex": ":\\</td",
+            "name": "label",
+            "rule_type": "ItemRule"
+        },
+        {
+            "begin_regex": "\\<td\\>",
+            "end_regex": "\\</td\\>",
+            "name": "value",
+            "rule_type": "ItemRule"
+        }
+    ]
+  },
+	{
+		"begin_regex": "",
+		"end_regex": "",
+		"iter_begin_regex": "\\<img",
+		"iter_end_regex": "\\>",
+		"name": "images",
+		"no_first_begin_iter_rule": false,
+		"no_last_end_iter_rule": false,
+		"rule_type": "IterationRule",
+		"sub_rules": [
+			{
+				"begin_regex": "src=[\"|']",
+				"end_regex": "\"|'",
+				"name": "src",
+				"rule_type": "ItemRule"
+			}
+		]
+	}
+]
