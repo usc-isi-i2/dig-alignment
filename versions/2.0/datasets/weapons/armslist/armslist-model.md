@@ -60,11 +60,11 @@ return al_clean_image_url(getValue("src"))
 | Column | Property | Class |
 |  ----- | -------- | ----- |
 | _Values_ | `schema:category` | `schema:Product1`|
-| _Values_ | `schema:keywords` | `schema:Product1`|
-| _Values_ | `schema:manufacturer` | `schema:Product1`|
-| _Values_ | `schema:description` | `memex:PersonOrOrganization1`|
 | _Values_ | `schema:name` | `schema:PostalAddress1`|
+| _Values_ | `schema:manufacturer` | `schema:Product1`|
 | _Values_ | `schema:keywords` | `schema:Product1`|
+| _Values_ | `schema:keywords` | `schema:Product1`|
+| _Values_ | `schema:description` | `memex:PersonOrOrganization1`|
 | _Values_ | `schema:keywords` | `schema:Product1`|
 | _cleanPrice_ | `schema:price` | `schema:Offer1`|
 | _cleanRegistrationDate_ | `schema:startDate` | `schema:OrganizationRole1`|
@@ -78,6 +78,7 @@ return al_clean_image_url(getValue("src"))
 | _transactionActor_ | `km-dev:objectPropertySpecialization` | `schema:Offer1`|
 | _transactionType_ | `km-dev:columnSubClassOfLink` | `schema:Offer1`|
 | _uri_ | `uri` | `schema:Offer1`|
+| _url_ | `schema:url` | `schema:Offer1`|
 
 
 ### Links

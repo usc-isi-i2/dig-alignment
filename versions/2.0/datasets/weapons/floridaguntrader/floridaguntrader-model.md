@@ -44,6 +44,7 @@ return getValue("location") + " Florida"
 | _registrationdate_ | `schema:startDate` | `schema:OrganizationRole1`|
 | _title_ | `schema:title` | `schema:Offer1`|
 | _uri_ | `uri` | `schema:Offer1`|
+| _url_ | `schema:url` | `schema:Offer1`|
 | _user_id_ | `schema:name` | `memex:Identifier2`|
 | _username_ | `schema:name` | `schema:ContactPoint1`|
 

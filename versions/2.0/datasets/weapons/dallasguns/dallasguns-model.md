@@ -31,9 +31,9 @@ return getValue("Values") + " Texas"
 |  ----- | -------- | ----- |
 | _Values_ | `schema:description` | `memex:PersonOrOrganization1`|
 | _Values_ | `schema:model` | `schema:Product1`|
-| _Values_ | `schema:manufacturer` | `schema:Product1`|
-| _Values_ | `schema:itemCondition` | `schema:Product1`|
 | _Values_ | `schema:name` | `schema:ContactPoint1`|
+| _Values_ | `schema:itemCondition` | `schema:Product1`|
+| _Values_ | `schema:manufacturer` | `schema:Product1`|
 | _cleanPhone_ | `schema:name` | `memex:PhoneNumber1`|
 | _cleanPrice_ | `schema:price` | `schema:Offer1`|
 | _currency_ | `schema:priceCurrency` | `schema:Offer1`|
@@ -43,6 +43,7 @@ return getValue("Values") + " Texas"
 | _rawtextdetectedlanguage_ | `schema:inLanguage` | `schema:Offer1`|
 | _title_ | `schema:title` | `schema:Offer1`|
 | _uri_ | `uri` | `schema:Offer1`|
+| _url_ | `schema:url` | `schema:Offer1`|
 
 
 ### Links
