@@ -51,3 +51,10 @@ def tge_clean_image_url(imgurl):
 
 	return ''
 
+def vw_clean_image_url(imgurl):
+	#/images/VW%20Firears/Refurbished/Mosin%20%23151%201.JPG
+	#http://velocityworks.net/images/VW%20Firears/Refurbished/Mosin%20%23151%203.JPG
+	if re.search(r'^/images/(?!social_bookmarks).*$',imgurl):
+		return 'http://velocityworks.net' + imgurl
+
+	return ''

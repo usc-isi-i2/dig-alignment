@@ -1,0 +1,1834 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix schema: <http://schema.org/> .
+@prefix memex: <http://memexproxy.com/ontology/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix km-dev: <http://isi.edu/integration/karma/dev#> .
+
+_:node19pkc98d1x1 a km-dev:R2RMLMapping ;
+	km-dev:sourceName "elpasoguntrader-sample.json" ;
+	km-dev:modelPublicationTime "1436276793761"^^xsd:long ;
+	km-dev:modelVersion "1.7" ;
+	km-dev:hasInputColumns "[[{\"columnName\":\"user_id\"}],[{\"columnName\":\"description\"}],[{\"columnName\":\"URL\"}],[{\"columnName\":\"contact\"}],[{\"columnName\":\"title\"}],[{\"columnName\":\"rawtextdetectedlanguage\"}],[{\"columnName\":\"price\"}],[{\"columnName\":\"uri\"}],[{\"columnName\":\"user_rating\"}],[{\"columnName\":\"username\"}]]" ;
+	km-dev:hasOutputColumns "[[{\"columnName\":\"cleanPrice\"}],[{\"columnName\":\"user_id\"}],[{\"columnName\":\"description\"}],[{\"columnName\":\"URL\"}],[{\"columnName\":\"title\"}],[{\"columnName\":\"clean_phone\"}],[{\"columnName\":\"personOrOrganization_uri\"}],[{\"columnName\":\"rawtextdetectedlanguage\"}],[{\"columnName\":\"priceCurrency\"}],[{\"columnName\":\"uri\"}],[{\"columnName\":\"username\"}]]" ;
+	km-dev:hasModelLabel "elpasoguntrader-sample.json" ;
+	km-dev:hasBaseURI "http://localhost:8080/source/" ;
+	km-dev:hasWorksheetHistory """[
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"description\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://schema.org/description\",
+                    \"DomainLabel\": \"schema:Offer1 (add)\",
+                    \"DomainId\": \"http://schema.org/Offer1\",
+                    \"DomainUri\": \"http://schema.org/Offer\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"description\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"description\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetSemanticTypeCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"price\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"value\": \"priceCurrency\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"value\": \"return getCurrency(getValue(\\\"price\\\"))\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"isJSONOutput\",
+                \"value\": \"false\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"price\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"priceCurrency\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SubmitPythonTransformationCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"price\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"value\": \"cleanPrice\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"value\": \"return cleanPrice(getValue(\\\"price\\\"))\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"isJSONOutput\",
+                \"value\": \"false\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"price\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"cleanPrice\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SubmitPythonTransformationCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"priceCurrency\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://schema.org/priceCurrency\",
+                    \"DomainLabel\": \"schema:Offer1\",
+                    \"DomainId\": \"http://schema.org/Offer1\",
+                    \"DomainUri\": \"http://schema.org/Offer\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"priceCurrency\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"priceCurrency\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetSemanticTypeCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"title\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://schema.org/title\",
+                    \"DomainLabel\": \"schema:Offer1\",
+                    \"DomainId\": \"http://schema.org/Offer1\",
+                    \"DomainUri\": \"http://schema.org/Offer\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"title\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"title\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetSemanticTypeCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"uri\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyName\",
+                \"value\": \"isUriOfClass\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyUri\",
+                \"value\": \"http://schema.org/Offer\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyId\",
+                \"value\": \"http://schema.org/Offer1\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://isi.edu/integration/karma/dev#classLink\",
+                    \"DomainLabel\": \"schema:Offer1\",
+                    \"DomainId\": \"http://schema.org/Offer1\",
+                    \"DomainUri\": \"http://schema.org/Offer\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetMetaPropertyCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"rawtextdetectedlanguage\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://schema.org/inLanguage\",
+                    \"DomainLabel\": \"schema:Offer1\",
+                    \"DomainId\": \"http://schema.org/Offer1\",
+                    \"DomainUri\": \"http://schema.org/Offer\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"rawtextdetectedlanguage\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"rawtextdetectedlanguage\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetSemanticTypeCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"URL\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://schema.org/url\",
+                    \"DomainLabel\": \"schema:Offer1\",
+                    \"DomainId\": \"http://schema.org/Offer1\",
+                    \"DomainUri\": \"http://schema.org/Offer\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"URL\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"URL\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetSemanticTypeCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"username\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://schema.org/name\",
+                    \"DomainLabel\": \"schema:ContactPoint1 (add)\",
+                    \"DomainId\": \"http://schema.org/ContactPoint1\",
+                    \"DomainUri\": \"http://schema.org/ContactPoint\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"username\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"username\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetSemanticTypeCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"initialEdges\",
+                \"value\": [],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"alignmentId\",
+                \"value\": \"WSP9:WS1AL\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newEdges\",
+                \"value\": [{
+                    \"edgeTargetUri\": \"http://memexproxy.com/ontology/PersonOrOrganization\",
+                    \"edgeId\": \"http://memexproxy.com/ontology/identifier\",
+                    \"edgeTargetId\": \"http://memexproxy.com/ontology/PersonOrOrganization1 (add)\",
+                    \"edgeSourceId\": \"http://schema.org/ContactPoint1\",
+                    \"edgeSourceUri\": \"http://schema.org/ContactPoint\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"ChangeInternalNodeLinksCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"initialEdges\",
+                \"value\": [{
+                    \"edgeId\": \"http://memexproxy.com/ontology/identifier\",
+                    \"edgeTargetId\": \"http://memexproxy.com/ontology/PersonOrOrganization1\",
+                    \"edgeSourceId\": \"http://schema.org/ContactPoint1\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"alignmentId\",
+                \"value\": \"WSP9:WS1AL\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newEdges\",
+                \"value\": [
+                    {
+                        \"edgeTargetUri\": \"http://schema.org/ContactPoint\",
+                        \"edgeId\": \"http://schema.org/contactPoint\",
+                        \"edgeTargetId\": \"http://schema.org/ContactPoint1\",
+                        \"edgeSourceId\": \"http://memexproxy.com/ontology/PersonOrOrganization1\",
+                        \"edgeSourceUri\": \"http://memexproxy.com/ontology/PersonOrOrganization\"
+                    },
+                    {
+                        \"edgeTargetUri\": \"http://memexproxy.com/ontology/Identifier\",
+                        \"edgeId\": \"http://memexproxy.com/ontology/identifier\",
+                        \"edgeTargetId\": \"http://memexproxy.com/ontology/Identifier1 (add)\",
+                        \"edgeSourceId\": \"http://schema.org/ContactPoint1\",
+                        \"edgeSourceUri\": \"http://schema.org/ContactPoint\"
+                    }
+                ],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"ChangeInternalNodeLinksCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"initialEdges\",
+                \"value\": [],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"alignmentId\",
+                \"value\": \"WSP9:WS1AL\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newEdges\",
+                \"value\": [{
+                    \"edgeTargetUri\": \"http://memexproxy.com/ontology/PersonOrOrganization1\",
+                    \"edgeId\": \"http://schema.org/seller\",
+                    \"edgeTargetId\": \"http://memexproxy.com/ontology/PersonOrOrganization1\",
+                    \"edgeSourceId\": \"http://schema.org/Offer1\",
+                    \"edgeSourceUri\": \"http://schema.org/Offer\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"ChangeInternalNodeLinksCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"cleanPrice\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://schema.org/price\",
+                    \"DomainLabel\": \"schema:Offer1\",
+                    \"DomainId\": \"http://schema.org/Offer1\",
+                    \"DomainUri\": \"http://schema.org/Offer\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"cleanPrice\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"cleanPrice\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetSemanticTypeCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"initialEdges\",
+                \"value\": [{
+                    \"edgeId\": \"http://memexproxy.com/ontology/identifier\",
+                    \"edgeTargetId\": \"http://memexproxy.com/ontology/Identifier1\",
+                    \"edgeSourceId\": \"http://schema.org/ContactPoint1\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"alignmentId\",
+                \"value\": \"WSP2:WS1AL\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newEdges\",
+                \"value\": [],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"ChangeInternalNodeLinksCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"contact\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://schema.org/telephone\",
+                    \"DomainLabel\": \"schema:ContactPoint1\",
+                    \"DomainId\": \"http://schema.org/ContactPoint1\",
+                    \"DomainUri\": \"http://schema.org/ContactPoint\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"contact\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"contact\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetSemanticTypeCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"user_rating\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://schema.org/name\",
+                    \"DomainLabel\": \"memex:Identifier1 (add)\",
+                    \"DomainId\": \"http://memexproxy.com/ontology/Identifier1\",
+                    \"DomainUri\": \"http://memexproxy.com/ontology/Identifier\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"user_rating\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"user_rating\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetSemanticTypeCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"initialEdges\",
+                \"value\": [{
+                    \"edgeId\": \"http://memexproxy.com/ontology/identifier\",
+                    \"edgeTargetId\": \"http://memexproxy.com/ontology/Identifier1\",
+                    \"edgeSourceId\": \"http://memexproxy.com/ontology/PersonOrOrganization1\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"alignmentId\",
+                \"value\": \"WSP2:WS1AL\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newEdges\",
+                \"value\": [{
+                    \"edgeTargetUri\": \"http://memexproxy.com/ontology/Identifier\",
+                    \"edgeId\": \"http://memexproxy.com/ontology/identifier\",
+                    \"edgeTargetId\": \"http://memexproxy.com/ontology/Identifier1\",
+                    \"edgeSourceId\": \"http://schema.org/ContactPoint1\",
+                    \"edgeSourceUri\": \"http://schema.org/ContactPoint\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"ChangeInternalNodeLinksCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"user_id\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://schema.org/name\",
+                    \"DomainLabel\": \"memex:Identifier1\",
+                    \"DomainId\": \"http://memexproxy.com/ontology/Identifier1\",
+                    \"DomainUri\": \"http://memexproxy.com/ontology/Identifier\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"user_id\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"user_id\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetSemanticTypeCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"user_id\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"user_id\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"user_id\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"UnassignSemanticTypeCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"user_id\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://schema.org/name\",
+                    \"DomainLabel\": \"memex:Identifier2 (add)\",
+                    \"DomainId\": \"http://memexproxy.com/ontology/Identifier2\",
+                    \"DomainUri\": \"http://memexproxy.com/ontology/Identifier\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"user_id\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"user_id\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetSemanticTypeCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"initialEdges\",
+                \"value\": [{
+                    \"edgeId\": \"http://memexproxy.com/ontology/identifier\",
+                    \"edgeTargetId\": \"http://memexproxy.com/ontology/Identifier2\",
+                    \"edgeSourceId\": \"http://memexproxy.com/ontology/PersonOrOrganization1\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"alignmentId\",
+                \"value\": \"WSP2:WS1AL\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newEdges\",
+                \"value\": [{
+                    \"edgeTargetUri\": \"http://memexproxy.com/ontology/Identifier\",
+                    \"edgeId\": \"http://memexproxy.com/ontology/identifier\",
+                    \"edgeTargetId\": \"http://memexproxy.com/ontology/Identifier2\",
+                    \"edgeSourceId\": \"http://schema.org/ContactPoint1\",
+                    \"edgeSourceUri\": \"http://schema.org/ContactPoint\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"ChangeInternalNodeLinksCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"user_rating\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": true,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"user_rating\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"user_rating\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"UnassignSemanticTypeCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"initialEdges\",
+                \"value\": [{
+                    \"edgeId\": \"http://memexproxy.com/ontology/identifier\",
+                    \"edgeTargetId\": \"http://memexproxy.com/ontology/Identifier1\",
+                    \"edgeSourceId\": \"http://schema.org/ContactPoint1\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"alignmentId\",
+                \"value\": \"WSP3:WS402AL\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newEdges\",
+                \"value\": [],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"ChangeInternalNodeLinksCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"literalValue\",
+                \"value\": \"http://dig.isi.edu/weapons/data/thesaurus/identifier/elpasogunclassifieds\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"literalType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"isUri\",
+                \"value\": true,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"AddLiteralNodeCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"initialEdges\",
+                \"value\": [],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newEdges\",
+                \"value\": [{
+                    \"edgeTargetUri\": \"http://dig.isi.edu/weapons/data/thesaurus/identifier/elpasogunclassifieds\",
+                    \"edgeId\": \"http://memexproxy.com/ontology/hasType\",
+                    \"edgeTargetId\": \"http://dig.isi.edu/weapons/data/thesaurus/identifier/elpasogunclassifieds1\",
+                    \"edgeSourceId\": \"http://memexproxy.com/ontology/Identifier2\",
+                    \"edgeSourceUri\": \"http://memexproxy.com/ontology/Identifier\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"ChangeInternalNodeLinksCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"uri\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"value\": \"personOrOrganization_uri\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"value\": \"return getValue(\\\"uri\\\")+\\\"personororganization\\\"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"isJSONOutput\",
+                \"value\": \"false\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"personOrOrganization_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SubmitPythonTransformationCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"personOrOrganization_uri\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyName\",
+                \"value\": \"isUriOfClass\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyUri\",
+                \"value\": \"http://memexproxy.com/ontology/PersonOrOrganization\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyId\",
+                \"value\": \"http://memexproxy.com/ontology/PersonOrOrganization1\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://isi.edu/integration/karma/dev#classLink\",
+                    \"DomainLabel\": \"memex:PersonOrOrganization1\",
+                    \"DomainId\": \"http://memexproxy.com/ontology/PersonOrOrganization1\",
+                    \"DomainUri\": \"http://memexproxy.com/ontology/PersonOrOrganization\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"personOrOrganization_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"personOrOrganization_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetMetaPropertyCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"contact\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"value\": \"clean_phone\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"value\": \"return clean_phone(getValue(\\\"contact\\\"))\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"isJSONOutput\",
+                \"value\": \"false\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"contact\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"clean_phone\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SubmitPythonTransformationCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"contact\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"contact\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"contact\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"UnassignSemanticTypeCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"clean_phone\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://schema.org/telephone\",
+                    \"DomainLabel\": \"schema:ContactPoint1\",
+                    \"DomainId\": \"http://schema.org/ContactPoint1\",
+                    \"DomainUri\": \"http://schema.org/ContactPoint\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"clean_phone\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"clean_phone\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetSemanticTypeCommand\"
+    }
+]""" .
+
+km-dev:TriplesMap_9b699794-6e28-4ace-afe5-2509ad2cfcab a rr:TriplesMap .
+
+_:node19pkc98d1x1 km-dev:hasTriplesMap km-dev:TriplesMap_9b699794-6e28-4ace-afe5-2509ad2cfcab .
+
+km-dev:TriplesMap_9b699794-6e28-4ace-afe5-2509ad2cfcab km-dev:isPartOfMapping _:node19pkc98d1x1 .
+
+_:node19pkc98d1x2 rr:tableName "elpasoguntrader-sample.json" ;
+	a rr:LogicalTable ;
+	km-dev:isPartOfMapping _:node19pkc98d1x1 .
+
+_:node19pkc98d1x1 km-dev:hasLogicalTable _:node19pkc98d1x2 .
+
+km-dev:TriplesMap_9b699794-6e28-4ace-afe5-2509ad2cfcab rr:logicalTable _:node19pkc98d1x2 ;
+	rr:subjectMap _:node19pkc98d1x3 .
+
+_:node19pkc98d1x1 km-dev:hasSubjectMap _:node19pkc98d1x3 .
+
+_:node19pkc98d1x3 km-dev:isPartOfMapping _:node19pkc98d1x1 ;
+	a rr:SubjectMap ;
+	km-dev:alignmentNodeId "http://memexproxy.com/ontology/Identifier2" ;
+	rr:class memex:Identifier ;
+	rr:termType rr:BlankNode ;
+	km-dev:namePrefix "memex:Identifier2" .
+
+km-dev:PredicateObjectMap_0849b867-cb47-4239-9f2c-e4602da34a9b rr:predicate memex:hasType .
+
+_:node19pkc98d1x4 rr:constant <http://dig.isi.edu/weapons/data/thesaurus/identifier/elpasogunclassifieds> ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node19pkc98d1x1 .
+
+_:node19pkc98d1x1 km-dev:hasObjectMap _:node19pkc98d1x4 .
+
+km-dev:PredicateObjectMap_0849b867-cb47-4239-9f2c-e4602da34a9b rr:objectMap _:node19pkc98d1x4 .
+
+km-dev:TriplesMap_9b699794-6e28-4ace-afe5-2509ad2cfcab rr:predicateObjectMap km-dev:PredicateObjectMap_0849b867-cb47-4239-9f2c-e4602da34a9b .
+
+km-dev:PredicateObjectMap_0849b867-cb47-4239-9f2c-e4602da34a9b a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19pkc98d1x1 .
+
+_:node19pkc98d1x1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_0849b867-cb47-4239-9f2c-e4602da34a9b .
+
+km-dev:PredicateObjectMap_77d40188-814e-4010-9767-1d6a0266a7ef rr:predicate schema:name .
+
+_:node19pkc98d1x5 rr:column "user_id" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node19pkc98d1x1 .
+
+_:node19pkc98d1x1 km-dev:hasObjectMap _:node19pkc98d1x5 .
+
+km-dev:PredicateObjectMap_77d40188-814e-4010-9767-1d6a0266a7ef rr:objectMap _:node19pkc98d1x5 .
+
+km-dev:TriplesMap_9b699794-6e28-4ace-afe5-2509ad2cfcab rr:predicateObjectMap km-dev:PredicateObjectMap_77d40188-814e-4010-9767-1d6a0266a7ef .
+
+km-dev:PredicateObjectMap_77d40188-814e-4010-9767-1d6a0266a7ef a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19pkc98d1x1 .
+
+_:node19pkc98d1x1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_77d40188-814e-4010-9767-1d6a0266a7ef .
+
+km-dev:TriplesMap_98a4a815-8434-4560-a3bc-ee6b68d34cc2 a rr:TriplesMap .
+
+_:node19pkc98d1x1 km-dev:hasTriplesMap km-dev:TriplesMap_98a4a815-8434-4560-a3bc-ee6b68d34cc2 .
+
+km-dev:TriplesMap_98a4a815-8434-4560-a3bc-ee6b68d34cc2 km-dev:isPartOfMapping _:node19pkc98d1x1 .
+
+_:node19pkc98d1x6 rr:tableName "elpasoguntrader-sample.json" ;
+	a rr:LogicalTable ;
+	km-dev:isPartOfMapping _:node19pkc98d1x1 .
+
+_:node19pkc98d1x1 km-dev:hasLogicalTable _:node19pkc98d1x6 .
+
+km-dev:TriplesMap_98a4a815-8434-4560-a3bc-ee6b68d34cc2 rr:logicalTable _:node19pkc98d1x6 ;
+	rr:subjectMap _:node19pkc98d1x7 .
+
+_:node19pkc98d1x1 km-dev:hasSubjectMap _:node19pkc98d1x7 .
+
+_:node19pkc98d1x7 km-dev:isPartOfMapping _:node19pkc98d1x1 ;
+	a rr:SubjectMap ;
+	km-dev:alignmentNodeId "http://memexproxy.com/ontology/PersonOrOrganization1" ;
+	rr:class memex:PersonOrOrganization ;
+	rr:template "{uri}personororganization" .
+
+km-dev:PredicateObjectMap_5a4f709b-5a97-44e4-942a-0370be1a9a4e rr:predicate schema:contactPoint .
+
+km-dev:RefObjectMap_7c00994d-2221-4fe0-b775-d6cbb69e1991 a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_dda11e70-4924-4cf6-9c87-71520f1eecb1 ;
+	km-dev:isPartOfMapping _:node19pkc98d1x1 .
+
+_:node19pkc98d1x1 km-dev:hasObjectMap km-dev:RefObjectMap_7c00994d-2221-4fe0-b775-d6cbb69e1991 .
+
+km-dev:PredicateObjectMap_5a4f709b-5a97-44e4-942a-0370be1a9a4e rr:objectMap km-dev:RefObjectMap_7c00994d-2221-4fe0-b775-d6cbb69e1991 .
+
+km-dev:TriplesMap_98a4a815-8434-4560-a3bc-ee6b68d34cc2 rr:predicateObjectMap km-dev:PredicateObjectMap_5a4f709b-5a97-44e4-942a-0370be1a9a4e .
+
+km-dev:PredicateObjectMap_5a4f709b-5a97-44e4-942a-0370be1a9a4e a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19pkc98d1x1 .
+
+_:node19pkc98d1x1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_5a4f709b-5a97-44e4-942a-0370be1a9a4e .
+
+km-dev:TriplesMap_dda11e70-4924-4cf6-9c87-71520f1eecb1 a rr:TriplesMap .
+
+_:node19pkc98d1x1 km-dev:hasTriplesMap km-dev:TriplesMap_dda11e70-4924-4cf6-9c87-71520f1eecb1 .
+
+km-dev:TriplesMap_dda11e70-4924-4cf6-9c87-71520f1eecb1 km-dev:isPartOfMapping _:node19pkc98d1x1 .
+
+_:node19pkc98d1x8 rr:tableName "elpasoguntrader-sample.json" ;
+	a rr:LogicalTable ;
+	km-dev:isPartOfMapping _:node19pkc98d1x1 .
+
+_:node19pkc98d1x1 km-dev:hasLogicalTable _:node19pkc98d1x8 .
+
+km-dev:TriplesMap_dda11e70-4924-4cf6-9c87-71520f1eecb1 rr:logicalTable _:node19pkc98d1x8 ;
+	rr:subjectMap _:node19pkc98d1x9 .
+
+_:node19pkc98d1x1 km-dev:hasSubjectMap _:node19pkc98d1x9 .
+
+_:node19pkc98d1x9 km-dev:isPartOfMapping _:node19pkc98d1x1 ;
+	a rr:SubjectMap ;
+	km-dev:alignmentNodeId "http://schema.org/ContactPoint1" ;
+	rr:class schema:ContactPoint ;
+	rr:termType rr:BlankNode ;
+	km-dev:namePrefix "schema:ContactPoint1" .
+
+km-dev:PredicateObjectMap_ab8bb5f0-2b7d-4541-bcd7-1fbe88d8dbe2 rr:predicate memex:identifier .
+
+km-dev:RefObjectMap_f7381dce-b809-41e8-8d61-648daeab40c3 a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_9b699794-6e28-4ace-afe5-2509ad2cfcab ;
+	km-dev:isPartOfMapping _:node19pkc98d1x1 .
+
+_:node19pkc98d1x1 km-dev:hasObjectMap km-dev:RefObjectMap_f7381dce-b809-41e8-8d61-648daeab40c3 .
+
+km-dev:PredicateObjectMap_ab8bb5f0-2b7d-4541-bcd7-1fbe88d8dbe2 rr:objectMap km-dev:RefObjectMap_f7381dce-b809-41e8-8d61-648daeab40c3 .
+
+km-dev:TriplesMap_dda11e70-4924-4cf6-9c87-71520f1eecb1 rr:predicateObjectMap km-dev:PredicateObjectMap_ab8bb5f0-2b7d-4541-bcd7-1fbe88d8dbe2 .
+
+km-dev:PredicateObjectMap_ab8bb5f0-2b7d-4541-bcd7-1fbe88d8dbe2 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19pkc98d1x1 .
+
+_:node19pkc98d1x1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_ab8bb5f0-2b7d-4541-bcd7-1fbe88d8dbe2 .
+
+km-dev:PredicateObjectMap_c15b013a-818f-4fba-8141-27647f992d59 rr:predicate schema:name .
+
+_:node19pkc98d1x10 rr:column "username" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node19pkc98d1x1 .
+
+_:node19pkc98d1x1 km-dev:hasObjectMap _:node19pkc98d1x10 .
+
+km-dev:PredicateObjectMap_c15b013a-818f-4fba-8141-27647f992d59 rr:objectMap _:node19pkc98d1x10 .
+
+km-dev:TriplesMap_dda11e70-4924-4cf6-9c87-71520f1eecb1 rr:predicateObjectMap km-dev:PredicateObjectMap_c15b013a-818f-4fba-8141-27647f992d59 .
+
+km-dev:PredicateObjectMap_c15b013a-818f-4fba-8141-27647f992d59 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19pkc98d1x1 .
+
+_:node19pkc98d1x1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_c15b013a-818f-4fba-8141-27647f992d59 .
+
+km-dev:PredicateObjectMap_7397b78e-e765-4abd-9f9f-0ed3b3e1f8cb rr:predicate schema:telephone .
+
+_:node19pkc98d1x11 rr:column "clean_phone" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node19pkc98d1x1 .
+
+_:node19pkc98d1x1 km-dev:hasObjectMap _:node19pkc98d1x11 .
+
+km-dev:PredicateObjectMap_7397b78e-e765-4abd-9f9f-0ed3b3e1f8cb rr:objectMap _:node19pkc98d1x11 .
+
+km-dev:TriplesMap_dda11e70-4924-4cf6-9c87-71520f1eecb1 rr:predicateObjectMap km-dev:PredicateObjectMap_7397b78e-e765-4abd-9f9f-0ed3b3e1f8cb .
+
+km-dev:PredicateObjectMap_7397b78e-e765-4abd-9f9f-0ed3b3e1f8cb a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19pkc98d1x1 .
+
+_:node19pkc98d1x1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_7397b78e-e765-4abd-9f9f-0ed3b3e1f8cb .
+
+km-dev:TriplesMap_d2dd9079-aadc-4515-8098-cf6865bc9626 a rr:TriplesMap .
+
+_:node19pkc98d1x1 km-dev:hasTriplesMap km-dev:TriplesMap_d2dd9079-aadc-4515-8098-cf6865bc9626 .
+
+km-dev:TriplesMap_d2dd9079-aadc-4515-8098-cf6865bc9626 km-dev:isPartOfMapping _:node19pkc98d1x1 .
+
+_:node19pkc98d1x12 rr:tableName "elpasoguntrader-sample.json" ;
+	a rr:LogicalTable ;
+	km-dev:isPartOfMapping _:node19pkc98d1x1 .
+
+_:node19pkc98d1x1 km-dev:hasLogicalTable _:node19pkc98d1x12 .
+
+km-dev:TriplesMap_d2dd9079-aadc-4515-8098-cf6865bc9626 rr:logicalTable _:node19pkc98d1x12 ;
+	rr:subjectMap _:node19pkc98d1x13 .
+
+_:node19pkc98d1x1 km-dev:hasSubjectMap _:node19pkc98d1x13 .
+
+_:node19pkc98d1x13 km-dev:isPartOfMapping _:node19pkc98d1x1 ;
+	a rr:SubjectMap ;
+	km-dev:alignmentNodeId "http://schema.org/Offer1" ;
+	rr:class schema:Offer ;
+	rr:template "{uri}" ;
+	a km-dev:steinerTreeRootNode .
+
+km-dev:PredicateObjectMap_e15e8316-5012-4a5f-9fe8-49914145693d rr:predicate schema:description .
+
+_:node19pkc98d1x14 rr:column "description" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node19pkc98d1x1 .
+
+_:node19pkc98d1x1 km-dev:hasObjectMap _:node19pkc98d1x14 .
+
+km-dev:PredicateObjectMap_e15e8316-5012-4a5f-9fe8-49914145693d rr:objectMap _:node19pkc98d1x14 .
+
+km-dev:TriplesMap_d2dd9079-aadc-4515-8098-cf6865bc9626 rr:predicateObjectMap km-dev:PredicateObjectMap_e15e8316-5012-4a5f-9fe8-49914145693d .
+
+km-dev:PredicateObjectMap_e15e8316-5012-4a5f-9fe8-49914145693d a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19pkc98d1x1 .
+
+_:node19pkc98d1x1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_e15e8316-5012-4a5f-9fe8-49914145693d .
+
+km-dev:PredicateObjectMap_98f109ee-ce55-49a9-a593-19f1bf1f02a8 rr:predicate schema:inLanguage .
+
+_:node19pkc98d1x15 rr:column "rawtextdetectedlanguage" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node19pkc98d1x1 .
+
+_:node19pkc98d1x1 km-dev:hasObjectMap _:node19pkc98d1x15 .
+
+km-dev:PredicateObjectMap_98f109ee-ce55-49a9-a593-19f1bf1f02a8 rr:objectMap _:node19pkc98d1x15 .
+
+km-dev:TriplesMap_d2dd9079-aadc-4515-8098-cf6865bc9626 rr:predicateObjectMap km-dev:PredicateObjectMap_98f109ee-ce55-49a9-a593-19f1bf1f02a8 .
+
+km-dev:PredicateObjectMap_98f109ee-ce55-49a9-a593-19f1bf1f02a8 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19pkc98d1x1 .
+
+_:node19pkc98d1x1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_98f109ee-ce55-49a9-a593-19f1bf1f02a8 .
+
+km-dev:PredicateObjectMap_d4fad3e5-15c1-4095-8d6f-96f811cfb628 rr:predicate schema:price .
+
+_:node19pkc98d1x16 rr:column "cleanPrice" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node19pkc98d1x1 .
+
+_:node19pkc98d1x1 km-dev:hasObjectMap _:node19pkc98d1x16 .
+
+km-dev:PredicateObjectMap_d4fad3e5-15c1-4095-8d6f-96f811cfb628 rr:objectMap _:node19pkc98d1x16 .
+
+km-dev:TriplesMap_d2dd9079-aadc-4515-8098-cf6865bc9626 rr:predicateObjectMap km-dev:PredicateObjectMap_d4fad3e5-15c1-4095-8d6f-96f811cfb628 .
+
+km-dev:PredicateObjectMap_d4fad3e5-15c1-4095-8d6f-96f811cfb628 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19pkc98d1x1 .
+
+_:node19pkc98d1x1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_d4fad3e5-15c1-4095-8d6f-96f811cfb628 .
+
+km-dev:PredicateObjectMap_02e44152-23d5-442d-93c2-d061b3f61ce7 rr:predicate schema:priceCurrency .
+
+_:node19pkc98d1x17 rr:column "priceCurrency" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node19pkc98d1x1 .
+
+_:node19pkc98d1x1 km-dev:hasObjectMap _:node19pkc98d1x17 .
+
+km-dev:PredicateObjectMap_02e44152-23d5-442d-93c2-d061b3f61ce7 rr:objectMap _:node19pkc98d1x17 .
+
+km-dev:TriplesMap_d2dd9079-aadc-4515-8098-cf6865bc9626 rr:predicateObjectMap km-dev:PredicateObjectMap_02e44152-23d5-442d-93c2-d061b3f61ce7 .
+
+km-dev:PredicateObjectMap_02e44152-23d5-442d-93c2-d061b3f61ce7 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19pkc98d1x1 .
+
+_:node19pkc98d1x1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_02e44152-23d5-442d-93c2-d061b3f61ce7 .
+
+km-dev:PredicateObjectMap_0b712cfa-88e2-4330-8b79-c0e9ec824c5e rr:predicate schema:seller .
+
+km-dev:RefObjectMap_18c4923d-e98c-4e92-aeae-57df840d451b a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_98a4a815-8434-4560-a3bc-ee6b68d34cc2 ;
+	km-dev:isPartOfMapping _:node19pkc98d1x1 .
+
+_:node19pkc98d1x1 km-dev:hasObjectMap km-dev:RefObjectMap_18c4923d-e98c-4e92-aeae-57df840d451b .
+
+km-dev:PredicateObjectMap_0b712cfa-88e2-4330-8b79-c0e9ec824c5e rr:objectMap km-dev:RefObjectMap_18c4923d-e98c-4e92-aeae-57df840d451b .
+
+km-dev:TriplesMap_d2dd9079-aadc-4515-8098-cf6865bc9626 rr:predicateObjectMap km-dev:PredicateObjectMap_0b712cfa-88e2-4330-8b79-c0e9ec824c5e .
+
+km-dev:PredicateObjectMap_0b712cfa-88e2-4330-8b79-c0e9ec824c5e a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19pkc98d1x1 .
+
+_:node19pkc98d1x1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_0b712cfa-88e2-4330-8b79-c0e9ec824c5e .
+
+km-dev:PredicateObjectMap_63b06357-c3e2-462f-9625-9e2337bb1197 rr:predicate schema:title .
+
+_:node19pkc98d1x18 rr:column "title" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node19pkc98d1x1 .
+
+_:node19pkc98d1x1 km-dev:hasObjectMap _:node19pkc98d1x18 .
+
+km-dev:PredicateObjectMap_63b06357-c3e2-462f-9625-9e2337bb1197 rr:objectMap _:node19pkc98d1x18 .
+
+km-dev:TriplesMap_d2dd9079-aadc-4515-8098-cf6865bc9626 rr:predicateObjectMap km-dev:PredicateObjectMap_63b06357-c3e2-462f-9625-9e2337bb1197 .
+
+km-dev:PredicateObjectMap_63b06357-c3e2-462f-9625-9e2337bb1197 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19pkc98d1x1 .
+
+_:node19pkc98d1x1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_63b06357-c3e2-462f-9625-9e2337bb1197 .
+
+km-dev:PredicateObjectMap_e6a7509b-31f1-4594-b026-9da78a746400 rr:predicate schema:url .
+
+_:node19pkc98d1x19 rr:column "URL" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node19pkc98d1x1 .
+
+_:node19pkc98d1x1 km-dev:hasObjectMap _:node19pkc98d1x19 .
+
+km-dev:PredicateObjectMap_e6a7509b-31f1-4594-b026-9da78a746400 rr:objectMap _:node19pkc98d1x19 .
+
+km-dev:TriplesMap_d2dd9079-aadc-4515-8098-cf6865bc9626 rr:predicateObjectMap km-dev:PredicateObjectMap_e6a7509b-31f1-4594-b026-9da78a746400 .
+
+km-dev:PredicateObjectMap_e6a7509b-31f1-4594-b026-9da78a746400 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19pkc98d1x1 .
+
+_:node19pkc98d1x1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_e6a7509b-31f1-4594-b026-9da78a746400 .

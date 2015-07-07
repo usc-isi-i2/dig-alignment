@@ -622,7 +622,7 @@ def get_url_hash(string):
     return hashlib.sha1(string.encode('utf-8')).hexdigest().upper()
 
 def getCacheBaseUrl():
-    return "http://memex.zapto.org/data/"
+    return "http://dig.isi.edu/data/"
 
 def getHTBaseUrl():
     return "http://dig.isi.edu/ht/data/"
