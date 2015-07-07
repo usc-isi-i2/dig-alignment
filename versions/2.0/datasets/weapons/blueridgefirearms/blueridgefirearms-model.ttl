@@ -12,12 +12,12 @@
 @prefix rr: <http://www.w3.org/ns/r2rml#> .
 @prefix km-dev: <http://isi.edu/integration/karma/dev#> .
 
-_:node19php096cx1 a km-dev:R2RMLMapping ;
+_:node19pkdmhsqx1 a km-dev:R2RMLMapping ;
 	km-dev:sourceName "blueridgefirearms-sample.json" ;
-	km-dev:modelPublicationTime "1436189467852"^^xsd:long ;
+	km-dev:modelPublicationTime "1436278278043"^^xsd:long ;
 	km-dev:modelVersion "1.7" ;
-	km-dev:hasInputColumns "[[{\"columnName\":\"description\"}],[{\"columnName\":\"manufacturer\"}],[{\"columnName\":\"rawtextdetectedlanguage\"}],[{\"columnName\":\"URL\"}],[{\"columnName\":\"uri\"}],[{\"columnName\":\"price\"}],[{\"columnName\":\"manufacturer_no\"}],[{\"columnName\":\"SKU\"}],[{\"columnName\":\"title\"}]]" ;
-	km-dev:hasOutputColumns "[[{\"columnName\":\"description\"}],[{\"columnName\":\"manufacturer\"}],[{\"columnName\":\"rawtextdetectedlanguage\"}],[{\"columnName\":\"URL\"}],[{\"columnName\":\"uri\"}],[{\"columnName\":\"cleanPrice\"}],[{\"columnName\":\"manufacturer_no\"}],[{\"columnName\":\"SKU\"}],[{\"columnName\":\"title\"}],[{\"columnName\":\"priceCurrency\"}]]" ;
+	km-dev:hasInputColumns "[[{\"columnName\":\"uri\"}],[{\"columnName\":\"price\"}],[{\"columnName\":\"rawtextdetectedlanguage\"}],[{\"columnName\":\"manufacturer\"}],[{\"columnName\":\"URL\"}],[{\"columnName\":\"SKU\"}],[{\"columnName\":\"title\"}],[{\"columnName\":\"description\"}],[{\"columnName\":\"manufacturer_no\"}]]" ;
+	km-dev:hasOutputColumns "[[{\"columnName\":\"manufacturer\"}],[{\"columnName\":\"cleanPrice\"}],[{\"columnName\":\"location\"}],[{\"columnName\":\"uri\"}],[{\"columnName\":\"place_uri\"}],[{\"columnName\":\"rawtextdetectedlanguage\"}],[{\"columnName\":\"priceCurrency\"}],[{\"columnName\":\"URL\"}],[{\"columnName\":\"SKU\"}],[{\"columnName\":\"title\"}],[{\"columnName\":\"description\"}],[{\"columnName\":\"manufacturer_no\"}],[{\"columnName\":\"product_uri\"}]]" ;
 	km-dev:hasModelLabel "blueridgefirearms-sample.json" ;
 	km-dev:hasBaseURI "http://localhost:8080/source/" ;
 	km-dev:hasWorksheetHistory """[
@@ -891,223 +891,753 @@ _:node19php096cx1 a km-dev:R2RMLMapping ;
             }
         ],
         \"commandName\": \"SetSemanticTypeCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"uri\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"value\": \"product_uri\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"value\": \"return getValue(\\\"uri\\\") + \\\"/producturi\\\"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"isJSONOutput\",
+                \"value\": \"false\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"product_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SubmitPythonTransformationCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"product_uri\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyName\",
+                \"value\": \"isUriOfClass\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyUri\",
+                \"value\": \"http://schema.org/Product\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyId\",
+                \"value\": \"http://schema.org/Product1\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://isi.edu/integration/karma/dev#classLink\",
+                    \"DomainLabel\": \"schema:Product1\",
+                    \"DomainId\": \"http://schema.org/Product1\",
+                    \"DomainUri\": \"http://schema.org/Product\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"product_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"product_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetMetaPropertyCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"description\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"value\": \"location\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"value\": \"return \\\"georgia\\\"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"isJSONOutput\",
+                \"value\": \"false\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"location\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SubmitPythonTransformationCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"initialEdges\",
+                \"value\": [],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"alignmentId\",
+                \"value\": \"WSP3:WS216AL\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newEdges\",
+                \"value\": [{
+                    \"edgeTargetUri\": \"http://schema.org/Place\",
+                    \"edgeId\": \"http://schema.org/availableAtOrFrom\",
+                    \"edgeTargetId\": \"http://schema.org/Place1 (add)\",
+                    \"edgeSourceId\": \"http://schema.org/Offer1\",
+                    \"edgeSourceUri\": \"http://schema.org/Offer1\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"ChangeInternalNodeLinksCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"initialEdges\",
+                \"value\": [],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"alignmentId\",
+                \"value\": \"WSP3:WS216AL\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newEdges\",
+                \"value\": [{
+                    \"edgeTargetUri\": \"http://schema.org/PostalAddress\",
+                    \"edgeId\": \"http://schema.org/address\",
+                    \"edgeTargetId\": \"http://schema.org/PostalAddress1 (add)\",
+                    \"edgeSourceId\": \"http://schema.org/Place1\",
+                    \"edgeSourceUri\": \"http://schema.org/Place1\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"ChangeInternalNodeLinksCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"location\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://schema.org/name\",
+                    \"DomainLabel\": \"schema:PostalAddress1\",
+                    \"DomainId\": \"http://schema.org/PostalAddress1\",
+                    \"DomainUri\": \"http://schema.org/PostalAddress\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"location\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"location\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetSemanticTypeCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"uri\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"value\": \"place_uri\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"value\": \"return getValue(\\\"uri\\\") + \\\"/placeuri\\\"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"isJSONOutput\",
+                \"value\": \"false\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"place_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SubmitPythonTransformationCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"place_uri\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyName\",
+                \"value\": \"isUriOfClass\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyUri\",
+                \"value\": \"http://schema.org/Place\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyId\",
+                \"value\": \"http://schema.org/Place1\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://isi.edu/integration/karma/dev#classLink\",
+                    \"DomainLabel\": \"schema:Place1\",
+                    \"DomainId\": \"http://schema.org/Place1\",
+                    \"DomainUri\": \"http://schema.org/Place\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"place_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"place_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetMetaPropertyCommand\"
     }
 ]""" .
 
-km-dev:TriplesMap_7bf05668-8b8b-4e04-a158-57fdaf02ab5a a rr:TriplesMap .
+km-dev:TriplesMap_4a9c3507-a0f4-410d-9c64-a9660664ea31 a rr:TriplesMap .
 
-_:node19php096cx1 km-dev:hasTriplesMap km-dev:TriplesMap_7bf05668-8b8b-4e04-a158-57fdaf02ab5a .
+_:node19pkdmhsqx1 km-dev:hasTriplesMap km-dev:TriplesMap_4a9c3507-a0f4-410d-9c64-a9660664ea31 .
 
-km-dev:TriplesMap_7bf05668-8b8b-4e04-a158-57fdaf02ab5a km-dev:isPartOfMapping _:node19php096cx1 .
+km-dev:TriplesMap_4a9c3507-a0f4-410d-9c64-a9660664ea31 km-dev:isPartOfMapping _:node19pkdmhsqx1 .
 
-_:node19php096cx2 rr:tableName "blueridgefirearms-sample.json" ;
+_:node19pkdmhsqx2 rr:tableName "blueridgefirearms-sample.json" ;
 	a rr:LogicalTable ;
-	km-dev:isPartOfMapping _:node19php096cx1 .
+	km-dev:isPartOfMapping _:node19pkdmhsqx1 .
 
-_:node19php096cx1 km-dev:hasLogicalTable _:node19php096cx2 .
+_:node19pkdmhsqx1 km-dev:hasLogicalTable _:node19pkdmhsqx2 .
 
-km-dev:TriplesMap_7bf05668-8b8b-4e04-a158-57fdaf02ab5a rr:logicalTable _:node19php096cx2 ;
-	rr:subjectMap _:node19php096cx3 .
+km-dev:TriplesMap_4a9c3507-a0f4-410d-9c64-a9660664ea31 rr:logicalTable _:node19pkdmhsqx2 ;
+	rr:subjectMap _:node19pkdmhsqx3 .
 
-_:node19php096cx1 km-dev:hasSubjectMap _:node19php096cx3 .
+_:node19pkdmhsqx1 km-dev:hasSubjectMap _:node19pkdmhsqx3 .
 
-_:node19php096cx3 km-dev:isPartOfMapping _:node19php096cx1 ;
+_:node19pkdmhsqx3 km-dev:isPartOfMapping _:node19pkdmhsqx1 ;
 	a rr:SubjectMap ;
 	km-dev:alignmentNodeId "http://schema.org/Offer1" ;
 	rr:class schema:Offer ;
 	rr:template "{uri}" ;
 	a km-dev:steinerTreeRootNode .
 
-km-dev:PredicateObjectMap_7ae0551f-3891-4397-9471-1755c2f32935 rr:predicate schema:description .
+km-dev:PredicateObjectMap_c1e11ac0-0752-455a-9ee0-008e8d5431d1 rr:predicate schema:availableAtOrFrom .
 
-_:node19php096cx4 rr:column "description" ;
+km-dev:RefObjectMap_c28fb72a-7f13-46be-a3fe-c1710d040ff8 a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_799568a7-1046-4a0f-85df-4ca230e60a61 ;
+	km-dev:isPartOfMapping _:node19pkdmhsqx1 .
+
+_:node19pkdmhsqx1 km-dev:hasObjectMap km-dev:RefObjectMap_c28fb72a-7f13-46be-a3fe-c1710d040ff8 .
+
+km-dev:PredicateObjectMap_c1e11ac0-0752-455a-9ee0-008e8d5431d1 rr:objectMap km-dev:RefObjectMap_c28fb72a-7f13-46be-a3fe-c1710d040ff8 .
+
+km-dev:TriplesMap_4a9c3507-a0f4-410d-9c64-a9660664ea31 rr:predicateObjectMap km-dev:PredicateObjectMap_c1e11ac0-0752-455a-9ee0-008e8d5431d1 .
+
+km-dev:PredicateObjectMap_c1e11ac0-0752-455a-9ee0-008e8d5431d1 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19pkdmhsqx1 .
+
+_:node19pkdmhsqx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_c1e11ac0-0752-455a-9ee0-008e8d5431d1 .
+
+km-dev:PredicateObjectMap_2e815694-584b-4c55-9385-b42ac2401256 rr:predicate schema:description .
+
+_:node19pkdmhsqx4 rr:column "description" ;
 	a rr:ObjectMap ;
-	km-dev:isPartOfMapping _:node19php096cx1 .
+	km-dev:isPartOfMapping _:node19pkdmhsqx1 .
 
-_:node19php096cx1 km-dev:hasObjectMap _:node19php096cx4 .
+_:node19pkdmhsqx1 km-dev:hasObjectMap _:node19pkdmhsqx4 .
 
-km-dev:PredicateObjectMap_7ae0551f-3891-4397-9471-1755c2f32935 rr:objectMap _:node19php096cx4 .
+km-dev:PredicateObjectMap_2e815694-584b-4c55-9385-b42ac2401256 rr:objectMap _:node19pkdmhsqx4 .
 
-km-dev:TriplesMap_7bf05668-8b8b-4e04-a158-57fdaf02ab5a rr:predicateObjectMap km-dev:PredicateObjectMap_7ae0551f-3891-4397-9471-1755c2f32935 .
+km-dev:TriplesMap_4a9c3507-a0f4-410d-9c64-a9660664ea31 rr:predicateObjectMap km-dev:PredicateObjectMap_2e815694-584b-4c55-9385-b42ac2401256 .
 
-km-dev:PredicateObjectMap_7ae0551f-3891-4397-9471-1755c2f32935 a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node19php096cx1 .
+km-dev:PredicateObjectMap_2e815694-584b-4c55-9385-b42ac2401256 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19pkdmhsqx1 .
 
-_:node19php096cx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_7ae0551f-3891-4397-9471-1755c2f32935 .
+_:node19pkdmhsqx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_2e815694-584b-4c55-9385-b42ac2401256 .
 
-km-dev:PredicateObjectMap_5fcd21d7-d550-423c-8e8e-68922fed4690 rr:predicate schema:inLanguage .
+km-dev:PredicateObjectMap_a454f20e-c812-43e0-8fb7-4bb2610a0b17 rr:predicate schema:inLanguage .
 
-_:node19php096cx5 rr:column "rawtextdetectedlanguage" ;
+_:node19pkdmhsqx5 rr:column "rawtextdetectedlanguage" ;
 	a rr:ObjectMap ;
-	km-dev:isPartOfMapping _:node19php096cx1 .
+	km-dev:isPartOfMapping _:node19pkdmhsqx1 .
 
-_:node19php096cx1 km-dev:hasObjectMap _:node19php096cx5 .
+_:node19pkdmhsqx1 km-dev:hasObjectMap _:node19pkdmhsqx5 .
 
-km-dev:PredicateObjectMap_5fcd21d7-d550-423c-8e8e-68922fed4690 rr:objectMap _:node19php096cx5 .
+km-dev:PredicateObjectMap_a454f20e-c812-43e0-8fb7-4bb2610a0b17 rr:objectMap _:node19pkdmhsqx5 .
 
-km-dev:TriplesMap_7bf05668-8b8b-4e04-a158-57fdaf02ab5a rr:predicateObjectMap km-dev:PredicateObjectMap_5fcd21d7-d550-423c-8e8e-68922fed4690 .
+km-dev:TriplesMap_4a9c3507-a0f4-410d-9c64-a9660664ea31 rr:predicateObjectMap km-dev:PredicateObjectMap_a454f20e-c812-43e0-8fb7-4bb2610a0b17 .
 
-km-dev:PredicateObjectMap_5fcd21d7-d550-423c-8e8e-68922fed4690 a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node19php096cx1 .
+km-dev:PredicateObjectMap_a454f20e-c812-43e0-8fb7-4bb2610a0b17 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19pkdmhsqx1 .
 
-_:node19php096cx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_5fcd21d7-d550-423c-8e8e-68922fed4690 .
+_:node19pkdmhsqx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_a454f20e-c812-43e0-8fb7-4bb2610a0b17 .
 
-km-dev:PredicateObjectMap_84fcd67b-26f8-4251-8ac3-f85be2765c76 rr:predicate schema:itemOffered .
+km-dev:PredicateObjectMap_9fbef5d8-ba86-4a42-aa92-1add5eb4f7d0 rr:predicate schema:itemOffered .
 
-km-dev:RefObjectMap_9ba27c6c-5c7a-4231-be5f-1707abd656ee a rr:RefObjectMap , rr:ObjectMap ;
-	rr:parentTriplesMap km-dev:TriplesMap_57bd8615-584a-49ca-8a81-915b54cfda1e ;
-	km-dev:isPartOfMapping _:node19php096cx1 .
+km-dev:RefObjectMap_02e745e8-0a79-43c1-9ffc-87ad80a93b58 a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_2e52069d-826d-438d-b510-b54f6c4f7eb0 ;
+	km-dev:isPartOfMapping _:node19pkdmhsqx1 .
 
-_:node19php096cx1 km-dev:hasObjectMap km-dev:RefObjectMap_9ba27c6c-5c7a-4231-be5f-1707abd656ee .
+_:node19pkdmhsqx1 km-dev:hasObjectMap km-dev:RefObjectMap_02e745e8-0a79-43c1-9ffc-87ad80a93b58 .
 
-km-dev:PredicateObjectMap_84fcd67b-26f8-4251-8ac3-f85be2765c76 rr:objectMap km-dev:RefObjectMap_9ba27c6c-5c7a-4231-be5f-1707abd656ee .
+km-dev:PredicateObjectMap_9fbef5d8-ba86-4a42-aa92-1add5eb4f7d0 rr:objectMap km-dev:RefObjectMap_02e745e8-0a79-43c1-9ffc-87ad80a93b58 .
 
-km-dev:TriplesMap_7bf05668-8b8b-4e04-a158-57fdaf02ab5a rr:predicateObjectMap km-dev:PredicateObjectMap_84fcd67b-26f8-4251-8ac3-f85be2765c76 .
+km-dev:TriplesMap_4a9c3507-a0f4-410d-9c64-a9660664ea31 rr:predicateObjectMap km-dev:PredicateObjectMap_9fbef5d8-ba86-4a42-aa92-1add5eb4f7d0 .
 
-km-dev:PredicateObjectMap_84fcd67b-26f8-4251-8ac3-f85be2765c76 a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node19php096cx1 .
+km-dev:PredicateObjectMap_9fbef5d8-ba86-4a42-aa92-1add5eb4f7d0 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19pkdmhsqx1 .
 
-_:node19php096cx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_84fcd67b-26f8-4251-8ac3-f85be2765c76 .
+_:node19pkdmhsqx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_9fbef5d8-ba86-4a42-aa92-1add5eb4f7d0 .
 
-km-dev:PredicateObjectMap_996d2689-f0a9-4193-9e53-ed2d5b8dcc0e rr:predicate schema:price .
+km-dev:PredicateObjectMap_ea8c185c-c92c-4151-9c16-8f17d04db704 rr:predicate schema:price .
 
-_:node19php096cx6 rr:column "cleanPrice" ;
+_:node19pkdmhsqx6 rr:column "cleanPrice" ;
 	a rr:ObjectMap ;
-	km-dev:isPartOfMapping _:node19php096cx1 .
+	km-dev:isPartOfMapping _:node19pkdmhsqx1 .
 
-_:node19php096cx1 km-dev:hasObjectMap _:node19php096cx6 .
+_:node19pkdmhsqx1 km-dev:hasObjectMap _:node19pkdmhsqx6 .
 
-km-dev:PredicateObjectMap_996d2689-f0a9-4193-9e53-ed2d5b8dcc0e rr:objectMap _:node19php096cx6 .
+km-dev:PredicateObjectMap_ea8c185c-c92c-4151-9c16-8f17d04db704 rr:objectMap _:node19pkdmhsqx6 .
 
-km-dev:TriplesMap_7bf05668-8b8b-4e04-a158-57fdaf02ab5a rr:predicateObjectMap km-dev:PredicateObjectMap_996d2689-f0a9-4193-9e53-ed2d5b8dcc0e .
+km-dev:TriplesMap_4a9c3507-a0f4-410d-9c64-a9660664ea31 rr:predicateObjectMap km-dev:PredicateObjectMap_ea8c185c-c92c-4151-9c16-8f17d04db704 .
 
-km-dev:PredicateObjectMap_996d2689-f0a9-4193-9e53-ed2d5b8dcc0e a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node19php096cx1 .
+km-dev:PredicateObjectMap_ea8c185c-c92c-4151-9c16-8f17d04db704 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19pkdmhsqx1 .
 
-_:node19php096cx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_996d2689-f0a9-4193-9e53-ed2d5b8dcc0e .
+_:node19pkdmhsqx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_ea8c185c-c92c-4151-9c16-8f17d04db704 .
 
-km-dev:PredicateObjectMap_33a73b12-098c-4d73-bf8f-f0eeb1164864 rr:predicate schema:priceCurrency .
+km-dev:PredicateObjectMap_f15f8c20-3afc-439c-a2a6-a47759389466 rr:predicate schema:priceCurrency .
 
-_:node19php096cx7 rr:column "priceCurrency" ;
+_:node19pkdmhsqx7 rr:column "priceCurrency" ;
 	a rr:ObjectMap ;
-	km-dev:isPartOfMapping _:node19php096cx1 .
+	km-dev:isPartOfMapping _:node19pkdmhsqx1 .
 
-_:node19php096cx1 km-dev:hasObjectMap _:node19php096cx7 .
+_:node19pkdmhsqx1 km-dev:hasObjectMap _:node19pkdmhsqx7 .
 
-km-dev:PredicateObjectMap_33a73b12-098c-4d73-bf8f-f0eeb1164864 rr:objectMap _:node19php096cx7 .
+km-dev:PredicateObjectMap_f15f8c20-3afc-439c-a2a6-a47759389466 rr:objectMap _:node19pkdmhsqx7 .
 
-km-dev:TriplesMap_7bf05668-8b8b-4e04-a158-57fdaf02ab5a rr:predicateObjectMap km-dev:PredicateObjectMap_33a73b12-098c-4d73-bf8f-f0eeb1164864 .
+km-dev:TriplesMap_4a9c3507-a0f4-410d-9c64-a9660664ea31 rr:predicateObjectMap km-dev:PredicateObjectMap_f15f8c20-3afc-439c-a2a6-a47759389466 .
 
-km-dev:PredicateObjectMap_33a73b12-098c-4d73-bf8f-f0eeb1164864 a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node19php096cx1 .
+km-dev:PredicateObjectMap_f15f8c20-3afc-439c-a2a6-a47759389466 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19pkdmhsqx1 .
 
-_:node19php096cx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_33a73b12-098c-4d73-bf8f-f0eeb1164864 .
+_:node19pkdmhsqx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_f15f8c20-3afc-439c-a2a6-a47759389466 .
 
-km-dev:PredicateObjectMap_212225ac-db8f-4b2a-bf30-2bc5082d06a4 rr:predicate schema:sku .
+km-dev:PredicateObjectMap_bf043122-80ea-4084-a49d-a666902a5590 rr:predicate schema:sku .
 
-_:node19php096cx8 rr:column "SKU" ;
+_:node19pkdmhsqx8 rr:column "SKU" ;
 	a rr:ObjectMap ;
-	km-dev:isPartOfMapping _:node19php096cx1 .
+	km-dev:isPartOfMapping _:node19pkdmhsqx1 .
 
-_:node19php096cx1 km-dev:hasObjectMap _:node19php096cx8 .
+_:node19pkdmhsqx1 km-dev:hasObjectMap _:node19pkdmhsqx8 .
 
-km-dev:PredicateObjectMap_212225ac-db8f-4b2a-bf30-2bc5082d06a4 rr:objectMap _:node19php096cx8 .
+km-dev:PredicateObjectMap_bf043122-80ea-4084-a49d-a666902a5590 rr:objectMap _:node19pkdmhsqx8 .
 
-km-dev:TriplesMap_7bf05668-8b8b-4e04-a158-57fdaf02ab5a rr:predicateObjectMap km-dev:PredicateObjectMap_212225ac-db8f-4b2a-bf30-2bc5082d06a4 .
+km-dev:TriplesMap_4a9c3507-a0f4-410d-9c64-a9660664ea31 rr:predicateObjectMap km-dev:PredicateObjectMap_bf043122-80ea-4084-a49d-a666902a5590 .
 
-km-dev:PredicateObjectMap_212225ac-db8f-4b2a-bf30-2bc5082d06a4 a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node19php096cx1 .
+km-dev:PredicateObjectMap_bf043122-80ea-4084-a49d-a666902a5590 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19pkdmhsqx1 .
 
-_:node19php096cx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_212225ac-db8f-4b2a-bf30-2bc5082d06a4 .
+_:node19pkdmhsqx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_bf043122-80ea-4084-a49d-a666902a5590 .
 
-km-dev:PredicateObjectMap_ca3de038-f8f7-479d-b48a-97c3419fdee1 rr:predicate schema:title .
+km-dev:PredicateObjectMap_87614657-c535-4408-bfbc-f8f1977680bd rr:predicate schema:title .
 
-_:node19php096cx9 rr:column "title" ;
+_:node19pkdmhsqx9 rr:column "title" ;
 	a rr:ObjectMap ;
-	km-dev:isPartOfMapping _:node19php096cx1 .
+	km-dev:isPartOfMapping _:node19pkdmhsqx1 .
 
-_:node19php096cx1 km-dev:hasObjectMap _:node19php096cx9 .
+_:node19pkdmhsqx1 km-dev:hasObjectMap _:node19pkdmhsqx9 .
 
-km-dev:PredicateObjectMap_ca3de038-f8f7-479d-b48a-97c3419fdee1 rr:objectMap _:node19php096cx9 .
+km-dev:PredicateObjectMap_87614657-c535-4408-bfbc-f8f1977680bd rr:objectMap _:node19pkdmhsqx9 .
 
-km-dev:TriplesMap_7bf05668-8b8b-4e04-a158-57fdaf02ab5a rr:predicateObjectMap km-dev:PredicateObjectMap_ca3de038-f8f7-479d-b48a-97c3419fdee1 .
+km-dev:TriplesMap_4a9c3507-a0f4-410d-9c64-a9660664ea31 rr:predicateObjectMap km-dev:PredicateObjectMap_87614657-c535-4408-bfbc-f8f1977680bd .
 
-km-dev:PredicateObjectMap_ca3de038-f8f7-479d-b48a-97c3419fdee1 a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node19php096cx1 .
+km-dev:PredicateObjectMap_87614657-c535-4408-bfbc-f8f1977680bd a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19pkdmhsqx1 .
 
-_:node19php096cx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_ca3de038-f8f7-479d-b48a-97c3419fdee1 .
+_:node19pkdmhsqx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_87614657-c535-4408-bfbc-f8f1977680bd .
 
-km-dev:PredicateObjectMap_589502a1-94de-49a5-9983-45258c7d5f73 rr:predicate schema:url .
+km-dev:PredicateObjectMap_da3f8268-66ed-450e-a124-8f59280626fd rr:predicate schema:url .
 
-_:node19php096cx10 rr:column "URL" ;
+_:node19pkdmhsqx10 rr:column "URL" ;
 	a rr:ObjectMap ;
-	km-dev:isPartOfMapping _:node19php096cx1 .
+	km-dev:isPartOfMapping _:node19pkdmhsqx1 .
 
-_:node19php096cx1 km-dev:hasObjectMap _:node19php096cx10 .
+_:node19pkdmhsqx1 km-dev:hasObjectMap _:node19pkdmhsqx10 .
 
-km-dev:PredicateObjectMap_589502a1-94de-49a5-9983-45258c7d5f73 rr:objectMap _:node19php096cx10 .
+km-dev:PredicateObjectMap_da3f8268-66ed-450e-a124-8f59280626fd rr:objectMap _:node19pkdmhsqx10 .
 
-km-dev:TriplesMap_7bf05668-8b8b-4e04-a158-57fdaf02ab5a rr:predicateObjectMap km-dev:PredicateObjectMap_589502a1-94de-49a5-9983-45258c7d5f73 .
+km-dev:TriplesMap_4a9c3507-a0f4-410d-9c64-a9660664ea31 rr:predicateObjectMap km-dev:PredicateObjectMap_da3f8268-66ed-450e-a124-8f59280626fd .
 
-km-dev:PredicateObjectMap_589502a1-94de-49a5-9983-45258c7d5f73 a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node19php096cx1 .
+km-dev:PredicateObjectMap_da3f8268-66ed-450e-a124-8f59280626fd a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19pkdmhsqx1 .
 
-_:node19php096cx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_589502a1-94de-49a5-9983-45258c7d5f73 .
+_:node19pkdmhsqx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_da3f8268-66ed-450e-a124-8f59280626fd .
 
-km-dev:TriplesMap_57bd8615-584a-49ca-8a81-915b54cfda1e a rr:TriplesMap .
+km-dev:TriplesMap_799568a7-1046-4a0f-85df-4ca230e60a61 a rr:TriplesMap .
 
-_:node19php096cx1 km-dev:hasTriplesMap km-dev:TriplesMap_57bd8615-584a-49ca-8a81-915b54cfda1e .
+_:node19pkdmhsqx1 km-dev:hasTriplesMap km-dev:TriplesMap_799568a7-1046-4a0f-85df-4ca230e60a61 .
 
-km-dev:TriplesMap_57bd8615-584a-49ca-8a81-915b54cfda1e km-dev:isPartOfMapping _:node19php096cx1 .
+km-dev:TriplesMap_799568a7-1046-4a0f-85df-4ca230e60a61 km-dev:isPartOfMapping _:node19pkdmhsqx1 .
 
-_:node19php096cx11 rr:tableName "blueridgefirearms-sample.json" ;
+_:node19pkdmhsqx11 rr:tableName "blueridgefirearms-sample.json" ;
 	a rr:LogicalTable ;
-	km-dev:isPartOfMapping _:node19php096cx1 .
+	km-dev:isPartOfMapping _:node19pkdmhsqx1 .
 
-_:node19php096cx1 km-dev:hasLogicalTable _:node19php096cx11 .
+_:node19pkdmhsqx1 km-dev:hasLogicalTable _:node19pkdmhsqx11 .
 
-km-dev:TriplesMap_57bd8615-584a-49ca-8a81-915b54cfda1e rr:logicalTable _:node19php096cx11 ;
-	rr:subjectMap _:node19php096cx12 .
+km-dev:TriplesMap_799568a7-1046-4a0f-85df-4ca230e60a61 rr:logicalTable _:node19pkdmhsqx11 ;
+	rr:subjectMap _:node19pkdmhsqx12 .
 
-_:node19php096cx1 km-dev:hasSubjectMap _:node19php096cx12 .
+_:node19pkdmhsqx1 km-dev:hasSubjectMap _:node19pkdmhsqx12 .
 
-_:node19php096cx12 km-dev:isPartOfMapping _:node19php096cx1 ;
+_:node19pkdmhsqx12 km-dev:isPartOfMapping _:node19pkdmhsqx1 ;
+	a rr:SubjectMap ;
+	km-dev:alignmentNodeId "http://schema.org/Place1" ;
+	rr:class schema:Place ;
+	rr:template "{uri}/placeuri" .
+
+km-dev:PredicateObjectMap_e338a6fb-938d-4773-81e9-cc4ec806acc1 rr:predicate schema:address .
+
+km-dev:RefObjectMap_0d8324c2-9184-4199-bb3f-50e82a220987 a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_6252bbee-55c4-4425-8038-bdf1645ffba6 ;
+	km-dev:isPartOfMapping _:node19pkdmhsqx1 .
+
+_:node19pkdmhsqx1 km-dev:hasObjectMap km-dev:RefObjectMap_0d8324c2-9184-4199-bb3f-50e82a220987 .
+
+km-dev:PredicateObjectMap_e338a6fb-938d-4773-81e9-cc4ec806acc1 rr:objectMap km-dev:RefObjectMap_0d8324c2-9184-4199-bb3f-50e82a220987 .
+
+km-dev:TriplesMap_799568a7-1046-4a0f-85df-4ca230e60a61 rr:predicateObjectMap km-dev:PredicateObjectMap_e338a6fb-938d-4773-81e9-cc4ec806acc1 .
+
+km-dev:PredicateObjectMap_e338a6fb-938d-4773-81e9-cc4ec806acc1 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19pkdmhsqx1 .
+
+_:node19pkdmhsqx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_e338a6fb-938d-4773-81e9-cc4ec806acc1 .
+
+km-dev:TriplesMap_2e52069d-826d-438d-b510-b54f6c4f7eb0 a rr:TriplesMap .
+
+_:node19pkdmhsqx1 km-dev:hasTriplesMap km-dev:TriplesMap_2e52069d-826d-438d-b510-b54f6c4f7eb0 .
+
+km-dev:TriplesMap_2e52069d-826d-438d-b510-b54f6c4f7eb0 km-dev:isPartOfMapping _:node19pkdmhsqx1 .
+
+_:node19pkdmhsqx13 rr:tableName "blueridgefirearms-sample.json" ;
+	a rr:LogicalTable ;
+	km-dev:isPartOfMapping _:node19pkdmhsqx1 .
+
+_:node19pkdmhsqx1 km-dev:hasLogicalTable _:node19pkdmhsqx13 .
+
+km-dev:TriplesMap_2e52069d-826d-438d-b510-b54f6c4f7eb0 rr:logicalTable _:node19pkdmhsqx13 ;
+	rr:subjectMap _:node19pkdmhsqx14 .
+
+_:node19pkdmhsqx1 km-dev:hasSubjectMap _:node19pkdmhsqx14 .
+
+_:node19pkdmhsqx14 km-dev:isPartOfMapping _:node19pkdmhsqx1 ;
 	a rr:SubjectMap ;
 	km-dev:alignmentNodeId "http://schema.org/Product1" ;
 	rr:class schema:Product ;
+	rr:template "{uri}/producturi" .
+
+km-dev:PredicateObjectMap_8b8db26a-b477-43a6-9a59-962c076db53d rr:predicate schema:keywords .
+
+_:node19pkdmhsqx15 rr:column "manufacturer_no" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node19pkdmhsqx1 .
+
+_:node19pkdmhsqx1 km-dev:hasObjectMap _:node19pkdmhsqx15 .
+
+km-dev:PredicateObjectMap_8b8db26a-b477-43a6-9a59-962c076db53d rr:objectMap _:node19pkdmhsqx15 .
+
+km-dev:TriplesMap_2e52069d-826d-438d-b510-b54f6c4f7eb0 rr:predicateObjectMap km-dev:PredicateObjectMap_8b8db26a-b477-43a6-9a59-962c076db53d .
+
+km-dev:PredicateObjectMap_8b8db26a-b477-43a6-9a59-962c076db53d a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19pkdmhsqx1 .
+
+_:node19pkdmhsqx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_8b8db26a-b477-43a6-9a59-962c076db53d .
+
+km-dev:PredicateObjectMap_45455aac-da86-49b3-81d9-318117c8080e rr:predicate schema:manufacturer .
+
+_:node19pkdmhsqx16 rr:column "manufacturer" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node19pkdmhsqx1 .
+
+_:node19pkdmhsqx1 km-dev:hasObjectMap _:node19pkdmhsqx16 .
+
+km-dev:PredicateObjectMap_45455aac-da86-49b3-81d9-318117c8080e rr:objectMap _:node19pkdmhsqx16 .
+
+km-dev:TriplesMap_2e52069d-826d-438d-b510-b54f6c4f7eb0 rr:predicateObjectMap km-dev:PredicateObjectMap_45455aac-da86-49b3-81d9-318117c8080e .
+
+km-dev:PredicateObjectMap_45455aac-da86-49b3-81d9-318117c8080e a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19pkdmhsqx1 .
+
+_:node19pkdmhsqx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_45455aac-da86-49b3-81d9-318117c8080e .
+
+km-dev:TriplesMap_6252bbee-55c4-4425-8038-bdf1645ffba6 a rr:TriplesMap .
+
+_:node19pkdmhsqx1 km-dev:hasTriplesMap km-dev:TriplesMap_6252bbee-55c4-4425-8038-bdf1645ffba6 .
+
+km-dev:TriplesMap_6252bbee-55c4-4425-8038-bdf1645ffba6 km-dev:isPartOfMapping _:node19pkdmhsqx1 .
+
+_:node19pkdmhsqx17 rr:tableName "blueridgefirearms-sample.json" ;
+	a rr:LogicalTable ;
+	km-dev:isPartOfMapping _:node19pkdmhsqx1 .
+
+_:node19pkdmhsqx1 km-dev:hasLogicalTable _:node19pkdmhsqx17 .
+
+km-dev:TriplesMap_6252bbee-55c4-4425-8038-bdf1645ffba6 rr:logicalTable _:node19pkdmhsqx17 ;
+	rr:subjectMap _:node19pkdmhsqx18 .
+
+_:node19pkdmhsqx1 km-dev:hasSubjectMap _:node19pkdmhsqx18 .
+
+_:node19pkdmhsqx18 km-dev:isPartOfMapping _:node19pkdmhsqx1 ;
+	a rr:SubjectMap ;
+	km-dev:alignmentNodeId "http://schema.org/PostalAddress1" ;
+	rr:class schema:PostalAddress ;
 	rr:termType rr:BlankNode ;
-	km-dev:namePrefix "schema:Product1" .
+	km-dev:namePrefix "schema:PostalAddress1" .
 
-km-dev:PredicateObjectMap_2d9fd793-065d-4a1e-bcd7-88245a87c19b rr:predicate schema:keywords .
+km-dev:PredicateObjectMap_cbd7ac40-9317-4cae-947e-9d28be022a4e rr:predicate schema:name .
 
-_:node19php096cx13 rr:column "manufacturer_no" ;
+_:node19pkdmhsqx19 rr:constant "georgia" ;
 	a rr:ObjectMap ;
-	km-dev:isPartOfMapping _:node19php096cx1 .
+	km-dev:isPartOfMapping _:node19pkdmhsqx1 .
 
-_:node19php096cx1 km-dev:hasObjectMap _:node19php096cx13 .
+_:node19pkdmhsqx1 km-dev:hasObjectMap _:node19pkdmhsqx19 .
 
-km-dev:PredicateObjectMap_2d9fd793-065d-4a1e-bcd7-88245a87c19b rr:objectMap _:node19php096cx13 .
+km-dev:PredicateObjectMap_cbd7ac40-9317-4cae-947e-9d28be022a4e rr:objectMap _:node19pkdmhsqx19 .
 
-km-dev:TriplesMap_57bd8615-584a-49ca-8a81-915b54cfda1e rr:predicateObjectMap km-dev:PredicateObjectMap_2d9fd793-065d-4a1e-bcd7-88245a87c19b .
+km-dev:TriplesMap_6252bbee-55c4-4425-8038-bdf1645ffba6 rr:predicateObjectMap km-dev:PredicateObjectMap_cbd7ac40-9317-4cae-947e-9d28be022a4e .
 
-km-dev:PredicateObjectMap_2d9fd793-065d-4a1e-bcd7-88245a87c19b a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node19php096cx1 .
+km-dev:PredicateObjectMap_cbd7ac40-9317-4cae-947e-9d28be022a4e a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19pkdmhsqx1 .
 
-_:node19php096cx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_2d9fd793-065d-4a1e-bcd7-88245a87c19b .
-
-km-dev:PredicateObjectMap_9d62089b-70fd-4fe2-8994-f9ba458af83d rr:predicate schema:manufacturer .
-
-_:node19php096cx14 rr:column "manufacturer" ;
-	a rr:ObjectMap ;
-	km-dev:isPartOfMapping _:node19php096cx1 .
-
-_:node19php096cx1 km-dev:hasObjectMap _:node19php096cx14 .
-
-km-dev:PredicateObjectMap_9d62089b-70fd-4fe2-8994-f9ba458af83d rr:objectMap _:node19php096cx14 .
-
-km-dev:TriplesMap_57bd8615-584a-49ca-8a81-915b54cfda1e rr:predicateObjectMap km-dev:PredicateObjectMap_9d62089b-70fd-4fe2-8994-f9ba458af83d .
-
-km-dev:PredicateObjectMap_9d62089b-70fd-4fe2-8994-f9ba458af83d a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node19php096cx1 .
-
-_:node19php096cx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_9d62089b-70fd-4fe2-8994-f9ba458af83d .
+_:node19pkdmhsqx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_cbd7ac40-9317-4cae-947e-9d28be022a4e .
