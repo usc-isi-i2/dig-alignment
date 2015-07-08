@@ -1284,6 +1284,9 @@ def place_postalAddress_uri(cleaned):
         return "place_postalAddress/%s" % cleaned
     return ''
 
+def ar15_user_uri(userid):
+  return "person/ar15/" + userid
+
 # print test_prices, get_dollar_prices(*test_prices)
 # print test_prices, get_bitcoin_prices(*test_prices)
 
