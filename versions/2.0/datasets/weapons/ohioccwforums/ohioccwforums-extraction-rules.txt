@@ -1,0 +1,106 @@
+[
+  {
+    "begin_regex": "View topic -",
+    "end_regex": "\\</title",
+    "name": "topic_title",
+    "rule_type": "ItemRule"
+  },
+  {
+    "begin_regex": "\\<form id=\"viewtopic.*?\\&amp;t=",
+    "end_regex": "\"",
+    "name": "topic_id",
+    "rule_type": "ItemRule"
+  },
+  {
+    "begin_regex": "class=\"first\"",
+    "end_regex": "\\<form id=\"viewtopic",
+    "iter_begin_regex": "\\<div class=\"postbody",
+    "iter_end_regex": "\\<div class=\"postbody",
+    "name": "posts",
+    "no_first_begin_iter_rule": true,
+    "no_last_end_iter_rule": false,
+    "rule_type": "IterationRule",
+    "sub_rules": [
+      {
+        "begin_regex": "href=\"#p",
+        "end_regex": "\"",
+        "name": "post_id",
+        "rule_type": "ItemRule"
+      },
+      {
+        "begin_regex": "\\</strong\\> \\&raquo;",
+        "end_regex": "\\</p",
+        "name": "date_posted",
+        "rule_type": "ItemRule"
+      },
+      {
+        "begin_regex": "by \\<strong\\>.*?\"\\>",
+        "end_regex": "\\</",
+        "name": "username",
+        "rule_type": "ItemRule"
+      },
+      {
+        "begin_regex": "viewprofile\\&amp;u=",
+        "end_regex": "\"",
+        "name": "user_id",
+        "rule_type": "ItemRule"
+      },
+      {
+        "begin_regex": "\\<dl class=\"postprofile.*?\\<dd\\>",
+        "end_regex": "\\<",
+        "name": "user_tag",
+        "rule_type": "ItemRule"
+      },
+      {
+        "begin_regex": "class=\"content\"\\>",
+        "end_regex": "\\<dl",
+        "name": "content",
+        "rule_type": "ItemRule",
+        "removehtml": true
+      },
+      {
+        "begin_regex": "\\<dd\\>\\<strong\\>",
+        "end_regex": "\\</dl",
+        "iter_begin_regex": "\\<dd\\>\\<strong\\>",
+        "iter_end_regex": "\\<dd\\>\\<strong\\>",
+        "name": "user_attributes",
+        "no_first_begin_iter_rule": true,
+        "no_last_end_iter_rule": true,
+        "rule_type": "IterationRule",
+        "sub_rules": [
+          {
+            "begin_regex": "",
+            "end_regex": "\\</strong\\>",
+            "name": "label",
+            "rule_type": "ItemRule"
+          },
+          {
+            "begin_regex": "\\</strong\\>",
+            "end_regex": "\\</dd",
+            "name": "value",
+            "rule_type": "ItemRule",
+            "removehtml": true
+          }
+        ]
+      },
+      {
+        "begin_regex": "",
+        "end_regex": "",
+        "iter_begin_regex": "\\<img",
+        "iter_end_regex": "\\>",
+        "name": "images",
+        "no_first_begin_iter_rule": false,
+        "no_last_end_iter_rule": false,
+        "rule_type": "IterationRule",
+        "sub_rules": [
+          {
+            "begin_regex": "src=[\"|']",
+            "end_regex": "\"|'",
+            "name": "src",
+            "rule_type": "ItemRule"
+          }
+        ]
+      }
+    ]
+  }
+]
