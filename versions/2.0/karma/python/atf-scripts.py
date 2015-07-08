@@ -1290,6 +1290,9 @@ def ar15_user_uri(userid):
 def calguns_user_uri(userid):
   return "person/calguns/" + userid
 
+def postal_address_uri(location):
+  return "address/" + location.replace(" ", "_").replace(".","_").replace(",", "_")
+
 # print test_prices, get_dollar_prices(*test_prices)
 # print test_prices, get_bitcoin_prices(*test_prices)
 

@@ -35,6 +35,12 @@ From column: _posts / date_posted_
 return iso8601date(getValue("date_posted"),"%m/%d/%Y %I:%M:%S %p %Z")
 ```
 
+#### _location_uri_
+From column: _posts / location_
+>``` python
+return postal_address_uri(getValue("location"))
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
@@ -42,6 +48,7 @@ return iso8601date(getValue("date_posted"),"%m/%d/%Y %I:%M:%S %p %Z")
 | _content_clean_ | `schema:text` | `schema:WebPageElement2`|
 | _iso_date_posted_ | `schema:dateCreated` | `memex:Post1`|
 | _location_ | `schema:name` | `schema:PostalAddress1`|
+| _location_uri_ | `uri` | `schema:Place1`|
 | _post_id_ | `schema:name` | `memex:Identifier2`|
 | _post_uri_ | `uri` | `memex:Post1`|
 | _rawtextdetectedlanguage_ | `schema:inLanguage` | `memex:Thread1`|

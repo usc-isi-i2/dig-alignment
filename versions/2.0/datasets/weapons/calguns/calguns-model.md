@@ -40,7 +40,7 @@ return calguns_user_uri(getValue("user_id"))
 #### _location_uri_
 From column: _posts / Unfold: label / location / Values_
 >``` python
-return place_postalAddress_uri(getValue("Values"))
+return postal_address_uri(getValue("Values"))
 ```
 
 
@@ -50,7 +50,7 @@ return place_postalAddress_uri(getValue("Values"))
 | _Values_ | `schema:name` | `schema:PostalAddress1`|
 | _content_clean_ | `schema:text` | `schema:WebPageElement2`|
 | _iso_date_posted_ | `schema:dateCreated` | `memex:Post1`|
-| _location_uri_ | `uri` | `schema:PostalAddress1`|
+| _location_uri_ | `uri` | `schema:Place1`|
 | _post_id_ | `schema:name` | `memex:Identifier2`|
 | _post_uri_ | `uri` | `memex:Post1`|
 | _rawtextdetectedlanguage_ | `schema:inLanguage` | `memex:Thread1`|
@@ -82,5 +82,6 @@ return place_postalAddress_uri(getValue("Values"))
 | `schema:Organization1` | `schema:name` | `xsd:calguns.net`|
 | `schema:OrganizationRole1` | `schema:memberOf` | `schema:Organization1`|
 | `schema:Person1` | `memex:identifier` | `memex:Identifier3`|
+| `schema:Person1` | `schema:location` | `schema:Place1`|
 | `schema:Person1` | `schema:memberOf` | `schema:OrganizationRole1`|
 | `schema:Place1` | `schema:address` | `schema:PostalAddress1`|
