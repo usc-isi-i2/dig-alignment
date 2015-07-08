@@ -1,0 +1,111 @@
+[
+  {
+    "begin_regex": "\\<title\\>",
+    "end_regex": "- AR15.COM",
+    "name": "topic_title",
+    "rule_type": "ItemRule"
+  },
+  {
+    "begin_regex": "returnURL.*?html.*?t=",
+    "end_regex": "&amp;",
+    "name": "topic_id",
+    "rule_type": "ItemRule"
+  },
+  {
+    "begin_regex": "subheaderContent",
+    "end_regex": "\\<a name=\"bottom\"\\>",
+    "iter_begin_regex": "\\<!-- Post Author --\\>",
+    "iter_end_regex": "\\<!-- Post Author --\\>",
+    "name": "posts",
+    "no_first_begin_iter_rule": false,
+    "no_last_end_iter_rule": true,
+    "rule_type": "IterationRule",
+    "sub_rules": [
+      {
+        "begin_regex": "\\<div class=\"spacer\" style=\"padding-top: 10px;\"\\>.*?\\<a.*?href.*?#",
+        "end_regex": "\"\\>",
+        "name": "post_id",
+        "rule_type": "ItemRule"
+      },
+      {
+        "begin_regex": "Posted:",
+        "end_regex": "\\<",
+        "name": "date_posted",
+        "rule_type": "ItemRule"
+      },
+      {
+        "begin_regex": "skinBarAuthorRight\"\\>",
+        "end_regex": "\\<",
+        "name": "username",
+        "rule_type": "ItemRule"
+      },
+      {
+        "begin_regex": "postBarBg.*?member\\.html\\?id=",
+        "end_regex": "\"",
+        "name": "user_id",
+        "rule_type": "ItemRule"
+      },
+      {
+        "begin_regex": "postAuthorIcon.*?floatLeft\"\\>",
+        "end_regex": "\\<",
+        "name": "user_tag",
+        "rule_type": "ItemRule"
+      },
+      {
+        "begin_regex": "postBody\"\\>.*?\\>",
+        "end_regex": "\\<div class=\"clearHead\"\\>",
+        "name": "content",
+        "rule_type": "ItemRule"
+      },
+      {
+        "begin_regex": "sloganBox\"\\>",
+        "end_regex": "\\</div\\>",
+        "name": "signature",
+        "rule_type": "ItemRule"
+      },
+      {
+        "begin_regex": "postAuthorInfoLocation.*?/\\>",
+        "end_regex": "\\</div\\>",
+        "name": "location",
+        "rule_type": "ItemRule"
+      },
+      {
+        "begin_regex": "lightGrey\"\\>Joined:\\</span\\>",
+        "end_regex": "\\<",
+        "name": "Joined",
+        "rule_type": "ItemRule"
+      },
+      {
+        "begin_regex": "\\<b\\>Posts:\\</b\\>",
+        "end_regex": "\\<br",
+        "name": "Posts",
+        "rule_type": "ItemRule"
+      },
+      {
+        "begin_regex": "\\<b\\>Feedback:\\</b\\>",
+        "end_regex": "\\<br",
+        "name": "Feedback",
+        "rule_type": "ItemRule",
+        "removehtml": true
+      },
+      {
+        "begin_regex": "",
+        "end_regex": "",
+        "iter_begin_regex": "\\<img",
+        "iter_end_regex": "\\>",
+        "name": "images",
+        "no_first_begin_iter_rule": false,
+        "no_last_end_iter_rule": false,
+        "rule_type": "IterationRule",
+        "sub_rules": [
+          {
+            "begin_regex": "src=[\"|']",
+            "end_regex": "\"|'",
+            "name": "src",
+            "rule_type": "ItemRule"
+          }
+        ]
+      }
+    ]
+  }
+]
