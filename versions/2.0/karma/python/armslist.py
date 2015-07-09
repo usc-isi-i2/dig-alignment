@@ -58,3 +58,6 @@ def vw_clean_image_url(imgurl):
 		return 'http://velocityworks.net' + imgurl
 
 	return ''
+
+def price_uri(price):
+	return "price/" + price.replace(",","")
