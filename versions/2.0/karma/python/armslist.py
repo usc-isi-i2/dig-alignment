@@ -61,3 +61,6 @@ def vw_clean_image_url(imgurl):
 
 def price_uri(price):
 	return "price/" + price.replace(",","")
+
+def weapons_title_uri(title):
+	return "title/" + title.replace(",","_").replace(" ", "_").replace("-","_").replace(".","_")
