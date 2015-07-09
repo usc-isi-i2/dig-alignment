@@ -1293,6 +1293,9 @@ def calguns_user_uri(userid):
 def glocktalk_user_uri(userid):
   return "person/glocktalk/" + userid
 
+def ohioccw_user_uri(userid):
+  return "person/ohioccwforums/" + userid
+
 def postal_address_uri(location):
   return "address/" + location.replace(" ", "_").replace(".","_").replace(",", "_")
 

@@ -82,7 +82,7 @@ return "person/evolutionforums/" + getValue("user_id")
 | `memex:Post1` | `schema:author` | `schema:Person1`|
 | `memex:Thread1` | `memex:hasTitlePart` | `schema:WebPageElement1`|
 | `memex:Thread1` | `memex:identifier` | `memex:Identifier1`|
-| `memex:Thread1` | `schema:provider` | `schema:Organization1`|
+| `memex:Thread1` | `schema:publisher` | `schema:Organization1`|
 | `memex:Thread1` | `memex:hasPost` | `memex:Post1`|
 | `schema:Organization1` | `schema:name` | `xsd:evolutionforum.com`|
 | `schema:OrganizationRole1` | `schema:memberOf` | `schema:Organization1`|
