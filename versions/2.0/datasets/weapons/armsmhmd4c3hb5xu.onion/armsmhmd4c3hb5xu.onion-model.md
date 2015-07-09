@@ -25,6 +25,12 @@ From column: _listings / price_usd_
 return getCurrency(getValue("price_usd"))
 ```
 
+#### _offer_uri_
+From column: _listings / title_
+>``` python
+return getValue("uri") + "/" + alphaNumeric(getValue("title")).replace(" ","_").lower()
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
@@ -36,13 +42,13 @@ return getCurrency(getValue("price_usd"))
 | _Values_ | `schema:keywords` | `schema:Product1`|
 | _Values_ | `schema:keywords` | `schema:Product1`|
 | _Values_ | `schema:keywords` | `schema:Product1`|
+| _offer_uri_ | `uri` | `schema:Offer1`|
 | _price_btc_clean_ | `schema:price` | `schema:PriceSpecification1`|
 | _price_btc_currency_ | `schema:priceCurrency` | `schema:PriceSpecification1`|
 | _price_usd_clean_ | `schema:price` | `schema:PriceSpecification2`|
 | _price_usd_currency_ | `schema:priceCurrency` | `schema:PriceSpecification2`|
 | _rawtextdetectedlanguage_ | `schema:inLanguage` | `schema:Offer1`|
 | _title_ | `schema:title` | `schema:Offer1`|
-| _uri_ | `uri` | `schema:Offer1`|
 | _url_ | `schema:url` | `schema:Offer1`|
 
 
