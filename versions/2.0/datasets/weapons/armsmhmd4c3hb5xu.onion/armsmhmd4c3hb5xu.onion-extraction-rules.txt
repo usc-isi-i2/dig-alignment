@@ -1,0 +1,56 @@
+[
+  {
+    "begin_regex": "\\<table",
+    "end_regex": "\\</table",
+    "iter_begin_regex": "\\<td",
+    "iter_end_regex": "\\</td",
+    "name": "listings",
+    "no_first_begin_iter_rule": false,
+    "no_last_end_iter_rule": false,
+    "rule_type": "IterationRule",
+    "sub_rules": [
+      {
+        "begin_regex": "class=\"order\"\\>\\s+\\$",
+        "end_regex": "\\(",
+        "name": "price_usd",
+        "rule_type": "ItemRule"
+      },
+      {
+        "begin_regex": "class=\"order\"\\>\\s+\\$.*?\\(",
+        "end_regex": "BTC",
+        "name": "price_btc",
+        "rule_type": "ItemRule"
+      },
+      {
+        "begin_regex": "class=\"name\"\\>",
+        "end_regex": "\\</",
+        "name": "title",
+        "rule_type": "ItemRule"
+      },
+      {
+        "begin_regex": "class=\"spec\"\\>",
+        "end_regex": "\\</div",
+        "iter_begin_regex": "\\<br",
+        "iter_end_regex": "\\<br",
+        "name": "specifications",
+        "no_first_begin_iter_rule": true,
+        "no_last_end_iter_rule": true,
+        "rule_type": "IterationRule",
+        "sub_rules": [
+          {
+            "begin_regex": "\\<strong\\>",
+            "end_regex": "\\</strong\\>",
+            "name": "label",
+            "rule_type": "ItemRule"
+          },
+          {
+            "begin_regex": "\\</strong\\>:?",
+            "end_regex": "",
+            "name": "value",
+            "rule_type": "ItemRule"
+          }
+        ]
+      }
+    ]
+  }
+]
