@@ -1284,6 +1284,21 @@ def place_postalAddress_uri(cleaned):
         return "place_postalAddress/%s" % cleaned
     return ''
 
+def ar15_user_uri(userid):
+  return "person/ar15/" + userid
+
+def calguns_user_uri(userid):
+  return "person/calguns/" + userid
+
+def glocktalk_user_uri(userid):
+  return "person/glocktalk/" + userid
+
+def ohioccw_user_uri(userid):
+  return "person/ohioccwforums/" + userid
+
+def postal_address_uri(location):
+  return "address/" + location.replace(" ", "_").replace(".","_").replace(",", "_")
+
 # print test_prices, get_dollar_prices(*test_prices)
 # print test_prices, get_bitcoin_prices(*test_prices)
 

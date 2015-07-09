@@ -1,0 +1,126 @@
+[
+  {
+    "begin_regex": "\\<title\\>",
+    "end_regex": "- Calguns.net\\</title\\>",
+    "name": "topic_title",
+    "rule_type": "ItemRule"
+  },
+  {
+    "begin_regex": "\"/calgunforum/showthread\\.php\\?t=",
+    "end_regex": "\"\\>",
+    "name": "topic_id",
+    "rule_type": "ItemRule"
+  },
+  {
+    "begin_regex": "\\<div id=\"posts\"\\>",
+    "end_regex": "\\<div id=\"lastpost\"\\>",
+    "iter_begin_regex": "\\<div id=\"edit",
+    "iter_end_regex": "\\<div id=\"edit",
+    "name": "posts",
+    "no_first_begin_iter_rule": false,
+    "no_last_end_iter_rule": true,
+    "rule_type": "IterationRule",
+    "sub_rules": [
+      {
+        "begin_regex": "postcount=",
+        "end_regex": "\"",
+        "name": "post_number",
+        "rule_type": "ItemRule"
+      },
+      {
+        "begin_regex": "",
+        "end_regex": "\"",
+        "name": "post_id",
+        "rule_type": "ItemRule"
+      },
+      {
+        "begin_regex": "alt=\"Old\".*?\\</a\\>",
+        "end_regex": "\\<",
+        "name": "date_posted",
+        "rule_type": "ItemRule"
+      },
+      {
+        "begin_regex": "bigusername.*?\\>",
+        "end_regex": "\\</a\\>",
+        "name": "username",
+        "rule_type": "ItemRule",
+        "removehtml": true
+      },
+      {
+        "begin_regex": "bigusername.*?u=",
+        "end_regex": "\"",
+        "name": "user_id",
+        "rule_type": "ItemRule"
+      },
+      {
+        "begin_regex": "bigusername.*?smallfont\"\\>",
+        "end_regex": "\\<",
+        "name": "user_tag",
+        "rule_type": "ItemRule"
+      },
+      {
+        "begin_regex": "\\<!-- icon and title --\\>.*?/\\>",
+        "end_regex": "\\</div\\>",
+        "name": "title",
+        "rule_type": "ItemRule",
+        "removehtml": true
+      },
+      {
+        "begin_regex": "post_message_.*?\\>",
+        "end_regex": "\\<!-- / message",
+        "name": "content",
+        "rule_type": "ItemRule"
+      },
+      {
+        "begin_regex": "\\<!-- sig --\\>",
+        "end_regex": "\\</div\\>",
+        "name": "signature",
+        "rule_type": "ItemRule",
+        "removehtml": true
+      },
+      {
+        "begin_regex": "<td valign=\"top\".*?smallfont\"\\>",
+        "end_regex": "\\<div\\>\\s+\\</div\\>\\s+\\</div\\>",
+        "iter_begin_regex": "\\<div\\>",
+        "iter_end_regex": "\\</div\\>",
+        "name": "user_attributes",
+        "no_first_begin_iter_rule": false,
+        "no_last_end_iter_rule": false,
+        "rule_type": "IterationRule",
+        "sub_rules": [
+          {
+            "begin_regex": "",
+            "end_regex": ":",
+            "name": "label",
+            "rule_type": "ItemRule"
+          },
+          {
+            "begin_regex": ":",
+            "end_regex": "",
+            "name": "value",
+            "rule_type": "ItemRule",
+            "removehtml": true
+          }
+        ]
+      },
+      {
+        "begin_regex": "",
+        "end_regex": "",
+        "iter_begin_regex": "\\<img",
+        "iter_end_regex": "\\>",
+        "name": "images",
+        "no_first_begin_iter_rule": false,
+        "no_last_end_iter_rule": false,
+        "rule_type": "IterationRule",
+        "sub_rules": [
+          {
+            "begin_regex": "src=[\"|']",
+            "end_regex": "\"|'",
+            "name": "src",
+            "rule_type": "ItemRule"
+          }
+        ]
+      }
+    ]
+  }
+]
