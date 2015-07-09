@@ -41,12 +41,21 @@ From column: _posts / location_
 return postal_address_uri(getValue("location"))
 ```
 
+#### _joined_iso_
+From column: _posts / Joined_
+>``` python
+return translate_date(getValue("Joined"), "%b %Y", "%Y-%m")
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
 |  ----- | -------- | ----- |
+| _Feedback_ | `schema:ratingValue` | `schema:AggregateRating1`|
+| _Posts_ | `memex:activityCount` | `schema:OrganizationRole1`|
 | _content_clean_ | `schema:text` | `schema:WebPageElement2`|
 | _iso_date_posted_ | `schema:dateCreated` | `memex:Post1`|
+| _joined_iso_ | `schema:startDate` | `schema:OrganizationRole1`|
 | _location_ | `schema:name` | `schema:PostalAddress1`|
 | _location_uri_ | `uri` | `schema:Place1`|
 | _post_id_ | `schema:name` | `memex:Identifier2`|
@@ -77,6 +86,7 @@ return postal_address_uri(getValue("location"))
 | `memex:Thread1` | `schema:publisher` | `schema:Organization1`|
 | `memex:Thread1` | `memex:hasPost` | `memex:Post1`|
 | `schema:Organization1` | `schema:name` | `xsd:ar15.com`|
+| `schema:OrganizationRole1` | `schema:aggregateRating` | `schema:AggregateRating1`|
 | `schema:OrganizationRole1` | `schema:memberOf` | `schema:Organization1`|
 | `schema:Person1` | `memex:identifier` | `memex:Identifier3`|
 | `schema:Person1` | `schema:location` | `schema:Place1`|
