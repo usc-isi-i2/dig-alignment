@@ -1,5 +1,5 @@
 import re
-from datetime import datetime
+from datetime import datetime, date
 from time import mktime, gmtime
 from urlparse import urlparse
 
@@ -144,6 +144,14 @@ def tenDigitPhoneNumber(x):
     return re.sub('[^0-9]+', '', x)
 
 
+def translate_date(str, in_format, out_format):
+    """Convert a date to ISO8601 date format without time"""
+    try:
+        return datetime.strptime(str, in_format).date().strftime(out_format)
+    except Exception:
+        pass
+
+
 def iso8601date(date, format=None):
     """Convert a date to ISO8601 date format
 
@@ -156,6 +164,12 @@ output format: iso8601
 
 """
 
+    if format:
+        try:
+            return datetime.strptime(date, format).isoformat()
+        except Exception:
+            pass
+
     try:
         return datetime.strptime(date, "%Y-%m-%d %H:%M:%S %Z").isoformat()
     except Exception:
@@ -165,12 +179,6 @@ output format: iso8601
         return datetime.strptime(date, "%A, %b %d, %Y").isoformat()
     except Exception:
         pass
-
-    if format:
-        try:
-            return datetime.strptime(date, format).isoformat()
-        except Exception:
-            pass
 
     try:
         return datetime.strptime(date, "%Y-%m-%d %H:%M:%S.0").isoformat()
