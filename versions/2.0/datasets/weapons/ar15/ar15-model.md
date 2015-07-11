@@ -81,6 +81,7 @@ return translate_date(getValue("Joined"), "%b %Y", "%Y-%m")
 | `memex:Post1` | `memex:hasSignaturePart` | `schema:WebPageElement3`|
 | `memex:Post1` | `memex:identifier` | `memex:Identifier2`|
 | `memex:Post1` | `schema:author` | `schema:Person1`|
+| `memex:Post1` | `memex:isPostOf` | `memex:Thread1`|
 | `memex:Thread1` | `memex:hasTitlePart` | `schema:WebPageElement1`|
 | `memex:Thread1` | `memex:identifier` | `memex:Identifier1`|
 | `memex:Thread1` | `schema:publisher` | `schema:Organization1`|
@@ -91,4 +92,5 @@ return translate_date(getValue("Joined"), "%b %Y", "%Y-%m")
 | `schema:Person1` | `memex:identifier` | `memex:Identifier3`|
 | `schema:Person1` | `schema:location` | `schema:Place1`|
 | `schema:Person1` | `schema:memberOf` | `schema:OrganizationRole1`|
+| `schema:Person1` | `memex:isAuthorOf` | `memex:Post1`|
 | `schema:Place1` | `schema:address` | `schema:PostalAddress1`|

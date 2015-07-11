@@ -92,6 +92,7 @@ memex:Boolean rdf:type owl:Class ;
 
 
 memex:Thread rdf:type owl:Class ;
+	rdfs:label "Thread"@en ;
 	rdfs:subClassOf schema:CreativeWork ;
 	rdfs:comment """A thread in a forum or other kind of set of articles"""
 	.
@@ -102,18 +103,28 @@ memex:Cluster rdf:type owl:Class ;
     . 
 
 memex:Post rdf:type owl:Class ;
+	rdfs:label "Post"@en ;
 	rdfs:subClassOf schema:CreativeWork ;
 	rdfs:comment """A post in a forum."""
 	.
 
 memex:Patent rdf:type owl:Class ;
+	rdfs:label "Patent"@en ;
 	rdfs:subClassOf schema:CreativeWork ;
 	rdfs:comment """A patent."""
 	.
 
 memex:CourtDocument rdf:type owl:Class ;
+	rdfs:label "CourtDocument"@en ;
 	rdfs:subClassOf schema:CreativeWork ;
 	rdfs:comment """A document from a legal proceeding."""
+	.
+
+memex:Topic a owl:Class ;
+	rdfs:label "Topic"@en ;
+	rdfs:subClassOf schema:Intangible ;
+	rdfs:comment """A topic consists of a list of words. It is a simplified
+	version of a skos:ConceptScheme.""" ;
 	.
 
 memex:ServiceRate rdf:type owl:Class ;
@@ -293,6 +304,12 @@ memex:isPostOf rdf:type owl:ObjectProperty ;
 	rdfs:comment "Identifies the parent memex:Thread of a memex:Post."
 	.
 
+memex:isAuthorOf rdf:type owl:ObjectProperty ; 
+	rdfs:label "isAuthorOf"@en ;
+	owl:inverseOf schema:author ;
+	rdfs:comment """The inverse of schema:author."""
+	.
+
 #########################################################
 #
 # Data Properties
@@ -379,7 +396,13 @@ memex:activityCount a rdf:Property ;
 	example the number of posts from a user in a forum."""
 	.
 
-
+memex:words a rdf:Property ; 
+	rdfs:label "words"@en ;
+	rdfs:domain memex:Topic ;
+	rdfs:comment """The words in a Topic. The values can be String or Role.
+	Use Role when there is additional information about the word, such as a count,
+	frequency or weight.""" ;
+	.
 
 
 
