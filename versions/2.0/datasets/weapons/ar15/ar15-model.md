@@ -47,6 +47,12 @@ From column: _posts / Joined_
 return translate_date(getValue("Joined"), "%b %Y", "%Y-%m")
 ```
 
+#### _iso_date_posted_2_
+From column: _posts / iso_date_posted_
+>``` python
+return getValue("iso_date_posted")
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
@@ -55,9 +61,11 @@ return translate_date(getValue("Joined"), "%b %Y", "%Y-%m")
 | _Posts_ | `memex:activityCount` | `schema:OrganizationRole1`|
 | _content_clean_ | `schema:text` | `schema:WebPageElement2`|
 | _iso_date_posted_ | `schema:dateCreated` | `memex:Post1`|
+| _iso_date_posted_2_ | `memex:dateRecorded` | `schema:OrganizationRole1`|
 | _joined_iso_ | `schema:startDate` | `schema:OrganizationRole1`|
 | _location_ | `schema:name` | `schema:PostalAddress1`|
 | _location_uri_ | `uri` | `schema:Place1`|
+| _organization_uri_ | `uri` | `schema:Organization1`|
 | _post_id_ | `schema:name` | `memex:Identifier2`|
 | _post_uri_ | `uri` | `memex:Post1`|
 | _rawtextdetectedlanguage_ | `schema:inLanguage` | `memex:Thread1`|
