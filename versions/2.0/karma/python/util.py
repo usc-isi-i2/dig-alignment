@@ -65,16 +65,16 @@ def nonAsciiCharsAsString(x):
     return ', '.join(y)
 
 
-def asciiChars(x):
+def asciiChars(x, replacement_string=' '):
     "Remove non-ascii chars in x replacing consecutive ones with a single space"
     import re
 
-    return re.sub(r'[^\x00-\x7F]+', ' ', x)
+    return re.sub(r'[^\x00-\x7F]+', replacement_string, x)
 
 
-def alphaNumeric(x):
-    "Replace consecutive non-alphanumeric bya single space"
-    return re.sub('[^A-Za-z0-9]+', ' ', x)
+def alphaNumeric(x, replacement_string=' '):
+    "Replace consecutive non-alphanumeric bya replacement_string"
+    return re.sub('[^A-Za-z0-9]+', replacement_string, x)
 
 
 def numericOnly(x):
@@ -108,6 +108,11 @@ def fingerprintString(x):
     y.sort()
     return '_'.join(y)
 
+def uri_from_string(str, prefix):
+    """Create a valid uri for a string."""
+    x = asciiChars(str, '');
+    x = alphaNumeric(x, "_");
+    return x;
 
 def selectInOutCall(x):
     res = True
