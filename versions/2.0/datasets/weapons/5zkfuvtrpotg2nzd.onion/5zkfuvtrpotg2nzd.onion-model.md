@@ -22,6 +22,8 @@ return getCurrency(getValue("price"))
 | _Values_ | `schema:keywords` | `schema:Product1`|
 | _Values_ | `schema:keywords` | `schema:Product1`|
 | _Values_ | `schema:keywords` | `schema:Product1`|
+| _Values_ | `schema:keywords` | `schema:Product1`|
+| _organization_uri_ | `uri` | `schema:Organization1`|
 | _price_clean_ | `schema:price` | `schema:PriceSpecification1`|
 | _price_currency_ | `schema:priceCurrency` | `schema:PriceSpecification1`|
 | _rawtextdetectedlanguage_ | `schema:inLanguage` | `schema:Offer1`|
@@ -33,7 +35,8 @@ return getCurrency(getValue("price"))
 ### Links
 | From | Property | To |
 |  --- | -------- | ---|
-| `schema:Offer1` | `schema:itemOffered` | `schema:Product1`|
 | `schema:Offer1` | `schema:priceSpecification` | `schema:PriceSpecification1`|
 | `schema:Offer1` | `schema:publisher` | `schema:Organization1`|
+| `schema:Offer1` | `schema:itemOffered` | `schema:Product1`|
 | `schema:Organization1` | `schema:name` | `xsd:5zkfuvtrpotg2nzd.onion`|
+| `schema:Product1` | `schema:offers` | `schema:Offer1`|
