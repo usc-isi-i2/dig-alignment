@@ -39,6 +39,7 @@ return getValue("Values") + " Texas"
 | _currency_ | `schema:priceCurrency` | `schema:Offer1`|
 | _description_ | `schema:description` | `schema:Offer1`|
 | _listing_id_ | `schema:name` | `memex:Identifier1`|
+| _organization_uri_ | `uri` | `schema:Organization1`|
 | _placewithstate_ | `schema:name` | `schema:PostalAddress1`|
 | _rawtextdetectedlanguage_ | `schema:inLanguage` | `schema:Offer1`|
 | _title_ | `schema:title` | `schema:Offer1`|
@@ -60,3 +61,4 @@ return getValue("Values") + " Texas"
 | `schema:Organization1` | `schema:name` | `xsd:dallasguns.com`|
 | `schema:OrganizationRole1` | `schema:memberOf` | `schema:Organization1`|
 | `schema:Place1` | `schema:address` | `schema:PostalAddress1`|
+| `schema:Product1` | `schema:offers` | `schema:Offer1`|
