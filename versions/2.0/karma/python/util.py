@@ -1,5 +1,5 @@
 import re
-from datetime import datetime
+from datetime import datetime, date
 from time import mktime, gmtime
 from urlparse import urlparse
 
@@ -65,16 +65,16 @@ def nonAsciiCharsAsString(x):
     return ', '.join(y)
 
 
-def asciiChars(x):
+def asciiChars(x, replacement_string=' '):
     "Remove non-ascii chars in x replacing consecutive ones with a single space"
     import re
 
-    return re.sub(r'[^\x00-\x7F]+', ' ', x)
+    return re.sub(r'[^\x00-\x7F]+', replacement_string, x)
 
 
-def alphaNumeric(x):
-    "Replace consecutive non-alphanumeric bya single space"
-    return re.sub('[^A-Za-z0-9]+', ' ', x)
+def alphaNumeric(x, replacement_string=' '):
+    "Replace consecutive non-alphanumeric bya replacement_string"
+    return re.sub('[^A-Za-z0-9]+', replacement_string, x)
 
 
 def numericOnly(x):
@@ -108,6 +108,11 @@ def fingerprintString(x):
     y.sort()
     return '_'.join(y)
 
+def uri_from_string(str, prefix):
+    """Create a valid uri for a string."""
+    x = asciiChars(str, '');
+    x = alphaNumeric(x, "_");
+    return x;
 
 def selectInOutCall(x):
     res = True
@@ -144,6 +149,14 @@ def tenDigitPhoneNumber(x):
     return re.sub('[^0-9]+', '', x)
 
 
+def translate_date(str, in_format, out_format):
+    """Convert a date to ISO8601 date format without time"""
+    try:
+        return datetime.strptime(str, in_format).date().strftime(out_format)
+    except Exception:
+        pass
+
+
 def iso8601date(date, format=None):
     """Convert a date to ISO8601 date format
 
@@ -156,6 +169,12 @@ output format: iso8601
 
 """
 
+    if format:
+        try:
+            return datetime.strptime(date, format).isoformat()
+        except Exception:
+            pass
+
     try:
         return datetime.strptime(date, "%Y-%m-%d %H:%M:%S %Z").isoformat()
     except Exception:
@@ -165,12 +184,6 @@ output format: iso8601
         return datetime.strptime(date, "%A, %b %d, %Y").isoformat()
     except Exception:
         pass
-
-    if format:
-        try:
-            return datetime.strptime(date, format).isoformat()
-        except Exception:
-            pass
 
     try:
         return datetime.strptime(date, "%Y-%m-%d %H:%M:%S.0").isoformat()

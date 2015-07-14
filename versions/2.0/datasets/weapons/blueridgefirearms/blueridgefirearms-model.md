@@ -16,7 +16,7 @@ return cleanPrice(getValue("price"))
 #### _product_uri_
 From column: _uri_
 >``` python
-return getValue("uri") + "/producturi"
+return getValue("uri") + "/sku/" + getValue("SKU").lower()
 ```
 
 #### _location_
@@ -56,3 +56,4 @@ return getValue("uri") + "/placeuri"
 | `schema:Offer1` | `schema:availableAtOrFrom` | `schema:Place1`|
 | `schema:Offer1` | `schema:itemOffered` | `schema:Product1`|
 | `schema:Place1` | `schema:address` | `schema:PostalAddress1`|
+| `schema:Product1` | `schema:offers` | `schema:Offer1`|
