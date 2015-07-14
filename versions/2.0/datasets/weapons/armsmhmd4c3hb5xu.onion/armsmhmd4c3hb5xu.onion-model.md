@@ -43,6 +43,7 @@ return getValue("uri") + "/" + alphaNumeric(getValue("title")).replace(" ","_").
 | _Values_ | `schema:keywords` | `schema:Product1`|
 | _Values_ | `schema:keywords` | `schema:Product1`|
 | _offer_uri_ | `uri` | `schema:Offer1`|
+| _organization_uri_ | `uri` | `schema:Organization1`|
 | _price_btc_clean_ | `schema:price` | `schema:PriceSpecification1`|
 | _price_btc_currency_ | `schema:priceCurrency` | `schema:PriceSpecification1`|
 | _price_usd_clean_ | `schema:price` | `schema:PriceSpecification2`|
@@ -55,8 +56,9 @@ return getValue("uri") + "/" + alphaNumeric(getValue("title")).replace(" ","_").
 ### Links
 | From | Property | To |
 |  --- | -------- | ---|
-| `schema:Offer1` | `schema:itemOffered` | `schema:Product1`|
 | `schema:Offer1` | `schema:priceSpecification` | `schema:PriceSpecification1`|
 | `schema:Offer1` | `schema:priceSpecification` | `schema:PriceSpecification2`|
 | `schema:Offer1` | `schema:publisher` | `schema:Organization1`|
+| `schema:Offer1` | `schema:itemOffered` | `schema:Product1`|
 | `schema:Organization1` | `schema:name` | `xsd:armsmhmd4c3hb5xu.onion`|
+| `schema:Product1` | `schema:offers` | `schema:Offer1`|
