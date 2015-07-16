@@ -1,0 +1,954 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix schema: <http://schema.org/> .
+@prefix memex: <http://memexproxy.com/ontology/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix km-dev: <http://isi.edu/integration/karma/dev#> .
+
+_:node19qaaap4bx1 a km-dev:R2RMLMapping ;
+	km-dev:sourceName "sciencedirect-sample.json" ;
+	km-dev:modelPublicationTime "1437012944011"^^xsd:long ;
+	km-dev:modelVersion "1.7" ;
+	km-dev:hasInputColumns "[[{\"columnName\":\"conference_date\"}],[{\"columnName\":\"title\"}],[{\"columnName\":\"uri\"}],[{\"columnName\":\"keywords\"},{\"columnName\":\"values\"}],[{\"columnName\":\"authors\"},{\"columnName\":\"values\"}],[{\"columnName\":\"abstract\"}]]" ;
+	km-dev:hasOutputColumns "[[{\"columnName\":\"title\"}],[{\"columnName\":\"uri\"}],[{\"columnName\":\"keywords\"},{\"columnName\":\"values\"}],[{\"columnName\":\"datepublished\"}],[{\"columnName\":\"authors\"},{\"columnName\":\"values\"}],[{\"columnName\":\"abstract\"}],[{\"columnName\":\"authors\"},{\"columnName\":\"author_uri\"}]]" ;
+	km-dev:hasModelLabel "sciencedirect" ;
+	km-dev:hasBaseURI "http://dig.isi.edu/autonomy/data/" ;
+	km-dev:hasWorksheetHistory """[
+    {
+        \"tags\": [\"Modeling\"],
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"abstract\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://schema.org/text\",
+                    \"DomainLabel\": \"schema:ScholarlyArticle1 (add)\",
+                    \"DomainId\": \"http://schema.org/ScholarlyArticle1\",
+                    \"DomainUri\": \"http://schema.org/ScholarlyArticle\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": true,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"abstract\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"abstract\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetSemanticTypeCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"conference_date\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"value\": \"datepublished\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"value\": \"return clean_date(getValue(\\\"conference_date\\\"))\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"isJSONOutput\",
+                \"value\": \"false\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"conference_date\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"datepublished\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SubmitPythonTransformationCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"title\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://schema.org/name\",
+                    \"DomainLabel\": \"schema:ScholarlyArticle1\",
+                    \"DomainId\": \"http://schema.org/ScholarlyArticle1\",
+                    \"DomainUri\": \"http://schema.org/ScholarlyArticle\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": true,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"title\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"title\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetSemanticTypeCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"keywords\"},
+                    {\"columnName\": \"values\"}
+                ],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://schema.org/keywords\",
+                    \"DomainLabel\": \"schema:ScholarlyArticle1\",
+                    \"DomainId\": \"http://schema.org/ScholarlyArticle1\",
+                    \"DomainUri\": \"http://schema.org/ScholarlyArticle\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": true,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"keywords\\\"},{\\\"columnName\\\":\\\"values\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"keywords\\\"},{\\\"columnName\\\":\\\"values\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetSemanticTypeCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"datepublished\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://schema.org/datePublished\",
+                    \"DomainLabel\": \"schema:ScholarlyArticle1\",
+                    \"DomainId\": \"http://schema.org/ScholarlyArticle1\",
+                    \"DomainUri\": \"http://schema.org/ScholarlyArticle\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": true,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"datepublished\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"datepublished\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetSemanticTypeCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"authors\"},
+                    {\"columnName\": \"values\"}
+                ],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://schema.org/name\",
+                    \"DomainLabel\": \"schema:Person1 (add)\",
+                    \"DomainId\": \"http://schema.org/Person1\",
+                    \"DomainUri\": \"http://schema.org/Person\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": true,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"authors\\\"},{\\\"columnName\\\":\\\"values\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"authors\\\"},{\\\"columnName\\\":\\\"values\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetSemanticTypeCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"initialEdges\",
+                \"value\": [],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"alignmentId\",
+                \"value\": \"WSP2:WS1AL\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newEdges\",
+                \"value\": [{
+                    \"edgeTargetUri\": \"http://schema.org/Person1\",
+                    \"edgeId\": \"http://schema.org/author\",
+                    \"edgeTargetId\": \"http://schema.org/Person1\",
+                    \"edgeSourceId\": \"http://schema.org/ScholarlyArticle1\",
+                    \"edgeSourceUri\": \"http://schema.org/ScholarlyArticle\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"ChangeInternalNodeLinksCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"authors\"},
+                    {\"columnName\": \"values\"}
+                ],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"value\": \"author_uri\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"value\": \"return author_uri(getValue(\\\"values\\\"))\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"isJSONOutput\",
+                \"value\": \"false\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"authors\\\"},{\\\"columnName\\\":\\\"values\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"authors\\\"},{\\\"columnName\\\":\\\"author_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SubmitPythonTransformationCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"authors\"},
+                    {\"columnName\": \"author_uri\"}
+                ],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyName\",
+                \"value\": \"isUriOfClass\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyUri\",
+                \"value\": \"http://schema.org/Person\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyId\",
+                \"value\": \"http://schema.org/Person1\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://isi.edu/integration/karma/dev#classLink\",
+                    \"DomainLabel\": \"schema:Person1\",
+                    \"DomainId\": \"http://schema.org/Person1\",
+                    \"DomainUri\": \"http://schema.org/Person\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": true,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"authors\\\"},{\\\"columnName\\\":\\\"author_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"authors\\\"},{\\\"columnName\\\":\\\"author_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetMetaPropertyCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"properties\",
+                \"value\": {
+                    \"hasServiceProperties\": false,
+                    \"hasPrefix\": false,
+                    \"graphLabel\": \"sciencedirect\",
+                    \"hasBaseURI\": false
+                },
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetWorksheetPropertiesCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"properties\",
+                \"value\": {
+                    \"hasServiceProperties\": false,
+                    \"hasPrefix\": true,
+                    \"prefix\": \"autonomy\",
+                    \"graphLabel\": \"\",
+                    \"hasBaseURI\": false
+                },
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetWorksheetPropertiesCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"properties\",
+                \"value\": {
+                    \"hasServiceProperties\": false,
+                    \"hasPrefix\": false,
+                    \"graphLabel\": \"\",
+                    \"hasBaseURI\": true,
+                    \"baseURI\": \"http://dig.isi.edu/autonomy\"
+                },
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetWorksheetPropertiesCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"uri\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyName\",
+                \"value\": \"isUriOfClass\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyUri\",
+                \"value\": \"http://schema.org/ScholarlyArticle\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyId\",
+                \"value\": \"http://schema.org/ScholarlyArticle1\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://isi.edu/integration/karma/dev#classLink\",
+                    \"DomainLabel\": \"schema:ScholarlyArticle1\",
+                    \"DomainId\": \"http://schema.org/ScholarlyArticle1\",
+                    \"DomainUri\": \"http://schema.org/ScholarlyArticle\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": true,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetMetaPropertyCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"initialEdges\",
+                \"value\": [],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"alignmentId\",
+                \"value\": \"WSP3:WS1AL\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newEdges\",
+                \"value\": [{
+                    \"edgeTargetUri\": \"http://schema.org/ScholarlyArticle\",
+                    \"edgeId\": \"http://memexproxy.com/ontology/isAuthorOf\",
+                    \"edgeTargetId\": \"http://schema.org/ScholarlyArticle1\",
+                    \"edgeSourceId\": \"http://schema.org/Person1\",
+                    \"edgeSourceUri\": \"http://schema.org/Person1\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"ChangeInternalNodeLinksCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"properties\",
+                \"value\": {
+                    \"hasServiceProperties\": false,
+                    \"hasPrefix\": false,
+                    \"graphLabel\": \"\",
+                    \"hasBaseURI\": true,
+                    \"baseURI\": \"http://dig.isi.edu/autonomy/data/\"
+                },
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetWorksheetPropertiesCommand\"
+    }
+]""" .
+
+km-dev:TriplesMap_4ffd64eb-a1b5-4a71-8733-7efe4a2071aa a rr:TriplesMap .
+
+_:node19qaaap4bx1 km-dev:hasTriplesMap km-dev:TriplesMap_4ffd64eb-a1b5-4a71-8733-7efe4a2071aa .
+
+km-dev:TriplesMap_4ffd64eb-a1b5-4a71-8733-7efe4a2071aa km-dev:isPartOfMapping _:node19qaaap4bx1 .
+
+_:node19qaaap4bx2 rr:tableName "sciencedirect-sample.json" ;
+	a rr:LogicalTable ;
+	km-dev:isPartOfMapping _:node19qaaap4bx1 .
+
+_:node19qaaap4bx1 km-dev:hasLogicalTable _:node19qaaap4bx2 .
+
+km-dev:TriplesMap_4ffd64eb-a1b5-4a71-8733-7efe4a2071aa rr:logicalTable _:node19qaaap4bx2 ;
+	rr:subjectMap _:node19qaaap4bx3 .
+
+_:node19qaaap4bx1 km-dev:hasSubjectMap _:node19qaaap4bx3 .
+
+_:node19qaaap4bx3 km-dev:isPartOfMapping _:node19qaaap4bx1 ;
+	a rr:SubjectMap ;
+	km-dev:alignmentNodeId "http://schema.org/Person1" ;
+	rr:class schema:Person ;
+	rr:template "{[\"authors\",\"author_uri\"]}" ;
+	a km-dev:steinerTreeRootNode .
+
+km-dev:PredicateObjectMap_5cd4f3b6-d2b8-4d89-8191-3cfc6e0f1aa6 rr:predicate schema:name .
+
+_:node19qaaap4bx4 rr:column "[\"authors\",\"values\"]" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node19qaaap4bx1 .
+
+_:node19qaaap4bx1 km-dev:hasObjectMap _:node19qaaap4bx4 .
+
+km-dev:PredicateObjectMap_5cd4f3b6-d2b8-4d89-8191-3cfc6e0f1aa6 rr:objectMap _:node19qaaap4bx4 .
+
+km-dev:TriplesMap_4ffd64eb-a1b5-4a71-8733-7efe4a2071aa rr:predicateObjectMap km-dev:PredicateObjectMap_5cd4f3b6-d2b8-4d89-8191-3cfc6e0f1aa6 .
+
+km-dev:PredicateObjectMap_5cd4f3b6-d2b8-4d89-8191-3cfc6e0f1aa6 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19qaaap4bx1 .
+
+_:node19qaaap4bx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_5cd4f3b6-d2b8-4d89-8191-3cfc6e0f1aa6 .
+
+km-dev:PredicateObjectMap_73817c56-6416-4ed1-9b75-4126efd147aa rr:predicate memex:isAuthorOf .
+
+km-dev:RefObjectMap_7948feed-5861-4fb4-8131-f534e6da46c7 a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_5444cba6-9ee7-4968-ac89-ecb042d8c15d ;
+	km-dev:isPartOfMapping _:node19qaaap4bx1 .
+
+_:node19qaaap4bx1 km-dev:hasObjectMap km-dev:RefObjectMap_7948feed-5861-4fb4-8131-f534e6da46c7 .
+
+km-dev:PredicateObjectMap_73817c56-6416-4ed1-9b75-4126efd147aa rr:objectMap km-dev:RefObjectMap_7948feed-5861-4fb4-8131-f534e6da46c7 .
+
+km-dev:TriplesMap_4ffd64eb-a1b5-4a71-8733-7efe4a2071aa rr:predicateObjectMap km-dev:PredicateObjectMap_73817c56-6416-4ed1-9b75-4126efd147aa .
+
+km-dev:PredicateObjectMap_73817c56-6416-4ed1-9b75-4126efd147aa a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19qaaap4bx1 .
+
+_:node19qaaap4bx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_73817c56-6416-4ed1-9b75-4126efd147aa .
+
+km-dev:TriplesMap_5444cba6-9ee7-4968-ac89-ecb042d8c15d a rr:TriplesMap .
+
+_:node19qaaap4bx1 km-dev:hasTriplesMap km-dev:TriplesMap_5444cba6-9ee7-4968-ac89-ecb042d8c15d .
+
+km-dev:TriplesMap_5444cba6-9ee7-4968-ac89-ecb042d8c15d km-dev:isPartOfMapping _:node19qaaap4bx1 .
+
+_:node19qaaap4bx5 rr:tableName "sciencedirect-sample.json" ;
+	a rr:LogicalTable ;
+	km-dev:isPartOfMapping _:node19qaaap4bx1 .
+
+_:node19qaaap4bx1 km-dev:hasLogicalTable _:node19qaaap4bx5 .
+
+km-dev:TriplesMap_5444cba6-9ee7-4968-ac89-ecb042d8c15d rr:logicalTable _:node19qaaap4bx5 ;
+	rr:subjectMap _:node19qaaap4bx6 .
+
+_:node19qaaap4bx1 km-dev:hasSubjectMap _:node19qaaap4bx6 .
+
+_:node19qaaap4bx6 km-dev:isPartOfMapping _:node19qaaap4bx1 ;
+	a rr:SubjectMap ;
+	km-dev:alignmentNodeId "http://schema.org/ScholarlyArticle1" ;
+	rr:class schema:ScholarlyArticle ;
+	rr:template "{uri}" .
+
+km-dev:PredicateObjectMap_5af3ea3e-0304-4eaf-a38f-1f3b0833d976 rr:predicate schema:author .
+
+km-dev:RefObjectMap_f897f72d-8bfd-4a8c-9fc8-392cc9715d64 a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_4ffd64eb-a1b5-4a71-8733-7efe4a2071aa ;
+	km-dev:isPartOfMapping _:node19qaaap4bx1 .
+
+_:node19qaaap4bx1 km-dev:hasObjectMap km-dev:RefObjectMap_f897f72d-8bfd-4a8c-9fc8-392cc9715d64 .
+
+km-dev:PredicateObjectMap_5af3ea3e-0304-4eaf-a38f-1f3b0833d976 rr:objectMap km-dev:RefObjectMap_f897f72d-8bfd-4a8c-9fc8-392cc9715d64 .
+
+km-dev:TriplesMap_5444cba6-9ee7-4968-ac89-ecb042d8c15d rr:predicateObjectMap km-dev:PredicateObjectMap_5af3ea3e-0304-4eaf-a38f-1f3b0833d976 .
+
+km-dev:PredicateObjectMap_5af3ea3e-0304-4eaf-a38f-1f3b0833d976 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19qaaap4bx1 .
+
+_:node19qaaap4bx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_5af3ea3e-0304-4eaf-a38f-1f3b0833d976 .
+
+km-dev:PredicateObjectMap_fb36e0f9-07e2-437c-b6a7-218bd3357670 rr:predicate schema:datePublished .
+
+_:node19qaaap4bx7 rr:column "datepublished" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node19qaaap4bx1 .
+
+_:node19qaaap4bx1 km-dev:hasObjectMap _:node19qaaap4bx7 .
+
+km-dev:PredicateObjectMap_fb36e0f9-07e2-437c-b6a7-218bd3357670 rr:objectMap _:node19qaaap4bx7 .
+
+km-dev:TriplesMap_5444cba6-9ee7-4968-ac89-ecb042d8c15d rr:predicateObjectMap km-dev:PredicateObjectMap_fb36e0f9-07e2-437c-b6a7-218bd3357670 .
+
+km-dev:PredicateObjectMap_fb36e0f9-07e2-437c-b6a7-218bd3357670 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19qaaap4bx1 .
+
+_:node19qaaap4bx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_fb36e0f9-07e2-437c-b6a7-218bd3357670 .
+
+km-dev:PredicateObjectMap_8c39bae7-7de9-46c2-a922-839b539ab771 rr:predicate schema:keywords .
+
+_:node19qaaap4bx8 rr:column "[\"keywords\",\"values\"]" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node19qaaap4bx1 .
+
+_:node19qaaap4bx1 km-dev:hasObjectMap _:node19qaaap4bx8 .
+
+km-dev:PredicateObjectMap_8c39bae7-7de9-46c2-a922-839b539ab771 rr:objectMap _:node19qaaap4bx8 .
+
+km-dev:TriplesMap_5444cba6-9ee7-4968-ac89-ecb042d8c15d rr:predicateObjectMap km-dev:PredicateObjectMap_8c39bae7-7de9-46c2-a922-839b539ab771 .
+
+km-dev:PredicateObjectMap_8c39bae7-7de9-46c2-a922-839b539ab771 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19qaaap4bx1 .
+
+_:node19qaaap4bx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_8c39bae7-7de9-46c2-a922-839b539ab771 .
+
+km-dev:PredicateObjectMap_ff8dfd98-8318-4f12-9453-6fbdd3d7a379 rr:predicate schema:name .
+
+_:node19qaaap4bx9 rr:column "title" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node19qaaap4bx1 .
+
+_:node19qaaap4bx1 km-dev:hasObjectMap _:node19qaaap4bx9 .
+
+km-dev:PredicateObjectMap_ff8dfd98-8318-4f12-9453-6fbdd3d7a379 rr:objectMap _:node19qaaap4bx9 .
+
+km-dev:TriplesMap_5444cba6-9ee7-4968-ac89-ecb042d8c15d rr:predicateObjectMap km-dev:PredicateObjectMap_ff8dfd98-8318-4f12-9453-6fbdd3d7a379 .
+
+km-dev:PredicateObjectMap_ff8dfd98-8318-4f12-9453-6fbdd3d7a379 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19qaaap4bx1 .
+
+_:node19qaaap4bx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_ff8dfd98-8318-4f12-9453-6fbdd3d7a379 .
+
+km-dev:PredicateObjectMap_7bb737a8-0223-4845-9a7e-1a27ea45d647 rr:predicate schema:text .
+
+_:node19qaaap4bx10 rr:column "abstract" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node19qaaap4bx1 .
+
+_:node19qaaap4bx1 km-dev:hasObjectMap _:node19qaaap4bx10 .
+
+km-dev:PredicateObjectMap_7bb737a8-0223-4845-9a7e-1a27ea45d647 rr:objectMap _:node19qaaap4bx10 .
+
+km-dev:TriplesMap_5444cba6-9ee7-4968-ac89-ecb042d8c15d rr:predicateObjectMap km-dev:PredicateObjectMap_7bb737a8-0223-4845-9a7e-1a27ea45d647 .
+
+km-dev:PredicateObjectMap_7bb737a8-0223-4845-9a7e-1a27ea45d647 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19qaaap4bx1 .
+
+_:node19qaaap4bx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_7bb737a8-0223-4845-9a7e-1a27ea45d647 .
