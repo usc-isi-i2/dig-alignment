@@ -1,6 +1,12 @@
 ## sciencedirect-sample.json
 
 ### PyTransforms
+#### _uri_
+From column: _title_
+>``` python
+return sd_article_uri(getValue("doi"))
+```
+
 #### _datepublished_
 From column: _conference_date_
 >``` python
