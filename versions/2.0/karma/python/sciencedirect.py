@@ -8,5 +8,5 @@ def clean_date(dateString):
 def author_uri(name):
     first_name = name.split()[0]
     last_name = name.split()[1]
-    return  "author/" + first_name[0] + '.' + last_name
+    return  "author/" + first_name[0].lower() + '.' + last_name.lower()
     
