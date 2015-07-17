@@ -1,195 +1,206 @@
 {
-  "dig-autonomy": {
-    "mappings": {
-      "article": {
-        "properties": {
-          "@context": {
-            "type": "string",
-            "index": "not_analyzed"
-          },
-          "a": {
-            "type": "string",
-            "index": "not_analyzed"
-          },
-          "author": {
-            "properties": {
-              "a": {
-                "type": "string",
-                "index": "not_analyzed"
-              },
-              "email": {
-                "type": "string"
-              },
-              "isAuthorOf": {
-                "type": "string",
-                "index": "not_analyzed"
-              },
-              "name": {
-                "type": "string"
-              },
-              "uri": {
-                "type": "string",
-                "index": "not_analyzed"
-              }
+  "mappings": {
+    "article": {
+      "properties": {
+        "@context": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "a": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "author": {
+          "type": "nested",
+          "properties": {
+            "a": {
+              "type": "string",
+              "index": "not_analyzed"
+            },
+            "email": {
+              "type": "string",
+              "index": "not_analyzed"
+            },
+            "isAuthorOf": {
+              "type": "string",
+              "index": "not_analyzed"
+            },
+            "name": {
+              "type": "string"
+            },
+            "uri": {
+              "type": "string",
+              "index": "not_analyzed"
             }
-          },
-          "citation": {
-            "properties": {
-              "a": {
-                "type": "string",
-                "index": "not_analyzed"
-              },
-              "author": {
-                "properties": {
-                  "a": {
-                    "type": "string",
-                    "index": "not_analyzed"
-                  },
-                  "name": {
-                    "type": "string"
-                  },
-                  "uri": {
-                    "type": "string",
-                    "index": "not_analyzed"
-                  }
-                }
-              },
-              "datePublished": {
-                "type": "date",
-                "format": "yyyy-MM-dd HH:mm:ss||yyyy-mm-dd||yyyy-mm||yyyy"
-              },
-              "title": {
-                "type": "string",
-                "analyzer": "english"
-              }
-            }
-          },
-          "name": {
-            "type": "string"
-          },
-          "sourceOrganization": {
-            "properties": {
-              "a": {
-                "type": "string",
-                "index": "not_analyzed"
-              },
-              "location": {
-                "properties": {
-                  "a": {
-                    "type": "string",
-                    "index": "not_analyzed"
-                  },
-                  "name": {
-                    "type": "string"
-                  }
-                }
-              },
-              "name": {
-                "type": "string"
-              }
-            }
-          },
-          "text": {
-            "type": "string",
-            "analyzer": "english"
-          },
-          "uri": {
-            "type": "string",
-            "index": "not_analyzed"
           }
+        },
+        "citation": {
+          "type": "nested",
+          "properties": {
+            "a": {
+              "type": "string",
+              "index": "not_analyzed"
+            },
+            "author": {
+              "type": "nested",
+              "properties": {
+                "a": {
+                  "type": "string",
+                  "index": "not_analyzed"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "uri": {
+                  "type": "string",
+                  "index": "not_analyzed"
+                }
+              }
+            },
+            "datePublished": {
+              "type": "date",
+              "format": "YYYY-MM-DDTHH:mmZ||YYYY-MM-DD||YYYY-MM||YYYY"
+            },
+            "title": {
+              "type": "string",
+              "analyzer": "english"
+            }
+          }
+        },
+        "name": {
+          "type": "string"
+        },
+        "sourceOrganization": {
+          "type": "nested",
+          "properties": {
+            "a": {
+              "type": "string",
+              "index": "not_analyzed"
+            },
+            "location": {
+              "type": "nested",
+              "properties": {
+                "a": {
+                  "type": "string",
+                  "index": "not_analyzed"
+                },
+                "name": {
+                  "type": "string"
+                }
+              }
+            },
+            "name": {
+              "type": "string"
+            }
+          }
+        },
+        "text": {
+          "type": "string",
+          "analyzer": "english"
+        },
+        "uri": {
+          "type": "string",
+          "index": "not_analyzed"
         }
-      },
-      "author": {
-        "properties": {
-          "@context": {
-            "type": "string"
-          },
-          "a": {
-            "type": "string",
-            "index": "not_analyzed"
-          },
-          "email": {
-            "type": "string"
-          },
-          "isAuthorOf": {
-            "properties": {
-              "a": {
-                "type": "string",
-                "index": "not_analyzed"
-              },
-              "author": {
-                "type": "string"
-              },
-              "citation": {
-                "properties": {
-                  "a": {
-                    "type": "string",
-                    "index": "not_analyzed"
-                  },
-                  "author": {
-                    "properties": {
-                      "a": {
-                        "type": "string",
-                        "index": "not_analyzed"
-                      },
-                      "name": {
-                        "type": "string"
-                      },
-                      "uri": {
-                        "type": "string",
-                        "index": "not_analyzed"
-                      }
+      }
+    },
+    "author": {
+      "type": "nested",
+      "properties": {
+        "@context": {
+          "type": "string"
+        },
+        "a": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "email": {
+          "type": "string"
+        },
+        "isAuthorOf": {
+          "type": "nested",
+          "properties": {
+            "a": {
+              "type": "string",
+              "index": "not_analyzed"
+            },
+            "author": {
+              "type": "string"
+            },
+            "citation": {
+              "type": "nested",
+              "properties": {
+                "a": {
+                  "type": "string",
+                  "index": "not_analyzed"
+                },
+                "author": {
+                  "type": "nested",
+                  "properties": {
+                    "a": {
+                      "type": "string",
+                      "index": "not_analyzed"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "uri": {
+                      "type": "string",
+                      "index": "not_analyzed"
                     }
-                  },
-                  "datePublished": {
-                    "type": "string"
-                  },
-                  "title": {
-                    "type": "string"
                   }
+                },
+                "datePublished": {
+                  "type": "date",
+                  "format": "YYYY-MM-DDTHH:mmZ||YYYY-MM-DD||YYYY-MM||YYYY"
+                },
+                "title": {
+                  "type": "string"
                 }
-              },
-              "name": {
-                "type": "string"
-              },
-              "sourceOrganization": {
-                "properties": {
-                  "a": {
-                    "type": "string",
-                    "index": "not_analyzed"
-                  },
-                  "location": {
-                    "properties": {
-                      "a": {
-                        "type": "string",
-                        "index": "not_analyzed"
-                      },
-                      "name": {
-                        "type": "string"
-                      }
-                    }
-                  },
-                  "name": {
-                    "type": "string"
-                  }
-                }
-              },
-              "text": {
-                "type": "string",
-                "analyzer": "english"
-              },
-              "uri": {
-                "type": "string",
-                "index": "not_analyzed"
               }
+            },
+            "name": {
+              "type": "string"
+            },
+            "sourceOrganization": {
+              "type": "nested",
+              "properties": {
+                "a": {
+                  "type": "string",
+                  "index": "not_analyzed"
+                },
+                "location": {
+                  "type": "nested",
+                  "properties": {
+                    "a": {
+                      "type": "string",
+                      "index": "not_analyzed"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "name": {
+                  "type": "string"
+                }
+              }
+            },
+            "text": {
+              "type": "string",
+              "analyzer": "english"
+            },
+            "uri": {
+              "type": "string",
+              "index": "not_analyzed"
             }
-          },
-          "name": {
-            "type": "string"
-          },
-          "uri": {
-            "type": "string"
           }
+        },
+        "name": {
+          "type": "string"
+        },
+        "uri": {
+          "type": "string"
         }
       }
     }
