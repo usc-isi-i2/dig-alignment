@@ -4,7 +4,7 @@
 #### _uri_
 From column: _title_
 >``` python
-return sd_article_uri(getValue("doi"))
+return sd_article_uri(getValue("abstract"),getValue("title"),getValue("doi"))
 ```
 
 #### _datepublished_
