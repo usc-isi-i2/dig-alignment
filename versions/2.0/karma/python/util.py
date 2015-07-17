@@ -2,6 +2,7 @@ import re
 from datetime import datetime, date
 from time import mktime, gmtime
 from urlparse import urlparse
+import hashlib
 
 def documentUrl(x):
     "Return the original document URL from the URL in the document version"
@@ -139,7 +140,6 @@ def organization_uri(id):
 
 def md5Hash(x):
     "Return md5 hash of x"
-    import hashlib
 
     return hashlib.md5(x).hexdigest()
 

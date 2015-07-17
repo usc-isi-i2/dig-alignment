@@ -30,7 +30,3 @@ def sd_article_uri(abstract, title, doi):
 
 	return 'article/sciencedirect/'+ getTextHash(text)
 
-def getTextHash(text):
-    if text:
-        return hashlib.sha1(text.encode('utf-8')).hexdigest().upper()
-    return ''
