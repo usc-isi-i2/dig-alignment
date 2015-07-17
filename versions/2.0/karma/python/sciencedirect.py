@@ -7,9 +7,11 @@ def clean_date(dateString):
     return iso8601date(dateString,"%B %Y") 
 
 def author_uri(name):
-    first_name = name.split()[0]
-    last_name = name.split()[1]
-    return  "author/" + first_name[0].lower() + '.' + last_name.lower()
+    first_word = name.split()[0].replace('.','')
+    second_word = name.split()[1].replace('.','')
+    if len(second_word) < 3:
+        return "author/" + second_word[0].lower() + '.' + first_word.lower()
+    return  "author/" + first_word[0].lower() + '.' + second_word.lower()
 
 
 def sd_article_uri(abstract, title, doi):
