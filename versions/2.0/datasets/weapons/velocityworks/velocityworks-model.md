@@ -32,6 +32,7 @@ return vw_clean_image_url(getValue("src"))
 | _cleanPrice_ | `schema:price` | `schema:Offer1`|
 | _cleanimgurl_ | `schema:url` | `schema:ImageObject1`|
 | _description_ | `schema:description` | `schema:Offer1`|
+| _organizationuri_ | `uri` | `schema:Organization1`|
 | _pricecurrency_ | `schema:priceCurrency` | `schema:Offer1`|
 | _rawtextdetectedlanguage_ | `schema:inLanguage` | `schema:Offer1`|
 | _title_ | `schema:title` | `schema:Offer1`|
@@ -42,9 +43,10 @@ return vw_clean_image_url(getValue("src"))
 ### Links
 | From | Property | To |
 |  --- | -------- | ---|
-| `schema:Offer1` | `schema:itemOffered` | `schema:Product1`|
 | `schema:Offer1` | `schema:publisher` | `schema:Organization1`|
+| `schema:Offer1` | `schema:itemOffered` | `schema:Product1`|
 | `schema:Organization1` | `schema:name` | `xsd:velocityworks.net`|
 | `schema:OrganizationRole1` | `schema:memberOf` | `schema:Organization1`|
 | `schema:Product1` | `schema:image` | `schema:ImageObject1`|
+| `schema:Product1` | `schema:offers` | `schema:Offer1`|
 | `schema:Product1` | `schema:memberOf` | `schema:OrganizationRole1`|

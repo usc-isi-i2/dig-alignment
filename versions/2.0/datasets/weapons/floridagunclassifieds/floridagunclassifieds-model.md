@@ -49,19 +49,27 @@ From column: _uri_
 return getValue("uri")+"/placeuri"
 ```
 
+#### _clean_phone_
+From column: _Unfold: label / phone number: / Values_
+>``` python
+return clean_phone(getValue("Values"))
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
 |  ----- | -------- | ----- |
-| _URL_ | `schema:url` | `schema:Offer1`|
 | _Values_ | `schema:addressLocality` | `schema:PostalAddress1`|
 | _Values_ | `schema:keywords` | `schema:Product1`|
 | _Values_ | `schema:manufacturer` | `schema:Product1`|
+| _Values_ | `schema:email` | `schema:ContactPoint1`|
 | _cleanPrice_ | `schema:price` | `schema:Offer1`|
 | _clean_member_since_ | `schema:startDate` | `schema:OrganizationRole1`|
+| _clean_phone_ | `schema:name` | `memex:PhoneNumber1`|
 | _description_ | `schema:description` | `schema:Offer1`|
 | _listedOnDate_ | `schema:availabilityStarts` | `schema:Offer1`|
 | _location_enhanced_ | `schema:name` | `schema:PostalAddress1`|
+| _organizationuri_ | `uri` | `schema:Organization1`|
 | _personororganizationUri_ | `uri` | `memex:PersonOrOrganization1`|
 | _place_uri_ | `uri` | `schema:Place1`|
 | _priceCurrency_ | `schema:priceCurrency` | `schema:Offer1`|
@@ -69,6 +77,7 @@ return getValue("uri")+"/placeuri"
 | _rawtextdetectedlanguage_ | `schema:inLanguage` | `schema:Offer1`|
 | _title_ | `schema:title` | `schema:Offer1`|
 | _uri_ | `uri` | `schema:Offer1`|
+| _url_ | `schema:url` | `schema:Offer1`|
 | _user_id_ | `schema:name` | `memex:Identifier1`|
 | _username_ | `schema:name` | `schema:ContactPoint1`|
 
@@ -76,11 +85,14 @@ return getValue("uri")+"/placeuri"
 ### Links
 | From | Property | To |
 |  --- | -------- | ---|
-| `memex:Identifier1` | `memex:hasType` | `xsd:http://dig.isi.edu/weapons/data/thesaurus/identifier/floridagunclassifieds`|
 | `memex:PersonOrOrganization1` | `schema:contactPoint` | `schema:ContactPoint1`|
 | `memex:PersonOrOrganization1` | `schema:memberOf` | `schema:OrganizationRole1`|
 | `schema:ContactPoint1` | `memex:identifier` | `memex:Identifier1`|
+| `schema:ContactPoint1` | `schema:telephone` | `memex:PhoneNumber1`|
 | `schema:Offer1` | `schema:availableAtOrFrom` | `schema:Place1`|
 | `schema:Offer1` | `schema:itemOffered` | `schema:Product1`|
 | `schema:Offer1` | `schema:seller` | `memex:PersonOrOrganization1`|
+| `schema:Organization1` | `schema:name` | `xsd:floridagunclassifieds.com`|
+| `schema:OrganizationRole1` | `schema:memberOf` | `schema:Organization1`|
 | `schema:Place1` | `schema:address` | `schema:PostalAddress1`|
+| `schema:Product1` | `schema:offers` | `schema:Offer1`|

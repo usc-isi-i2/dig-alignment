@@ -36,6 +36,7 @@ return getCurrency(getValue("price_usd"))
 | Column | Property | Class |
 |  ----- | -------- | ----- |
 | _description_ | `schema:description` | `schema:Offer1`|
+| _organizationuri_ | `uri` | `schema:Organization1`|
 | _price_btc_clean_ | `schema:price` | `schema:PriceSpecification1`|
 | _price_btc_currency_ | `schema:priceCurrency` | `schema:PriceSpecification1`|
 | _price_usd_clean_ | `schema:price` | `schema:PriceSpecification2`|
@@ -67,3 +68,4 @@ return getCurrency(getValue("price_usd"))
 | `schema:Place1` | `schema:address` | `schema:PostalAddress1`|
 | `schema:Place2` | `schema:address` | `schema:PostalAddress2`|
 | `schema:Product1` | `schema:image` | `schema:ImageObject1`|
+| `schema:Product1` | `schema:offers` | `schema:Offer1`|

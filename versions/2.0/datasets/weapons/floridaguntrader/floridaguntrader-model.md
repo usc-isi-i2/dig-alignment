@@ -38,6 +38,7 @@ return getValue("location") + " Florida"
 | _cleanprice_ | `schema:price` | `schema:Offer1`|
 | _description_ | `schema:description` | `schema:Offer1`|
 | _listing_id_ | `schema:name` | `memex:Identifier1`|
+| _orgganizationuri_ | `uri` | `schema:Organization1`|
 | _placewithstate_ | `schema:name` | `schema:PostalAddress1`|
 | _pricecurrency_ | `schema:priceCurrency` | `schema:Offer1`|
 | _rawtextdetectedlanguage_ | `schema:inLanguage` | `schema:Offer1`|

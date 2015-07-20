@@ -52,6 +52,7 @@ return getValue("Values")+", "+getValue("Values_1")+", "+getValue("Values_2")+",
 | _Values_ | `schema:itemCondition` | `schema:Product1`|
 | _Values_ | `schema:addressRegion` | `schema:PostalAddress1`|
 | _Values_ | `schema:addressCountry` | `schema:PostalAddress1`|
+| _address_ | `schema:name` | `schema:PostalAddress1`|
 | _cleanPrice_ | `schema:price` | `schema:Offer1`|
 | _clean_member_since_ | `schema:startDate` | `schema:OrganizationRole1`|
 | _cleanimages_ | `schema:url` | `schema:ImageObject1`|
@@ -59,6 +60,7 @@ return getValue("Values")+", "+getValue("Values_1")+", "+getValue("Values_2")+",
 | _cleanphone_ | `schema:name` | `memex:PhoneNumber1`|
 | _currency_ | `schema:priceCurrency` | `schema:Offer1`|
 | _description_ | `schema:description` | `schema:Offer1`|
+| _organizationuri_ | `uri` | `schema:Organization1`|
 | _place_name_ | `schema:name` | `schema:PostalAddress1`|
 | _rawtextdetectedlanguage_ | `schema:inLanguage` | `schema:Offer1`|
 | _title_ | `schema:title` | `schema:Offer1`|
@@ -83,3 +85,4 @@ return getValue("Values")+", "+getValue("Values_1")+", "+getValue("Values_2")+",
 | `schema:OrganizationRole1` | `schema:memberOf` | `schema:Organization1`|
 | `schema:Place1` | `schema:address` | `schema:PostalAddress1`|
 | `schema:Product1` | `schema:image` | `schema:ImageObject1`|
+| `schema:Product1` | `schema:offers` | `schema:Offer1`|
