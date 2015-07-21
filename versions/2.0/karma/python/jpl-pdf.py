@@ -11,6 +11,27 @@ def jp_author_uri(forename, surname):
  return  "author/" + first_word[0].lower() + '.' + second_word.lower()
 
 
+def jp_author_name_normalized(name):
+ """Construct the author name as P. Szekely."""
+ names = name.replace('.','').split(' ');
+ first_word = names[0];
+ last_word = names[-1]
+ if len(last_word) == 1:
+ 	first = last_word;
+ 	last = first_word;
+ else:
+ 	first = first_word;
+ 	last = last_word;
+ # make the first name be the initial only.
+ if len(first) > 1:
+ 	first = first[0].upper();
+ if len(first) == 1:
+ 	first = first + '.';
+ names[0] = first;
+ names[-1] = last;
+ return ' '.join(names);
+
+
 def jp_author_name(forename, surname):
 	"""Construct the name of a person as a single string."""
 	if len(forename) == 1:
@@ -25,5 +46,9 @@ def jp_article_uri(filename):
 
 
 def jp_clean_date(dateString):
-	return iso8601date(dateString,"%B %Y") 
+	return getYearFromISODate(iso8601date(dateString,"%B %Y"))
 
+
+def jp_clean_year(string, format):
+	"""Parse the date and return the year."""
+	return getYearFromISODate(iso8601date(string,format))
