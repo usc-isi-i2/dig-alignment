@@ -24,12 +24,12 @@ def jp_author_name_normalized(name):
  	last = last_word;
  # make the first name be the initial only.
  if len(first) > 1:
- 	first = first[0].upper();
+ 	first = first[0];
  if len(first) == 1:
  	first = first + '.';
  names[0] = first;
  names[-1] = last;
- return ' '.join(names);
+ return ' '.join(names).title();
 
 
 def jp_author_name(forename, surname):
@@ -52,3 +52,16 @@ def jp_clean_date(dateString):
 def jp_clean_year(string, format):
 	"""Parse the date and return the year."""
 	return getYearFromISODate(iso8601date(string,format))
+
+
+def jp_clean_year_best_effort(string):
+	"""Try to parse the string as a date and return the year"""
+	d = jp_clean_year(string, "%Y")
+	if d:
+		return d;
+
+	d = jp_clean_year(string, "%Y-%m")
+	if d:
+		return d;
+	
+	return ''
