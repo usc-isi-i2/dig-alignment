@@ -2,7 +2,7 @@ from datetime import datetime, date
 from time import mktime, gmtime
 
 
-
+###Pedro: obsolete, should be removed, but not sure it is not used.
 def clean_date(dateString):
     return iso8601date(dateString,"%B %Y") 
 
