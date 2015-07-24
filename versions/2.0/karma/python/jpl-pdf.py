@@ -7,11 +7,52 @@ def jp_author_uri(forename, surname):
  first_word = forename.replace('.','')
  second_word = surname.replace('.','')
  if len(second_word) < 3:
-    return "author/" + second_word[0].lower() + '.' + first_word.lower()
- return  "author/" + first_word[0].lower() + '.' + second_word.lower()
+    base = second_word[0].lower() + '.' + first_word.lower()
+ else:
+ 	base = first_word[0].lower() + '.' + second_word.lower()
+ return  "author/" + asciiChars(base,'')
 
 
 def jp_author_name_normalized(name):
+ """Construct the author name as P. Szekely."""
+
+ clean = name.replace('.',' ').replace(',',' ').replace(';', ' ')
+
+ names = re.sub(r'\s+', ' ', clean.strip()).split(' ');
+ last_word = names[-1]
+
+ if len(last_word) == 1:
+ 	# The last word is an initial, so we accumulate all words before it that are not initials
+ 	# that will be our last name
+ 	i = 0;
+ 	index = -1   # index of last word that is not an initial
+ 	for n in names:
+ 		if len(n)>1:
+ 			index = i
+ 		else:
+ 			names[i] = n + '.'
+ 		i = i + 1;
+
+ 	if index == -1 or index == len(names) - 1:
+ 		return ' '.join(names).title();
+
+ 	last = names[index]
+ 	first = ' '.join(names[0:index]) + ' '.join(names[index + 1:])
+ 	return (first + ' ' + last).title()
+
+ else:
+ 	i = 0
+ 	for n in names:
+ 		if len(n) == 1:
+ 			names[i] = n + '.'
+ 		elif i < len(names) - 1:
+ 			names[i] = n[0] + '.'
+ 		i = i + 1
+ 	return ' '.join(names).title();
+
+
+
+def jp_author_name_normalized_old(name):
  """Construct the author name as P. Szekely."""
  names = name.replace('.','').split(' ');
  first_word = names[0];
@@ -42,7 +83,8 @@ def jp_author_name(forename, surname):
 def jp_article_uri(filename):
 	"""Construct the URI for an article using the file name"""
 	i = filename.rfind('.') 
-	return 'article/jpl/'+filename[:i]
+	just_name = alphaNumeric(filename[:i],'_')
+	return 'article/jpl/'+just_name
 
 
 def jp_clean_date(dateString):
