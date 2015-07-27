@@ -30,7 +30,8 @@ def el_product_uri(model):
 
 def el_clean_manufacturer(manufacturer):
 	"""Try to create a cannonical name for a manufacturer."""
-	return asciiChars(manufacturer.strip())
+	x = re.sub('\(.+\)', '', manufacturer)
+	return asciiChars(x.strip()).title()
 
 
 def el_manufacturer_uri(manufacturer):
