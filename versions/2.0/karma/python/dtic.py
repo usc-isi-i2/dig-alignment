@@ -10,3 +10,7 @@ def author_uri_dtic (name):
     last_name = name.split()[0]
     first_name = name.split()[1]
     return  "author/" + first_name[0].lower() + '.' + last_name.lower()
+
+def dtic_article_uri(title, abstract):
+	"""The URI for a DTIC article"""
+	return "article/dtic/" + getTextHash(title + abstract)
