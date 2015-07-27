@@ -2,7 +2,7 @@
 from datetime import datetime, date
 from time import mktime, gmtime
 
-def jp_author_uri(forename, surname):
+def jp_author_uri_old(forename, surname):
  """Construct the URI of an author so that it will reduce correctly most of the time."""
  first_word = forename.replace('.','')
  second_word = surname.replace('.','')
@@ -13,10 +13,21 @@ def jp_author_uri(forename, surname):
  return  "author/" + asciiChars(base,'')
 
 
+def jp_author_uri(forename, surname):
+	"""Construct the URI of an author so that it will reduce correctly most of the time."""
+	return jp_author_uri_2(forename + " " + surname)
+
+def jp_author_uri_2(name):
+	normalized = jp_author_name_normalized(name)
+	return "author/" + normalized.replace(' ','').lower()
+
+
+
 def jp_author_name_normalized(name):
  """Construct the author name as P. Szekely."""
 
  clean = name.replace('.',' ').replace(',',' ').replace(';', ' ')
+ clean = asciiChars(clean, '')
 
  names = re.sub(r'\s+', ' ', clean.strip()).split(' ');
  last_word = names[-1]
