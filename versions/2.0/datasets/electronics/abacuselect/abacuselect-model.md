@@ -40,6 +40,7 @@ return el_product_uri(getValue("model"))
 | _model_clean_ | `schema:mpn` | `schema:Product1`|
 | _product_uri_ | `uri` | `schema:Product1`|
 | _quantity_ | `schema:inventoryLevel` | `schema:Offer1`|
+| _seller_ | `uri` | `schema:Organization2`|
 | _uri_ | `uri` | `schema:Offer1`|
 
 
@@ -47,4 +48,5 @@ return el_product_uri(getValue("model"))
 | From | Property | To |
 |  --- | -------- | ---|
 | `schema:Offer1` | `schema:itemOffered` | `schema:Product1`|
+| `schema:Offer1` | `schema:seller` | `schema:Organization2`|
 | `schema:Product1` | `schema:manufacturer` | `schema:Organization1`|
