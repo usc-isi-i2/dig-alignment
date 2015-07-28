@@ -57,6 +57,7 @@ return getValue("Values") + " Texas"
 | `schema:Offer1` | `memex:identifier` | `memex:Identifier1`|
 | `schema:Offer1` | `schema:availableAtOrFrom` | `schema:Place1`|
 | `schema:Offer1` | `schema:itemOffered` | `schema:Product1`|
+| `schema:Offer1` | `schema:publisher` | `schema:Organization1`|
 | `schema:Offer1` | `schema:seller` | `memex:PersonOrOrganization1`|
 | `schema:Organization1` | `schema:name` | `xsd:dallasguns.com`|
 | `schema:OrganizationRole1` | `schema:memberOf` | `schema:Organization1`|
