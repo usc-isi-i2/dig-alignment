@@ -6,6 +6,16 @@
     "rule_type": "ItemRule"
   },
   {
+    "begin_regex": "span\\>Phones:",
+    "end_regex": "\\</div",
+    "iter_begin_regex": "itemprop=\"telephone\"\\>",
+    "iter_end_regex": "\\</span",
+    "name": "phones",
+    "no_first_begin_iter_rule": false,
+    "no_last_end_iter_rule": false,
+    "rule_type": "IterationRule"
+  },
+  {
     "begin_regex": "\\>Address\\</div\\>",
     "end_regex": "</span>\\s*</div>",
     "name": "address",
@@ -75,6 +85,70 @@
 	    "begin_regex": "\\</a\\>\\s+\\(",
 	    "end_regex": "\\)",
 	    "name": "title",
+	    "rule_type": "ItemRule"
+	  }
+    ]
+  },
+  {
+    "begin_regex": "\\>Other Offices\\</div\\>",
+    "end_regex": "\\</div\\>\\s*\\</div\\>",
+    "iter_begin_regex": "address\"\\>",
+    "iter_end_regex": "address\"\\>",
+    "name": "other_offices",
+    "no_first_begin_iter_rule": false,
+    "no_last_end_iter_rule": true,
+    "rule_type": "IterationRule",
+    "sub_rules": [
+	  {
+	    "begin_regex": "\"\\>",
+	    "end_regex": "\\</a",
+	    "name": "name",
+	    "rule_type": "ItemRule"
+	  },
+	  {
+	    "begin_regex": "",
+	    "end_regex": "</span>\\s*</div>",
+	    "name": "address",
+	    "rule_type": "ItemRule",
+	    "sub_rules": [
+		  {
+		    "begin_regex": "streetAddress\"\\>",
+		    "end_regex": "\\</",
+		    "name": "street1",
+		    "rule_type": "ItemRule",
+		    "removehtml": true
+		  },
+		  {
+		    "begin_regex": "streetAddress\"\\>.*?streetAddress\"\\>",
+		    "end_regex": "\\</",
+		    "name": "street2",
+		    "rule_type": "ItemRule",
+		    "removehtml": true
+		  },
+		  {
+		    "begin_regex": "addressLocality\"\\>",
+		    "end_regex": "\\</",
+		    "name": "city",
+		    "rule_type": "ItemRule"
+		  },
+		  {
+		    "begin_regex": "addressRegion\"\\>",
+		    "end_regex": "\\</",
+		    "name": "state",
+		    "rule_type": "ItemRule"
+		  },
+		  {
+		    "begin_regex": "postalCode\"\\>",
+		    "end_regex": "",
+		    "name": "zipcode",
+		    "rule_type": "ItemRule"
+		  }
+	    ]
+	  },
+	  {
+	    "begin_regex": "telephone\">",
+	    "end_regex": "\\</",
+	    "name": "phone",
 	    "rule_type": "ItemRule"
 	  }
     ]
