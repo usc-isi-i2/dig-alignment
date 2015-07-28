@@ -1,0 +1,167 @@
+[
+    {
+        "name": "name",
+        "rule_type": "RegexRule",
+        "begin_regex": "\\<h1 itemprop=\"name\"\\>",
+        "end_regex": "\\</"
+    },
+    {
+        "name": "graph",
+        "rule_type": "RegexRule",
+        "begin_regex": "var model = {",
+        "end_regex": "};",
+        "sub_rules": [
+            {
+                "begin_regex": "entities:",
+                "end_regex": "rootEntityKey:",
+                "iter_begin_regex": "{\"key\":",
+                "iter_end_regex": "{\"key\":",
+                "name": "entities",
+                "rule_type": "IterationRule",
+        		"no_first_begin_iter_rule": false,
+		        "no_last_end_iter_rule": true,
+		        "sub_rules": [
+					{
+		                "begin_regex": "\"id\":",
+		                "end_regex": ",",
+		                "name": "id",
+		                "rule_type": "ItemRule"
+		            },
+					{
+		                "begin_regex": "\"city\":\"",
+		                "end_regex": "\"",
+		                "name": "city",
+		                "rule_type": "ItemRule"
+		            },
+					{
+		                "begin_regex": "\"state\":\"",
+		                "end_regex": "\"",
+		                "name": "state",
+		                "rule_type": "ItemRule"
+		            },
+					{
+		                "begin_regex": "\"name\":\"",
+		                "end_regex": "\"",
+		                "name": "name",
+		                "rule_type": "ItemRule"
+		            },
+		            {
+		                "begin_regex": "\"isCompany\":",
+		                "end_regex": ",",
+		                "name": "isCompany",
+		                "rule_type": "ItemRule"
+		            },
+		            {
+		                "begin_regex": "\"isOfficer\":",
+		                "end_regex": ",",
+		                "name": "isOfficer",
+		                "rule_type": "ItemRule"
+		            },
+		            {
+		                "begin_regex": "\"connectionCount\":",
+		                "end_regex": "}",
+		                "name": "connectionCount",
+		                "rule_type": "ItemRule"
+		            }
+		        ]
+            },
+            {
+                "begin_regex": "graphEdges:",
+                "end_regex": "numEntities:",
+                "iter_begin_regex": "{\"key\":",
+                "iter_end_regex": "{\"key\":",
+                "name": "edges",
+                "rule_type": "IterationRule",
+        		"no_first_begin_iter_rule": false,
+		        "no_last_end_iter_rule": true,
+		        "sub_rules": [
+					{
+		                "begin_regex": "\"source\":\"",
+		                "end_regex": "\"",
+		                "name": "source",
+		                "rule_type": "ItemRule"
+		            },
+					{
+		                "begin_regex": "\"target\":\"",
+		                "end_regex": "\"",
+		                "name": "target",
+		                "rule_type": "ItemRule"
+		            },
+					{
+		                "begin_regex": "\"active\":",
+		                "end_regex": "}",
+		                "name": "active",
+		                "rule_type": "ItemRule"
+		            }
+		        ]
+            }
+        ]
+    },
+    {
+        "name": "alternate_names",
+        "rule_type": "RegexRule",
+        "begin_regex": "Alternate Names:.*?\\<ul",
+        "end_regex": "\\</ul",
+        "iter_begin_regex": "\\<li\\>",
+        "iter_end_regex": "\\</li\\>",
+		"no_first_begin_iter_rule": false,
+        "no_last_end_iter_rule": false,
+        "rule_type": "IterationRule",
+        "sub_rules": [
+            {
+                "begin_regex": "",
+                "end_regex": "\\<small",
+                "name": "name",
+                "rule_type": "ItemRule"
+            },
+            {
+                "begin_regex": "\\<small\\>-",
+                "end_regex": "\\</small",
+                "name": "industry",
+                "rule_type": "ItemRule"
+            }
+        ]
+    },
+    {
+      "name": "corporation_records",
+      "begin_regex": "\\<div class=\"corporate-records\"\\>",
+      "end_regex": "\\</div",
+      "iter_begin_regex": "\\<h6\\>",
+      "iter_end_regex": "\\<h6\\>",
+      "no_first_begin_iter_rule": false,
+      "no_last_end_iter_rule": true,
+      "rule_type": "IterationRule",
+      "sub_rules": [
+      {
+        "name": "filing_body",
+        "begin_regex": "",
+        "end_regex": "\\</h6",
+        "rule_type": "ItemRule"
+      },
+      {
+        "name": "filing_info",
+        "begin_regex": "table-striped\"\\>",
+        "end_regex": "\\</table",
+        "iter_begin_regex": "\\<tr\\>",
+        "iter_end_regex": "\\</tr\\>",
+		"no_first_begin_iter_rule": false,
+        "no_last_end_iter_rule": false,
+        "rule_type": "IterationRule",
+        "sub_rules": [
+            {
+                "begin_regex": "\\<th\\>",
+                "end_regex": "\\</th",
+                "name": "label",
+                "rule_type": "ItemRule"
+            },
+            {
+                "begin_regex": "\\<td\\>",
+                "end_regex": "\\</td",
+                "name": "value",
+                "rule_type": "ItemRule"
+            }
+        ]     
+      }
+    ]
+  }
+]
