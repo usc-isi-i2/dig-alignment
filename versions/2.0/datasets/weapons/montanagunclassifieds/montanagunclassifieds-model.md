@@ -37,6 +37,12 @@ From column: _location_
 return getEnhancedLocation(getValue("location"))
 ```
 
+#### _title_2_
+From column: _title_
+>``` python
+return getValue("title")
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
@@ -51,6 +57,7 @@ return getEnhancedLocation(getValue("location"))
 | _priceCurrency_ | `schema:priceCurrency` | `schema:Offer1`|
 | _rawtextdetectedlanguage_ | `schema:inLanguage` | `schema:Offer1`|
 | _title_ | `schema:title` | `schema:Offer1`|
+| _title_2_ | `schema:name` | `schema:Product1`|
 | _uri_ | `uri` | `schema:Offer1`|
 
 
@@ -58,4 +65,6 @@ return getEnhancedLocation(getValue("location"))
 | From | Property | To |
 |  --- | -------- | ---|
 | `schema:Offer1` | `schema:availableAtOrFrom` | `schema:Place1`|
+| `schema:Offer1` | `schema:itemOffered` | `schema:Product1`|
 | `schema:Place1` | `schema:address` | `schema:PostalAddress1`|
+| `schema:Product1` | `schema:offers` | `schema:Offer1`|
