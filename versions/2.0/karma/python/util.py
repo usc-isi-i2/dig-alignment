@@ -152,7 +152,7 @@ def tenDigitPhoneNumber(x):
 def translate_date(str, in_format, out_format):
     """Convert a date to ISO8601 date format without time"""
     try:
-        return datetime.strptime(str, in_format).date().strftime(out_format)
+        return datetime.strptime(str.strip(), in_format).date().strftime(out_format)
     except Exception:
         pass
 
@@ -168,7 +168,8 @@ or            epoch (10 digit, indicating sec)
 output format: iso8601
 
 """
-
+    date = date.strip()
+    
     if format:
         try:
             return datetime.strptime(date, format).isoformat()
