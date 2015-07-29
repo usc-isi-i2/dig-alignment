@@ -31,6 +31,19 @@ From column: __source / crawl_data / court_
 return standardize_state_code("US", pt_get_court_state(getValue("court")))
 ```
 
+#### _text-truncated_
+From column: __source / crawl_data / full-text_
+>``` python
+text = getValue("full-text")
+len1 = len(text)
+if len1 > 200:
+   len1 = 200
+text = text[0:len1]
+if len1 == 200:
+   text = text + "..."
+return text
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
@@ -41,9 +54,9 @@ return standardize_state_code("US", pt_get_court_state(getValue("court")))
 | _date_filed_iso_ | `schema:startTime` | `memex:LegalAction1`|
 | _docket_number_ | `schema:name` | `memex:Identifier1`|
 | _federal_cite_ | `schema:name` | `memex:Identifier2`|
-| _full-text_ | `schema:text` | `schema:WebPageElement1`|
 | _legalaction_uri_ | `uri` | `memex:LegalAction1`|
 | _patent_uri_ | `uri` | `memex:Patent1`|
+| _text-truncated_ | `schema:text` | `schema:WebPageElement1`|
 | _url_ | `schema:url` | `schema:WebPageElement1`|
 
 
