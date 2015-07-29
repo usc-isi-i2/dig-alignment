@@ -35,5 +35,27 @@ def orgname_clean(orgname):
 
 
 def pt_patent_uri(patent_no):
-	"""The URI for a patent based on its number"""
-	return 'patent/' + alphaNumeric(patent_no, '').upper()
+    """The URI for a patent based on its number"""
+    if patent_no:
+        return 'patent/' + alphaNumeric(patent_no, '').upper()
+    return ''
+
+def clean_patent_number(patent_no):
+    patent_no = patent_no.replace(",", "")
+    if patent_no.startswith("D"):
+        patent_no = patent_no[1:]
+    if patent_no.isdigit():
+        parent_no = patent_no.rjust(7, "0")
+        if parent_no != '0000000':
+            return 'D' + parent_no
+    return ''
+
+def pt_legal_action_uri(url):
+    return "legalAction/" + hashlib.sha1(url.encode('utf-8')).hexdigest().upper()
+
+def pt_get_court_state(court):
+    if court:
+        idx = court.find("D. ")
+        if idx != -1:
+            return court[idx+3:]
+    return ''
