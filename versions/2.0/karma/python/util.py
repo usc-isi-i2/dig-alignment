@@ -249,3 +249,15 @@ def getTextHash(text):
     if text:
         return hashlib.sha1(text.encode('utf-8')).hexdigest().upper()
     return ''
+
+def first_non_null(*args):
+    """return the first non null value in the arguments supplied"""
+    for x in args:
+        if x != '':
+            return x
+    return ''
+
+def uri_from_fields(prefix, *fields):
+    """Construct a URI out of the fields, concatenating them after removing offensive characters."""
+    str = ''.join(alphaNumeric(f.strip().lower(),'') for f in fields)
+    return prefix + str
