@@ -1,4 +1,4 @@
-## floridagunclassifieds-sample.json
+## extracted_floridagunclassifieds.json
 
 ### PyTransforms
 #### _cleanPrice_
@@ -59,10 +59,10 @@ return clean_phone(getValue("Values"))
 ### Semantic Types
 | Column | Property | Class |
 |  ----- | -------- | ----- |
-| _Values_ | `schema:addressLocality` | `schema:PostalAddress1`|
 | _Values_ | `schema:keywords` | `schema:Product1`|
-| _Values_ | `schema:manufacturer` | `schema:Product1`|
+| _Values_ | `schema:addressLocality` | `schema:PostalAddress1`|
 | _Values_ | `schema:email` | `schema:ContactPoint1`|
+| _Values_ | `schema:manufacturer` | `schema:Product1`|
 | _cleanPrice_ | `schema:price` | `schema:Offer1`|
 | _clean_member_since_ | `schema:startDate` | `schema:OrganizationRole1`|
 | _clean_phone_ | `schema:name` | `memex:PhoneNumber1`|
@@ -91,6 +91,7 @@ return clean_phone(getValue("Values"))
 | `schema:ContactPoint1` | `schema:telephone` | `memex:PhoneNumber1`|
 | `schema:Offer1` | `schema:availableAtOrFrom` | `schema:Place1`|
 | `schema:Offer1` | `schema:itemOffered` | `schema:Product1`|
+| `schema:Offer1` | `schema:publisher` | `schema:Organization1`|
 | `schema:Offer1` | `schema:seller` | `memex:PersonOrOrganization1`|
 | `schema:Organization1` | `schema:name` | `xsd:floridagunclassifieds.com`|
 | `schema:OrganizationRole1` | `schema:memberOf` | `schema:Organization1`|

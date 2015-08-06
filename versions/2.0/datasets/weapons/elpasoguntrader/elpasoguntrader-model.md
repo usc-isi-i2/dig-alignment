@@ -1,4 +1,4 @@
-## elpasoguntrader-sample.json
+## extracted_elpasoguntrader.json
 
 ### PyTransforms
 #### _priceCurrency_
@@ -35,7 +35,6 @@ return getValue("title")
 ### Semantic Types
 | Column | Property | Class |
 |  ----- | -------- | ----- |
-| _URL_ | `schema:url` | `schema:Offer1`|
 | _cleanPrice_ | `schema:price` | `schema:Offer1`|
 | _clean_phone_ | `schema:name` | `memex:PhoneNumber1`|
 | _description_ | `schema:description` | `schema:Offer1`|
@@ -46,6 +45,7 @@ return getValue("title")
 | _title_ | `schema:title` | `schema:Offer1`|
 | _title_2_ | `schema:keywords` | `schema:Product1`|
 | _uri_ | `uri` | `schema:Offer1`|
+| _url_ | `schema:url` | `schema:Offer1`|
 | _user_id_ | `schema:name` | `memex:Identifier2`|
 | _username_ | `schema:name` | `schema:ContactPoint1`|
 
@@ -53,12 +53,13 @@ return getValue("title")
 ### Links
 | From | Property | To |
 |  --- | -------- | ---|
-| `memex:Identifier2` | `memex:hasType` | `xsd:http://dig.isi.edu/weapons/data/thesaurus/identifier/elpasogunclassifieds`|
+| `memex:Identifier2` | `memex:hasType` | `xsd:http://dig.isi.edu/weapons/data/thesaurus/identifier/elpasoguntrader`|
 | `memex:PersonOrOrganization1` | `schema:contactPoint` | `schema:ContactPoint1`|
 | `memex:PersonOrOrganization1` | `schema:memberOf` | `schema:Organization1`|
 | `schema:ContactPoint1` | `memex:identifier` | `memex:Identifier2`|
 | `schema:ContactPoint1` | `schema:telephone` | `memex:PhoneNumber1`|
+| `schema:Offer1` | `schema:publisher` | `schema:Organization1`|
 | `schema:Offer1` | `schema:seller` | `memex:PersonOrOrganization1`|
 | `schema:Offer1` | `schema:itemOffered` | `schema:Product1`|
-| `schema:Organization1` | `schema:name` | `xsd:elpasoguntrader`|
+| `schema:Organization1` | `schema:name` | `xsd:elpasoguntrader.com`|
 | `schema:Product1` | `schema:offers` | `schema:Offer1`|

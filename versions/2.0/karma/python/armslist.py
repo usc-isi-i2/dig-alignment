@@ -8,6 +8,8 @@ def cleanPrice(price):
 def getCurrency(price):
 	if "$" in price:
 		return 'USD'
+	if price.strip() == '':
+		return ''
 
 	#add sophistication
 	return 'USD'
