@@ -259,5 +259,5 @@ def first_non_null(*args):
 
 def uri_from_fields(prefix, *fields):
     """Construct a URI out of the fields, concatenating them after removing offensive characters."""
-    str = ''.join(alphaNumeric(f.strip().lower(),'') for f in fields)
+    str = '_'.join(alphaNumeric(f.strip().lower(),'') for f in fields)
     return prefix + str
