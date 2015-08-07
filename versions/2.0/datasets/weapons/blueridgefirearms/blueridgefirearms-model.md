@@ -40,7 +40,7 @@ return getValue("uri") + "/placeuri"
 | _description_ | `schema:description` | `schema:Offer1`|
 | _location_ | `schema:name` | `schema:PostalAddress1`|
 | _manufacturer_ | `schema:manufacturer` | `schema:Product1`|
-| _manufacturer_no_ | `schema:keywords` | `schema:Product1`|
+| _manufacturer_no_ | `schema:name` | `memex:Identifier1`|
 | _organizationuri_ | `uri` | `schema:Organization1`|
 | _place_uri_ | `uri` | `schema:Place1`|
 | _priceCurrency_ | `schema:priceCurrency` | `schema:Offer1`|
@@ -49,6 +49,7 @@ return getValue("uri") + "/placeuri"
 | _title_ | `schema:title` | `schema:Offer1`|
 | _uri_ | `uri` | `schema:Offer1`|
 | _url_ | `schema:url` | `schema:Offer1`|
+| _value_ | `schema:keywords` | `schema:Product1`|
 
 
 ### Links
@@ -59,4 +60,5 @@ return getValue("uri") + "/placeuri"
 | `schema:Offer1` | `schema:itemOffered` | `schema:Product1`|
 | `schema:Organization1` | `schema:name` | `xsd:blueridgefirearms.com`|
 | `schema:Place1` | `schema:address` | `schema:PostalAddress1`|
+| `schema:Product1` | `memex:identifier` | `memex:Identifier1`|
 | `schema:Product1` | `schema:offers` | `schema:Offer1`|
