@@ -1,4 +1,4 @@
-## nucleuspf3izq7o6.onion-sample.json
+## extracted_nucleus.json
 
 ### PyTransforms
 #### _price_btc_clean_
@@ -10,7 +10,10 @@ return cleanPrice(getValue("price_btc"))
 #### _price_btc_currency_
 From column: _price_btc_
 >``` python
-return "BTC"
+if getValue('price_btc_clean'):
+    return "BTC"
+else:
+    return ''
 ```
 
 #### _price_usd_
@@ -31,6 +34,39 @@ From column: _price_usd_
 return getCurrency(getValue("price_usd"))
 ```
 
+#### _product_uri_
+From column: _url_
+>``` python
+return uuid_uri('product/')
+```
+
+#### _ships_to_uri_
+From column: _ships_to_
+>``` python
+return uri_from_fields('place/',getValue("ships_to"))
+```
+
+#### _ships_from_uri_
+From column: _ships_from_
+>``` python
+return uri_from_fields('place/',getValue("ships_from"))
+```
+
+#### _seller_uri_
+From column: _seller_
+>``` python
+return uri_from_fields('personororganization/',getValue("seller"))
+```
+
+#### _seller_role_uri_
+From column: _seller_uri_
+>``` python
+if getValue('seller_uri'):
+    return getValue('seller_uri') + '/role'
+else:
+    return ''
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
@@ -41,10 +77,15 @@ return getCurrency(getValue("price_usd"))
 | _price_btc_currency_ | `schema:priceCurrency` | `schema:PriceSpecification1`|
 | _price_usd_clean_ | `schema:price` | `schema:PriceSpecification2`|
 | _price_usd_currency_ | `schema:priceCurrency` | `schema:PriceSpecification2`|
+| _product_uri_ | `uri` | `schema:Product1`|
 | _rawtextdetectedlanguage_ | `schema:inLanguage` | `schema:Offer1`|
 | _seller_ | `schema:name` | `schema:ContactPoint1`|
+| _seller_role_uri_ | `uri` | `schema:OrganizationRole1`|
+| _seller_uri_ | `uri` | `memex:PersonOrOrganization1`|
 | _ships_from_ | `schema:name` | `schema:PostalAddress1`|
+| _ships_from_uri_ | `uri` | `schema:Place1`|
 | _ships_to_ | `schema:name` | `schema:PostalAddress2`|
+| _ships_to_uri_ | `uri` | `schema:Place2`|
 | _src_ | `schema:url` | `schema:ImageObject1`|
 | _title_ | `schema:title` | `schema:Offer1`|
 | _uri_ | `uri` | `schema:Offer1`|

@@ -259,8 +259,14 @@ def first_non_null(*args):
     return ''
 
 def uri_from_fields(prefix, *fields):
-    """Construct a URI out of the fields, concatenating them after removing offensive characters."""
+    """Construct a URI out of the fields, concatenating them after removing offensive characters.
+    When all the fields are empty, return empty"""
+
     str = '_'.join(alphaNumeric(f.strip().lower(),'') for f in fields)
+
+    if len(str) == len(fields)-1:
+        return ''
+
     return prefix + str
 
 def uuid_uri(prefix):

@@ -56,6 +56,10 @@ def cleanPrice(price):
     return price
 
 def getCurrency(price):
+    """Return the appropriate currency for a price."""
+    if price == '':
+        return ''
+
     if "$" in price:
         return 'USD'
 
