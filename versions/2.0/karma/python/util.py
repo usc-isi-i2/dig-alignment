@@ -272,3 +272,14 @@ def uri_from_fields(prefix, *fields):
 def uuid_uri(prefix):
     """Construct a URI using a UUID"""
     return prefix + str(uuid.uuid1())
+
+
+def get_weapons(*texts):
+    atf_weapons = get_atf_weapons(*texts)
+    keywords = get_keywords(*texts)
+    return ("%s|%s" % (atf_weapons, keywords)).strip("|")
+
+
+def uri_for_userid(prefix, userid):
+  """Construct a URI for a user id"""
+  return prefix + alphaNumeric(userid.strip().lower())

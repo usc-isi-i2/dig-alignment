@@ -1,4 +1,4 @@
-## floridaguntrader-sample.json
+## extracted_floridaguntrader.json
 
 ### PyTransforms
 #### _cleanprice_
@@ -31,14 +31,35 @@ From column: _location_
 return getValue("location") + " Florida"
 ```
 
+#### _contact_point_uri_
+From column: _user_id_
+>``` python
+return uri_for_userid('person/',getValue("user_id"))
+```
+
+#### _organization_uri_
+From column: _user_id_
+>``` python
+return uri_for_userid('organization/',getValue("user_id"))
+```
+
+#### _place_uri_
+From column: _placewithstate_
+>``` python
+return uri_from_fields('floridaguntrader/place/',getValue("location"))
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
 |  ----- | -------- | ----- |
 | _cleanprice_ | `schema:price` | `schema:Offer1`|
+| _contact_point_uri_ | `uri` | `schema:ContactPoint1`|
 | _description_ | `schema:description` | `schema:Offer1`|
 | _listing_id_ | `schema:name` | `memex:Identifier1`|
+| _organization_uri_ | `uri` | `memex:PersonOrOrganization1`|
 | _orgganizationuri_ | `uri` | `schema:Organization1`|
+| _place_uri_ | `uri` | `schema:Place1`|
 | _placewithstate_ | `schema:name` | `schema:PostalAddress1`|
 | _pricecurrency_ | `schema:priceCurrency` | `schema:Offer1`|
 | _rawtextdetectedlanguage_ | `schema:inLanguage` | `schema:Offer1`|
