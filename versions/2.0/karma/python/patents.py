@@ -1,4 +1,4 @@
-
+from datetime import datetime
 
 def pt_creator_uri(first_name, last_name, city, state, country):
 	"""URI of a person using the personal information provided."""
@@ -58,4 +58,18 @@ def pt_get_court_state(court):
         idx = court.find("D. ")
         if idx != -1:
             return court[idx+3:]
+    return ''
+
+def pt_format_date(input_date,in_format):
+    format1 = "yyyymmdd"
+    input_date = input_date.encode('UTF-8')
+    if(in_format.replace(" ","").lower() == format1):
+        out_date = datetime.strptime(input_date, "%Y%m%d")
+        out_date.strftime('(%Y-%m-%d)')
+        return str(out_date.date())
+    format2 = "day,mmdd,yyyy"
+    if(in_format.replace(" ","").lower() == format2):
+        out_date = datetime.strptime(input_date, "%A, %B %d, %Y")
+        out_date.strftime('(%Y-%m-%d)')
+        return str(out_date.date())
     return ''
