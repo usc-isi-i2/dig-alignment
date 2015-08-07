@@ -1,4 +1,4 @@
-## patent2-sample.xml
+## patent1-sample.xml
 
 ### PyTransforms
 #### _date-publ-iso_
@@ -73,6 +73,15 @@ From column: _us-patent-grant / us-bibliographic-data-grant / us-parties / us-ap
 return uri_from_fields('address/',getValue('city'),getValue('state'),getValue('country'))
 ```
 
+#### _assignee_role_startdate_
+From column: _us-patent-grant / us-bibliographic-data-grant / assignees / assignee / addressbook / orgname_
+>``` python
+if getValue("orgname"):
+    return getValue('date-publ-iso')
+else:
+    return ''
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
@@ -82,16 +91,15 @@ return uri_from_fields('address/',getValue('city'),getValue('state'),getValue('c
 | _assignee_address_uri_ | `uri` | `schema:PostalAddress4`|
 | _assignee_org_uri_ | `uri` | `memex:PersonOrOrganization2`|
 | _assignee_orgname_clean_ | `schema:name` | `memex:PersonOrOrganization2`|
+| _assignee_role_startdate_ | `schema:startDate` | `schema:Role1`|
 | _city_ | `schema:addressLocality` | `schema:PostalAddress1`|
-| _city_ | `schema:addressLocality` | `schema:PostalAddress4`|
 | _claim-text_ | `schema:text` | `schema:WebPageElement1`|
 | _content_ | `schema:name` | `memex:Patent1`|
 | _country_ | `schema:addressCountry` | `schema:PostalAddress1`|
-| _country_ | `schema:addressCountry` | `schema:PostalAddress4`|
 | _creator_uri_ | `uri` | `schema:Person1`|
 | _date-publ-iso_ | `schema:datePublished` | `memex:Patent1`|
-| _doc-number_ | `schema:name` | `memex:Identifier1`|
 | _doc-number_ | `schema:name` | `memex:Identifier2`|
+| _doc-number_ | `schema:name` | `memex:Identifier1`|
 | _doc-uri_ | `uri` | `memex:Patent2`|
 | _full_name_ | `schema:name` | `schema:Person1`|
 | _orgname_clean_ | `schema:name` | `memex:PersonOrOrganization1`|
@@ -106,7 +114,7 @@ return uri_from_fields('address/',getValue('city'),getValue('state'),getValue('c
 | `memex:Identifier1` | `memex:hasType` | `xsd:thesaurus/identifier/patentid`|
 | `memex:Identifier2` | `memex:hasType` | `xsd:thesaurus/identifier/patentid`|
 | `memex:Patent1` | `memex:applicant` | `schema:Person1`|
-| `memex:Patent1` | `memex:assignee` | `memex:PersonOrOrganization2`|
+| `memex:Patent1` | `memex:assignee` | `schema:Role1`|
 | `memex:Patent1` | `memex:hasClaimPart` | `schema:WebPageElement1`|
 | `memex:Patent1` | `memex:identifier` | `memex:Identifier1`|
 | `memex:Patent1` | `schema:agent` | `memex:PersonOrOrganization1`|
@@ -114,3 +122,4 @@ return uri_from_fields('address/',getValue('city'),getValue('state'),getValue('c
 | `memex:Patent2` | `memex:identifier` | `memex:Identifier2`|
 | `memex:PersonOrOrganization2` | `schema:address` | `schema:PostalAddress4`|
 | `schema:Person1` | `schema:address` | `schema:PostalAddress1`|
+| `schema:Role1` | `memex:assignee` | `memex:PersonOrOrganization2`|

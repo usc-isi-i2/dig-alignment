@@ -3,6 +3,7 @@ from datetime import datetime, date
 from time import mktime, gmtime
 from urlparse import urlparse
 import hashlib
+import uuid
 
 def documentUrl(x):
     "Return the original document URL from the URL in the document version"
@@ -261,3 +262,7 @@ def uri_from_fields(prefix, *fields):
     """Construct a URI out of the fields, concatenating them after removing offensive characters."""
     str = '_'.join(alphaNumeric(f.strip().lower(),'') for f in fields)
     return prefix + str
+
+def uuid_uri(prefix):
+    """Construct a URI using a UUID"""
+    return prefix + str(uuid.uuid1())
