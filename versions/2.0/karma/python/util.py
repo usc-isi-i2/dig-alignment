@@ -269,6 +269,12 @@ def uri_from_fields(prefix, *fields):
 
     return prefix + str
 
+
+def uri_from_url_timestamp(url,timestamp):
+    """Construct a URI from the URL and timestamp"""
+    return hashlib.sha1(url.encode('utf-8')).hexdigest()+'_'+timestamp
+
+
 def uuid_uri(prefix):
     """Construct a URI using a UUID"""
     return prefix + str(uuid.uuid1())

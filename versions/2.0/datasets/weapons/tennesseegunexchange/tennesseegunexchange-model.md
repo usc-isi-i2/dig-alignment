@@ -67,6 +67,12 @@ From column: _Unfold: label / Glue_1 / place_name_
 return uri_from_fields('place/', getValue('place_name'))
 ```
 
+#### _uri_
+From column: _uri_
+>``` python
+return uri_from_url_timestamp(getValue("url"),getValue('timestamp'))
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
