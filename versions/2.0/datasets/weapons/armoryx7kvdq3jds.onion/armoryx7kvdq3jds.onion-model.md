@@ -13,6 +13,12 @@ From column: _price_
 return getCurrency(getValue("price"))
 ```
 
+#### _uri_
+From column: _uri_
+>``` python
+return uri_from_url_timestamp(getValue("url"),getValue('timestamp'))
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
@@ -40,7 +46,6 @@ return getCurrency(getValue("price"))
 |  --- | -------- | ---|
 | `schema:Offer1` | `schema:priceSpecification` | `schema:PriceSpecification1`|
 | `schema:Offer1` | `schema:publisher` | `schema:Organization1`|
-| `schema:Offer1` | `schema:itemOffered` | `schema:Product1`|
 | `schema:Organization1` | `schema:name` | `xsd:armoryx7kvdq3jds.onion`|
 | `schema:Product1` | `schema:brand` | `schema:Brand1`|
 | `schema:Product1` | `schema:offers` | `schema:Offer1`|

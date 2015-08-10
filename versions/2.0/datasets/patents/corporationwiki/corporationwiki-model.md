@@ -44,6 +44,12 @@ From column: _name_
 return uri_from_fields('organization/', getValue("name"))
 ```
 
+#### _state_uri_
+From column: _corporation_records / Unfold: label / state: / Values_
+>``` python
+return uri_from_fields('place/unitedstates/',getValue("Values"))
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
@@ -60,6 +66,7 @@ return uri_from_fields('organization/', getValue("name"))
 | _name_ | `schema:legalName` | `schema:Organization1`|
 | _organization_uri_ | `uri` | `schema:Organization1`|
 | _permit_uri_ | `uri` | `schema:GovernmentPermit1`|
+| _state_uri_ | `uri` | `schema:State1`|
 
 
 ### Links

@@ -1,6 +1,12 @@
 ## extracted_floridagunclassifieds.json
 
 ### PyTransforms
+#### _uri_
+From column: _uri_
+>``` python
+return uri_from_url_timestamp(getValue("url"),getValue('timestamp'))
+```
+
 #### _cleanPrice_
 From column: _price_
 >``` python
@@ -55,18 +61,24 @@ From column: _Unfold: label / phone number: / Values_
 return clean_phone(getValue("Values"))
 ```
 
+#### _contact_point_uri_
+From column: _username_
+>``` python
+return uri_from_fields('floridagunclassifieds/person/', getValue("username"))
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
 |  ----- | -------- | ----- |
-| _Values_ | `schema:keywords` | `schema:Product1`|
 | _Values_ | `schema:addressLocality` | `schema:PostalAddress1`|
 | _Values_ | `schema:email` | `schema:ContactPoint1`|
 | _Values_ | `schema:manufacturer` | `schema:Product1`|
+| _Values_ | `schema:keywords` | `schema:Product1`|
 | _cleanPrice_ | `schema:price` | `schema:Offer1`|
 | _clean_member_since_ | `schema:startDate` | `schema:OrganizationRole1`|
 | _clean_phone_ | `schema:name` | `memex:PhoneNumber1`|
-| _description_ | `schema:description` | `schema:Offer1`|
+| _contact_point_uri_ | `uri` | `schema:ContactPoint1`|
 | _listedOnDate_ | `schema:availabilityStarts` | `schema:Offer1`|
 | _location_enhanced_ | `schema:name` | `schema:PostalAddress1`|
 | _organizationuri_ | `uri` | `schema:Organization1`|
@@ -80,6 +92,8 @@ return clean_phone(getValue("Values"))
 | _url_ | `schema:url` | `schema:Offer1`|
 | _user_id_ | `schema:name` | `memex:Identifier1`|
 | _username_ | `schema:name` | `schema:ContactPoint1`|
+| _values_ | `schema:name` | `schema:Product1`|
+| _values_ | `schema:description` | `schema:Offer1`|
 
 
 ### Links

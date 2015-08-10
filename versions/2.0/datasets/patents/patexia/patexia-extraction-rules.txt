@@ -1,0 +1,97 @@
+[
+  {
+    "begin_regex": "\\>\\<strong\\>Status.*?\\</strong.*?\\>",
+    "end_regex": "\\</p",
+    "include_end_regex": true,
+    "name": "status",
+    "rule_type": "ItemRule",
+    "strip_end_regex": "\\</p"
+  },
+  {
+    "begin_regex": "\\>Filling Date\\<.*?/strong\\>",
+    "end_regex": "\\</p",
+    "include_end_regex": true,
+    "name": "filing_date",
+    "rule_type": "ItemRule",
+    "strip_end_regex": "\\</p"
+  },
+  {
+    "begin_regex": "\\<h1\\>.*?\\>\\<strong.*?strong\\>",
+    "end_regex": "\\</p",
+    "include_end_regex": true,
+    "name": "case_number",
+    "rule_type": "ItemRule",
+    "strip_end_regex": "\\</p"
+  },
+  {
+    "begin_regex": "\\>Court\\<.*?/strong\\>",
+    "end_regex": "\\</p",
+    "include_end_regex": true,
+    "name": "court",
+    "rule_type": "ItemRule",
+    "strip_end_regex": "\\</p"
+  },
+  {
+    "begin_regex": "\\>\\s+\\<title.*?\\>",
+    "end_regex": "\\|\\s+Patexia\\.",
+    "include_end_regex": true,
+    "name": "title",
+    "rule_type": "ItemRule",
+    "strip_end_regex": "\\|\\s+Patexia\\."
+  },
+  {
+    "begin_regex": "Plaintiff\\</h3\\>",
+    "end_regex": "\\</div\\>\\s+\\</div\\>\\s+\\</div\\>",
+    "iter_begin_regex": "clearfix\"",
+    "iter_end_regex": "\\</p\\>",
+    "name": "plantiffs",
+    "rule_type": "IterationRule",
+    "removehtml": true
+  },
+  {
+    "begin_regex": "Defendant\\</h3\\>",
+    "end_regex": "attorneyBlock",
+    "iter_begin_regex": "clearfix\"",
+    "iter_end_regex": "\\</p\\>",
+    "name": "defendants",
+    "rule_type": "IterationRule",
+    "removehtml": true
+  },
+  {
+    "begin_regex": "Cause\\</h3\\>",
+    "end_regex": "patentsSummaryBox",
+    "iter_begin_regex": "clearfix\"",
+    "iter_end_regex": "\\</p\\>",
+    "name": "causes",
+    "rule_type": "IterationRule",
+    "removehtml": true
+  },
+  {
+    "begin_regex": "Related Patents\\</h3\\>",
+    "end_regex": "\\</table\\>",
+    "iter_begin_regex": "\\<tr class=\"row",
+    "iter_end_regex": "\\</tr\\>",
+    "name": "related_patents",
+    "rule_type": "IterationRule",
+    "sub_rules": [
+      {
+        "begin_regex": "patents/",
+        "end_regex": "\"",
+        "name": "doc_no",
+        "rule_type": "ItemRule"
+      },
+      {
+        "begin_regex": "\\<a.*?\\>",
+        "end_regex": "\\</a",
+        "name": "title",
+        "rule_type": "ItemRule"
+      },
+      {
+        "begin_regex": "\\<td.*?\\<td.*?\\<td.*?\\>",
+        "end_regex": "\\</td",
+        "name": "issue_date",
+        "rule_type": "ItemRule"
+      }
+    ]
+  }
+]

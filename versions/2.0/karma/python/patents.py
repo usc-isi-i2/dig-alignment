@@ -73,3 +73,7 @@ def pt_format_date(input_date,in_format):
         out_date.strftime('(%Y-%m-%d)')
         return str(out_date.date())
     return ''
+
+def attorney_uri(org_uri, person_name):
+    """The URI for an attorney at a law firm"""
+    return org_uri + uri_from_fields('/person/', person_name)
