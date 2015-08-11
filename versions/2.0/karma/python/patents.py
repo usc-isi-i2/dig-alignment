@@ -77,3 +77,29 @@ def pt_format_date(input_date,in_format):
 def attorney_uri(org_uri, person_name):
     """The URI for an attorney at a law firm"""
     return org_uri + uri_from_fields('/person/', person_name)
+
+def party_from_title(title, index):
+    """Helper function: Extract the plaintiff/defendant from the title of a court case"""
+    parties = title.split(' v. ')
+    
+    if len(parties) == 2:
+       return parties[index].strip()
+
+    if len(parties) == 1:
+        parties = title.split(' v ')  # No dot
+        if len(parties) == 2:
+            return parties[index].strip()
+
+    return ''
+
+def plaintiff_from_title(title):
+    """Extract the plaintiff from the title of a court case"""
+    return party_from_title(title, 0)
+
+def defendant_from_title(title):
+    """Extract the defendant from the title of a court case"""
+    return party_from_title(title, 1)
+
+def clean_legal_action_cause(cause):
+    """Normalize the statement of the cause for a legal action."""
+    return cause.strip()
