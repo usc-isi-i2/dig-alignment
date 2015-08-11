@@ -99,3 +99,7 @@ def plaintiff_from_title(title):
 def defendant_from_title(title):
     """Extract the defendant from the title of a court case"""
     return party_from_title(title, 1)
+
+def clean_legal_action_cause(cause):
+    """Normalize the statement of the cause for a legal action."""
+    return cause.strip()
