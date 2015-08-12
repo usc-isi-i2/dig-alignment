@@ -36,8 +36,13 @@ def orgname_clean(orgname):
 
 def pt_patent_uri(patent_no):
     """The URI for a patent based on its number"""
-    if patent_no:
-        return 'patent/' + alphaNumeric(patent_no, '').upper()
+    patent_id = alphaNumeric(patent_no, '').upper()
+
+    if len(patent_id) == 8 and patent_id[0] == '0':
+        patent_id = patent_id[1:]
+
+    if patent_id:
+        return 'patent/' + patent_id
     return ''
 
 def clean_patent_number(patent_no):
