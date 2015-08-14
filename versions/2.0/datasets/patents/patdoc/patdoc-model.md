@@ -1,4 +1,4 @@
-## patent1-sample.xml
+## patdoc1-sample.xml
 
 ### PyTransforms
 #### _date-publ-iso_
@@ -22,7 +22,7 @@ return pt_patent_uri(getValue('PDAT'))
 #### _ignore1_
 From column: _PATDOC / SDOBI / B700 / B720 / B721 / PARTY-US / ADR / STR / PDAT_
 >``` python
-return getValue("PDAT") + ": " + getValueFromNestedColumnByIndex("ADR", "STATE/PDAT", 0)
+return ''
 ```
 
 #### _applicant_address_uri_
@@ -43,7 +43,7 @@ From column: _PATDOC / SDOBI / B700 / B720 / B721 / PARTY-US / NAM / FNM / full_
 return pt_creator_uri(getValue("PDAT"), getValueFromNestedColumnByIndex("NAM", "SNM/STEXT/PDAT", 0), getValueFromNestedColumnByIndex("PARTY-US", "ADR/CITY/PDAT", 0), getValueFromNestedColumnByIndex("PARTY-US", "ADR/STATE/PDAT", 0), getValueFromNestedColumnByIndex("PARTY-US", "ADR/CTRY/PDAT", 0) or "us")
 ```
 
-#### _agent_name_
+#### _ignore4_
 From column: _PATDOC / SDOBI / B700 / B740 / B741 / PARTY-US / NAM / FNM / PDAT_
 >``` python
 return getValue("PDAT") + " " + getValueFromNestedColumnByIndex("NAM", "SNM/STEXT/PDAT", 0)
@@ -83,10 +83,13 @@ ctryName = getValueFromNestedColumnByIndex("PARTY-US", "ADR/CTRY/PDAT", 0)
 return ctryName or "us"
 ```
 
-#### _assignee_name_
+#### _ignore3_
 From column: _PATDOC / SDOBI / B700 / B730 / B731 / PARTY-US / NAM / FNM / PDAT_
 >``` python
-return getValue("PDAT") + " " + getValueFromNestedColumnByIndex("NAM", "SNM/STEXT/PDAT", 0)
+if getValueFromNestedColumnByIndex('PARTY-US', 'assignee_object_type', 0)=='person':
+    return getValue("PDAT") + " " + getValueFromNestedColumnByIndex("NAM", "SNM/STEXT/PDAT", 0)
+else:
+    return "orgname"
 ```
 
 #### _assignee_object_type_
@@ -124,12 +127,30 @@ From column: _PATDOC / SDOBI / B700 / B730 / B731 / PARTY-US / ADR / CITY / PDAT
 return uri_from_fields('address/', getValue("PDAT"), getValueFromNestedColumnByIndex("ADR", "STATE/PDAT", 0), getValueFromNestedColumnByIndex("ADR", "CTRY/PDAT", 0) or "US")
 ```
 
+#### _assignee_name_
+From column: _PATDOC / SDOBI / B700 / B730 / B731 / PARTY-US / assignee_object_type_
+>``` python
+if getValue('assignee_object_type')=='person':
+    return getValueFromNestedColumnByIndex("PARTY-US", "NAM/FNM/PDAT", 0) + " " + getValueFromNestedColumnByIndex("PARTY-US", "NAM/SNM/STEXT/PDAT", 0)
+else:
+    return getValueFromNestedColumnByIndex("PARTY-US", "NAM/ONM/STEXT/PDAT", 0)
+```
+
+#### _agent_name_
+From column: _PATDOC / SDOBI / B700 / B740 / B741 / PARTY-US / agent_object_type_
+>``` python
+if getValue('agent_object_type')=='person':
+    return getValueFromNestedColumnByIndex("PARTY-US", "NAM/FNM/PDAT", 0) + " " + getValueFromNestedColumnByIndex("PARTY-US", "NAM/SNM/STEXT/PDAT", 0)
+else:
+    return getValueFromNestedColumnByIndex("PARTY-US", "NAM/ONM/STEXT/PDAT", 0)
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
 |  ----- | -------- | ----- |
+| _PDAT_ | `schema:text` | `schema:WebPageElement1`|
 | _PDAT_ | `schema:name` | `memex:Identifier1`|
-| _PDAT_ | `schema:addressRegion` | `schema:PostalAddress1`|
 | _PDAT_ | `schema:addressLocality` | `schema:PostalAddress2`|
 | _PDAT_ | `schema:addressRegion` | `schema:PostalAddress2`|
 | _PDAT_ | `schema:name` | `memex:Patent1`|
@@ -149,7 +170,6 @@ return uri_from_fields('address/', getValue("PDAT"), getValueFromNestedColumnByI
 | _doc-uri_ | `uri` | `memex:Patent2`|
 | _full_name_ | `schema:name` | `schema:Person1`|
 | _patent_uri_ | `uri` | `memex:Patent1`|
-| _values_ | `schema:text` | `schema:WebPageElement1`|
 
 
 ### Links
