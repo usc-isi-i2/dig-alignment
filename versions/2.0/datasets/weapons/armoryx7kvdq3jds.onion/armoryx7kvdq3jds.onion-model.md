@@ -1,6 +1,12 @@
 ## extracted_armory.json
 
 ### PyTransforms
+#### _uri_
+From column: _uri_
+>``` python
+return uri_from_url_timestamp(getValue("url"),getValue('timestamp'))
+```
+
 #### _price_clean_
 From column: _price_
 >``` python
@@ -11,12 +17,6 @@ return cleanPrice(getValue("price"))
 From column: _price_
 >``` python
 return getCurrency(getValue("price"))
-```
-
-#### _uri_
-From column: _uri_
->``` python
-return uri_from_url_timestamp(getValue("url"),getValue('timestamp'))
 ```
 
 
