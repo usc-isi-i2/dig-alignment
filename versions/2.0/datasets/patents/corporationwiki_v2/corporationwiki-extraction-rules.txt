@@ -1,0 +1,150 @@
+[
+  {
+    "begin_regex": "\\</h1.*?\\>\\s+\\<span.*?\"\\>",
+    "end_regex": "\\</span",
+    "include_end_regex": true,
+    "name": "status",
+    "rule_type": "ItemRule",
+    "strip_end_regex": "\\</span"
+  },
+  {
+    "begin_regex": "big\\s+label\\s+label.*?aspx\"\\>",
+    "end_regex": "\\</",
+    "include_end_regex": true,
+    "name": "city",
+    "rule_type": "ItemRule",
+    "strip_end_regex": "\\</"
+  },
+  {
+    "begin_regex": "\\<h2\\>Corporate Records",
+    "end_regex": "h2\\>Locations",
+    "include_end_regex": true,
+    "iter_begin_regex": "\\<table",
+    "iter_end_regex": "/table>",
+    "name": "corporation_records",
+    "no_first_begin_iter_rule": false,
+    "no_last_end_iter_rule": false,
+    "rule_type": "IterationRule",
+    "strip_end_regex": "h2\\>Locations",
+    "sub_rules": [
+      {
+        "begin_regex": "h4\\>",
+        "end_regex": "\\</h4",
+        "name": "filing_body",
+        "rule_type": "ItemRule"
+      },
+      {
+        "begin_regex": "",
+        "end_regex": "",
+        "iter_begin_regex": "record\"\\>",
+        "iter_end_regex": "\\</tr",
+        "name": "filing_info",
+        "no_first_begin_iter_rule": false,
+        "no_last_end_iter_rule": false,
+        "rule_type": "IterationRule",
+        "sub_rules": [
+          {
+            "begin_regex": "",
+            "end_regex": "\\</th",
+            "name": "label",
+            "rule_type": "ItemRule",
+            "removehtml": true
+          },
+          {
+            "begin_regex": "\\<td.*?\\>",
+            "end_regex": "\\</td",
+            "name": "value",
+            "rule_type": "ItemRule",
+            "removehtml": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "begin_regex": "\\<h2\\>People",
+    "end_regex": "h2\\>Locations",
+    "include_end_regex": true,
+    "iter_begin_regex": "person\\s*\"\\>",
+    "iter_end_regex": "person\\s*\"\\>",
+    "name": "people",
+    "no_first_begin_iter_rule": false,
+    "no_last_end_iter_rule": true,
+    "rule_type": "IterationRule",
+    "strip_end_regex": "h2\\>Locations",
+    "sub_rules": [
+      {
+        "begin_regex": "name\">",
+        "end_regex": "\\</a",
+        "name": "name",
+        "rule_type": "ItemRule"
+      },
+      {
+        "begin_regex": "data-entityid=\"",
+        "end_regex": "\"",
+        "name": "entityid",
+        "rule_type": "ItemRule"
+      },
+      {
+        "begin_regex": "",
+        "end_regex": "",
+        "iter_begin_regex": "Active role\".*?\\>",
+        "iter_end_regex": "\\</span",
+        "name": "current_roles",
+        "no_first_begin_iter_rule": false,
+        "no_last_end_iter_rule": false,
+        "rule_type": "IterationRule",
+        "removehtml": true
+      },
+      {
+        "begin_regex": "",
+        "end_regex": "",
+        "iter_begin_regex": "Inactive role\".*?\\>",
+        "iter_end_regex": "\\</span",
+        "name": "previous_roles",
+        "no_first_begin_iter_rule": false,
+        "no_last_end_iter_rule": false,
+        "rule_type": "IterationRule",
+        "removehtml": true
+      },
+      {
+        "begin_regex": "other-companies",
+        "end_regex": "",
+        "iter_begin_regex": "\\<a.*?\\>",
+        "iter_end_regex": "\\</a",
+        "name": "other_companies",
+        "no_first_begin_iter_rule": false,
+        "no_last_end_iter_rule": false,
+        "rule_type": "IterationRule",
+        "removehtml": true
+      }
+    ]
+  },
+  {
+    "begin_regex": "a\\>,.*?aspx\"\\>",
+    "end_regex": "\\</a",
+    "include_end_regex": true,
+    "name": "state",
+    "rule_type": "ItemRule",
+    "strip_end_regex": "\\</a"
+  },
+  {
+    "begin_regex": "/\\>\\s+\\<title.*?\\>",
+    "end_regex": "in\\s+",
+    "include_end_regex": true,
+    "name": "name",
+    "rule_type": "ItemRule",
+    "strip_end_regex": "in\\s+"
+  },
+  {
+    "begin_regex": "addresses\"\\>",
+    "end_regex": "row-fluid\"\\>",
+    "iter_begin_regex": "\\<div\\s+class=\"address\"\\>",
+    "iter_end_regex": "\\<div\\s+class=\"address\"\\>",
+    "name": "addresses",
+    "no_first_begin_iter_rule": false,
+    "no_last_end_iter_rule": true,
+    "rule_type": "IterationRule",
+    "removehtml": true
+  }
+]
