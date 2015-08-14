@@ -1,6 +1,12 @@
-## glocktalk-sample.json
+## extracted_glocktalk.json
 
 ### PyTransforms
+#### _uri_
+From column: _url_
+>``` python
+return uri_from_url(getValue("url"))
+```
+
 #### _content_clean_
 From column: _posts / content_
 >``` python
