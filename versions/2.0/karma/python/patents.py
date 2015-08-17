@@ -50,9 +50,9 @@ def clean_patent_number(patent_no):
     if patent_no.startswith("D"):
         patent_no = patent_no[1:]
     if patent_no.isdigit():
-        parent_no = patent_no.rjust(7, "0")
-        if parent_no != '0000000':
-            return 'D' + parent_no
+        patent_no = patent_no.rjust(7, "0")
+        if patent_no != '0000000':
+            return 'D' + patent_no
     return ''
 
 def pt_legal_action_uri(url):
