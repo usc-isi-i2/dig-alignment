@@ -1,6 +1,12 @@
 ## extracted_floridaguntrader.json
 
 ### PyTransforms
+#### _uri_
+From column: _crawler_
+>``` python
+return uri_from_url_timestamp(getValue("url"),getValue("timestamp"))
+```
+
 #### _cleanprice_
 From column: _price_
 >``` python

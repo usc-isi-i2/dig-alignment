@@ -1,6 +1,12 @@
-## 5zkfuvtrpotg2nzd.onion-sample.json
+## extracted_5zkfuvtrpotg2nzd.json
 
 ### PyTransforms
+#### _uri_
+From column: _crawler_
+>``` python
+return uri_from_url_timestamp(getValue("url"),getValue("timestamp"))
+```
+
 #### _price_clean_
 From column: _price_
 >``` python

@@ -1,6 +1,12 @@
 ## extracted_montanagunclassifieds.json
 
 ### PyTransforms
+#### _uri_
+From column: _posted_
+>``` python
+return uri_from_url_timestamp(getValue("url"),getValue("timestamp"))
+```
+
 #### _priceCurrency_
 From column: _Unfold: label / price / Values_
 >``` python
