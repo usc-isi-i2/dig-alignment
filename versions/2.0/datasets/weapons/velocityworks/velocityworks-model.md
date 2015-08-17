@@ -1,6 +1,12 @@
-## velocityworks-sample.json
+## extracted_velocityworks.json
 
 ### PyTransforms
+#### _uri_
+From column: _url_
+>``` python
+return uri_from_url_timestamp(getValue("url"),getValue("timestamp"))
+```
+
 #### _cleanPrice_
 From column: _price_
 >``` python
@@ -25,10 +31,10 @@ return vw_clean_image_url(getValue("src"))
 |  ----- | -------- | ----- |
 | _Values_ | `schema:keywords` | `schema:Product1`|
 | _Values_ | `schema:keywords` | `schema:Product1`|
-| _Values_ | `schema:keywords` | `schema:Product1`|
-| _Values_ | `schema:keywords` | `schema:Product1`|
-| _Values_ | `schema:keywords` | `schema:Product1`|
 | _Values_ | `schema:model` | `schema:Product1`|
+| _Values_ | `schema:keywords` | `schema:Product1`|
+| _Values_ | `schema:keywords` | `schema:Product1`|
+| _Values_ | `schema:keywords` | `schema:Product1`|
 | _cleanPrice_ | `schema:price` | `schema:Offer1`|
 | _cleanimgurl_ | `schema:url` | `schema:ImageObject1`|
 | _description_ | `schema:description` | `schema:Offer1`|

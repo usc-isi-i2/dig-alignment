@@ -275,6 +275,11 @@ def uri_from_url_timestamp(url,timestamp):
     return hashlib.sha1(url.encode('utf-8')).hexdigest()+'_'+numericOnly(timestamp)
 
 
+def uri_from_url(url):
+    """Construct a URI from the URL"""
+    return hashlib.sha1(url.encode('utf-8')).hexdigest()
+
+
 def uuid_uri(prefix):
     """Construct a URI using a UUID"""
     return prefix + str(uuid.uuid1())
