@@ -1,6 +1,12 @@
-## ar15-sample.json
+## extracted_ar15.json
 
 ### PyTransforms
+#### _uri_
+From column: _crawler_
+>``` python
+return uri_from_url_timestamp(getValue("url"),getValue("timestamp"))
+```
+
 #### _content_clean_
 From column: _posts / content_
 >``` python

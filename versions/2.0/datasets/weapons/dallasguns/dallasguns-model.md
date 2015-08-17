@@ -1,6 +1,12 @@
-## dallasguns-sample.json
+## extracted_dallasguns.json
 
 ### PyTransforms
+#### _uri_
+From column: _crawler_
+>``` python
+return uri_from_url_timestamp(getValue("url"),getValue("timestamp"))
+```
+
 #### _cleanPrice_
 From column: _Unfold: label / price: / Values_
 >``` python
@@ -29,11 +35,11 @@ return getValue("Values") + " Texas"
 ### Semantic Types
 | Column | Property | Class |
 |  ----- | -------- | ----- |
-| _Values_ | `schema:description` | `memex:PersonOrOrganization1`|
 | _Values_ | `schema:model` | `schema:Product1`|
-| _Values_ | `schema:name` | `schema:ContactPoint1`|
 | _Values_ | `schema:itemCondition` | `schema:Product1`|
 | _Values_ | `schema:manufacturer` | `schema:Product1`|
+| _Values_ | `schema:name` | `schema:ContactPoint1`|
+| _Values_ | `schema:description` | `memex:PersonOrOrganization1`|
 | _cleanPhone_ | `schema:name` | `memex:PhoneNumber1`|
 | _cleanPrice_ | `schema:price` | `schema:Offer1`|
 | _currency_ | `schema:priceCurrency` | `schema:Offer1`|

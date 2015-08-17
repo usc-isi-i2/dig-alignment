@@ -1,6 +1,12 @@
-## armsmhmd4c3hb5xu.onion-sample.json
+## extracted_armsmhmd4c3hb5xu.json
 
 ### PyTransforms
+#### _uri_
+From column: _crawler_
+>``` python
+return uri_from_url_timestamp(getValue("url"),getValue("timestamp"))
+```
+
 #### _price_btc_clean_
 From column: _listings / price_btc_
 >``` python
