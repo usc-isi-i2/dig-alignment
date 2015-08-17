@@ -14,6 +14,13 @@ def pt_organization_uri(name):
 	return 'organization/' + alphaNumeric(name.strip().lower(), '')
 
 
+def pt_person_or_organization_uri():
+	"""When we can't easily tell if it's a person or an organization, we use UUID"""
+
+	return 'personororganization/' + str(uuid.uuid4())
+	
+
+
 def pt_agent_country(country):
 	"""Clean the country"""
 	c = country.strip()
