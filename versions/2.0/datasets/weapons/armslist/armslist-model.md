@@ -1,6 +1,12 @@
-## armslist-sample.json
+## extracted_armslist.json
 
 ### PyTransforms
+#### _uri_
+From column: _crawler_
+>``` python
+return uri_from_url_timestamp(getValue("url"),getValue("timestamp"))
+```
+
 #### _label_fields_
 From column: _fields / label_
 >``` python
@@ -59,12 +65,12 @@ return al_clean_image_url(getValue("src"))
 ### Semantic Types
 | Column | Property | Class |
 |  ----- | -------- | ----- |
+| _Values_ | `schema:description` | `memex:PersonOrOrganization1`|
 | _Values_ | `schema:category` | `schema:Product1`|
 | _Values_ | `schema:name` | `schema:PostalAddress1`|
+| _Values_ | `schema:keywords` | `schema:Product1`|
+| _Values_ | `schema:keywords` | `schema:Product1`|
 | _Values_ | `schema:manufacturer` | `schema:Product1`|
-| _Values_ | `schema:keywords` | `schema:Product1`|
-| _Values_ | `schema:keywords` | `schema:Product1`|
-| _Values_ | `schema:description` | `memex:PersonOrOrganization1`|
 | _Values_ | `schema:keywords` | `schema:Product1`|
 | _cleanPrice_ | `schema:price` | `schema:Offer1`|
 | _cleanRegistrationDate_ | `schema:startDate` | `schema:OrganizationRole1`|

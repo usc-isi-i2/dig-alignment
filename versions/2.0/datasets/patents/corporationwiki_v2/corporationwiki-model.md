@@ -84,13 +84,11 @@ return uuid_uri("person")
 | From | Property | To |
 |  --- | -------- | ---|
 | `memex:Identifier1` | `memex:hasType` | `xsd:/thesaurus/government_permit/identifier/stateID`|
+| `schema:GovernmentPermit1` | `memex:identifier` | `memex:Identifier1`|
 | `schema:GovernmentPermit1` | `schema:audience` | `schema:Organization1`|
 | `schema:GovernmentPermit1` | `schema:issuedBy` | `schema:Organization2`|
 | `schema:GovernmentPermit1` | `schema:validIn` | `schema:State1`|
 | `schema:Organization1` | `schema:address` | `schema:PostalAddress1`|
 | `schema:Organization1` | `schema:employee` | `schema:Role1`|
 | `schema:Organization1` | `memex:operatingPermit` | `schema:GovernmentPermit1`|
-| `schema:Organization1` | `schema:providesService` | `schema:Service1`|
 | `schema:Role1` | `schema:employee` | `schema:Person1`|
-| `schema:Service1` | `schema:provider` | `schema:Organization1`|
-| `schema:State1` | `memex:identifier` | `memex:Identifier1`|

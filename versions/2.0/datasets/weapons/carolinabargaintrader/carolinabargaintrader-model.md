@@ -1,6 +1,12 @@
-## carolinabargaintrader-sample.json
+## extracted_carolinabargaintrader.json
 
 ### PyTransforms
+#### _uri_
+From column: _crawler_
+>``` python
+return uri_from_url_timestamp(getValue("url"),getValue("timestamp"))
+```
+
 #### _listedondate_
 From column: _ad_began_
 >``` python

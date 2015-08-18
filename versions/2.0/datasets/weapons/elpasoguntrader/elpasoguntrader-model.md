@@ -1,6 +1,12 @@
 ## extracted_elpasoguntrader.json
 
 ### PyTransforms
+#### _uri_
+From column: _uri_
+>``` python
+return uri_from_url_timestamp(getValue("url"),getValue('timestamp'))
+```
+
 #### _priceCurrency_
 From column: _price_
 >``` python
@@ -29,12 +35,6 @@ return clean_phone(getValue("contact"))
 From column: _title_
 >``` python
 return getValue("title")
-```
-
-#### _uri_
-From column: _uri_
->``` python
-return uri_from_url_timestamp(getValue("url"),getValue('timestamp'))
 ```
 
 #### _org_uri_

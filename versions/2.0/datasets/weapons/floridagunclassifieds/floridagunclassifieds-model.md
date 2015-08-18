@@ -72,9 +72,9 @@ return uri_from_fields('floridagunclassifieds/person/', getValue("username"))
 | Column | Property | Class |
 |  ----- | -------- | ----- |
 | _Values_ | `schema:addressLocality` | `schema:PostalAddress1`|
-| _Values_ | `schema:email` | `schema:ContactPoint1`|
-| _Values_ | `schema:manufacturer` | `schema:Product1`|
 | _Values_ | `schema:keywords` | `schema:Product1`|
+| _Values_ | `schema:manufacturer` | `schema:Product1`|
+| _Values_ | `schema:email` | `schema:ContactPoint1`|
 | _cleanPrice_ | `schema:price` | `schema:Offer1`|
 | _clean_member_since_ | `schema:startDate` | `schema:OrganizationRole1`|
 | _clean_phone_ | `schema:name` | `memex:PhoneNumber1`|
@@ -92,8 +92,8 @@ return uri_from_fields('floridagunclassifieds/person/', getValue("username"))
 | _url_ | `schema:url` | `schema:Offer1`|
 | _user_id_ | `schema:name` | `memex:Identifier1`|
 | _username_ | `schema:name` | `schema:ContactPoint1`|
-| _values_ | `schema:name` | `schema:Product1`|
 | _values_ | `schema:description` | `schema:Offer1`|
+| _values_ | `schema:name` | `schema:Product1`|
 
 
 ### Links

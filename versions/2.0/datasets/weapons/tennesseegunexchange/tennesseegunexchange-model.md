@@ -1,6 +1,12 @@
 ## extracted_tennesseegunexchange.json
 
 ### PyTransforms
+#### _uri_
+From column: _uri_
+>``` python
+return uri_from_url_timestamp(getValue("url"),getValue('timestamp'))
+```
+
 #### _clean_member_since_
 From column: _member_since_
 >``` python
@@ -67,21 +73,15 @@ From column: _Unfold: label / Glue_1 / place_name_
 return uri_from_fields('place/', getValue('place_name'))
 ```
 
-#### _uri_
-From column: _uri_
->``` python
-return uri_from_url_timestamp(getValue("url"),getValue('timestamp'))
-```
-
 
 ### Semantic Types
 | Column | Property | Class |
 |  ----- | -------- | ----- |
+| _Values_ | `schema:itemCondition` | `schema:Product1`|
+| _Values_ | `schema:addressRegion` | `schema:PostalAddress1`|
 | _Values_ | `schema:postalCode` | `schema:PostalAddress1`|
 | _Values_ | `schema:addressLocality` | `schema:PostalAddress1`|
 | _Values_ | `schema:addressCountry` | `schema:PostalAddress1`|
-| _Values_ | `schema:addressRegion` | `schema:PostalAddress1`|
-| _Values_ | `schema:itemCondition` | `schema:Product1`|
 | _address_ | `schema:name` | `schema:PostalAddress1`|
 | _cleanPrice_ | `schema:price` | `schema:Offer1`|
 | _clean_member_since_ | `schema:startDate` | `schema:OrganizationRole1`|
