@@ -7,19 +7,6 @@ From column: _corporation_records / Unfold: label / date filed: / Values_
 return str(pt_format_date(getValue("Values"),"day,mmdd,yyyy"))
 ```
 
-#### _name_uri_
-From column: _alternate_names / name_
->``` python
-import string
-table = string.maketrans("","")
-s = getValue("name")
-if s != '' and s!= None:
-    s = getValue("name").encode('UTF-8').lower().replace(' ','_')
-    return  "organization/"+s.translate(table,string.punctuation.replace('_',''))
-else:
-    return ''
-```
-
 #### _filing_body_uri_
 From column: _corporation_records / filing_body_
 >``` python
@@ -53,7 +40,7 @@ return uri_from_fields('place/unitedstates/',getValue("Values"))
 #### _role_uri_
 From column: _people / name_
 >``` python
-return uuid_uri("person")
+return uri_from_fields("person/",getValue("entityid"))
 ```
 
 
@@ -61,9 +48,9 @@ return uuid_uri("person")
 | Column | Property | Class |
 |  ----- | -------- | ----- |
 | _Values_ | `schema:name` | `memex:Identifier1`|
-| _Values_ | `schema:status` | `schema:GovernmentPermit1`|
 | _Values_ | `schema:name` | `schema:State1`|
 | _Values_ | `schema:subtype` | `schema:Organization1`|
+| _Values_ | `schema:status` | `schema:GovernmentPermit1`|
 | _Values_date_iso_ | `schema:validFrom` | `schema:GovernmentPermit1`|
 | _city_ | `schema:addressLocality` | `schema:PostalAddress1`|
 | _filing_body_ | `schema:valueName` | `schema:Organization2`|
@@ -76,8 +63,8 @@ return uuid_uri("person")
 | _state_ | `schema:addressRegion` | `schema:PostalAddress1`|
 | _state_uri_ | `uri` | `schema:State1`|
 | _url_ | `schema:url` | `schema:Organization1`|
-| _values_ | `memex:hasType` | `schema:Role1`|
 | _values_ | `schema:name` | `schema:PostalAddress1`|
+| _values_ | `memex:hasType` | `schema:Role1`|
 
 
 ### Links
