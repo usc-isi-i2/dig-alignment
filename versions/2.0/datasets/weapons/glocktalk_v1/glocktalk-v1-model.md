@@ -1,10 +1,10 @@
-## extracted_glocktalk.json
+## extracted_glocktalk_v1.json
 
 ### PyTransforms
 #### _uri_
 From column: _url_
 >``` python
-return uri_from_url(getValue("url"))
+return uri_from_url_timestamp(getValue("url"),getValue("timestamp"))
 ```
 
 #### _content_clean_
