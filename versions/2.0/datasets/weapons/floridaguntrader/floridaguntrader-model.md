@@ -55,10 +55,17 @@ From column: _placewithstate_
 return uri_from_fields('floridaguntrader/place/',getValue("location"))
 ```
 
+#### _ad_start_iso_
+From column: _ad_start_
+>``` python
+return floridaguntrader_availability_starts(getValue("ad_start"))
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
 |  ----- | -------- | ----- |
+| _ad_start_iso_ | `schema:availabilityStarts` | `schema:Offer1`|
 | _cleanprice_ | `schema:price` | `schema:Offer1`|
 | _contact_point_uri_ | `uri` | `schema:ContactPoint1`|
 | _description_ | `schema:description` | `schema:Offer1`|

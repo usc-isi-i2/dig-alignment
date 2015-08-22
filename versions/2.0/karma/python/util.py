@@ -156,6 +156,7 @@ def translate_date(str, in_format, out_format):
         return datetime.strptime(str.strip(), in_format).date().strftime(out_format)
     except Exception:
         pass
+    return ''
 
 
 def iso8601date(date, format=None):
@@ -294,3 +295,13 @@ def get_weapons(*texts):
 def uri_for_userid(prefix, userid):
   """Construct a URI for a user id"""
   return prefix + alphaNumeric(userid.strip().lower())
+
+def select_if_empty(value):
+  """Return true if the value is empty"""
+  try:
+    is_empty = (value.strip()=='')
+    return is_empty
+    pass
+  except Exception:
+    return false
+
