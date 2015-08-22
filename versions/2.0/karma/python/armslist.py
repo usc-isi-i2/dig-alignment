@@ -17,17 +17,17 @@ def getCurrency(price):
 def getTransactionType(text):
 
 	if text.lower().startswith("for sale"):
-		return 'schema:Offer'
+		return 'http://schema.org/Offer'
 	elif text.lower().startswith("want to buy"):
-		return 'schema:Demand'
+		return 'http://schema.org/Demand'
 
 	return ''
 
 def getTransactionActor(transactionType):
-	if transactionType == 'schema:Offer':
-		return 'schema:seller'
-	elif transactionType == 'schema:Demand':
-		return 'schema:buyer'
+	if transactionType == 'http://schema.org/Offer':
+		return 'http://schema.org/seller'
+	elif transactionType == 'http://schema.org/Demand':
+		return 'http://schema.org/buyer'
 
 	return ''
 
