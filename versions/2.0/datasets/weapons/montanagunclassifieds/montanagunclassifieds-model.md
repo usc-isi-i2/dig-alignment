@@ -10,13 +10,13 @@ return uri_from_url_timestamp(getValue("url"),getValue("timestamp"))
 #### _priceCurrency_
 From column: _Unfold: label / price / Values_
 >``` python
-return getCurrency(getValue("Values"))
+return montana_getCurrency(getValue("Values"))
 ```
 
 #### _cleanPrice_
 From column: _Unfold: label / price / Values_
 >``` python
-return cleanPrice(getValue("Values"))
+return montana_cleanPrice(getValue("Values"))
 ```
 
 #### _expiryDate_
@@ -40,7 +40,7 @@ return getValue("uri")+"/placeuri"
 #### _location_enhanced_
 From column: _location_
 >``` python
-return getEnhancedLocation(getValue("location"))
+return montana_getEnhancedLocation(getValue("location"))
 ```
 
 #### _title_2_
