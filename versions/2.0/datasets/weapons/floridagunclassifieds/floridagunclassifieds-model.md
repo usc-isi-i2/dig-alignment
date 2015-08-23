@@ -10,13 +10,13 @@ return uri_from_url_timestamp(getValue("url"),getValue('timestamp'))
 #### _cleanPrice_
 From column: _price_
 >``` python
-return cleanPrice(getValue("price"))
+return price_quantity_us_number(getValue("price"))
 ```
 
 #### _priceCurrency_
 From column: _price_
 >``` python
-return getCurrency(getValue("price"))
+return price_currency(getValue("price"))
 ```
 
 #### _listedOnDate_
@@ -72,9 +72,9 @@ return uri_from_fields('floridagunclassifieds/person/', getValue("username"))
 | Column | Property | Class |
 |  ----- | -------- | ----- |
 | _Values_ | `schema:addressLocality` | `schema:PostalAddress1`|
-| _Values_ | `schema:keywords` | `schema:Product1`|
 | _Values_ | `schema:manufacturer` | `schema:Product1`|
 | _Values_ | `schema:email` | `schema:ContactPoint1`|
+| _Values_ | `schema:keywords` | `schema:Product1`|
 | _cleanPrice_ | `schema:price` | `schema:Offer1`|
 | _clean_member_since_ | `schema:startDate` | `schema:OrganizationRole1`|
 | _clean_phone_ | `schema:name` | `memex:PhoneNumber1`|
