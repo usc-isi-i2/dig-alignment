@@ -305,3 +305,24 @@ def select_if_empty(value):
   except Exception:
     return false
 
+
+def price_quantity_us_number(price):
+    """Extract the numeric quantity of the price, 
+    assuming the number uses dot for decimal and comma for thousands, etc."""
+    p = re.sub('[^0-9.]', '', price.strip())
+    return p
+
+
+def price_currency(price, default_currency="USD"):
+    """Return the currency of a price specification.
+    Should be enhanced to deal with other currencies and bitcoin"""
+
+    if price_quantity_us_number(price) == '':
+        return ''
+
+    p = price.strip()
+    if "$" in price:
+        return 'USD'
+
+    #add sophistication
+    return default_currency

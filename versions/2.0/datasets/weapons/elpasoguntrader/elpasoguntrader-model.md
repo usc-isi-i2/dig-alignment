@@ -10,13 +10,13 @@ return uri_from_url_timestamp(getValue("url"),getValue('timestamp'))
 #### _priceCurrency_
 From column: _price_
 >``` python
-return getCurrency(getValue("price"))
+return price_currency(getValue("price"))
 ```
 
 #### _cleanPrice_
 From column: _price_
 >``` python
-return cleanPrice(getValue("price"))
+return price_quantity_us_number(getValue("price"))
 ```
 
 #### _personOrOrganization_uri_
