@@ -12,17 +12,7 @@ def montana_getEnhancedLocation(location):
 
 
 def montana_cleanPrice(price):
-    price = price.replace("$","")
-    price = price.strip()
-    return price
+    return price_quantity_us_number(price)
 
 def montana_getCurrency(price):
-    """Return the appropriate currency for a price."""
-    if price == '':
-        return ''
-
-    if "$" in price:
-        return 'USD'
-
-    #add sophistication
-    return 'USD'
+    return price_currency(price)
