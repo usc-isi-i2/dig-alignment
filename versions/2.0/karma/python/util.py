@@ -326,3 +326,16 @@ def price_currency(price, default_currency="USD"):
 
     #add sophistication
     return default_currency
+
+def add_state(location, state):
+    """If the location has the state, then do nothing, otherwise add the given state"""
+
+    loc = location.strip()
+
+    if loc == '':
+        return ''
+
+    if state in loc.lower():
+        return loc
+    else:
+        return loc + ", " + state
