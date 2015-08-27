@@ -2,12 +2,15 @@ import re
 
 def cleanPrice(price):
 	price = price.replace("$","")
+	price = removeAlpha(price)
 	price = price.strip()
 	return price
 
 def getCurrency(price):
 	if "$" in price:
 		return 'USD'
+	if "BTC" in price or "btc" in price:
+		return "BTC"
 	if price.strip() == '':
 		return ''
 
