@@ -17,6 +17,23 @@ def getCurrency(price):
 	#add sophistication
 	return 'USD'
 
+def getRating(rating):
+    if rating.lower() == "no rating":
+        return ''
+    if "%" in rating:
+        idx = rating.find("%")
+        res = rating[0:idx]
+        start = res.rfind(" ")
+        if start != -1:
+            res = res[start:]
+        return res.strip() + "%"
+    if "/" in rating:
+        (part1, part2) = rating.split("/", 2)
+        part1_num = float(part1.strip())
+        part2_num = float(part2.strip())
+        return str((part1_num*100)/part2_num) + "%"
+    return rating
+
 def getTransactionType(text):
 
 	if text.lower().startswith("for sale"):
