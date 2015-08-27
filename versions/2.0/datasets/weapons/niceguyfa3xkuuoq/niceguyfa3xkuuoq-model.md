@@ -49,6 +49,12 @@ From column: _email_addresses / values_
 return clean_email(getValue("values"))
 ```
 
+#### _per_org_uri2_
+From column: _org_role_uri_
+>``` python
+return uuid_uri("organization")
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
@@ -60,6 +66,7 @@ return clean_email(getValue("values"))
 | _description_ | `schema:description` | `schema:Offer1`|
 | _org_role_uri_ | `uri` | `schema:OrganizationRole1`|
 | _per_org_uri_ | `uri` | `schema:Organization1`|
+| _per_org_uri2_ | `uri` | `memex:PersonOrOrganization1`|
 | _rating_ | `schema:ratingValue` | `schema:AggregateRating1`|
 | _rawtextdetectedlanguage_ | `schema:inLanguage` | `schema:Offer1`|
 | _seller_ | `schema:name` | `schema:ContactPoint1`|
