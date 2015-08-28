@@ -40,6 +40,7 @@ return vw_clean_image_url(getValue("src"))
 | _description_ | `schema:description` | `schema:Offer1`|
 | _organizationuri_ | `uri` | `schema:Organization1`|
 | _pricecurrency_ | `schema:priceCurrency` | `schema:Offer1`|
+| _raw_text_ | `schema:text` | `schema:Offer1`|
 | _rawtextdetectedlanguage_ | `schema:inLanguage` | `schema:Offer1`|
 | _title_ | `schema:title` | `schema:Offer1`|
 | _uri_ | `uri` | `schema:Offer1`|
