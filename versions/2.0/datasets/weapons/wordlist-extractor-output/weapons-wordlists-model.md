@@ -26,8 +26,8 @@
 | `memex:Topic1` | `memex:hasPhrase` | `schema:Text1`|
 | `memex:Topic2` | `memex:hasPhrase` | `schema:Text3`|
 | `memex:Topic3` | `memex:hasPhrase` | `schema:Text4`|
-| `schema:Thing1` | `memex:distinctivePhrases` | `memex:DistinctivePhrases1`|
-| `schema:Thing1` | `memex:distinctivePhrases` | `memex:DistinctivePhrases2`|
-| `schema:Thing1` | `schema:about` | `memex:Topic1`|
-| `schema:Thing1` | `schema:about` | `memex:Topic2`|
-| `schema:Thing1` | `schema:about` | `memex:Topic3`|
+| `schema:Thing1` | `memex:hasFirearmsPhrase` | `memex:Topic2`|
+| `schema:Thing1` | `memex:hasGangPhrase` | `memex:DistinctivePhrases1`|
+| `schema:Thing1` | `memex:hasNFAPhrase` | `memex:Topic3`|
+| `schema:Thing1` | `memex:hasNonEnglishPhrase` | `memex:DistinctivePhrases2`|
+| `schema:Thing1` | `memex:hasTechnologyPhrase` | `memex:Topic1`|
