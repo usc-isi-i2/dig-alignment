@@ -125,17 +125,100 @@ uri = genericUri(getValue("posttime_epoch"),getValue("modtime_epoch"),getValue("
 return uri + "/personororganization"
 ```
 
+#### _clean_rate60_
+From column: __source / rate60_
+>``` python
+return clean_rate(getValue("rate60"))
+```
+
+#### _clean_rate15_
+From column: __source / rate15_
+>``` python
+return clean_rate15(getValue("rate15"))
+```
+
+#### _clean-rate30_
+From column: __source / rate30_
+>``` python
+return clean_rate30(getValue("rate30"))
+```
+
+#### _rate_price60_
+From column: __source / clean_rate60_
+>``` python
+return rate_price(getValue("clean_rate60"))
+```
+
+#### _rate_duration60_
+From column: __source / rate_price60_
+>``` python
+return rate_duration(getValue("clean_rate60"))
+```
+
+#### _rate_unit60_
+From column: __source / rate_duration60_
+>``` python
+return rate_unit(getValue("clean_rate60"))
+```
+
+#### _rate_price15_
+From column: __source / clean_rate15_
+>``` python
+return rate_price(getValue("clean_rate15"))
+```
+
+#### _rate_duration15_
+From column: __source / rate_price15_
+>``` python
+return rate_duration(getValue("clean_rate15"))
+```
+
+#### _rate_unit15_
+From column: __source / rate_duration15_
+>``` python
+return rate_unit(getValue("clean_rate15"))
+```
+
+#### _rate_price30_
+From column: __source / clean-rate30_
+>``` python
+return rate_price(getValue("clean-rate30"))
+```
+
+#### _rate_duration30_
+From column: __source / rate_price30_
+>``` python
+return rate_duration(getValue("clean-rate30"))
+```
+
+#### _rate_unit30_
+From column: __source / rate_duration30_
+>``` python
+return rate_unit(getValue("clean-rate30"))
+```
+
+#### _pricespecification_uri_
+From column: __source / personororg_uri_
+>``` python
+uri = genericUri(getValue("posttime_epoch"),getValue("modtime_epoch"),getValue("url"))
+
+return uri + "/pricespecification"
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
 |  ----- | -------- | ----- |
 | _adultservice_uri_ | `uri` | `memex:AdultService1`|
+| _clean-rate30_ | `schema:name` | `schema:PriceSpecification1`|
 | _clean_age_ | `memex:personAge` | `memex:AdultService1`|
 | _clean_email_ | `schema:name` | `memex:EmailAddress1`|
 | _clean_eyes_ | `memex:eyeColor` | `memex:AdultService1`|
 | _clean_hair_ | `memex:hairColor` | `memex:AdultService1`|
 | _clean_name_ | `schema:name` | `memex:AdultService1`|
 | _clean_place_name_ | `schema:name` | `schema:Place1`|
+| _clean_rate15_ | `schema:name` | `schema:PriceSpecification1`|
+| _clean_rate60_ | `schema:name` | `schema:PriceSpecification1`|
 | _email_uri_ | `uri` | `memex:EmailAddress1`|
 | _latitude_ | `schema:latitude` | `schema:GeoCoordinates1`|
 | _longitude_ | `schema:longitude` | `schema:GeoCoordinates1`|
@@ -143,6 +226,16 @@ return uri + "/personororganization"
 | _personororg_uri_ | `uri` | `memex:PersonOrOrganization1`|
 | _phone_uri_ | `uri` | `memex:PhoneNumber1`|
 | _place_uri_ | `uri` | `schema:Place1`|
+| _pricespecification_uri_ | `uri` | `schema:PriceSpecification1`|
+| _rate_duration15_ | `schema:billingIncrement` | `schema:PriceSpecification1`|
+| _rate_duration30_ | `schema:billingIncrement` | `schema:PriceSpecification1`|
+| _rate_duration60_ | `schema:billingIncrement` | `schema:PriceSpecification1`|
+| _rate_price15_ | `schema:price` | `schema:PriceSpecification1`|
+| _rate_price30_ | `schema:price` | `schema:PriceSpecification1`|
+| _rate_price60_ | `schema:price` | `schema:PriceSpecification1`|
+| _rate_unit15_ | `schema:unitCode` | `schema:PriceSpecification1`|
+| _rate_unit30_ | `schema:unitCode` | `schema:PriceSpecification1`|
+| _rate_unit60_ | `schema:unitCode` | `schema:PriceSpecification1`|
 | _raw_text_ | `schema:description` | `schema:Offer1`|
 | _title_ | `schema:title` | `schema:Offer1`|
 | _url_ | `schema:url` | `schema:WebPage1`|
@@ -157,6 +250,7 @@ return uri + "/personororganization"
 | `memex:PersonOrOrganization1` | `schema:telephone` | `memex:PhoneNumber1`|
 | `schema:Offer1` | `schema:availableAtOrFrom` | `schema:Place1`|
 | `schema:Offer1` | `schema:mainEntityOfPage` | `schema:WebPage1`|
+| `schema:Offer1` | `schema:priceSpecification` | `schema:PriceSpecification1`|
 | `schema:Offer1` | `schema:seller` | `memex:PersonOrOrganization1`|
 | `schema:Offer1` | `schema:itemOffered` | `memex:AdultService1`|
 | `schema:Place1` | `schema:geo` | `schema:GeoCoordinates1`|
