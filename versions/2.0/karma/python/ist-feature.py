@@ -657,6 +657,23 @@ def feature_address(city, state, country):
 def clean_city(city):
     return clean_location(city)
 
+def clean_place_name(city,state,country):
+    city = getValue("clean_city").strip()
+    state = getValue("clean_state").strip()
+    country = getValue("clean_country").strip()
+
+    name=''
+    if city != '':
+        name = city
+
+    if state != '':
+        name = name + ", " + state
+
+    if country != '':
+        name = name + ", " + country
+
+    return name
+
 def clean_state(state, country):
     state = clean_location(state)
     if country:
@@ -793,6 +810,12 @@ def cluster_body_uri(uri):
     if uri:
         return "cluster/body/lsh/%s" % uri
     return ''
+
+def genericUri(posttime,modtime,url):
+    times = posttime
+    if times == '':
+        times = modtime
+    return get_url_hash(url.strip()) + "/" + times
 
 mapFunctions = defaultdict(lambda x: None)
 

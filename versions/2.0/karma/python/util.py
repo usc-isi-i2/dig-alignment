@@ -1,6 +1,7 @@
 import re
 from datetime import datetime, date
 from time import mktime, gmtime
+import calendar
 from urlparse import urlparse
 import hashlib
 import uuid
@@ -231,6 +232,20 @@ output format: iso8601
     # If all else fails, return input
     return ''
 
+def converTimetoEpoch(date,format=None):
+    date = date.strip()
+
+    if format:
+        try:
+            calendar.timegm(datetime.strptime(date, format).timetuple())
+        except:
+            pass
+    try:
+        return calendar.timegm(datetime.strptime(date, "%Y-%m-%dT%H:%M:%S").timetuple())
+    except:
+        pass
+
+    return ''
 
 def getYearFromISODate(isoDate):
     if isoDate:
