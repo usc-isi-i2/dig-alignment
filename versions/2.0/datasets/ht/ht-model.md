@@ -96,7 +96,7 @@ return uri + "/place"
 #### _clean_city_
 From column: __source / city / values_
 >``` python
-return clean_city(getValue("values"))
+return cleaner_city(getValue("values"))
 ```
 
 #### _clean_country_

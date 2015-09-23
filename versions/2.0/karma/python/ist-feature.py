@@ -702,6 +702,18 @@ def feature_address(city, state, country):
 def clean_city(city):
     return clean_location(city)
 
+def cleaner_city(city):
+    cleanc = clean_city(city)
+
+    words = cleanc.split(" ",5)
+    cleanc=""
+    for word in words:
+        if word.lower() != "class" and word.lower() != "span" and word.lower() != "escorts" and word.lower() != "a" and word.lower() != "div" and word.lower() != "nbsp" and len(word) < 15:
+            cleanc = cleanc + " " + word
+    
+    return cleanc.strip()
+
+
 def clean_place_name(city,state,country):
     city = getValue("clean_city").strip()
     state = getValue("clean_state").strip()
