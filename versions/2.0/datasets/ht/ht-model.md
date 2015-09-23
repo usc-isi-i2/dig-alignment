@@ -58,7 +58,7 @@ return uri + "/webpage"
 #### _clean_phone_
 From column: __source / phone / values_
 >``` python
-return clean_phone(getValue("values"))
+return 'phone:' + clean_phone(getValue("values"))
 ```
 
 #### _phone_uri_
@@ -200,9 +200,40 @@ return rate_unit(getValue("clean-rate30"))
 #### _pricespecification_uri_
 From column: __source / personororg_uri_
 >``` python
+check= getValue("clean_rate60")
+if check.strip() == '':
+    return ''
 uri = genericUri(getValue("posttime_epoch"),getValue("modtime_epoch"),getValue("url"))
 
 return uri + "/pricespecification"
+```
+
+#### _pricespecification_uri15_
+From column: __source / pricespecification_uri_
+>``` python
+check= getValue("clean_rate15")
+if check.strip() == '':
+    return ''
+uri = genericUri(getValue("posttime_epoch"),getValue("modtime_epoch"),getValue("url"))
+
+return uri + "/pricespecification15"
+```
+
+#### _pricespecification_uri30_
+From column: __source / pricespecification_uri15_
+>``` python
+check= getValue("clean-rate30")
+if check.strip() == '':
+    return ''
+uri = genericUri(getValue("posttime_epoch"),getValue("modtime_epoch"),getValue("url"))
+
+return uri + "/pricespecification30"
+```
+
+#### _publisher_
+From column: __source / url_
+>``` python
+return getWebsiteDomainOnly(getValue("url"))
 ```
 
 
@@ -210,15 +241,19 @@ return uri + "/pricespecification"
 | Column | Property | Class |
 |  ----- | -------- | ----- |
 | _adultservice_uri_ | `uri` | `memex:AdultService1`|
-| _clean-rate30_ | `schema:name` | `schema:PriceSpecification1`|
+| _clean-rate30_ | `schema:name` | `schema:PriceSpecification3`|
 | _clean_age_ | `memex:personAge` | `memex:AdultService1`|
+| _clean_city_ | `schema:addressLocality` | `schema:PostalAddress1`|
+| _clean_country_ | `schema:addressCountry` | `schema:PostalAddress1`|
 | _clean_email_ | `schema:name` | `memex:EmailAddress1`|
 | _clean_eyes_ | `memex:eyeColor` | `memex:AdultService1`|
 | _clean_hair_ | `memex:hairColor` | `memex:AdultService1`|
 | _clean_name_ | `schema:name` | `memex:AdultService1`|
+| _clean_phone_ | `schema:name` | `memex:PhoneNumber1`|
 | _clean_place_name_ | `schema:name` | `schema:Place1`|
-| _clean_rate15_ | `schema:name` | `schema:PriceSpecification1`|
+| _clean_rate15_ | `schema:name` | `schema:PriceSpecification2`|
 | _clean_rate60_ | `schema:name` | `schema:PriceSpecification1`|
+| _clean_state_ | `schema:addressRegion` | `schema:PostalAddress1`|
 | _email_uri_ | `uri` | `memex:EmailAddress1`|
 | _latitude_ | `schema:latitude` | `schema:GeoCoordinates1`|
 | _longitude_ | `schema:longitude` | `schema:GeoCoordinates1`|
@@ -227,14 +262,17 @@ return uri + "/pricespecification"
 | _phone_uri_ | `uri` | `memex:PhoneNumber1`|
 | _place_uri_ | `uri` | `schema:Place1`|
 | _pricespecification_uri_ | `uri` | `schema:PriceSpecification1`|
-| _rate_duration15_ | `schema:billingIncrement` | `schema:PriceSpecification1`|
-| _rate_duration30_ | `schema:billingIncrement` | `schema:PriceSpecification1`|
+| _pricespecification_uri15_ | `uri` | `schema:PriceSpecification2`|
+| _pricespecification_uri30_ | `uri` | `schema:PriceSpecification3`|
+| _publisher_ | `schema:name` | `schema:Organization1`|
+| _rate_duration15_ | `schema:name` | `schema:PriceSpecification2`|
+| _rate_duration30_ | `schema:billingIncrement` | `schema:PriceSpecification3`|
 | _rate_duration60_ | `schema:billingIncrement` | `schema:PriceSpecification1`|
-| _rate_price15_ | `schema:price` | `schema:PriceSpecification1`|
-| _rate_price30_ | `schema:price` | `schema:PriceSpecification1`|
+| _rate_price15_ | `schema:price` | `schema:PriceSpecification2`|
+| _rate_price30_ | `schema:price` | `schema:PriceSpecification3`|
 | _rate_price60_ | `schema:price` | `schema:PriceSpecification1`|
-| _rate_unit15_ | `schema:unitCode` | `schema:PriceSpecification1`|
-| _rate_unit30_ | `schema:unitCode` | `schema:PriceSpecification1`|
+| _rate_unit15_ | `schema:unitCode` | `schema:PriceSpecification2`|
+| _rate_unit30_ | `schema:unitCode` | `schema:PriceSpecification3`|
 | _rate_unit60_ | `schema:unitCode` | `schema:PriceSpecification1`|
 | _raw_text_ | `schema:description` | `schema:Offer1`|
 | _title_ | `schema:title` | `schema:Offer1`|
@@ -248,9 +286,15 @@ return uri + "/pricespecification"
 | `memex:AdultService1` | `schema:offers` | `schema:Offer1`|
 | `memex:PersonOrOrganization1` | `schema:email` | `memex:EmailAddress1`|
 | `memex:PersonOrOrganization1` | `schema:telephone` | `memex:PhoneNumber1`|
+| `memex:PersonOrOrganization1` | `schema:makesOffer` | `schema:Offer1`|
 | `schema:Offer1` | `schema:availableAtOrFrom` | `schema:Place1`|
 | `schema:Offer1` | `schema:mainEntityOfPage` | `schema:WebPage1`|
 | `schema:Offer1` | `schema:priceSpecification` | `schema:PriceSpecification1`|
+| `schema:Offer1` | `schema:priceSpecification` | `schema:PriceSpecification2`|
+| `schema:Offer1` | `schema:priceSpecification` | `schema:PriceSpecification3`|
 | `schema:Offer1` | `schema:seller` | `memex:PersonOrOrganization1`|
 | `schema:Offer1` | `schema:itemOffered` | `memex:AdultService1`|
+| `schema:Place1` | `schema:address` | `schema:PostalAddress1`|
 | `schema:Place1` | `schema:geo` | `schema:GeoCoordinates1`|
+| `schema:WebPage1` | `schema:publisher` | `schema:Organization1`|
+| `schema:WebPage1` | `schema:mainEntity` | `schema:Offer1`|

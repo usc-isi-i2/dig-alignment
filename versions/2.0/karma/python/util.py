@@ -31,7 +31,6 @@ def personNameUri(x):
     x = re.sub('[^A-Za-z0-9]+', '', x.strip())
     return x.lower()
 
-
 def toTitleCaseIfUpper(x):
     "Return the string in title case if it is all upper, otherwise leave capitalization alone."
     x = x.strip()
@@ -259,6 +258,23 @@ def getWebsiteDomain(url):
         if domain:
             if domain.startswith("www."):
                 domain = domain[4:]
+            return domain
+    return ''
+
+def getWebsiteDomainOnly(url):
+    parsed_uri = urlparse(url)
+    if parsed_uri:
+        domain = parsed_uri.netloc
+        if domain:
+            if domain.startswith("www."):
+                domain = domain[4:]
+
+            idx = domain.find('.')
+            if idx != -1:
+                domain2=domain[idx+1:]
+                if domain2.find('.') != -1:
+                    domain = domain2
+                
             return domain
     return ''
 
