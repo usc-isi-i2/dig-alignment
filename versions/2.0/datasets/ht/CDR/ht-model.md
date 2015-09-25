@@ -284,9 +284,11 @@ return getWebsiteDomainOnly(getValue("url"))
 | From | Property | To |
 |  --- | -------- | ---|
 | `memex:AdultService1` | `schema:offers` | `schema:Offer1`|
+| `memex:EmailAddress1` | `memex:owner` | `memex:PersonOrOrganization1`|
 | `memex:PersonOrOrganization1` | `schema:email` | `memex:EmailAddress1`|
-| `memex:PersonOrOrganization1` | `schema:telephone` | `memex:PhoneNumber1`|
 | `memex:PersonOrOrganization1` | `schema:makesOffer` | `schema:Offer1`|
+| `memex:PersonOrOrganization1` | `schema:telephone` | `memex:PhoneNumber1`|
+| `memex:PhoneNumber1` | `memex:owner` | `memex:PersonOrOrganization1`|
 | `schema:Offer1` | `schema:availableAtOrFrom` | `schema:Place1`|
 | `schema:Offer1` | `schema:mainEntityOfPage` | `schema:WebPage1`|
 | `schema:Offer1` | `schema:priceSpecification` | `schema:PriceSpecification1`|
