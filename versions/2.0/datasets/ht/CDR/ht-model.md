@@ -58,7 +58,7 @@ return uri + "/webpage"
 #### _clean_phone_
 From column: __source / phone / values_
 >``` python
-return 'phone:' + clean_phone(getValue("values"))
+return clean_phone(getValue("values"))
 ```
 
 #### _phone_uri_
