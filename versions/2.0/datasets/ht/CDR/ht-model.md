@@ -236,6 +236,22 @@ From column: __source / url_
 return getWebsiteDomainOnly(getValue("url"))
 ```
 
+#### _date_created_
+From column: __source / modtime_
+>``` python
+dt = getValue("posttime")
+if dt.strip() == "":
+    dt = getValue("modtime")
+
+return dt
+```
+
+#### _valid_from_date_
+From column: __source / date_created_
+>``` python
+return getValue("date_created")
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
@@ -254,7 +270,9 @@ return getWebsiteDomainOnly(getValue("url"))
 | _clean_rate15_ | `schema:name` | `schema:PriceSpecification2`|
 | _clean_rate60_ | `schema:name` | `schema:PriceSpecification1`|
 | _clean_state_ | `schema:addressRegion` | `schema:PostalAddress1`|
+| _date_created_ | `schema:dateCreated` | `schema:WebPage1`|
 | _email_uri_ | `uri` | `memex:EmailAddress1`|
+| _id_ | `memex:identifier` | `schema:Offer1`|
 | _latitude_ | `schema:latitude` | `schema:GeoCoordinates1`|
 | _longitude_ | `schema:longitude` | `schema:GeoCoordinates1`|
 | _offer_uri_ | `uri` | `schema:Offer1`|
@@ -277,6 +295,7 @@ return getWebsiteDomainOnly(getValue("url"))
 | _raw_text_ | `schema:description` | `schema:WebPage1`|
 | _title_ | `schema:title` | `schema:Offer1`|
 | _url_ | `schema:url` | `schema:WebPage1`|
+| _valid_from_date_ | `schema:validFrom` | `schema:Offer1`|
 | _webpage_uri_ | `uri` | `schema:WebPage1`|
 
 
