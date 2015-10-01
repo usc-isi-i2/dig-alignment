@@ -20,8 +20,11 @@ From column: _offer_uri_
 >``` python
 uri = getValue("offer_uri")
 if uri != "":
-    idx = uri.find("offer")
-    return uri[0:idx] + "adultservice"
+    splits = uri.split("/")
+    val=''
+    for i in range(0,len(splits)-2):
+        val=val+splits[i]+"/"
+    return val + "adultservice"
 return ""
 ```
 
