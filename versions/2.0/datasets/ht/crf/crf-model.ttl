@@ -1,0 +1,726 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix schema: <http://schema.org/> .
+@prefix memex: <http://memexproxy.com/ontology/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix km-dev: <http://isi.edu/integration/karma/dev#> .
+
+_:node1a0gdlmhax1 a km-dev:R2RMLMapping ;
+	km-dev:sourceName "ht-crf-eyes-hair.json" ;
+	km-dev:modelPublicationTime "1443660225066"^^xsd:long ;
+	km-dev:modelVersion "1.7" ;
+	km-dev:hasInputColumns "[[{\"columnName\":\"uri\"}],[{\"columnName\":\"featureValue\"}],[{\"columnName\":\"featureName\"}]]" ;
+	km-dev:hasOutputColumns "[[{\"columnName\":\"adultservice_uri\"}],[{\"columnName\":\"offer_uri\"}],[{\"columnName\":\"feature_name\"}],[{\"columnName\":\"featureValue\"}]]" ;
+	km-dev:hasModelLabel "ht-crf-eyes-hair.json" ;
+	km-dev:hasBaseURI "http://localhost:8080/source/" ;
+	km-dev:hasWorksheetHistory """[
+    {
+        \"tags\": [\"Transformation\"],
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"featureName\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"value\": \"feature_name\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"value\": \"return get_eye_hair_feature_name(getValue(\\\"featureName\\\"))\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"isJSONOutput\",
+                \"value\": \"false\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"featureName\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"feature_name\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SubmitPythonTransformationCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"uri\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"value\": \"offer_uri\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"value\": \"if getValue(\\\"feature_name\\\") != \\\"\\\":\\n    return getValue(\\\"uri\\\")\\nreturn \\\"\\\"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"isJSONOutput\",
+                \"value\": \"false\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"uri\\\"}]},{\\\"value\\\":[{\\\"columnName\\\":\\\"feature_name\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"offer_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SubmitPythonTransformationCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"offer_uri\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"value\": \"adultservice_uri\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"value\": \"uri = getValue(\\\"offer_uri\\\")\\nif uri != \\\"\\\":\\n    idx = uri.find(\\\"offer\\\")\\n    return uri[0:idx] + \\\"adultservice\\\"\\nreturn \\\"\\\"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"isJSONOutput\",
+                \"value\": \"false\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"offer_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"adultservice_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SubmitPythonTransformationCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"adultservice_uri\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyName\",
+                \"value\": \"isUriOfClass\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyUri\",
+                \"value\": \"http://memexproxy.com/ontology/AdultService\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyId\",
+                \"value\": \"http://memexproxy.com/ontology/AdultService1 (add)\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://isi.edu/integration/karma/dev#classLink\",
+                    \"DomainLabel\": \"memex:AdultService1 (add)\",
+                    \"DomainId\": \"http://memexproxy.com/ontology/AdultService1\",
+                    \"DomainUri\": \"http://memexproxy.com/ontology/AdultService\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": true,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"adultservice_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"adultservice_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetMetaPropertyCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"offer_uri\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyName\",
+                \"value\": \"isUriOfClass\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyUri\",
+                \"value\": \"http://schema.org/Offer\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyId\",
+                \"value\": \"http://schema.org/Offer1 (add)\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://isi.edu/integration/karma/dev#classLink\",
+                    \"DomainLabel\": \"schema:Offer1 (add)\",
+                    \"DomainId\": \"http://schema.org/Offer1\",
+                    \"DomainUri\": \"http://schema.org/Offer\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": true,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"offer_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"offer_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetMetaPropertyCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"initialEdges\",
+                \"value\": [],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"alignmentId\",
+                \"value\": \"WSP6:WS1AL\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newEdges\",
+                \"value\": [{
+                    \"edgeTargetUri\": \"http://memexproxy.com/ontology/AdultService\",
+                    \"edgeId\": \"http://schema.org/itemOffered\",
+                    \"edgeTargetId\": \"http://memexproxy.com/ontology/AdultService1\",
+                    \"edgeSourceId\": \"http://schema.org/Offer1\",
+                    \"edgeSourceUri\": \"http://schema.org/Offer1\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"ChangeInternalNodeLinksCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"initialEdges\",
+                \"value\": [],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"alignmentId\",
+                \"value\": \"WSP6:WS1AL\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newEdges\",
+                \"value\": [{
+                    \"edgeTargetUri\": \"http://schema.org/Offer\",
+                    \"edgeId\": \"http://schema.org/offers\",
+                    \"edgeTargetId\": \"http://schema.org/Offer1\",
+                    \"edgeSourceId\": \"http://memexproxy.com/ontology/AdultService1\",
+                    \"edgeSourceUri\": \"http://memexproxy.com/ontology/AdultService1\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"ChangeInternalNodeLinksCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"featureValue\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://memexproxy.com/ontology/hairColor\",
+                    \"DomainLabel\": \"memex:AdultService1\",
+                    \"DomainId\": \"http://memexproxy.com/ontology/AdultService1\",
+                    \"DomainUri\": \"http://memexproxy.com/ontology/AdultService\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": true,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"featureValue\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"featureValue\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetSemanticTypeCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"feature_name\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyName\",
+                \"value\": \"isSpecializationForEdge\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyUri\",
+                \"value\": {
+                    \"subject\": \"http://memexproxy.com/ontology/AdultService1\",
+                    \"predicate\": \"http://memexproxy.com/ontology/hairColor\",
+                    \"object\": [{\"columnName\": \"featureValue\"}]
+                },
+                \"type\": \"linkWithHNodeId\"
+            },
+            {
+                \"name\": \"metaPropertyId\",
+                \"value\": {
+                    \"subject\": \"http://memexproxy.com/ontology/AdultService1\",
+                    \"predicate\": \"http://memexproxy.com/ontology/hairColor\",
+                    \"object\": [{\"columnName\": \"featureValue\"}]
+                },
+                \"type\": \"linkWithHNodeId\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": true,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"feature_name\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"feature_name\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetMetaPropertyCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"orderedColumns\",
+                \"value\": [
+                    {
+                        \"id\": [{\"columnName\": \"featureValue\"}],
+                        \"visible\": true,
+                        \"hideable\": false,
+                        \"name\": \"featureValue\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"uri\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"uri\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"offer_uri\"}],
+                        \"visible\": true,
+                        \"hideable\": false,
+                        \"name\": \"offer_uri\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"adultservice_uri\"}],
+                        \"visible\": true,
+                        \"hideable\": false,
+                        \"name\": \"adultservice_uri\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"crfCategory\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"crfCategory\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"featureName\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"featureName\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"feature_name\"}],
+                        \"visible\": true,
+                        \"hideable\": false,
+                        \"name\": \"feature_name\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"featureDefinitionFile\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"featureDefinitionFile\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"featureCrfModelFile\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"featureCrfModelFile\"
+                    },
+                    {
+                        \"id\": [{\"columnName\": \"crfWordSpan\"}],
+                        \"visible\": false,
+                        \"hideable\": true,
+                        \"name\": \"crfWordSpan\"
+                    }
+                ],
+                \"type\": \"orderedColumns\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"OrganizeColumnsCommand\"
+    }
+]""" .
+
+km-dev:TriplesMap_0be08142-1502-4f5a-a223-3a267033e4b3 a rr:TriplesMap .
+
+_:node1a0gdlmhax1 km-dev:hasTriplesMap km-dev:TriplesMap_0be08142-1502-4f5a-a223-3a267033e4b3 .
+
+km-dev:TriplesMap_0be08142-1502-4f5a-a223-3a267033e4b3 km-dev:isPartOfMapping _:node1a0gdlmhax1 .
+
+_:node1a0gdlmhax2 rr:tableName "ht-crf-eyes-hair.json" ;
+	a rr:LogicalTable ;
+	km-dev:isPartOfMapping _:node1a0gdlmhax1 .
+
+_:node1a0gdlmhax1 km-dev:hasLogicalTable _:node1a0gdlmhax2 .
+
+km-dev:TriplesMap_0be08142-1502-4f5a-a223-3a267033e4b3 rr:logicalTable _:node1a0gdlmhax2 ;
+	rr:subjectMap _:node1a0gdlmhax3 .
+
+_:node1a0gdlmhax1 km-dev:hasSubjectMap _:node1a0gdlmhax3 .
+
+_:node1a0gdlmhax3 km-dev:isPartOfMapping _:node1a0gdlmhax1 ;
+	a rr:SubjectMap ;
+	km-dev:alignmentNodeId "http://memexproxy.com/ontology/AdultService1" ;
+	rr:class memex:AdultService ;
+	rr:template "{adultservice_uri}" ;
+	a km-dev:steinerTreeRootNode .
+
+km-dev:PredicateObjectMap_19346b94-de65-4568-8c93-1ea936ad4179 rr:predicate "{feature_name}" .
+
+_:node1a0gdlmhax4 rr:column "featureValue" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node1a0gdlmhax1 .
+
+_:node1a0gdlmhax1 km-dev:hasObjectMap _:node1a0gdlmhax4 .
+
+km-dev:PredicateObjectMap_19346b94-de65-4568-8c93-1ea936ad4179 rr:objectMap _:node1a0gdlmhax4 .
+
+km-dev:TriplesMap_0be08142-1502-4f5a-a223-3a267033e4b3 rr:predicateObjectMap km-dev:PredicateObjectMap_19346b94-de65-4568-8c93-1ea936ad4179 .
+
+km-dev:PredicateObjectMap_19346b94-de65-4568-8c93-1ea936ad4179 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node1a0gdlmhax1 .
+
+_:node1a0gdlmhax1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_19346b94-de65-4568-8c93-1ea936ad4179 .
+
+km-dev:PredicateObjectMap_1dc1abf6-f5f7-4548-b02e-e8bd826b9583 rr:predicate schema:offers .
+
+km-dev:RefObjectMap_3ec043c0-7758-4e80-8b6e-f9e6ef2b561c a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_97bd6ed6-9012-4427-a722-4173a826a67f ;
+	km-dev:isPartOfMapping _:node1a0gdlmhax1 .
+
+_:node1a0gdlmhax1 km-dev:hasObjectMap km-dev:RefObjectMap_3ec043c0-7758-4e80-8b6e-f9e6ef2b561c .
+
+km-dev:PredicateObjectMap_1dc1abf6-f5f7-4548-b02e-e8bd826b9583 rr:objectMap km-dev:RefObjectMap_3ec043c0-7758-4e80-8b6e-f9e6ef2b561c .
+
+km-dev:TriplesMap_0be08142-1502-4f5a-a223-3a267033e4b3 rr:predicateObjectMap km-dev:PredicateObjectMap_1dc1abf6-f5f7-4548-b02e-e8bd826b9583 .
+
+km-dev:PredicateObjectMap_1dc1abf6-f5f7-4548-b02e-e8bd826b9583 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node1a0gdlmhax1 .
+
+_:node1a0gdlmhax1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_1dc1abf6-f5f7-4548-b02e-e8bd826b9583 .
+
+km-dev:TriplesMap_97bd6ed6-9012-4427-a722-4173a826a67f a rr:TriplesMap .
+
+_:node1a0gdlmhax1 km-dev:hasTriplesMap km-dev:TriplesMap_97bd6ed6-9012-4427-a722-4173a826a67f .
+
+km-dev:TriplesMap_97bd6ed6-9012-4427-a722-4173a826a67f km-dev:isPartOfMapping _:node1a0gdlmhax1 .
+
+_:node1a0gdlmhax5 rr:tableName "ht-crf-eyes-hair.json" ;
+	a rr:LogicalTable ;
+	km-dev:isPartOfMapping _:node1a0gdlmhax1 .
+
+_:node1a0gdlmhax1 km-dev:hasLogicalTable _:node1a0gdlmhax5 .
+
+km-dev:TriplesMap_97bd6ed6-9012-4427-a722-4173a826a67f rr:logicalTable _:node1a0gdlmhax5 ;
+	rr:subjectMap _:node1a0gdlmhax6 .
+
+_:node1a0gdlmhax1 km-dev:hasSubjectMap _:node1a0gdlmhax6 .
+
+_:node1a0gdlmhax6 km-dev:isPartOfMapping _:node1a0gdlmhax1 ;
+	a rr:SubjectMap ;
+	km-dev:alignmentNodeId "http://schema.org/Offer1" ;
+	rr:class schema:Offer ;
+	rr:template "{offer_uri}" .
+
+km-dev:PredicateObjectMap_9926f42c-b382-4b70-96c7-c3918eeb8d90 rr:predicate schema:itemOffered .
+
+km-dev:RefObjectMap_6701383c-f877-42c8-b8f9-4b42ebf9fb5b a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_0be08142-1502-4f5a-a223-3a267033e4b3 ;
+	km-dev:isPartOfMapping _:node1a0gdlmhax1 .
+
+_:node1a0gdlmhax1 km-dev:hasObjectMap km-dev:RefObjectMap_6701383c-f877-42c8-b8f9-4b42ebf9fb5b .
+
+km-dev:PredicateObjectMap_9926f42c-b382-4b70-96c7-c3918eeb8d90 rr:objectMap km-dev:RefObjectMap_6701383c-f877-42c8-b8f9-4b42ebf9fb5b .
+
+km-dev:TriplesMap_97bd6ed6-9012-4427-a722-4173a826a67f rr:predicateObjectMap km-dev:PredicateObjectMap_9926f42c-b382-4b70-96c7-c3918eeb8d90 .
+
+km-dev:PredicateObjectMap_9926f42c-b382-4b70-96c7-c3918eeb8d90 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node1a0gdlmhax1 .
+
+_:node1a0gdlmhax1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_9926f42c-b382-4b70-96c7-c3918eeb8d90 .
