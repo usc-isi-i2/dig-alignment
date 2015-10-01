@@ -42,9 +42,9 @@ return clean_eyes(getValue("eyes"))
 #### _adultservice_uri_
 From column: __source / offer_uri_
 >``` python
-uri = genericUri(getValue("posttime_epoch"),getValue("modtime_epoch"),getValue("url"))
+uri = genericUri("","",getValue("url"))
 
-return uri + "/adultservice"
+return uri + "adultservice"
 ```
 
 #### _webpage_uri_
@@ -120,9 +120,9 @@ return clean_place_name(getValue("clean_city"),getValue("clean_state"),getValue(
 #### _personororg_uri_
 From column: __source / place_uri_
 >``` python
-uri = genericUri(getValue("posttime_epoch"),getValue("modtime_epoch"),getValue("url"))
+uri = genericUri("","",getValue("url"))
 
-return uri + "/personororganization"
+return uri + "personororganization"
 ```
 
 #### _clean_rate60_
