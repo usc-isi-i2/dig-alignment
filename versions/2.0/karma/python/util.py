@@ -370,3 +370,25 @@ def add_state(location, state):
         return loc
     else:
         return loc + ", " + state
+
+def get_string(str, start, end):
+    if(len(str) > start):
+        str = str[start:]
+    if end > len(str):
+        return str
+    return str[0:end+1]
+
+def get_decimal_coodinate(lat):
+    result = 0
+    x = get_string(lat, 0, 1)
+    if x:
+        result += int(x)
+    x = get_string(lat, 2, 3)
+    if x:
+        result += int(x)/float("60")
+    x = get_string(lat, 3, 4)
+    if x:
+        result += int(x)/float("3600")
+    return str(result)
+
+
