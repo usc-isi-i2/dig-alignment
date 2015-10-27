@@ -371,6 +371,13 @@ def add_state(location, state):
     else:
         return loc + ", " + state
 
+def get_eye_hair_feature_name(value):
+    if value.strip() == "person_haircolor" or value.strip() == "hairColor":
+        return "hairColor"
+    elif value.strip() == "person_eyecolor" or value.strip() == "eyeColor":
+        return "eyeColor"
+    return ''
+
 def get_string(str, start, end):
     if(len(str) > start):
         str = str[start:]
@@ -390,5 +397,4 @@ def get_decimal_coodinate(lat):
     if x:
         result += int(x)/float("3600")
     return str(result)
-
 
