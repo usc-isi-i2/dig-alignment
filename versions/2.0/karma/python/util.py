@@ -398,3 +398,25 @@ def get_decimal_coodinate(lat):
         result += int(x)/float("3600")
     return str(result)
 
+def parse_latitude_longitude(latlon):
+    #Examples: LATMIN:2310N04350W
+    # LATDEC:351025.3N0790125.7W
+    idx = latlon.find(":")
+    if idx != -1:
+        type = latlon[0:idx]
+        latlon = latlon[idx+1:]
+        idx = latlon.find("-")
+        if idx != -1:
+            lat = latlon[0:idx-1]
+            lon = latlon[idx+2:]
+        else:
+            latlon = re.sub('[^0-9\.]+', ',', latlon)
+            latlons = latlon.split(",")
+            lat = latlons[0]
+            lon = latlons[1]
+        if type == "LATMIN":
+            return [get_decimal_coodinate(lat), get_decimal_coodinate(lon)]
+        else:
+            return [lat, lon]
+
+    return [-1,-1]
