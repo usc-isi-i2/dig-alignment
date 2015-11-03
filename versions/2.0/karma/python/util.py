@@ -379,11 +379,11 @@ def get_eye_hair_feature_name(value):
     return ''
 
 def get_string(str, start, end):
-    if(len(str) > start):
-        str = str[start:]
+    if(len(str) < start):
+        return ''
     if end > len(str):
-        return str
-    return str[0:end+1]
+        return str[start:]
+    return str[start:end+1]
 
 def get_decimal_coodinate(lat):
     result = 0
@@ -393,7 +393,7 @@ def get_decimal_coodinate(lat):
     x = get_string(lat, 2, 3)
     if x:
         result += int(x)/float("60")
-    x = get_string(lat, 3, 4)
+    x = get_string(lat, 4, 5)
     if x:
         result += int(x)/float("3600")
     return str(result)
