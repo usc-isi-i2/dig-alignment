@@ -414,7 +414,7 @@ def parse_latitude_longitude(latlon):
             latlons = latlon.split(",")
             lat = latlons[0]
             lon = latlons[1]
-        if type == "LATMIN":
+        if type == "LATMIN" or type == "LATDEC":
             return [get_decimal_coodinate(lat), get_decimal_coodinate(lon)]
         else:
             return [lat, lon]
