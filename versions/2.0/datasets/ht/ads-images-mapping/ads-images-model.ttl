@@ -1,6 +1,7 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix scharp: <http://scharp.usc.isi.edu/ontology/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
@@ -12,12 +13,12 @@
 @prefix rr: <http://www.w3.org/ns/r2rml#> .
 @prefix km-dev: <http://isi.edu/integration/karma/dev#> .
 
-_:node1a3d7d7nsx1 a km-dev:R2RMLMapping ;
+_:node1a3fhga4ox1 a km-dev:R2RMLMapping ;
 	km-dev:sourceName "ads-images-map.json" ;
-	km-dev:modelPublicationTime "1446774218492"^^xsd:long ;
+	km-dev:modelPublicationTime "1446851913880"^^xsd:long ;
 	km-dev:modelVersion "1.7" ;
-	km-dev:hasInputColumns "[[{\"columnName\":\"original_url\"}],[{\"columnName\":\"images_id\"}],[{\"columnName\":\"s3_url\"}],[{\"columnName\":\"ads_url\"}]]" ;
-	km-dev:hasOutputColumns "[[{\"columnName\":\"adultservice_uri\"}],[{\"columnName\":\"original_url\"}],[{\"columnName\":\"images_uri\"}],[{\"columnName\":\"s3_url\"}]]" ;
+	km-dev:hasInputColumns "[[{\"columnName\":\"ads_url\"}],[{\"columnName\":\"s3_url\"}],[{\"columnName\":\"images_id\"}],[{\"columnName\":\"ads_id\"}],[{\"columnName\":\"original_url\"}]]" ;
+	km-dev:hasOutputColumns "[[{\"columnName\":\"Glue_1\"}],[{\"columnName\":\"Glue_1\"},{\"columnName\":\"image_dist_Values\"}],[{\"columnName\":\"s3_url\"}],[{\"columnName\":\"Glue_1\"},{\"columnName\":\"similar_image_ids_Values\"}],[{\"columnName\":\"Glue_1\"},{\"columnName\":\"image_dist_clean_values\"}],[{\"columnName\":\"Glue_1\"},{\"columnName\":\"role_uri\"}],[{\"columnName\":\"original_url\"}],[{\"columnName\":\"images_uri\"}],[{\"columnName\":\"Glue_1\"},{\"columnName\":\"similar_image_uri\"}],[{\"columnName\":\"adultservice_uri\"}]]" ;
 	km-dev:hasModelLabel "ads-images-map.json" ;
 	km-dev:hasWorksheetHistory """[
     {
@@ -125,6 +126,318 @@ _:node1a3d7d7nsx1 a km-dev:R2RMLMapping ;
         \"commandName\": \"SubmitPythonTransformationCommand\"
     },
     {
+        \"tags\": [\"Transformation\"],
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"columbia_near_dups_dist\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"delimiter\",
+                \"value\": \",\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newColName\",
+                \"value\": \"image_dist\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newHNodeId\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SplitValuesCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"columbia_near_dups\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"delimiter\",
+                \"value\": \",\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newColName\",
+                \"value\": \"similar_image_ids\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newHNodeId\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SplitValuesCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"similar_image_ids\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"values\",
+                \"value\": [
+                    {
+                        \"name\": \"checked\",
+                        \"value\": [{\"columnName\": \"similar_image_ids\"}],
+                        \"type\": \"hNodeId\"
+                    },
+                    {
+                        \"name\": \"checked\",
+                        \"value\": [{\"columnName\": \"image_dist\"}],
+                        \"type\": \"hNodeId\"
+                    }
+                ],
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"ImplMethod\",
+                \"value\": \"Longest\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"Glue_1\\\"}]},{\\\"value\\\":[{\\\"columnName\\\":\\\"Glue_1\\\"},{\\\"columnName\\\":\\\"image_dist_Values\\\"}]},{\\\"value\\\":[{\\\"columnName\\\":\\\"Glue_1\\\"},{\\\"columnName\\\":\\\"similar_image_ids_Values\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"GlueCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"Glue_1\"},
+                    {\"columnName\": \"similar_image_ids_Values\"}
+                ],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"value\": \"similar_image_uri\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"value\": \"return \\\"image/\\\" + getValue(\\\"similar_image_ids_Values\\\")\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"isJSONOutput\",
+                \"value\": \"false\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"Glue_1\\\"},{\\\"columnName\\\":\\\"similar_image_ids_Values\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"Glue_1\\\"},{\\\"columnName\\\":\\\"similar_image_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SubmitPythonTransformationCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"Glue_1\"},
+                    {\"columnName\": \"image_dist_Values\"}
+                ],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"value\": \"role_uri\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"value\": \"return uri_from_fields('role_', getValue(\\\"similar_image_ids_Values\\\"),getValue(\\\"images_id\\\"),getValue(\\\"ads_id\\\"))\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"isJSONOutput\",
+                \"value\": \"false\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"Glue_1\\\"},{\\\"columnName\\\":\\\"similar_image_ids_Values\\\"}]},{\\\"value\\\":[{\\\"columnName\\\":\\\"images_id\\\"}]},{\\\"value\\\":[{\\\"columnName\\\":\\\"ads_id\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"Glue_1\\\"},{\\\"columnName\\\":\\\"role_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SubmitPythonTransformationCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"Glue_1\"},
+                    {\"columnName\": \"image_dist_Values\"}
+                ],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"value\": \"image_dist_clean_values\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"value\": \"return '{0:.15f}'.format(float(getValue(\\\"image_dist_Values\\\")))\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"isJSONOutput\",
+                \"value\": \"false\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"Glue_1\\\"},{\\\"columnName\\\":\\\"image_dist_Values\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"Glue_1\\\"},{\\\"columnName\\\":\\\"image_dist_clean_values\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SubmitPythonTransformationCommand\"
+    },
+    {
         \"tags\": [\"SemanticType\"],
         \"model\": \"new\",
         \"inputParameters\": [
@@ -161,8 +474,8 @@ _:node1a3d7d7nsx1 a km-dev:R2RMLMapping ;
             {
                 \"name\": \"SemanticTypesArray\",
                 \"value\": [{
-                    \"isPrimary\": true,
                     \"FullType\": \"http://isi.edu/integration/karma/dev#classLink\",
+                    \"isPrimary\": true,
                     \"DomainLabel\": \"schema:ImageObject1 (add)\",
                     \"DomainId\": \"http://schema.org/ImageObject1\",
                     \"DomainUri\": \"http://schema.org/ImageObject\"
@@ -214,8 +527,8 @@ _:node1a3d7d7nsx1 a km-dev:R2RMLMapping ;
             {
                 \"name\": \"SemanticTypesArray\",
                 \"value\": [{
-                    \"isPrimary\": true,
                     \"FullType\": \"http://schema.org/url\",
+                    \"isPrimary\": true,
                     \"DomainLabel\": \"schema:ImageObject1\",
                     \"DomainId\": \"http://schema.org/ImageObject1\",
                     \"DomainUri\": \"http://schema.org/ImageObject\"
@@ -267,8 +580,8 @@ _:node1a3d7d7nsx1 a km-dev:R2RMLMapping ;
             {
                 \"name\": \"SemanticTypesArray\",
                 \"value\": [{
-                    \"isPrimary\": true,
                     \"FullType\": \"http://schema.org/targetUrl\",
+                    \"isPrimary\": true,
                     \"DomainLabel\": \"schema:ImageObject1\",
                     \"DomainId\": \"http://schema.org/ImageObject1\",
                     \"DomainUri\": \"http://schema.org/ImageObject\"
@@ -335,8 +648,8 @@ _:node1a3d7d7nsx1 a km-dev:R2RMLMapping ;
             {
                 \"name\": \"SemanticTypesArray\",
                 \"value\": [{
-                    \"isPrimary\": true,
                     \"FullType\": \"http://isi.edu/integration/karma/dev#classLink\",
+                    \"isPrimary\": true,
                     \"DomainLabel\": \"memex:AdultService1 (add)\",
                     \"DomainId\": \"http://memexproxy.com/ontology/AdultService1\",
                     \"DomainUri\": \"http://memexproxy.com/ontology/AdultService\"
@@ -367,6 +680,204 @@ _:node1a3d7d7nsx1 a km-dev:R2RMLMapping ;
         \"commandName\": \"SetMetaPropertyCommand\"
     },
     {
+        \"tags\": [\"SemanticType\"],
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"Glue_1\"},
+                    {\"columnName\": \"role_uri\"}
+                ],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyName\",
+                \"value\": \"isUriOfClass\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyUri\",
+                \"value\": \"http://schema.org/Role\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyId\",
+                \"value\": \"http://schema.org/Role1\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"FullType\": \"http://isi.edu/integration/karma/dev#classLink\",
+                    \"isPrimary\": true,
+                    \"DomainLabel\": \"schema:Role1\",
+                    \"DomainId\": \"http://schema.org/Role1\",
+                    \"DomainUri\": \"http://schema.org/Role\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": true,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"Glue_1\\\"},{\\\"columnName\\\":\\\"role_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"Glue_1\\\"},{\\\"columnName\\\":\\\"role_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetMetaPropertyCommand\"
+    },
+    {
+        \"tags\": [\"SemanticType\"],
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"Glue_1\"},
+                    {\"columnName\": \"similar_image_uri\"}
+                ],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyName\",
+                \"value\": \"isUriOfClass\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyUri\",
+                \"value\": \"http://schema.org/ImageObject\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyId\",
+                \"value\": \"http://schema.org/ImageObject2\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"FullType\": \"http://isi.edu/integration/karma/dev#classLink\",
+                    \"isPrimary\": true,
+                    \"DomainLabel\": \"schema:ImageObject2\",
+                    \"DomainId\": \"http://schema.org/ImageObject2\",
+                    \"DomainUri\": \"http://schema.org/ImageObject\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": true,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"Glue_1\\\"},{\\\"columnName\\\":\\\"similar_image_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"Glue_1\\\"},{\\\"columnName\\\":\\\"similar_image_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetMetaPropertyCommand\"
+    },
+    {
+        \"tags\": [\"SemanticType\"],
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"Glue_1\"},
+                    {\"columnName\": \"image_dist_clean_values\"}
+                ],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"FullType\": \"http://memexproxy.com/ontology/similarityScore\",
+                    \"isPrimary\": true,
+                    \"DomainLabel\": \"schema:Role1\",
+                    \"DomainId\": \"http://schema.org/Role1\",
+                    \"DomainUri\": \"http://schema.org/Role\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": true,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"Glue_1\\\"},{\\\"columnName\\\":\\\"image_dist_clean_values\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"Glue_1\\\"},{\\\"columnName\\\":\\\"image_dist_clean_values\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetSemanticTypeCommand\"
+    },
+    {
         \"tags\": [\"Modeling\"],
         \"model\": \"new\",
         \"inputParameters\": [
@@ -395,9 +906,212 @@ _:node1a3d7d7nsx1 a km-dev:R2RMLMapping ;
                 \"value\": [{
                     \"edgeTargetUri\": \"http://schema.org/ImageObject\",
                     \"edgeId\": \"http://schema.org/image\",
-                    \"edgeTargetId\": \"http://schema.org/ImageObject1\",
                     \"edgeSourceId\": \"http://memexproxy.com/ontology/AdultService1\",
+                    \"edgeTargetId\": \"http://schema.org/ImageObject1\",
                     \"edgeSourceUri\": \"http://memexproxy.com/ontology/AdultService\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"ChangeInternalNodeLinksCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"initialEdges\",
+                \"value\": [],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"alignmentId\",
+                \"value\": \"WSP1:WS1AL\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newEdges\",
+                \"value\": [{
+                    \"edgeTargetUri\": \"http://schema.org/ImageObject\",
+                    \"edgeId\": \"http://schema.org/isSimilarTo\",
+                    \"edgeSourceId\": \"http://schema.org/ImageObject1\",
+                    \"edgeTargetId\": \"http://schema.org/ImageObject2\",
+                    \"edgeSourceUri\": \"http://schema.org/ImageObject\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"ChangeInternalNodeLinksCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"initialEdges\",
+                \"value\": [],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"alignmentId\",
+                \"value\": \"WSP1:WS1AL\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newEdges\",
+                \"value\": [{
+                    \"edgeTargetUri\": \"http://schema.org/Role\",
+                    \"edgeId\": \"http://schema.org/isSimilarTo\",
+                    \"edgeSourceId\": \"http://schema.org/ImageObject1\",
+                    \"edgeTargetId\": \"http://schema.org/Role1\",
+                    \"edgeSourceUri\": \"http://schema.org/ImageObject\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"ChangeInternalNodeLinksCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"initialEdges\",
+                \"value\": [],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"alignmentId\",
+                \"value\": \"WSP1:WS1AL\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newEdges\",
+                \"value\": [{
+                    \"edgeTargetUri\": \"http://schema.org/ImageObject\",
+                    \"edgeId\": \"http://schema.org/isSimilarTo\",
+                    \"edgeSourceId\": \"http://schema.org/Role1\",
+                    \"edgeTargetId\": \"http://schema.org/ImageObject2\",
+                    \"edgeSourceUri\": \"http://schema.org/Role\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"ChangeInternalNodeLinksCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"initialEdges\",
+                \"value\": [
+                    {
+                        \"edgeId\": \"http://schema.org/isSimilarTo\",
+                        \"edgeSourceId\": \"http://schema.org/Role1\",
+                        \"edgeTargetId\": \"http://schema.org/ImageObject2\"
+                    },
+                    {
+                        \"edgeId\": \"http://schema.org/isSimilarTo\",
+                        \"edgeSourceId\": \"http://schema.org/ImageObject1\",
+                        \"edgeTargetId\": \"http://schema.org/ImageObject2\"
+                    }
+                ],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"alignmentId\",
+                \"value\": \"WSP1:WS1AL\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newEdges\",
+                \"value\": [{
+                    \"edgeTargetUri\": \"http://schema.org/ImageObject\",
+                    \"edgeId\": \"http://schema.org/isSimilarTo\",
+                    \"edgeSourceId\": \"http://schema.org/Role1\",
+                    \"edgeTargetId\": \"http://schema.org/ImageObject2\",
+                    \"edgeSourceUri\": \"http://schema.org/Role\"
                 }],
                 \"type\": \"other\"
             },
@@ -416,100 +1130,197 @@ _:node1a3d7d7nsx1 a km-dev:R2RMLMapping ;
     }
 ]""" .
 
-km-dev:TriplesMap_5663ac17-e536-4183-8c3c-3d7d0d31aab8 a rr:TriplesMap .
+km-dev:TriplesMap_f007423d-c89d-4cc4-8be4-a3680231a3d5 a rr:TriplesMap .
 
-_:node1a3d7d7nsx1 km-dev:hasTriplesMap km-dev:TriplesMap_5663ac17-e536-4183-8c3c-3d7d0d31aab8 .
+_:node1a3fhga4ox1 km-dev:hasTriplesMap km-dev:TriplesMap_f007423d-c89d-4cc4-8be4-a3680231a3d5 .
 
-km-dev:TriplesMap_5663ac17-e536-4183-8c3c-3d7d0d31aab8 km-dev:isPartOfMapping _:node1a3d7d7nsx1 .
+km-dev:TriplesMap_f007423d-c89d-4cc4-8be4-a3680231a3d5 km-dev:isPartOfMapping _:node1a3fhga4ox1 .
 
-_:node1a3d7d7nsx2 rr:tableName "ads-images-map.json" ;
+_:node1a3fhga4ox2 rr:tableName "ads-images-map.json" ;
 	a rr:LogicalTable ;
-	km-dev:isPartOfMapping _:node1a3d7d7nsx1 .
+	km-dev:isPartOfMapping _:node1a3fhga4ox1 .
 
-_:node1a3d7d7nsx1 km-dev:hasLogicalTable _:node1a3d7d7nsx2 .
+_:node1a3fhga4ox1 km-dev:hasLogicalTable _:node1a3fhga4ox2 .
 
-km-dev:TriplesMap_5663ac17-e536-4183-8c3c-3d7d0d31aab8 rr:logicalTable _:node1a3d7d7nsx2 ;
-	rr:subjectMap _:node1a3d7d7nsx3 .
+km-dev:TriplesMap_f007423d-c89d-4cc4-8be4-a3680231a3d5 rr:logicalTable _:node1a3fhga4ox2 ;
+	rr:subjectMap _:node1a3fhga4ox3 .
 
-_:node1a3d7d7nsx1 km-dev:hasSubjectMap _:node1a3d7d7nsx3 .
+_:node1a3fhga4ox1 km-dev:hasSubjectMap _:node1a3fhga4ox3 .
 
-_:node1a3d7d7nsx3 km-dev:isPartOfMapping _:node1a3d7d7nsx1 ;
+_:node1a3fhga4ox3 km-dev:isPartOfMapping _:node1a3fhga4ox1 ;
 	a rr:SubjectMap ;
 	km-dev:alignmentNodeId "http://memexproxy.com/ontology/AdultService1" ;
 	rr:class memex:AdultService ;
 	rr:template "{adultservice_uri}" ;
 	a km-dev:steinerTreeRootNode .
 
-km-dev:PredicateObjectMap_2df9c520-57ec-4b9c-ad65-a17fe7d7c8dd rr:predicate schema:image .
+km-dev:PredicateObjectMap_4bc3946c-209e-4e12-9969-315ba633d13d rr:predicate schema:image .
 
-km-dev:RefObjectMap_7d263a18-6a19-4f3d-beff-e214ae83c0b7 a rr:RefObjectMap , rr:ObjectMap ;
-	rr:parentTriplesMap km-dev:TriplesMap_d0694ee6-15e6-4ddf-b634-35e992d55126 ;
-	km-dev:isPartOfMapping _:node1a3d7d7nsx1 .
+km-dev:RefObjectMap_ed5761ea-4c99-4288-8669-6dd41bd1d4fe a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_c9fccdf4-885f-4ac1-b061-a54c971d271c ;
+	km-dev:isPartOfMapping _:node1a3fhga4ox1 .
 
-_:node1a3d7d7nsx1 km-dev:hasObjectMap km-dev:RefObjectMap_7d263a18-6a19-4f3d-beff-e214ae83c0b7 .
+_:node1a3fhga4ox1 km-dev:hasObjectMap km-dev:RefObjectMap_ed5761ea-4c99-4288-8669-6dd41bd1d4fe .
 
-km-dev:PredicateObjectMap_2df9c520-57ec-4b9c-ad65-a17fe7d7c8dd rr:objectMap km-dev:RefObjectMap_7d263a18-6a19-4f3d-beff-e214ae83c0b7 .
+km-dev:PredicateObjectMap_4bc3946c-209e-4e12-9969-315ba633d13d rr:objectMap km-dev:RefObjectMap_ed5761ea-4c99-4288-8669-6dd41bd1d4fe .
 
-km-dev:TriplesMap_5663ac17-e536-4183-8c3c-3d7d0d31aab8 rr:predicateObjectMap km-dev:PredicateObjectMap_2df9c520-57ec-4b9c-ad65-a17fe7d7c8dd .
+km-dev:TriplesMap_f007423d-c89d-4cc4-8be4-a3680231a3d5 rr:predicateObjectMap km-dev:PredicateObjectMap_4bc3946c-209e-4e12-9969-315ba633d13d .
 
-km-dev:PredicateObjectMap_2df9c520-57ec-4b9c-ad65-a17fe7d7c8dd a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node1a3d7d7nsx1 .
+km-dev:PredicateObjectMap_4bc3946c-209e-4e12-9969-315ba633d13d a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node1a3fhga4ox1 .
 
-_:node1a3d7d7nsx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_2df9c520-57ec-4b9c-ad65-a17fe7d7c8dd .
+_:node1a3fhga4ox1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_4bc3946c-209e-4e12-9969-315ba633d13d .
 
-km-dev:TriplesMap_d0694ee6-15e6-4ddf-b634-35e992d55126 a rr:TriplesMap .
+km-dev:TriplesMap_c9fccdf4-885f-4ac1-b061-a54c971d271c a rr:TriplesMap .
 
-_:node1a3d7d7nsx1 km-dev:hasTriplesMap km-dev:TriplesMap_d0694ee6-15e6-4ddf-b634-35e992d55126 .
+_:node1a3fhga4ox1 km-dev:hasTriplesMap km-dev:TriplesMap_c9fccdf4-885f-4ac1-b061-a54c971d271c .
 
-km-dev:TriplesMap_d0694ee6-15e6-4ddf-b634-35e992d55126 km-dev:isPartOfMapping _:node1a3d7d7nsx1 .
+km-dev:TriplesMap_c9fccdf4-885f-4ac1-b061-a54c971d271c km-dev:isPartOfMapping _:node1a3fhga4ox1 .
 
-_:node1a3d7d7nsx4 rr:tableName "ads-images-map.json" ;
+_:node1a3fhga4ox4 rr:tableName "ads-images-map.json" ;
 	a rr:LogicalTable ;
-	km-dev:isPartOfMapping _:node1a3d7d7nsx1 .
+	km-dev:isPartOfMapping _:node1a3fhga4ox1 .
 
-_:node1a3d7d7nsx1 km-dev:hasLogicalTable _:node1a3d7d7nsx4 .
+_:node1a3fhga4ox1 km-dev:hasLogicalTable _:node1a3fhga4ox4 .
 
-km-dev:TriplesMap_d0694ee6-15e6-4ddf-b634-35e992d55126 rr:logicalTable _:node1a3d7d7nsx4 ;
-	rr:subjectMap _:node1a3d7d7nsx5 .
+km-dev:TriplesMap_c9fccdf4-885f-4ac1-b061-a54c971d271c rr:logicalTable _:node1a3fhga4ox4 ;
+	rr:subjectMap _:node1a3fhga4ox5 .
 
-_:node1a3d7d7nsx1 km-dev:hasSubjectMap _:node1a3d7d7nsx5 .
+_:node1a3fhga4ox1 km-dev:hasSubjectMap _:node1a3fhga4ox5 .
 
-_:node1a3d7d7nsx5 km-dev:isPartOfMapping _:node1a3d7d7nsx1 ;
+_:node1a3fhga4ox5 km-dev:isPartOfMapping _:node1a3fhga4ox1 ;
 	a rr:SubjectMap ;
 	km-dev:alignmentNodeId "http://schema.org/ImageObject1" ;
 	rr:class schema:ImageObject ;
 	rr:template "image/{images_id}" .
 
-km-dev:PredicateObjectMap_a6a0355f-fd33-46bc-b4a0-bc1bd653d764 rr:predicate schema:targetUrl .
+km-dev:PredicateObjectMap_83e704c7-4c0b-4fe7-839b-6e64b11d48f0 rr:predicate schema:isSimilarTo .
 
-_:node1a3d7d7nsx6 rr:column "original_url" ;
+km-dev:RefObjectMap_c3fdcf59-9efb-47cc-84f6-a22ba38c87e5 a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_5acab0f3-b34f-4f72-a0b0-a4ba972f0140 ;
+	km-dev:isPartOfMapping _:node1a3fhga4ox1 .
+
+_:node1a3fhga4ox1 km-dev:hasObjectMap km-dev:RefObjectMap_c3fdcf59-9efb-47cc-84f6-a22ba38c87e5 .
+
+km-dev:PredicateObjectMap_83e704c7-4c0b-4fe7-839b-6e64b11d48f0 rr:objectMap km-dev:RefObjectMap_c3fdcf59-9efb-47cc-84f6-a22ba38c87e5 .
+
+km-dev:TriplesMap_c9fccdf4-885f-4ac1-b061-a54c971d271c rr:predicateObjectMap km-dev:PredicateObjectMap_83e704c7-4c0b-4fe7-839b-6e64b11d48f0 .
+
+km-dev:PredicateObjectMap_83e704c7-4c0b-4fe7-839b-6e64b11d48f0 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node1a3fhga4ox1 .
+
+_:node1a3fhga4ox1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_83e704c7-4c0b-4fe7-839b-6e64b11d48f0 .
+
+km-dev:PredicateObjectMap_c9fab9d5-b0c2-44a9-bda2-2b866c2bd1ff rr:predicate schema:targetUrl .
+
+_:node1a3fhga4ox6 rr:column "original_url" ;
 	a rr:ObjectMap ;
-	km-dev:isPartOfMapping _:node1a3d7d7nsx1 .
+	km-dev:isPartOfMapping _:node1a3fhga4ox1 .
 
-_:node1a3d7d7nsx1 km-dev:hasObjectMap _:node1a3d7d7nsx6 .
+_:node1a3fhga4ox1 km-dev:hasObjectMap _:node1a3fhga4ox6 .
 
-km-dev:PredicateObjectMap_a6a0355f-fd33-46bc-b4a0-bc1bd653d764 rr:objectMap _:node1a3d7d7nsx6 .
+km-dev:PredicateObjectMap_c9fab9d5-b0c2-44a9-bda2-2b866c2bd1ff rr:objectMap _:node1a3fhga4ox6 .
 
-km-dev:TriplesMap_d0694ee6-15e6-4ddf-b634-35e992d55126 rr:predicateObjectMap km-dev:PredicateObjectMap_a6a0355f-fd33-46bc-b4a0-bc1bd653d764 .
+km-dev:TriplesMap_c9fccdf4-885f-4ac1-b061-a54c971d271c rr:predicateObjectMap km-dev:PredicateObjectMap_c9fab9d5-b0c2-44a9-bda2-2b866c2bd1ff .
 
-km-dev:PredicateObjectMap_a6a0355f-fd33-46bc-b4a0-bc1bd653d764 a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node1a3d7d7nsx1 .
+km-dev:PredicateObjectMap_c9fab9d5-b0c2-44a9-bda2-2b866c2bd1ff a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node1a3fhga4ox1 .
 
-_:node1a3d7d7nsx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_a6a0355f-fd33-46bc-b4a0-bc1bd653d764 .
+_:node1a3fhga4ox1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_c9fab9d5-b0c2-44a9-bda2-2b866c2bd1ff .
 
-km-dev:PredicateObjectMap_2377396d-a366-4df2-9def-4f04d621c802 rr:predicate schema:url .
+km-dev:PredicateObjectMap_1fa1c837-585b-447d-bd69-00534c1f9c3a rr:predicate schema:url .
 
-_:node1a3d7d7nsx7 rr:column "s3_url" ;
+_:node1a3fhga4ox7 rr:column "s3_url" ;
 	a rr:ObjectMap ;
-	km-dev:isPartOfMapping _:node1a3d7d7nsx1 .
+	km-dev:isPartOfMapping _:node1a3fhga4ox1 .
 
-_:node1a3d7d7nsx1 km-dev:hasObjectMap _:node1a3d7d7nsx7 .
+_:node1a3fhga4ox1 km-dev:hasObjectMap _:node1a3fhga4ox7 .
 
-km-dev:PredicateObjectMap_2377396d-a366-4df2-9def-4f04d621c802 rr:objectMap _:node1a3d7d7nsx7 .
+km-dev:PredicateObjectMap_1fa1c837-585b-447d-bd69-00534c1f9c3a rr:objectMap _:node1a3fhga4ox7 .
 
-km-dev:TriplesMap_d0694ee6-15e6-4ddf-b634-35e992d55126 rr:predicateObjectMap km-dev:PredicateObjectMap_2377396d-a366-4df2-9def-4f04d621c802 .
+km-dev:TriplesMap_c9fccdf4-885f-4ac1-b061-a54c971d271c rr:predicateObjectMap km-dev:PredicateObjectMap_1fa1c837-585b-447d-bd69-00534c1f9c3a .
 
-km-dev:PredicateObjectMap_2377396d-a366-4df2-9def-4f04d621c802 a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node1a3d7d7nsx1 .
+km-dev:PredicateObjectMap_1fa1c837-585b-447d-bd69-00534c1f9c3a a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node1a3fhga4ox1 .
 
-_:node1a3d7d7nsx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_2377396d-a366-4df2-9def-4f04d621c802 .
+_:node1a3fhga4ox1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_1fa1c837-585b-447d-bd69-00534c1f9c3a .
+
+km-dev:TriplesMap_5acab0f3-b34f-4f72-a0b0-a4ba972f0140 a rr:TriplesMap .
+
+_:node1a3fhga4ox1 km-dev:hasTriplesMap km-dev:TriplesMap_5acab0f3-b34f-4f72-a0b0-a4ba972f0140 .
+
+km-dev:TriplesMap_5acab0f3-b34f-4f72-a0b0-a4ba972f0140 km-dev:isPartOfMapping _:node1a3fhga4ox1 .
+
+_:node1a3fhga4ox8 rr:tableName "ads-images-map.json" ;
+	a rr:LogicalTable ;
+	km-dev:isPartOfMapping _:node1a3fhga4ox1 .
+
+_:node1a3fhga4ox1 km-dev:hasLogicalTable _:node1a3fhga4ox8 .
+
+km-dev:TriplesMap_5acab0f3-b34f-4f72-a0b0-a4ba972f0140 rr:logicalTable _:node1a3fhga4ox8 ;
+	rr:subjectMap _:node1a3fhga4ox9 .
+
+_:node1a3fhga4ox1 km-dev:hasSubjectMap _:node1a3fhga4ox9 .
+
+_:node1a3fhga4ox9 km-dev:isPartOfMapping _:node1a3fhga4ox1 ;
+	a rr:SubjectMap ;
+	km-dev:alignmentNodeId "http://schema.org/Role1" ;
+	rr:class schema:Role ;
+	rr:template "{[\"Glue_1\",\"role_uri\"]}" .
+
+km-dev:PredicateObjectMap_7c0234cf-7583-4025-8dbd-b2d828a92f8d rr:predicate memex:similarityScore .
+
+_:node1a3fhga4ox10 rr:column "[\"Glue_1\",\"image_dist_clean_values\"]" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node1a3fhga4ox1 .
+
+_:node1a3fhga4ox1 km-dev:hasObjectMap _:node1a3fhga4ox10 .
+
+km-dev:PredicateObjectMap_7c0234cf-7583-4025-8dbd-b2d828a92f8d rr:objectMap _:node1a3fhga4ox10 .
+
+km-dev:TriplesMap_5acab0f3-b34f-4f72-a0b0-a4ba972f0140 rr:predicateObjectMap km-dev:PredicateObjectMap_7c0234cf-7583-4025-8dbd-b2d828a92f8d .
+
+km-dev:PredicateObjectMap_7c0234cf-7583-4025-8dbd-b2d828a92f8d a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node1a3fhga4ox1 .
+
+_:node1a3fhga4ox1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_7c0234cf-7583-4025-8dbd-b2d828a92f8d .
+
+km-dev:PredicateObjectMap_02830ad5-d5c0-4df1-9eb6-2667a2a68bc7 rr:predicate schema:isSimilarTo .
+
+km-dev:RefObjectMap_f6683c6a-93e2-48b3-af5d-4416053eb72b a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_63dccd94-ef5a-4dc6-9499-4161651fc3b0 ;
+	km-dev:isPartOfMapping _:node1a3fhga4ox1 .
+
+_:node1a3fhga4ox1 km-dev:hasObjectMap km-dev:RefObjectMap_f6683c6a-93e2-48b3-af5d-4416053eb72b .
+
+km-dev:PredicateObjectMap_02830ad5-d5c0-4df1-9eb6-2667a2a68bc7 rr:objectMap km-dev:RefObjectMap_f6683c6a-93e2-48b3-af5d-4416053eb72b .
+
+km-dev:TriplesMap_5acab0f3-b34f-4f72-a0b0-a4ba972f0140 rr:predicateObjectMap km-dev:PredicateObjectMap_02830ad5-d5c0-4df1-9eb6-2667a2a68bc7 .
+
+km-dev:PredicateObjectMap_02830ad5-d5c0-4df1-9eb6-2667a2a68bc7 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node1a3fhga4ox1 .
+
+_:node1a3fhga4ox1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_02830ad5-d5c0-4df1-9eb6-2667a2a68bc7 .
+
+km-dev:TriplesMap_63dccd94-ef5a-4dc6-9499-4161651fc3b0 a rr:TriplesMap .
+
+_:node1a3fhga4ox1 km-dev:hasTriplesMap km-dev:TriplesMap_63dccd94-ef5a-4dc6-9499-4161651fc3b0 .
+
+km-dev:TriplesMap_63dccd94-ef5a-4dc6-9499-4161651fc3b0 km-dev:isPartOfMapping _:node1a3fhga4ox1 .
+
+_:node1a3fhga4ox11 rr:tableName "ads-images-map.json" ;
+	a rr:LogicalTable ;
+	km-dev:isPartOfMapping _:node1a3fhga4ox1 .
+
+_:node1a3fhga4ox1 km-dev:hasLogicalTable _:node1a3fhga4ox11 .
+
+km-dev:TriplesMap_63dccd94-ef5a-4dc6-9499-4161651fc3b0 rr:logicalTable _:node1a3fhga4ox11 ;
+	rr:subjectMap _:node1a3fhga4ox12 .
+
+_:node1a3fhga4ox1 km-dev:hasSubjectMap _:node1a3fhga4ox12 .
+
+_:node1a3fhga4ox12 km-dev:isPartOfMapping _:node1a3fhga4ox1 ;
+	a rr:SubjectMap ;
+	km-dev:alignmentNodeId "http://schema.org/ImageObject2" ;
+	rr:class schema:ImageObject ;
+	rr:template "image/{[\"Glue_1\",\"similar_image_ids_Values\"]}" .
