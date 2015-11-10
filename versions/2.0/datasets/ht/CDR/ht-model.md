@@ -16,9 +16,7 @@ return converTimetoEpoch(getValue("posttime"))
 #### _offer_uri_
 From column: __source / url_
 >``` python
-uri = genericUri(getValue("posttime_epoch"),getValue("modtime_epoch"),getValue("url"))
-
-return  uri + "/offer"
+return  getValue("id") + "/offer"
 ```
 
 #### _clean_age_
@@ -50,9 +48,7 @@ return uri + "adultservice"
 #### _webpage_uri_
 From column: __source / adultservice_uri_
 >``` python
-uri = genericUri(getValue("posttime_epoch"),getValue("modtime_epoch"),getValue("url"))
-
-return uri + "/webpage"
+return getValue("id") + "/webpage"
 ```
 
 #### _clean_phone_
@@ -88,9 +84,7 @@ return clean_name(getValue("name"))
 #### _place_uri_
 From column: __source / webpage_uri_
 >``` python
-uri = genericUri(getValue("posttime_epoch"),getValue("modtime_epoch"),getValue("url"))
-
-return uri + "/place"
+return getValue("id") + "/place"
 ```
 
 #### _clean_city_
@@ -203,9 +197,7 @@ From column: __source / personororg_uri_
 check= getValue("clean_rate60")
 if check.strip() == '':
     return ''
-uri = genericUri(getValue("posttime_epoch"),getValue("modtime_epoch"),getValue("url"))
-
-return uri + "/pricespecification"
+return getValue("id") + "/pricespecification"
 ```
 
 #### _pricespecification_uri15_
@@ -214,9 +206,8 @@ From column: __source / pricespecification_uri_
 check= getValue("clean_rate15")
 if check.strip() == '':
     return ''
-uri = genericUri(getValue("posttime_epoch"),getValue("modtime_epoch"),getValue("url"))
 
-return uri + "/pricespecification15"
+return getValue("id") + "/pricespecification15"
 ```
 
 #### _pricespecification_uri30_
@@ -225,9 +216,8 @@ From column: __source / pricespecification_uri15_
 check= getValue("clean-rate30")
 if check.strip() == '':
     return ''
-uri = genericUri(getValue("posttime_epoch"),getValue("modtime_epoch"),getValue("url"))
 
-return uri + "/pricespecification30"
+return getValue("id") + "/pricespecification30"
 ```
 
 #### _publisher_
