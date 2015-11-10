@@ -371,10 +371,13 @@ def add_state(location, state):
     else:
         return loc + ", " + state
 
-def get_eye_hair_feature_name(value):
-    if value.strip() == "person_haircolor" or value.strip() == "hairColor":
+def get_eye_hair_feature_name(name, value):
+    if value.strip() == "NONE":
+        return ''
+        
+    if name.strip() == "person_haircolor" or value.strip() == "hairColor":
         return "hairColor"
-    elif value.strip() == "person_eyecolor" or value.strip() == "eyeColor":
+    elif name.strip() == "person_eyecolor" or value.strip() == "eyeColor":
         return "eyeColor"
     return ''
 
