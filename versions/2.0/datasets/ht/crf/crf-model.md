@@ -4,7 +4,7 @@
 #### _feature_name_
 From column: _featureName_
 >``` python
-return get_eye_hair_feature_name(getValue("featureName"))
+return get_eye_hair_feature_name(getValue("featureName"), getValue("featureValue"))
 ```
 
 #### _offer_uri_
