@@ -22,6 +22,8 @@ return "image/" + getValue("similar_image_ids_Values")
 #### _role_uri_
 From column: _Glue_1 / image_dist_Values_
 >``` python
+if getValue("similar_image_ids_Values").strip() == '':
+    return ''
 return uri_from_fields('role_', getValue("similar_image_ids_Values"),getValue("images_id"),getValue("ads_id"))
 ```
 
