@@ -242,6 +242,24 @@ From column: __source / date_created_
 return getValue("date_created")
 ```
 
+#### _title_webpage_
+From column: __source / title_
+>``` python
+return getValue("title")
+```
+
+#### _weight_clean_
+From column: __source / weight / values_
+>``` python
+return clean_ethnicity(getValue("values"))
+```
+
+#### _height_clean_
+From column: __source / height / values_
+>``` python
+return clean_height(getValue("values"))
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
@@ -260,6 +278,7 @@ return getValue("date_created")
 | _clean_state_ | `schema:addressRegion` | `schema:PostalAddress1`|
 | _date_created_ | `schema:dateCreated` | `schema:WebPage1`|
 | _email_uri_ | `uri` | `memex:EmailAddress1`|
+| _height_clean_ | `schema:height` | `memex:AdultService1`|
 | _id_ | `memex:identifier` | `schema:Offer1`|
 | _latitude_ | `schema:latitude` | `schema:GeoCoordinates1`|
 | _longitude_ | `schema:longitude` | `schema:GeoCoordinates1`|
@@ -282,9 +301,12 @@ return getValue("date_created")
 | _rate_unit60_ | `schema:unitCode` | `schema:PriceSpecification1`|
 | _raw_text_ | `schema:description` | `schema:WebPage1`|
 | _title_ | `schema:title` | `schema:Offer1`|
+| _title_webpage_ | `schema:name` | `schema:WebPage1`|
 | _url_ | `schema:url` | `schema:WebPage1`|
 | _valid_from_date_ | `schema:validFrom` | `schema:Offer1`|
+| _values_ | `memex:ethnicity` | `memex:AdultService1`|
 | _webpage_uri_ | `uri` | `schema:WebPage1`|
+| _weight_clean_ | `schema:weight` | `memex:AdultService1`|
 
 
 ### Links
