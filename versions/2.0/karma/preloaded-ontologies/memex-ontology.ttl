@@ -60,13 +60,6 @@ memex:EmailAddress rdf:type owl:Class ;
 	rdfs:comment """An email address."""
 	.
 
-memex:PersonName rdf:type owl:Class ; 
-	rdfs:label "PersonName"@en ;
-	rdfs:subClassOf memex:Appellation ;
-	skos:note """Defining as a class so that we can represent different names and record the type of name""" ;
-	rdfs:comment """A person name."""
-	.
-
 memex:Ethnicity rdf:type owl:Class ; 
 	rdfs:label "Ethnicity"@en ;
 	rdfs:comment """Represents Identity with or membership in a particular racial, national,
@@ -158,20 +151,6 @@ memex:Topic a owl:Class ;
 	Instances of memex:Topic should appear as values of schema:about.""" ;
 	.
 
-memex:ServiceRate rdf:type owl:Class ;
-	rdfs:label "ServiceRate"@en ;
-	rdfs:comment """Represents the monetary Rate charged for a Service""" ;
-	rdfs:subClassOf schema:UnitPriceSpecification ;
-	skos:note """Should verify that we need this.""" ;
-	.
-
-memex:SimilarObject rdf:type owl:Class ;
-	rdfs:label "SimilarObject"@en ;
-	rdfs:comment """Represents an object that is similar to another object""" ;
-	rdfs:subClassOf schema:CreativeWork ;
-	rdfs:subClassOf memex:Feature ;
-	.
-
 memex:LegalAction rdf:type owl:Class ;
 	rdfs:label "LegalAction"@en ;
 	rdfs:comment """Represents a Legal Action""" ;
@@ -223,12 +202,6 @@ memex:isTitlePartOf rdf:type owl:ObjectProperty ;
 	rdfs:comment "Identifies the title part of a schema:CreativeWork." 
 	.
 
-memex:hasAbstractPart rdf:type owl:ObjectProperty ; 
-	rdfs:label "hasAbstractPart"@en ;
-	rdfs:subPropertyOf schema:hasPart ;
-	rdfs:comment "Identifies the abstract part of a schema:CreativeWork." 
-	.
-
 memex:isAbstractPartOf rdf:type owl:ObjectProperty ; 
 	rdfs:label "isAbstractPartOf"@en ;
 	owl:inverseOf  memex:hasAbstractPart ;
@@ -247,13 +220,6 @@ memex:isBodyPartOf rdf:type owl:ObjectProperty ;
 	rdfs:comment "Identifies the body part of a schema:CreativeWork." 
 	.
 
-memex:hasImagePart rdf:type owl:ObjectProperty ; 
-	rdfs:label "hasImagePart"@en ;
-	rdfs:subPropertyOf schema:hasPart ;
-	rdfs:range schema:ImageObject ;
-	rdfs:comment "Identifies an ImageObject that is part of a schema:CreativeWork." 
-	.
-
 memex:isImagePartOf rdf:type owl:ObjectProperty ; 
 	rdfs:label "isImagePartOf"@en ;
 	owl:inverseOf memex:hasImagePart ;
@@ -270,20 +236,6 @@ memex:hasSignaturePart rdf:type owl:ObjectProperty ;
 memex:isSignaturePartOf rdf:type owl:ObjectProperty ; 
 	rdfs:label "isSignaturePartOf"@en ;
 	owl:inverseOf memex:hasSignaturePart ;
-	rdfs:comment "Identifies the work that this is a part of." 
-	.
-
-memex:hasClaimPart rdf:type owl:ObjectProperty ; 
-	rdfs:label "hasClaimPart"@en ;
-	rdfs:subPropertyOf schema:hasPart ;
-	owl:inverseOf memex:isClaimPartOf ;
-	rdfs:comment "Identifies a claim part of a schema:CreativeWork." 
-	.
-
-memex:isClaimPartOf rdf:type owl:ObjectProperty ; 
-	rdfs:label "isClaimPartOf"@en ;
-	rdfs:subPropertyOf schema:isPartOf ;
-	owl:inverseOf memex:hasClaimPart ;
 	rdfs:comment "Identifies the work that this is a part of." 
 	.
 
@@ -421,18 +373,6 @@ memex:eyeColor rdf:type rdf:Property ;
 	rdfs:comment """eye color of a Person""" ;
 	.
 
-memex:isoCode rdf:type rdf:Property ;
-	rdfs:label "isoCode"@en ;
-	skos:note """The ISO Code for things like Country etc.""" ;
-	rdfs:comment "The ISO code of a resource." 
-	.
-
-memex:cacheUrl rdf:type rdf:Property ;
-	rdfs:label "cacheUrl"@en ;
-	rdfs:subPropertyOf schema:url ;
-	rdfs:comment "The URL of a cached version of a resource." 
-	.
-
 memex:tenDigitPhoneNumber rdf:type rdf:Property ;
 	rdfs:label "tenDigitPhoneNumber"@en ;
 	rdfs:domain memex:PhoneNumber ;
@@ -444,53 +384,10 @@ memex:confidence rdf:type rdf:Property ;
 	rdfs:comment "Confidence value associated with mention"
 	.
 
-memex:snapshotUri rdf:type rdf:Property ;
-	rdfs:label "snapshotUri"@en ;
-	rdfs:domain schema:CreativeWork ;
-	rdfs:comment "The cache snapshot URI for the Creative Work"
-	.
-
-
-memex:dateCrawled rdf:type rdf:Property ;
-	rdfs:label "dateCrawled"@en ;
-	rdfs:comment "The Date the CreativeWork was crawled" ;
-	rdfs:domain schema:CreativeWork ;
-	.
-
-memex:dateMostLikelyCreated rdf:type rdf:Property ;
-	rdfs:label "dateMostLikelyCreated"@en ;
-	rdfs:comment "The Date the CreativeWork was post likelt created, which could be the posttime if available, else import time" ;
-	rdfs:domain schema:CreativeWork ;
-	.
-
-memex:countryDialingCode rdf:type rdf:Property ;
-    rdfs:label "countryDialingCode"@en ;
-	rdfs:comment "The dialing code for a Country" ;
-	rdfs:domain memex:PhoneNumber
-	.
-
-memex:localPhoneNumber rdf:type rdf:Property ;
-    rdfs:label "localPhoneNumber"@en ;
-	rdfs:comment "Phone Number without the country code" ;
-	rdfs:domain memex:PhoneNumber
-	.
-
 memex:digitalObjectIdentifier rdf:type rdf:Property ;
     rdfs:label "digitalObjectIdentifier"@en ;
 	rdfs:comment "Unique Identifier for an Object" ;
 	rdfs:domain schema:CreativeWork
-	.
-
-memex:textChecksum rdf:type rdf:Property ;
-    rdfs:label "textChecksum"@en ;
-	rdfs:comment "MD5 or SHA checksum of the text of the CreativeWork" ;
-	rdfs:domain schema:CreativeWork
-	.
-
-memex:numberOfItems rdf:type rdf:Property ;
-    rdfs:label "numberOfItems"@en ;
-	rdfs:comment "Number of Items in a Cluster" ;
-	rdfs:domain memex:Cluster
 	.
 
 memex:activityCount a rdf:Property ;
