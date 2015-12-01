@@ -139,6 +139,19 @@ def clean_age(x):
         return None
     return age
 
+def estimate_birthyear(age_string, iso_date_string):
+    "Given an age and a date when the age was reported estimate the birthyear"
+    try:
+        age = int(age_string)
+        year = datetime.strptime(iso_date_string, "%Y-%m-%dT%H:%M:%S").year
+        return year - age - 1
+    except:
+        return ""
+    # we don't know the month and day of the birthday, so in the worst case the 
+    # person was born 364 days ago
+    
+
+
 def age_uri(x):
 	cx = clean_age(x)
 	if (cx>0):

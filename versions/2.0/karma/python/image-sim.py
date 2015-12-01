@@ -1,12 +1,19 @@
 ## Py Transforms for Image Similarity
 
-def filter_out_similarity(near_dup_ids):
+def filter_out_similarity(near_dup_ids_or_dist):
 	"Return true if there are too many ids"
-	if near_dup_ids == '' or near_dup_ids.count(',') > 100 :
+	if near_dup_ids_or_dist == '' or near_dup_ids_or_dist.count(',') > 100 :
 		return "1"
 	else:
 		return "0"
 
+def filtered_dups(near_dup_ids_or_dist):
+	"Return the filtered dups, empty if too many"
+	if filter_out_similarity(near_dup_ids_or_dist):
+		if filter_out_similarity(near_dup_ids_or_dist) == '1':
+			return ''
+		else:
+			return near_dup_ids_or_dist
 
 def similar_image_uri(img_id, filter_out):
 	"Return the URI of a similar image, empty if filter_out"

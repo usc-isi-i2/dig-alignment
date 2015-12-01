@@ -260,11 +260,18 @@ From column: __source / height / values_
 return clean_height(getValue("values"))
 ```
 
+#### _birthyear_
+From column: __source / age / clean_age_
+>``` python
+return estimate_birthyear(getValue("clean_age"),getValue("date_created"))
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
 |  ----- | -------- | ----- |
 | _adultservice_uri_ | `uri` | `memex:AdultService1`|
+| _birthyear_ | `schema:birthDate` | `memex:AdultService1`|
 | _clean-rate30_ | `schema:name` | `schema:PriceSpecification3`|
 | _clean_age_ | `memex:personAge` | `memex:AdultService1`|
 | _clean_city_ | `schema:addressLocality` | `schema:PostalAddress1`|
