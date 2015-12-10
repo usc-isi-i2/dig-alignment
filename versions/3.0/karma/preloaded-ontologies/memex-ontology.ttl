@@ -1,0 +1,532 @@
+@prefix memex: <http://memexproxy.com/ontology/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix schema: <http://schema.org/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+
+<http://memexproxy.com/ontology/> a owl:Ontology ;
+	rdfs:label "Memex Ontology version 3" ;
+.
+
+
+#########################################################
+#
+# Classes
+#
+#########################################################
+
+memex:Appellation a owl:Class ;
+	rdfs:label "Appellation"@en ;
+	rdfs:comment """A string to refer to an entity."""
+	.
+
+memex:Name a owl:Class ;
+	rdfs:subClassOf memex:Appellation ;
+	rdfs:label "Name"@en ;
+	rdfs:comment """Represents the Name of an entity."""
+	.
+
+memex:PersonOrOrganization a owl:Class ;
+	rdfs:comment """A placeholder for a person or an organization."""
+	.
+
+schema:Organization a owl:Class ;
+	rdfs:subClassOf memex:PersonOrOrganization ;
+	.
+
+schema:Person a owl:Class ;
+	rdfs:subClassOf memex:PersonOrOrganization ;
+	.
+
+memex:Identifier a owl:Class ;
+	rdfs:subClassOf memex:Appellation ;
+	rdfs:label "Identifier"@en ;
+	rdfs:comment """Identifier of an entity"""	
+	.
+
+memex:PhoneNumber a owl:Class ; 
+	rdfs:subClassOf memex:Identifier ;
+	rdfs:label "PhoneNumber"@en ;
+	skos:note """Still wavering whether a phone number is a subclass of Identifier.
+	Clearly not an appropriate identifier for a person given that numbers get recycled.""" ;
+	rdfs:comment """A phone number."""
+	.
+
+memex:EmailAddress a owl:Class ; 
+	rdfs:subClassOf memex:Identifier ;
+	rdfs:label "EmailAddress"@en ;
+	skos:note """Still wavering whether an email address is a subclass of Identifier.""" ;
+	rdfs:comment """An email address."""
+	.
+
+memex:Ethnicity a owl:Class ; 
+	rdfs:label "Ethnicity"@en ;
+	rdfs:comment """Represents Identity with or membership in a particular racial, national,
+	 or cultural group and observance of that group's customs, beliefs, and language."""
+	.
+
+memex:AgeGroup a owl:Class ; 
+	rdfs:label "AgeGroup"@en ;
+	rdfs:comment """Represents an age group, such as young, old, child."""
+	.
+
+memex:Preference a owl:Class ; 
+	rdfs:label "Preference"@en ;
+	rdfs:comment """Represents a preference that af Person or Organization may have
+	about a certain subject."""
+	.
+
+memex:Thread a owl:Class ;
+	rdfs:label "Thread"@en ;
+	rdfs:subClassOf schema:CreativeWork ;
+	rdfs:comment """A thread in a forum or other kind of set of articles""" ;
+	skos:note """Equivalent to sioc:Thread""" ;
+	.
+
+memex:Post a owl:Class ;
+	rdfs:label "Post"@en ;
+	rdfs:subClassOf schema:CreativeWork ;
+	rdfs:comment """A post in a forum.""" ;
+	skos:note """Equivalent to sioc:Post, a general class of post typically
+	on the web, includes forum posts, blog posts, and tweets.""" ;
+	.
+
+memex:tweets a owl:Class ;
+	rdfs:label "Post"@en ;
+	rdfs:subClassOf memex:Post ;
+	rdfs:comment """A single Tweet.""" ;
+	.
+
+memex:Patent a owl:Class ;
+	rdfs:label "Patent"@en ;
+	rdfs:subClassOf schema:CreativeWork ;
+	rdfs:comment """A patent."""
+	.
+
+memex:CourtDocument a owl:Class ;
+	rdfs:label "CourtDocument"@en ;
+	rdfs:subClassOf schema:CreativeWork ;
+	rdfs:comment """A document from a legal proceeding."""
+	.
+
+memex:Phrase a owl:Class ;
+	rdfs:label "Phrase"@en ;
+	rdfs:subClassOf schema:Intangible ;
+	rdfs:comment """Represents a phrase. The contents appear in schema:name""" ;
+	skos:note """A memex simplificaiton of skos:Concept.""" ;
+	.
+
+memex:PhraseScheme a owl:Class ;
+	rdfs:label "PhraseList"@en ;
+	rdfs:subClassOf schema:Intangible ;
+	rdfs:comment """A collection of memex:Phrase.""" ;
+	skos:note """A memex simplificaiton of skos:ConceptScheme.""" ;
+	.
+
+memex:AdultService a owl:Class ;
+	rdfs:label "AdultService"@en ;
+	rdfs:subClassOf schema:ProfessionalService ;
+	rdfs:comment """Adult Service such as massage or escort services""" ;
+	.
+
+
+memex:DistinctivePhrases a owl:Class ;
+	rdfs:label "DistinctivePhrases"@en ;
+	rdfs:subClassOf memex:PhraseScheme ;
+	rdfs:comment """A list of words or phrases that are distinctive in some way.
+	For example, they can be missspelt words, phrases that occur frequently in particular sets
+	of documents such as the Posts of an individual, or phrases that occur in the signature part
+	of a Post.
+
+	Instances of DistinctivePhrases should appear as values of memex:distinctivePhrases""" ;
+	.
+
+memex:Topic a owl:Class ;
+	rdfs:label "Topic"@en ;
+	rdfs:subClassOf memex:PhraseScheme ;
+	rdfs:comment """A Topic defines the subject of a creative work using words.
+	This is as opposed to saying that the topic of a document is dbpedia:Obama.
+
+	Instances of memex:Topic should appear as values of schema:about.""" ;
+	.
+
+memex:LegalAction a owl:Class ;
+	rdfs:label "LegalAction"@en ;
+	rdfs:comment """Represents a Legal Action""" ;
+	rdfs:subClassOf schema:Action ;
+	rdfs:comment """ """ ;
+	.
+
+memex:LegalActionCause a owl:Class ;
+	rdfs:label "LegalActionCause"@en ;
+	rdfs:comment """The cause for a Legal Action""" ;
+	rdfs:subClassOf schema:Enumeration ;
+	rdfs:comment """ """ ;
+	.
+
+memex:Cluster a owl:Class ;
+	rdfs:label "Cluster"@en ;
+	rdfs:subClassOf schema:Intangible ;
+	rdfs:comment """Represents a cluster of objects"""
+    . 
+
+#########################################################
+#
+# Properties
+#
+#########################################################
+
+memex:identifier a rdf:Property ; 
+	rdfs:label "identifier"@en ;
+	schema:domainIncludes schema:Thing ;
+	schema:rangeIncludes memex:Identifier ;
+	rdfs:comment """The Identifier of an entity"""
+	.
+
+memex:hasType a rdf:Property ; 
+	rdfs:label "hasType"@en ;
+	schema:domainIncludes schema:Thing ;
+	schema:rangeIncludes schema:Thing ;
+	rdfs:comment """The Type of an entity, usually specified as a URI that defines
+	a controlled vocabulary.""" ;
+	.
+
+memex:hasPhrase a rdf:Property ; 
+	rdfs:label "hasPhrase"@en ;
+	schema:domainIncludes memex:PhraseScheme ;
+	schema:rangeIncludes memex:Phrase ;
+	schema:rangeIncludes schema:Text ;
+	rdfs:comment """The words or phrasesin a Topic. """ ;
+	.
+
+memex:hasImagePart a rdf:Property ; 
+	rdfs:label "hasImagePart"@en ;
+	rdfs:subPropertyOf schema:hasPart ;
+	owl:inverseOf memex:isImagePartOf ;
+	schema:domainIncludes schema:CreativeWork ;
+	schema:rangeIncludes schema:ImageObject ;
+	rdfs:comment """Identifies an ImageObject that is part of a schema:CreativeWork.""" ;
+	.
+
+memex:isImagePartOf a rdf:Property ; 
+	rdfs:label "isImagePartOf"@en ;
+	rdfs:subPropertyOf schema:isPartOf ;
+	owl:inverseOf memex:hasImagePart ;
+	schema:domainIncludes schema:ImageObject ;
+	schema:rangeIncludes schema:CreativeWork ;
+	rdfs:comment """Identifies a schema:CreativeWork that an image is a part of.""" ; 
+	.
+
+memex:hasPost a rdf:Property ; 
+	rdfs:label "hasPost"@en ;
+	rdfs:subPropertyOf schema:hasPart ;
+	schema:domainIncludes schema:CreativeWork ;
+	schema:rangeIncludes memex:Post ;
+	rdfs:comment "Identifies a post belonging to a memex:Thread."
+	.
+
+memex:isPostOf a rdf:Property ; 
+	rdfs:label "isPostOf"@en ;
+	rdfs:subPropertyOf schema:isPartOf ;
+	schema:domainIncludes memex:Post ;
+	schema:rangeIncludes schema:CreativeWork ;
+	owl:inverseOf memex:hasPost ;
+	rdfs:comment "Identifies the creative work that a post is a part of."
+	.
+
+memex:owner a rdf:Property ;
+	rdfs:label "owner"@en ;
+	schema:domainIncludes schema:Thing ;
+	schema:rangeIncludes memex:PersonOrOrganization ;
+	rdfs:comment """owner of a thing""";
+	.
+
+#########################################################
+#
+# Properties that need to be reviewed to determine whether
+# they should be preserved in the ontology.
+#
+#########################################################
+
+
+
+memex:snapshot a rdf:Property ; 
+	rdfs:label "snapshot"@en ;
+	schema:domainIncludes schema:URL ; 
+	schema:rangeIncludes schema:CreativeWork ;
+	owl:inverseOf memex:isSnapshotOf ;
+	rdfs:comment "Identifies a resource download from a url." 
+	.
+
+memex:isSnapshotOf a rdf:Property ; 
+	rdfs:label "isSnapshotOf"@en ;
+	schema:domainIncludes schema:CreativeWork ;
+	schema:rangeIncludes schema:URL ; 
+	owl:inverseOf memex:snapshot ;
+	rdfs:comment "Inverse of memex:snapshot." 
+	.
+
+memex:isCitationOf a rdf:Property ; 
+	rdfs:label "isCitationOf"@en ;
+	owl:inverseOf  schema:citation ;
+	rdfs:comment "Reverse citations." 
+	.
+
+memex:hasTitlePart a rdf:Property ; 
+	rdfs:label "hasTitlePart"@en ;
+	rdfs:subPropertyOf schema:hasPart ;
+	rdfs:comment "Identifies the title part of a schema:CreativeWork." 
+	.
+
+memex:isTitlePartOf a rdf:Property ; 
+	rdfs:label "isTitlePartOf"@en ;
+	owl:inverseOf  memex:hasTitlePart ;
+	rdfs:comment "Identifies the title part of a schema:CreativeWork." 
+	.
+
+memex:isAbstractPartOf a rdf:Property ; 
+	rdfs:label "isAbstractPartOf"@en ;
+	owl:inverseOf  memex:hasAbstractPart ;
+	rdfs:comment "Identifies the abstract part of a schema:CreativeWork." 
+	.
+
+memex:hasBodyPart a rdf:Property ; 
+	rdfs:label "hasBodyPart"@en ;
+	rdfs:subPropertyOf schema:hasPart ;
+	rdfs:comment "Identifies the body part of a schema:CreativeWork."
+	.
+
+memex:isBodyPartOf a rdf:Property ; 
+	rdfs:label "isBodyPartOf"@en ;
+	owl:inverseOf memex:hasBodyPart ;
+	rdfs:comment "Identifies the body part of a schema:CreativeWork." 
+	.
+
+
+
+
+
+memex:hasSignaturePart a rdf:Property ; 
+	rdfs:label "hasSignaturePart"@en ;
+	owl:inverseOf memex:isSignaturePartOf ;
+	rdfs:comment "Identifies a signature part of a schema:CreativeWork." 
+	.
+
+memex:isSignaturePartOf a rdf:Property ; 
+	rdfs:label "isSignaturePartOf"@en ;
+	owl:inverseOf memex:hasSignaturePart ;
+	rdfs:comment "Identifies the work that this is a part of." 
+	.
+
+memex:primaryLocation a rdf:Property ; 
+	rdfs:label "postingLocation"@en ;
+	rdfs:subPropertyOf schema:mentions ;
+	schema:domainIncludes schema:CreativeWork ;
+	schema:rangeIncludes schema:Place ;
+	rdfs:comment "The primary location associated with a schema:CreativeWork." 
+	.
+
+memex:ethnicity a rdf:Property ; 
+	rdfs:label "ethnicity"@en ;
+	schema:domainIncludes schema:Person ;
+	rdfs:comment "The ethnicity of a person." 
+	.
+
+memex:age a rdf:Property ; 
+	rdfs:label "age"@en ;
+	schema:domainIncludes schema:Person ;
+	rdfs:comment "The age of a person." 
+	.
+
+memex:preferenceQualifier a rdf:Property ; 
+	rdfs:label "preferenceQualifier"@en ;
+	schema:domainIncludes memex:Preference ;
+	rdfs:comment """The qualifier of a preference. 
+	The values in the range are URIs that form a controlled vocabulary;
+	they include values such as http://..../preferencequalifier/only"""
+	.
+
+memex:preferenceSubject a rdf:Property ; 
+	rdfs:label "preferenceSubject"@en ;
+	schema:domainIncludes memex:Preference ;
+	rdfs:comment """The thing about which a preference is stated. 
+	The values in the range are URIs that form a controlled vocabulary;
+	they include values such as http://..../agegroup/young"""
+	.
+
+
+memex:isAuthorOf a rdf:Property ; 
+	rdfs:label "isAuthorOf"@en ;
+	owl:inverseOf schema:author ;
+	rdfs:comment """The inverse of schema:author."""
+	.
+
+memex:distinctivePhrases a rdf:Property ; 
+	rdfs:label "distinctivePhrases"@en ;
+	schema:rangeIncludes memex:DistinctivePhrases ;
+	schema:domainIncludes schema:CreativeWork ;
+	schema:domainIncludes schema:Intangible ;
+	schema:domainIncludes memex:PersonOrOrganization ;
+	rdfs:comment """The DistinctivePhrases of the text about something.
+	We include schema:Intangible in the domain to make it convenient to associate
+	DistinctivePhrases with the description of schema:Offer.
+	""" ;
+	.
+
+memex:legalAction a rdf:Property ; 
+	rdfs:label "legalAction"@en ;
+	schema:rangeIncludes schema:Action ;
+	rdfs:comment """Identifies a legal Action""" 
+	.
+
+memex:plaintiff a rdf:Property ; 
+	rdfs:label "plaintiff"@en ;
+	schema:domainIncludes memex:LegalAction ;
+	schema:rangeIncludes memex:PersonOrOrganization ;
+	schema:rangeIncludes schema:Organization ;
+	rdfs:comment """Identifies a plaintiff in a LegalAction""" 
+	.
+
+memex:defendant a rdf:Property ; 
+	rdfs:label "defendant"@en ;
+	schema:domainIncludes memex:LegalAction ;
+	schema:rangeIncludes memex:PersonOrOrganization ;
+	schema:rangeIncludes schema:Organization ;
+	rdfs:comment """Identifies a defendant in a LegalAction""" 
+	.
+
+memex:operatingPermit a rdf:Property ; 
+	rdfs:label "operatingPermit"@en ;
+	schema:rangeIncludes schema:Permit ;
+	rdfs:comment """Identifies an operating permit"""
+	.
+
+
+
+memex:personAge a rdf:Property ;
+	rdfs:label "personAge"@en ;
+	rdfs:comment """age of a Person""";
+	.
+
+memex:hairColor a rdf:Property ;
+	rdfs:label "hairColor"@en ;  
+	rdfs:comment """hair color of a Person""" ;
+	.
+
+memex:eyeColor a rdf:Property ;
+	rdfs:label "eyeColor"@en ;  
+	rdfs:comment """eye color of a Person""" ;
+	.
+
+memex:tenDigitPhoneNumber a rdf:Property ;
+	rdfs:label "tenDigitPhoneNumber"@en ;
+	schema:domainIncludes memex:PhoneNumber ;
+	rdfs:comment "The 10 digit number of a USA phone number." 
+	.
+
+memex:confidence a rdf:Property ;
+	rdfs:label "confidence"@en ;
+	rdfs:comment "Confidence value associated with mention"
+	.
+
+memex:digitalObjectIdentifier a rdf:Property ;
+    rdfs:label "digitalObjectIdentifier"@en ;
+	rdfs:comment "Unique Identifier for an Object" ;
+	schema:domainIncludes schema:CreativeWork
+	.
+
+memex:activityCount a rdf:Property ;
+	rdfs:label "activityCount"@en ;
+	schema:domainIncludes schema:Role ;
+	schema:rangeIncludes xsd:Integer ;
+	rdfs:comment """Records the number of times an activity has happened, for
+	example the number of posts from a user in a forum."""
+	.
+
+
+memex:hasTechnologyPhrase a rdf:Property ; 
+	rdfs:label "hasTechnologyPhrase"@en ;
+	schema:domainIncludes schema:Thing ;
+	rdfs:comment """To make NC happy""" ;
+	.
+
+memex:hasGangPhrase a rdf:Property ; 
+	rdfs:label "hasGangPhrase"@en ;
+	schema:domainIncludes schema:Thing ;
+	rdfs:comment """To make NC happy""" ;
+	.
+
+memex:hasNFAPhrase a rdf:Property ; 
+	rdfs:label "hasNFAPhrase"@en ;
+	schema:domainIncludes schema:Thing ;
+	rdfs:comment """To make NC happy""" ;
+	.
+
+memex:hasNonEnglishPhrase a rdf:Property ; 
+	rdfs:label "hasNonEnglishPhrase"@en ;
+	schema:domainIncludes schema:Thing ;
+	rdfs:comment """To make NC happy""" ;
+	.
+
+memex:hasFirearmsPhrase a rdf:Property ; 
+	rdfs:label "hasFirearmsPhrase"@en ;
+	schema:domainIncludes schema:Thing ;
+	rdfs:comment """To make NC happy""" ;
+	.
+
+memex:hasFirearmsRedFlagPhrase a rdf:Property ; 
+	rdfs:label "hasFirearmsRedFlagPhrase"@en ;
+	schema:domainIncludes schema:Thing ;
+	rdfs:comment """To make NC happy""" ;
+	.
+
+memex:dateRecorded a rdf:Property ; 
+	rdfs:label "timestamp"@en ;
+	schema:domainIncludes schema:Role ;
+	rdfs:comment """Specifies the point in time when Role information was recorded.
+	Use this property to create a time series of Roles that record multiple values of 
+	a property changing over time.""" ;
+	.
+
+memex:applicant a rdf:Property ; 
+	rdfs:label "applicant"@en ;
+	schema:domainIncludes schema:Thing ;
+	schema:rangeIncludes schema:Person ;
+	rdfs:comment """A person who applied for something.""" ;
+	.
+
+memex:assignee a rdf:Property ; 
+	rdfs:label "applicant"@en ;
+	schema:domainIncludes schema:Thing ;
+	schema:rangeIncludes schema:Person ;
+	rdfs:comment """A person who has been assigned something.""" ;
+	.
+
+memex:similarityScore a rdf:Property ; 
+	rdfs:label "similarityScore"@en ;
+	schema:domainIncludes schema:Role ;
+	rdfs:comment "The similarity score between two entities." 
+	.
+
+memex:similarImageIds a rdf:Property ; 
+	rdfs:label "similarityScore"@en ;
+	schema:domainIncludes memex:ImageObject ;
+	rdfs:comment """String containing a list of similar image ids.""" 
+	.
+
+memex:similarImageScores a rdf:Property ; 
+	rdfs:label "similarImageScores"@en ;
+	schema:domainIncludes memex:ImageObject ;
+	rdfs:comment """String containing a list of the scores of similar image ids.""" 
+	.
+
+
+#########################################################
+#
+# Properties we want to deprecate, but can't yet because
+# they are being used.
+#
+#########################################################
