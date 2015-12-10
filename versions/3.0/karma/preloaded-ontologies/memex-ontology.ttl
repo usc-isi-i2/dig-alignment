@@ -8,9 +8,9 @@
 @prefix prov: <http://www.w3.org/ns/prov#> .
 
 <http://memexproxy.com/ontology/> a owl:Ontology ;
-	rdfs:label "Memex Ontology version 3" ;
-.
-
+	rdfs:label "Memex Ontology" ;
+	schema:version "3.0" ;
+	.
 
 #########################################################
 #
@@ -30,15 +30,17 @@ memex:Name a owl:Class ;
 	.
 
 memex:PersonOrOrganization a owl:Class ;
-	rdfs:comment """A placeholder for a person or an organization."""
+	rdfs:comment """The union of Person and Organization."""
 	.
 
 schema:Organization a owl:Class ;
 	rdfs:subClassOf memex:PersonOrOrganization ;
+	rdfs:comment """Define PersonOrOrganization as a super class of Organization.""";
 	.
 
 schema:Person a owl:Class ;
 	rdfs:subClassOf memex:PersonOrOrganization ;
+	rdfs:comment """Define PersonOrOrganization as a super class of Person.""";
 	.
 
 memex:Identifier a owl:Class ;
@@ -52,7 +54,13 @@ memex:PhoneNumber a owl:Class ;
 	rdfs:label "PhoneNumber"@en ;
 	skos:note """Still wavering whether a phone number is a subclass of Identifier.
 	Clearly not an appropriate identifier for a person given that numbers get recycled.""" ;
-	rdfs:comment """A phone number."""
+	rdfs:comment """A phone number. 
+	The preferred representation of a phone number should have a name, and if possible
+	a phoneCountryCode and a phoneNationalSignificantNumber. 
+	The name should have the format 'CCC NNNNNNNNNN' where CCC represents the country code
+	and NNNNNNNNN represents the phoneNationalSignificantNumber without spaces.
+	In the USA it is common to separate the area code from the subscriber number, but
+	there is no standard convention that applies to all countries."""
 	.
 
 memex:EmailAddress a owl:Class ; 
@@ -94,7 +102,7 @@ memex:Post a owl:Class ;
 	on the web, includes forum posts, blog posts, and tweets.""" ;
 	.
 
-memex:tweets a owl:Class ;
+memex:Tweet a owl:Class ;
 	rdfs:label "Post"@en ;
 	rdfs:subClassOf memex:Post ;
 	rdfs:comment """A single Tweet.""" ;
@@ -116,7 +124,7 @@ memex:Phrase a owl:Class ;
 	rdfs:label "Phrase"@en ;
 	rdfs:subClassOf schema:Intangible ;
 	rdfs:comment """Represents a phrase. The contents appear in schema:name""" ;
-	skos:note """A memex simplificaiton of skos:Concept.""" ;
+	skos:note """A memex simplification of skos:Concept.""" ;
 	.
 
 memex:PhraseScheme a owl:Class ;
@@ -131,7 +139,6 @@ memex:AdultService a owl:Class ;
 	rdfs:subClassOf schema:ProfessionalService ;
 	rdfs:comment """Adult Service such as massage or escort services""" ;
 	.
-
 
 memex:DistinctivePhrases a owl:Class ;
 	rdfs:label "DistinctivePhrases"@en ;
@@ -199,7 +206,16 @@ memex:hasPhrase a rdf:Property ;
 	schema:domainIncludes memex:PhraseScheme ;
 	schema:rangeIncludes memex:Phrase ;
 	schema:rangeIncludes schema:Text ;
-	rdfs:comment """The words or phrasesin a Topic. """ ;
+	owl:inverseOf memex:inPhraseScheme ;
+	rdfs:comment """The Phrases in a PhraseScheme. """ ;
+	.
+
+memex:inPhraseScheme a rdf:Property ; 
+	rdfs:label "inPhraseScheme"@en ;
+	schema:domainIncludes memex:Phrase ;
+	schema:rangeIncludes memex:PhraseScheme ;
+	owl:inverseOf memex:hasPhrase ;
+	rdfs:comment """The PhraseScheme that a Phrase belongs to. """ ;
 	.
 
 memex:hasImagePart a rdf:Property ; 
@@ -228,6 +244,15 @@ memex:hasPost a rdf:Property ;
 	rdfs:comment "Identifies a post belonging to a memex:Thread."
 	.
 
+memex:hashTag a rdf:Property ; 
+	rdfs:label "hasPost"@en ;
+	schema:domainIncludes schema:Post ;
+	schema:rangeIncludes schema:Text ;
+	rdfs:comment """Specifies a hash-tag for a Post, typically defined for Tweet, 
+	but can be used with other types of Posts. The value should include the # as in
+	#news. """
+	.
+
 memex:isPostOf a rdf:Property ; 
 	rdfs:label "isPostOf"@en ;
 	rdfs:subPropertyOf schema:isPartOf ;
@@ -244,14 +269,124 @@ memex:owner a rdf:Property ;
 	rdfs:comment """owner of a thing""";
 	.
 
+memex:primaryLocation a rdf:Property ; 
+	rdfs:label "primaryLocation"@en ;
+	rdfs:subPropertyOf schema:mentions ;
+	schema:domainIncludes schema:CreativeWork ;
+	schema:rangeIncludes schema:Place ;
+	rdfs:comment """The primary location associated with a schema:CreativeWork.""" ;
+	.
+
+memex:ethnicity a rdf:Property ; 
+	rdfs:label "ethnicity"@en ;
+	schema:domainIncludes schema:Person ;
+	schema:rangeIncludes schema:Text ;
+	rdfs:comment """The ethnicity of a Person.""" ;
+	.
+
+memex:age a rdf:Property ; 
+	rdfs:label "age"@en ;
+	schema:domainIncludes schema:Person ;
+	schema:rangeIncludes schema:Number ;
+	rdfs:comment """The age of a person.""" ;
+	skos:note """The age of a person changes over time. When the time of observation
+	is available, it is preferable to record the birthYear instead.""" ;
+	.
+
+memex:hairColor a rdf:Property ;
+	rdfs:label "hairColor"@en ; 
+	schema:domainIncludes schema:Person ;
+	schema:rangeIncludes schema:Text ; 
+	rdfs:comment """hair color of a Person""" ;
+	.
+
+memex:eyeColor a rdf:Property ;
+	rdfs:label "eyeColor"@en ;
+	schema:domainIncludes schema:Person ;
+	schema:rangeIncludes schema:Text ;  
+	rdfs:comment """eye color of a Person""" ;
+	.
+
+memex:legalAction a rdf:Property ; 
+	rdfs:label "legalAction"@en ;
+	schema:domainIncludes schema:Thing ;
+	schema:rangeIncludes schema:Action ;
+	rdfs:comment """Records a LegalAction associated with some entity.""" 
+	.
+
+memex:plaintiff a rdf:Property ; 
+	rdfs:label "plaintiff"@en ;
+	schema:domainIncludes memex:LegalAction ;
+	schema:rangeIncludes memex:PersonOrOrganization ;
+	rdfs:comment """Identifies a plaintiff in a LegalAction""" 
+	.
+
+memex:defendant a rdf:Property ; 
+	rdfs:label "defendant"@en ;
+	schema:domainIncludes memex:LegalAction ;
+	schema:rangeIncludes memex:PersonOrOrganization ;
+	rdfs:comment """Identifies a defendant in a LegalAction""" 
+	.
+
+memex:operatingPermit a rdf:Property ; 
+	rdfs:label "operatingPermit"@en ;
+	schema:domainIncludes schema:Organization ;
+	schema:rangeIncludes schema:Permit ;
+	rdfs:comment """Identifies an operating permit for an organization."""
+	.
+
+memex:dateRecorded a rdf:Property ; 
+	rdfs:label "timestamp"@en ;
+	schema:domainIncludes schema:Role ;
+	schema:rangeIncludes schema:Date ;
+	schema:rangeIncludes schema:DateTime ;
+	rdfs:comment """Specifies the point in time when Role information was recorded.
+	Use this property to create a time series of Roles that record multiple values of 
+	a property changing over time.""" ;
+	.
+
+memex:phoneCountryCode a rdf:Property ; 
+	rdfs:label "countryCallingCode"@en ;
+	schema:domainIncludes memex:PhoneNumber ;
+	schema:rangeIncludes schema:Text ;
+	rdfs:comment """Specifies the calling code of a country as defined in
+	https://en.wikipedia.org/wiki/List_of_country_calling_codes.
+	Also see https://en.wikipedia.org/wiki/Telephone_numbering_plan""" ;
+	.
+
+memex:phoneAreaCode a rdf:Property ; 
+	rdfs:label "phoneAreaCode"@en ;
+	schema:domainIncludes memex:PhoneNumber ;
+	schema:rangeIncludes schema:Text ;
+	rdfs:comment """Specifies the area code of a phone number, see
+	https://en.wikipedia.org/wiki/Telephone_numbering_plan""" ;
+	.
+
+memex:phoneSubscriberNumber a rdf:Property ; 
+	rdfs:label "phoneSubscriberNumber"@en ;
+	schema:domainIncludes memex:PhoneNumber ;
+	schema:rangeIncludes schema:Text ;
+	rdfs:comment """Specifies the calling of a subscriber, see
+	https://en.wikipedia.org/wiki/Telephone_numbering_plan""" ;
+	.
+
+memex:phoneNationalSignificantNumber a rdf:Property ; 
+	rdfs:label "phoneSubscriberNumber"@en ;
+	schema:domainIncludes memex:PhoneNumber ;
+	schema:rangeIncludes schema:Text ;
+	rdfs:comment """Specifies the number to dial after a contry code to 
+	identify a subscriber; this number consists of an area code followed by
+	a subscriber number, see
+	http://www.itu.int/dms_pub/itu-t/opb/sp/T-SP-E.164C-2011-PDF-E.pdf""" ;
+	.
+
+
 #########################################################
 #
 # Properties that need to be reviewed to determine whether
 # they should be preserved in the ontology.
 #
 #########################################################
-
-
 
 memex:snapshot a rdf:Property ; 
 	rdfs:label "snapshot"@en ;
@@ -305,10 +440,6 @@ memex:isBodyPartOf a rdf:Property ;
 	rdfs:comment "Identifies the body part of a schema:CreativeWork." 
 	.
 
-
-
-
-
 memex:hasSignaturePart a rdf:Property ; 
 	rdfs:label "hasSignaturePart"@en ;
 	owl:inverseOf memex:isSignaturePartOf ;
@@ -321,25 +452,7 @@ memex:isSignaturePartOf a rdf:Property ;
 	rdfs:comment "Identifies the work that this is a part of." 
 	.
 
-memex:primaryLocation a rdf:Property ; 
-	rdfs:label "postingLocation"@en ;
-	rdfs:subPropertyOf schema:mentions ;
-	schema:domainIncludes schema:CreativeWork ;
-	schema:rangeIncludes schema:Place ;
-	rdfs:comment "The primary location associated with a schema:CreativeWork." 
-	.
 
-memex:ethnicity a rdf:Property ; 
-	rdfs:label "ethnicity"@en ;
-	schema:domainIncludes schema:Person ;
-	rdfs:comment "The ethnicity of a person." 
-	.
-
-memex:age a rdf:Property ; 
-	rdfs:label "age"@en ;
-	schema:domainIncludes schema:Person ;
-	rdfs:comment "The age of a person." 
-	.
 
 memex:preferenceQualifier a rdf:Property ; 
 	rdfs:label "preferenceQualifier"@en ;
@@ -374,57 +487,6 @@ memex:distinctivePhrases a rdf:Property ;
 	We include schema:Intangible in the domain to make it convenient to associate
 	DistinctivePhrases with the description of schema:Offer.
 	""" ;
-	.
-
-memex:legalAction a rdf:Property ; 
-	rdfs:label "legalAction"@en ;
-	schema:rangeIncludes schema:Action ;
-	rdfs:comment """Identifies a legal Action""" 
-	.
-
-memex:plaintiff a rdf:Property ; 
-	rdfs:label "plaintiff"@en ;
-	schema:domainIncludes memex:LegalAction ;
-	schema:rangeIncludes memex:PersonOrOrganization ;
-	schema:rangeIncludes schema:Organization ;
-	rdfs:comment """Identifies a plaintiff in a LegalAction""" 
-	.
-
-memex:defendant a rdf:Property ; 
-	rdfs:label "defendant"@en ;
-	schema:domainIncludes memex:LegalAction ;
-	schema:rangeIncludes memex:PersonOrOrganization ;
-	schema:rangeIncludes schema:Organization ;
-	rdfs:comment """Identifies a defendant in a LegalAction""" 
-	.
-
-memex:operatingPermit a rdf:Property ; 
-	rdfs:label "operatingPermit"@en ;
-	schema:rangeIncludes schema:Permit ;
-	rdfs:comment """Identifies an operating permit"""
-	.
-
-
-
-memex:personAge a rdf:Property ;
-	rdfs:label "personAge"@en ;
-	rdfs:comment """age of a Person""";
-	.
-
-memex:hairColor a rdf:Property ;
-	rdfs:label "hairColor"@en ;  
-	rdfs:comment """hair color of a Person""" ;
-	.
-
-memex:eyeColor a rdf:Property ;
-	rdfs:label "eyeColor"@en ;  
-	rdfs:comment """eye color of a Person""" ;
-	.
-
-memex:tenDigitPhoneNumber a rdf:Property ;
-	rdfs:label "tenDigitPhoneNumber"@en ;
-	schema:domainIncludes memex:PhoneNumber ;
-	rdfs:comment "The 10 digit number of a USA phone number." 
 	.
 
 memex:confidence a rdf:Property ;
@@ -483,13 +545,6 @@ memex:hasFirearmsRedFlagPhrase a rdf:Property ;
 	rdfs:comment """To make NC happy""" ;
 	.
 
-memex:dateRecorded a rdf:Property ; 
-	rdfs:label "timestamp"@en ;
-	schema:domainIncludes schema:Role ;
-	rdfs:comment """Specifies the point in time when Role information was recorded.
-	Use this property to create a time series of Roles that record multiple values of 
-	a property changing over time.""" ;
-	.
 
 memex:applicant a rdf:Property ; 
 	rdfs:label "applicant"@en ;

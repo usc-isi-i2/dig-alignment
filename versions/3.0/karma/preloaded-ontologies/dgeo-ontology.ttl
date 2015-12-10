@@ -1,0 +1,325 @@
+@prefix memex: <http://memexproxy.com/ontology/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix schema: <http://schema.org/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix memex: <http://dig.isi.edu/ontology/memex/> .
+
+<http://memexproxy.com/ontology/> rdf:type owl:Ontology .
+
+
+#########################################################
+#
+# Classes
+#
+#########################################################
+
+memex:ThingsWithSpaceTimeVolume rdf:type owl:Class ; 
+	rdfs:label "ThingsWithSpaceTimeVolume"@en ;
+	rdfs:comment """ThingsWithSpaceTimeVolume""" ;
+	.
+	
+memex:Place rdf:type owl:Class ; 
+	rdfs:subClassOf memex:ThingsWithSpaceTimeVolume ;
+	rdfs:subClassOf schema:Place ;
+	rdfs:label "Place"@en ;
+	rdfs:comment """An entry in a gazetteer identifying a place in the sense of a place occupied by a phenomena(Phenomenal Place) or a place declared by humans like an administrative area(Declarative Place). 
+	A Place has one or more associated SpaceTimeVolumes as propositions on the spatial and temporal extent of the phenomena or the spatial and temporal validity of a declarative place""" ;
+	skos:note """Maybe we should only have schema:Place to minimize confusion 
+	and make schema:Place a subclass of memex:ThingsWithSpaceTimeVolume."""
+	.
+	
+memex:PopulatedPlace rdf:type owl:Class ; 
+	rdfs:subClassOf memex:Place ;
+	rdfs:label "PopulatedPlace"@en ;
+	rdfs:comment """Any PPL."""
+	.
+
+memex:AdministrativeArea rdf:type owl:Class ; 
+	rdfs:subClassOf memex:Place ;
+	rdfs:subClassOf schema:AdministrativeArea  ;
+	rdfs:label "AdministrativeArea"@en ;
+	rdfs:comment """Any AdministrativeArea """
+	.
+
+memex:Country rdf:type owl:Class ; 
+	rdfs:subClassOf memex:AdministrativeArea ;
+	rdfs:comment """Nation state."""
+	.
+
+memex:State1stDiv rdf:type owl:Class ; 
+	rdfs:subClassOf memex:AdministrativeArea ;
+	rdfs:comment """First-level administrative subdivision: state, province, departement, lander, etc"""
+	.
+
+memex:CountyProvince2ndDiv rdf:type owl:Class ; 
+	rdfs:subClassOf memex:AdministrativeArea ;
+	rdfs:comment """Second-level administrative subdivision: county, parish, township, oblast."""
+	.
+
+memex:Community3rdDiv rdf:type owl:Class ; 
+	rdfs:subClassOf memex:AdministrativeArea ;
+	rdfs:comment """Third-level administrative subdivision: community,.."""
+	.	
+	
+memex:SubCommunity4thDiv rdf:type owl:Class ; 
+	rdfs:subClassOf memex:AdministrativeArea ;
+	rdfs:comment """Forth-level administrative subdivision: canton, village,.."""
+	.
+
+memex:PostalCode rdf:type owl:Class ; 
+	rdfs:label "PostalCode"@en ;
+	rdfs:subClassOf memex:AdministrativeArea ;
+	rdfs:comment """Postalcode, etc.  Not a string?""" ;
+	.
+
+memex:SpaceTimeVolume rdf:type owl:Class ; 
+	rdfs:label "ThingsWithSpaceTimeVolume"@en ;
+	rdfs:comment """SpaceTimeVolume""" ;
+	.
+	
+memex:Geometry rdf:type owl:Class ; 
+	rdfs:label "Geometry"@en ;
+	rdfs:comment """Geometry of a SpaceTimeVolume""" ;
+	.
+	
+memex:PointGeometry rdf:type owl:Class ; 
+	rdfs:label "PointGeometry"@en ;
+	rdfs:subClassOf memex:Geometry ;
+	rdfs:comment """PointGeometry identifying a point inside or close to a SpaceTimeVolume. """ ;
+	.
+
+memex:TimeSpan rdf:type owl:Class ; 
+	rdfs:label "ThingsWithSpaceTimeVolume"@en ;
+	rdfs:comment """TimeSpan of a SpaceTimeVolume""" ;
+	.
+
+	
+#########################################################
+#
+# Object Properties
+#
+#########################################################
+
+
+	
+memex:hasSpaceTimeVolume rdf:type owl:ObjectProperty ; 
+	rdfs:label "hasSpaceTimeVolume"@en ;
+	rdfs:domain memex:ThingsWithSpaceTimeVolume ; 
+	rdfs:range memex:SpaceTimeVolume ;
+	owl:inverseOf memex:isSpaceTimeVolumeOf ;
+	rdfs:comment """The proposition about a SpaceTimeVolume that approximates the spatiotemporal extent of ThingsWithSpaceTimeVolume. This approximation may be derived from a measurement or an estimation
+	or the validity of a legal act, like the declaration of a country """
+	.
+
+memex:isSpaceTimeVolumeOf rdf:type owl:ObjectProperty ; 
+	rdfs:label "isSpaceTimeVolume"@en ;
+	rdfs:domain memex:SpaceTimeVolume ; 
+	rdfs:range memex:ThingsWithSpaceTimeVolume ;
+	owl:inverseOf memex:hasSpaceTimeVolume ;
+	rdfs:comment """The proposition about a SpaceTimeVolume that approximates the spatiotemporal extent of ThingsWithSpaceTimeVolume. This approximation may be derived from a measurement or an estimation
+	or the validity of a legal act, like the declaration of a country """
+	.
+	
+memex:hasGeometry rdf:type owl:ObjectProperty ; 
+	rdfs:label "hasGeometry"@en ;
+	rdfs:domain memex:SpaceTimeVolume ; 
+	rdfs:range memex:Geometry ;
+	owl:inverseOf memex:isGeometryOf ;
+	rdfs:comment """A proposition about the spatial projection of a SpaceTimeVolume. It's intention is to approximate the SpaceTimeVolume's spatial extent."""
+	.
+
+memex:isGeometryOf rdf:type owl:ObjectProperty ; 
+	rdfs:label "isGeometryOf"@en ;
+	rdfs:domain memex:Geometry ; 
+	rdfs:range memex:SpaceTimeVolume ;
+	owl:inverseOf memex:hasGeometry ;
+	rdfs:comment """CRMgeo:is_spatial_projection """
+	.
+	
+memex:hasTimeSpan rdf:type owl:ObjectProperty ; 
+	rdfs:label "hasTimeSpan"@en ;
+	rdfs:domain memex:SpaceTimeVolume ; 
+	rdfs:range memex:TimeSpan ;
+	owl:inverseOf memex:isTimeSpanOf ;
+	rdfs:comment """A proposition about the temporal projection of a SpaceTimeVolume. It's intention is to approximate the SpaceTimeVolume's temporal extent."""
+	.
+
+memex:isTimeSpanOf rdf:type owl:ObjectProperty ; 
+	rdfs:label "isGeometryOf"@en ;
+	rdfs:domain memex:Geometry ; 
+	rdfs:range memex:SpaceTimeVolume ;
+	owl:inverseOf memex:hasGeometry ;
+	rdfs:comment """CRMgeo:is_temporal_projection """
+	.
+	
+memex:fallsWithin rdf:type owl:ObjectProperty ; 
+	rdfs:label "fallsWithin"@en ;
+	rdfs:domain memex:Place ; 
+	rdfs:range memex:Place ;
+	rdfs:subPropertyOf schema:containedIn;
+	owl:inverseOf memex:contains ;
+	rdfs:comment """Topological relation of one Place falling within the area of another. Two phenomena without any causal relation may fall one within the other, like a mountain (Mt.Everest) falling within one or mores countries(Nepal, China)."""
+	.
+	
+memex:contains rdf:type owl:ObjectProperty ; 
+	rdfs:label "contains"@en ;
+	rdfs:domain memex:Place ; 
+	rdfs:range memex:Place ;
+	owl:inverseOf memex:fallsWithin ;
+	rdfs:comment """Topological relation of one Place containing the area of another. Two phenomena without any causal relation may be contained one within the other, like countries (Nepal and China) containing a mountain (Mt.Everest)."""
+	.
+	
+memex:isPartOf rdf:type owl:ObjectProperty ; 
+	rdfs:label "isPartOf"@en ;
+	rdfs:domain memex:Place ; 
+	rdfs:range memex:Place ;
+	rdfs:subPropertyOf memex:fallsWithin;
+	owl:inverseOf memex:hasPart ;
+	rdfs:comment """Causal relation of one Place being part of another because of a part-whole relation, like a mountain  (Mt.Everest) being part of a montain range(Himalya)."""
+	.
+
+memex:hasPart rdf:type owl:ObjectProperty ; 
+	rdfs:label "hasPartOf"@en ;
+	rdfs:domain memex:Place ; 
+	rdfs:range memex:Place ;
+	rdfs:subPropertyOf memex:contains;
+	owl:inverseOf memex:isPart ;
+	rdfs:comment """Causal relation of one Place consisting of other places because of a whole-part relation, like a montain range(Himalya) having a mountain  (Mt.Everest) as a part."""
+	.
+	
+memex:fallsWithinCountry rdf:type owl:ObjectProperty ; 
+	rdfs:label "fallsWithinCountry"@en ;
+	rdfs:domain memex:Place ; 
+	rdfs:range memex:Country ;
+	rdfs:subPropertyOf schema:fallsWithin;
+	owl:inverseOf memex:CountryContains ;
+	rdfs:comment """Topological relation of one Place falling within a Country"""
+	.
+
+memex:countryContains rdf:type owl:ObjectProperty ; 
+	rdfs:label "CountryContains"@en ;
+	rdfs:domain memex:Country ;
+	rdfs:range memex:Place ; 
+	owl:inverseOf memex:fallsWithinCountry ;
+	rdfs:comment "Inverse of memex:fallsWithinCountry." 
+	.
+
+memex:fallsWithinState1stDiv rdf:type owl:ObjectProperty ; 
+	rdfs:label "fallsWithinState1stDiv"@en ;
+	rdfs:domain memex:Place ; 
+	rdfs:range memex:State1stDiv ;
+	rdfs:subPropertyOf schema:fallsWithin;
+	owl:inverseOf memex:State1stDivContains ;
+	rdfs:comment """Topological relation of one Gazetteer Entry being contained in a State1stDiv"""
+	.
+
+memex:state1stDivContains rdf:type owl:ObjectProperty ; 
+	rdfs:label "state1stDivContains"@en ;
+	rdfs:domain memex:State1stDiv ;
+	rdfs:range memex:Place ; 
+	owl:inverseOf memex:fallsWithinState1stDiv ;
+	rdfs:comment "Inverse of memex:fallsWithinState1stDiv." 
+	.
+	
+memex:fallsWithinCountyProvince2ndDiv rdf:type owl:ObjectProperty ; 
+	rdfs:label "fallsWithinCountyProvince2ndDiv"@en ;
+	rdfs:domain memex:Place ; 
+	rdfs:range memex:CountyProvince2ndDiv ;
+	rdfs:subPropertyOf schema:containedIn;
+	owl:inverseOf memex:CountyProvince2ndDivContains ;
+	rdfs:comment """Topological relation of one Gazetteer Entry being contained in a CountyProvince2ndDiv"""
+	.
+
+memex:countyProvince2ndDivContains rdf:type owl:ObjectProperty ; 
+	rdfs:label "countyProvince2ndDivContains"@en ;
+	rdfs:domain memex:CountyProvince2ndDiv ;
+	rdfs:range memex:Place ; 
+	owl:inverseOf memex:fallsWithinCountyProvince2ndDiv ;
+	rdfs:comment "Inverse of memex:fallsWithinCountyProvince2ndDiv." 
+	.
+
+memex:fallsWithinCommunity3rdDiv rdf:type owl:ObjectProperty ; 
+	rdfs:label "fallsWithinCommunity3rdDiv"@en ;
+	rdfs:domain memex:Place ; 
+	rdfs:range memex:Community3rdDiv ;
+	rdfs:subPropertyOf schema:containedIn;
+	owl:inverseOf memex:community3rdDivContains ;
+	rdfs:comment """Topological relation of one Gazetteer Entry being contained in a Community3rdDiv"""
+	.
+
+memex:community3rdDivContains rdf:type owl:ObjectProperty ; 
+	rdfs:label "community3rdDivContains"@en ;
+	rdfs:domain memex:Community3rdDiv ;
+	rdfs:range memex:Place ; 
+	owl:inverseOf memex:fallsWithinCommunity3rdDivContains ;
+	rdfs:comment "Inverse of memex:fallsWithinCommunity3rdDiv." 
+	.
+	
+memex:fallsWithinSubCommunity4thDiv rdf:type owl:ObjectProperty ; 
+	rdfs:label "fallsWithinSubCommunity4th"@en ;
+	rdfs:domain memex:Place ; 
+	rdfs:range memex:SubCommunity4thDiv ;
+	rdfs:subPropertyOf schema:containedIn;
+	owl:inverseOf memex:subCommunity4thDivContains ;
+	rdfs:comment """Topological relation of one Gazetteer Entry being contained in a SubCommunity4thDiv"""
+	.
+
+memex:subCommunity4thDivContains rdf:type owl:ObjectProperty ; 
+	rdfs:label "subCommunity4thDivContains"@en ;
+	rdfs:domain memex:SubCommunity4thDiv ;
+	rdfs:range memex:Place ; 
+	owl:inverseOf memex:fallsWithinSubCommunity4th ;
+	rdfs:comment "Inverse of memex:fallsWithinSubCommunity4thDiv." 
+	.	
+	
+	
+	
+#########################################################
+#
+# Data Properties
+#
+#########################################################
+
+
+memex:asKML rdf:type owl:DatatypeProperty ;
+	rdfs:domain memex:Geometry ;
+	rdfs:label "asKML"@en ;
+	rdfs:comment """Geometry encoded in KML as a string """
+	.
+	
+memex:asWGS84 rdf:type owl:DatatypeProperty ;
+	rdfs:domain memex:PointGeometry ;
+	rdfs:label "asWGS84"@en ;
+	rdfs:subPropertyOf schema:geo;
+	rdfs:comment """Geometry encoded in WGS84 as a string"""
+	.	
+
+memex:asGeoJson rdf:type owl:DatatypeProperty ;
+	rdfs:domain memex:Geometry ;
+	rdfs:label "asGeoJson"@en ;
+	rdfs:comment """Geometry encoded as GeoJson in a string"""
+	.
+
+memex:asWKTLiteral rdf:type owl:DatatypeProperty ;
+	rdfs:domain memex:Geometry ;
+	rdfs:label "asWKTLiteral"@en ;
+	rdfs:comment """Geometry encoded  as WKT in a string"""
+	.
+
+memex:startDate rdf:type owl:DatatypeProperty ;
+	rdfs:domain memex:TimeSpan ;
+	rdfs:range xsd:date ;
+	rdfs:label "startDate"@en ;
+	rdfs:comment """Starting date of a time span"""
+	.
+	
+memex:endDate rdf:type owl:DatatypeProperty ;
+	rdfs:domain memex:TimeSpan ;
+	rdfs:range xsd:date ;
+	rdfs:label "endDate"@en ;
+	rdfs:comment """Ending date of a time span"""	
+	.

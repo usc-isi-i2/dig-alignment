@@ -1,0 +1,128 @@
+@prefix memex: <http://memexproxy.com/ontology/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix schema: <http://schema.org/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+
+<http://memexproxy.com/ontology/> a owl:Ontology .
+
+
+#########################################################
+#
+# Aggregations
+#
+#########################################################
+
+memex:Aggregation a rdfs:Class ;
+	rdfs:label "Aggregation"@en ;
+	rdfs:subClassOf schema:Intangible ;
+	rdfs:comment """Represents data aggregated from other objects.
+	For example, one can aggregate the names of the users who posted on a thread
+	and construct a histogram that records how many posts each user posted on the thred.
+
+	There a more specific classes such as memex:Histogram that define specific aggregations.
+
+	An instance of Aggregation should have schema:name that gives a name to the aggregation
+	so that it can be labeled on the user interface. It should also have a memex:propertyPath
+	that defines a JSON path from the object containing the aggregation to the values being
+	aggregated. For example 'offers.availabilityStarts'. If the objects use instances of
+	schema:Role, the path does NOT include the intermediate Role objects. For example, if
+	'availabilityStarts' uses Role, the path will be as stated above, rather than
+	'offers.availabilityStarts.availabilityStarts'
+	"""
+	.
+
+memex:aggregation a rdf:Property ; 
+	rdfs:label "aggregation"@en ;
+	schema:domainIncludes schema:Thing ;
+	schema:rangeIncludes memex:Aggregation ;
+	rdfs:comment """Records an Aggregation instance of an object. 
+	It can be defined on any type of object.""" ;
+	.
+
+# TimeSequence
+
+memex:TimeSequence a rdfs:Class ;
+	rdfs:label "TimeSequence"@en ;
+	rdfs:subClassOf memex:Aggregation ;
+	rdfs:comment """Represents a sequence of points in a time line.
+	For example, all the times when a user posted a message in a forum.
+
+	An instance of TimeSequence should include the properties required by
+	memex:Aggregation, and in addition define memex:timePoint to record the times in
+	ISO format. Note that any ISO format is legal, so the time points can be dates
+	without times, weeks, etc.
+	"""
+	.
+
+memex:timePoint a rdf:Property ; 
+	rdfs:label "timePoint"@en ;
+	schema:domainIncludes memex:TimeSequence ;
+	rdfs:comment """Records a point in time in ISO format. Such time points
+	may be defined only as days, weeks, and don't need to be defined with
+	second resolution.""" ;
+	.
+
+# Histogram
+
+memex:Histogram a rdfs:Class ;
+	rdfs:label "Histogram"@en ;
+	rdfs:subClassOf memex:Aggregation ;
+	rdfs:comment """Represents a histogram, which consists of a set of labels and counts.
+	For example, all the times when a user posted a message in a forum.
+
+	An instance of Histogram should include the properties required by
+	memex:Aggregation, and in addition define memex:bins to record a set of name/count pairs.
+	The bins should be sorted descending by count, so that if the user interface displays
+	a subset of the bins then the bins of the largest counts are displayed.
+	"""
+	.
+
+memex:HistogramBin a rdfs:Class ;
+	rdfs:label "HistogramBin"@en ;
+	rdfs:subClassOf schema:Intangible ;
+	rdfs:comment """Represents one bin in a memex:Histogram.
+
+	An instance of HistogramBin should have a schema:name and a schema:value.
+	HistogramBins may include additional properties.
+	"""
+	.
+
+memex:bin a rdf:Property ; 
+	rdfs:label "bins"@en ;
+	schema:domainIncludes memex:Histogram ;
+	schema:rangeIncludes memex:HistogramBin ;
+	rdfs:comment """The bins in a memex:Histogram.
+	It is defined as an ObjectProperty as we never expect the bins of a Histogram to
+	be a Literal.
+
+	In JSON-LD the value of memex:bin is an array of memex:HistogramBin."""
+	.
+
+
+# TimeSeries
+
+memex:TimeSeries a rdfs:Class ;
+	rdfs:label "TimeSeries"@en ;
+	rdfs:subClassOf memex:Aggregation ;
+	rdfs:comment """Represents a time series, consisting of a sequence of data points.
+	Each data point has a time and a value.
+
+	An instance of TimeSeries should include the properties required by
+	memex:Aggregation, and in addition define memex:bins to record a set of name/count pairs.
+	The bins should be sorted descending by count, so that if the user interface displays
+	a subset of the bins then the bins of the largest counts are displayed.""" ;
+	.
+
+memex:TimeSeriesPoint a rdfs:Class ;
+	rdfs:label "TimeSeriesPoint"@en ;
+	rdfs:subClassOf schema:Intangible ;
+	rdfs:comment """Represents one data point in a memex:TimeSeries.
+
+	An instance of TimeSeriesPoint should have a schema:name and a schema:value.
+	TimeSeriesPoints may include additional properties.
+	"""
+	.
