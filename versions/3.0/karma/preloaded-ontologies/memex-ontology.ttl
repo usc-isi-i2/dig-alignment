@@ -1,4 +1,4 @@
-@prefix memex: <http://memexproxy.com/ontology/> .
+@prefix memex: <http://schema.dig.isi.edu/ontology/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -7,7 +7,7 @@
 @prefix schema: <http://schema.org/> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 
-<http://memexproxy.com/ontology/> a owl:Ontology ;
+<http://schema.dig.isi.edu/ontology/> a owl:Ontology ;
 	rdfs:label "Memex Ontology" ;
 	schema:version "3.0" ;
 	.
@@ -29,8 +29,35 @@ memex:Name a owl:Class ;
 	rdfs:comment """Represents the Name of an entity."""
 	.
 
+memex:UserName a owl:Class ;
+	rdfs:subClassOf memex:Appellation ;
+	rdfs:label "UserName"@en ;
+	rdfs:comment """Represents the user name or login name that a person
+	uses to authenticate with a SoftwareSystem.
+
+	UserName should appear as an identifier of a PersonOrOrganization.
+	The hasType property should be used to specify the type of UserName, e.g., twitter.
+	The softwareSystem property can be used to provide additional information about
+	the software system associated with a UserName.
+	The url property should be used to represent the login page, if relevant. """
+	.
+
+memex:SoftwareSystem a owl:Class ;
+	rdfs:subClassOf memex:Appellation ;
+	rdfs:label "SoftwareSystem"@en ;
+	rdfs:comment """Represents a software system, which can be an online system or
+	a schema:SoftwareApplication."""
+	.
+
 memex:PersonOrOrganization a owl:Class ;
 	rdfs:comment """The union of Person and Organization."""
+	.
+
+memex:Group rdf:type owl:Class ;
+	rdfs:label "Group@en" ;
+	rdfs:comment """A group of people or things. Used to represent information about the
+	group as a whole when the identities of the members are unknown.""" ;
+	skos:note """Use memex:size to specify the number of members in the group.""" ;
 	.
 
 schema:Organization a owl:Class ;
@@ -127,37 +154,26 @@ memex:Phrase a owl:Class ;
 	skos:note """A memex simplification of skos:Concept.""" ;
 	.
 
-memex:PhraseScheme a owl:Class ;
-	rdfs:label "PhraseList"@en ;
-	rdfs:subClassOf schema:Intangible ;
-	rdfs:comment """A collection of memex:Phrase.""" ;
-	skos:note """A memex simplificaiton of skos:ConceptScheme.""" ;
-	.
-
-memex:AdultService a owl:Class ;
-	rdfs:label "AdultService"@en ;
-	rdfs:subClassOf schema:ProfessionalService ;
-	rdfs:comment """Adult Service such as massage or escort services""" ;
-	.
-
-memex:DistinctivePhrases a owl:Class ;
-	rdfs:label "DistinctivePhrases"@en ;
-	rdfs:subClassOf memex:PhraseScheme ;
-	rdfs:comment """A list of words or phrases that are distinctive in some way.
-	For example, they can be missspelt words, phrases that occur frequently in particular sets
-	of documents such as the Posts of an individual, or phrases that occur in the signature part
-	of a Post.
-
-	Instances of DistinctivePhrases should appear as values of memex:distinctivePhrases""" ;
-	.
-
 memex:Topic a owl:Class ;
 	rdfs:label "Topic"@en ;
-	rdfs:subClassOf memex:PhraseScheme ;
-	rdfs:comment """A Topic defines the subject of a creative work using words.
-	This is as opposed to saying that the topic of a document is dbpedia:Obama.
+	rdfs:subClassOf schema:Intangible ;
+	rdfs:comment """The topic or theme of a Creative Work.
+	See https://en.wikipedia.org/wiki/Topic_and_comment.
 
-	Instances of memex:Topic should appear as values of schema:about.""" ;
+	Topics should appear as values of schema:about.
+	If there is a need to record probabilities or weights, these values should
+	be stored in a Role object.""" ;
+	.
+
+memex:Sentiment  a owl:Class ;
+	rdfs:label "Sentiment"@en ;
+	rdfs:subClassOf schema:Intangible ;
+	rdfs:comment """T the attitude of a speaker or a writer with respect to 
+	some topic or the overall contextual polarity of a document. 
+	See https://en.wikipedia.org/wiki/Sentiment_analysis.
+
+	Seniment analysis is a rich topic. This class defines an abstraction that 
+	should be specialized for different types of analyses and representaiton.""" ;
 	.
 
 memex:LegalAction a owl:Class ;
@@ -180,6 +196,13 @@ memex:Cluster a owl:Class ;
 	rdfs:comment """Represents a cluster of objects"""
     . 
 
+
+memex:AdultService a owl:Class ;
+	rdfs:label "AdultService"@en ;
+	rdfs:subClassOf schema:ProfessionalService ;
+	rdfs:comment """Adult Service such as massage or escort services""" ;
+	.
+
 #########################################################
 #
 # Properties
@@ -196,26 +219,20 @@ memex:identifier a rdf:Property ;
 memex:hasType a rdf:Property ; 
 	rdfs:label "hasType"@en ;
 	schema:domainIncludes schema:Thing ;
-	schema:rangeIncludes schema:Thing ;
-	rdfs:comment """The Type of an entity, usually specified as a URI that defines
-	a controlled vocabulary.""" ;
+	schema:rangeIncludes schema:Text ;
+	rdfs:comment """The Type of an entity.
+	Should be specified using a short string.""" ;
+	skos:note """This property has a special meaning in DIG as the DIG processor:
+	Given an array of objects, each with a hasType property, DIG will automatically
+	convert it into a dictionary, generating a key for each value of hasType.""" ;
 	.
 
 memex:hasPhrase a rdf:Property ; 
 	rdfs:label "hasPhrase"@en ;
-	schema:domainIncludes memex:PhraseScheme ;
+	schema:domainIncludes schema:CreativeWork ;
 	schema:rangeIncludes memex:Phrase ;
 	schema:rangeIncludes schema:Text ;
-	owl:inverseOf memex:inPhraseScheme ;
 	rdfs:comment """The Phrases in a PhraseScheme. """ ;
-	.
-
-memex:inPhraseScheme a rdf:Property ; 
-	rdfs:label "inPhraseScheme"@en ;
-	schema:domainIncludes memex:Phrase ;
-	schema:rangeIncludes memex:PhraseScheme ;
-	owl:inverseOf memex:hasPhrase ;
-	rdfs:comment """The PhraseScheme that a Phrase belongs to. """ ;
 	.
 
 memex:hasImagePart a rdf:Property ; 
@@ -241,16 +258,15 @@ memex:hasPost a rdf:Property ;
 	rdfs:subPropertyOf schema:hasPart ;
 	schema:domainIncludes schema:CreativeWork ;
 	schema:rangeIncludes memex:Post ;
-	rdfs:comment "Identifies a post belonging to a memex:Thread."
+	rdfs:comment """Identifies a post belonging to a memex:Thread.""" ;
 	.
 
 memex:hashTag a rdf:Property ; 
-	rdfs:label "hasPost"@en ;
+	rdfs:label "hashTag"@en ;
 	schema:domainIncludes schema:Post ;
 	schema:rangeIncludes schema:Text ;
 	rdfs:comment """Specifies a hash-tag for a Post, typically defined for Tweet, 
-	but can be used with other types of Posts. The value should include the # as in
-	#news. """
+	but can be used with other types of Posts. The value should not include the #."""
 	.
 
 memex:isPostOf a rdf:Property ; 
@@ -259,7 +275,7 @@ memex:isPostOf a rdf:Property ;
 	schema:domainIncludes memex:Post ;
 	schema:rangeIncludes schema:CreativeWork ;
 	owl:inverseOf memex:hasPost ;
-	rdfs:comment "Identifies the creative work that a post is a part of."
+	rdfs:comment """Identifies the creative work that a post is a part of.""" ;
 	.
 
 memex:owner a rdf:Property ;
@@ -275,6 +291,49 @@ memex:primaryLocation a rdf:Property ;
 	schema:domainIncludes schema:CreativeWork ;
 	schema:rangeIncludes schema:Place ;
 	rdfs:comment """The primary location associated with a schema:CreativeWork.""" ;
+	.
+
+memex:sentiment a rdf:Property ; 
+	rdfs:label "sentiment"@en ;
+	schema:domainIncludes memex:CreativeWork ;
+	schema:rangeIncludes memex:Sentiment ;
+	rdfs:comment """The Phrases in a PhraseScheme. """ ;
+	.
+
+memex:polarityValue a rdf:Property ; 
+	rdfs:label "polarityValue"@en ;
+	schema:domainIncludes memex:Sentiment ;
+	schema:rangeIncludes schema:Number ;
+	rdfs:comment """Represents the polarity value of a Sentiment.
+	The scale is not prescribed, and its interpretation depends of the
+	type of sentiment analysis being represented.""" ;
+	.
+
+memex:softwareSystem a rdf:Property ; 
+	rdfs:label "softwareSystem"@en ;
+	schema:domainIncludes memex:UserName ;
+	schema:rangeIncludes memex:SoftwareSystem ;
+	rdfs:comment """The sofware system assiciated with a UserName.""" ;
+	.
+
+memex:count a rdf:Property ; 
+	rdfs:label "count"@en ;
+	schema:domainIncludes memex:Group ;
+	schema:rangeIncludes schema:QualitativeValue ;
+	rdfs:comment """The number of elements in a set of things such as a Group.
+	QuantitativeValue can specify a range, and the
+	schema:unitCode for people is HEA, the standard code for heads of people.
+	A Group can have multiple count values, to represent finer distinctions
+	such as women, children, etc.""" ;
+	.
+
+memex:affected a rdf:Property ; 
+	rdfs:label "affected"@en ;
+	schema:domainIncludes schema:Event ;
+	schema:rangeIncludes memex:Group ;
+	schema:rangeIncludes schema:Person ;
+	schema:rangeIncludes schema:Place ;
+	rdfs:comment """The entities affected by an event.""" ;
 	.
 
 memex:ethnicity a rdf:Property ; 
@@ -378,6 +437,16 @@ memex:phoneNationalSignificantNumber a rdf:Property ;
 	identify a subscriber; this number consists of an area code followed by
 	a subscriber number, see
 	http://www.itu.int/dms_pub/itu-t/opb/sp/T-SP-E.164C-2011-PDF-E.pdf""" ;
+	.
+
+#########################################################
+#
+# Generalizations of schema.org properties
+#
+#########################################################
+
+schema:about a rdf:Property ; 
+	schema:rangeIncludes memex:Topic ;
 	.
 
 
