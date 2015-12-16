@@ -1,165 +1,162 @@
 import re
-from datetime import datetime, date
+from datetime import datetime
 from time import mktime, gmtime
 import calendar
 from urlparse import urlparse
 import hashlib
 import uuid
 
-def documentUrl(x):
-    "Return the original document URL from the URL in the document version"
+
+def document_url(x):
+    """Return the original document URL from the URL in the document version"""
     i = x.find('churl')
     return 'http://' + x[x.find('/', i + 6) + 1:]
 
 
-def getCurrentTime():
+def get_current_time():
     return datetime.today().strftime("%Y-%m-%d %H:%M:%S")
 
 
-def countryUri(x):
-    "Return a URI for a country given its name."
-    import re
-
+def country_uri(x):
+    """Return a URI for a country given its name."""
     x = re.sub('[^A-Za-z0-9]+', '', x)
     return x.lower()
 
 
-def personNameUri(x):
-    "Return a URI for a person name."
-    import re
-
+def person_name_uri(x):
+    """Return a URI for a person name."""
     x = re.sub('[^A-Za-z0-9]+', '', x.strip())
     return x.lower()
 
-def toTitleCaseIfUpper(x):
-    "Return the string in title case if it is all upper, otherwise leave capitalization alone."
+
+def to_title_case_if_upper(x):
+    """Return the string in title case if it is all upper, otherwise leave capitalization alone."""
     x = x.strip()
     if x.isupper():
         return x.title()
     else:
         return x
 
-def nonWhitespace(x):
-    "Return the string removing all spaces."
-    import re
 
+def non_whitespace(x):
+    """Return the string removing all spaces."""
     y = re.sub(r'\s+', '', x.strip())
     return y
 
-def toTitleCaseCleaned(x):
-    "Return the string in title case cleaning spaces."
-    import re
 
+def to_title_case_cleaned(x):
+    """Return the string in title case cleaning spaces."""
     y = re.sub(r'\s+', ' ', x.strip())
     return y.title()
 
-def nonAsciiChars(x):
-    "Return a set of the non-ascii chars in x"
-    import re
 
+def non_ascii_chars(x):
+    """Return a set of the non-ascii chars in x"""
     return set(re.sub('[\x00-\x7f]', '', x))
 
 
-def nonAsciiCharsAsString(x):
-    "Return a string containing a comma-separated list of non-ascii chars in x"
-    y = list(nonAsciiChars(x))
+def non_ascii_chars_as_string(x):
+    """Return a string containing a comma-separated list of non-ascii chars in x"""
+    y = list(non_ascii_chars(x))
     y.sort()
     return ', '.join(y)
 
 
-def asciiChars(x, replacement_string=' '):
-    "Remove non-ascii chars in x replacing consecutive ones with a single space"
-    import re
-
+def ascii_chars(x, replacement_string=' '):
+    """Remove non-ascii chars in x replacing consecutive ones with a single space"""
     return re.sub(r'[^\x00-\x7F]+', replacement_string, x)
 
 
-def alphaNumeric(x, replacement_string=' '):
-    "Replace consecutive non-alphanumeric bya replacement_string"
+def alpha_numeric(x, replacement_string=' '):
+    """Replace consecutive non-alphanumeric bya replacement_string"""
     return re.sub('[^A-Za-z0-9]+', replacement_string, x)
 
 
-def numericOnly(x):
-    "Remove non-numeric chars from the string x"
+def numeric_only(x):
+    """Remove non-numeric chars from the string x"""
     return re.sub('[^0-9]+', '', x)
 
 
-def alphaOnly(x):
-    "Remove non-alphabetic chars from the string x"
+def alpha_only(x):
+    """Remove non-alphabetic chars from the string x"""
     return re.sub('[^A-Za-z]+', '', x)
 
-def removeAlpha(x):
-    "Remove alphabetic chars from the string x"
+
+def remove_alpha(x):
+    """Remove alphabetic chars from the string x"""
     return re.sub('[A-Za-z]+', '', x)
 
 
-def alphaOnlyPreserveSpace(x):
+def alpha_only_preserve_space(x):
     x = re.sub('[^A-Za-z\s]+', '', x)
     y = re.sub(r'\s+', ' ', x.strip())
     return y
 
-def isSymbol(char1):
+
+def is_symbol(char1):
     if char1.isalnum():
         return False
     return True
 
-def fingerprintString(x):
-    "Make a fingerprint liek the one google refine makes"
-    x = alphaNumeric(asciiChars(x)).lower()
+
+def fingerprint_string(x):
+    """Make a fingerprint like the one google refine makes"""
+    x = alpha_numeric(ascii_chars(x)).lower()
     y = list(set(x.split()))
     y.sort()
     return '_'.join(y)
 
-def uri_from_string(str, prefix):
-    """Create a valid uri for a string."""
-    x = asciiChars(str, '');
-    x = alphaNumeric(x, "_");
-    return x;
 
-def selectInOutCall(x):
+def uri_from_string(string):
+    """Create a valid uri for a string."""
+    x = ascii_chars(string, '')
+    x = alpha_numeric(x, "_")
+    return x
+
+
+def select_in_out_call(x):
     res = True
-    if (x == "incall" or x == "notincall" or x == "outcall" or x == "notoutcall" or x == "incalloutcall"):
+    if x == "incall" or x == "notincall" or x == "outcall" or x == "notoutcall" or x == "incalloutcall":
         res = False
     return res
 
 
-def inOutCallUriOld(x):
-    "Return a URI for a In/Out Call Preference"
-    import re
-
+def in_out_call_uri_old(x):
+    """Return a URI for a In/Out Call Preference"""
     x = re.sub('[^A-Za-z0-9]+', '', x)
     x = x.lower()
     return 'inOutCallPreference/' + x
 
 
-def inOutCallUri(x):
-    "Return a URI for a In/Out Call Preference based on the category column"
+def in_out_call_uri(x):
+    """Return a URI for a In/Out Call Preference based on the category column"""
     return 'inoutcallpreference/' + x
 
-def organization_uri(id):
-    return "organization/" + str(id)
 
-def md5Hash(x):
-    "Return md5 hash of x"
+def organization_uri(id1):
+    return "organization/" + str(id1)
 
+
+def md5_hash(x):
+    """Return md5 hash of x"""
     return hashlib.md5(x).hexdigest()
 
 
-def tenDigitPhoneNumber(x):
+def ten_digit_phone_number(x):
     """Return the 10-digit phone number of a phone, as 10 consecutive digits"""
     return re.sub('[^0-9]+', '', x)
 
 
-def translate_date(str, in_format, out_format):
+def translate_date(string, in_format, out_format):
     """Convert a date to ISO8601 date format without time"""
     try:
-        return datetime.strptime(str.strip(), in_format).date().strftime(out_format)
+        return datetime.strptime(string.strip(), in_format).date().strftime(out_format)
     except Exception:
         pass
     return ''
 
 
-def iso8601date(date, format=None):
+def iso8601date(date, date_format=None):
     """Convert a date to ISO8601 date format
 
 input format: YYYY-MM-DD HH:MM:SS GMT (works less reliably for other TZs)
@@ -172,9 +169,9 @@ output format: iso8601
 """
     date = date.strip()
     
-    if format:
+    if date_format:
         try:
-            return datetime.strptime(date, format).isoformat()
+            return datetime.strptime(date, date_format).isoformat()
         except Exception:
             pass
 
@@ -215,7 +212,7 @@ output format: iso8601
         
     try:
         date = int(date)
-        if 1000000000000 < date and date < 9999999999999:
+        if 1000000000000 < date < 9999999999999:
             # 13 digit epoch
             return datetime.fromtimestamp(mktime(gmtime(date / 1000))).isoformat()
     except:
@@ -223,7 +220,7 @@ output format: iso8601
 
     try:
         date = int(date)
-        if 1000000000 < date and date < 9999999999:
+        if 1000000000 < date < 9999999999:
             # 10 digit epoch
             return datetime.fromtimestamp(mktime(gmtime(date))).isoformat()
     except:
@@ -231,7 +228,8 @@ output format: iso8601
     # If all else fails, return input
     return ''
 
-def converTimetoEpoch(date,format=None):
+
+def conver_time_to_epoch(date,format=None):
     date = date.strip()
 
     if format:
@@ -243,15 +241,16 @@ def converTimetoEpoch(date,format=None):
         return calendar.timegm(datetime.strptime(date, "%Y-%m-%dT%H:%M:%S").timetuple())
     except:
         pass
-
     return ''
 
-def getYearFromISODate(isoDate):
-    if isoDate:
-        return isoDate[0:4]
+
+def get_year_from_iso_date(iso_date):
+    if iso_date:
+        return iso_date[0:4]
     return ''
 
-def getWebsiteDomain(url):
+
+def get_website_domain(url):
     parsed_uri = urlparse(url)
     if parsed_uri:
         domain = parsed_uri.netloc
@@ -261,7 +260,8 @@ def getWebsiteDomain(url):
             return domain
     return ''
 
-def getWebsiteDomainOnly(url):
+
+def get_website_domain_only(url):
     parsed_uri = urlparse(url)
     if parsed_uri:
         domain = parsed_uri.netloc
@@ -271,17 +271,19 @@ def getWebsiteDomainOnly(url):
 
             idx = domain.find('.')
             if idx != -1:
-                domain2=domain[idx+1:]
+                domain2 = domain[idx+1:]
                 if domain2.find('.') != -1:
                     domain = domain2
                 
             return domain
     return ''
 
-def getTextHash(text):
+
+def get_text_hash(text):
     if text:
         return hashlib.sha1(text.encode('utf-8')).hexdigest().upper()
     return ''
+
 
 def first_non_null(*args):
     """return the first non null value in the arguments supplied"""
@@ -290,21 +292,22 @@ def first_non_null(*args):
             return x
     return ''
 
+
 def uri_from_fields(prefix, *fields):
     """Construct a URI out of the fields, concatenating them after removing offensive characters.
     When all the fields are empty, return empty"""
 
-    str = '_'.join(alphaNumeric(f.strip().lower(),'') for f in fields)
+    string = '_'.join(alpha_numeric(f.strip().lower(), '') for f in fields)
 
-    if len(str) == len(fields)-1:
+    if len(string) == len(fields)-1:
         return ''
 
-    return prefix + str
+    return prefix + string
 
 
-def uri_from_url_timestamp(url,timestamp):
+def uri_from_url_timestamp(url, timestamp):
     """Construct a URI from the URL and timestamp"""
-    return hashlib.sha1(url.encode('utf-8')).hexdigest()+'_'+numericOnly(timestamp)
+    return hashlib.sha1(url.encode('utf-8')).hexdigest() + '_' + numeric_only(timestamp)
 
 
 def uri_from_url(url):
@@ -317,24 +320,19 @@ def uuid_uri(prefix):
     return prefix + str(uuid.uuid1())
 
 
-def get_weapons(*texts):
-    atf_weapons = get_atf_weapons(*texts)
-    keywords = get_keywords(*texts)
-    return ("%s|%s" % (atf_weapons, keywords)).strip("|")
-
-
 def uri_for_userid(prefix, userid):
-  """Construct a URI for a user id"""
-  return prefix + alphaNumeric(userid.strip().lower())
+    """Construct a URI for a user id"""
+    return prefix + alpha_numeric(userid.strip().lower())
+
 
 def select_if_empty(value):
-  """Return true if the value is empty"""
-  try:
-    is_empty = (value.strip()=='')
-    return is_empty
-    pass
-  except Exception:
-    return false
+    """Return true if the value is empty"""
+    try:
+        is_empty = (value.strip() == '')
+        return is_empty
+        pass
+    except Exception:
+        return False
 
 
 def price_quantity_us_number(price):
@@ -352,11 +350,12 @@ def price_currency(price, default_currency="USD"):
         return ''
 
     p = price.strip()
-    if "$" in price:
+    if "$" in p:
         return 'USD'
 
-    #add sophistication
+    # add sophistication
     return default_currency
+
 
 def add_state(location, state):
     """If the location has the state, then do nothing, otherwise add the given state"""
@@ -371,6 +370,7 @@ def add_state(location, state):
     else:
         return loc + ", " + state
 
+
 def get_eye_hair_feature_name(name, value):
     if value.strip() == "NONE":
         return ''
@@ -381,12 +381,14 @@ def get_eye_hair_feature_name(name, value):
         return "eyeColor"
     return ''
 
-def get_string(str, start, end):
-    if(len(str) < start):
+
+def get_string(string, start, end):
+    if len(string) < start:
         return ''
-    if end > len(str):
-        return str[start:]
-    return str[start:end+1]
+    if end > len(string):
+        return string[start:]
+    return string[start:end+1]
+
 
 def get_decimal_coodinate(lat):
     result = 0
@@ -401,8 +403,9 @@ def get_decimal_coodinate(lat):
         result += int(x)/float("3600")
     return str(result)
 
+
 def parse_latitude_longitude(latlon):
-    #Examples: LATMIN:2310N04350W
+    # Examples: LATMIN:2310N04350W
     # LATDEC:351025.3N0790125.7W
     idx = latlon.find(":")
     if idx != -1:
@@ -422,4 +425,4 @@ def parse_latitude_longitude(latlon):
         else:
             return [lat, lon]
 
-    return [-1,-1]
+    return [-1, -1]
