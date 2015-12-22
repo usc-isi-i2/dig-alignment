@@ -9,7 +9,7 @@
 
 <http://schema.dig.isi.edu/ontology/> a owl:Ontology ;
 	rdfs:label "Memex Ontology" ;
-	schema:version "3.01" ;
+	schema:version "3.02" ;
 	.
 
 #########################################################
@@ -227,14 +227,6 @@ memex:hasType a rdf:Property ;
 	convert it into a dictionary, generating a key for each value of hasType.""" ;
 	.
 
-memex:hasPhrase a rdf:Property ; 
-	rdfs:label "hasPhrase"@en ;
-	schema:domainIncludes schema:CreativeWork ;
-	schema:rangeIncludes memex:Phrase ;
-	schema:rangeIncludes schema:Text ;
-	rdfs:comment """The Phrases in a PhraseScheme. """ ;
-	.
-
 memex:hasImagePart a rdf:Property ; 
 	rdfs:label "hasImagePart"@en ;
 	rdfs:subPropertyOf schema:hasPart ;
@@ -261,14 +253,6 @@ memex:hasPost a rdf:Property ;
 	rdfs:comment """Identifies a post belonging to a memex:Thread.""" ;
 	.
 
-memex:hashTag a rdf:Property ; 
-	rdfs:label "hashTag"@en ;
-	schema:domainIncludes schema:Post ;
-	schema:rangeIncludes schema:Text ;
-	rdfs:comment """Specifies a hash-tag for a Post, typically defined for Tweet, 
-	but can be used with other types of Posts. The value should not include the hash."""
-	.
-
 memex:isPostOf a rdf:Property ; 
 	rdfs:label "isPostOf"@en ;
 	rdfs:subPropertyOf schema:isPartOf ;
@@ -276,6 +260,51 @@ memex:isPostOf a rdf:Property ;
 	schema:rangeIncludes schema:CreativeWork ;
 	owl:inverseOf memex:hasPost ;
 	rdfs:comment """Identifies the creative work that a post is a part of.""" ;
+	.
+
+memex:abstract a rdf:Property ; 
+	rdfs:label "abstract"@en ;
+	schema:domainIncludes schema:CreativeWork ;
+	schema:rangeIncludes schema:Text ;
+	schema:rangeIncludes memex:CreativeWork ;
+	rdfs:comment """Identifies the abstract of a CreativeWork.
+	It is possible to represent the abstract as a CreativeWork,
+	so it is possible to record other attributes such as word count.""" ;
+	.
+
+memex:isAbstractPartOf a rdf:Property ; 
+	rdfs:label "isAbstractPartOf"@en ;
+	owl:inverseOf  memex:abstract ;
+	schema:domainIncludes schema:CreativeWork ;
+	schema:rangeIncludes schema:CreativeWork ;
+	rdfs:comment """Identifies the schema:CreativeWork that this abstract is
+	a part of.""" ;
+	.
+
+memex:signature a rdf:Property ; 
+	rdfs:label "signature"@en ;
+	schema:domainIncludes schema:CreativeWork ;
+	schema:rangeIncludes schema:Text ;
+	schema:rangeIncludes memex:Phrase ;
+	rdfs:comment """Identifies a signature block of a CreativeWork.""" ;
+	.
+
+memex:isCitationOf a rdf:Property ; 
+	rdfs:label "isCitationOf"@en ;
+	schema:domainIncludes schema:CreativeWork ;
+	schema:rangeIncludes schema:CreativeWork ;
+	owl:inverseOf  schema:citation ;
+	rdfs:comment "Reverse citations." 
+	.
+
+memex:isAuthorOf a rdf:Property ; 
+	rdfs:label "isAuthorOf"@en ;
+	schema:domainIncludes schema:Person ;
+	schema:domainIncludes schema:Organization ;
+	schema:domainIncludes memex:PersonOrOrganization ;
+	schema:rangeIncludes schema:CreativeWork ;
+	owl:inverseOf schema:author ;
+	rdfs:comment """The inverse of schema:author."""
 	.
 
 memex:owner a rdf:Property ;
@@ -447,4 +476,12 @@ memex:phoneNationalSignificantNumber a rdf:Property ;
 
 schema:about a rdf:Property ; 
 	schema:rangeIncludes memex:Topic ;
+	.
+
+schema:citation a rdf:Property ; 
+	owl:inverseOf  schema:isCitationOf ;
+	.
+
+schema:citation a rdf:Property ; 
+	owl:inverseOf schema:author ;
 	.
