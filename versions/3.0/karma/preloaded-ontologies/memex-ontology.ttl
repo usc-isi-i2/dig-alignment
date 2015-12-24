@@ -18,6 +18,17 @@
 #
 #########################################################
 
+memex:JSONLD_ContainerValue a owl:Class ;
+	rdfs:label "JSONLD_ContainerValue" ;
+	rdfs:subClassOf schema:Enumeration ;
+	rdfs:comment """The set of possible values for @container in JSON-LD""" ;
+	.
+
+memex:JSONLD_Set a memex:JSONLD_ContainerValue ;
+	rdfs:label "@Set" ;
+	rdfs:comment """Used to specify @container: @set.""" ;
+	.
+
 memex:Appellation a owl:Class ;
 	rdfs:label "Appellation" ;
 	rdfs:comment """A string to refer to an entity."""
@@ -181,11 +192,18 @@ memex:AdultService a owl:Class ;
 #
 #########################################################
 
+memex:jsonLD_container a rdf:Property ; 
+	rdfs:label "container" ;
+	schema:domainIncludes rdf:Property ;
+	schema:rangeIncludes memex:JSONLD_ContainerValue ;
+	rdfs:comment """Specify the JSON-LD @container directive."""
+	.
+
 memex:identifier a rdf:Property ; 
 	rdfs:label "identifier" ;
 	schema:domainIncludes schema:Thing ;
 	schema:rangeIncludes memex:Identifier ;
-	rdfs:comment """The Identifier of an entity"""
+	rdfs:comment """The Identifier of an entity. All memex:Identifier should have a memex:hasType property to specify the type of the identifier."""
 	.
 
 memex:hasType a rdf:Property ; 
@@ -219,6 +237,7 @@ memex:hasPost a rdf:Property ;
 	rdfs:subPropertyOf schema:hasPart ;
 	schema:domainIncludes schema:CreativeWork ;
 	schema:rangeIncludes memex:Post ;
+	memex:jsonLD_container memex:JSONLD_Set ;
 	rdfs:comment """Identifies a post belonging to a memex:Thread.""" ;
 	.
 
@@ -277,7 +296,8 @@ memex:owner a rdf:Property ;
 	rdfs:label "owner" ;
 	schema:domainIncludes schema:Thing ;
 	schema:rangeIncludes memex:PersonOrOrganization ;
-	rdfs:comment """owner of a thing""";
+	rdfs:comment """owner of a thing""" ;
+	memex:jsonLD_container memex:JSONLD_Set ;
 	.
 
 memex:primaryLocation a rdf:Property ; 
@@ -293,6 +313,7 @@ memex:sentiment a rdf:Property ;
 	schema:domainIncludes memex:CreativeWork ;
 	schema:rangeIncludes memex:Sentiment ;
 	rdfs:comment """The Phrases in a PhraseScheme. """ ;
+	memex:jsonLD_container memex:JSONLD_Set ;
 	.
 
 memex:polarityValue a rdf:Property ; 
@@ -323,6 +344,7 @@ memex:affected a rdf:Property ;
 	schema:rangeIncludes schema:Person ;
 	schema:rangeIncludes schema:Place ;
 	rdfs:comment """The entities affected by an event.""" ;
+	memex:jsonLD_container memex:JSONLD_Set ;
 	.
 
 memex:ethnicity a rdf:Property ; 
@@ -330,6 +352,7 @@ memex:ethnicity a rdf:Property ;
 	schema:domainIncludes schema:Person ;
 	schema:rangeIncludes schema:Text ;
 	rdfs:comment """The ethnicity of a Person.""" ;
+	memex:jsonLD_container memex:JSONLD_Set ;
 	.
 
 memex:age a rdf:Property ; 
@@ -338,6 +361,7 @@ memex:age a rdf:Property ;
 	schema:rangeIncludes schema:Number ;
 	rdfs:comment """The age of a person.""" ;
 	skos:note """The age of a person changes over time. When the time of observation is available, it is preferable to record the birthYear instead.""" ;
+	memex:jsonLD_container memex:JSONLD_Set ;
 	.
 
 memex:hairColor a rdf:Property ;
@@ -345,6 +369,7 @@ memex:hairColor a rdf:Property ;
 	schema:domainIncludes schema:Person ;
 	schema:rangeIncludes schema:Text ; 
 	rdfs:comment """hair color of a Person""" ;
+	memex:jsonLD_container memex:JSONLD_Set ;
 	.
 
 memex:eyeColor a rdf:Property ;
@@ -352,27 +377,31 @@ memex:eyeColor a rdf:Property ;
 	schema:domainIncludes schema:Person ;
 	schema:rangeIncludes schema:Text ;  
 	rdfs:comment """eye color of a Person""" ;
+	memex:jsonLD_container memex:JSONLD_Set ;
 	.
 
 memex:legalAction a rdf:Property ; 
 	rdfs:label "legalAction" ;
 	schema:domainIncludes schema:Thing ;
 	schema:rangeIncludes schema:Action ;
-	rdfs:comment """Records a LegalAction associated with some entity.""" 
+	rdfs:comment """Records a LegalAction associated with some entity.""" ;
+	memex:jsonLD_container memex:JSONLD_Set ;
 	.
 
 memex:plaintiff a rdf:Property ; 
 	rdfs:label "plaintiff" ;
 	schema:domainIncludes memex:LegalAction ;
 	schema:rangeIncludes memex:PersonOrOrganization ;
-	rdfs:comment """Identifies a plaintiff in a LegalAction""" 
+	rdfs:comment """Identifies a plaintiff in a LegalAction""" ;
+	memex:jsonLD_container memex:JSONLD_Set ;
 	.
 
 memex:defendant a rdf:Property ; 
 	rdfs:label "defendant" ;
 	schema:domainIncludes memex:LegalAction ;
 	schema:rangeIncludes memex:PersonOrOrganization ;
-	rdfs:comment """Identifies a defendant in a LegalAction""" 
+	rdfs:comment """Identifies a defendant in a LegalAction""" ;
+	memex:jsonLD_container memex:JSONLD_Set ;
 	.
 
 memex:operatingPermit a rdf:Property ; 
@@ -435,3 +464,23 @@ schema:citation a rdf:Property ;
 schema:citation a rdf:Property ; 
 	owl:inverseOf schema:author ;
 	.
+
+schema:makesOffer memex:jsonLD_container memex:JSONLD_Set .
+
+schema:owner memex:jsonLD_container memex:JSONLD_Set .
+
+schema:address memex:jsonLD_container memex:JSONLD_Set .
+
+schema:isSimilarTo memex:jsonLD_container memex:JSONLD_Set ;
+	schema:domainIncludes schema:ImageObject ;
+    schema:rangeIncludes schema:ImageObject .
+
+schema:offers memex:jsonLD_container memex:JSONLD_Set .
+
+schema:priceSpecification memex:jsonLD_container memex:JSONLD_Set .
+
+schema:telephone memex:jsonLD_container memex:JSONLD_Set .
+
+schema:email memex:jsonLD_container memex:JSONLD_Set .
+
+
