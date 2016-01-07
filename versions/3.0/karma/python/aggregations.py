@@ -15,7 +15,7 @@ class concat:
         else:
             self.result += self.separator + val
 
-    def get_result(self):
+    def getResult(self):
         return self.result
 
 

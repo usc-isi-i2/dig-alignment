@@ -1,20 +1,7 @@
 # Scripts for modeling ATF data.
 
-def atf_article_uri(url, post_id):
-    return get_url_hash(url)+"/"+post_id
-
-def atf_thread_uri(url):
-    return get_url_hash(url)
 
 test_date = "Wed Feb 11, 2015 10:31 am"
-
-def atf_date_created(date, format="%a %b %d, %Y %I:%M %p"):
-    """Put the date in ISO format"""
-    return iso8601date(date, format)
-
-def atf_joined_date(date, format="%a %b %d, %Y %I:%M %p"):
-    """Put the date in ISO format"""
-    return iso8601date(date, format)
 
 test_date2 = "Wednesday, March 18, 2015 10:33 AM"
 test_format2 = "%A, %B %d, %Y %I:%M %p"
@@ -1225,79 +1212,8 @@ def atf_body_clean(text):
     """Strip HTML"""
     return strip_tags(text).strip()
 
-def onion_name_to_provider_name(onion):
-    if onion   in ["k5zq47j6wd3wdvjq.onion"]:
-        return "evolution"
-    elif onion in ["i25c62nvu4cgeqyz.onion"]:
-        return "evolution-forums"
-    else:
-        return onion
 
-def atf_provider_name(uri):
-    domain = getWebsiteDomain(uri)
-    if domain.endswith('backpage.com'):
-        return "backpage.com"
-    elif domain.endswith('.onion'):
-        return onion_name_to_provider_name(domain)
-    else:
-        return domain
 
-def person_userid_uri(cleaned):
-    if cleaned:
-        cleaned = cleaned.strip().replace(" ", "_").lower()
-        return "person_userid/%s" % cleaned
-    return ''
-
-def person_postcount_uri(cleaned):
-    if cleaned:
-        cleaned = cleaned.strip().replace(" ", "_").lower()
-        return "person_postcount/%s" % cleaned
-    return ''
-
-def enrollment_date_uri(cleaned):
-    if cleaned:
-        cleaned = cleaned.strip().replace(" ", "_").replace(":", "-").lower()
-        return "enrollment_date/%s" % cleaned
-    return ''
-
-def fromUser_uri(cleaned):
-    if cleaned:
-        cleaned = cleaned.strip().replace(" ", "_").lower()
-        return "fromUser/%s" % cleaned
-    return ''
-
-def weaponsMentioned_uri(cleaned):
-    if cleaned:
-        cleaned = cleaned.strip().replace(" ", "_").lower()
-        return "weaponsMentioned/%s" % cleaned
-    return ''
-
-def keywordsMentioned_uri(cleaned):
-    if cleaned:
-        cleaned = cleaned.strip().replace(" ", "_").lower()
-        return "keywordsMentioned/%s" % cleaned
-    return ''
-
-def place_postalAddress_uri(cleaned):
-    if cleaned:
-        cleaned = cleaned.strip().replace(" ", "_").lower()
-        return "place_postalAddress/%s" % cleaned
-    return ''
-
-def ar15_user_uri(userid):
-  return "person/ar15/" + userid
-
-def calguns_user_uri(userid):
-  return "person/calguns/" + userid
-
-def glocktalk_user_uri(userid):
-  return "person/glocktalk/" + userid
-
-def ohioccw_user_uri(userid):
-  return "person/ohioccwforums/" + userid
-
-def postal_address_uri(location):
-  return "address/" + location.replace(" ", "_").replace(".","_").replace(",", "_")
 
 # print test_prices, get_dollar_prices(*test_prices)
 # print test_prices, get_bitcoin_prices(*test_prices)
@@ -1309,9 +1225,4 @@ def get_weapons(*texts):
     keywords = get_keywords(*texts)
     return ("%s|%s" % (atf_weapons, keywords)).strip("|")
 
-def floridaguntrader_availability_starts(date):
-  """Return the date in iso format"""
-  d = translate_date(date,"%m/%d","2015-%m-%d")
-  if d == '':
-    d = translate_date(date,"%b %d, %Y","%Y-%m-%d")
-  return d
+

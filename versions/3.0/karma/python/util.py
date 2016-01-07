@@ -1,10 +1,12 @@
 import re
 from datetime import datetime
-from time import mktime, gmtime
-import calendar
 from urlparse import urlparse
 import hashlib
-import uuid
+
+
+def convert_to_float_string(number):
+    """return the number as a float string, eg: scientific notation numbers"""
+    return '{0:.15f}'.format(float(number))
 
 
 def document_url(x):
@@ -13,8 +15,7 @@ def document_url(x):
     return 'http://' + x[x.find('/', i + 6) + 1:]
 
 
-def get_current_time():
-    return datetime.today().strftime("%Y-%m-%d %H:%M:%S")
+
 
 
 def country_uri(x):
@@ -38,11 +39,6 @@ def to_title_case_if_upper(x):
         return x
 
 
-def non_whitespace(x):
-    """Return the string removing all spaces."""
-    y = re.sub(r'\s+', '', x.strip())
-    return y
-
 
 def to_title_case_cleaned(x):
     """Return the string in title case cleaning spaces."""
@@ -50,96 +46,10 @@ def to_title_case_cleaned(x):
     return y.title()
 
 
-def non_ascii_chars(x):
-    """Return a set of the non-ascii chars in x"""
-    return set(re.sub('[\x00-\x7f]', '', x))
 
 
-def non_ascii_chars_as_string(x):
-    """Return a string containing a comma-separated list of non-ascii chars in x"""
-    y = list(non_ascii_chars(x))
-    y.sort()
-    return ', '.join(y)
 
 
-def ascii_chars(x, replacement_string=' '):
-    """Remove non-ascii chars in x replacing consecutive ones with a single space"""
-    return re.sub(r'[^\x00-\x7F]+', replacement_string, x)
-
-
-def alpha_numeric(x, replacement_string=' '):
-    """Replace consecutive non-alphanumeric bya replacement_string"""
-    return re.sub('[^A-Za-z0-9]+', replacement_string, x)
-
-
-def numeric_only(x):
-    """Remove non-numeric chars from the string x"""
-    return re.sub('[^0-9]+', '', x)
-
-
-def alpha_only(x):
-    """Remove non-alphabetic chars from the string x"""
-    return re.sub('[^A-Za-z]+', '', x)
-
-
-def remove_alpha(x):
-    """Remove alphabetic chars from the string x"""
-    return re.sub('[A-Za-z]+', '', x)
-
-
-def alpha_only_preserve_space(x):
-    x = re.sub('[^A-Za-z\s]+', '', x)
-    y = re.sub(r'\s+', ' ', x.strip())
-    return y
-
-
-def is_symbol(char1):
-    if char1.isalnum():
-        return False
-    return True
-
-
-def fingerprint_string(x):
-    """Make a fingerprint like the one google refine makes"""
-    x = alpha_numeric(ascii_chars(x)).lower()
-    y = list(set(x.split()))
-    y.sort()
-    return '_'.join(y)
-
-
-def uri_from_string(string):
-    """Create a valid uri for a string."""
-    x = ascii_chars(string, '')
-    x = alpha_numeric(x, "_")
-    return x
-
-
-def select_in_out_call(x):
-    res = True
-    if x == "incall" or x == "notincall" or x == "outcall" or x == "notoutcall" or x == "incalloutcall":
-        res = False
-    return res
-
-
-def in_out_call_uri_old(x):
-    """Return a URI for a In/Out Call Preference"""
-    x = re.sub('[^A-Za-z0-9]+', '', x)
-    x = x.lower()
-    return 'inOutCallPreference/' + x
-
-
-def in_out_call_uri(x):
-    """Return a URI for a In/Out Call Preference based on the category column"""
-    return 'inoutcallpreference/' + x
-
-
-def organization_uri(id1):
-    return "organization/" + str(id1)
-
-
-def md5_hash(x):
-    """Return md5 hash of x"""
-    return hashlib.md5(x).hexdigest()
 
 
 def ten_digit_phone_number(x):
@@ -147,107 +57,16 @@ def ten_digit_phone_number(x):
     return re.sub('[^0-9]+', '', x)
 
 
-def translate_date(string, in_format, out_format):
-    """Convert a date to ISO8601 date format without time"""
-    try:
-        return datetime.strptime(string.strip(), in_format).date().strftime(out_format)
-    except Exception:
-        pass
-    return ''
 
 
-def iso8601date(date, date_format=None):
-    """Convert a date to ISO8601 date format
-
-input format: YYYY-MM-DD HH:MM:SS GMT (works less reliably for other TZs)
-or            YYYY-MM-DD HH:MM:SS.0
-or            YYYY-MM-DD
-or            epoch (13 digit, indicating ms)
-or            epoch (10 digit, indicating sec)
-output format: iso8601
-
-"""
-    date = date.strip()
-    
-    if date_format:
-        try:
-            return datetime.strptime(date, date_format).isoformat()
-        except Exception:
-            pass
-
-    try:
-        return datetime.strptime(date, "%Y-%m-%d %H:%M:%S %Z").isoformat()
-    except Exception:
-        pass
-
-    try:
-        return datetime.strptime(date, "%A, %b %d, %Y").isoformat()
-    except Exception:
-        pass
-
-    try:
-        return datetime.strptime(date, "%Y-%m-%d %H:%M:%S.0").isoformat()
-    except:
-        pass
-
-    try:
-        return datetime.strptime(date, "%Y-%m-%d").isoformat()
-    except:
-        pass
-
-    try:
-        return datetime.strptime(date, "%b %d, %Y").isoformat()
-    except:
-        pass
-
-    try:
-        return datetime.strptime(date, "%B %d, %Y").isoformat()
-    except:
-        pass
-
-    try:
-        return datetime.strptime(date, "%B %d, %Y %I:%M %p").isoformat()
-    except:
-        pass
-        
-    try:
-        date = int(date)
-        if 1000000000000 < date < 9999999999999:
-            # 13 digit epoch
-            return datetime.fromtimestamp(mktime(gmtime(date / 1000))).isoformat()
-    except:
-        pass
-
-    try:
-        date = int(date)
-        if 1000000000 < date < 9999999999:
-            # 10 digit epoch
-            return datetime.fromtimestamp(mktime(gmtime(date))).isoformat()
-    except:
-        pass
-    # If all else fails, return input
-    return ''
 
 
-def conver_time_to_epoch(date,format=None):
-    date = date.strip()
-
-    if format:
-        try:
-            calendar.timegm(datetime.strptime(date, format).timetuple())
-        except:
-            pass
-    try:
-        return calendar.timegm(datetime.strptime(date, "%Y-%m-%dT%H:%M:%S").timetuple())
-    except:
-        pass
-    return ''
 
 
-def get_year_from_iso_date(iso_date):
-    if iso_date:
-        return iso_date[0:4]
-    return ''
+
+
+
+
 
 
 def get_website_domain(url):
@@ -279,18 +98,7 @@ def get_website_domain_only(url):
     return ''
 
 
-def get_text_hash(text):
-    if text:
-        return hashlib.sha1(text.encode('utf-8')).hexdigest().upper()
-    return ''
 
-
-def first_non_null(*args):
-    """return the first non null value in the arguments supplied"""
-    for x in args:
-        if x != '':
-            return x
-    return ''
 
 
 def uri_from_fields(prefix, *fields):
@@ -315,14 +123,7 @@ def uri_from_url(url):
     return hashlib.sha1(url.encode('utf-8')).hexdigest()
 
 
-def uuid_uri(prefix):
-    """Construct a URI using a UUID"""
-    return prefix + str(uuid.uuid1())
 
-
-def uri_for_userid(prefix, userid):
-    """Construct a URI for a user id"""
-    return prefix + alpha_numeric(userid.strip().lower())
 
 
 def select_if_empty(value):

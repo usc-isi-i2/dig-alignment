@@ -21,13 +21,6 @@ def phoneExchange(phonenumber):
     return result
 
 
-def phoneExchangeUri(phonenumber):
-    "Return the URI of a phone exchange so that we can join with the phone exchange data"
-    x = phoneExchange(phonenumber)
-    if len(x) > 0:
-        return "phone/exchange/" + x
-    else:
-        return ''
 
 def getPhoneCountryCode(phone_clean):
     idx = phone_clean.find("-")
