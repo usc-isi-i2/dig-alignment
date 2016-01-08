@@ -2,6 +2,7 @@ __author__ = 'amandeep'
 
 import re
 import hashlib
+from urlparse import urlparse
 
 
 class SM(object):
@@ -91,3 +92,80 @@ class SM(object):
         if end > len(string):
             return string[start:]
         return string[start:end+1]
+
+    @staticmethod
+    def clean_age(x):
+        """Return the clean age"""
+        stripped = x.strip().lower()
+        """take only first value of any range"""
+        stripped = stripped.split('-')[0].strip()
+        try:
+            age = int(stripped)
+            if age < 1 or age > 99:
+                return None
+        except:
+            return None
+        return age
+
+    @staticmethod
+    def clean_email(x):
+        """Return a clean email address"""
+        if len(x) > 0 and x.find("@") != -1:
+            em = x.strip().lower()
+            em = SM.non_whitespace(em)
+            return em
+        return ''
+
+    @staticmethod
+    def convert_to_float_string(number):
+        """return the number as a float string, eg: scientific notation numbers"""
+        try:
+            return '{0:.15f}'.format(float(number))
+        except:
+            return ''
+
+    @staticmethod
+    def to_title_case_if_upper(x):
+        """Return the string in title case if it is all upper, otherwise leave capitalization alone."""
+        x = x.strip()
+        if x.isupper():
+            return x.title()
+        else:
+            return x
+
+    @staticmethod
+    def to_title_case_cleaned(x):
+        """Return the string in title case cleaning spaces."""
+        y = re.sub(r'\s+', ' ', x.strip())
+        return y.title()
+
+    @staticmethod
+    def get_website_domain(url):
+        """input www.google.com, output google.com"""
+        parsed_uri = urlparse(url)
+        if parsed_uri:
+            domain = parsed_uri.netloc
+            if domain:
+                if domain.startswith("www."):
+                    domain = domain[4:]
+                return domain
+        return ''
+
+    @staticmethod
+    def get_website_domain_only(url):
+        """input www.google.com, output google"""
+        parsed_uri = urlparse(url)
+        if parsed_uri:
+            domain = parsed_uri.netloc
+            if domain:
+                if domain.startswith("www."):
+                    domain = domain[4:]
+
+                idx = domain.find('.')
+                if idx != -1:
+                    domain2 = domain[idx+1:]
+                    if domain2.find('.') != -1:
+                        domain = domain2
+
+                return domain
+        return ''
