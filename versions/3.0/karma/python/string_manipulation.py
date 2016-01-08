@@ -4,6 +4,15 @@ import re
 import hashlib
 from urlparse import urlparse
 
+DOLLAR_PRICE_REGEXPS = [re.compile(r'''\$\s*(?:\d{1,3},\s?)*\d{1,3}(?:(?:\.\d+)|[KkMm])?''', re.IGNORECASE),
+                        re.compile(r'''USD\s*\d{1,7}(?:\.\d+)?''', re.IGNORECASE),
+                        re.compile(r'''\d{1,7}(?:\.\d+)?\s*USD''', re.IGNORECASE)
+                        ]
+
+BITCOIN_PRICE_REGEXPS = [re.compile(r'''(?:BTC|XBT|XBC)\s*\d{1,7}(?:\.\d+)?''', re.IGNORECASE),
+                         re.compile(r'''\d{1,7}(?:\.\d+)?\s*(?:BTC|XBT|XBC)''', re.IGNORECASE)
+                         ]
+
 
 class SM(object):
 
@@ -169,3 +178,22 @@ class SM(object):
 
                 return domain
         return ''
+
+    @staticmethod
+    def get_dollar_prices(*texts):
+        matches = []
+        for t in texts:
+            for r in DOLLAR_PRICE_REGEXPS:
+                for m in r.findall(t):
+                    matches.append(m.replace('$ ', '$').replace(',', '').replace('$', '').replace('K', "000")
+                                   .replace('k', "000").replace("M", "000").replace('m', "000"))
+        return "|".join(matches)
+
+    @staticmethod
+    def get_bitcoin_prices(*texts):
+        matches = []
+        for t in texts:
+            for r in BITCOIN_PRICE_REGEXPS:
+                for m in r.findall(t):
+                    matches.append(m.replace('BTC', '').replace('XBT', '').replace('XBC', '').replace(' ', ''))
+        return "|".join(matches)

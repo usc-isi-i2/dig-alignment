@@ -48,7 +48,6 @@ class UM(object):
         x = re.sub('[^A-Za-z0-9]+', '', x)
         return x.lower()
 
-
     @staticmethod
     def person_name_uri(x):
         """Return a URI for a person name."""
