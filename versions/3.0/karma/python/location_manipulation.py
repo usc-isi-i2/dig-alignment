@@ -1,3 +1,8 @@
+__author__ = 'amandeep'
+
+from string_manipulation import SM
+import re
+
 country_codes_2 = [
     "AF", "AL", "DZ", "AS", "AD", "AO", "AI", "AQ", "AG", "AR", "AM", "AW", "AU", "AT", "AZ", "BS", "BH", "BD", "BB",
     "BY", "BE", "BZ", "BJ", "BM", "BT", "BO", "BA", "BA", "BA", "BW", "BV", "BV", "BR", "IO", "BN", "BG", "BF", "BI",
@@ -34,26 +39,6 @@ country_codes_3 = [
     "SSD", "SGS", "ESP", "LKA", "SHN", "SPM", "SDN", "SUR", "SJM", "SWZ", "SWE", "CHE", "SYR", "TWN", "TJK", "TZA",
     "TZA", "THA", "TGO", "TKL", "TON", "TTO", "TUN", "TUR", "TKM", "TCA", "TUV", "UGA", "UKR", "ARE", "GBR", "USA",
     "UMI", "URY", "UZB", "VUT", "VEN", "VNM", "VGB", "VIR", "WLF", "ESH", "YEM", "ZMB", "ZWE"
-]
-
-country_dialing_codes = [
-    "93", "355", "213", "1 684", "376", "244", "1 264", "672", "1 268", "54", "374", "297", "61", "43", "994", "1 242",
-    "973", "880", "1 246", "375", "32", "501", "229", "1 441", "975", "591", "387", "387", "387", "387", "61", "61",
-    "55", "246", "672", "359", "226", "257", "855", "237", "1", "238", "1 345", "236", "235", "56", "86", "61", "891",
-    "57", "269", "242", "243", "682", "506", "225", "385", "385", "53", "357", "420", "45", "253", "1 767", "1 809",
-    "670", "593", "20", "503", "240", "291", "372", "251", "500", "500", "298", "679", "358", "33", "33", "594", "689",
-    "262", "241", "220", "995", "49", "233", "350", "30", "299", "1 473", "590", "1 671", "502", "224", "245", "592",
-    "509", "672", "379", "379", "504", "852", "36", "354", "91", "62", "98", "964", "353", "972", "39", "1 876", "81",
-    "962", "7", "254", "686", "850", "850", "82", "82", "82", "965", "996", "856", "371", "961", "266", "231", "218",
-    "423", "370",
-    "352", "853", "389", "261", "265", "60", "960", "223", "356", "692", "596", "222", "230", "262", "52", "691", "691",
-    "373", "373", "377", "976", "382", "1 664", "212", "258", "95", "95", "264", "674", "977", "31", "599", "687", "64",
-    "505", "227", "234", "683", "672", "1 670", "47", "968", "92", "680", "507", "675", "595", "51", "63", "870", "48",
-    "351", "1", "974", "262", "40", "7", "250", "1 869", "1 758", "1 784", "685", "378", "239", "966", "221", "381",
-    "248", "232", "65", "421", "421", "386", "677", "252", "27", "211", "500", "34", "94", "290", "508", "249", "597",
-    "47", "268", "46", "41", "963", "886", "992", "255", "255", "66", "228", "690", "676", "1 868", "216", "90", "993",
-    "1 649", "688", "256", "380", "971", "44", "1", "1", "598", "998", "678", "58", "84", "1 284", "1 430", "681",
-    "212", "967", "260", "263"
 ]
 
 country_names = [
@@ -109,7 +94,8 @@ country_names_readable = [
     "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guadeloupe", "Guam", "Guatemala", "Guinea",
     "Guinea-bissau", "Guyana", "Haiti", "Heard And Mc Donald Islands", "Holy See", "Vatican City State", "Honduras",
     "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy", "Jamaica",
-    "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Korea, D.p.r.o.", "North Korea", "Korea, Republic Of", "South Korea", "Republic Of Korea",
+    "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Korea, D.p.r.o.", "North Korea", "Korea, Republic Of",
+    "South Korea", "Republic Of Korea",
     "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libyan Arab Jamahiriya",
     "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Macedonia", "Madagascar", "Malawi", "Malaysia", "Maldives",
     "Mali", "Malta", "Marshall Islands", "Martinique", "Mauritania", "Mauritius", "Mayotte", "Mexico",
@@ -122,7 +108,7 @@ country_names_readable = [
     "Saint Vincent And The Grenadines", "Samoa", "San Marino", "Sao Tome And Principe", "Saudi Arabia", "Senegal",
     "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovak Republic", "Slovenia", "Solomon Islands",
     "Somalia", "South Africa", "South Sudan", "South Georgia And South S.S.", "Spain", "Sri Lanka", "St. Helena",
-     "St. Pierre And Miquelon", "Sudan", "Suriname", "Svalbard and Jan Mayen Islands", "Swaziland", "Sweden",
+    "St. Pierre And Miquelon", "Sudan", "Suriname", "Svalbard and Jan Mayen Islands", "Swaziland", "Sweden",
     "Switzerland", "Syrian Arab Republic", "Taiwan", "Tajikistan", "Tanzania", "United Republic Of Tanzania",
     "Thailand", "Togo", "Tokelau", "Tonga", "Trinidad And Tobago", "Tunisia", "Turkey", "Turkmenistan",
     "Turks And Caicos Islands", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom",
@@ -141,12 +127,12 @@ us_states_names = [
 ]
 
 us_states_names_readable = [
-     "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida",
+    "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida",
     "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland",
     "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada",
-    "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon",
-    "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia",
-    "Washington", "West Virginia", "Wisconsin", "Wyoming"
+    "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma",
+    "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont",
+    "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"
 ]
 
 us_states_codes = [
@@ -169,195 +155,184 @@ canada_states_codes = [
     "AB", "BC", "MB", "NB", "NL", "NS", "NT", "NU", "ON", "PE", "QC", "SK", "YT"
 ]
 
-def standardize_country_code(country):
-    if(len(country) == 0):
-        return ''
 
-    country = country.upper()
-    if (len(country) == 2):
+class LM(object):
+
+    def __init__(self):
+        self.name = "Location Manipulation"
+
+    @staticmethod
+    def standard_country_code(country):
+        if len(country) == 0:
+            return ''
+
+        country = country.upper()
+        if len(country) == 2:
+            try:
+                idx = country_codes_2.index(country)
+                return country
+            except ValueError:
+                idx = -1
+        if len(country) == 3:
+            try:
+                idx = country_codes_3.index(country)
+                code = country_codes_2[idx]
+                return code
+            except ValueError:
+                idx = -1
         try:
-            idx = country_codes_2.index(country)
-            return country
-        except ValueError:
-            idx = -1
-    if (len(country) == 3):
-        try:
-            idx = country_codes_3.index(country)
+            country = SM.alpha_only(country).upper()
+            idx = country_names.index(country)
             code = country_codes_2[idx]
             return code
         except ValueError:
-            idx = -1
-    try:
-        country = alphaOnly(country).upper()
-        idx = country_names.index(country)
-        code = country_codes_2[idx]
-        return code
-    except ValueError:
-        return ''
+            return ''
 
+    @staticmethod
+    def standard_country_name(country):
+        if len(country) == 0:
+            return ''
 
-def standardize_country_name(country):
-    if(len(country) == 0):
-        return ''
-
-    country = country.upper()
-    if (len(country) == 2):
-        try:
-            idx = country_codes_2.index(country)
-            return country_names_readable[idx]
-        except ValueError:
-            idx = -1
-    if (len(country) == 3):
-        try:
-            idx = country_codes_3.index(country)
-            return country_names_readable[idx]
-        except ValueError:
-            idx = -1
-    try:
-        country = alphaOnly(country).upper()
-        idx = country_names.index(country)
-        return country_names_readable[idx]
-    except ValueError:
-        return ''
-
-#For Patents - Return the actual issuing authority if it's not a country
-def standardize_wipocountry_name(country):
-    if(len(country) == 0):
-        return ''
-
-    country = country.upper()
-
-    if (country == 'OA'):
-        return 'African Intellectual Property Organization'
-    if (country == 'AP'):
-        return 'African Regional IP Organization'
-    if (country == 'BX'):
-        return 'Benelux Office for Intellectual Property'
-    if (country == 'BQ'):
-        return 'Bonaire, Saint Eustatius and Saba'
-    if (country == 'DD'):
-        return 'German Democratic Republic'
-    if (country == 'GC'):
-        return 'Gulf Cooperation Council'
-    if (country == 'IB'):
-        return 'International Bureau of WIPO'
-    if (country == 'TP'):
-        return 'International Technology Disclosures'
-    if (country == 'SX'):
-        return 'Sint Maarten'
-    if (country == 'QZ'):
-        return 'Community Plant Variety Office (EU)'
-    if (country == 'EA'):
-        return 'Eurasian Patent Organization'
-    if (country == 'EP'):
-        return 'European Patent Office'
-    if (country == 'XN'):
-        return 'Nordic Patent Institute'
-    if (country == 'TL'):
-        return 'Timor–Leste'
-    if (country == 'WO'):
-        return 'World Intellectual Property Organization'
-    if (len(country) == 2):
-        try:
-            idx = country_codes_2.index(country)
-            return country_names_readable[idx]
-        except ValueError:
-            idx = -1
-    if (len(country) == 3):
-        try:
-            idx = country_codes_3.index(country)
-            return country_names_readable[idx]
-        except ValueError:
-            idx = -1
-    try:
-        country = alphaOnly(country).upper()
-        idx = country_names.index(country)
-        return country_names_readable[idx]
-    except ValueError:
-        return ''
-
-
-def standardize_state_code(country, state):
-    if(len(state) == 0):
-        return ''
-
-    codesArr = []
-    namesArr = []
-
-    if country == "US" or country == "United States":
-        codesArr = us_states_codes
-        namesArr = us_states_names
-
-    if country == "CA" or country == "Canada":
-        codesArr = canada_states_codes
-        namesArr = canada_states_names
-
-    if (len(codesArr) > 0):
-        state = state.upper()
-        if (len(state) == 2):
+        country = country.upper()
+        if len(country) == 2:
             try:
-                idx = codesArr.index(state)
-                return state
+                idx = country_codes_2.index(country)
+                return country_names_readable[idx]
             except ValueError:
                 idx = -1
-
+        if len(country) == 3:
+            try:
+                idx = country_codes_3.index(country)
+                return country_names_readable[idx]
+            except ValueError:
+                idx = -1
         try:
-            state = alphaOnly(state).upper()
-            idx = namesArr.index(state)
-            code = codesArr[idx]
-            return code
+            country = SM.alpha_only(country).upper()
+            idx = country_names.index(country)
+            return country_names_readable[idx]
         except ValueError:
             return ''
 
-    return state
-
-
-def standardize_state_name(country, state):
-    if(len(state) == 0):
-        return ''
-
-    codesArr = []
-    namesArr = []
-    namesReadableArr = []
-
-    if country == "US" or country == "United States":
-        codesArr = us_states_codes
-        namesArr = us_states_names
-        namesReadableArr = us_states_names_readable
-
-    if country == "CA" or country == "Canada":
-        codesArr = canada_states_codes
-        namesArr = canada_states_names
-        namesReadableArr = canada_states_names_readable
-
-    if (len(codesArr) > 0):
-        state = state.upper()
-        if (len(state) == 2):
-            try:
-                idx = codesArr.index(state)
-                return namesReadableArr[idx]
-            except ValueError:
-                idx = -1
-
-        try:
-            state = alphaOnly(state).upper()
-            idx = namesArr.index(state)
-            return namesReadableArr[idx]
-        except ValueError:
+    @staticmethod
+    def standard_state_code(country, state):
+        if len(state) == 0:
             return ''
 
-    return state
+        codes_arr = []
+        names_arr = []
 
-def detectCountryCode(phonenumber):
-    if phonenumber.find("+") == 0:
-        ph = phonenumber[1:]
-        for i in range(1, 5):
-            cc = ph[0:i]
+        if country == "US" or country == "United States":
+            codes_arr = us_states_codes
+            names_arr = us_states_names
+
+        if country == "CA" or country == "Canada":
+            codes_arr = canada_states_codes
+            names_arr = canada_states_names
+
+        if len(codes_arr) > 0:
+            state = state.upper()
+            if len(state) == 2:
+                try:
+                    idx = codes_arr.index(state)
+                    return state
+                except ValueError:
+                    idx = -1
+
             try:
-                idx = country_dialing_codes.index(cc)
-                return cc
+                state = SM.alpha_only(state).upper()
+                idx = names_arr.index(state)
+                code = codes_arr[idx]
+                return code
             except ValueError:
-                idx = -1
-    return None
+                return ''
 
+        return state
 
+    @staticmethod
+    def standardize_state_name(country, state):
+        if len(state) == 0:
+            return ''
+
+        codes_arr = []
+        names_arr = []
+        names_readable_arr = []
+
+        if country == "US" or country == "United States":
+            codes_arr = us_states_codes
+            names_arr = us_states_names
+            names_readable_arr = us_states_names_readable
+
+        if country == "CA" or country == "Canada":
+            codes_arr = canada_states_codes
+            names_arr = canada_states_names
+            names_readable_arr = canada_states_names_readable
+
+        if len(codes_arr) > 0:
+            state = state.upper()
+            if len(state) == 2:
+                try:
+                    idx = codes_arr.index(state)
+                    return names_readable_arr[idx]
+                except ValueError:
+                    idx = -1
+
+            try:
+                state = SM.alpha_only(state).upper()
+                idx = names_arr.index(state)
+                return names_readable_arr[idx]
+            except ValueError:
+                return ''
+
+        return state
+
+    @staticmethod
+    def get_decimal_coodinate(lat):
+        result = 0
+        x = SM.get_string(lat, 0, 1)
+        if x:
+            result += int(x)
+        x = SM.get_string(lat, 2, 3)
+        if x:
+            result += int(x)/float("60")
+        x = SM.get_string(lat, 4, 5)
+        if x:
+            result += int(x)/float("3600")
+        return str(result)
+
+    @staticmethod
+    def get_decimal_coodinate(lat):
+        result = 0
+        x = SM.get_string(lat, 0, 1)
+        if x:
+            result += int(x)
+        x = SM.get_string(lat, 2, 3)
+        if x:
+            result += int(x)/float("60")
+        x = SM.get_string(lat, 4, 5)
+        if x:
+            result += int(x)/float("3600")
+        return str(result)
+
+    @staticmethod
+    def parse_latitude_longitude(latlon):
+        # Examples: LATMIN:2310N04350W
+        # LATDEC:351025.3N0790125.7W
+        idx = latlon.find(":")
+        if idx != -1:
+            ltype = latlon[0:idx]
+            latlon = latlon[idx+1:]
+            idx = latlon.find("-")
+            if idx != -1:
+                lat = latlon[0:idx-1]
+                lon = latlon[idx+2:]
+            else:
+                latlon = re.sub('[^0-9\.]+', ',', latlon)
+                latlons = latlon.split(",")
+                lat = latlons[0]
+                lon = latlons[1]
+            if ltype == "LATMIN" or ltype == "LATDEC":
+                return [LM.get_decimal_coodinate(lat), LM.get_decimal_coodinate(lon)]
+            else:
+                return [lat, lon]
+
+        return [-1, -1]

@@ -83,3 +83,11 @@ class SM(object):
         if text:
             return hashlib.sha1(text.encode('utf-8')).hexdigest().upper()
         return ''
+
+    @staticmethod
+    def get_string(string, start, end):
+        if len(string) < start:
+            return ''
+        if end > len(string):
+            return string[start:]
+        return string[start:end+1]

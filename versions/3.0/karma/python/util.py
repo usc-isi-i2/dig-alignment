@@ -1,5 +1,4 @@
 import re
-from datetime import datetime
 from urlparse import urlparse
 import hashlib
 
@@ -52,9 +51,6 @@ def to_title_case_cleaned(x):
 
 
 
-def ten_digit_phone_number(x):
-    """Return the 10-digit phone number of a phone, as 10 consecutive digits"""
-    return re.sub('[^0-9]+', '', x)
 
 
 
@@ -183,47 +179,9 @@ def get_eye_hair_feature_name(name, value):
     return ''
 
 
-def get_string(string, start, end):
-    if len(string) < start:
-        return ''
-    if end > len(string):
-        return string[start:]
-    return string[start:end+1]
 
 
-def get_decimal_coodinate(lat):
-    result = 0
-    x = get_string(lat, 0, 1)
-    if x:
-        result += int(x)
-    x = get_string(lat, 2, 3)
-    if x:
-        result += int(x)/float("60")
-    x = get_string(lat, 4, 5)
-    if x:
-        result += int(x)/float("3600")
-    return str(result)
 
 
-def parse_latitude_longitude(latlon):
-    # Examples: LATMIN:2310N04350W
-    # LATDEC:351025.3N0790125.7W
-    idx = latlon.find(":")
-    if idx != -1:
-        type = latlon[0:idx]
-        latlon = latlon[idx+1:]
-        idx = latlon.find("-")
-        if idx != -1:
-            lat = latlon[0:idx-1]
-            lon = latlon[idx+2:]
-        else:
-            latlon = re.sub('[^0-9\.]+', ',', latlon)
-            latlons = latlon.split(",")
-            lat = latlons[0]
-            lon = latlons[1]
-        if type == "LATMIN" or type == "LATDEC":
-            return [get_decimal_coodinate(lat), get_decimal_coodinate(lon)]
-        else:
-            return [lat, lon]
 
-    return [-1, -1]
+
