@@ -1,6 +1,5 @@
 __author__ = 'amandeep'
 
-from string_manipulation import SM
 import re
 
 country_codes_2 = [

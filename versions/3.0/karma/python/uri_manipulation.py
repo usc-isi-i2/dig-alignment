@@ -1,6 +1,4 @@
 from urllib import quote
-from string_manipulation import SM
-from phone_manipulation import PM
 import re
 
 
