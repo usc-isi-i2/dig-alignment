@@ -9,7 +9,7 @@
 
 <http://schema.dig.isi.edu/ontology/> a owl:Ontology ;
 	rdfs:label "Memex Ontology" ;
-	schema:version "3.03" ;
+	schema:version "3.04" ;
 	.
 
 #########################################################
@@ -142,6 +142,12 @@ memex:CourtDocument a owl:Class ;
 	rdfs:comment """A document from a legal proceeding."""
 	.
 
+memex:Sentence a owl:Class ;
+	rdfs:label "Sentence" ;
+	rdfs:subClassOf schema:CreativeWork ;
+	rdfs:comment """Represents a sentence.""" ;
+	.
+
 memex:Phrase a owl:Class ;
 	rdfs:label "Phrase" ;
 	rdfs:subClassOf schema:Intangible ;
@@ -255,6 +261,7 @@ memex:abstract a rdf:Property ;
 	schema:domainIncludes schema:CreativeWork ;
 	schema:rangeIncludes schema:Text ;
 	schema:rangeIncludes memex:CreativeWork ;
+	owl:inverseOf memex:isAbstractPartOf ;
 	rdfs:comment """Identifies the abstract of a CreativeWork. It is possible to represent the abstract as a CreativeWork, so it is possible to record other attributes such as word count.""" ;
 	.
 
@@ -264,6 +271,22 @@ memex:isAbstractPartOf a rdf:Property ;
 	schema:domainIncludes schema:CreativeWork ;
 	schema:rangeIncludes schema:CreativeWork ;
 	rdfs:comment """Identifies the schema:CreativeWork that this abstract is a part of.""" ;
+	.
+
+memex:hasSentence a rdf:Property ; 
+	rdfs:label "hasSentence" ;
+	schema:domainIncludes schema:CreativeWork ;
+	schema:rangeIncludes memex:Sentence ;
+	owl:inverseOf memex:isSentenceOf ;
+	rdfs:comment """Identifies sentences in a creative work. Text goes in schema:text.""" ;
+	.
+
+memex:isSentenceOf a rdf:Property ; 
+	rdfs:label "isSentenceOf" ;
+	schema:rangeIncludes schema:CreativeWork ;
+	schema:domainIncludes memex:Sentence ;
+	owl:inverseOf memex:hasSentence ;
+	rdfs:comment """Identifies the creative work that the sentence is part of.""" ;
 	.
 
 memex:signature a rdf:Property ; 
