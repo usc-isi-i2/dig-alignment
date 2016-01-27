@@ -19,6 +19,16 @@ From column: _crawl_data / domain_
 return 'organization/' + getValue("domain")
 ```
 
+#### _iso_posttime_
+From column: _extractions / posttime / results / values_
+>``` python
+posttime = getValue("values")
+if posttime.strip() != '':
+    return DM.iso8601date(posttime,'%Y-%m-%d %H:%M:%S')
+posttime = getValue("timestamp")
+return DM.epoch_to_iso8601(posttime)
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
@@ -39,6 +49,7 @@ return 'organization/' + getValue("domain")
 | _eventTime_ | `schema:startDate` | `schema:Event1`|
 | _eventType_ | `km-dev:columnSubClassOfLink` | `schema:Event1`|
 | _extractions_Glue_1_extractions_phone_results_values_ | `schema:name` | `memex:PhoneNumber1`|
+| _iso_posttime_ | `schema:dateCreated` | `schema:WebPage1`|
 | _lat_ | `schema:latitude` | `schema:GeoCoordinates1`|
 | _lon_ | `schema:longitude` | `schema:GeoCoordinates1`|
 | _organization_uri_ | `uri` | `schema:Organization1`|
@@ -49,16 +60,17 @@ return 'organization/' + getValue("domain")
 | _sentence_ | `schema:text` | `schema:CreativeWork1`|
 | _sentiment_ | `memex:polarityValue` | `memex:Sentiment1`|
 | _values_ | `schema:name` | `schema:CreativeWork1`|
+| _values_ | `schema:name` | `memex:Identifier1`|
+| _values_ | `schema:name` | `memex:Identifier1`|
 | _values_ | `schema:url` | `schema:WebPage1`|
 | _values_ | `schema:name` | `schema:CreativeWork1`|
 | _values_ | `schema:name` | `schema:WebPage1`|
 | _values_ | `schema:url` | `schema:WebPage1`|
 | _values_ | `schema:name` | `schema:Person2`|
-| _values_ | `schema:name` | `memex:Identifier1`|
 | _values_ | `schema:name` | `memex:Topic1`|
-| _values_ | `schema:name` | `schema:WebPage1`|
 | _values_ | `schema:mentions` | `schema:CreativeWork1`|
 | _values_ | `schema:name` | `schema:Place1`|
+| _values_ | `schema:name` | `schema:WebPage1`|
 | _webpage_uri_ | `uri` | `schema:WebPage1`|
 | _webpage_uri_ | `uri` | `schema:WebPage1`|
 

@@ -104,6 +104,13 @@ class DM(object):
         return ''
 
     @staticmethod
+    def epoch_to_iso8601(timestamp):
+        ts=float(timestamp)
+        if len(timestamp) == 13:
+            ts = ts/1000
+        return datetime.fromtimestamp(ts).isoformat()
+
+    @staticmethod
     def get_year_from_iso_date(iso_date):
         if iso_date:
             return iso_date[0:4]
