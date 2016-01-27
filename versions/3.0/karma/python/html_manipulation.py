@@ -34,4 +34,9 @@ class HM(HTMLParser):
     @staticmethod
     def clean_html_tags(text):
         """Strip HTML"""
-        return HM.strip_tags(text).strip()
+        try:
+            clean_text = HM.strip_tags(text).strip()
+            return clean_text
+        except Exception, e:
+            return text
+        

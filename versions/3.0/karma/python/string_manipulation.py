@@ -197,3 +197,129 @@ class SM(object):
                 for m in r.findall(t):
                     matches.append(m.replace('BTC', '').replace('XBT', '').replace('XBC', '').replace(' ', ''))
         return "|".join(matches)
+
+    @staticmethod
+    def clean_name(x):
+        x = SM.toTitleCaseCleaned(x)
+        if SM.isSymbol(x[0:1]):
+            return ''
+        return x
+
+    @staticmethod
+    def toTitleCaseCleaned(x):
+        """Return the string in title case cleaning spaces."""
+    
+        y = re.sub(r'\s+', ' ', x.strip())
+        return y.title()
+
+    @staticmethod
+    def isSymbol(char1):
+        if char1.isalnum():
+            return False
+        return True
+
+    @staticmethod
+    def clean_ethnicity(x):
+        stripped = x.strip().lower().replace(" ","")
+        return stripped
+
+    @staticmethod
+    def clean_height(x):
+        stripped = x.strip().lower()
+        # take only first measurement of any range
+        stripped = stripped.split('-')[0].strip()
+        try:
+            # First, 5'6" or 6' or 6'7
+            dimensions = stripped.split("'")
+            if len(dimensions) >= 2:
+                feet = int(dimensions[0])
+                try:
+                    inches = int(dimensions[1].strip('"'))
+                except:
+                    # empty inches
+                    inches = 0
+                # return nearest5(int(2.54 * (12 * feet) + inches))
+                # no binning
+                return int(2.54 * (12 * feet) + inches)
+            else:
+                # no inches, so try centimeters
+                # Second, 137
+                # return nearest5(int(stripped))
+                # no binning
+                return int(stripped)
+        except:
+            return None
+        return None
+
+    @staticmethod
+    def clean_weight(x):
+        """In kg.unmarked weight < 90 is interpreted as kg, >=90 as lb"""
+        x = str(x).strip().lower()
+
+        def lb_to_kg(lb):
+            return int(float(lb)/2.2)
+        def sanityCheck(kg):
+            if kg >= 40 and kg <= 200:
+                return kg
+            else:
+                return None
+
+        try:
+            cleaned = x
+
+            # # first try for st/stone
+            l = re.split("stone", cleaned)
+            if len(l) == 1:
+                l = re.split("st", cleaned)
+            if len(l) > 1:
+                stone = float(l[0])
+                lb = l[1]
+                lb = lb.strip('s')
+                lb = lb.strip('lb')
+                lb = lb.strip('pound')
+                try:
+                    lb = float(lb)
+                except ValueError, e:
+                    lb = 0
+                # return sanityCheck(nearest2(lb_to_kg(int(stone*14+lb))))
+                # no binning
+                return sanityCheck(lb_to_kg(int(stone*14+lb)))
+            lb = cleaned.strip('s')
+            # now try for just pounds
+            if lb.endswith("lb"):
+                # return sanityCheck(nearest2(lb_to_kg(int(float(lb.strip('lb'))))))
+                # no binning
+                return sanityCheck(lb_to_kg(int(float(lb.strip('lb')))))
+            if lb.endswith('pound'):
+                # return sanityCheck(nearest2(lb_to_kg(int(float(lb.strip('pound'))))))
+                # no binning
+                return sanityCheck(lb_to_kg(int(float(lb.strip('pound')))))
+            # now kg
+            kg = cleaned.strip('s')
+            if kg.endswith("kg"):
+                # return sanityCheck(nearest2(int(float(kg.strip('kg')))))
+                # no binning
+                return sanityCheck(int(float(kg.strip('kg'))))
+            if kg.endswith("kilo"):
+                # return sanityCheck(nearest2(int(float(kg.strip('kilo')))))
+                # no binning
+                return sanityCheck(int(float(kg.strip('kilo'))))
+            if kg.endswith('kilogram'):
+                # return sanityCheck(nearest2(int(float(kg.strip('kilogram')))))
+                # no binning
+                return sanityCheck(int(float(kg.strip('kilogram'))))
+            # now assume number sans unit
+            num = int(float(cleaned))
+            if num < 90:
+                # assume kg
+                # return sanityCheck(nearest2(num))
+                # no binning
+                return sanityCheck(num)
+            else:
+                # assume lb
+                # return sanityCheck(nearest2(lb_to_kg(num)))
+                # no binning
+                return sanityCheck(lb_to_kg(num))
+
+        except Exception, e:
+            return None
