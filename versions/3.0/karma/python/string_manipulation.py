@@ -252,6 +252,70 @@ class SM(object):
         return None
 
     @staticmethod
+    def base_clean_rate(x):
+        clean = x.strip().lower()
+        if clean[0] == "0":
+            return None
+
+        rate = int(float(clean))
+        if rate < 20 or rate > 1000:
+            return None
+        return rate
+
+    @staticmethod
+    def clean_rate60(x):
+        rate = SM.base_clean_rate(x)
+        if rate != None:
+            return "%s-per-60min" % rate
+        return ''
+
+    @staticmethod
+    def clean_rate15(x):
+        rate = SM.base_clean_rate(x)
+        if rate != None:
+            return "%s-per-15min" % rate
+        return ''
+
+    @staticmethod
+    def clean_rate30(x):
+        rate = SM.base_clean_rate(x)
+        if rate != None:
+            return "%s-per-30min" % rate
+        return ''
+
+    @staticmethod
+    def rate_price(cleaned):
+        if cleaned:
+            idx = cleaned.find("-")
+            if idx != -1:
+                return int(cleaned[0:idx])
+        return ''
+
+    @staticmethod
+    def rate_duration(cleaned):
+        if cleaned:
+            idx = cleaned.find("per-")
+            if idx != -1:
+                str = cleaned[idx+4:]
+                dur = str[0: len(str)-3]
+                return dur
+        return ''
+
+    @staticmethod
+    def rate_unit(cleaned):
+        if cleaned:
+            idx = cleaned.find("min")
+            if idx != -1:
+                return "MIN"
+            idx = cleaned.find("sec")
+            if idx != -1:
+                return "SEC"
+            idx = cleaned.find("hr")
+            if idx != -1:
+                return "HUR"
+        return ''
+
+    @staticmethod
     def clean_weight(x):
         """In kg.unmarked weight < 90 is interpreted as kg, >=90 as lb"""
         x = str(x).strip().lower()

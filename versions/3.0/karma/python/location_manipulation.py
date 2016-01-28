@@ -213,6 +213,13 @@ class LM(object):
             return ''
 
     @staticmethod
+    def clean_country(country):
+        clean_country = LM.standard_country_name(country)
+        if clean_country == '':
+            return country
+        return clean_country
+
+    @staticmethod
     def standard_state_code(country, state):
         if len(state) == 0:
             return ''
