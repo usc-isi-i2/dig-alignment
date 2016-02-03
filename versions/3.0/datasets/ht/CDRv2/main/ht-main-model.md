@@ -2,19 +2,19 @@
 
 ### PyTransforms
 #### _hash_url_
-From column: _extractions / url / results / values_
+From column: _url_
 >``` python
-return SM.sha1_hash(getValue("values").strip())
+return SM.sha1_hash(getValue("url").strip())
 ```
 
-#### _adultservice_url_
-From column: _extractions / url / results / hash_url_
+#### _adultservice_uri_
+From column: _hash_url_
 >``` python
 return 'adultservice/' + getValue('hash_url')
 ```
 
 #### _seller_uri_
-From column: _extractions / url / results / adultservice_url_
+From column: _adultservice_uri_
 >``` python
 return 'seller/' + getValue('hash_url')
 ```
@@ -35,7 +35,7 @@ return "webpage/" + getValue("isi_id")
 ### Semantic Types
 | Column | Property | Class |
 |  ----- | -------- | ----- |
-| _adultservice_url_ | `uri` | `memex:AdultService1`|
+| _adultservice_uri_ | `uri` | `memex:AdultService1`|
 | _offer_uri_ | `uri` | `schema:Offer1`|
 | _seller_uri_ | `uri` | `memex:PersonOrOrganization1`|
 | _webpage_uri_ | `uri` | `schema:WebPage1`|
