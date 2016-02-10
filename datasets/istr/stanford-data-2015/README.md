@@ -1,1 +1,0 @@
-This folder contains the Stanford data directly extracted from the *_incoming tables from the IST database.
