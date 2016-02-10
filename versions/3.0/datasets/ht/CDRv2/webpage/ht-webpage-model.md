@@ -35,13 +35,20 @@ From column: _domain_url_
 return 'organization/' + getValue("domain_url")
 ```
 
+#### _iso_posttime2_
+From column: _crawl_data / context / timestamp_
+>``` python
+ts = getValue("timestamp")
+return DM.epoch_to_iso8601(ts)
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
 |  ----- | -------- | ----- |
 | _clean_text_ | `schema:description` | `schema:WebPage1`|
 | _domain_url_ | `schema:name` | `schema:Organization1`|
-| _iso_posttime_ | `schema:dateCreated` | `schema:WebPage1`|
+| _iso_posttime2_ | `schema:dateCreated` | `schema:WebPage1`|
 | _organization_domain_uri_ | `uri` | `schema:Organization1`|
 | _url_ | `schema:url` | `schema:WebPage1`|
 | _values_ | `schema:name` | `schema:WebPage1`|
