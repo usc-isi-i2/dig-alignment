@@ -1,0 +1,1 @@
+select unix_timestamp(b.importtime)*1000 as ad_timestamp, concat(b.url,'') as ad_url, a.* from images a join ads b on a.ads_id=b.id

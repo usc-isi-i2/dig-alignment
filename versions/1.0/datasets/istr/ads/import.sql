@@ -1,0 +1,1 @@
+select unix_timestamp(a.importtime)*1000 as timestamp, a.* from ads a
