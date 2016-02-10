@@ -1,4 +1,4 @@
-## ht-cdr2-ads-100.jl
+## ht-cdr2-ads-500.jl
 
 ### PyTransforms
 #### _iso_posttime_
@@ -65,6 +65,8 @@ return 'postaladdress/' + uri
 From column: _extractions / Glue_2 / Glue_1 / postaladdress_uri_
 >``` python
 place_uri=getValue('postaladdress_uri')
+if place_uri.strip() == '':
+    return ''
 fields=place_uri.split('/')
 if len(fields) == 2:
     place = fields[1]
