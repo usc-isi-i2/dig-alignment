@@ -49,16 +49,11 @@ From column: _extractions / Glue_2 / Glue_1 / extractions_Glue_2_extractions_sta
 state = getValue("extractions_Glue_2_extractions_state_results_clean_state")
 city = getValue("extractions_Glue_2_extractions_Glue_1_Glue_1_clean_city")
 country = getValue("extractions_Glue_2_extractions_country_results_clean_country")
-uri=''
-if city.strip() != '':
-    uri = uri + SM.non_whitespace(city) + '_'
-if state.strip() != '':
-    uri = uri + SM.non_whitespace(state) + '_'
-if country.strip() != '':
-    uri = uri + SM.non_whitespace(country)
-if uri.endswith('_'):
-    uri = uri[0,len(uri)-1]
-return 'postaladdress/' + uri
+uri =  UM.uri_from_fields('/address/',city,state,country)
+if uri == '':
+    return ''
+return getValue('offer_uri') + uri
+
 ```
 
 #### _place_uri_
@@ -67,11 +62,7 @@ From column: _extractions / Glue_2 / Glue_1 / postaladdress_uri_
 place_uri=getValue('postaladdress_uri')
 if place_uri.strip() == '':
     return ''
-fields=place_uri.split('/')
-if len(fields) == 2:
-    place = fields[1]
-    return 'place/' + place
-return ''
+return  place_uri + '/place'
 ```
 
 #### _clean_rate_
