@@ -1,4 +1,4 @@
-## ht-cdr2-ads-500.jl
+## ht-cdr2-ads-ts-500.jl
 
 ### PyTransforms
 #### _iso_posttime_
@@ -174,6 +174,12 @@ if longitude != '' and latitude != '':
 return ''
 ```
 
+#### _iso_posttime2_
+From column: _crawl_data / context / timestamp_
+>``` python
+return DM.epoch_to_iso8601(getValue("timestamp"))
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
@@ -190,7 +196,7 @@ return ''
 | _extractions_Glue_3_extractions_latitude_results_values_ | `schema:latitude` | `schema:GeoCoordinates1`|
 | _extractions_Glue_3_extractions_longitude_results_values_ | `schema:longitude` | `schema:GeoCoordinates1`|
 | _geo_uri_ | `uri` | `schema:GeoCoordinates1`|
-| _iso_posttime_ | `schema:validFrom` | `schema:Offer1`|
+| _iso_posttime2_ | `schema:validFrom` | `schema:Offer1`|
 | _offer_uri_ | `uri` | `schema:Offer1`|
 | _place_uri_ | `uri` | `schema:Place1`|
 | _postaladdress_uri_ | `uri` | `schema:PostalAddress1`|
