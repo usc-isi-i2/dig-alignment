@@ -1,11 +1,26 @@
 from urllib import quote
 import re
-
+import uuid
 
 class UM(object):
 
     def __init__(self):
         self.name = "Uri Manipulation"
+
+    @staticmethod
+    def uuid_uri(prefix):
+        """Construct a URI using a UUID"""
+        return prefix + str(uuid.uuid1())
+
+
+    @staticmethod
+    def uuid_uri(prefix, value):
+        """Construct a URI using a UUID, but return empty if value is empty"""
+        if value is None or value == '':
+            return ''
+        else:
+            return prefix + str(uuid.uuid1())
+
 
     @staticmethod
     def phone_uri(x):
