@@ -9,7 +9,7 @@
 
 <http://schema.dig.isi.edu/ontology/> a owl:Ontology ;
 	rdfs:label "Memex Ontology" ;
-	schema:version "3.05" ;
+	schema:version "3.06" ;
 	.
 
 #########################################################
@@ -56,6 +56,18 @@ memex:PersonOrOrganization a owl:Class ;
 	rdfs:comment """The union of Person and Organization."""
 	.
 
+memex:MediaOrganization a owl:Class ;
+	rdfs:subClassOf schema:Organization ;
+	rdfs:label "MediaOrganization" ;
+	rdfs:comment """An organization related to any publication media."""	
+	.
+
+memex:ReligiousOrganization a owl:Class ;
+	rdfs:subClassOf schema:Organization ;
+	rdfs:label "ReligiousOrganization" ;
+	rdfs:comment """A religious organization."""	
+	.
+
 memex:Group rdf:type owl:Class ;
 	rdfs:label "Group" ;
 	rdfs:comment """A group of people or things. Used to represent information about the
@@ -63,14 +75,22 @@ memex:Group rdf:type owl:Class ;
 	skos:note """Use memex:size to specify the number of members in the group.""" ;
 	.
 
-schema:Organization a owl:Class ;
-	rdfs:subClassOf memex:PersonOrOrganization ;
-	rdfs:comment """Define PersonOrOrganization as a super class of Organization.""";
+memex:GeopoliticalEntity a owl:Class ;
+	rdfs:subClassOf schema:Place ;
+	rdfs:label "GeopoliticalEntity" ;
+	rdfs:comment """A geographical area which is associated with some sort of political structure."""	
 	.
 
-schema:Person a owl:Class ;
-	rdfs:subClassOf memex:PersonOrOrganization ;
-	rdfs:comment """Define PersonOrOrganization as a super class of Person.""";
+memex:County a owl:Class ;
+	rdfs:subClassOf schema:AdministrativeArea  ;
+	rdfs:label "County" ;
+	rdfs:comment """An administrative division in a state or country."""	
+	.
+
+memex:County a owl:Class ;
+	rdfs:subClassOf schema:AdministrativeArea  ;
+	rdfs:label "County" ;
+	rdfs:comment """An administrative division in a state or country."""	
 	.
 
 memex:Identifier a owl:Class ;
@@ -170,7 +190,7 @@ memex:Sentiment  a owl:Class ;
 memex:LegalAction a owl:Class ;
 	rdfs:label "LegalAction" ;
 	rdfs:comment """Represents a Legal Action""" ;
-	rdfs:subClassOf schema:Action ;
+	rdfs:subClassOf schema:Action, schema:Event ;
 	.
 
 memex:LegalActionCause a owl:Class ;
@@ -185,12 +205,115 @@ memex:Cluster a owl:Class ;
 	rdfs:comment """Represents a cluster of objects"""
     . 
 
-
 memex:AdultService a owl:Class ;
 	rdfs:label "AdultService" ;
 	rdfs:subClassOf schema:ProfessionalService ;
 	rdfs:comment """Adult Service such as massage or escort services""" ;
 	.
+
+memex:DeathEvent a owl:Class ;
+	rdfs:label "DeathEvent" ;
+	rdfs:subClassOf schema:Event ;
+	rdfs:comment """An event where someone dies.""" ;
+	.
+
+memex:InjuryEvent a owl:Class ;
+	rdfs:label "InjuryEvent" ;
+	rdfs:subClassOf schema:Event ;
+	rdfs:comment """An event where someone gets injured.""" ;
+	.
+
+memex:AttackEvent a owl:Class ;
+	rdfs:label "AttackEvent" ;
+	rdfs:subClassOf schema:Event ;
+	rdfs:comment """An event where someone or something gets attacked.""" ;
+	.
+
+memex:TransportationEvent a owl:Class ;
+	rdfs:label "TransportationEvent" ;
+	rdfs:subClassOf schema:Event ;
+	rdfs:comment """An event where someone or something gets transported from one location to another.""" ;
+	.
+
+memex:Meeting a owl:Class ;
+	rdfs:label "Meeting" ;
+	rdfs:subClassOf schema:Event ;
+	rdfs:comment """An event where people meet.""" ;
+	.
+
+memex:EmploymentTermination a owl:Class ;
+	rdfs:label "EmploymentTermination" ;
+	rdfs:subClassOf schema:BusinessEvent ;
+	rdfs:comment """Event where someone gets fired.""" ;
+	.
+
+memex:ElectionEvent a owl:Class ;
+	rdfs:label "ElectionEvent" ;
+	rdfs:subClassOf schema:Event ;
+	rdfs:comment """An election to some position in an organization.""" ;
+	.
+
+memex:MonetaryTransaction a owl:Class ;
+	rdfs:label "MonetaryTransaction" ;
+	rdfs:subClassOf schema:BusinessEvent ;
+	rdfs:comment """A tranaction involving transfer of money.""" ;
+	.
+
+memex:Weapon a owl:Class ;
+	rdfs:label "Weapon" ;
+	rdfs:subClassOf schema:Product ;
+	rdfs:comment """A generic weapon.""" ;
+	skos:note """https://en.wikipedia.org/wiki/Category:Weapons""" ;
+	.
+
+memex:WeaponOfMassDestruction a owl:Class ;
+	rdfs:label "WeaponOfMassDestruction" ;
+	rdfs:subClassOf memex:Weapon ;
+	rdfs:comment """WeaponOfMassDestruction.""" ;
+	.
+
+memex:ChemicalWeapon a owl:Class ;
+	rdfs:label "ChemicalWeapon" ;
+	rdfs:subClassOf memex:WeaponOfMassDestruction ;
+	rdfs:comment """ChemicalWeapon.""" ;
+	.
+
+memex:BiologicalWeapon a owl:Class ;
+	rdfs:label "BiologicalWeapon" ;
+	rdfs:subClassOf memex:WeaponOfMassDestruction ;
+	rdfs:comment """BiologicalWeapon.""" ;
+	.
+
+memex:SharpWeapon a owl:Class ;
+	rdfs:label "SharpWeapon" ;
+	rdfs:subClassOf memex:Weapon ;
+	rdfs:comment """A sharp weapon.""" ;
+	.
+
+memex:ProjectileWeapon a owl:Class ;
+	rdfs:label "ProjectileWeapon" ;
+	rdfs:subClassOf memex:Weapon ;
+	rdfs:comment """A projectile weapon.""" ;
+	.
+
+memex:ExplosiveWeapon a owl:Class ;
+	rdfs:label "ExplosiveWeapon" ;
+	rdfs:subClassOf memex:Weapon ;
+	rdfs:comment """An explosive weapon.""" ;
+	.
+
+memex:Explosive a owl:Class ;
+	rdfs:label "Explosive" ;
+	rdfs:subClassOf schema:Product ;
+	rdfs:comment """A generic explosive.""" ;
+	.
+
+memex:Ammunition a owl:Class ;
+	rdfs:label "Weapon" ;
+	rdfs:subClassOf schema:Product ;
+	rdfs:comment """A generic ammunition.""" ;
+	.
+
 
 #########################################################
 #
@@ -488,38 +611,69 @@ memex:phoneNationalSignificantNumber a rdf:Property ;
 
 #########################################################
 #
-# Generalizations of schema.org properties
+# @container settings for schema.org properties
 #
 #########################################################
 
-schema:about a rdf:Property ; 
-	schema:rangeIncludes memex:Topic ;
-	.
+schema:address memex:jsonLD_container memex:JSONLD_Set .
 
-schema:citation a rdf:Property ; 
-	owl:inverseOf  schema:isCitationOf ;
-	.
+schema:affected memex:jsonLD_container memex:JSONLD_Set .
 
-schema:citation a rdf:Property ; 
-	owl:inverseOf schema:author ;
-	.
+schema:attendee memex:jsonLD_container memex:JSONLD_Set .
+
+schema:email memex:jsonLD_container memex:JSONLD_Set .
+
+schema:location memex:jsonLD_container memex:JSONLD_Set .
 
 schema:makesOffer memex:jsonLD_container memex:JSONLD_Set .
 
-schema:owner memex:jsonLD_container memex:JSONLD_Set .
-
-schema:address memex:jsonLD_container memex:JSONLD_Set .
-
-schema:isSimilarTo memex:jsonLD_container memex:JSONLD_Set ;
-	schema:domainIncludes schema:ImageObject ;
-    schema:rangeIncludes schema:ImageObject .
+schema:mentions memex:jsonLD_container memex:JSONLD_Set .
 
 schema:offers memex:jsonLD_container memex:JSONLD_Set .
+
+schema:owner memex:jsonLD_container memex:JSONLD_Set .
+
+schema:performer memex:jsonLD_container memex:JSONLD_Set .
 
 schema:priceSpecification memex:jsonLD_container memex:JSONLD_Set .
 
 schema:telephone memex:jsonLD_container memex:JSONLD_Set .
 
-schema:email memex:jsonLD_container memex:JSONLD_Set .
 
+#########################################################
+#
+# Augmented subclass, domains/ranges of schema.org classes and properties
+#
+#########################################################
 
+schema:Organization a owl:Class ;
+	rdfs:subClassOf memex:PersonOrOrganization ;
+	rdfs:comment """Define PersonOrOrganization as a super class of Organization.""";
+	.
+
+schema:Person a owl:Class ;
+	rdfs:subClassOf memex:PersonOrOrganization ;
+	rdfs:comment """Define PersonOrOrganization as a super class of Person.""";
+	.
+
+schema:about a rdf:Property ; 
+	schema:rangeIncludes memex:Topic ;
+	.
+
+schema:isSimilarTo memex:jsonLD_container memex:JSONLD_Set ;
+	schema:domainIncludes schema:ImageObject ;
+    schema:rangeIncludes schema:ImageObject .
+
+#########################################################
+#
+# Inverses of schema.org properties
+#
+#########################################################
+
+schema:citation a rdf:Property ; 
+	owl:inverseOf  memex:isCitationOf ;
+	.
+
+memex:isAuthorOf a rdf:Property ; 
+	owl:inverseOf schema:author ;
+	.
