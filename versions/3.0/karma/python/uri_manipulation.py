@@ -14,7 +14,7 @@ class UM(object):
 
 
     @staticmethod
-    def uuid_uri(prefix, value):
+    def uuid_uri_or_empty(prefix, value):
         """Construct a URI using a UUID, but return empty if value is empty"""
         if value is None or value == '':
             return ''
