@@ -9,7 +9,7 @@
 
 <http://schema.dig.isi.edu/ontology/> a owl:Ontology ;
 	rdfs:label "Memex Ontology" ;
-	schema:version "3.06" ;
+	schema:version "3.07" ;
 	.
 
 #########################################################
@@ -87,10 +87,16 @@ memex:County a owl:Class ;
 	rdfs:comment """An administrative division in a state or country."""	
 	.
 
-memex:County a owl:Class ;
+memex:CommunityAdministrativeArea a owl:Class ;
 	rdfs:subClassOf schema:AdministrativeArea  ;
-	rdfs:label "County" ;
-	rdfs:comment """An administrative division in a state or country."""	
+	rdfs:label "CommunityAdministrativeArea" ;
+	rdfs:comment """The 3rd administrative division in a country."""	
+	.
+
+memex:SubCommunityAdministrativeArea a owl:Class ;
+	rdfs:subClassOf schema:AdministrativeArea  ;
+	rdfs:label "SubCommunityAdministrativeArea" ;
+	rdfs:comment """The 4th administrative division in a country."""	
 	.
 
 memex:Identifier a owl:Class ;
@@ -609,6 +615,26 @@ memex:phoneNationalSignificantNumber a rdf:Property ;
 	rdfs:comment """Specifies the number to dial after a contry code to identify a subscriber; this number consists of an area code followed by a subscriber number, see http://www.itu.int/dms_pub/itu-t/opb/sp/T-SP-E.164C-2011-PDF-E.pdf""" ;
 	.
 
+memex:county_2nd_div a rdf:Property ;
+	rdfs:label "county_2nd_div"@en ;
+	schema:domainIncludes schema:PostalAddress ;
+	rdfs:comment """County or province that the city contained in.""" ;
+	.
+
+memex:community_3rd_div a rdf:Property ;
+	rdfs:label "community_3rd_div"@en ;
+	schema:domainIncludes schema:PostalAddress ;
+	schema:rangeIncludes memex:CommunityAdministrativeArea ;
+	rdfs:comment """Community that the city contained in.""" ;
+	.
+
+memex:subcommunity_4th_div a rdf:Property ;
+	rdfs:label "subcommunity_4th_div"@en ;
+	rdfs:domainIncludes schema:PostalAddress ;
+	schema:rangeIncludes memex:SubCommunityAdministrativeArea ;
+	rdfs:comment """Subcommunity that the city contained in.""" ;
+	.
+
 #########################################################
 #
 # @container settings for schema.org properties
@@ -658,6 +684,14 @@ schema:Person a owl:Class ;
 
 schema:about a rdf:Property ; 
 	schema:rangeIncludes memex:Topic ;
+	.
+
+schema:addressLocality a rdf:Property ; 
+	schema:rangeIncludes schema:City ;
+	.
+
+schema:addressRegion a rdf:Property ; 
+	schema:rangeIncludes schema:State ;
 	.
 
 schema:isSimilarTo memex:jsonLD_container memex:JSONLD_Set ;
