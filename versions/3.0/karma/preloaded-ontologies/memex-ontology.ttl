@@ -9,7 +9,7 @@
 
 <http://schema.dig.isi.edu/ontology/> a owl:Ontology ;
 	rdfs:label "Memex Ontology" ;
-	schema:version "3.07" ;
+	schema:version "3.10" ;
 	.
 
 #########################################################
@@ -302,6 +302,12 @@ memex:ProjectileWeapon a owl:Class ;
 	rdfs:comment """A projectile weapon.""" ;
 	.
 
+memex:Firearm a owl:Class ;
+	rdfs:label "Firearm" ;
+	rdfs:subClassOf memex:ProjectileWeapon ;
+	rdfs:comment """A firearm.""" ;
+	.
+
 memex:ExplosiveWeapon a owl:Class ;
 	rdfs:label "ExplosiveWeapon" ;
 	rdfs:subClassOf memex:Weapon ;
@@ -441,6 +447,22 @@ memex:signature a rdf:Property ;
 	schema:rangeIncludes schema:Text ;
 	schema:rangeIncludes memex:Phrase ;
 	rdfs:comment """Identifies a signature block of a CreativeWork.""" ;
+	.
+
+memex:urlFragment a rdf:Property ; 
+	rdfs:label "urlFragment" ;
+	schema:domainIncludes schema:CreativeWork ;
+	schema:rangeIncludes schema:Text ;
+	schema:rangeIncludes memex:Phrase ;
+	rdfs:comment """A fragment of a URL extracted from a document.""" ;
+	.
+
+memex:htmlMarkupFragment a rdf:Property ; 
+	rdfs:label "htmlMarkupFragment" ;
+	schema:domainIncludes schema:CreativeWork ;
+	schema:rangeIncludes schema:Text ;
+	schema:rangeIncludes memex:Phrase ;
+	rdfs:comment """A fragment of HTML markup extracted from a document, typically as a result of incorrect extraction.""" ;
 	.
 
 memex:isCitationOf a rdf:Property ; 
@@ -636,6 +658,19 @@ memex:subcommunity_4th_div a rdf:Property ;
 	rdfs:comment """Subcommunity that the city contained in.""" ;
 	.
 
+memex:caliber a rdf:Property ;
+	rdfs:label "caliber"@en ;
+	rdfs:domainIncludes memex:Firearm ;
+	schema:rangeIncludes schema:Text ;
+	rdfs:comment """The caliber of a firearm.""" ;
+	.
+
+memex:firearmAction a rdf:Property ;
+	rdfs:label "firearmAction"@en ;
+	rdfs:domainIncludes memex:Firearm ;
+	schema:rangeIncludes schema:Text ;
+	rdfs:comment """The action type of a fireamr, e.g. single-action, semi-automatic.""" ;
+	.
 #########################################################
 #
 # @container settings for schema.org properties
@@ -653,6 +688,8 @@ schema:email memex:jsonLD_container memex:JSONLD_Set .
 schema:location memex:jsonLD_container memex:JSONLD_Set .
 
 schema:makesOffer memex:jsonLD_container memex:JSONLD_Set .
+
+schema:member memex:jsonLD_container memex:JSONLD_Set .
 
 schema:mentions memex:jsonLD_container memex:JSONLD_Set .
 
@@ -695,9 +732,13 @@ schema:addressRegion a rdf:Property ;
 	schema:rangeIncludes schema:State ;
 	.
 
-schema:isSimilarTo memex:jsonLD_container memex:JSONLD_Set ;
+schema:isSimilarTo a rdf:Property ; 
 	schema:domainIncludes schema:ImageObject ;
     schema:rangeIncludes schema:ImageObject .
+
+schema:member a rdf:Property ; 
+	schema:domainIncludes memex:Cluster ;
+    .
 
 #########################################################
 #
