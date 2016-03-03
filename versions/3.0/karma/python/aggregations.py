@@ -29,19 +29,16 @@ class average:
     def transform(self):
         value = getValue(self.columnName)
         try:
-            return int(value)
+            return float(value)
         except ValueError:
-            try:
-                return float(value)
-            except ValueError:
-                return 0
+            return 0
 
     def accumulate(self, val):
         self.count += 1
         self.sum += val
 
-    def get_result(self):
-        return self.sum / self.count
+    def getResult(self):
+        return str(self.sum / self.count)
 
 
 class min:
@@ -55,12 +52,9 @@ class min:
     def transform(self):
         value = getValue(self.columnName)
         try:
-            return int(value)
+            return float(value)
         except ValueError:
-            try:
-                return float(value)
-            except ValueError:
-                return 0
+            return 0
 
     def accumulate(self, val):
         if self.unset:
@@ -69,8 +63,8 @@ class min:
         elif self.min > val:
             self.min = val
 
-    def get_result(self):
-        return "NaN" if self.unset else self.min
+    def getResult(self):
+        return "NaN" if self.unset else str(self.min)
 
 
 class max:
@@ -84,12 +78,9 @@ class max:
     def transform(self):
         value = getValue(self.columnName)
         try:
-            return int(value)
+            return float(value)
         except ValueError:
-            try:
-                return float(value)
-            except ValueError:
-                return 0
+            return 0
 
     def accumulate(self, val):
         if self.unset:
@@ -98,5 +89,5 @@ class max:
         elif self.max < val:
             self.max = val
 
-    def get_result(self):
-        return "NaN" if self.unset else self.max
+    def getResult(self):
+        return "NaN" if self.unset else str(self.max)
