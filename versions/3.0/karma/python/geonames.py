@@ -104,18 +104,20 @@ def gn_SubCommunity4thDiv_uri(country,admin1,admin2,admin3,admin4):
     return g2s_baseuri+"ADM_code/"+country+"_"+admin1+"_"+admin2+"_"+admin3+"_"+admin4
 
         
-def gn_geonames_adm_uri(fcode,country,admin1,admin2,admin3,admin4):
+def gn_geonames_adm_uri(fcode,country,admin1,admin2,admin3,admin4,geonameid):
     "Return URI for Place of class CountyProvince2ndDiv"
     if fcode == "PCLI":
         return g2s_baseuri+"ADM_code/"+country
-    if fcode == "ADM1":
+    elif fcode == "ADM1":
         return g2s_baseuri+"ADM_code/"+country+"_"+admin1
-    if fcode == "ADM2":
+    elif fcode == "ADM2":
         return g2s_baseuri+"ADM_code/"+country+"_"+admin1+"_"+admin2
-    if fcode == "ADM3":
+    elif fcode == "ADM3":
         return g2s_baseuri+"ADM_code/"+country+"_"+admin1+"_"+admin2+"_"+admin3
-    if fcode == "ADM4":
+    elif fcode == "ADM4":
         return g2s_baseuri+"ADM_code/"+country+"_"+admin1+"_"+admin2+"_"+admin3+"_"+admin4
+    else:
+        return geonames_baseuri+geonameid
     return ''
 
 
