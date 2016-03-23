@@ -1,0 +1,2428 @@
+
+
+
+
+
+
+
+
+
+
+    
+<!--
+
+Copyright 2012 University of Southern California
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+This code was developed by the Information Integration Group as part
+of the Karma project at the Information Sciences Institute of the
+University of Southern California.  For more information, publications,
+and related projects, please see: http://www.isi.edu/integration
+
+-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="cache-control" content="max-age=0" />
+		<meta http-equiv="cache-control" content="no-cache" />
+		<meta http-equiv="expires" content="0" />
+		<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+		<meta http-equiv="pragma" content="no-cache" />
+        
+        <title>Karma Data Integration</title>
+       
+        <link rel="stylesheet" type="text/css" href="./uiLibs/twitterBootstrap/css/bootstrap.min.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="./uiLibs/jquery/css/jquery-ui-themes/smoothness/jquery-ui.min.css" />
+        <link rel="stylesheet" type="text/css" href="./uiLibs/bootstrap3-editable/css/bootstrap-editable.css" />
+        <link rel="stylesheet" type="text/css" href="./uiLibs/jquery/css/jquery.fileupload.css" />
+        <link rel="stylesheet" type="text/css" href="./uiLibs/jquery/css/jquery.fileupload-ui.css" />
+        <link rel="stylesheet" type="text/css" href="./uiLibs/jquery/css/jquery.qtip.min.css" />
+        <link rel="stylesheet" type="text/css" href="./uiLibs/jquery/css/nestable.css" />
+        <link rel="stylesheet" type="text/css" href="./uiLibs/sticky/css/sticky.min.css" />
+        <link rel="stylesheet/less" type="text/css" href="./uiLibs/less/css/styles-03d-fixed-pixel.less" />
+        <link rel="stylesheet" type="text/css" href="./uiLibs/jquery/css/jstree-themes/default/style.css" />
+        <link href="./css/sticky-footer-navbar.css?v2.037
+" rel="stylesheet">
+        
+        <link rel="stylesheet" type="text/css" href="./css/TopMenuBar.css?v2.037
+" />
+        <link rel="stylesheet" type="text/css" href="./css/dropdown.css?v2.037
+" />
+        <link rel="stylesheet" type="text/css" href="./css/command_History.css?v2.037
+" />
+        <link rel="stylesheet" type="text/css" href="./css/tables_workspace.css?v2.037
+" />
+        <link rel="stylesheet" type="text/css" href="./css/fileImport.css?v2.037
+" />
+        <link rel="stylesheet" type="text/css" href="./css/DatabaseImport.css?v2.037
+" />
+        <link rel="stylesheet" type="text/css" href="./css/ServiceImport.css?v2.037
+" />
+        <link rel="stylesheet" type="text/css" href="./css/headerParsingExample.css?v2.037
+" />
+        <link rel="stylesheet" type="text/css" href="./css/AlignmentHeaders.css?v2.037
+" />
+        <link rel="stylesheet" type="text/css" href="./css/cleaning.css?v2.037
+" />
+        <link rel="stylesheet" type="text/css" href="./css/alignment.css?v2.037
+" />
+        <link rel="stylesheet" type="text/css" href="./css/d3.css?v2.037
+" />
+        <link rel="stylesheet" type="text/css" href="./css/main.css?v2.037
+" />
+        <link rel="stylesheet" type="text/css" href="./css/pyTransform.css?v2.037
+" />
+        <link rel="stylesheet" type="text/css" href="./css/cleaningChart.css?v2.037
+" />
+        <link rel="stylesheet" type="text/css" href="./css/model.css?v2.037
+" />
+        <link rel="stylesheet" type="text/css" href="./css/augmentdata.css?v2.037
+" />
+        
+        <link rel="stylesheet" href="css/d3-model-layout.css?v2.037
+" />
+		
+		<style type="text/css">
+			div.sticky {
+    		/*	color: #555555; */
+    			font-size: 14px;
+			}
+			
+			
+			.container {
+			    width: auto;
+			}
+			
+			a:hover, a:focus {
+				text-decoration: none;
+				color: black;
+			}
+			
+			.table-header-container a {
+				color: #CCCCCC;
+			}
+			
+			.table-header-container a:hover,  .table-header-container a:focus{
+				color: #AAAAAA;
+			}
+			
+			
+			.collapse.in {
+			    height: auto;  /* this style already exists in bootstrap.css */
+			    overflow: visible;  /* this one doesn't. Add it! */
+			}
+			
+			.contextMenu {
+			  position: absolute;
+			  display:none;
+			}
+			
+			/* Override for removing a dashed line below editable items */
+			.editable-click, a.editable-click, a.editable-click:hover {
+				border-bottom: 0px;
+			}
+			.editableform .form-control {
+			    /* width: auto; */
+			    width: 300px;
+			}
+			
+			.editable-empty, .editable-empty:hover, .editable-empty:focus {
+				color: #cccccc;
+			}
+
+			.wk-row-selected {
+    		background-color: #EEEEEE;
+			}
+			
+			.table-no-border td {
+			    border-top: 0 none;
+			}
+
+			.table-no-border > thead > tr > th, .table > tbody > tr > th, .table-no-border > tfoot > tr > th, .table > thead > tr > td, .table-no-border > tbody > tr > td, .table-no-border > tfoot > tr > td {
+			    border-top: 0px;
+			}
+
+		</style>
+	
+	</head>
+
+	<body>
+	
+		<div class="container">
+		
+			<div id="karmaHeader" class="navbar navbar-default navbar-inverse" role="navigation">
+		        <div class="navbar-header">
+		          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		            <span class="sr-only">Toggle navigation</span>
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+		          </button>
+		          <a class="navbar-brand" href="#">Karma 
+		              	<span id="karma-version">v2.037
+</a>
+		        </div>
+		        <div class="navbar-collapse collapse">
+		          <ul class="nav navbar-nav col-sm-5">
+		            <li class="dropdown">
+		              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Import <b class="caret"></b></a>
+		              <ul class="dropdown-menu multi-level">
+		                  <li><a href="#" id="importDatabaseTableButton">Database Table</a></li>
+		                  <li><a href="#" id="importSQLButton">Using SQL</a></li>
+		                  <li><a href="#" id="importFromServiceButton" >From Service</a></li>
+		                  <li><a href="#" class="fileinput-button"><form id="fileupload" action="ImportFileCommand" method="POST" enctype="multipart/form-data">From File<input type="file" name="files[]" multiple></form></a></li>
+		              </ul>
+		            </li>
+		            
+		            <li><a href="#" id="modelManagerButton" data-html='true' data-toggle='tooltip' data-placement='bottom'>Manage Models</a></li>
+
+					<li><a href="#" id="resetButton" data-html='true' title='Delete all saved files,<br/>use with care!' data-toggle='tooltip' data-placement='bottom'>Reset ...</a></li>
+					
+		            <li>
+		            		<div class="span5 fileupload-progress fade">
+								<!-- The global progress bar -->
+								<div class="progress-success progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+									<div class="bar" style="width:0%;"></div>
+								</div>
+								<!-- The extended global progress information -->
+								<div class="progress-extended">
+									&nbsp;
+								</div>
+								
+							</div>
+		            	
+		            </li>
+		          </ul>
+		          <ul class="nav navbar-nav navbar-middle col-sm-2">
+		            <li id="manualModeHeader" style="display:none;"><a href="#" style="cursor: none">Manual Mode</a></li>
+		          </ul>
+		          
+		          <ul class="nav navbar-nav navbar-right">
+		            <li><a target="_blank" href="https://github.com/InformationIntegrationGroup/Web-Karma/wiki" title='View user guide in GitHub' data-toggle='tooltip' data-placement='bottom'>User Guide</a></li>
+			        <li><a target="_blank" href="http://isi.edu/integration/karma" title='Open the Karma home page in a new window' data-toggle='tooltip' data-placement='bottom'>Karma Home</a></li>
+			        <li><a target="_blank" href="" id="sparql_end_point_link" title='Open RDF workbench in a new window' data-toggle='tooltip' data-placement='bottom'>OpenRDF</a></li>
+		          </ul>
+		        </div>
+		      </div> <!--  end of navbar -->
+
+		      <div class="row">
+			      <div id="commHistoryAndWorkspace">
+			      	<div class="col-sm-2">
+			      		
+				      	<div class="ui-corner-top" id="commandHistory">
+				      		<div id="titleCommand" class="ui-corner-top"><span>Command History</span></div>
+				      	</div>
+			      	</div>
+			      	<div class="col-sm-10">
+			      		<div id="tablesWorkspace"></div>
+			      	 </div>
+			      </div>
+		      </div>
+		      
+		      
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+</head>
+<body>
+
+<!--
+----------------------------------------
+	Dialog to select File Format: CSV/XML/..
+----------------------------------------- 
+ -->
+<div class="modal fade" id="fileFormatSelectionDialog" tabindex="-1">
+  <div class="modal-dialog">
+		<div class="modal-content">
+			<form class="bs-example bs-example-form" role="form">
+		     <div class="modal-header">
+			      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			       <h4 class="modal-title">Confirm File Format</h4>
+			  </div>
+			  <div class="modal-body">
+			        
+					<div class="radio">
+					  <label>
+					    <input type="radio" name="FileFormatSelection" id="CSVFileFormat" value="CSVFile">
+					    CSV Text File
+					  </label>
+					</div>
+					<div class="radio">
+					  <label>
+					    <input type="radio" name="FileFormatSelection" id="JSONFileFormat" value="JSONFile" checked>
+					    JSON
+					  </label>
+					</div>
+					<div class="radio">
+					  <label>
+					    <input type="radio" name="FileFormatSelection" id="XMLFileFormat" value="XMLFile">
+					    XML
+					  </label>
+					</div>
+					<div class="radio">
+					  <label>
+					    <input type="radio" name="FileFormatSelection" id="AvroFileFormat" value="AvroFile" checked>
+					    Avro
+					  </label>
+					</div>
+					<div class="radio">
+					  <label>
+					    <input type="radio" name="FileFormatSelection" id="XLSFileFormat" value="ExcelFile">
+					    Excel Spreadsheet
+					  </label>
+					</div>
+					<div class="radio">
+					  <label>
+					    <input type="radio" name="FileFormatSelection" id="OWLFileFormat" value="Ontology">
+					    OWL Ontology
+					  </label>
+					</div>
+					<div>
+						<hr />
+					</div>
+					<div class="checkbox">
+					  <label>
+					    <input type="checkbox" name="RevisionCheck">
+					    Revision of worksheet <select id="revisedWorksheetSelector"></select>
+					  </label>
+					</div>
+					<div class="checkbox">
+					  <label>
+					    <input type="checkbox" name="FilterCheck">
+					    Filter Columns
+					  </label>
+					</div>
+					<div class="error" style="display: none" id="fileFormatError">Please select the file format!</div>
+			  </div>
+			  <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+			        <button type="submit" class="btn btn-primary" id="btnSaveFormat">Next</button>
+			  </div>
+			 </form>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+			
+<!--
+----------------------------------------
+	Dialog to File OPtions: Encoding, NUmber of lines to import etc
+----------------------------------------- 
+ -->			
+
+<div class="modal fade" id="fileOptionsDialog" tabindex="-1">
+  <div class="modal-dialog modal-wide" id='fileOptionsDialogInner'>
+		<div class="modal-content">
+			<form class="bs-example bs-example-form" role="form">
+		     <div class="modal-header">
+			      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			       <h4 class="modal-title">File Import Options: <span id="filename"></span></h4>
+			  </div>
+			  <div class="modal-body">
+		        	<div class="row" id="optionsLine1">
+		        		<div class="col-sm-2 fileOptions" id="colDelimiterSelector">
+							<div class="form-group">
+								<label for="delimiterSelector">Column delimiter</label>
+								<select id="delimiterSelector" class="form-control ImportOption">
+	                                <option>comma</option>
+	                                <option>tab</option>
+	                                <option>space</option>
+	                                <option>pipe</option>
+	                                <option>semicolon</option>
+	                            </select>
+							</div>
+						</div>
+						<div class="col-sm-2 fileOptions"  id="colTextQualifier">
+							<div class="form-group">
+								<label for="textQualifier">Text qualifier</label>
+								<input class="form-control ImportOption" type="text" placeholder='"' id="textQualifier">
+							</div>
+						</div>
+		        		<div class="col-sm-2 fileOptions" id="colHeaderStartIndex">
+		        			<div class="form-group">
+								<label for="headerStartIndex">Header start index</label>
+								<input class="form-control ImportOption" type="text" placeholder="1" id="headerStartIndex" required>
+							</div>
+		        		</div>
+		        		<div class="col-sm-2 fileOptions" id="colStartRowIndex">
+		        			<div class="form-group">
+								<label for="startRowIndex">Data Start index</label>
+								<input class="form-control ImportOption" type="text" placeholder="2" id="startRowIndex" required>
+							</div>
+		        		</div>
+		        		<div class="col-sm-2 fileOptions" id="colEncoding">
+		        			<div class="form-group">
+								<label for="encoding">Encoding</label>
+								<select id="encoding" class="form-control ImportOption">
+                       				
+
+    							
+<option value="BIG5">Chinese BIG5</option>
+<option value="EUC-TW">Chinese EUC-TW</option>
+<option value="GB18030">Chinese GB18030</option>
+<option value="HZ-GB-2312">Chinese HZ-GB-3212</option>
+<option value="ISO-2022-CN">Chinese ISO-2022-CN</option>
+
+<option value="IBM855">Cyrillic IBM855</option>
+<option value="IBM856">Cyrillic IBM856</option>
+<option value="ISO-8859-5">Cyrillic ISO-8859-5</option>
+<option value="KOI8-R">Cyrillic KOI8-R</option>
+<option value="MACCYRILLIC">Cyrillic Maccyrillic</option>
+<option value="WINDOWS-1251">Cyrillic Windows-1251</option>
+
+<option value="ISO-8859-7">Greek ISO-8859-7</option>
+<option value="WINDOWS-1253">Greek Windows-1253</option>
+
+<option value="ISO-8859-8">Hebrew ISO-8859-8</option>
+<option value="WINDOWS-1255">Hebrew Windows-1255</option>
+
+<option value="EUC-JP">Japanese EUC-JP</option>
+<option value="ISO-2022-JP">Japanese ISO-2022-JP</option>
+<option value="SHIFT_JIS">Japanese SHIFT_JIS</option>
+              				
+<option value='EUC-KR'>Korean EUC-KR</option>
+<option value="ISO-2022-KR">Korean ISO-2022-KR</option>
+              				
+<option value="UTF-8" selected>Unicode UTF-8</option>
+<option value="UTF-16BE">Unicode UTF-16BE</option>
+<option value="UTF-16LE">Unicode UTF-16LE</option>
+<option value="UTF-32BE">Unicode UTF-32BE</option>
+<option value="UTF-32LE">Unicode UTF-32LE</option>
+              				
+<option value="WINDOWS-1252">Western Windows-1252</option>
+                        			
+                       			</select>
+							</div>
+		        		</div>
+		        		<div class="col-sm-2 fileOptions" id="colMaxNumLines">
+		        			<div class="form-group">
+								<label for="maxNumLines" id="lblMaxNumLines">Rows to import</label>
+								<input class="form-control ImportOption" type="text" placeholder="1" id="maxNumLines">
+                                   <span class="help-block">Enter 0 to import all rows</span>
+							</div>
+		        		</div>
+		        	</div>
+
+					<div id="previewTableDiv" style="overflow:auto">
+		                <h4>Preview (Top 5 Rows)</h4>
+		                <table id="previewTable" class="table table-striped table-condensed"></table>
+		            </div>
+			  </div>
+			  <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+			        <button type="submit" class="btn btn-primary" id="btnSaveOptions">Import</button>
+			  </div>
+		</div><!-- /.modal-content -->
+		</form>
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="selectColumnsDialog" tabindex="-1">
+  <div class="modal-dialog">
+  		<form class="bs-example bs-example-form" role="form">
+			<div class="modal-content">
+			     <div class="modal-header">
+				      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				       <h4 class="modal-title">Select Columns</h4>
+				  </div>
+				  <div class="modal-body">
+					<div id="selectColumns_body" class="cf nestable-lists">
+						<div class="form-group">
+					  	<label for="SavePresetCheck">Save Preset: </label>
+					    <input type="checkbox" name="SavePresetCheck" id="SavePresetCheck">
+						</div>
+						<div class="dd" id="nestable">
+						</div>
+					</div>
+					<div class="error" style="display: none">Error</div>
+				  </div> <!-- /.modal-body -->
+				  <div class="modal-footer">
+				  		<span class="btn btn-primary fileinput-button">
+				  			<span>Load Preset</span>
+				  			<input type="file" name="files[]" id="presetupload" multiple>
+				  		</span>
+				        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+				        <button type="submit" class="btn btn-primary" id="btnSaveFilter">Next</button>
+				  </div> <!-- /.modal-footer -->
+			</div><!-- /.modal-content -->
+		</form>
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+			
+        
+</body>
+</html>
+		      <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+</head>
+<body>
+
+<div class="modal fade" id="importFromServiceDialog" tabindex="-1">
+  <div class="modal-dialog">
+		<div class="modal-content">
+			<form class="bs-example bs-example-form" role="form">
+		     <div class="modal-header">
+			      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			       <h4 class="modal-title">Import From Service</h4>
+			  </div>
+			  <div class="modal-body">
+						<div class="form-group">
+							<label for="serviceUrl">Web Service URL</label>
+							<input class="form-control" type="url" id="serviceUrl" pattern="https?://.+" required>
+						</div>
+						<div class="form-group">
+							<label for="serviceWorksheetName">Worksheet Name</label>
+							<input class="form-control" type="text" id="serviceWorksheetName" maxlength="100" required>
+						</div>
+						<div class="form-group">
+							<label for="serviceEncoding">Encoding</label>
+							<select class="form-control" id="serviceEncoding">
+								
+
+    							
+<option value="BIG5">Chinese BIG5</option>
+<option value="EUC-TW">Chinese EUC-TW</option>
+<option value="GB18030">Chinese GB18030</option>
+<option value="HZ-GB-2312">Chinese HZ-GB-3212</option>
+<option value="ISO-2022-CN">Chinese ISO-2022-CN</option>
+
+<option value="IBM855">Cyrillic IBM855</option>
+<option value="IBM856">Cyrillic IBM856</option>
+<option value="ISO-8859-5">Cyrillic ISO-8859-5</option>
+<option value="KOI8-R">Cyrillic KOI8-R</option>
+<option value="MACCYRILLIC">Cyrillic Maccyrillic</option>
+<option value="WINDOWS-1251">Cyrillic Windows-1251</option>
+
+<option value="ISO-8859-7">Greek ISO-8859-7</option>
+<option value="WINDOWS-1253">Greek Windows-1253</option>
+
+<option value="ISO-8859-8">Hebrew ISO-8859-8</option>
+<option value="WINDOWS-1255">Hebrew Windows-1255</option>
+
+<option value="EUC-JP">Japanese EUC-JP</option>
+<option value="ISO-2022-JP">Japanese ISO-2022-JP</option>
+<option value="SHIFT_JIS">Japanese SHIFT_JIS</option>
+              				
+<option value='EUC-KR'>Korean EUC-KR</option>
+<option value="ISO-2022-KR">Korean ISO-2022-KR</option>
+              				
+<option value="UTF-8" selected>Unicode UTF-8</option>
+<option value="UTF-16BE">Unicode UTF-16BE</option>
+<option value="UTF-16LE">Unicode UTF-16LE</option>
+<option value="UTF-32BE">Unicode UTF-32BE</option>
+<option value="UTF-32LE">Unicode UTF-32LE</option>
+              				
+<option value="WINDOWS-1252">Western Windows-1252</option>
+                        			
+							</select>
+						</div>
+						<label>
+							<input type="checkbox" name="includeInputAttributesService" id="includeInputAttributesService">
+							Include input attributes in the output worksheet
+						</label>
+						
+						<div class="error" style="display: none" id="serviceErrorRow">Please provide values for both text fields!</div>
+					
+			  </div>
+			  <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+			        <button type="submit" class="btn btn-primary" id="btnSave">Import</button>
+			  </div>
+			 </form>
+		</div><!-- /.modal-content -->
+		
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+</body>
+</html>
+			  
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+</head>
+<body>
+
+<div class="modal fade" id="databaseImportDialog" tabindex="-1">
+  <div class="modal-dialog modal-wide">
+		<div class="modal-content">
+		     <div class="modal-header">
+			      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			       <h4 class="modal-title">Import Database Table</h4>
+			  </div>
+			  <div class="modal-body">
+			  		<form class="bs-example bs-example-form" role="form">
+			  			
+			        	<div class="row">
+			        		<div class="col-sm-2">
+								<div class="form-group">
+									<label for="databaseTypeSelector">Database Type</label>
+									<select id="databaseTypeSelector" class="form-control DatabaseImportOption">
+		                                <option>SQLServer</option>
+		                                <option>MySQL</option>
+		                                <option>Oracle</option>
+		                                <option>PostGIS</option>
+		                                <option>Sybase</option>
+		                            </select>
+								</div>
+							</div>
+							<div class="col-sm-10">
+								<div class="col-sm-2">
+									<div class="form-group">
+										<label for="DatabaseHostName">Hostname</label>
+										<input type="text" id="DatabaseHostName" value="localhost" class="form-control DatabaseImportOption" maxlength="40" size="10" placeholder='localhost' required/></div>
+								</div>
+				        		<div class="col-sm-2">
+				        			<div class="form-group">
+										<label for="DatabasePortNumber">Port</label>
+										<input type="text" id="DatabasePortNumber" value="" class="form-control DatabaseImportOption" maxlength="6" size="5" required/>
+									</div>
+				        		</div>
+				        		<div class="col-sm-2">
+				        			<div class="form-group">
+										<label for="DatabaseUsername">Username</label>
+										<input type="text" id="DatabaseUsername" value="" class="form-control DatabaseImportOption" maxlength="20" size="10" required/>
+									</div>
+				        		</div>
+				        		<div class="col-sm-2">
+				        			<div class="form-group">
+										<label for="DatabasePassword">Password</label>
+										<input type="password" id="DatabasePassword" value="" class="form-control DatabaseImportOption" maxlength="20" size="10" required/>
+									</div>
+				        		</div>
+				        		<div class="col-sm-2">
+				        			<div class="form-group">
+										<label for="DatabaseName" id="lblDatabase">Database</label>
+	                            		<input type="text" id="DatabaseName" value="" class="form-control DatabaseImportOption" maxlength="20" size="10" required/>
+	                        
+									</div>
+				        		</div>
+				        		<div class="col-sm-1">
+				        			<div class="form-group">
+										<label for="btnConnect">&nbsp;</label>
+	                            		<button type="submit" class="btn btn-primary form-control" id="btnConnect">OK</button>
+	                        
+									</div>
+				        			
+				        		</div>
+			        		</div>
+			        	</div>	<!--  end of row -->
+					</form>
+
+					<div id="databaseImportError" class="error"></div>
+					
+					<div class="row">
+						<hr />
+					</div>
+					
+					<div class="row" id="listAndPreview" display="none">
+						<div class="col-sm-4" id="tablesDiv">
+							<div class="form-group">
+								<label for="databaseTableFilterTable">Choose Table</label>
+	                            <input type="text" id="databaseTableFilterTable" value="" class="form-control DatabaseImportOption" style="width:90%"/>
+	                        </div>
+		                    <table class='table table-hover' style="width:90%"></table>
+						</div>
+						
+						<div class="col-sm-7 col-sm-offset-1" id="previewDiv">
+							<h5><span id="dbPreviewTableName"></span></h5>
+		                   <table class='table table-hover' style="width:90%">
+		                   </table>
+						</div>
+					</div>
+			  </div>
+			  <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			  </div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+        
+<div class="modal fade" id="sqlImportDialog" tabindex="-1">
+  <div class="modal-dialog modal-wide">
+		<div class="modal-content">
+		     <div class="modal-header">
+			      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			       <h4 class="modal-title">Import Using SQL</h4>
+			  </div>
+			  <div class="modal-body">
+			  		<form class="bs-example bs-example-form" role="form">
+			  			
+			        	<div class="row">
+			        		<div class="col-sm-2">
+								<div class="form-group">
+									<label for="databaseTypeSelector">Database Type</label>
+									<select id="databaseTypeSelector" class="form-control DatabaseImportOption">
+		                                <option>SQLServer</option>
+		                                <option>MySQL</option>
+		                                <option>Oracle</option>
+		                                <option>PostGIS</option>
+		                                <option>Sybase</option>
+		                            </select>
+								</div>
+							</div>
+							<div class="col-sm-10">
+								<div class="col-sm-2">
+									<div class="form-group">
+										<label for="DatabaseHostName">Hostname</label>
+										<input type="text" id="DatabaseHostName" value="localhost" class="form-control DatabaseImportOption" maxlength="40" size="10" placeholder='localhost' required/></div>
+								</div>
+				        		<div class="col-sm-2">
+				        			<div class="form-group">
+										<label for="DatabasePortNumber">Port</label>
+										<input type="number" id="DatabasePortNumber" value="" class="form-control DatabaseImportOption" maxlength="6" size="5" required/>
+									</div>
+				        		</div>
+				        		<div class="col-sm-2">
+				        			<div class="form-group">
+										<label for="DatabaseUsername">Username</label>
+										<input type="text" id="DatabaseUsername" value="" class="form-control DatabaseImportOption" maxlength="20" size="10" required/>
+									</div>
+				        		</div>
+				        		<div class="col-sm-2">
+				        			<div class="form-group">
+										<label for="DatabasePassword">Password</label>
+										<input type="password" id="DatabasePassword" value="" class="form-control DatabaseImportOption" maxlength="20" size="10" required/>
+									</div>
+				        		</div>
+				        		<div class="col-sm-2">
+				        			<div class="form-group">
+										<label for="DatabaseName" id="lblDatabase">Database</label>
+	                            		<input type="text" id="DatabaseName" value="" class="form-control DatabaseImportOption" maxlength="20" size="10" required/>
+	                        
+									</div>
+				        		</div>
+			        		</div>
+			        	</div>	<!--  end of row -->
+			        	<div id="row">
+			        		<div class="form-group">
+			        			<label for="DatabaseQuery">SQL Query</label>
+			        			<textarea rows="4" style="width:100%" id="DatabaseQuery" class="form-control DatabaseImportOption" required>
+			        			</textarea>
+			        		</div>
+			        	</div>
+					</form>
+
+					<div id="databaseImportError" class="error"></div>
+			
+			  </div>
+			  <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			        <button type="submit" class="btn btn-primary" id="btnImport">Import</button>
+			  </div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+</body>
+</html>
+			  
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+</head>
+<body>
+
+<div class="modal fade" id="resetDialog" tabindex="-1">
+  <div class="modal-dialog">
+		<div class="modal-content">
+		     <div class="modal-header">
+			      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			       <h4 class="modal-title">Reset Options</h4>
+			  </div>
+			  <div class="modal-body">
+			  	<div class="checkbox">
+				  <label>
+				    <input type="checkbox" id="forgetSemanticTypes">
+				    Semantic Types
+				  </label>
+				</div>
+				<div class="checkbox">
+				  <label>
+				    <input type="checkbox" id="forgetModels">
+				    Auto-Saved Models
+				  </label>
+				</div>
+				<div class="checkbox">
+				  <label>
+				    <input type="checkbox" id="forgetAlignment">
+				    Learned Alignment
+				  </label>
+				</div>
+				
+				<div class="error" style="display: none" id="resetErrMsg">Please select an option to reset</div>
+			  </div>
+			  <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+			        <button type="submit" class="btn btn-primary" id="btnSave">Submit</button>
+			  </div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+        
+</body>
+</html>
+
+
+			  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+</head>
+<body>
+
+<div class="modal fade" id="addColumnDialog" tabindex="-1">
+  <div class="modal-dialog">
+  		<form class="bs-example bs-example-form" role="form">
+			<div class="modal-content">
+			     <div class="modal-header">
+				      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				       <h4 class="modal-title">Add New Column</h4>
+				  </div>
+				  <div class="modal-body">
+					<div class="form-group">
+						<label for="columnName">Enter new Column Name</label>
+						<input class="form-control" type="text" id="columnName" required>
+					</div>
+				
+					<div class="form-group">
+						<label for="defaultValue">Default Value</label>
+						<input class="form-control" type="text" id="defaultValue" required>
+					</div>
+				
+					<div class="form-group">
+						<a href="SRID.html" target='_blank'>Click to see SRID List</a>
+					</div>
+				
+					
+					<div class="error" id="addColumnError" style="display: none">Please enter a unique column name!</div>
+				  </div> <!-- /.modal-body -->
+				  <div class="modal-footer">
+				        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+				        <button type="submit" class="btn btn-primary" id="btnSave">Add</button>
+				  </div> <!-- /.modal-footer -->
+			</div><!-- /.modal-content -->
+		</form>
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="renameColumnDialog" tabindex="-1">
+  <div class="modal-dialog">
+  		<form class="bs-example bs-example-form" role="form">
+			<div class="modal-content">
+			     <div class="modal-header">
+				      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				       <h4 class="modal-title">Rename Column</h4>
+				  </div>
+				  <div class="modal-body">
+					<div class="form-group">
+						<label for="columnName">Enter new Column Name</label>
+						<input class="form-control" type="text" id="columnName" required>
+					</div>
+				
+					
+					<div class="error" style="display: none">Please enter a valid column name!</div>
+				  </div> <!-- /.modal-body -->
+				  <div class="modal-footer">
+				        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+				        <button type="submit" class="btn btn-primary" id="btnSave">Save</button>
+				  </div> <!-- /.modal-footer -->
+			</div><!-- /.modal-content -->
+		</form>
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div id="SplitByCommaColumnListPanel" style="display: none">
+            <span class="smallSizedFont">Specify character delimiter:</span>
+            <input class="smallSizedFont" type="text" id="columnSplitDelimiter" value="," maxlength="5" size="5"/>
+            </br>
+            <span class="smallSizedFont">Enter "space" to use single space</span></br>
+            <span class="smallSizedFont">Enter "tab" to use tab</span>
+        </div>
+        
+        
+<div class="modal fade" id="splitColumnDialog" tabindex="-1">
+	<div class="modal-dialog">
+  		<form class="bs-example bs-example-form" role="form">
+			<div class="modal-content">
+			     <div class="modal-header">
+				      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				       <h4 class="modal-title">Split Column</h4>
+				  </div>
+				  <div class="modal-body">
+					<div class="form-group">
+						<label for="columnSplitDelimiter">Specify character delimiter</label>
+						<input class="form-control" type="text" id="columnSplitDelimiter" required>
+						<span class="help-block">Enter "space" to use single space</span>
+						<span class="help-block">Enter "tab" to use tab</span>
+					</div>
+				
+					
+					<div class="error" style="display: none">Length of the delimter should be 1</div>
+				  </div> <!-- /.modal-body -->
+				  <div class="modal-footer">
+				        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+				        <button type="submit" class="btn btn-primary" id="btnSave">Save</button>
+				  </div> <!-- /.modal-footer -->
+			</div><!-- /.modal-content -->
+		</form>
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="splitValuesDialog" tabindex="-1">
+	<div class="modal-dialog">
+  		<form class="bs-example bs-example-form" role="form">
+			<div class="modal-content">
+			     <div class="modal-header">
+				      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				       <h4 class="modal-title">Split Values</h4>
+				  </div>
+				  <div class="modal-body">
+					<div class="form-group">
+						<div class="form-group">
+						    <div class="radio">
+						    	<div class="col-sm-5">
+								  <label>
+								    <input type="radio" value="new" name="splitValuesType">
+							    	Name of new column:
+							  		</label>
+							  	</div>
+							  	<div class="col-sm-6"><input class="form-control" type="text" id="valueSplitNewColName"></div>
+							 </div>	
+							 <div class="radio">
+						    	<div class="col-sm-5">
+								  <label>
+								    <input type="radio" value="edit" name="splitValuesType" id="splitValuesTypeEdit">
+								    Update existing column:
+							  	</label>
+							  	</div>
+							  	<div class="col-sm-6"><select id="splitValuesUpdateColumns"></select></div>
+							</div>
+						</div>
+						<div class="row">&nbsp;</div>
+						<label for="valueSplitDelimiter">Specify character delimiter</label>
+						<input class="form-control" type="text" id="valueSplitDelimiter" required>
+						<span class="help-block">Enter "space" to use single space</span>
+						<span class="help-block">Enter "tab" to use tab</span>
+					</div>
+				
+					
+					<div class="error" style="display: none" id="splitValuesError">Length of the delimter should be 1</div>
+				  </div> <!-- /.modal-body -->
+				  <div class="modal-footer">
+				        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+				        <button type="submit" class="btn btn-primary" id="btnSave">Save</button>
+				  </div> <!-- /.modal-footer -->
+			</div><!-- /.modal-content -->
+		</form>
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+        
+<div class="modal fade" id="pyTransformDialog" tabindex="-1">
+	<div class="modal-dialog">
+  		<form class="bs-example bs-example-form" role="form">
+			<div class="modal-content">
+			     <div class="modal-header">
+				      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				       <h4 class="modal-title">PyTransform Column</h4>
+				  </div>
+				  <div class="modal-body">
+				  	<div class="form-group">
+					    <div class="radio">
+					    	<div class="col-sm-5">
+							  <label>
+							    <input type="radio" name="pyTransformType" value="edit">
+							    Change existing column:
+						  	</label>
+						  	</div>
+						  	<div class="col-sm-6"><span id="pythonTransformEditColumnName"></span></div>
+						</div>
+						<div class="radio">
+							<div class="col-sm-5">
+							  <label>
+							    <input type="radio" name="pyTransformType" value="new">
+						    	Name of new column:
+						  		</label>
+						  	</div>
+						  	<div class="col-sm-6"><input class="form-control" type="text" id="pythonTransformNewColumnName" /></div>
+						</div>
+					</div>
+					<div class="error" style="display: none">Please provide a new unique column name!</div>
+					<br/>
+	            	<div id="transformCodeEditor"></div>
+					<br/>
+					<div class="form-group">
+						<label>
+							<div class="col-sm-5">On Error:</div>
+							<div class="col-sm-6"><input class="form-control" type="text" id="pythonTransformErrorDefaultValue" /></div>
+							<div class="col-sm-5">Use JSON Output:</div>
+							<div class="col-sm-6"><input class="form-control" type="checkbox" id="pythonTransformUseJSONOutput" /></div>
+						</label>
+					</div>
+					<button type="button" class="btn btn-default" id="btnErrors">View Errors</button>
+					<button type="button" class="btn btn-default" id="btnPreview">Preview results for top 5 rows</button>
+					<br>
+					<div id="pyTransformErrorWindow" style="display:none"></div>
+            		<table id="pythonPreviewResultsTable" class="table table-striped table-condensed" style="display: none"></table>
+				  </div> <!-- /.modal-body -->
+				  <div class="modal-footer">
+				        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+				        <button type="submit" class="btn btn-primary" id="btnSave">Save</button>
+				  </div> <!-- /.modal-footer -->
+			</div><!-- /.modal-content -->
+		</form>
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->     
+ 
+ 
+ <div class="modal fade" id="transformColumnDialog" tabindex="-1">
+	<div class="modal-dialog">
+  		<form class="bs-example bs-example-form" role="form">
+			<div class="modal-content">
+			     <div class="modal-header">
+				      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				       <h4 class="modal-title">Transform Column</h4>
+				  </div>
+				  <div class="modal-body">
+				  	<B>Examples you entered:</B>
+			  		<div class="cleaningOverflowDiv">
+		  				<table id="examples" class="table table-striped table-condensed">
+		  				</table>
+			  		</div>	
+			  		<B>Recommended Examples:</B>
+			  		<div class="cleaningOverflowDiv">
+		  				<table id="recmd" class="table table-striped table-condensed">
+		  				</table>
+			  		</div>	
+			  		<B>All Records:</B>
+			  		<div class="cleaningOverflowDivLarge">
+			  			<table id="cleaningExamplesTable" class="table table-striped table-condensed" style="max-height:100px; overflow:auto">
+		  				</table>
+		  			</div>
+				  </div> <!-- /.modal-body -->
+				  <div class="modal-footer">
+				        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+				        <button type="submit" class="btn btn-primary" id="btnSave">Submit</button>
+				  </div> <!-- /.modal-footer -->
+			</div><!-- /.modal-content -->
+		</form>
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->     
+
+
+<div class="modal fade" id="groupByDialog" tabindex="-1">
+	 <div class="modal-dialog">
+  		<form class="bs-example bs-example-form" role="form">
+			<div class="modal-content">
+			     <div class="modal-header">
+				      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				      <h4 class="modal-title">Group By</h4>
+				  </div>
+				  <div class="modal-body">
+						<h4>Select Columns:</h4>
+						<div id="groupByDialogColumns"></div>
+				  </div> <!-- /.modal-body -->
+				  <div class="modal-footer">
+				        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+				        <button type="submit" class="btn btn-primary" id="btnSave">Submit</button>
+				   </div> <!-- /.modal-footer -->
+			</div><!-- /.modal-content -->
+		</form>
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->   
+
+<div class="modal fade" id="glueDialog" tabindex="-1">
+	 <div class="modal-dialog">
+  		<form class="bs-example bs-example-form" role="form">
+			<div class="modal-content">
+			     <div class="modal-header">
+				      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				      <h4 class="modal-title">Glue</h4>
+				  </div>
+				  <div class="modal-body">
+						<h4>Select Columns:</h4>
+						<div id="glueDialogColumns"></div>
+						<div>
+							<select id="glueDialogImplWays">
+								<option value="Longest">Longest</option>
+								<option value="Shortest">Shortest</option>
+								<option value="CrossProduct">Cross Product</option>
+							</select>
+						</div>
+				  </div> <!-- /.modal-body -->
+				  <div class="modal-footer">
+				        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+				        <button type="submit" class="btn btn-primary" id="btnSave">Submit</button>
+				   </div> <!-- /.modal-footer -->
+			</div><!-- /.modal-content -->
+		</form>
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->   
+
+<div class="modal fade" id="unfoldDialog" tabindex="-1">
+  <div class="modal-dialog">
+  		<form class="bs-example bs-example-form" role="form">
+			<div class="modal-content">
+			     <div class="modal-header">
+				      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				       <h4 class="modal-title">Unfold</h4>
+				  </div>
+				  <div class="modal-body">
+						<h4>Select Column:</h4>
+						<div id="unfoldDialogColumns"></div>
+						<div id="unfoldOtherColumns">
+							<input type="checkbox">Use Other Columns</input>
+						</div>
+				  </div> <!-- /.modal-body -->
+				  <div class="modal-footer">
+				        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+				        <button type="submit" class="btn btn-primary" id="btnSave">Submit</button>
+				  </div> <!-- /.modal-footer -->
+			</div><!-- /.modal-content -->
+		</form>
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="foldDialog2" tabindex="-1">
+  <div class="modal-dialog">
+  		<form class="bs-example bs-example-form" role="form">
+			<div class="modal-content">
+			     <div class="modal-header">
+				      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				       <h4 class="modal-title">Fold</h4>
+				  </div>
+				  <div class="modal-body">
+						<h4>Select Columns:</h4>
+						<div id="foldDialogColumns"></div>
+				  </div> <!-- /.modal-body -->
+				  <div class="modal-footer">
+				        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+				        <button type="submit" class="btn btn-primary" id="btnSave">Submit</button>
+				  </div> <!-- /.modal-footer -->
+			</div><!-- /.modal-content -->
+		</form>
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->     
+          
+<div class="modal fade" id="extractEntitiesDialog" tabindex="-1">
+  <div class="modal-dialog">
+  		<form class="bs-example bs-example-form" role="form">
+			<div class="modal-content">
+			     <div class="modal-header">
+				      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				       <h4 class="modal-title">Extract Entities</h4>
+				  </div>
+				  <div class="modal-body">
+					<div class="form-group">
+						<label for="extractionService_URL">URL for Extraction Service</label>
+						<input class="form-control" type="text" id="extractionService_URL" required>
+					</div>
+					
+					<div class="error" style="display: none">Please enter a URL</div>
+				  </div> <!-- /.modal-body -->
+				  <div class="modal-footer">
+				        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+				        <button type="submit" class="btn btn-primary" id="btnSave">OK</button>
+				  </div> <!-- /.modal-footer -->
+			</div><!-- /.modal-content -->
+		</form>
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->  
+
+<div class="modal fade" id="extractionCapabilitiesDialog" tabindex="-1">
+  <div class="modal-dialog">
+  		<form class="bs-example bs-example-form" role="form">
+			<div class="modal-content">
+			     <div class="modal-header">
+				      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				       <h4 class="modal-title">Select Entities for Extraction</h4>
+				  </div>
+				  <div class="modal-body">
+					<div id="userSelection"></div>
+				  </div> <!-- /.modal-body -->
+				  <div class="modal-footer">
+				        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+				        <button type="submit" class="btn btn-primary" id="btnSave">OK</button>
+				  </div> <!-- /.modal-footer -->
+			</div><!-- /.modal-content -->
+		</form>
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+     
+</body>
+</html>
+
+			  <div class="modal fade" id="pyTransformSelectionDialog" tabindex="-1">
+	<div class="modal-dialog">
+  		<form class="bs-example bs-example-form" role="form">
+			<div class="modal-content">
+			     <div class="modal-header">
+				      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				       <h4 class="modal-title">PyTransform Selection</h4>
+				  </div>
+				  <div class="modal-body">
+					<br/>
+	        <div id="transformCodeEditorSelection"></div>
+					<br/>
+					<div class="checkbox">
+						<label>
+				    		<input type="checkbox" id="onErrorSelection" unchecked></input>
+				    		Select On Error
+			  			</label>
+					</div>	
+					<button type="button" class="btn btn-default" id="btnErrorsSelection">View Errors</button>
+					<button type="button" class="btn btn-default" id="btnPreviewSelection">Preview results for top 5 rows</button>
+					<br>
+					<div id="pyTransformErrorWindowSelection" style="display:none"></div>
+            		<table id="pythonPreviewResultsTableSelection" class="table table-striped table-condensed" style="display: none"></table>
+				  </div> <!-- /.modal-body -->
+				  <div class="modal-footer">
+				        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+				        <button type="submit" class="btn btn-primary" id="btnSaveSelection">Save</button>
+				  </div> <!-- /.modal-footer -->
+			</div><!-- /.modal-content -->
+		</form>
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->     
+			  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style>
+
+#csv_columns li:hover {
+	cursor: pointer;
+	color: red;
+}
+a.icon-remove:hover {
+	cursor: pointer;
+	font-weight:  bold;
+}
+
+</style>
+</head>
+<body>
+
+<div class="modal fade" id="setPropertiesDialog" tabindex="-1">
+  <div class="modal-dialog">
+  		<form class="bs-example bs-example-form" role="form">
+			<div class="modal-content">
+			     <div class="modal-header">
+				      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				       <h4 class="modal-title">Set Properties</h4>
+				  </div>
+				  <div class="modal-body">
+					
+					<div id="worksheetServiceOptions" style="margin-left:30px;">
+						<div class="form-group">
+							<label for="serviceUrlInput">Service URL</label>
+							<input class="form-control" type="text" id="serviceUrlInput" required>
+						</div>
+						<div class="form-group">
+							<label for="serviceRequestMethod">Request Method</label>
+							<select id="serviceRequestMethod">
+			                    <option value="GET">GET</option>
+			                    <option value="POST">POST</option>
+		                	</select>
+						</div>
+		                
+		                <div style="display: none; margin-left: 30px;" id="servicePostOptions">
+		                	<div class="radio">
+			                	<label>
+						    		<input type="radio" id="invokePerRow" name="serviceDataPostMethod" checked value="invokePerRow">
+						    		Invoke service one row at a time
+					  			</label>
+					  		</div>
+					  		<div class="radio">
+					  			<label>
+						    		<input type="radio" id="invokeWholeWorksheet" name="serviceDataPostMethod" value="invokeWithWholeWorksheet">
+						    		Post whole worksheet
+					  			</label>
+					  		</div>
+		                </div>
+		            </div>
+				
+					
+					<div class="error" style="display: none">Please enter a model identifier</div>
+				  </div> <!-- /.modal-body -->
+				  <div class="modal-footer">
+				        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+				        <button type="submit" class="btn btn-primary" id="btnSave">Submit</button>
+				  </div> <!-- /.modal-footer -->
+			</div><!-- /.modal-content -->
+		</form>
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+
+<div class="modal fade" id="exportCSVDialog" tabindex="-1">
+  <div class="modal-dialog">
+  		<form class="bs-example bs-example-form" role="form">
+			<div class="modal-content">
+			     <div class="modal-header">
+				      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				       <h4 class="modal-title" id="exportCSV_ModelTitle">Export CSV</h4>
+				  </div>
+				  <div class="modal-body">
+				  <div id="csvDialogColumnList">
+				  
+				  </div>
+				  <!-- <div id="csvDialogContent">
+						<div class="form-group">
+							<label for="csvSPAQRLEndPoint">SPARQL End Point</label>
+							<input class="form-control" type="text" id="csvSPAQRLEndPoint" required url value="" maxlength="1000" />
+						</div>
+						<div class="form-group">
+								<label for="csvModelGraphList">Graph</label>
+								<select id="csvModelGraphList">
+			                	</select>
+						</div>
+					</div> -->
+					<div id="csvDataDialogContent">
+						<div class="form-group" id="formDivSparql">
+							<label for="csvDataEndPoint">SPARQL End Point</label>
+							<input class="form-control" type="text" id="csvDataEndPoint" required url value="" maxlength="1000" />
+						</div>
+						<div class="form-group" id="formDivGraphs">
+								<label for="csvDataGraphList">Graph</label>
+								<select id="csvDataGraphList">
+			                	</select>
+						</div>
+					</div>
+					<div class="form-group formDivDMUrl" style="display: none">
+						<label for="dataMiningUrl">Data Mining URL</label>
+							<input class="form-control" type="url" id="dataMiningUrl" required url value="" maxlength="1000" />
+						</div>
+						<div id="DMresults" style="display: none"></div>
+					<div class="error" style="display: none">Please enter all valid url</div>
+				  </div> <!-- /.modal-body -->
+				  <div class="modal-footer">
+				        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+				        <!-- <button type="submit" class="btn btn-primary" id="btnSave">Fetch Columns</button> -->
+				        <button type="button" class="btn btn-primary" id="btnExportCSV">Export</button>
+				  </div> <!-- /.modal-footer -->
+			</div><!-- /.modal-content -->
+		</form>
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+<div class="modal fade" id="publishRDFDialog" tabindex="-1">
+  <div class="modal-dialog">
+  		<form class="bs-example bs-example-form" role="form">
+			<div class="modal-content">
+			     <div class="modal-header">
+				      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				       <h4 class="modal-title">Publish RDF</h4>
+				  </div>
+				  <div class="modal-body">
+					<div class="form-group">
+							<label for="modelGraphList">RDF Graphs</label>
+							<select id="modelGraphList">
+		                	</select>
+					</div>
+					<div class="form-group">
+						<label id="labelFor_rdfSPAQRLGraph" for="rdfSPAQRLGraph">Create New Graph</label>
+						<input class="form-control" type="text" id="rdfSPAQRLGraph" required value="" maxlength="100">
+					</div>	
+					<div class="radio">
+						<label>
+				    		<input type="radio" id="graphReplace_1" name="group1"  value="replace">
+				    		Replace Existing Data
+			  			</label>
+			  		</div>
+			  		<div class="radio">
+			  			<label>
+				    		<input type="radio" id="graphReplace_2" name="group1" checked value="append">
+				    		Append
+			  			</label>
+					</div>	
+					
+					<div class="checkbox">
+						<label>
+				    		<input type="checkbox" id="addInverseProperties" unchecked></input>
+				    		Add Inverse Properties
+			  			</label>
+					</div>	
+					<div class="checkbox">
+						<label>
+				    		<input type="checkbox" id="generateBloomFilters" unchecked></input>
+				    		Index Data to Support Joins
+			  			</label>
+					</div>
+					
+					<div id="rdfStoreInfo">
+						<div class="form-group">
+							<div class="col-sm-6">
+								<label>
+					    			<input class="form-control" type="text" id="hostName" value="localhost:3306" maxlength="100" size="20"/>
+					    			Host Name:Port
+				  				</label>
+				  			</div>
+				  			<div class="col-sm-6">
+								<label>
+					    			<input class="form-control" type="text" id="dbName" value="jenadb" maxlength="100" size="20"/>
+					    			Database Name
+				  				</label>
+				  			</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-6">
+								<label>
+					    			<input class="form-control" type="text" id="username" value="root" maxlength="100" size="20"/>
+					    			User Name
+				  				</label>
+				  			</div>
+				  			<div class="col-sm-6">
+								<label>
+					    			<input class="form-control" type="password" id="password" value="" maxlength="100" size="20"/>
+					    			Password
+				  				</label>
+				  			</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-6">
+								<label>
+					    			<input class="form-control" type="text" id="modelName" value="karma" maxlength="100" size="20"/>
+					    			Model Name
+				  				</label>
+				  			</div>
+				  			<div class="col-sm-6">
+								
+				  			</div>
+						</div>
+        			</div>
+        			
+					<div class="error" style="display: none">Please enter all values</div>
+				  </div> <!-- /.modal-body -->
+				  <div class="modal-footer">
+				        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+				        <button type="submit" class="btn btn-primary" id="btnSave">Publish</button>
+				  </div> <!-- /.modal-footer -->
+			</div><!-- /.modal-content -->
+		</form>
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="fetchModelDialog" tabindex="-1">
+  <div class="modal-dialog">
+  		<form class="bs-example bs-example-form" role="form">
+			<div class="modal-content">
+			     <div class="modal-header">
+				      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				       <h4 class="modal-title">Invoke Service</h4>
+				  </div>
+				  <div class="modal-body">
+					<div class="form-group">
+						<label for="txtR2RML_URL_fetch">SPARQL End Point</label>
+						<input class="form-control" type="text" id="txtR2RML_URL_fetch" required>
+					</div>
+					
+					<div class="error" style="display: none">Please enter an end point</div>
+				  </div> <!-- /.modal-body -->
+				  <div class="modal-footer">
+				        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+				        <button type="submit" class="btn btn-primary" id="btnSave">Fetch</button>
+				  </div> <!-- /.modal-footer -->
+			</div><!-- /.modal-content -->
+		</form>
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+      
+<div class="modal fade" id="foldDialog" tabindex="-1">
+  <div class="modal-dialog">
+  		<form class="bs-example bs-example-form" role="form">
+			<div class="modal-content">
+			     <div class="modal-header">
+				      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				       <h4 class="modal-title">Fold</h4>
+				  </div>
+				  <div class="modal-body">
+						<h4>Select Columns:</h4>
+						<div id="foldDialogColumns"></div>
+				  </div> <!-- /.modal-body -->
+				  <div class="modal-footer">
+				        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+				        <button type="submit" class="btn btn-primary" id="btnSave">Submit</button>
+				  </div> <!-- /.modal-footer -->
+			</div><!-- /.modal-content -->
+		</form>
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="glueDialog2" tabindex="-1">
+	 <div class="modal-dialog">
+  		<form class="bs-example bs-example-form" role="form">
+			<div class="modal-content">
+			     <div class="modal-header">
+				      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				      <h4 class="modal-title">Glue</h4>
+				  </div>
+				  <div class="modal-body">
+						<h4>Select Columns:</h4>
+						<div id="glueDialog2Columns"></div>
+						<div>
+							<select id="glueDialog2ImplWays">
+								<option value="Longest">Longest</option>
+								<option value="Shortest">Shortest</option>
+								<option value="CrossProduct">Cross Product</option>
+							</select>
+						</div>
+				  </div> <!-- /.modal-body -->
+				  <div class="modal-footer">
+				        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+				        <button type="submit" class="btn btn-primary" id="btnSave">Submit</button>
+				   </div> <!-- /.modal-footer -->
+			</div><!-- /.modal-content -->
+		</form>
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->   
+
+<div class="modal fade" id="groupByDialog2" tabindex="-1">
+	 <div class="modal-dialog">
+  		<form class="bs-example bs-example-form" role="form">
+			<div class="modal-content">
+			     <div class="modal-header">
+				      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				      <h4 class="modal-title">Group By</h4>
+				  </div>
+				  <div class="modal-body">
+						<h4>Select Columns:</h4>
+						<div id="groupByDialogColumns"></div>
+				  </div> <!-- /.modal-body -->
+				  <div class="modal-footer">
+				        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+				        <button type="submit" class="btn btn-primary" id="btnSave">Submit</button>
+				   </div> <!-- /.modal-footer -->
+			</div><!-- /.modal-content -->
+		</form>
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->   
+
+<div class="modal fade" id="organizeColumnsDialog" tabindex="-1">
+  <div class="modal-dialog">
+  		<form class="bs-example bs-example-form" role="form">
+			<div class="modal-content">
+			     <div class="modal-header">
+				      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				       <h4 class="modal-title">Organize Columns</h4>
+				  </div>
+				  <div class="modal-body">
+					<div id="organizeColumns_body" class="cf nestable-lists">
+						<div class="dd" id="nestable">
+						</div>
+					</div>
+					<div class="error" style="display: none">Error</div>
+				  </div> <!-- /.modal-body -->
+				  <div class="modal-footer">
+				        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+				        <button type="submit" class="btn btn-primary" id="btnSave">Save</button>
+				  </div> <!-- /.modal-footer -->
+			</div><!-- /.modal-content -->
+		</form>
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+             
+<div class="modal fade" id="publishJSONDialog" tabindex="-1">
+  <div class="modal-dialog">
+  		<form class="bs-example bs-example-form" role="form">
+			<div class="modal-content">
+			     <div class="modal-header">
+				      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				       <h4 class="modal-title">Save as JSON</h4>
+				  </div>
+				  <div class="modal-body">
+					Would you like to also import the JSON as a new Worksheet?
+					<div class="error" style="display: none">Error</div>
+				  </div> <!-- /.modal-body -->
+				  <div class="modal-footer">
+				        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+				        <button type="submit" class="btn btn-default" id="btnNo">No, just Export as JSON</button>
+				        <button type="submit" class="btn btn-primary" id="btnYes">Yes, Import as Worksheet</button>
+				  </div> <!-- /.modal-footer -->
+			</div><!-- /.modal-content -->
+		</form>
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="applyModelDialog" tabindex="-1">
+  <div class="modal-dialog modal-wide">
+  		<form class="bs-example bs-example-form" role="form">
+			<div class="modal-content">
+			     <div class="modal-header">
+				      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				       <h4 class="modal-title">Apply Model From Repository</h4>
+				  </div>
+				  <div class="modal-body">
+				  	<h4>Select Model:</h4>
+				  	<div id="applyModelDialogHeaders"></div>
+						<div id="applyModelDialogColumns" style="max-height: 300px; overflow: auto;"></div>
+				  </div> <!-- /.modal-body -->
+				  <div class="modal-footer">
+				        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+				        <button type="submit" class="btn btn-primary" id="btnSave">Apply</button>
+				  </div> <!-- /.modal-footer -->
+			</div><!-- /.modal-content -->
+		</form>
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+</body>
+</html>
+			  
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+</head>
+<body>
+
+
+<div class="modal fade" id="setSemanticTypeDialog" tabindex="-1">
+  <div class="modal-dialog">
+		<div class="modal-content">
+			<form class="bs-example bs-example-form" role="form">
+		     <div class="modal-header">
+			      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			       <h4 class="modal-title">Set Semantic Type for: <span id="semanticType_columnName"></span></h4>
+			  </div>
+			  <div class="modal-body">
+			  		<div class="row">
+				  		<div class="col-sm-12">
+					  		<div class="row">
+				                <div class="col-sm-6"><b>Semantic Types:</b></div>
+				                <div class="col-sm-6"><button type="button" id="addType" class="btn btn-default pull-right" style="padding: 0px 12px">Add Row</button></div>
+				            </div>
+					  		<div id="semanticTypesTableDiv">
+						  		<table id="semanticTypesTable" class="table table-striped table-condensed">
+						  			<tr><th /><th /><th>Primary</th><th/><th/></tr>
+					  			</table>
+					  		</div>
+				  		</div>
+			  		</div>
+			  		 
+                	<div class="row">
+            			<div class="col-sm-12">
+							<label>
+								Literal Type:
+								<input type="text" class="form-control" id="literalTypeSelect" autocomplete="off">
+							</label>
+            			</div>
+  					</div>
+						
+					<div class="row">
+						<div class="col-sm-11">
+							<button type="button" id="semanticTypesAdvancedOptions" class="btn btn-default">Advanced Options</button>
+						</div>
+					</div>
+					
+					<div class="row">
+						<div id="semanticTypesAdvacedOptionsDiv" style="display: none; padding-top:10px" class="col-sm-12">
+							<div class="input-group form-group">
+						       <span class="input-group-addon">
+						          <input type="checkbox" id="isSubclassOfClass">
+						       </span>
+							   <span class="input-group-addon">specifies class for node</span>
+						      <input type="text" class="form-control" id="isSubclassOfClassTextBox" autocomplete="off">
+						    </div><!-- /input-group -->
+						    
+						    <div class="input-group form-group">
+						       <span class="input-group-addon">
+						          <input type="checkbox" id="isSpecializationForEdge">
+						       </span>
+							   <span class="input-group-addon">specifies specialization for edge</span>
+						      <input type="text" class="form-control" id="isSpecializationForEdgeTextBox" autocomplete="off">
+						    </div><!-- /input-group -->
+	                	</div>
+                	</div>
+                	
+					<div class="error" style="display: none">Please select the file format!</div>
+				
+			  </div>
+			  <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+			        <button type="submit" class="btn btn-primary" id="btnSave">Save</button>
+			  </div>
+			 </form>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<div class="modal fade" id="incomingOutgoingLinksDialog" tabindex="-1">
+  <div class="modal-dialog">
+		<div class="modal-content">
+			<form class="bs-example bs-example-form" role="form">
+		     <div class="modal-header">
+			      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			       <h4 class="modal-title"><span id="incomingOutgoingLinksDialog_title"></span></h4>
+			  </div>
+			  <div class="modal-body">
+			  	
+			  		<div class="main"></div>
+					<div class="error" style="display: none">Please select the file format!</div>
+				
+			  </div>
+			  <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+			        <button type="submit" class="btn btn-primary" id="btnSave">Save</button>
+			  </div>
+			 </form>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+ <div class="modal fade" id="manageIncomingOutgoingLinksDialog" tabindex="-1">
+  <div class="modal-dialog modal-medium">
+		<div class="modal-content">
+			<form class="bs-example bs-example-form" role="form">
+		     <div class="modal-header">
+			      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			       <h4 class="modal-title">Incoming-Outgoing Links for: <span id="columnName"></span></h4>
+			  </div>
+			  <div class="modal-body">
+			  	
+			  		<div class="form-group">
+			  			<B>Incoming Links:</B>
+			  			<div id="incomingLinksDiv">
+					  		<table id="incomingLinksTable" class="table table-striped table-condensed">
+				  			</table>
+				  		</div>
+				  	</div>
+			  			
+			  		<div class="form-group">
+			  			<B>Outgoing Links:</B>
+			  			<div id="outgoingLinksDiv">
+					  		<table id="outgoingLinksTable" class="table table-striped table-condensed">
+				  			</table>
+				  		</div>
+				  	</div>
+				  	
+				  	<div class="error" style="display: none">Please select the file format!</div>
+				  	
+			  </div>
+			  <div class="modal-footer">
+			  		<button type="button" class="btn btn-default" id="btnAddIncomingLink">Add Incoming Link</button>
+				  	<button type="button" class="btn btn-default" id="btnAddOutgoingLink">Add Outgoing Link</button>
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+			        <button type="submit" class="btn btn-primary" id="btnSave">Save</button>
+			  </div>
+			 </form>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="augmentDataDialog" tabindex="-1">
+  <div class="modal-dialog modal-wide">
+  		<form class="bs-example bs-example-form" role="form">
+			<div class="modal-content">
+			     <div class="modal-header">
+				      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				       <h4 class="modal-title" id="augmentHeader">Augment Data</h4>
+				  </div>
+				  <div class="modal-body">
+				  	<div id="augmentDataDialogHeaders"></div>
+						<div id="augmentDataDialogColumns" style = "max-height: 300px; overflow: auto;"></div>
+						<div class="form-group">
+							<label for="altPredicate">"Same As" property</label>
+							<input class="form-control" type="text" value="owl:sameAs" id="altPredicate" style = "width: 150px;"required>
+						</div>
+				  </div> <!-- /.modal-body -->
+				  <div class="modal-footer">
+				        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+				        <button type="submit" class="btn btn-primary" id="btnSave">Submit</button>
+				  </div> <!-- /.modal-footer -->
+			</div><!-- /.modal-content -->
+		</form>
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="exportJSONDialog" tabindex="-1">
+  <div class="modal-dialog modal-wide">
+  		<form class="bs-example bs-example-form" role="form">
+			<div class="modal-content">
+			     <div class="modal-header">
+				      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				       <h4 class="modal-title" id="augmentHeader">Export JSON</h4>
+				  </div>
+				  <div class="modal-body">
+						<div class="form-group">
+							<div class="checkbox">
+							  	<label>
+								    <input type="checkbox" id="useContext"required>
+								    Use @Context
+							  	</label>
+							  	
+								<div id="useContextControl">
+									<div class="radio">
+									  	<label>
+									    	<input type="radio" id="useContextFromModel" name="context">
+									    	Use @Context From Model
+									  	</label>
+									</div>
+									<div class="radio">
+									  	<label>
+									    	<input type="radio" id="useContextFromURL" name="context">
+									    	Use @Context From URL
+									  	</label>
+									  	<input type="text" id="useContextFromURLText" class="form-control">
+									</div>
+									<div class="radio">
+									  	<label>
+										    <input type="radio" id="useContextFromFile" name="context">
+										    Use Uploaded @Context
+									  	</label>
+									  	<br/>
+									  	<div class="btn btn-primary fileinput-button">
+							  				<span>Upload Context</span>
+							  				<input type="file" name="files[]" id="contextupload" multiple>
+					  					</div>
+					  			
+									</div>
+								</div>
+							</div>
+						</div>
+				  </div> <!-- /.modal-body -->
+				  <div class="modal-footer">
+				        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+				        <button type="submit" class="btn btn-primary" id="btnSave">Submit</button>
+				  </div> <!-- /.modal-footer -->
+			</div><!-- /.modal-content -->
+		</form>
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+       
+<div class="modal fade" id="addNodeDialog" tabindex="-1">
+  <div class="modal-dialog">
+		<div class="modal-content">
+			<form class="bs-example bs-example-form" role="form">
+		     <div class="modal-header">
+			      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			       <h4 class="modal-title">Add Node</h4>
+			  </div>
+			  <div class="modal-body">
+			  	
+			  		<div class="main"></div>
+					<div class="error" style="display: none"></div>
+				
+			  </div>
+			  <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+			        <button type="submit" class="btn btn-primary" id="btnSave">Add</button>
+			  </div>
+			 </form>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="addLiteralNodeDialog" tabindex="-1">
+  <div class="modal-dialog">
+		<div class="modal-content">
+			<form class="bs-example bs-example-form" role="form">
+		     <div class="modal-header">
+			      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			       <h4 class="modal-title">Add Literal Node</h4>
+			  </div>
+			  <div class="modal-body">
+			  	<div class="row">
+			  		<div class="col-sm-6" id="col-literal">
+				  		<div class="form-group">
+							<label for="literal">Literal:</label>
+							<input type="text" id="literal" class="form-control">
+						</div>
+						<div class="row">
+							<div class="col-sm-7 form-group">
+							    <label for="literalType">Type:</label>
+							    <input type="text" id="literalType" class="form-control">
+							</div>
+						</div>
+						<div class="checkbox" id="isUriRow">
+						  <label>
+						    <input type="checkbox" name="isUri" id="isUri">
+						   Is URI?
+						  </label>
+						</div>
+					</div>
+					<div class="col-sm-6" id="col-property">
+					
+					</div>
+				</div>
+				
+				<div class="error" style="display: none"></div>
+				
+			  </div>
+			  <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+			        <button type="submit" class="btn btn-primary" id="btnSave">Add</button>
+			  </div>
+			 </form>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+</body>
+			  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+</head>
+<body>
+
+<div class="modal fade" id="showExistingModelDialog" tabindex="-1">
+  <div class="modal-dialog">
+  		<form class="bs-example bs-example-form" role="form">
+			<div class="modal-content">
+			     <div class="modal-header">
+				      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				       <h4 class="modal-title">Apply Existing Model</h4>
+				  </div>
+				  <div class="modal-body">
+					<div class="radio">
+						  <label>
+						    <input type="radio" name="chooseModelGroup" value="matchingModels" id="chooseMatchingModels">
+						    Matching source name
+					  	</label>
+					</div>
+					<div class="radio">
+						  <label>
+						    <input type="radio" name="chooseModelGroup" value="allModels" id="chooseAllModels" checked>
+						    All models
+					  	</label>
+					</div>
+					
+					<div id="modelsListPanel">
+	                	<table id="modelsList" class="table">
+	
+	                	</table>
+            		</div>
+            
+					<div class="error" id="addColumnError" style="display: none">Please select a model!</div>
+					<div class="italic noItems" style="display: none"><span>none</span></div>
+					
+				  </div> <!-- /.modal-body -->
+				  <div class="modal-footer">
+				        <button type="submit" class="btn btn-primary" id="btnCreateNew">Create New Model</button>
+				        <button type="button" class="btn btn-default" id="btnApplySelected">Apply Selected Model</button>
+				  </div> <!-- /.modal-footer -->
+			</div><!-- /.modal-content -->
+		</form>
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+</body>
+</html>
+
+			  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style>
+
+#csv_columns li:hover {
+	cursor: pointer;
+	color: red;
+}
+a.icon-remove:hover {
+	cursor: pointer;
+	font-weight:  bold;
+}
+
+</style>
+</head>
+<body>
+<div class="modal fade" id="saveModelDialog" tabindex="-1">
+  <div class="modal-dialog">
+  		<form class="bs-example bs-example-form" role="form">
+			<div class="modal-content">
+			     <div class="modal-header">
+				      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				       <h4 class="modal-title">Load Model into Repository</h4>
+				  </div>
+				  <div class="modal-body">
+				  	<table class="table table-condensed table-no-border">
+				  		<tr>
+				  			<td width="1px"><input type="radio" name="buttonCollection_Save" id="buttonCollection_Save" value="URL"></td>
+				  			<td>
+				  				<div class="form-group">
+					                <label class="col-sm-3 control-label" for="txtModel_URL_Save">Model URL</label>
+					                <div class="col-sm-9">
+					                  <input type="text" placeholder="" id="txtModel_URL_Save" class="form-control">
+					                </div>
+				            	</div>
+				  			</td>
+				  		</tr>
+				  		
+				  		<tr>
+				  			<td width="1px"><input type="radio" name="buttonCollection_Save" id="buttonCollection_Save" value="Collection"></td>
+				  			<td>
+				  				<div class="form-group">
+		              				<label class="col-sm-3 control-label" for="txtGraph_URL_Save">Collection</label>
+				                    <div class="col-sm-9">
+				                      <input type="text" id="txtGraph_URL_Save" class="form-control">
+				                      <p class="help-block">Karma Collection Service to load all models from Karma publish folder</p>
+				                    </div>
+				                </div>
+				  			</td>
+				  		</tr>
+				  	</table>
+		             
+		              
+		              <div style="display: none" class="error">Please enter an end point</div>
+  					
+              		</form>
+              
+		  		  </div> <!-- /.modal-body -->
+				  <div class="modal-footer">
+				        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+				        <button type="submit" class="btn btn-primary" id="btnSave">Save</button>
+				  </div> <!-- /.modal-footer -->
+			</div><!-- /.modal-content -->
+		</form>
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="clearModelDialog" tabindex="-1">
+  <div class="modal-dialog">
+  		<form class="bs-example bs-example-form" role="form">
+			<div class="modal-content">
+			     <div class="modal-header">
+				      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				       <h4 class="modal-title">Clear Model</h4>
+				  </div>
+				  <div class="modal-body">
+
+					<div class="form-group">
+						<label for="txtGraph_URL_Clear">Collection</label>
+						<input class="form-control" type="text" id="txtGraph_URL_Clear" required>
+					</div>
+					
+					<div class="error" style="display: none">Please enter an end point</div>
+				  </div> <!-- /.modal-body -->
+				  <div class="modal-footer">
+				        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+				        <button type="submit" class="btn btn-primary" id="btnSave">Clear</button>
+				  </div> <!-- /.modal-footer -->
+			</div><!-- /.modal-content -->
+		</form>
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="modelManagerDialog" tabindex="-1">
+  <div class="modal-dialog modal-wide">
+	<div class="modal-content">
+		<form class="bs-example bs-example-form" role="form">
+	     <div class="modal-header">
+		      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		       <h4 class="modal-title">Model Manager</h4>
+		  </div>
+		  <div class="modal-body">
+				<div id="modelManagerDialogColumns"></div>
+		  </div> <!-- /.modal-body -->
+		  <div class="modal-footer">
+			<button type="submit" class="btn btn-primary" id="btnAddModel">Add Models</button>
+		  	<button type="button" class="btn btn-default" id="btnRemoveModel">Remove Models</button>
+		  	<button type="button" class="btn btn-default" id="btnRefreshModel">Refresh Models</button>
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+			        
+		  </div> <!-- /.modal-footer -->
+		 </form>
+	</div><!-- /.modal-content -->
+		
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<div class="modal fade" id="applyR2RMLModelFromUrlDialog" tabindex="-1">
+  <div class="modal-dialog">
+  		<form class="bs-example bs-example-form" role="form">
+			<div class="modal-content">
+			     <div class="modal-header">
+				      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				       <h4 class="modal-title">Apply R2RML Model From History</h4>
+				  </div>
+				  <div class="modal-body">
+				  	
+		              <div class="form-group">
+						<label for="txtModelURL">Model URL</label>
+						<input class="form-control" type="text" id="txtModelURL" required>
+						<span class="error"  style="display: none">Please enter the model URL</span>
+					 </div>
+		             
+              		</form>
+              
+		  		  </div> <!-- /.modal-body -->
+				  <div class="modal-footer">
+				        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+				        <button type="submit" class="btn btn-primary" id="btnSave">Save</button>
+				  </div> <!-- /.modal-footer -->
+			</div><!-- /.modal-content -->
+		</form>
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+</body>
+</html>
+			  
+			  <div class="modal fade" id="karmaErrorWindow" tabindex="-1">
+			  	<div class="modal-dialog">
+			  		<form class="bs-example bs-example-form" role="form">
+						<div class="modal-content">
+						     <div class="modal-header">
+							      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							       <h4 class="modal-title">Error Report</h4>
+							  </div>
+							  <div class="modal-body">
+								<div id="errrorText">&nbsp;</div>
+							  </div> <!-- /.modal-body -->
+						</div><!-- /.modal-content -->
+					</form>
+				</div><!-- /.modal-dialog -->
+			</div><!-- /.modal -->
+
+		</div>
+ 		
+ 		<div id="footer">
+	      <div class="container">
+	        <p class="text-muted">
+	        	<div class="row">
+	        		<div class="col-sm-4">
+	        			<div class="form-group">
+	        				<label>Karma Home: </label>
+	        				<span id="karmaHome">/Users/szekely/github/dig-alignment/versions/2.0/karma/</span>
+	        			</div>
+	        		</div>
+	        		<div class="col-sm-4">
+	        			<div class="form-group">
+							<label for="txtModel_URL">Model Endpoint: </label>
+							<span class="edit" id="txtModel_URL"></span>
+						</div>
+	        		</div>
+	        		<div class="col-sm-4">
+	        			<div class="form-group">
+							<label for="txtData_URL">Data Endpoint: </label>
+							<span class="edit" id="txtData_URL"></span>
+						</div>
+	        		</div>
+	        	</div>
+	        </p>
+	      </div>
+	    </div>
+    
+        <div id="ScrollHeadersPlaceholder"></div>
+       
+        
+        <div id="drawBigChartId" style="display: none">
+            <div id="bigChartTitle" ></div>
+        </div>
+
+        <div id="modelListDiv" style="display: none">
+            <span class="smallSizedFont">
+                <form id="modelListRadioBtnGrp"></form>
+            </span>
+        </div>
+        <div id="invokeDMServiceDiv" style="display: none">
+            <span class="smallSizedFont" id="invokeDMServiceSpan">
+            </span>
+        </div>
+        
+        <div id="ColumnSelection" style="display: none">
+            <table id="allcolumns">
+                <tr>
+                    <td class="cleaningTableHeading noBorder">Selected</td>
+                    <td class="examplesDivider noBorder"></td>
+                    <td class="cleaningTableHeading noBorder" colspan=3>Columns</td>
+                </tr>
+            </table>
+        </div>
+
+		<div id="WaitingDiv" style="display:none; position:absolute;left:0px; top:0px;width:100%; height:100%" class="waitingDiv">
+			<div style="width:10px;height:50px">&nbsp;</div>
+			<div>Loading Workspace..</div>
+            <img src="images/ajax-loader.gif" />
+		</div>
+		
+        <!--  Load all scripts last for faster page load -->
+        
+        <!-- Third Party JavaScript files		 -->
+        <script type="text/javascript" src="uiLibs/jquery/js/jquery-1.10.2.min.js"></script>
+        <script type="text/javascript" src="uiLibs/jquery/js/jquery-ui-1.10.3.custom.min.js"></script>
+        <script type="text/javascript" src="uiLibs/jquery/js/nestable.js"></script>
+		<script type="text/javascript" src="uiLibs/twitterBootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="uiLibs/twitterBootstrap/js/bootstrap3-typeahead.js"></script>
+		<script type="text/javascript" src="uiLibs/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
+		
+        <script type="text/javascript" src="uiLibs/jquery/js/jquery.tmpl.min.js"></script>
+        <script type="text/javascript" src="uiLibs/jquery/js/jquery.hoverIntent.js"></script>
+        <script type="text/javascript" src="uiLibs/jquery/js/jquery.jstree.js"></script>
+        <script type="text/javascript" src="uiLibs/jquery/js/jquery.qtip.min.js"></script>
+        
+        
+        <script type="text/javascript" src="https://www.google.com/jsapi?key=AIzaSyDEvzzmlVOhVWTy13y5r6OPt5BRNR5QKsg&sensor=false"></script>
+        
+        <script type="text/javascript" src="uiLibs/sticky/js/sticky.min.js"></script>
+
+        <script type="text/javascript" src="uiLibs/json/js/json2.js"></script>
+        <script type="text/javascript" src="uiLibs/jquery/js/jquery.cookie.js"></script>
+        <script type="text/javascript" src="uiLibs/d3/js/d3.v3.min.js"></script>
+        <script type="text/javascript" src="uiLibs/jquery/js/jquery.iframe-transport.js"></script>
+        <script type="text/javascript" src="uiLibs/ace/js/ace.js" charset="utf-8"></script>
+        <script type="text/javascript" src="uiLibs/jquery/js/jquery.fileupload.js"></script>
+        <script type="text/javascript" src="uiLibs/jquery/js/jquery.fileupload-ui.js"></script>
+        <script type="text/javascript" src="uiLibs/jquery/js/jquery.fileupload-jquery-ui.js"></script>
+        <script type="text/javascript" src="uiLibs/locale/js/locale.js"></script>
+        <script type="text/javascript" src="uiLibs/less/js/less-1.4.1.min.js"></script>
+        <script type="text/javascript" src="uiLibs/modernizr/js/modernizr.custom.59953.js"></script>
+		
+        <!-- Home grown JavaScript files -->
+        <script type="text/javascript" src="js/ServerResponseObjectParsing.js?v2.037
+"></script>
+        <script type="text/javascript" src="js/initWS.js?v2.037
+"></script>
+        <script type="text/javascript" src="js/commandHistory.js?v2.037
+"></script>
+        <script type="text/javascript" src="js/publishRDF.js?v2.037
+"></script>
+        <script type="text/javascript" src="js/serviceImport.js?v2.037
+"></script>
+        <script type="text/javascript" src="js/pager.js?v2.037
+"></script>
+        <script type="text/javascript" src="js/geospatial.js?v2.037
+"></script>
+        <script type="text/javascript" src="js/databaseImportDialog.js?v2.037
+"></script>
+        <script type="text/javascript" src="js/d3-model-manager.js?v2.037
+"></script>
+        <script type="text/javascript" src="js/fileImport.js?v2.037
+"></script>
+        <script type="text/javascript" src="js/cleaning.js?v2.037
+"></script>
+        <script type="text/javascript" src="js/reset-options.js?v2.037
+"></script>
+        <script type="text/javascript" src="js/cleaning-charts.js?v2.037
+"></script>
+        <script type="text/javascript" src="js/showModel.js?v2.037
+"></script>
+        <script type="text/javascript" src="js/worksheetOptions.js?v2.037
+"></script>
+        <script type="text/javascript" src="js/tableColumnOptions.js?v2.037
+"></script>
+        <script type="text/javascript" src="js/tableOptions.js?v2.037
+"></script>
+        <script type="text/javascript" src="js/util.js?v2.037
+"></script>
+        <script type="text/javascript" src="js/semanticTypes.js?v2.037
+"></script>
+        <script type="text/javascript" src="js/classUI.js?v2.037
+"></script>
+        <script type="text/javascript" src="js/propertyUI.js?v2.037
+"></script>
+        <script type="text/javascript" src="js/classDropdown.js?v2.037
+"></script>
+        <script type="text/javascript" src="js/propertyDropdown.js?v2.037
+"></script>
+        <script type="text/javascript" src="js/model-layout.js?v2.037
+"></script>
+        <script type="text/javascript" src="js/UnconnectedNodesLayout.js?v2.037
+"></script>
+        <script type="text/javascript" src="js/model.js?v2.037
+"></script>
+        <script type="text/javascript" src="js/saveSvgAsPng.js?v2.037
+"></script>
+        
+        
+		<script type="text/javascript" src="js/d3-model-layout.js?v2.037
+"></script>
+		
+        <script>
+        	var googleEarthEnabled = true;
+        	var ontologyAligment = false;
+        	var knownModelsAlignment = false;
+        	var forceLayoutEnabled = true;
+            $(function() {
+                // Clear the workspace when closing the window
+                $(window).bind("beforeunload", function() {
+                    var info = new Object();
+                    info["workspaceId"] = $.workspaceGlobalInformation.id;
+                    info["command"] = "CloseWorkspaceCommand";
+
+                    var returned = $.ajax({
+                        url : "RequestController",
+                        type : "POST",
+                        data : info,
+                        dataType : "json",
+                        complete : function(xhr, textStatus) {
+                            // do nothing
+                        },
+                        error : function(xhr, textStatus) {
+                            // alert("Error while removing the workspace from server memory! " + textStatus);
+                        }
+                    });
+                  });
+                  $(window).bind("unload", function() {
+                    var info = new Object();
+                    info["workspaceId"] = $.workspaceGlobalInformation.id;
+                    info["command"] = "CloseWorkspaceCommand";
+
+                    var returned = $.ajax({
+                        url : "RequestController",
+                        type : "POST",
+                        data : info,
+                        dataType : "json",
+                        complete : function(xhr, textStatus) {
+                            // do nothing
+                        },
+                        error : function(xhr, textStatus) {
+                            // alert("Error while removing the workspace from server memory! " + textStatus);
+                        }
+                    });
+                	});
+
+                // Prevent the backspace key from navigating back.
+                $(document).unbind('keydown').bind('keydown', function(event) {
+                    var doPrevent = false;
+                    if(event.keyCode === 8) {
+                        var d = event.srcElement || event.target;
+                        if((d.tagName.toUpperCase() === 'INPUT' && (d.type.toUpperCase() === 'TEXT' || d.type.toUpperCase() === 'PASSWORD' || d.type.toUpperCase() === 'URL')) || d.tagName.toUpperCase() === 'TEXTAREA') {
+                            doPrevent = d.readOnly || d.disabled;
+                        } else {
+                            doPrevent = true;
+                        }
+						if(doPrevent) {
+							var ans = confirm("Are you sure you want to go back? You will lose all the progress.");
+							if(ans) {
+								// Go with normal behavior
+							} else {
+								event.preventDefault();
+							}
+						}
+					}
+				});
+                $('#sparql_end_point_link').attr('href', 'http://'+window.location.host + '/openrdf-workbench/repositories/');
+                
+                $('body').delegate('.smallChart', 'click', function() {
+                    var pid = $(this).parent().attr('id');
+                    //console.log(pid);
+                    var chartTitle = drawBigChart(pid);
+                    var dialogBox = $("div#drawBigChartId");
+                    dialogBox.dialog({width: 550, title: chartTitle
+                        , buttons: { "Close": function() { $(this).dialog("close"); } }})
+                });
+                
+                $("#karmaHome").editable({
+		       			 type: 'text',
+		       			 success: function(response, newValue) {
+		       				 var old = this.textContent;
+		       				 console.log("Set Karma Home:" + newValue);
+		       				 var success = changeKarmaHome(newValue);
+		       				 if(!success) {
+		       					 return old;
+		       				 }
+		       			 },
+		       			 showbuttons: 'bottom',
+		       			 mode: 'popup',
+		       			 inputclass: 'worksheetInputEdit'	 
+		            });
+                
+                
+            	positionFooter();
+            	$(window)
+                    .scroll(startPositionFooter)
+                    .resize(startPositionFooter);
+            	
+            	if(!ontologyAligment && !knownModelsAlignment)
+            		manualAlignHeader();
+			});
+            
+            var footerPositionTimer = null;
+            function startPositionFooter() {
+            	if(footerPositionTimer != null) {
+            		window.clearTimeout(footerPositionTimer);
+            	}
+            	footerPositionTimer = window.setTimeout(function() {
+            		footerPositionTimer = null;
+            		positionFooter();
+            	}, 100);
+            }
+            
+            function positionFooter() {
+            	var footerHeight = 0,
+                footerTop = 0,
+                $footer = $("#footer");
+            	
+            	 $footer.css({
+                     position: "relative"
+            	 });
+            	 
+                footerHeight = $footer.height();
+                footerTop = ($(window).scrollTop()+$(window).height()-footerHeight)+"px";
+       
+                console.log("Height:" + footerHeight + ",top=" + footerTop + ":scrollTop:" + $(window).scrollTop() + ":winHeight:" + $(window).height());
+                
+               if ( ($(document.body).height()+footerHeight) < $(window).height()) {
+                   $footer.css({
+                        position: "absolute"
+                   }).animate({
+                        top: footerTop
+                   });
+               } else {
+                   $footer.css({
+                        position: "static"
+                   });
+               }
+               
+       		}
+            
+            function manualAlignHeader() {
+            	$("#manualModeHeader").show();
+            }
+		</script>
+		<script type="text/javascript">
+			if(googleEarthEnabled) {
+				google.load("earth", "1", {
+					"callback" : earthCallback
+				});
+			}
+			
+			function earthCallback() {
+				// alert("Earth namespace loaded!");
+			}
+		</script>
+
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $("[data-toggle='tooltip']").tooltip();
+            });
+            
+        </script>
+    </body>
+</html>

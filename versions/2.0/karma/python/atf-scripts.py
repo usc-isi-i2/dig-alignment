@@ -1308,3 +1308,10 @@ def get_weapons(*texts):
     atf_weapons = get_atf_weapons(*texts)
     keywords = get_keywords(*texts)
     return ("%s|%s" % (atf_weapons, keywords)).strip("|")
+
+def floridaguntrader_availability_starts(date):
+  """Return the date in iso format"""
+  d = translate_date(date,"%m/%d","2015-%m-%d")
+  if d == '':
+    d = translate_date(date,"%b %d, %Y","%Y-%m-%d")
+  return d

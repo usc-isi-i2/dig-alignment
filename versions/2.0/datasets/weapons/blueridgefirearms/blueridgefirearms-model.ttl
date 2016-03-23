@@ -12,17 +12,117 @@
 @prefix rr: <http://www.w3.org/ns/r2rml#> .
 @prefix km-dev: <http://isi.edu/integration/karma/dev#> .
 
-_:node19pkdmhsqx1 a km-dev:R2RMLMapping ;
-	km-dev:sourceName "blueridgefirearms-sample.json" ;
-	km-dev:modelPublicationTime "1436278278043"^^xsd:long ;
+_:node19u3g8ce3x1 a km-dev:R2RMLMapping ;
+	km-dev:sourceName "extracted_blueridgefirearms.json" ;
+	km-dev:modelPublicationTime "1441079243203"^^xsd:long ;
 	km-dev:modelVersion "1.7" ;
-	km-dev:hasInputColumns "[[{\"columnName\":\"uri\"}],[{\"columnName\":\"price\"}],[{\"columnName\":\"rawtextdetectedlanguage\"}],[{\"columnName\":\"manufacturer\"}],[{\"columnName\":\"URL\"}],[{\"columnName\":\"SKU\"}],[{\"columnName\":\"title\"}],[{\"columnName\":\"description\"}],[{\"columnName\":\"manufacturer_no\"}]]" ;
-	km-dev:hasOutputColumns "[[{\"columnName\":\"manufacturer\"}],[{\"columnName\":\"cleanPrice\"}],[{\"columnName\":\"location\"}],[{\"columnName\":\"uri\"}],[{\"columnName\":\"place_uri\"}],[{\"columnName\":\"rawtextdetectedlanguage\"}],[{\"columnName\":\"priceCurrency\"}],[{\"columnName\":\"URL\"}],[{\"columnName\":\"SKU\"}],[{\"columnName\":\"title\"}],[{\"columnName\":\"description\"}],[{\"columnName\":\"manufacturer_no\"}],[{\"columnName\":\"product_uri\"}]]" ;
-	km-dev:hasModelLabel "blueridgefirearms-sample.json" ;
-	km-dev:hasBaseURI "http://localhost:8080/source/" ;
+	km-dev:hasInputColumns "[[{\"columnName\":\"url\"}],[{\"columnName\":\"rawtextdetectedlanguage\"}],[{\"columnName\":\"details\"},{\"columnName\":\"value\"}],[{\"columnName\":\"timestamp\"}],[{\"columnName\":\"description\"}],[{\"columnName\":\"title\"}],[{\"columnName\":\"organizationuri\"}],[{\"columnName\":\"manufacturer\"}],[{\"columnName\":\"raw_text\"}],[{\"columnName\":\"manufacturer_no\"}],[{\"columnName\":\"SKU\"}],[{\"columnName\":\"price\"}]]" ;
+	km-dev:hasOutputColumns "[[{\"columnName\":\"url\"}],[{\"columnName\":\"location\"}],[{\"columnName\":\"organizationuri\"}],[{\"columnName\":\"uri\"}],[{\"columnName\":\"priceCurrency\"}],[{\"columnName\":\"SKU\"}],[{\"columnName\":\"place_uri\"}],[{\"columnName\":\"rawtextdetectedlanguage\"}],[{\"columnName\":\"details\"},{\"columnName\":\"value\"}],[{\"columnName\":\"product_uri\"}],[{\"columnName\":\"description\"}],[{\"columnName\":\"cleanPrice\"}],[{\"columnName\":\"title\"}],[{\"columnName\":\"manufacturer\"}],[{\"columnName\":\"raw_text\"}],[{\"columnName\":\"manufacturer_no\"}]]" ;
+	km-dev:hasModelLabel "extracted_blueridgefirearms.json" ;
+	km-dev:hasBaseURI "http://dig.isi.edu/weapons/data/" ;
 	km-dev:hasWorksheetHistory """[
     {
+        \"tags\": [\"Transformation\"],
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"manufacturer\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"hTableId\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"value\": \"uri\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"defaultValue\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"AddColumnCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"uri\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"value\": \"uri\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"value\": \"return uri_from_url_timestamp(getValue(\\\"url\\\"),getValue(\\\"timestamp\\\"))\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"isJSONOutput\",
+                \"value\": \"false\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"url\\\"}]},{\\\"value\\\":[{\\\"columnName\\\":\\\"timestamp\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SubmitPythonTransformationCommand\"
+    },
+    {
         \"tags\": [\"Modeling\"],
+        \"model\": \"new\",
         \"inputParameters\": [
             {
                 \"name\": \"hNodeId\",
@@ -42,8 +142,8 @@ _:node19pkdmhsqx1 a km-dev:R2RMLMapping ;
             {
                 \"name\": \"SemanticTypesArray\",
                 \"value\": [{
-                    \"isPrimary\": true,
                     \"FullType\": \"http://schema.org/sku\",
+                    \"isPrimary\": true,
                     \"DomainLabel\": \"schema:Offer1 (add)\",
                     \"DomainId\": \"http://schema.org/Offer1\",
                     \"DomainUri\": \"http://schema.org/Offer\"
@@ -75,6 +175,7 @@ _:node19pkdmhsqx1 a km-dev:R2RMLMapping ;
     },
     {
         \"tags\": [\"Modeling\"],
+        \"model\": \"new\",
         \"inputParameters\": [
             {
                 \"name\": \"hNodeId\",
@@ -94,8 +195,8 @@ _:node19pkdmhsqx1 a km-dev:R2RMLMapping ;
             {
                 \"name\": \"SemanticTypesArray\",
                 \"value\": [{
-                    \"isPrimary\": true,
                     \"FullType\": \"http://schema.org/description\",
+                    \"isPrimary\": true,
                     \"DomainLabel\": \"schema:Offer1\",
                     \"DomainId\": \"http://schema.org/Offer1\",
                     \"DomainUri\": \"http://schema.org/Offer\"
@@ -127,6 +228,7 @@ _:node19pkdmhsqx1 a km-dev:R2RMLMapping ;
     },
     {
         \"tags\": [\"Transformation\"],
+        \"model\": \"new\",
         \"inputParameters\": [
             {
                 \"name\": \"hNodeId\",
@@ -178,6 +280,7 @@ _:node19pkdmhsqx1 a km-dev:R2RMLMapping ;
     },
     {
         \"tags\": [\"Transformation\"],
+        \"model\": \"new\",
         \"inputParameters\": [
             {
                 \"name\": \"hNodeId\",
@@ -229,6 +332,7 @@ _:node19pkdmhsqx1 a km-dev:R2RMLMapping ;
     },
     {
         \"tags\": [\"Modeling\"],
+        \"model\": \"new\",
         \"inputParameters\": [
             {
                 \"name\": \"hNodeId\",
@@ -248,8 +352,8 @@ _:node19pkdmhsqx1 a km-dev:R2RMLMapping ;
             {
                 \"name\": \"SemanticTypesArray\",
                 \"value\": [{
-                    \"isPrimary\": true,
                     \"FullType\": \"http://schema.org/priceCurrency\",
+                    \"isPrimary\": true,
                     \"DomainLabel\": \"schema:Offer1\",
                     \"DomainId\": \"http://schema.org/Offer1\",
                     \"DomainUri\": \"http://schema.org/Offer\"
@@ -281,6 +385,7 @@ _:node19pkdmhsqx1 a km-dev:R2RMLMapping ;
     },
     {
         \"tags\": [\"Modeling\"],
+        \"model\": \"new\",
         \"inputParameters\": [
             {
                 \"name\": \"hNodeId\",
@@ -300,8 +405,8 @@ _:node19pkdmhsqx1 a km-dev:R2RMLMapping ;
             {
                 \"name\": \"SemanticTypesArray\",
                 \"value\": [{
-                    \"isPrimary\": true,
                     \"FullType\": \"http://schema.org/manufacturer\",
+                    \"isPrimary\": true,
                     \"DomainLabel\": \"schema:Product1 (add)\",
                     \"DomainId\": \"http://schema.org/Product1\",
                     \"DomainUri\": \"http://schema.org/Product\"
@@ -333,6 +438,7 @@ _:node19pkdmhsqx1 a km-dev:R2RMLMapping ;
     },
     {
         \"tags\": [\"Modeling\"],
+        \"model\": \"new\",
         \"inputParameters\": [
             {
                 \"name\": \"hNodeId\",
@@ -352,8 +458,8 @@ _:node19pkdmhsqx1 a km-dev:R2RMLMapping ;
             {
                 \"name\": \"SemanticTypesArray\",
                 \"value\": [{
-                    \"isPrimary\": true,
                     \"FullType\": \"http://schema.org/title\",
+                    \"isPrimary\": true,
                     \"DomainLabel\": \"schema:Offer1\",
                     \"DomainId\": \"http://schema.org/Offer1\",
                     \"DomainUri\": \"http://schema.org/Offer\"
@@ -385,6 +491,7 @@ _:node19pkdmhsqx1 a km-dev:R2RMLMapping ;
     },
     {
         \"tags\": [\"Modeling\"],
+        \"model\": \"new\",
         \"inputParameters\": [
             {
                 \"name\": \"hNodeId\",
@@ -404,8 +511,8 @@ _:node19pkdmhsqx1 a km-dev:R2RMLMapping ;
             {
                 \"name\": \"SemanticTypesArray\",
                 \"value\": [{
-                    \"isPrimary\": true,
                     \"FullType\": \"http://schema.org/inLanguage\",
+                    \"isPrimary\": true,
                     \"DomainLabel\": \"schema:Offer1\",
                     \"DomainId\": \"http://schema.org/Offer1\",
                     \"DomainUri\": \"http://schema.org/Offer\"
@@ -437,6 +544,7 @@ _:node19pkdmhsqx1 a km-dev:R2RMLMapping ;
     },
     {
         \"tags\": [\"Modeling\"],
+        \"model\": \"new\",
         \"inputParameters\": [
             {
                 \"name\": \"hNodeId\",
@@ -471,8 +579,8 @@ _:node19pkdmhsqx1 a km-dev:R2RMLMapping ;
             {
                 \"name\": \"SemanticTypesArray\",
                 \"value\": [{
-                    \"isPrimary\": true,
                     \"FullType\": \"http://isi.edu/integration/karma/dev#classLink\",
+                    \"isPrimary\": true,
                     \"DomainLabel\": \"schema:Offer1\",
                     \"DomainId\": \"http://schema.org/Offer1\",
                     \"DomainUri\": \"http://schema.org/Offer\"
@@ -504,58 +612,7 @@ _:node19pkdmhsqx1 a km-dev:R2RMLMapping ;
     },
     {
         \"tags\": [\"Modeling\"],
-        \"inputParameters\": [
-            {
-                \"name\": \"hNodeId\",
-                \"value\": [{\"columnName\": \"URL\"}],
-                \"type\": \"hNodeId\"
-            },
-            {
-                \"name\": \"worksheetId\",
-                \"value\": \"W\",
-                \"type\": \"worksheetId\"
-            },
-            {
-                \"name\": \"selectionName\",
-                \"value\": \"DEFAULT_TEST\",
-                \"type\": \"other\"
-            },
-            {
-                \"name\": \"SemanticTypesArray\",
-                \"value\": [{
-                    \"isPrimary\": true,
-                    \"FullType\": \"http://schema.org/url\",
-                    \"DomainLabel\": \"schema:Offer1\",
-                    \"DomainId\": \"http://schema.org/Offer1\",
-                    \"DomainUri\": \"http://schema.org/Offer\"
-                }],
-                \"type\": \"other\"
-            },
-            {
-                \"name\": \"trainAndShowUpdates\",
-                \"value\": false,
-                \"type\": \"other\"
-            },
-            {
-                \"name\": \"rdfLiteralType\",
-                \"value\": \"\",
-                \"type\": \"other\"
-            },
-            {
-                \"name\": \"inputColumns\",
-                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"URL\\\"}]}]\",
-                \"type\": \"hNodeIdList\"
-            },
-            {
-                \"name\": \"outputColumns\",
-                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"URL\\\"}]}]\",
-                \"type\": \"hNodeIdList\"
-            }
-        ],
-        \"commandName\": \"SetSemanticTypeCommand\"
-    },
-    {
-        \"tags\": [\"Modeling\"],
+        \"model\": \"new\",
         \"inputParameters\": [
             {
                 \"name\": \"worksheetId\",
@@ -571,8 +628,8 @@ _:node19pkdmhsqx1 a km-dev:R2RMLMapping ;
                 \"name\": \"initialEdges\",
                 \"value\": [{
                     \"edgeId\": \"http://www.w3.org/2000/01/rdf-schema#subClassOf\",
-                    \"edgeTargetId\": \"http://schema.org/Thing1\",
-                    \"edgeSourceId\": \"http://schema.org/Product1\"
+                    \"edgeSourceId\": \"http://schema.org/Product1\",
+                    \"edgeTargetId\": \"http://schema.org/Thing1\"
                 }],
                 \"type\": \"other\"
             },
@@ -601,6 +658,7 @@ _:node19pkdmhsqx1 a km-dev:R2RMLMapping ;
     },
     {
         \"tags\": [\"Modeling\"],
+        \"model\": \"new\",
         \"inputParameters\": [
             {
                 \"name\": \"worksheetId\",
@@ -616,8 +674,8 @@ _:node19pkdmhsqx1 a km-dev:R2RMLMapping ;
                 \"name\": \"initialEdges\",
                 \"value\": [{
                     \"edgeId\": \"http://www.w3.org/2000/01/rdf-schema#subClassOf\",
-                    \"edgeTargetId\": \"http://schema.org/Intangible1\",
-                    \"edgeSourceId\": \"http://schema.org/Offer1\"
+                    \"edgeSourceId\": \"http://schema.org/Offer1\",
+                    \"edgeTargetId\": \"http://schema.org/Intangible1\"
                 }],
                 \"type\": \"other\"
             },
@@ -646,6 +704,7 @@ _:node19pkdmhsqx1 a km-dev:R2RMLMapping ;
     },
     {
         \"tags\": [\"Modeling\"],
+        \"model\": \"new\",
         \"inputParameters\": [
             {
                 \"name\": \"worksheetId\",
@@ -662,13 +721,13 @@ _:node19pkdmhsqx1 a km-dev:R2RMLMapping ;
                 \"value\": [
                     {
                         \"edgeId\": \"http://www.w3.org/2000/01/rdf-schema#subClassOf\",
-                        \"edgeTargetId\": \"http://schema.org/Intangible1\",
-                        \"edgeSourceId\": \"http://schema.org/Offer1\"
+                        \"edgeSourceId\": \"http://schema.org/Offer1\",
+                        \"edgeTargetId\": \"http://schema.org/Intangible1\"
                     },
                     {
                         \"edgeId\": \"http://www.w3.org/2000/01/rdf-schema#subClassOf\",
-                        \"edgeTargetId\": \"http://schema.org/Thing1\",
-                        \"edgeSourceId\": \"http://schema.org/Intangible1\"
+                        \"edgeSourceId\": \"http://schema.org/Intangible1\",
+                        \"edgeTargetId\": \"http://schema.org/Thing1\"
                     }
                 ],
                 \"type\": \"other\"
@@ -698,6 +757,7 @@ _:node19pkdmhsqx1 a km-dev:R2RMLMapping ;
     },
     {
         \"tags\": [\"Modeling\"],
+        \"model\": \"new\",
         \"inputParameters\": [
             {
                 \"name\": \"worksheetId\",
@@ -713,8 +773,8 @@ _:node19pkdmhsqx1 a km-dev:R2RMLMapping ;
                 \"name\": \"initialEdges\",
                 \"value\": [{
                     \"edgeId\": \"http://www.w3.org/2000/01/rdf-schema#subClassOf\",
-                    \"edgeTargetId\": \"http://schema.org/Intangible1\",
-                    \"edgeSourceId\": \"http://schema.org/Offer1\"
+                    \"edgeSourceId\": \"http://schema.org/Offer1\",
+                    \"edgeTargetId\": \"http://schema.org/Intangible1\"
                 }],
                 \"type\": \"other\"
             },
@@ -743,6 +803,7 @@ _:node19pkdmhsqx1 a km-dev:R2RMLMapping ;
     },
     {
         \"tags\": [\"Modeling\"],
+        \"model\": \"new\",
         \"inputParameters\": [
             {
                 \"name\": \"worksheetId\",
@@ -769,8 +830,8 @@ _:node19pkdmhsqx1 a km-dev:R2RMLMapping ;
                 \"value\": [{
                     \"edgeTargetUri\": \"http://schema.org/Product1\",
                     \"edgeId\": \"http://schema.org/itemOffered\",
-                    \"edgeTargetId\": \"http://schema.org/Product1\",
                     \"edgeSourceId\": \"http://schema.org/Offer1\",
+                    \"edgeTargetId\": \"http://schema.org/Product1\",
                     \"edgeSourceUri\": \"http://schema.org/Offer\"
                 }],
                 \"type\": \"other\"
@@ -790,6 +851,7 @@ _:node19pkdmhsqx1 a km-dev:R2RMLMapping ;
     },
     {
         \"tags\": [\"Modeling\"],
+        \"model\": \"new\",
         \"inputParameters\": [
             {
                 \"name\": \"hNodeId\",
@@ -809,8 +871,8 @@ _:node19pkdmhsqx1 a km-dev:R2RMLMapping ;
             {
                 \"name\": \"SemanticTypesArray\",
                 \"value\": [{
-                    \"isPrimary\": true,
                     \"FullType\": \"http://schema.org/price\",
+                    \"isPrimary\": true,
                     \"DomainLabel\": \"schema:Offer1\",
                     \"DomainId\": \"http://schema.org/Offer1\",
                     \"DomainUri\": \"http://schema.org/Offer\"
@@ -842,6 +904,7 @@ _:node19pkdmhsqx1 a km-dev:R2RMLMapping ;
     },
     {
         \"tags\": [\"Modeling\"],
+        \"model\": \"new\",
         \"inputParameters\": [
             {
                 \"name\": \"hNodeId\",
@@ -861,8 +924,8 @@ _:node19pkdmhsqx1 a km-dev:R2RMLMapping ;
             {
                 \"name\": \"SemanticTypesArray\",
                 \"value\": [{
-                    \"isPrimary\": true,
                     \"FullType\": \"http://schema.org/keywords\",
+                    \"isPrimary\": true,
                     \"DomainLabel\": \"schema:Product1\",
                     \"DomainId\": \"http://schema.org/Product1\",
                     \"DomainUri\": \"http://schema.org/Product\"
@@ -894,6 +957,7 @@ _:node19pkdmhsqx1 a km-dev:R2RMLMapping ;
     },
     {
         \"tags\": [\"Transformation\"],
+        \"model\": \"new\",
         \"inputParameters\": [
             {
                 \"name\": \"hNodeId\",
@@ -917,7 +981,7 @@ _:node19pkdmhsqx1 a km-dev:R2RMLMapping ;
             },
             {
                 \"name\": \"transformationCode\",
-                \"value\": \"return getValue(\\\"uri\\\") + \\\"/producturi\\\"\",
+                \"value\": \"return getValue(\\\"uri\\\") + \\\"/sku/\\\" + getValue(\\\"SKU\\\").lower()\",
                 \"type\": \"other\"
             },
             {
@@ -932,7 +996,7 @@ _:node19pkdmhsqx1 a km-dev:R2RMLMapping ;
             },
             {
                 \"name\": \"inputColumns\",
-                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"uri\\\"}]}]\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"uri\\\"}]},{\\\"value\\\":[{\\\"columnName\\\":\\\"SKU\\\"}]}]\",
                 \"type\": \"hNodeIdList\"
             },
             {
@@ -945,6 +1009,7 @@ _:node19pkdmhsqx1 a km-dev:R2RMLMapping ;
     },
     {
         \"tags\": [\"Modeling\"],
+        \"model\": \"new\",
         \"inputParameters\": [
             {
                 \"name\": \"hNodeId\",
@@ -979,8 +1044,8 @@ _:node19pkdmhsqx1 a km-dev:R2RMLMapping ;
             {
                 \"name\": \"SemanticTypesArray\",
                 \"value\": [{
-                    \"isPrimary\": true,
                     \"FullType\": \"http://isi.edu/integration/karma/dev#classLink\",
+                    \"isPrimary\": true,
                     \"DomainLabel\": \"schema:Product1\",
                     \"DomainId\": \"http://schema.org/Product1\",
                     \"DomainUri\": \"http://schema.org/Product\"
@@ -1012,6 +1077,7 @@ _:node19pkdmhsqx1 a km-dev:R2RMLMapping ;
     },
     {
         \"tags\": [\"Transformation\"],
+        \"model\": \"new\",
         \"inputParameters\": [
             {
                 \"name\": \"hNodeId\",
@@ -1063,6 +1129,7 @@ _:node19pkdmhsqx1 a km-dev:R2RMLMapping ;
     },
     {
         \"tags\": [\"Modeling\"],
+        \"model\": \"new\",
         \"inputParameters\": [
             {
                 \"name\": \"worksheetId\",
@@ -1089,8 +1156,8 @@ _:node19pkdmhsqx1 a km-dev:R2RMLMapping ;
                 \"value\": [{
                     \"edgeTargetUri\": \"http://schema.org/Place\",
                     \"edgeId\": \"http://schema.org/availableAtOrFrom\",
-                    \"edgeTargetId\": \"http://schema.org/Place1 (add)\",
                     \"edgeSourceId\": \"http://schema.org/Offer1\",
+                    \"edgeTargetId\": \"http://schema.org/Place1 (add)\",
                     \"edgeSourceUri\": \"http://schema.org/Offer1\"
                 }],
                 \"type\": \"other\"
@@ -1110,6 +1177,7 @@ _:node19pkdmhsqx1 a km-dev:R2RMLMapping ;
     },
     {
         \"tags\": [\"Modeling\"],
+        \"model\": \"new\",
         \"inputParameters\": [
             {
                 \"name\": \"worksheetId\",
@@ -1136,8 +1204,8 @@ _:node19pkdmhsqx1 a km-dev:R2RMLMapping ;
                 \"value\": [{
                     \"edgeTargetUri\": \"http://schema.org/PostalAddress\",
                     \"edgeId\": \"http://schema.org/address\",
-                    \"edgeTargetId\": \"http://schema.org/PostalAddress1 (add)\",
                     \"edgeSourceId\": \"http://schema.org/Place1\",
+                    \"edgeTargetId\": \"http://schema.org/PostalAddress1 (add)\",
                     \"edgeSourceUri\": \"http://schema.org/Place1\"
                 }],
                 \"type\": \"other\"
@@ -1157,6 +1225,7 @@ _:node19pkdmhsqx1 a km-dev:R2RMLMapping ;
     },
     {
         \"tags\": [\"Modeling\"],
+        \"model\": \"new\",
         \"inputParameters\": [
             {
                 \"name\": \"hNodeId\",
@@ -1176,8 +1245,8 @@ _:node19pkdmhsqx1 a km-dev:R2RMLMapping ;
             {
                 \"name\": \"SemanticTypesArray\",
                 \"value\": [{
-                    \"isPrimary\": true,
                     \"FullType\": \"http://schema.org/name\",
+                    \"isPrimary\": true,
                     \"DomainLabel\": \"schema:PostalAddress1\",
                     \"DomainId\": \"http://schema.org/PostalAddress1\",
                     \"DomainUri\": \"http://schema.org/PostalAddress\"
@@ -1209,6 +1278,7 @@ _:node19pkdmhsqx1 a km-dev:R2RMLMapping ;
     },
     {
         \"tags\": [\"Transformation\"],
+        \"model\": \"new\",
         \"inputParameters\": [
             {
                 \"name\": \"hNodeId\",
@@ -1260,6 +1330,7 @@ _:node19pkdmhsqx1 a km-dev:R2RMLMapping ;
     },
     {
         \"tags\": [\"Modeling\"],
+        \"model\": \"new\",
         \"inputParameters\": [
             {
                 \"name\": \"hNodeId\",
@@ -1294,8 +1365,8 @@ _:node19pkdmhsqx1 a km-dev:R2RMLMapping ;
             {
                 \"name\": \"SemanticTypesArray\",
                 \"value\": [{
-                    \"isPrimary\": true,
                     \"FullType\": \"http://isi.edu/integration/karma/dev#classLink\",
+                    \"isPrimary\": true,
                     \"DomainLabel\": \"schema:Place1\",
                     \"DomainId\": \"http://schema.org/Place1\",
                     \"DomainUri\": \"http://schema.org/Place\"
@@ -1324,320 +1395,1153 @@ _:node19pkdmhsqx1 a km-dev:R2RMLMapping ;
             }
         ],
         \"commandName\": \"SetMetaPropertyCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"cleanPrice\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"FullType\": \"http://schema.org/price\",
+                    \"isPrimary\": true,
+                    \"DomainLabel\": \"schema:Offer1\",
+                    \"DomainId\": \"http://schema.org/Offer1\",
+                    \"DomainUri\": \"http://schema.org/Offer\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": true,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"xsd:decimal\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"cleanPrice\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"cleanPrice\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetSemanticTypeCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"initialEdges\",
+                \"value\": [],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"alignmentId\",
+                \"value\": \"WSP9:WS1AL\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newEdges\",
+                \"value\": [{
+                    \"edgeTargetUri\": \"http://schema.org/Offer\",
+                    \"edgeId\": \"http://schema.org/offers\",
+                    \"edgeSourceId\": \"http://schema.org/Product1\",
+                    \"edgeTargetId\": \"http://schema.org/Offer1\",
+                    \"edgeSourceUri\": \"http://schema.org/Product1\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"ChangeInternalNodeLinksCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"properties\",
+                \"value\": {
+                    \"hasServiceProperties\": false,
+                    \"hasPrefix\": false,
+                    \"graphLabel\": \"\",
+                    \"hasBaseURI\": true,
+                    \"baseURI\": \"http://dig.isi.edu/weapons/data/\"
+                },
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetWorksheetPropertiesCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"properties\",
+                \"value\": {
+                    \"hasServiceProperties\": false,
+                    \"hasPrefix\": true,
+                    \"prefix\": \"weapons\",
+                    \"graphLabel\": \"\",
+                    \"hasBaseURI\": false
+                },
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetWorksheetPropertiesCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"url\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://schema.org/url\",
+                    \"DomainLabel\": \"schema:Offer1\",
+                    \"DomainId\": \"http://schema.org/Offer1\",
+                    \"DomainUri\": \"http://schema.org/Offer\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": true,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"url\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"url\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetSemanticTypeCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"initialEdges\",
+                \"value\": [],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"alignmentId\",
+                \"value\": \"WSP4:WS1AL\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newEdges\",
+                \"value\": [{
+                    \"edgeTargetUri\": \"http://schema.org/Organization\",
+                    \"edgeId\": \"http://schema.org/publisher\",
+                    \"edgeTargetId\": \"http://schema.org/Organization1 (add)\",
+                    \"edgeSourceId\": \"http://schema.org/Offer1\",
+                    \"edgeSourceUri\": \"http://schema.org/Offer1\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"ChangeInternalNodeLinksCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"literalValue\",
+                \"value\": \"blueridgefirearms.com\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"literalType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"isUri\",
+                \"value\": false,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"AddLiteralNodeCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"initialEdges\",
+                \"value\": [],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newEdges\",
+                \"value\": [{
+                    \"edgeTargetUri\": \"blueridgefirearms.com\",
+                    \"edgeId\": \"http://schema.org/name\",
+                    \"edgeTargetId\": \"blueridgefirearms.com1\",
+                    \"edgeSourceId\": \"http://schema.org/Organization1\",
+                    \"edgeSourceUri\": \"http://schema.org/Organization\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"ChangeInternalNodeLinksCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"uri\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"hTableId\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"value\": \"organizationuri\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"defaultValue\",
+                \"value\": \"organization/blueridgefirearms\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"AddColumnCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"organizationuri\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyName\",
+                \"value\": \"isUriOfClass\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyUri\",
+                \"value\": \"http://schema.org/Organization\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyId\",
+                \"value\": \"http://schema.org/Organization1\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://isi.edu/integration/karma/dev#classLink\",
+                    \"DomainLabel\": \"schema:Organization1\",
+                    \"DomainId\": \"http://schema.org/Organization1\",
+                    \"DomainUri\": \"http://schema.org/Organization\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": true,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"organizationuri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"organizationuri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetMetaPropertyCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"details\"},
+                    {\"columnName\": \"value\"}
+                ],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://schema.org/keywords\",
+                    \"DomainLabel\": \"schema:Product1\",
+                    \"DomainId\": \"http://schema.org/Product1\",
+                    \"DomainUri\": \"http://schema.org/Product\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": true,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"details\\\"},{\\\"columnName\\\":\\\"value\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"details\\\"},{\\\"columnName\\\":\\\"value\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetSemanticTypeCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"manufacturer_no\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://schema.org/name\",
+                    \"DomainLabel\": \"memex:Identifier1 (add)\",
+                    \"DomainId\": \"http://memexproxy.com/ontology/Identifier1 (add)\",
+                    \"DomainUri\": \"http://memexproxy.com/ontology/Identifier\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": true,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"manufacturer_no\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"manufacturer_no\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetSemanticTypeCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"initialEdges\",
+                \"value\": [],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"alignmentId\",
+                \"value\": \"WSP1:WS1AL\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newEdges\",
+                \"value\": [{
+                    \"edgeTargetUri\": \"http://memexproxy.com/ontology/Identifier1\",
+                    \"edgeId\": \"http://memexproxy.com/ontology/identifier\",
+                    \"edgeTargetId\": \"http://memexproxy.com/ontology/Identifier1\",
+                    \"edgeSourceId\": \"http://schema.org/Product1\",
+                    \"edgeSourceUri\": \"http://schema.org/Product\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"ChangeInternalNodeLinksCommand\"
+    },
+    {
+        \"tags\": [\"Modeling\"],
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"raw_text\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://schema.org/text\",
+                    \"DomainLabel\": \"schema:Offer1\",
+                    \"DomainId\": \"http://schema.org/Offer1\",
+                    \"DomainUri\": \"http://schema.org/Offer\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": true,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"raw_text\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"raw_text\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetSemanticTypeCommand\"
     }
 ]""" .
 
-km-dev:TriplesMap_4a9c3507-a0f4-410d-9c64-a9660664ea31 a rr:TriplesMap .
+km-dev:TriplesMap_112024e0-8fe6-4f28-bf62-b734aff204e9 a rr:TriplesMap .
 
-_:node19pkdmhsqx1 km-dev:hasTriplesMap km-dev:TriplesMap_4a9c3507-a0f4-410d-9c64-a9660664ea31 .
+_:node19u3g8ce3x1 km-dev:hasTriplesMap km-dev:TriplesMap_112024e0-8fe6-4f28-bf62-b734aff204e9 .
 
-km-dev:TriplesMap_4a9c3507-a0f4-410d-9c64-a9660664ea31 km-dev:isPartOfMapping _:node19pkdmhsqx1 .
+km-dev:TriplesMap_112024e0-8fe6-4f28-bf62-b734aff204e9 km-dev:isPartOfMapping _:node19u3g8ce3x1 .
 
-_:node19pkdmhsqx2 rr:tableName "blueridgefirearms-sample.json" ;
+_:node19u3g8ce3x2 rr:tableName "extracted_blueridgefirearms.json" ;
 	a rr:LogicalTable ;
-	km-dev:isPartOfMapping _:node19pkdmhsqx1 .
+	km-dev:isPartOfMapping _:node19u3g8ce3x1 .
 
-_:node19pkdmhsqx1 km-dev:hasLogicalTable _:node19pkdmhsqx2 .
+_:node19u3g8ce3x1 km-dev:hasLogicalTable _:node19u3g8ce3x2 .
 
-km-dev:TriplesMap_4a9c3507-a0f4-410d-9c64-a9660664ea31 rr:logicalTable _:node19pkdmhsqx2 ;
-	rr:subjectMap _:node19pkdmhsqx3 .
+km-dev:TriplesMap_112024e0-8fe6-4f28-bf62-b734aff204e9 rr:logicalTable _:node19u3g8ce3x2 ;
+	rr:subjectMap _:node19u3g8ce3x3 .
 
-_:node19pkdmhsqx1 km-dev:hasSubjectMap _:node19pkdmhsqx3 .
+_:node19u3g8ce3x1 km-dev:hasSubjectMap _:node19u3g8ce3x3 .
 
-_:node19pkdmhsqx3 km-dev:isPartOfMapping _:node19pkdmhsqx1 ;
+_:node19u3g8ce3x3 km-dev:isPartOfMapping _:node19u3g8ce3x1 ;
+	a rr:SubjectMap ;
+	km-dev:alignmentNodeId "http://memexproxy.com/ontology/Identifier1" ;
+	rr:class memex:Identifier ;
+	rr:termType rr:BlankNode ;
+	km-dev:namePrefix "memex:Identifier1" .
+
+km-dev:PredicateObjectMap_034a4b10-273f-45d2-ad51-cc3e80bbf12e rr:predicate schema:name .
+
+_:node19u3g8ce3x4 rr:column "manufacturer_no" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node19u3g8ce3x1 .
+
+_:node19u3g8ce3x1 km-dev:hasObjectMap _:node19u3g8ce3x4 .
+
+km-dev:PredicateObjectMap_034a4b10-273f-45d2-ad51-cc3e80bbf12e rr:objectMap _:node19u3g8ce3x4 .
+
+km-dev:TriplesMap_112024e0-8fe6-4f28-bf62-b734aff204e9 rr:predicateObjectMap km-dev:PredicateObjectMap_034a4b10-273f-45d2-ad51-cc3e80bbf12e .
+
+km-dev:PredicateObjectMap_034a4b10-273f-45d2-ad51-cc3e80bbf12e a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19u3g8ce3x1 .
+
+_:node19u3g8ce3x1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_034a4b10-273f-45d2-ad51-cc3e80bbf12e .
+
+km-dev:TriplesMap_20acc0f5-fae8-4a37-a144-296e4efaa17b a rr:TriplesMap .
+
+_:node19u3g8ce3x1 km-dev:hasTriplesMap km-dev:TriplesMap_20acc0f5-fae8-4a37-a144-296e4efaa17b .
+
+km-dev:TriplesMap_20acc0f5-fae8-4a37-a144-296e4efaa17b km-dev:isPartOfMapping _:node19u3g8ce3x1 .
+
+_:node19u3g8ce3x5 rr:tableName "extracted_blueridgefirearms.json" ;
+	a rr:LogicalTable ;
+	km-dev:isPartOfMapping _:node19u3g8ce3x1 .
+
+_:node19u3g8ce3x1 km-dev:hasLogicalTable _:node19u3g8ce3x5 .
+
+km-dev:TriplesMap_20acc0f5-fae8-4a37-a144-296e4efaa17b rr:logicalTable _:node19u3g8ce3x5 ;
+	rr:subjectMap _:node19u3g8ce3x6 .
+
+_:node19u3g8ce3x1 km-dev:hasSubjectMap _:node19u3g8ce3x6 .
+
+_:node19u3g8ce3x6 km-dev:isPartOfMapping _:node19u3g8ce3x1 ;
 	a rr:SubjectMap ;
 	km-dev:alignmentNodeId "http://schema.org/Offer1" ;
 	rr:class schema:Offer ;
 	rr:template "{uri}" ;
 	a km-dev:steinerTreeRootNode .
 
-km-dev:PredicateObjectMap_c1e11ac0-0752-455a-9ee0-008e8d5431d1 rr:predicate schema:availableAtOrFrom .
+km-dev:PredicateObjectMap_09df6fe1-0cfd-41c9-a5c8-659fe7a52750 rr:predicate schema:availableAtOrFrom .
 
-km-dev:RefObjectMap_c28fb72a-7f13-46be-a3fe-c1710d040ff8 a rr:RefObjectMap , rr:ObjectMap ;
-	rr:parentTriplesMap km-dev:TriplesMap_799568a7-1046-4a0f-85df-4ca230e60a61 ;
-	km-dev:isPartOfMapping _:node19pkdmhsqx1 .
+km-dev:RefObjectMap_83e916ac-26ec-4a5f-8080-fa58aaab87a5 a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_d6be953a-e49a-4f0d-9a6c-eea75a1ce209 ;
+	km-dev:isPartOfMapping _:node19u3g8ce3x1 .
 
-_:node19pkdmhsqx1 km-dev:hasObjectMap km-dev:RefObjectMap_c28fb72a-7f13-46be-a3fe-c1710d040ff8 .
+_:node19u3g8ce3x1 km-dev:hasObjectMap km-dev:RefObjectMap_83e916ac-26ec-4a5f-8080-fa58aaab87a5 .
 
-km-dev:PredicateObjectMap_c1e11ac0-0752-455a-9ee0-008e8d5431d1 rr:objectMap km-dev:RefObjectMap_c28fb72a-7f13-46be-a3fe-c1710d040ff8 .
+km-dev:PredicateObjectMap_09df6fe1-0cfd-41c9-a5c8-659fe7a52750 rr:objectMap km-dev:RefObjectMap_83e916ac-26ec-4a5f-8080-fa58aaab87a5 .
 
-km-dev:TriplesMap_4a9c3507-a0f4-410d-9c64-a9660664ea31 rr:predicateObjectMap km-dev:PredicateObjectMap_c1e11ac0-0752-455a-9ee0-008e8d5431d1 .
+km-dev:TriplesMap_20acc0f5-fae8-4a37-a144-296e4efaa17b rr:predicateObjectMap km-dev:PredicateObjectMap_09df6fe1-0cfd-41c9-a5c8-659fe7a52750 .
 
-km-dev:PredicateObjectMap_c1e11ac0-0752-455a-9ee0-008e8d5431d1 a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node19pkdmhsqx1 .
+km-dev:PredicateObjectMap_09df6fe1-0cfd-41c9-a5c8-659fe7a52750 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19u3g8ce3x1 .
 
-_:node19pkdmhsqx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_c1e11ac0-0752-455a-9ee0-008e8d5431d1 .
+_:node19u3g8ce3x1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_09df6fe1-0cfd-41c9-a5c8-659fe7a52750 .
 
-km-dev:PredicateObjectMap_2e815694-584b-4c55-9385-b42ac2401256 rr:predicate schema:description .
+km-dev:PredicateObjectMap_979a0c81-1c0d-47d0-9ad8-de315bbd6eda rr:predicate schema:description .
 
-_:node19pkdmhsqx4 rr:column "description" ;
+_:node19u3g8ce3x7 rr:column "description" ;
 	a rr:ObjectMap ;
-	km-dev:isPartOfMapping _:node19pkdmhsqx1 .
+	km-dev:isPartOfMapping _:node19u3g8ce3x1 .
 
-_:node19pkdmhsqx1 km-dev:hasObjectMap _:node19pkdmhsqx4 .
+_:node19u3g8ce3x1 km-dev:hasObjectMap _:node19u3g8ce3x7 .
 
-km-dev:PredicateObjectMap_2e815694-584b-4c55-9385-b42ac2401256 rr:objectMap _:node19pkdmhsqx4 .
+km-dev:PredicateObjectMap_979a0c81-1c0d-47d0-9ad8-de315bbd6eda rr:objectMap _:node19u3g8ce3x7 .
 
-km-dev:TriplesMap_4a9c3507-a0f4-410d-9c64-a9660664ea31 rr:predicateObjectMap km-dev:PredicateObjectMap_2e815694-584b-4c55-9385-b42ac2401256 .
+km-dev:TriplesMap_20acc0f5-fae8-4a37-a144-296e4efaa17b rr:predicateObjectMap km-dev:PredicateObjectMap_979a0c81-1c0d-47d0-9ad8-de315bbd6eda .
 
-km-dev:PredicateObjectMap_2e815694-584b-4c55-9385-b42ac2401256 a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node19pkdmhsqx1 .
+km-dev:PredicateObjectMap_979a0c81-1c0d-47d0-9ad8-de315bbd6eda a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19u3g8ce3x1 .
 
-_:node19pkdmhsqx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_2e815694-584b-4c55-9385-b42ac2401256 .
+_:node19u3g8ce3x1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_979a0c81-1c0d-47d0-9ad8-de315bbd6eda .
 
-km-dev:PredicateObjectMap_a454f20e-c812-43e0-8fb7-4bb2610a0b17 rr:predicate schema:inLanguage .
+km-dev:PredicateObjectMap_e4ba224e-1a32-490f-8b2b-d191e914c391 rr:predicate schema:inLanguage .
 
-_:node19pkdmhsqx5 rr:column "rawtextdetectedlanguage" ;
+_:node19u3g8ce3x8 rr:column "rawtextdetectedlanguage" ;
 	a rr:ObjectMap ;
-	km-dev:isPartOfMapping _:node19pkdmhsqx1 .
+	km-dev:isPartOfMapping _:node19u3g8ce3x1 .
 
-_:node19pkdmhsqx1 km-dev:hasObjectMap _:node19pkdmhsqx5 .
+_:node19u3g8ce3x1 km-dev:hasObjectMap _:node19u3g8ce3x8 .
 
-km-dev:PredicateObjectMap_a454f20e-c812-43e0-8fb7-4bb2610a0b17 rr:objectMap _:node19pkdmhsqx5 .
+km-dev:PredicateObjectMap_e4ba224e-1a32-490f-8b2b-d191e914c391 rr:objectMap _:node19u3g8ce3x8 .
 
-km-dev:TriplesMap_4a9c3507-a0f4-410d-9c64-a9660664ea31 rr:predicateObjectMap km-dev:PredicateObjectMap_a454f20e-c812-43e0-8fb7-4bb2610a0b17 .
+km-dev:TriplesMap_20acc0f5-fae8-4a37-a144-296e4efaa17b rr:predicateObjectMap km-dev:PredicateObjectMap_e4ba224e-1a32-490f-8b2b-d191e914c391 .
 
-km-dev:PredicateObjectMap_a454f20e-c812-43e0-8fb7-4bb2610a0b17 a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node19pkdmhsqx1 .
+km-dev:PredicateObjectMap_e4ba224e-1a32-490f-8b2b-d191e914c391 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19u3g8ce3x1 .
 
-_:node19pkdmhsqx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_a454f20e-c812-43e0-8fb7-4bb2610a0b17 .
+_:node19u3g8ce3x1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_e4ba224e-1a32-490f-8b2b-d191e914c391 .
 
-km-dev:PredicateObjectMap_9fbef5d8-ba86-4a42-aa92-1add5eb4f7d0 rr:predicate schema:itemOffered .
+km-dev:PredicateObjectMap_2cbdb779-6f96-4747-aada-60b318082fe1 rr:predicate schema:price .
 
-km-dev:RefObjectMap_02e745e8-0a79-43c1-9ffc-87ad80a93b58 a rr:RefObjectMap , rr:ObjectMap ;
-	rr:parentTriplesMap km-dev:TriplesMap_2e52069d-826d-438d-b510-b54f6c4f7eb0 ;
-	km-dev:isPartOfMapping _:node19pkdmhsqx1 .
-
-_:node19pkdmhsqx1 km-dev:hasObjectMap km-dev:RefObjectMap_02e745e8-0a79-43c1-9ffc-87ad80a93b58 .
-
-km-dev:PredicateObjectMap_9fbef5d8-ba86-4a42-aa92-1add5eb4f7d0 rr:objectMap km-dev:RefObjectMap_02e745e8-0a79-43c1-9ffc-87ad80a93b58 .
-
-km-dev:TriplesMap_4a9c3507-a0f4-410d-9c64-a9660664ea31 rr:predicateObjectMap km-dev:PredicateObjectMap_9fbef5d8-ba86-4a42-aa92-1add5eb4f7d0 .
-
-km-dev:PredicateObjectMap_9fbef5d8-ba86-4a42-aa92-1add5eb4f7d0 a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node19pkdmhsqx1 .
-
-_:node19pkdmhsqx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_9fbef5d8-ba86-4a42-aa92-1add5eb4f7d0 .
-
-km-dev:PredicateObjectMap_ea8c185c-c92c-4151-9c16-8f17d04db704 rr:predicate schema:price .
-
-_:node19pkdmhsqx6 rr:column "cleanPrice" ;
+_:node19u3g8ce3x9 rr:column "cleanPrice" ;
 	a rr:ObjectMap ;
-	km-dev:isPartOfMapping _:node19pkdmhsqx1 .
+	rr:datatype "http://www.w3.org/2001/XMLSchema#decimal" ;
+	km-dev:isPartOfMapping _:node19u3g8ce3x1 .
 
-_:node19pkdmhsqx1 km-dev:hasObjectMap _:node19pkdmhsqx6 .
+_:node19u3g8ce3x1 km-dev:hasObjectMap _:node19u3g8ce3x9 .
 
-km-dev:PredicateObjectMap_ea8c185c-c92c-4151-9c16-8f17d04db704 rr:objectMap _:node19pkdmhsqx6 .
+km-dev:PredicateObjectMap_2cbdb779-6f96-4747-aada-60b318082fe1 rr:objectMap _:node19u3g8ce3x9 .
 
-km-dev:TriplesMap_4a9c3507-a0f4-410d-9c64-a9660664ea31 rr:predicateObjectMap km-dev:PredicateObjectMap_ea8c185c-c92c-4151-9c16-8f17d04db704 .
+km-dev:TriplesMap_20acc0f5-fae8-4a37-a144-296e4efaa17b rr:predicateObjectMap km-dev:PredicateObjectMap_2cbdb779-6f96-4747-aada-60b318082fe1 .
 
-km-dev:PredicateObjectMap_ea8c185c-c92c-4151-9c16-8f17d04db704 a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node19pkdmhsqx1 .
+km-dev:PredicateObjectMap_2cbdb779-6f96-4747-aada-60b318082fe1 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19u3g8ce3x1 .
 
-_:node19pkdmhsqx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_ea8c185c-c92c-4151-9c16-8f17d04db704 .
+_:node19u3g8ce3x1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_2cbdb779-6f96-4747-aada-60b318082fe1 .
 
-km-dev:PredicateObjectMap_f15f8c20-3afc-439c-a2a6-a47759389466 rr:predicate schema:priceCurrency .
+km-dev:PredicateObjectMap_20988525-be89-44b5-ab08-8b17e04584ed rr:predicate schema:priceCurrency .
 
-_:node19pkdmhsqx7 rr:column "priceCurrency" ;
+_:node19u3g8ce3x10 rr:column "priceCurrency" ;
 	a rr:ObjectMap ;
-	km-dev:isPartOfMapping _:node19pkdmhsqx1 .
+	km-dev:isPartOfMapping _:node19u3g8ce3x1 .
 
-_:node19pkdmhsqx1 km-dev:hasObjectMap _:node19pkdmhsqx7 .
+_:node19u3g8ce3x1 km-dev:hasObjectMap _:node19u3g8ce3x10 .
 
-km-dev:PredicateObjectMap_f15f8c20-3afc-439c-a2a6-a47759389466 rr:objectMap _:node19pkdmhsqx7 .
+km-dev:PredicateObjectMap_20988525-be89-44b5-ab08-8b17e04584ed rr:objectMap _:node19u3g8ce3x10 .
 
-km-dev:TriplesMap_4a9c3507-a0f4-410d-9c64-a9660664ea31 rr:predicateObjectMap km-dev:PredicateObjectMap_f15f8c20-3afc-439c-a2a6-a47759389466 .
+km-dev:TriplesMap_20acc0f5-fae8-4a37-a144-296e4efaa17b rr:predicateObjectMap km-dev:PredicateObjectMap_20988525-be89-44b5-ab08-8b17e04584ed .
 
-km-dev:PredicateObjectMap_f15f8c20-3afc-439c-a2a6-a47759389466 a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node19pkdmhsqx1 .
+km-dev:PredicateObjectMap_20988525-be89-44b5-ab08-8b17e04584ed a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19u3g8ce3x1 .
 
-_:node19pkdmhsqx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_f15f8c20-3afc-439c-a2a6-a47759389466 .
+_:node19u3g8ce3x1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_20988525-be89-44b5-ab08-8b17e04584ed .
 
-km-dev:PredicateObjectMap_bf043122-80ea-4084-a49d-a666902a5590 rr:predicate schema:sku .
+km-dev:PredicateObjectMap_1570663b-6b5e-4acd-8149-9a46c5f0286e rr:predicate schema:publisher .
 
-_:node19pkdmhsqx8 rr:column "SKU" ;
+km-dev:RefObjectMap_26c6ae77-bad5-48d1-9a11-ed850fadf69b a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_79d3dae6-1c28-4b76-b28f-12ccd5678197 ;
+	km-dev:isPartOfMapping _:node19u3g8ce3x1 .
+
+_:node19u3g8ce3x1 km-dev:hasObjectMap km-dev:RefObjectMap_26c6ae77-bad5-48d1-9a11-ed850fadf69b .
+
+km-dev:PredicateObjectMap_1570663b-6b5e-4acd-8149-9a46c5f0286e rr:objectMap km-dev:RefObjectMap_26c6ae77-bad5-48d1-9a11-ed850fadf69b .
+
+km-dev:TriplesMap_20acc0f5-fae8-4a37-a144-296e4efaa17b rr:predicateObjectMap km-dev:PredicateObjectMap_1570663b-6b5e-4acd-8149-9a46c5f0286e .
+
+km-dev:PredicateObjectMap_1570663b-6b5e-4acd-8149-9a46c5f0286e a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19u3g8ce3x1 .
+
+_:node19u3g8ce3x1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_1570663b-6b5e-4acd-8149-9a46c5f0286e .
+
+km-dev:PredicateObjectMap_a5c1db9e-5977-4373-a42c-c7c1b1bd1963 rr:predicate schema:sku .
+
+_:node19u3g8ce3x11 rr:column "SKU" ;
 	a rr:ObjectMap ;
-	km-dev:isPartOfMapping _:node19pkdmhsqx1 .
+	km-dev:isPartOfMapping _:node19u3g8ce3x1 .
 
-_:node19pkdmhsqx1 km-dev:hasObjectMap _:node19pkdmhsqx8 .
+_:node19u3g8ce3x1 km-dev:hasObjectMap _:node19u3g8ce3x11 .
 
-km-dev:PredicateObjectMap_bf043122-80ea-4084-a49d-a666902a5590 rr:objectMap _:node19pkdmhsqx8 .
+km-dev:PredicateObjectMap_a5c1db9e-5977-4373-a42c-c7c1b1bd1963 rr:objectMap _:node19u3g8ce3x11 .
 
-km-dev:TriplesMap_4a9c3507-a0f4-410d-9c64-a9660664ea31 rr:predicateObjectMap km-dev:PredicateObjectMap_bf043122-80ea-4084-a49d-a666902a5590 .
+km-dev:TriplesMap_20acc0f5-fae8-4a37-a144-296e4efaa17b rr:predicateObjectMap km-dev:PredicateObjectMap_a5c1db9e-5977-4373-a42c-c7c1b1bd1963 .
 
-km-dev:PredicateObjectMap_bf043122-80ea-4084-a49d-a666902a5590 a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node19pkdmhsqx1 .
+km-dev:PredicateObjectMap_a5c1db9e-5977-4373-a42c-c7c1b1bd1963 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19u3g8ce3x1 .
 
-_:node19pkdmhsqx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_bf043122-80ea-4084-a49d-a666902a5590 .
+_:node19u3g8ce3x1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_a5c1db9e-5977-4373-a42c-c7c1b1bd1963 .
 
-km-dev:PredicateObjectMap_87614657-c535-4408-bfbc-f8f1977680bd rr:predicate schema:title .
+km-dev:PredicateObjectMap_63ce1f33-22fc-4fd8-b408-ea05c3ccb3cd rr:predicate schema:text .
 
-_:node19pkdmhsqx9 rr:column "title" ;
+_:node19u3g8ce3x12 rr:column "raw_text" ;
 	a rr:ObjectMap ;
-	km-dev:isPartOfMapping _:node19pkdmhsqx1 .
+	km-dev:isPartOfMapping _:node19u3g8ce3x1 .
 
-_:node19pkdmhsqx1 km-dev:hasObjectMap _:node19pkdmhsqx9 .
+_:node19u3g8ce3x1 km-dev:hasObjectMap _:node19u3g8ce3x12 .
 
-km-dev:PredicateObjectMap_87614657-c535-4408-bfbc-f8f1977680bd rr:objectMap _:node19pkdmhsqx9 .
+km-dev:PredicateObjectMap_63ce1f33-22fc-4fd8-b408-ea05c3ccb3cd rr:objectMap _:node19u3g8ce3x12 .
 
-km-dev:TriplesMap_4a9c3507-a0f4-410d-9c64-a9660664ea31 rr:predicateObjectMap km-dev:PredicateObjectMap_87614657-c535-4408-bfbc-f8f1977680bd .
+km-dev:TriplesMap_20acc0f5-fae8-4a37-a144-296e4efaa17b rr:predicateObjectMap km-dev:PredicateObjectMap_63ce1f33-22fc-4fd8-b408-ea05c3ccb3cd .
 
-km-dev:PredicateObjectMap_87614657-c535-4408-bfbc-f8f1977680bd a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node19pkdmhsqx1 .
+km-dev:PredicateObjectMap_63ce1f33-22fc-4fd8-b408-ea05c3ccb3cd a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19u3g8ce3x1 .
 
-_:node19pkdmhsqx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_87614657-c535-4408-bfbc-f8f1977680bd .
+_:node19u3g8ce3x1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_63ce1f33-22fc-4fd8-b408-ea05c3ccb3cd .
 
-km-dev:PredicateObjectMap_da3f8268-66ed-450e-a124-8f59280626fd rr:predicate schema:url .
+km-dev:PredicateObjectMap_08d70a7f-639f-4d30-b735-d6b2407544cd rr:predicate schema:title .
 
-_:node19pkdmhsqx10 rr:column "URL" ;
+_:node19u3g8ce3x13 rr:column "title" ;
 	a rr:ObjectMap ;
-	km-dev:isPartOfMapping _:node19pkdmhsqx1 .
+	km-dev:isPartOfMapping _:node19u3g8ce3x1 .
 
-_:node19pkdmhsqx1 km-dev:hasObjectMap _:node19pkdmhsqx10 .
+_:node19u3g8ce3x1 km-dev:hasObjectMap _:node19u3g8ce3x13 .
 
-km-dev:PredicateObjectMap_da3f8268-66ed-450e-a124-8f59280626fd rr:objectMap _:node19pkdmhsqx10 .
+km-dev:PredicateObjectMap_08d70a7f-639f-4d30-b735-d6b2407544cd rr:objectMap _:node19u3g8ce3x13 .
 
-km-dev:TriplesMap_4a9c3507-a0f4-410d-9c64-a9660664ea31 rr:predicateObjectMap km-dev:PredicateObjectMap_da3f8268-66ed-450e-a124-8f59280626fd .
+km-dev:TriplesMap_20acc0f5-fae8-4a37-a144-296e4efaa17b rr:predicateObjectMap km-dev:PredicateObjectMap_08d70a7f-639f-4d30-b735-d6b2407544cd .
 
-km-dev:PredicateObjectMap_da3f8268-66ed-450e-a124-8f59280626fd a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node19pkdmhsqx1 .
+km-dev:PredicateObjectMap_08d70a7f-639f-4d30-b735-d6b2407544cd a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19u3g8ce3x1 .
 
-_:node19pkdmhsqx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_da3f8268-66ed-450e-a124-8f59280626fd .
+_:node19u3g8ce3x1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_08d70a7f-639f-4d30-b735-d6b2407544cd .
 
-km-dev:TriplesMap_799568a7-1046-4a0f-85df-4ca230e60a61 a rr:TriplesMap .
+km-dev:PredicateObjectMap_e67c0377-2422-41b3-b503-43e4ccae1146 rr:predicate schema:url .
 
-_:node19pkdmhsqx1 km-dev:hasTriplesMap km-dev:TriplesMap_799568a7-1046-4a0f-85df-4ca230e60a61 .
+_:node19u3g8ce3x14 rr:column "url" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node19u3g8ce3x1 .
 
-km-dev:TriplesMap_799568a7-1046-4a0f-85df-4ca230e60a61 km-dev:isPartOfMapping _:node19pkdmhsqx1 .
+_:node19u3g8ce3x1 km-dev:hasObjectMap _:node19u3g8ce3x14 .
 
-_:node19pkdmhsqx11 rr:tableName "blueridgefirearms-sample.json" ;
+km-dev:PredicateObjectMap_e67c0377-2422-41b3-b503-43e4ccae1146 rr:objectMap _:node19u3g8ce3x14 .
+
+km-dev:TriplesMap_20acc0f5-fae8-4a37-a144-296e4efaa17b rr:predicateObjectMap km-dev:PredicateObjectMap_e67c0377-2422-41b3-b503-43e4ccae1146 .
+
+km-dev:PredicateObjectMap_e67c0377-2422-41b3-b503-43e4ccae1146 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19u3g8ce3x1 .
+
+_:node19u3g8ce3x1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_e67c0377-2422-41b3-b503-43e4ccae1146 .
+
+km-dev:PredicateObjectMap_c860df2b-a686-49f3-a1a2-e6541855f2df rr:predicate schema:itemOffered .
+
+km-dev:RefObjectMap_2aa65a97-2cce-4336-ba3a-8e1847806dcd a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_1ae15de4-e0b0-4bee-a39b-ec59a9cfb657 ;
+	km-dev:isPartOfMapping _:node19u3g8ce3x1 .
+
+_:node19u3g8ce3x1 km-dev:hasObjectMap km-dev:RefObjectMap_2aa65a97-2cce-4336-ba3a-8e1847806dcd .
+
+km-dev:PredicateObjectMap_c860df2b-a686-49f3-a1a2-e6541855f2df rr:objectMap km-dev:RefObjectMap_2aa65a97-2cce-4336-ba3a-8e1847806dcd .
+
+km-dev:TriplesMap_20acc0f5-fae8-4a37-a144-296e4efaa17b rr:predicateObjectMap km-dev:PredicateObjectMap_c860df2b-a686-49f3-a1a2-e6541855f2df .
+
+km-dev:PredicateObjectMap_c860df2b-a686-49f3-a1a2-e6541855f2df a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19u3g8ce3x1 .
+
+_:node19u3g8ce3x1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_c860df2b-a686-49f3-a1a2-e6541855f2df .
+
+km-dev:TriplesMap_d6be953a-e49a-4f0d-9a6c-eea75a1ce209 a rr:TriplesMap .
+
+_:node19u3g8ce3x1 km-dev:hasTriplesMap km-dev:TriplesMap_d6be953a-e49a-4f0d-9a6c-eea75a1ce209 .
+
+km-dev:TriplesMap_d6be953a-e49a-4f0d-9a6c-eea75a1ce209 km-dev:isPartOfMapping _:node19u3g8ce3x1 .
+
+_:node19u3g8ce3x15 rr:tableName "extracted_blueridgefirearms.json" ;
 	a rr:LogicalTable ;
-	km-dev:isPartOfMapping _:node19pkdmhsqx1 .
+	km-dev:isPartOfMapping _:node19u3g8ce3x1 .
 
-_:node19pkdmhsqx1 km-dev:hasLogicalTable _:node19pkdmhsqx11 .
+_:node19u3g8ce3x1 km-dev:hasLogicalTable _:node19u3g8ce3x15 .
 
-km-dev:TriplesMap_799568a7-1046-4a0f-85df-4ca230e60a61 rr:logicalTable _:node19pkdmhsqx11 ;
-	rr:subjectMap _:node19pkdmhsqx12 .
+km-dev:TriplesMap_d6be953a-e49a-4f0d-9a6c-eea75a1ce209 rr:logicalTable _:node19u3g8ce3x15 ;
+	rr:subjectMap _:node19u3g8ce3x16 .
 
-_:node19pkdmhsqx1 km-dev:hasSubjectMap _:node19pkdmhsqx12 .
+_:node19u3g8ce3x1 km-dev:hasSubjectMap _:node19u3g8ce3x16 .
 
-_:node19pkdmhsqx12 km-dev:isPartOfMapping _:node19pkdmhsqx1 ;
+_:node19u3g8ce3x16 km-dev:isPartOfMapping _:node19u3g8ce3x1 ;
 	a rr:SubjectMap ;
 	km-dev:alignmentNodeId "http://schema.org/Place1" ;
 	rr:class schema:Place ;
 	rr:template "{uri}/placeuri" .
 
-km-dev:PredicateObjectMap_e338a6fb-938d-4773-81e9-cc4ec806acc1 rr:predicate schema:address .
+km-dev:PredicateObjectMap_24c11690-4873-459f-9ce4-5b0702711156 rr:predicate schema:address .
 
-km-dev:RefObjectMap_0d8324c2-9184-4199-bb3f-50e82a220987 a rr:RefObjectMap , rr:ObjectMap ;
-	rr:parentTriplesMap km-dev:TriplesMap_6252bbee-55c4-4425-8038-bdf1645ffba6 ;
-	km-dev:isPartOfMapping _:node19pkdmhsqx1 .
+km-dev:RefObjectMap_b45be0bc-25df-4cb7-990a-f1f03ed19431 a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_09c27558-9f23-4f11-956e-7da81a3cf91b ;
+	km-dev:isPartOfMapping _:node19u3g8ce3x1 .
 
-_:node19pkdmhsqx1 km-dev:hasObjectMap km-dev:RefObjectMap_0d8324c2-9184-4199-bb3f-50e82a220987 .
+_:node19u3g8ce3x1 km-dev:hasObjectMap km-dev:RefObjectMap_b45be0bc-25df-4cb7-990a-f1f03ed19431 .
 
-km-dev:PredicateObjectMap_e338a6fb-938d-4773-81e9-cc4ec806acc1 rr:objectMap km-dev:RefObjectMap_0d8324c2-9184-4199-bb3f-50e82a220987 .
+km-dev:PredicateObjectMap_24c11690-4873-459f-9ce4-5b0702711156 rr:objectMap km-dev:RefObjectMap_b45be0bc-25df-4cb7-990a-f1f03ed19431 .
 
-km-dev:TriplesMap_799568a7-1046-4a0f-85df-4ca230e60a61 rr:predicateObjectMap km-dev:PredicateObjectMap_e338a6fb-938d-4773-81e9-cc4ec806acc1 .
+km-dev:TriplesMap_d6be953a-e49a-4f0d-9a6c-eea75a1ce209 rr:predicateObjectMap km-dev:PredicateObjectMap_24c11690-4873-459f-9ce4-5b0702711156 .
 
-km-dev:PredicateObjectMap_e338a6fb-938d-4773-81e9-cc4ec806acc1 a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node19pkdmhsqx1 .
+km-dev:PredicateObjectMap_24c11690-4873-459f-9ce4-5b0702711156 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19u3g8ce3x1 .
 
-_:node19pkdmhsqx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_e338a6fb-938d-4773-81e9-cc4ec806acc1 .
+_:node19u3g8ce3x1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_24c11690-4873-459f-9ce4-5b0702711156 .
 
-km-dev:TriplesMap_2e52069d-826d-438d-b510-b54f6c4f7eb0 a rr:TriplesMap .
+km-dev:TriplesMap_79d3dae6-1c28-4b76-b28f-12ccd5678197 a rr:TriplesMap .
 
-_:node19pkdmhsqx1 km-dev:hasTriplesMap km-dev:TriplesMap_2e52069d-826d-438d-b510-b54f6c4f7eb0 .
+_:node19u3g8ce3x1 km-dev:hasTriplesMap km-dev:TriplesMap_79d3dae6-1c28-4b76-b28f-12ccd5678197 .
 
-km-dev:TriplesMap_2e52069d-826d-438d-b510-b54f6c4f7eb0 km-dev:isPartOfMapping _:node19pkdmhsqx1 .
+km-dev:TriplesMap_79d3dae6-1c28-4b76-b28f-12ccd5678197 km-dev:isPartOfMapping _:node19u3g8ce3x1 .
 
-_:node19pkdmhsqx13 rr:tableName "blueridgefirearms-sample.json" ;
+_:node19u3g8ce3x17 rr:tableName "extracted_blueridgefirearms.json" ;
 	a rr:LogicalTable ;
-	km-dev:isPartOfMapping _:node19pkdmhsqx1 .
+	km-dev:isPartOfMapping _:node19u3g8ce3x1 .
 
-_:node19pkdmhsqx1 km-dev:hasLogicalTable _:node19pkdmhsqx13 .
+_:node19u3g8ce3x1 km-dev:hasLogicalTable _:node19u3g8ce3x17 .
 
-km-dev:TriplesMap_2e52069d-826d-438d-b510-b54f6c4f7eb0 rr:logicalTable _:node19pkdmhsqx13 ;
-	rr:subjectMap _:node19pkdmhsqx14 .
+km-dev:TriplesMap_79d3dae6-1c28-4b76-b28f-12ccd5678197 rr:logicalTable _:node19u3g8ce3x17 ;
+	rr:subjectMap _:node19u3g8ce3x18 .
 
-_:node19pkdmhsqx1 km-dev:hasSubjectMap _:node19pkdmhsqx14 .
+_:node19u3g8ce3x1 km-dev:hasSubjectMap _:node19u3g8ce3x18 .
 
-_:node19pkdmhsqx14 km-dev:isPartOfMapping _:node19pkdmhsqx1 ;
+_:node19u3g8ce3x18 km-dev:isPartOfMapping _:node19u3g8ce3x1 ;
 	a rr:SubjectMap ;
-	km-dev:alignmentNodeId "http://schema.org/Product1" ;
-	rr:class schema:Product ;
-	rr:template "{uri}/producturi" .
+	km-dev:alignmentNodeId "http://schema.org/Organization1" ;
+	rr:class schema:Organization ;
+	rr:template "{organizationuri}" .
 
-km-dev:PredicateObjectMap_8b8db26a-b477-43a6-9a59-962c076db53d rr:predicate schema:keywords .
+km-dev:PredicateObjectMap_5c4bbc74-ad45-4c91-b6de-2406605b2956 rr:predicate schema:name .
 
-_:node19pkdmhsqx15 rr:column "manufacturer_no" ;
+_:node19u3g8ce3x19 rr:constant "blueridgefirearms.com" ;
 	a rr:ObjectMap ;
-	km-dev:isPartOfMapping _:node19pkdmhsqx1 .
+	km-dev:isPartOfMapping _:node19u3g8ce3x1 .
 
-_:node19pkdmhsqx1 km-dev:hasObjectMap _:node19pkdmhsqx15 .
+_:node19u3g8ce3x1 km-dev:hasObjectMap _:node19u3g8ce3x19 .
 
-km-dev:PredicateObjectMap_8b8db26a-b477-43a6-9a59-962c076db53d rr:objectMap _:node19pkdmhsqx15 .
+km-dev:PredicateObjectMap_5c4bbc74-ad45-4c91-b6de-2406605b2956 rr:objectMap _:node19u3g8ce3x19 .
 
-km-dev:TriplesMap_2e52069d-826d-438d-b510-b54f6c4f7eb0 rr:predicateObjectMap km-dev:PredicateObjectMap_8b8db26a-b477-43a6-9a59-962c076db53d .
+km-dev:TriplesMap_79d3dae6-1c28-4b76-b28f-12ccd5678197 rr:predicateObjectMap km-dev:PredicateObjectMap_5c4bbc74-ad45-4c91-b6de-2406605b2956 .
 
-km-dev:PredicateObjectMap_8b8db26a-b477-43a6-9a59-962c076db53d a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node19pkdmhsqx1 .
+km-dev:PredicateObjectMap_5c4bbc74-ad45-4c91-b6de-2406605b2956 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19u3g8ce3x1 .
 
-_:node19pkdmhsqx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_8b8db26a-b477-43a6-9a59-962c076db53d .
+_:node19u3g8ce3x1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_5c4bbc74-ad45-4c91-b6de-2406605b2956 .
 
-km-dev:PredicateObjectMap_45455aac-da86-49b3-81d9-318117c8080e rr:predicate schema:manufacturer .
+km-dev:TriplesMap_09c27558-9f23-4f11-956e-7da81a3cf91b a rr:TriplesMap .
 
-_:node19pkdmhsqx16 rr:column "manufacturer" ;
-	a rr:ObjectMap ;
-	km-dev:isPartOfMapping _:node19pkdmhsqx1 .
+_:node19u3g8ce3x1 km-dev:hasTriplesMap km-dev:TriplesMap_09c27558-9f23-4f11-956e-7da81a3cf91b .
 
-_:node19pkdmhsqx1 km-dev:hasObjectMap _:node19pkdmhsqx16 .
+km-dev:TriplesMap_09c27558-9f23-4f11-956e-7da81a3cf91b km-dev:isPartOfMapping _:node19u3g8ce3x1 .
 
-km-dev:PredicateObjectMap_45455aac-da86-49b3-81d9-318117c8080e rr:objectMap _:node19pkdmhsqx16 .
-
-km-dev:TriplesMap_2e52069d-826d-438d-b510-b54f6c4f7eb0 rr:predicateObjectMap km-dev:PredicateObjectMap_45455aac-da86-49b3-81d9-318117c8080e .
-
-km-dev:PredicateObjectMap_45455aac-da86-49b3-81d9-318117c8080e a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node19pkdmhsqx1 .
-
-_:node19pkdmhsqx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_45455aac-da86-49b3-81d9-318117c8080e .
-
-km-dev:TriplesMap_6252bbee-55c4-4425-8038-bdf1645ffba6 a rr:TriplesMap .
-
-_:node19pkdmhsqx1 km-dev:hasTriplesMap km-dev:TriplesMap_6252bbee-55c4-4425-8038-bdf1645ffba6 .
-
-km-dev:TriplesMap_6252bbee-55c4-4425-8038-bdf1645ffba6 km-dev:isPartOfMapping _:node19pkdmhsqx1 .
-
-_:node19pkdmhsqx17 rr:tableName "blueridgefirearms-sample.json" ;
+_:node19u3g8ce3x20 rr:tableName "extracted_blueridgefirearms.json" ;
 	a rr:LogicalTable ;
-	km-dev:isPartOfMapping _:node19pkdmhsqx1 .
+	km-dev:isPartOfMapping _:node19u3g8ce3x1 .
 
-_:node19pkdmhsqx1 km-dev:hasLogicalTable _:node19pkdmhsqx17 .
+_:node19u3g8ce3x1 km-dev:hasLogicalTable _:node19u3g8ce3x20 .
 
-km-dev:TriplesMap_6252bbee-55c4-4425-8038-bdf1645ffba6 rr:logicalTable _:node19pkdmhsqx17 ;
-	rr:subjectMap _:node19pkdmhsqx18 .
+km-dev:TriplesMap_09c27558-9f23-4f11-956e-7da81a3cf91b rr:logicalTable _:node19u3g8ce3x20 ;
+	rr:subjectMap _:node19u3g8ce3x21 .
 
-_:node19pkdmhsqx1 km-dev:hasSubjectMap _:node19pkdmhsqx18 .
+_:node19u3g8ce3x1 km-dev:hasSubjectMap _:node19u3g8ce3x21 .
 
-_:node19pkdmhsqx18 km-dev:isPartOfMapping _:node19pkdmhsqx1 ;
+_:node19u3g8ce3x21 km-dev:isPartOfMapping _:node19u3g8ce3x1 ;
 	a rr:SubjectMap ;
 	km-dev:alignmentNodeId "http://schema.org/PostalAddress1" ;
 	rr:class schema:PostalAddress ;
 	rr:termType rr:BlankNode ;
 	km-dev:namePrefix "schema:PostalAddress1" .
 
-km-dev:PredicateObjectMap_cbd7ac40-9317-4cae-947e-9d28be022a4e rr:predicate schema:name .
+km-dev:PredicateObjectMap_2692bcdc-24e4-426e-a779-24eaedf4be21 rr:predicate schema:name .
 
-_:node19pkdmhsqx19 rr:constant "georgia" ;
+_:node19u3g8ce3x22 rr:constant "georgia" ;
 	a rr:ObjectMap ;
-	km-dev:isPartOfMapping _:node19pkdmhsqx1 .
+	km-dev:isPartOfMapping _:node19u3g8ce3x1 .
 
-_:node19pkdmhsqx1 km-dev:hasObjectMap _:node19pkdmhsqx19 .
+_:node19u3g8ce3x1 km-dev:hasObjectMap _:node19u3g8ce3x22 .
 
-km-dev:PredicateObjectMap_cbd7ac40-9317-4cae-947e-9d28be022a4e rr:objectMap _:node19pkdmhsqx19 .
+km-dev:PredicateObjectMap_2692bcdc-24e4-426e-a779-24eaedf4be21 rr:objectMap _:node19u3g8ce3x22 .
 
-km-dev:TriplesMap_6252bbee-55c4-4425-8038-bdf1645ffba6 rr:predicateObjectMap km-dev:PredicateObjectMap_cbd7ac40-9317-4cae-947e-9d28be022a4e .
+km-dev:TriplesMap_09c27558-9f23-4f11-956e-7da81a3cf91b rr:predicateObjectMap km-dev:PredicateObjectMap_2692bcdc-24e4-426e-a779-24eaedf4be21 .
 
-km-dev:PredicateObjectMap_cbd7ac40-9317-4cae-947e-9d28be022a4e a rr:PredicateObjectMap ;
-	km-dev:isPartOfMapping _:node19pkdmhsqx1 .
+km-dev:PredicateObjectMap_2692bcdc-24e4-426e-a779-24eaedf4be21 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19u3g8ce3x1 .
 
-_:node19pkdmhsqx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_cbd7ac40-9317-4cae-947e-9d28be022a4e .
+_:node19u3g8ce3x1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_2692bcdc-24e4-426e-a779-24eaedf4be21 .
+
+km-dev:TriplesMap_1ae15de4-e0b0-4bee-a39b-ec59a9cfb657 a rr:TriplesMap .
+
+_:node19u3g8ce3x1 km-dev:hasTriplesMap km-dev:TriplesMap_1ae15de4-e0b0-4bee-a39b-ec59a9cfb657 .
+
+km-dev:TriplesMap_1ae15de4-e0b0-4bee-a39b-ec59a9cfb657 km-dev:isPartOfMapping _:node19u3g8ce3x1 .
+
+_:node19u3g8ce3x23 rr:tableName "extracted_blueridgefirearms.json" ;
+	a rr:LogicalTable ;
+	km-dev:isPartOfMapping _:node19u3g8ce3x1 .
+
+_:node19u3g8ce3x1 km-dev:hasLogicalTable _:node19u3g8ce3x23 .
+
+km-dev:TriplesMap_1ae15de4-e0b0-4bee-a39b-ec59a9cfb657 rr:logicalTable _:node19u3g8ce3x23 ;
+	rr:subjectMap _:node19u3g8ce3x24 .
+
+_:node19u3g8ce3x1 km-dev:hasSubjectMap _:node19u3g8ce3x24 .
+
+_:node19u3g8ce3x24 km-dev:isPartOfMapping _:node19u3g8ce3x1 ;
+	a rr:SubjectMap ;
+	km-dev:alignmentNodeId "http://schema.org/Product1" ;
+	rr:class schema:Product ;
+	rr:template "{product_uri}" .
+
+km-dev:PredicateObjectMap_5db6809e-2cca-4c48-b398-8771b927bb3c rr:predicate memex:identifier .
+
+km-dev:RefObjectMap_41288ae7-61eb-459d-8aef-8c95681b641d a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_112024e0-8fe6-4f28-bf62-b734aff204e9 ;
+	km-dev:isPartOfMapping _:node19u3g8ce3x1 .
+
+_:node19u3g8ce3x1 km-dev:hasObjectMap km-dev:RefObjectMap_41288ae7-61eb-459d-8aef-8c95681b641d .
+
+km-dev:PredicateObjectMap_5db6809e-2cca-4c48-b398-8771b927bb3c rr:objectMap km-dev:RefObjectMap_41288ae7-61eb-459d-8aef-8c95681b641d .
+
+km-dev:TriplesMap_1ae15de4-e0b0-4bee-a39b-ec59a9cfb657 rr:predicateObjectMap km-dev:PredicateObjectMap_5db6809e-2cca-4c48-b398-8771b927bb3c .
+
+km-dev:PredicateObjectMap_5db6809e-2cca-4c48-b398-8771b927bb3c a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19u3g8ce3x1 .
+
+_:node19u3g8ce3x1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_5db6809e-2cca-4c48-b398-8771b927bb3c .
+
+km-dev:PredicateObjectMap_1e89d7cd-5e72-4470-91d3-34d0f3e51581 rr:predicate schema:keywords .
+
+_:node19u3g8ce3x25 rr:column "[\"details\",\"value\"]" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node19u3g8ce3x1 .
+
+_:node19u3g8ce3x1 km-dev:hasObjectMap _:node19u3g8ce3x25 .
+
+km-dev:PredicateObjectMap_1e89d7cd-5e72-4470-91d3-34d0f3e51581 rr:objectMap _:node19u3g8ce3x25 .
+
+km-dev:TriplesMap_1ae15de4-e0b0-4bee-a39b-ec59a9cfb657 rr:predicateObjectMap km-dev:PredicateObjectMap_1e89d7cd-5e72-4470-91d3-34d0f3e51581 .
+
+km-dev:PredicateObjectMap_1e89d7cd-5e72-4470-91d3-34d0f3e51581 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19u3g8ce3x1 .
+
+_:node19u3g8ce3x1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_1e89d7cd-5e72-4470-91d3-34d0f3e51581 .
+
+km-dev:PredicateObjectMap_d71f64f2-ab34-41ef-8886-0dda616cc882 rr:predicate schema:manufacturer .
+
+_:node19u3g8ce3x26 rr:column "manufacturer" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node19u3g8ce3x1 .
+
+_:node19u3g8ce3x1 km-dev:hasObjectMap _:node19u3g8ce3x26 .
+
+km-dev:PredicateObjectMap_d71f64f2-ab34-41ef-8886-0dda616cc882 rr:objectMap _:node19u3g8ce3x26 .
+
+km-dev:TriplesMap_1ae15de4-e0b0-4bee-a39b-ec59a9cfb657 rr:predicateObjectMap km-dev:PredicateObjectMap_d71f64f2-ab34-41ef-8886-0dda616cc882 .
+
+km-dev:PredicateObjectMap_d71f64f2-ab34-41ef-8886-0dda616cc882 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19u3g8ce3x1 .
+
+_:node19u3g8ce3x1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_d71f64f2-ab34-41ef-8886-0dda616cc882 .
+
+km-dev:PredicateObjectMap_47490810-2c53-4405-9de9-5e0b9e400c0c rr:predicate schema:offers .
+
+km-dev:RefObjectMap_66021205-833e-484f-8c58-79e192f7cb1c a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_20acc0f5-fae8-4a37-a144-296e4efaa17b ;
+	km-dev:isPartOfMapping _:node19u3g8ce3x1 .
+
+_:node19u3g8ce3x1 km-dev:hasObjectMap km-dev:RefObjectMap_66021205-833e-484f-8c58-79e192f7cb1c .
+
+km-dev:PredicateObjectMap_47490810-2c53-4405-9de9-5e0b9e400c0c rr:objectMap km-dev:RefObjectMap_66021205-833e-484f-8c58-79e192f7cb1c .
+
+km-dev:TriplesMap_1ae15de4-e0b0-4bee-a39b-ec59a9cfb657 rr:predicateObjectMap km-dev:PredicateObjectMap_47490810-2c53-4405-9de9-5e0b9e400c0c .
+
+km-dev:PredicateObjectMap_47490810-2c53-4405-9de9-5e0b9e400c0c a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node19u3g8ce3x1 .
+
+_:node19u3g8ce3x1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_47490810-2c53-4405-9de9-5e0b9e400c0c .

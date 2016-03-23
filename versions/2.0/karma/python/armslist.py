@@ -2,30 +2,52 @@ import re
 
 def cleanPrice(price):
 	price = price.replace("$","")
+	price = removeAlpha(price)
 	price = price.strip()
 	return price
 
 def getCurrency(price):
 	if "$" in price:
 		return 'USD'
+	if "BTC" in price or "btc" in price:
+		return "BTC"
+	if price.strip() == '':
+		return ''
 
 	#add sophistication
 	return 'USD'
 
+def getRating(rating):
+    if rating.lower() == "no rating":
+        return ''
+    if "%" in rating:
+        idx = rating.find("%")
+        res = rating[0:idx]
+        start = res.rfind(" ")
+        if start != -1:
+            res = res[start:]
+        return res.strip() + "%"
+    if "/" in rating:
+        (part1, part2) = rating.split("/", 2)
+        part1_num = float(part1.strip())
+        part2_num = float(part2.strip())
+        return str((part1_num*100)/part2_num) + "%"
+    return rating
+
 def getTransactionType(text):
 
 	if text.lower().startswith("for sale"):
-		return 'schema:Offer'
+		return 'http://schema.org/Offer'
 	elif text.lower().startswith("want to buy"):
-		return 'schema:Demand'
+		return 'http://schema.org/Demand'
 
 	return ''
 
 def getTransactionActor(transactionType):
-	if transactionType == 'schema:Offer':
-		return 'schema:seller'
-	elif transactionType == 'schema:Demand':
-		return 'schema:buyer'
+	if transactionType == 'http://schema.org/Offer':
+		return 'http://schema.org/seller'
+	elif transactionType == 'http://schema.org/Demand':
+		return 'http://schema.org/buyer'
 
 	return ''
 

@@ -1,0 +1,112 @@
+[
+  {
+    "begin_regex": "title\\>",
+    "end_regex": "[-|\\|] Glock Talk\\</title",
+    "name": "topic_title",
+    "rule_type": "ItemRule"
+  },
+  {
+    "begin_regex": "tid=",
+    "end_regex": "[\\&|\"]",
+    "name": "topic_id",
+    "rule_type": "ItemRule"
+  },
+  {
+    "begin_regex": "\\<a name=\"post",
+    "end_regex": "\\<!-- start content table",
+    "iter_begin_regex": "\\<a name=\"post",
+    "iter_end_regex": "\\<a name=\"post",
+    "name": "posts",
+    "no_first_begin_iter_rule": false,
+    "no_last_end_iter_rule": true,
+    "rule_type": "IterationRule",
+    "sub_rules": [
+      {
+        "begin_regex": "postcount=",
+        "end_regex": "\"",
+        "name": "post_number",
+        "rule_type": "ItemRule"
+      },
+      {
+        "begin_regex": "",
+        "end_regex": "\"\\>",
+        "name": "post_id",
+        "rule_type": "ItemRule"
+      },
+      {
+        "begin_regex": "\\</a\\>",
+        "end_regex": "<!-- / status",
+        "name": "date_posted",
+        "rule_type": "ItemRule"
+      },
+      {
+        "begin_regex": "bigusername.*?\\>",
+        "end_regex": "\\<",
+        "name": "username",
+        "rule_type": "ItemRule"
+      },
+      {
+        "begin_regex": "bigusername.*?u=",
+        "end_regex": "\"",
+        "name": "user_id",
+        "rule_type": "ItemRule"
+      },
+      {
+        "begin_regex": "/script.*?smallfont\"\\>",
+        "end_regex": "\\<",
+        "name": "user_tag",
+        "rule_type": "ItemRule"
+      },
+      {
+        "begin_regex": "!-- message --\\>",
+        "end_regex": "\\<!-- / message --",
+        "name": "content",
+        "rule_type": "ItemRule",
+        "removehtml": true
+      },
+      {
+        "begin_regex": "/script.*?smallfont\"\\>.*?<br />",
+        "end_regex": "\\</div\\>\\s+\\</div\\>\\s+\\</td",
+        "iter_begin_regex": "\\<div\\>",
+        "iter_end_regex": "\\</div\\>",
+        "name": "user_attributes",
+        "no_first_begin_iter_rule": false,
+        "no_last_end_iter_rule": false,
+        "rule_type": "IterationRule",
+        "sub_rules": [
+          {
+            "begin_regex": "",
+            "end_regex": ":",
+            "name": "label",
+            "rule_type": "ItemRule"
+          },
+          {
+            "begin_regex": ":",
+            "end_regex": "",
+            "name": "value",
+            "rule_type": "ItemRule",
+            "removehtml": true
+          }
+        ]
+      },
+      {
+        "begin_regex": "",
+        "end_regex": "",
+        "iter_begin_regex": "\\<img",
+        "iter_end_regex": "\\>",
+        "name": "images",
+        "no_first_begin_iter_rule": false,
+        "no_last_end_iter_rule": false,
+        "rule_type": "IterationRule",
+        "sub_rules": [
+          {
+            "begin_regex": "src=[\"|']",
+            "end_regex": "\"|'",
+            "name": "src",
+            "rule_type": "ItemRule"
+          }
+        ]
+      }
+    ]
+  }
+]

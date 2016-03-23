@@ -1,6 +1,12 @@
-## ohioccwforums-sample.json
+## extracted_ohioccwforums.json
 
 ### PyTransforms
+#### _uri_
+From column: _crawler_
+>``` python
+return uri_from_url_timestamp(getValue("url"),getValue("timestamp"))
+```
+
 #### _content_clean_
 From column: _posts / content_
 >``` python
@@ -46,6 +52,7 @@ return postal_address_uri(getValue("Values"))
 | _content_clean_ | `schema:text` | `schema:WebPageElement2`|
 | _iso_date_posted_ | `schema:dateCreated` | `memex:Post1`|
 | _location_uri_ | `uri` | `schema:Place1`|
+| _organizationuri_ | `uri` | `schema:Organization1`|
 | _post_id_ | `schema:name` | `memex:Identifier2`|
 | _post_uri_ | `uri` | `memex:Post1`|
 | _rawtextdetectedlanguage_ | `schema:inLanguage` | `memex:Thread1`|
@@ -67,6 +74,7 @@ return postal_address_uri(getValue("Values"))
 | `memex:Post1` | `memex:hasBodyPart` | `schema:WebPageElement2`|
 | `memex:Post1` | `memex:identifier` | `memex:Identifier2`|
 | `memex:Post1` | `schema:author` | `schema:Person1`|
+| `memex:Post1` | `memex:isPostOf` | `memex:Thread1`|
 | `memex:Thread1` | `memex:hasTitlePart` | `schema:WebPageElement1`|
 | `memex:Thread1` | `memex:identifier` | `memex:Identifier1`|
 | `memex:Thread1` | `schema:publisher` | `schema:Organization1`|
@@ -76,4 +84,5 @@ return postal_address_uri(getValue("Values"))
 | `schema:Person1` | `memex:identifier` | `memex:Identifier3`|
 | `schema:Person1` | `schema:location` | `schema:Place1`|
 | `schema:Person1` | `schema:memberOf` | `schema:OrganizationRole1`|
+| `schema:Person1` | `memex:isAuthorOf` | `memex:Post1`|
 | `schema:Place1` | `schema:address` | `schema:PostalAddress1`|
