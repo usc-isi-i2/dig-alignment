@@ -210,3 +210,20 @@ def getTextHash(text):
     if text:
         return hashlib.sha1(text.encode('utf-8')).hexdigest().upper()
     return ''
+
+def remove_junk(x):
+    result=""
+    junk = ["A", "DIV", "ESCORTS", "B", "WINDOW"]
+    values = x.split(" ")
+    if len(values) > 1:
+        for value in values:
+            if value.upper() not in junk:
+                result += value + " "
+        return result.strip()
+    else:
+        return x.strip()
+
+def check_if_state_or_country(x):
+    values = x.split(" ")
+    
+
