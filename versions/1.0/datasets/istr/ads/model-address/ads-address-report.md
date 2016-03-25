@@ -1,4 +1,4 @@
-## ads-sample.json
+## ads-addresses-sample.json
 
 ### PyTransforms
 #### _crawl_uri_
@@ -43,7 +43,7 @@ return country_code(getValue("country"))
 From column: _country_clean_
 >``` python
 country = getValue("country_code")
-state = getValue("state")
+state = remove_junk(getValue("state"))
 if len(state) == 0 and (country == "US" or country == "CA"):
    state = getValue("region")
 return clean_state(state, country)
@@ -90,32 +90,73 @@ if getValue("address_uri"):
 return ''
 ```
 
+#### _city_clean2_
+From column: _city_clean_
+>``` python
+return remove_junk(getValue("city_clean"))
+```
+
+#### _city_clean3_
+From column: _city_clean2_
+>``` python
+return get_only_city_name(getValue("city_clean2"))
+```
+
+#### _state_clean2_
+From column: _state_clean_
+>``` python
+return check_if_state(getValue('city_clean2'))
+```
+
+#### _state_clean3_
+From column: _state_clean2_
+>``` python
+state1 = getValue("state_clean")
+state2 = getValue("state_clean2")
+if state1 != '':
+    return state1
+return state2
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
 |  ----- | -------- | ----- |
 | _address_ | `memex:featureValue` | `memex:Feature1`|
+| _address_ | `memex:featureValue` | `memex:Feature1`|
+| _address2_ | `memex:place_postalAddress` | `memex:Feature1`|
 | _address2_ | `memex:place_postalAddress` | `memex:Feature1`|
 | _address_uri_ | `uri` | `schema:PostalAddress1`|
+| _address_uri_ | `uri` | `schema:PostalAddress1`|
 | _city_clean_ | `schema:addressLocality` | `schema:PostalAddress1`|
+| _city_clean3_ | `schema:addressLocality` | `schema:PostalAddress1`|
+| _country_clean_ | `rdfs:label` | `schema:Country1`|
 | _country_clean_ | `rdfs:label` | `schema:Country1`|
 | _country_code_ | `memex:isoCode` | `schema:Country1`|
+| _country_code_ | `memex:isoCode` | `schema:Country1`|
+| _country_uri_ | `uri` | `schema:Country1`|
 | _country_uri_ | `uri` | `schema:Country1`|
 | _crawl_uri_ | `uri` | `schema:WebPage1`|
+| _crawl_uri_ | `uri` | `schema:WebPage1`|
+| _database_id_ | `memex:databaseId` | `prov:Activity1`|
 | _database_id_ | `memex:databaseId` | `prov:Activity1`|
 | _feature_uri_ | `uri` | `memex:Feature1`|
+| _feature_uri_ | `uri` | `memex:Feature1`|
+| _featurecollection_uri_ | `uri` | `memex:FeatureCollection1`|
 | _featurecollection_uri_ | `uri` | `memex:FeatureCollection1`|
 | _modetime_iso8601_ | `prov:endedAtTime` | `prov:Activity1`|
+| _modetime_iso8601_ | `prov:endedAtTime` | `prov:Activity1`|
 | _state_clean_ | `schema:addressRegion` | `schema:PostalAddress1`|
+| _state_clean3_ | `schema:addressRegion` | `schema:PostalAddress1`|
 
 
 ### Links
 | From | Property | To |
 |  --- | -------- | ---|
-| `memex:Feature1` | `memex:featureName` | `xsd:place_postalAddress`|
 | `memex:Feature1` | `memex:featureObject` | `schema:PostalAddress1`|
-| `memex:Feature1` | `prov:wasGeneratedBy` | `prov:Activity1`|
 | `memex:Feature1` | `prov:wasDerivedFrom` | `schema:WebPage1`|
+| `memex:Feature1` | `prov:wasGeneratedBy` | `prov:Activity1`|
+| `memex:Feature1` | `memex:featureName` | `xsd:place_postalAddress`|
 | `memex:FeatureCollection1` | `memex:place_postalAddress_feature` | `memex:Feature1`|
 | `prov:Activity1` | `prov:wasAttributedTo` | `xsd:http://dig.isi.edu/ht/data/software/extractor/ist/version/unknown`|
 | `schema:PostalAddress1` | `schema:addressCountry` | `schema:Country1`|
