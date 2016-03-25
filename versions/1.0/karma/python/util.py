@@ -223,7 +223,10 @@ def remove_junk(x):
     else:
         return x.strip()
 
-def check_if_state_or_country(x):
+def get_only_city_name(x):
     values = x.split(" ")
-    
+    if len(values) > 1 and len(values[len(values) - 1]) == 2:
+        return " ".join(values[0:len(values) - 1])
+    return x
+
 

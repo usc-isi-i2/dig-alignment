@@ -195,6 +195,26 @@ def standardize_country_code(country):
     except ValueError:
         return ''
 
+# INPUT: A string, last token when space tokenized a possible state code
+# Check them against US or CA state codes, return if found
+def check_if_state(x):
+    values = x.split(" ")
+    if len(values) > 1 and len(values[len(values) - 1]) == 2:
+        suffix = values[len(values) - 1].upper()
+        try:
+            idx = canada_states_codes.index(suffix)
+            return canada_states_names_readable[idx]
+        except ValueError:
+            idx = -1
+
+        try:
+            idx = us_states_codes.index(suffix)
+            return us_states_names_readable[idx]
+        except ValueError:
+            idx = -1
+        return ''
+
+
 
 def standardize_country_name(country):
     if(len(country) == 0):
