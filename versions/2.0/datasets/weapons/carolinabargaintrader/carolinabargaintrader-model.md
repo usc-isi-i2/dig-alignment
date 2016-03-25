@@ -1,6 +1,12 @@
-## carolinabargaintrader-sample.json
+## extracted_carolinabargaintrader.json
 
 ### PyTransforms
+#### _uri_
+From column: _crawler_
+>``` python
+return uri_from_url_timestamp(getValue("url"),getValue("timestamp"))
+```
+
 #### _listedondate_
 From column: _ad_began_
 >``` python
@@ -43,6 +49,27 @@ From column: _price_
 return cleanPrice(getValue("price"))
 ```
 
+#### _seller_uri_
+From column: _username_
+>``` python
+return uri_from_fields("carolinabargaintrader/username/", getValue("username"))
+```
+
+#### _contact_point_uri_
+From column: _seller_uri_
+>``` python
+if getValue("seller_uri"):
+    return getValue("seller_uri")+"/contactpoint"
+else:
+    return ''
+```
+
+#### _location_uri_
+From column: _location_
+>``` python
+return uri_from_fields("place/",getValue("location"))
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
@@ -52,11 +79,15 @@ return cleanPrice(getValue("price"))
 | _clean_member_since_ | `schema:startDate` | `schema:OrganizationRole1`|
 | _clean_phone_ | `schema:name` | `memex:PhoneNumber1`|
 | _clean_price_ | `schema:price` | `schema:Offer1`|
+| _contact_point_uri_ | `uri` | `schema:ContactPoint1`|
 | _currency_ | `schema:priceCurrency` | `schema:Offer1`|
 | _description_ | `schema:description` | `schema:Offer1`|
 | _listedondate_ | `schema:availabilityStarts` | `schema:Offer1`|
 | _location_ | `schema:name` | `schema:PostalAddress1`|
+| _location_uri_ | `uri` | `schema:Place1`|
+| _organization_uri_ | `uri` | `schema:Organization1`|
 | _rawtextdetectedlanguage_ | `schema:inLanguage` | `schema:Offer1`|
+| _seller_uri_ | `uri` | `memex:PersonOrOrganization1`|
 | _serial_number_ | `schema:serialNumber` | `schema:Product1`|
 | _title_ | `schema:title` | `schema:Offer1`|
 | _uri_ | `uri` | `schema:Offer1`|
@@ -79,3 +110,4 @@ return cleanPrice(getValue("price"))
 | `schema:OrganizationRole1` | `schema:memberOf` | `schema:Organization1`|
 | `schema:Place1` | `schema:address` | `schema:PostalAddress1`|
 | `schema:Product1` | `schema:image` | `schema:ImageObject1`|
+| `schema:Product1` | `schema:offers` | `schema:Offer1`|

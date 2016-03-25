@@ -63,6 +63,51 @@ def clean_phone(x):
     	return ph;
     return ''
 
+def clean_phone_hack(x):
+    """Return the phone as a 10 digit number,
+     or as close to that as we can make it.
+     Prefix with country code '+1' at the end.REMOVE THIS AFTER THE NUMBER SEMANTIC BUG IS FIXED
+    """
+    if (len(x)>0):
+        x = x.strip().lower()
+        cc = ''
+        if x.find("+") == 0:
+            end1 = x.find(" ")
+            end2 = x.find("-")
+            if end1 == -1: end1 = 10000
+            if end2 == -1: end2 = 10000
+            if end1 != 10000 or end2 != 10000:
+                end = min(end1, end2)
+                cc = x[1:end]
+                ph = numericOnly(x[end+1:])
+            else:
+                testCC = detectCountryCode(x)
+                if testCC:
+                    cc = testCC
+                    ccLen = len(cc)
+                    ph = x[ccLen+1:]
+                    ph = numericOnly(ph)
+                else:
+                    ph = numericOnly(x)
+        else:
+            valid = USPhonePattern.match(x)
+            if valid:
+                ph = valid.group()
+                cc = "1"
+                ph = numericOnly(ph)
+            else:
+               ph = numericOnly(x)
+
+        # If there are 11 numbers
+        if (len(ph)==11 and ph[0]=="1"):
+            ph = ph[1:]
+            cc = "1"
+
+        if len(cc) > 0:
+            ph = "+" + cc + ":" + ph
+        return ph;
+    return ''
+
 def phone_uri(x):
     """Return the uri for a phone
     as countrycode-phone
@@ -93,6 +138,19 @@ def clean_age(x):
     except:
         return None
     return age
+
+def estimate_birthyear(age_string, iso_date_string):
+    "Given an age and a date when the age was reported estimate the birthyear"
+    try:
+        age = int(age_string)
+        year = datetime.strptime(iso_date_string, "%Y-%m-%dT%H:%M:%S").year
+        return year - age - 1
+    except:
+        return ""
+    # we don't know the month and day of the birthday, so in the worst case the 
+    # person was born 364 days ago
+    
+
 
 def age_uri(x):
 	cx = clean_age(x)
@@ -657,6 +715,35 @@ def feature_address(city, state, country):
 def clean_city(city):
     return clean_location(city)
 
+def cleaner_city(city):
+    cleanc = clean_city(city)
+
+    words = cleanc.split(" ",5)
+    cleanc=""
+    for word in words:
+        if word.lower() != "class" and word.lower() != "span" and word.lower() != "escorts" and word.lower() != "a" and word.lower() != "div" and word.lower() != "nbsp" and len(word) < 15:
+            cleanc = cleanc + " " + word
+    
+    return cleanc.strip()
+
+
+def clean_place_name(city,state,country):
+    city = getValue("clean_city").strip()
+    state = getValue("clean_state").strip()
+    country = getValue("clean_country").strip()
+
+    name=''
+    if city != '':
+        name = city
+
+    if state != '':
+        name = name + ", " + state
+
+    if country != '':
+        name = name + ", " + country
+
+    return name
+
 def clean_state(state, country):
     state = clean_location(state)
     if country:
@@ -793,6 +880,12 @@ def cluster_body_uri(uri):
     if uri:
         return "cluster/body/lsh/%s" % uri
     return ''
+
+def genericUri(posttime,modtime,url):
+    times = posttime
+    if times == '':
+        times = modtime
+    return get_url_hash(url.strip()) + "/" + times
 
 mapFunctions = defaultdict(lambda x: None)
 

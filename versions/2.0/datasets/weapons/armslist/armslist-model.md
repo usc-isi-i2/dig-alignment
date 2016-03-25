@@ -1,6 +1,12 @@
-## armslist-sample.json
+## extracted_armslist.json
 
 ### PyTransforms
+#### _uri_
+From column: _crawler_
+>``` python
+return uri_from_url_timestamp(getValue("url"),getValue("timestamp"))
+```
+
 #### _label_fields_
 From column: _fields / label_
 >``` python
@@ -55,17 +61,24 @@ From column: _images / src_
 return al_clean_image_url(getValue("src"))
 ```
 
+#### _place_uri_
+From column: _Unfold: label_info / location / Values_
+>``` python
+if getValue("Values"):
+    return uri_from_fields("place/",getValue("Values"))
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
 |  ----- | -------- | ----- |
+| _Values_ | `schema:keywords` | `schema:Product1`|
+| _Values_ | `schema:keywords` | `schema:Product1`|
+| _Values_ | `schema:keywords` | `schema:Product1`|
+| _Values_ | `schema:manufacturer` | `schema:Product1`|
+| _Values_ | `schema:description` | `memex:PersonOrOrganization1`|
 | _Values_ | `schema:category` | `schema:Product1`|
 | _Values_ | `schema:name` | `schema:PostalAddress1`|
-| _Values_ | `schema:manufacturer` | `schema:Product1`|
-| _Values_ | `schema:keywords` | `schema:Product1`|
-| _Values_ | `schema:keywords` | `schema:Product1`|
-| _Values_ | `schema:description` | `memex:PersonOrOrganization1`|
-| _Values_ | `schema:keywords` | `schema:Product1`|
 | _cleanPrice_ | `schema:price` | `schema:Offer1`|
 | _cleanRegistrationDate_ | `schema:startDate` | `schema:OrganizationRole1`|
 | _cleanimgurl_ | `schema:url` | `schema:ImageObject1`|
@@ -73,6 +86,8 @@ return al_clean_image_url(getValue("src"))
 | _description_ | `schema:description` | `schema:Offer1`|
 | _listedOnDate_ | `schema:availabilityStarts` | `schema:Offer1`|
 | _listing_id_ | `schema:name` | `memex:Identifier1`|
+| _organization_uri_ | `uri` | `schema:Organization1`|
+| _place_uri_ | `uri` | `schema:Place1`|
 | _rawtextdetectedlanguage_ | `schema:inLanguage` | `schema:Offer1`|
 | _title_ | `schema:title` | `schema:Offer1`|
 | _transactionActor_ | `km-dev:objectPropertySpecialization` | `schema:Offer1`|
@@ -95,3 +110,4 @@ return al_clean_image_url(getValue("src"))
 | `schema:OrganizationRole1` | `schema:memberOf` | `schema:Organization1`|
 | `schema:Place1` | `schema:address` | `schema:PostalAddress1`|
 | `schema:Product1` | `schema:image` | `schema:ImageObject1`|
+| `schema:Product1` | `schema:offers` | `schema:Offer1`|

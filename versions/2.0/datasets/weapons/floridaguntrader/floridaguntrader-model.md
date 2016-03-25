@@ -1,6 +1,12 @@
-## floridaguntrader-sample.json
+## extracted_floridaguntrader.json
 
 ### PyTransforms
+#### _uri_
+From column: _crawler_
+>``` python
+return uri_from_url_timestamp(getValue("url"),getValue("timestamp"))
+```
+
 #### _cleanprice_
 From column: _price_
 >``` python
@@ -31,13 +37,42 @@ From column: _location_
 return getValue("location") + " Florida"
 ```
 
+#### _contact_point_uri_
+From column: _user_id_
+>``` python
+return uri_for_userid('person/',getValue("user_id"))
+```
+
+#### _organization_uri_
+From column: _user_id_
+>``` python
+return uri_for_userid('organization/',getValue("user_id"))
+```
+
+#### _place_uri_
+From column: _placewithstate_
+>``` python
+return uri_from_fields('floridaguntrader/place/',getValue("location"))
+```
+
+#### _ad_start_iso_
+From column: _ad_start_
+>``` python
+return floridaguntrader_availability_starts(getValue("ad_start"))
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
 |  ----- | -------- | ----- |
+| _ad_start_iso_ | `schema:availabilityStarts` | `schema:Offer1`|
 | _cleanprice_ | `schema:price` | `schema:Offer1`|
+| _contact_point_uri_ | `uri` | `schema:ContactPoint1`|
 | _description_ | `schema:description` | `schema:Offer1`|
 | _listing_id_ | `schema:name` | `memex:Identifier1`|
+| _organization_uri_ | `uri` | `memex:PersonOrOrganization1`|
+| _orgganizationuri_ | `uri` | `schema:Organization1`|
+| _place_uri_ | `uri` | `schema:Place1`|
 | _placewithstate_ | `schema:name` | `schema:PostalAddress1`|
 | _pricecurrency_ | `schema:priceCurrency` | `schema:Offer1`|
 | _rawtextdetectedlanguage_ | `schema:inLanguage` | `schema:Offer1`|
@@ -59,6 +94,7 @@ return getValue("location") + " Florida"
 | `schema:ContactPoint1` | `memex:identifier` | `memex:Identifier2`|
 | `schema:Offer1` | `memex:identifier` | `memex:Identifier1`|
 | `schema:Offer1` | `schema:availableAtOrFrom` | `schema:Place1`|
+| `schema:Offer1` | `schema:publisher` | `schema:Organization1`|
 | `schema:Offer1` | `schema:seller` | `memex:PersonOrOrganization1`|
 | `schema:Organization1` | `schema:name` | `xsd:floridaguntrader.com`|
 | `schema:OrganizationRole1` | `schema:memberOf` | `schema:Organization1`|

@@ -1,6 +1,12 @@
-## ar15-sample.json
+## extracted_ar15.json
 
 ### PyTransforms
+#### _uri_
+From column: _crawler_
+>``` python
+return uri_from_url_timestamp(getValue("url"),getValue("timestamp"))
+```
+
 #### _content_clean_
 From column: _posts / content_
 >``` python
@@ -47,6 +53,12 @@ From column: _posts / Joined_
 return translate_date(getValue("Joined"), "%b %Y", "%Y-%m")
 ```
 
+#### _iso_date_posted_2_
+From column: _posts / iso_date_posted_
+>``` python
+return getValue("iso_date_posted")
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
@@ -55,9 +67,11 @@ return translate_date(getValue("Joined"), "%b %Y", "%Y-%m")
 | _Posts_ | `memex:activityCount` | `schema:OrganizationRole1`|
 | _content_clean_ | `schema:text` | `schema:WebPageElement2`|
 | _iso_date_posted_ | `schema:dateCreated` | `memex:Post1`|
+| _iso_date_posted_2_ | `memex:dateRecorded` | `schema:OrganizationRole1`|
 | _joined_iso_ | `schema:startDate` | `schema:OrganizationRole1`|
 | _location_ | `schema:name` | `schema:PostalAddress1`|
 | _location_uri_ | `uri` | `schema:Place1`|
+| _organization_uri_ | `uri` | `schema:Organization1`|
 | _post_id_ | `schema:name` | `memex:Identifier2`|
 | _post_uri_ | `uri` | `memex:Post1`|
 | _rawtextdetectedlanguage_ | `schema:inLanguage` | `memex:Thread1`|
@@ -81,6 +95,7 @@ return translate_date(getValue("Joined"), "%b %Y", "%Y-%m")
 | `memex:Post1` | `memex:hasSignaturePart` | `schema:WebPageElement3`|
 | `memex:Post1` | `memex:identifier` | `memex:Identifier2`|
 | `memex:Post1` | `schema:author` | `schema:Person1`|
+| `memex:Post1` | `memex:isPostOf` | `memex:Thread1`|
 | `memex:Thread1` | `memex:hasTitlePart` | `schema:WebPageElement1`|
 | `memex:Thread1` | `memex:identifier` | `memex:Identifier1`|
 | `memex:Thread1` | `schema:publisher` | `schema:Organization1`|
@@ -91,4 +106,5 @@ return translate_date(getValue("Joined"), "%b %Y", "%Y-%m")
 | `schema:Person1` | `memex:identifier` | `memex:Identifier3`|
 | `schema:Person1` | `schema:location` | `schema:Place1`|
 | `schema:Person1` | `schema:memberOf` | `schema:OrganizationRole1`|
+| `schema:Person1` | `memex:isAuthorOf` | `memex:Post1`|
 | `schema:Place1` | `schema:address` | `schema:PostalAddress1`|
