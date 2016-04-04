@@ -58,7 +58,7 @@ return country_uri(getValue("country"))
 #### _address_
 From column: _state_clean_
 >``` python
-return feature_address(getValue("city_clean"), getValue("state_clean"), getValue("country_clean"))
+return feature_address(getValue("city_clean3"), getValue("state_clean3"), getValue("country_clean"))
 ```
 
 #### _address2_
@@ -118,14 +118,26 @@ if state1 != '':
 return state2
 ```
 
+#### _address3_
+From column: _address_
+>``` python
+return feature_address(getValue("city_clean3"), getValue("state_clean3"), getValue("country_clean"))
+```
+
+#### _address4_
+From column: _address3_
+>``` python
+return getValue('address3')
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
 |  ----- | -------- | ----- |
 | _address_ | `memex:featureValue` | `memex:Feature1`|
-| _address_ | `memex:featureValue` | `memex:Feature1`|
 | _address2_ | `memex:place_postalAddress` | `memex:Feature1`|
-| _address2_ | `memex:place_postalAddress` | `memex:Feature1`|
+| _address3_ | `memex:featureValue` | `memex:Feature1`|
+| _address4_ | `memex:place_postalAddress` | `memex:Feature1`|
 | _address_uri_ | `uri` | `schema:PostalAddress1`|
 | _address_uri_ | `uri` | `schema:PostalAddress1`|
 | _city_clean_ | `schema:addressLocality` | `schema:PostalAddress1`|
