@@ -130,6 +130,12 @@ From column: _address3_
 return getValue('address3')
 ```
 
+#### _address_uri2_
+From column: _address_uri_
+>``` python
+return address_uri(getValue("city_clean3"), getValue("state_clean3"), getValue("country_clean"))
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
@@ -139,7 +145,7 @@ return getValue('address3')
 | _address3_ | `memex:featureValue` | `memex:Feature1`|
 | _address4_ | `memex:place_postalAddress` | `memex:Feature1`|
 | _address_uri_ | `uri` | `schema:PostalAddress1`|
-| _address_uri_ | `uri` | `schema:PostalAddress1`|
+| _address_uri2_ | `uri` | `schema:PostalAddress1`|
 | _city_clean_ | `schema:addressLocality` | `schema:PostalAddress1`|
 | _city_clean3_ | `schema:addressLocality` | `schema:PostalAddress1`|
 | _country_clean_ | `rdfs:label` | `schema:Country1`|
