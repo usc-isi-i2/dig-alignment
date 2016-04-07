@@ -43,10 +43,10 @@ return country_code(getValue("country"))
 From column: _country_clean_
 >``` python
 country = getValue("country_code")
-state = remove_junk(getValue("state"))
+state = getValue("state")
 if len(state) == 0 and (country == "US" or country == "CA"):
    state = getValue("region")
-return clean_state(state, country)
+return remove_junk(clean_state(state, country))
 ```
 
 #### _country_uri_
