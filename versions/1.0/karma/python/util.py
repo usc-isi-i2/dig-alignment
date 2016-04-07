@@ -213,7 +213,7 @@ def getTextHash(text):
 
 def remove_junk(x):
     result=""
-    junk = ["A", "DIV", "ESCORTS", "B", "WINDOW"]
+    junk = ["A", "DIV", "ESCORTS", "B", "WINDOW", "DOCTYPE", "HTML", "PUBLIC"]
     values = x.split(" ")
     if len(values) > 1:
         for value in values:
