@@ -1,4 +1,4 @@
-## hbase_sample_100_karma.jl
+## ht-cdr2-sample.jl
 
 ### PyTransforms
 #### _webpage_uri_
@@ -42,14 +42,37 @@ ts = getValue("timestamp")
 return DM.epoch_to_iso8601(ts)
 ```
 
+#### _email_uri_
+From column: _extractions / email / results / values_
+>``` python
+email = SM.clean_email(getValue("values"))
+if email != '':
+    return 'email/' + email
+return ''
+```
+
+#### _phone_uri_
+From column: _extractions / phonenumber / results / values_
+>``` python
+cc = PM.get_country_code(getValue("values"),'')
+phone = PM.clean_phone(getValue("values"))
+if phone == ''  and cc == '':
+    return ''
+if cc == '':
+    cc = getValue('isi_id')
+return 'phone/' + cc + '-' + phone
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
 |  ----- | -------- | ----- |
 | _clean_text_ | `schema:description` | `schema:WebPage1`|
 | _domain_url_ | `schema:name` | `schema:Organization1`|
+| _email_uri_ | `uri` | `memex:EmailAddress1`|
 | _iso_posttime2_ | `schema:dateCreated` | `schema:WebPage1`|
 | _organization_domain_uri_ | `uri` | `schema:Organization1`|
+| _phone_uri_ | `uri` | `memex:PhoneNumber1`|
 | _url_ | `schema:url` | `schema:WebPage1`|
 | _values_ | `schema:name` | `schema:WebPage1`|
 | _webpage_uri_ | `uri` | `schema:WebPage1`|
@@ -58,4 +81,8 @@ return DM.epoch_to_iso8601(ts)
 ### Links
 | From | Property | To |
 |  --- | -------- | ---|
+| `memex:EmailAddress1` | `memex:isMentionedIn` | `schema:WebPage1`|
+| `memex:PhoneNumber1` | `memex:isMentionedIn` | `schema:WebPage1`|
+| `schema:WebPage1` | `schema:mentions` | `memex:PhoneNumber1`|
 | `schema:WebPage1` | `schema:publisher` | `schema:Organization1`|
+| `schema:WebPage1` | `schema:mentions` | `memex:EmailAddress1`|
