@@ -13,12 +13,19 @@ From column: _image1_sha1_
 return getValue("sha1_pair").split('-')[1]
 ```
 
+#### _image1_uri_
+From column: _image1_sha1_
+>``` python
+return getValue("image1_sha1")
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
 |  ----- | -------- | ----- |
 | _dist_ | `memex:similarityScore` | `schema:Role1`|
-| _image1_sha1_ | `uri` | `schema:ImageObject1`|
+| _image1_sha1_ | `memex:identifier` | `schema:ImageObject1`|
+| _image1_uri_ | `uri` | `schema:ImageObject1`|
 | _image2_sha1_ | `memex:similarImageId` | `schema:Role1`|
 
 
