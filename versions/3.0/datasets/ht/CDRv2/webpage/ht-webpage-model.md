@@ -52,7 +52,7 @@ return ''
 ```
 
 #### _phone_uri_
-From column: _extractions / phonenumber / results / values_
+From column: _extractions / phone / results / values_
 >``` python
 cc = PM.get_country_code(getValue("values"),'')
 phone = PM.clean_phone(getValue("values"))

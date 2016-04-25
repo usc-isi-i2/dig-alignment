@@ -62,6 +62,20 @@ class DM(object):
             pass
 
         try:
+            return datetime.strptime(date, "%b %d, %Y at %I:%M %p").isoformat()
+        except:
+            pass
+
+        try:
+            return datetime.strptime(date, "%m-%d-%Y").isoformat()
+        except:
+            pass
+
+        try:
+            return datetime.strptime(date, "%Y-%m-%dT%H:%M:%SZ").isoformat()
+        except:
+            pass
+        try:
             date = int(date)
             if 1000000000000 < date < 9999999999999:
                 # 13 digit epoch
