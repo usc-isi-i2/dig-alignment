@@ -19,6 +19,12 @@ From column: _image1_sha1_
 return getValue("image1_sha1")
 ```
 
+#### _role_uri_
+From column: _image1_uri_
+>``` python
+return getValue("image1_sha1") + "/role"
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
@@ -27,6 +33,7 @@ return getValue("image1_sha1")
 | _image1_sha1_ | `memex:identifier` | `schema:ImageObject1`|
 | _image1_uri_ | `uri` | `schema:ImageObject1`|
 | _image2_sha1_ | `memex:similarImageId` | `schema:Role1`|
+| _role_uri_ | `uri` | `schema:Role1`|
 
 
 ### Links
