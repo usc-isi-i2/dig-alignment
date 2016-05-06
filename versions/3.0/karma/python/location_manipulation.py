@@ -161,6 +161,19 @@ class LM(object):
         self.name = "Location Manipulation"
 
     @staticmethod
+    def clean_location(x):
+        stripped = x.strip().lower()
+        stripped = SM.alpha_numeric(stripped).strip()
+        return SM.toTitleCaseCleaned(stripped)
+
+    @staticmethod
+    def get_only_city_name(x):
+        values = x.split(" ")
+        if len(values) > 1 and len(values[len(values) - 1]) == 2:
+            return " ".join(values[0:len(values) - 1])
+        return x
+
+    @staticmethod
     def standard_country_code(country):
         if len(country) == 0:
             return ''
