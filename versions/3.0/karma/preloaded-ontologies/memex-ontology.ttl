@@ -14,9 +14,16 @@
 
 #########################################################
 #
-# Classes
+# Meta Classes and Properties
 #
 #########################################################
+
+memex:jsonLD_container a rdf:Property ; 
+	rdfs:label "container" ;
+	schema:domainIncludes rdf:Property ;
+	schema:rangeIncludes memex:JSONLD_ContainerValue ;
+	rdfs:comment """Specify the JSON-LD @container directive."""
+	.
 
 memex:JSONLD_ContainerValue a owl:Class ;
 	rdfs:label "JSONLD_ContainerValue" ;
@@ -28,6 +35,46 @@ memex:JSONLD_Set a memex:JSONLD_ContainerValue ;
 	rdfs:label "@Set" ;
 	rdfs:comment """Used to specify @container: @set.""" ;
 	.
+
+memex:ElasticSearch_Constant a owl:Class ;
+	rdfs:label "ElasticSearch_Constant" ;
+	rdfs:subClassOf schema:Enumeration ;
+	rdfs:comment """The set reserved keywords to model ElasticSearch keywords.""" ;
+	.
+
+memex:es_directive a rdf:Property ;
+	rdfs:label "es_directive" ;
+	schema:domainIncludes rdf:Property ;
+	schema:rangeIncludes memex:ElasticSearch_Constant ;  
+	rdfs:comment """Specified a directive to create the elastic search mapping.""" ;
+	.
+
+memex:ES_not_analyzed a memex:ElasticSearch_Constant ;
+	rdfs:label "not_analyzed" ;
+	rdfs:comment "Specifies the not_analyzed keyword for a mapping." ;
+	.
+
+memex:ES_format_date_optional_time a memex:ElasticSearch_Constant ;
+	rdfs:label "ES_format_date_optional_time" ;
+	rdfs:comment "Specifies format: dateOptionalTime" ;
+	.
+
+memex:ES_include_raw_field a memex:ElasticSearch_Constant ;
+	rdfs:label "ES_include_raw_field" ;
+	rdfs:comment """Specify that the mapping should contain a subfield called
+	'raw', of type 'not_analyzed'""" ;
+	.
+
+memex:ES_type_date a memex:ElasticSearch_Constant ;
+	rdfs:label "ES_type_date" ;
+	rdfs:comment """Specify that the type is date""" ;
+	.
+
+#########################################################
+#
+# Classes
+#
+#########################################################
 
 memex:Appellation a owl:Class ;
 	rdfs:label "Appellation" ;
@@ -338,18 +385,12 @@ memex:StructuredDate a owl:Class ;
 #
 #########################################################
 
-memex:jsonLD_container a rdf:Property ; 
-	rdfs:label "container" ;
-	schema:domainIncludes rdf:Property ;
-	schema:rangeIncludes memex:JSONLD_ContainerValue ;
-	rdfs:comment """Specify the JSON-LD @container directive."""
-	.
-
 memex:identifier a rdf:Property ; 
 	rdfs:label "identifier" ;
 	schema:domainIncludes schema:Thing ;
 	schema:rangeIncludes memex:Identifier ;
-	rdfs:comment """The Identifier of an entity. All memex:Identifier should have a memex:hasType property to specify the type of the identifier."""
+	rdfs:comment """The Identifier of an entity. All memex:Identifier should have a memex:hasType property to specify the type of the identifier.""" ;
+	memex:es_directive memex:ES_not_analyzed ;
 	.
 
 memex:hasType a rdf:Property ; 
@@ -568,6 +609,7 @@ memex:count a rdf:Property ;
 	rdfs:label "count" ;
 	schema:domainIncludes memex:Group ;
 	schema:rangeIncludes schema:QualitativeValue ;
+	memex:es_directive memex:ES_not_analyzed ;
 	rdfs:comment """The number of elements in a set of things such as a Group. QuantitativeValue can specify a range, and the schema:unitCode for people is HEA, the standard code for heads of people. A Group can have multiple count values, to represent finer distinctions such as women, children, etc.""" ;
 	.
 
@@ -587,6 +629,7 @@ memex:ethnicity a rdf:Property ;
 	schema:rangeIncludes schema:Text ;
 	rdfs:comment """The ethnicity of a Person.""" ;
 	memex:jsonLD_container memex:JSONLD_Set ;
+	memex:es_directive memex:ES_not_analyzed ;
 	.
 
 memex:age a rdf:Property ; 
@@ -596,6 +639,7 @@ memex:age a rdf:Property ;
 	rdfs:comment """The age of a person.""" ;
 	skos:note """The age of a person changes over time. When the time of observation is available, it is preferable to record the birthYear instead.""" ;
 	memex:jsonLD_container memex:JSONLD_Set ;
+	memex:es_directive memex:ES_not_analyzed ;
 	.
 
 memex:hairColor a rdf:Property ;
@@ -604,6 +648,7 @@ memex:hairColor a rdf:Property ;
 	schema:rangeIncludes schema:Text ; 
 	rdfs:comment """hair color of a Person""" ;
 	memex:jsonLD_container memex:JSONLD_Set ;
+	memex:es_directive memex:ES_not_analyzed ;
 	.
 
 memex:eyeColor a rdf:Property ;
@@ -612,6 +657,7 @@ memex:eyeColor a rdf:Property ;
 	schema:rangeIncludes schema:Text ;  
 	rdfs:comment """eye color of a Person""" ;
 	memex:jsonLD_container memex:JSONLD_Set ;
+	memex:es_directive memex:ES_not_analyzed ;
 	.
 
 memex:legalAction a rdf:Property ; 
@@ -651,6 +697,7 @@ memex:dateRecorded a rdf:Property ;
 	schema:rangeIncludes schema:Date ;
 	schema:rangeIncludes schema:DateTime ;
 	rdfs:comment """Specifies the point in time when Role information was recorded. Use this property to create a time series of Roles that record multiple values of  a property changing over time.""" ;
+	memex:es_directive memex:ES_format_date_optional_time ;
 	.
 
 memex:phoneCountryCode a rdf:Property ; 
@@ -658,6 +705,7 @@ memex:phoneCountryCode a rdf:Property ;
 	schema:domainIncludes memex:PhoneNumber ;
 	schema:rangeIncludes schema:Text ;
 	rdfs:comment """Specifies the calling code of a country as defined in https://en.wikipedia.org/wiki/List_of_country_calling_codes. Also see https://en.wikipedia.org/wiki/Telephone_numbering_plan""" ;
+	memex:es_directive memex:ES_not_analyzed ;
 	.
 
 memex:phoneAreaCode a rdf:Property ; 
@@ -665,6 +713,7 @@ memex:phoneAreaCode a rdf:Property ;
 	schema:domainIncludes memex:PhoneNumber ;
 	schema:rangeIncludes schema:Text ;
 	rdfs:comment """Specifies the area code of a phone number, see https://en.wikipedia.org/wiki/Telephone_numbering_plan""" ;
+	memex:es_directive memex:ES_not_analyzed ;
 	.
 
 memex:phoneSubscriberNumber a rdf:Property ; 
@@ -672,6 +721,7 @@ memex:phoneSubscriberNumber a rdf:Property ;
 	schema:domainIncludes memex:PhoneNumber ;
 	schema:rangeIncludes schema:Text ;
 	rdfs:comment """Specifies the calling of a subscriber, see https://en.wikipedia.org/wiki/Telephone_numbering_plan""" ;
+	memex:es_directive memex:ES_not_analyzed ;
 	.
 
 memex:phoneNationalSignificantNumber a rdf:Property ; 
@@ -679,12 +729,14 @@ memex:phoneNationalSignificantNumber a rdf:Property ;
 	schema:domainIncludes memex:PhoneNumber ;
 	schema:rangeIncludes schema:Text ;
 	rdfs:comment """Specifies the number to dial after a contry code to identify a subscriber; this number consists of an area code followed by a subscriber number, see http://www.itu.int/dms_pub/itu-t/opb/sp/T-SP-E.164C-2011-PDF-E.pdf""" ;
+	memex:es_directive memex:ES_not_analyzed ;
 	.
 
 memex:county_2nd_div a rdf:Property ;
 	rdfs:label "county_2nd_div"@en ;
 	schema:domainIncludes schema:PostalAddress ;
 	rdfs:comment """County or province that the city contained in.""" ;
+	memex:es_directive memex:ES_not_analyzed ;
 	.
 
 memex:community_3rd_div a rdf:Property ;
@@ -692,6 +744,7 @@ memex:community_3rd_div a rdf:Property ;
 	schema:domainIncludes schema:PostalAddress ;
 	schema:rangeIncludes memex:CommunityAdministrativeArea ;
 	rdfs:comment """Community that the city contained in.""" ;
+	memex:es_directive memex:ES_not_analyzed ;
 	.
 
 memex:subcommunity_4th_div a rdf:Property ;
@@ -699,6 +752,7 @@ memex:subcommunity_4th_div a rdf:Property ;
 	rdfs:domainIncludes schema:PostalAddress ;
 	schema:rangeIncludes memex:SubCommunityAdministrativeArea ;
 	rdfs:comment """Subcommunity that the city contained in.""" ;
+	memex:es_directive memex:ES_not_analyzed ;
 	.
 
 memex:caliber a rdf:Property ;
@@ -706,13 +760,15 @@ memex:caliber a rdf:Property ;
 	rdfs:domainIncludes memex:Firearm ;
 	schema:rangeIncludes schema:Text ;
 	rdfs:comment """The caliber of a firearm.""" ;
+	memex:es_directive memex:ES_not_analyzed ;
 	.
 
 memex:firearmAction a rdf:Property ;
 	rdfs:label "firearmAction"@en ;
 	rdfs:domainIncludes memex:Firearm ;
 	schema:rangeIncludes schema:Text ;
-	rdfs:comment """The action type of a fireamr, e.g. single-action, semi-automatic.""" ;
+	rdfs:comment """The action type of a firearm, e.g. single-action, semi-automatic.""" ;
+	memex:es_directive memex:ES_not_analyzed ;
 	.
 
 memex:year a rdf:Property ;
@@ -720,6 +776,7 @@ memex:year a rdf:Property ;
 	rdfs:domainIncludes memex:StructuredDate ;
 	schema:rangeIncludes schema:Text ;
 	rdfs:comment """A string representing a year.""" ;
+	memex:es_directive memex:ES_not_analyzed ;
 	.
 
 memex:month a rdf:Property ;
@@ -727,6 +784,7 @@ memex:month a rdf:Property ;
 	rdfs:domainIncludes memex:StructuredDate ;
 	schema:rangeIncludes schema:Text ;
 	rdfs:comment """A string representing a month, such as a number or a spelled out month.""" ;
+	memex:es_directive memex:ES_not_analyzed ;
 	.
 
 memex:day a rdf:Property ;
@@ -734,6 +792,7 @@ memex:day a rdf:Property ;
 	rdfs:domainIncludes memex:StructuredDate ;
 	schema:rangeIncludes schema:Text ;
 	rdfs:comment """A representaiton of a day in a month.""" ;
+	memex:es_directive memex:ES_not_analyzed ;
 	.
 
 memex:interest a rdf:Property ; 
@@ -741,28 +800,31 @@ memex:interest a rdf:Property ;
 	schema:domainIncludes schema:Person ;
 	memex:jsonLD_container memex:JSONLD_Set ;
 	schema:rangeIncludes schema:Text ;
-	rdfs:comment """The interests of schema:Person."""
+	rdfs:comment """The interests of schema:Person.""" ;
 	.
 
 memex:populationOfArea a rdf:Property ; 
 	rdfs:label "populationOfArea" ;
 	schema:domainIncludes schema:AdministrativeArea ;
 	schema:rangeIncludes schema:Integer ;
-	rdfs:comment """Population of an AdminstrativeArea."""
+	rdfs:comment """Population of an AdminstrativeArea.""" ;
+	memex:es_directive memex:ES_not_analyzed ;
 	.
 
 memex:similarityScore a rdf:Property ; 
 	rdfs:label "similarityScore"@en ;
 	schema:domainIncludes schema:Role ;
-	rdfs:comment "The similarity score between two entities." 
+	rdfs:comment "The similarity score between two entities." ;
+	memex:es_directive memex:ES_not_analyzed ;
 	.
 
 memex:similarImageId a rdf:Property ; 
-	rdfs:label "similarityScore"@en ;
+	rdfs:label "similarImageId"@en ;
 	schema:domainIncludes memex:ImageObject ;
 	schema:domainIncludes schema:Role ;
 	memex:jsonLD_container memex:JSONLD_Set ;
-	rdfs:comment """String containing a list of similar image ids.""" 
+	rdfs:comment """String containing a list of similar image ids.""" ;
+	memex:es_directive memex:ES_not_analyzed ;
 	.
 
 
@@ -777,29 +839,73 @@ memex:isMentionedIn a rdf:Property ;
 memex:key a rdf:Property ; 
 	rdfs:label "key" ;
 	rdfs:comment """key of any entity.""" ;
+	memex:es_directive memex:ES_not_analyzed ;
+	.
+
+memex:clusterMethod a rdf:Property ; 
+	rdfs:label "clusterMethod" ;
+	rdfs:domainIncludes schema:Thing ;
+	rdfs:rangeIncludes schema:Text ;
+	rdfs:comment """key of any entity.""" ;
+	memex:es_directive memex:ES_not_analyzed ;
 	.
 
 #########################################################
 #
-# @container settings for schema.org properties
+# JSON LD and ElasticSearch directives for schema.org 
+# properties and classes.
 #
 #########################################################
 
 schema:address memex:jsonLD_container memex:JSONLD_Set .
 
+schema:addressCountry memex:es_directive memex:ES_not_analyzed ;
+	.
+
+schema:addressLocality memex:es_directive memex:ES_not_analyzed ;
+	.
+
+schema:addressRegion memex:es_directive memex:ES_not_analyzed ;
+	.
+
 schema:affected memex:jsonLD_container memex:JSONLD_Set .
 
 schema:attendee memex:jsonLD_container memex:JSONLD_Set .
 
-schema:email memex:jsonLD_container memex:JSONLD_Set .
+schema:billingIncrement memex:es_directive memex:ES_not_analyzed ;
+	.
+
+schema:dateCreated 
+	memex:es_directive memex:ES_format_date_optional_time ;
+	memex:es_directive memex:ES_type_date ;
+	.
+
+schema:email memex:jsonLD_container memex:JSONLD_Set ;
+	memex:es_directive memex:ES_not_analyzed ;
+	.
+
+schema:height memex:es_directive memex:ES_not_analyzed ;
+	.
+
+schema:latitude memex:es_directive memex:ES_not_analyzed ;
+	.
 
 schema:location memex:jsonLD_container memex:JSONLD_Set .
+
+schema:longitude memex:es_directive memex:ES_not_analyzed ;
+	.
 
 schema:makesOffer memex:jsonLD_container memex:JSONLD_Set .
 
 schema:member memex:jsonLD_container memex:JSONLD_Set .
 
-schema:mentions memex:jsonLD_container memex:JSONLD_Set .
+schema:mentions memex:jsonLD_container memex:JSONLD_Set ;
+	memex:es_directive memex:ES_not_analyzed ;
+	.
+
+schema:name memex:jsonLD_container memex:JSONLD_Set ;
+	memex:es_directive memex:ES_include_raw_field ;
+	.
 
 schema:offers memex:jsonLD_container memex:JSONLD_Set .
 
@@ -807,14 +913,30 @@ schema:owner memex:jsonLD_container memex:JSONLD_Set .
 
 schema:performer memex:jsonLD_container memex:JSONLD_Set .
 
+schema:price memex:es_directive memex:ES_not_analyzed ;
+	.
+
 schema:priceSpecification memex:jsonLD_container memex:JSONLD_Set .
 
 schema:telephone memex:jsonLD_container memex:JSONLD_Set .
 
-schema:name memex:jsonLD_container memex:JSONLD_Set .
+schema:title memex:jsonLD_container memex:JSONLD_Set ;
+	memex:es_directive memex:ES_include_raw_field ;
+	.
 
-schema:title memex:jsonLD_container memex:JSONLD_Set .
+schema:unitCode memex:es_directive memex:ES_not_analyzed ;
+	.
 
+schema:url memex:es_directive memex:ES_include_raw_field ;
+	.
+
+schema:validFrom 
+	memex:es_directive memex:ES_format_date_optional_time ;
+	memex:es_directive memex:ES_type_date ;
+	.
+
+schema:weight memex:es_directive memex:ES_not_analyzed ;
+	.
 
 #########################################################
 #
