@@ -292,7 +292,7 @@ def main(argv):
         "mappings": mapping,
         "settings": dig_settings
     }
-    with open('mapping.json', 'w') as mapping_file:
+    with open('es-mapping.json', 'w') as mapping_file:
         mapping_file.write(json.dumps(full_mapping, indent=4, sort_keys=True))
 
 if __name__ == "__main__":
