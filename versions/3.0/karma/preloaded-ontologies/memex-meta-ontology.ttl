@@ -1,0 +1,70 @@
+@prefix memex: <http://schema.dig.isi.edu/ontology/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix schema: <http://schema.org/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+
+<http://schema.dig.isi.edu/ontology/> a owl:Ontology ;
+	.
+
+#########################################################
+#
+# Meta Classes and Properties
+#
+#########################################################
+
+memex:jsonLD_container a rdf:Property ; 
+	rdfs:label "container" ;
+	schema:domainIncludes rdf:Property ;
+	schema:rangeIncludes memex:JSONLD_ContainerValue ;
+	rdfs:comment """Specify the JSON-LD @container directive."""
+	.
+
+memex:JSONLD_ContainerValue a owl:Class ;
+	rdfs:label "JSONLD_ContainerValue" ;
+	rdfs:subClassOf schema:Enumeration ;
+	rdfs:comment """The set of possible values for @container in JSON-LD""" ;
+	.
+
+memex:JSONLD_Set a memex:JSONLD_ContainerValue ;
+	rdfs:label "@Set" ;
+	rdfs:comment """Used to specify @container: @set.""" ;
+	.
+
+memex:ElasticSearch_Constant a owl:Class ;
+	rdfs:label "ElasticSearch_Constant" ;
+	rdfs:subClassOf schema:Enumeration ;
+	rdfs:comment """The set reserved keywords to model ElasticSearch keywords.""" ;
+	.
+
+memex:es_directive a rdf:Property ;
+	rdfs:label "es_directive" ;
+	schema:domainIncludes rdf:Property ;
+	schema:rangeIncludes memex:ElasticSearch_Constant ;  
+	rdfs:comment """Specified a directive to create the elastic search mapping.""" ;
+	.
+
+memex:ES_not_analyzed a memex:ElasticSearch_Constant ;
+	rdfs:label "not_analyzed" ;
+	rdfs:comment "Specifies the not_analyzed keyword for a mapping." ;
+	.
+
+memex:ES_format_date_optional_time a memex:ElasticSearch_Constant ;
+	rdfs:label "ES_format_date_optional_time" ;
+	rdfs:comment "Specifies format: dateOptionalTime" ;
+	.
+
+memex:ES_include_raw_field a memex:ElasticSearch_Constant ;
+	rdfs:label "ES_include_raw_field" ;
+	rdfs:comment """Specify that the mapping should contain a subfield called
+	'raw', of type 'not_analyzed'""" ;
+	.
+
+memex:ES_type_date a memex:ElasticSearch_Constant ;
+	rdfs:label "ES_type_date" ;
+	rdfs:comment """Specify that the type is date""" ;
+	.
+

@@ -210,3 +210,23 @@ def getTextHash(text):
     if text:
         return hashlib.sha1(text.encode('utf-8')).hexdigest().upper()
     return ''
+
+def remove_junk(x):
+    result=""
+    junk = ["A", "DIV", "ESCORTS", "B", "WINDOW", "DOCTYPE", "HTML", "PUBLIC", "INITIAL", "SCALE", "1", "END", "HEADER"]
+    values = x.split(" ")
+    if len(values) > 1:
+        for value in values:
+            if value.upper() not in junk:
+                result += value + " "
+        return result.strip()
+    else:
+        return x.strip()
+
+def get_only_city_name(x):
+    values = x.split(" ")
+    if len(values) > 1 and len(values[len(values) - 1]) == 2:
+        return " ".join(values[0:len(values) - 1])
+    return x
+
+

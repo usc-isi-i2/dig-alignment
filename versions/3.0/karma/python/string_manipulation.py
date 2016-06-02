@@ -251,6 +251,41 @@ class SM(object):
             return None
         return None
 
+
+    @staticmethod
+    def clean_price_name(x):
+        try:
+            minutes = str(SM.calculate_minutes(x))
+            return SM.get_price(x) + '-per-' + minutes + 'min'
+        except:
+            return x
+
+
+    @staticmethod
+    def get_price(x):
+        try:
+            v = x.split('-')
+            return v[0]
+        except:
+            return x
+
+
+    @staticmethod
+    def calculate_minutes(x):
+        try:
+            v = x.split('-')
+            time = v[1]
+            if ":" in time:
+                v = time.split(':')
+                hour = v[0]
+                minute = v[1]
+                return int(hour)*60 + int(minute)
+            else:
+                return x
+        except:
+            return x
+
+
     @staticmethod
     def base_clean_rate(x):
         clean = x.strip().lower()

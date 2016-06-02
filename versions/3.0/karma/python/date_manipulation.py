@@ -1,8 +1,8 @@
 __author__ = 'amandeep'
-
 from datetime import datetime
 from time import mktime, gmtime
 import calendar
+
 
 class DM(object):
 
@@ -17,8 +17,7 @@ class DM(object):
         or            YYYY-MM-DD
         or            epoch (13 digit, indicating ms)
         or            epoch (10 digit, indicating sec)
-        output format: iso8601"""   
-        
+        output format: iso8601"""
         date = date.strip()
 
         if date_format:
@@ -62,6 +61,20 @@ class DM(object):
         except:
             pass
 
+        try:
+            return datetime.strptime(date, "%b %d, %Y at %I:%M %p").isoformat()
+        except:
+            pass
+
+        try:
+            return datetime.strptime(date, "%m-%d-%Y").isoformat()
+        except:
+            pass
+
+        try:
+            return datetime.strptime(date, "%Y-%m-%dT%H:%M:%SZ").isoformat()
+        except:
+            pass
         try:
             date = int(date)
             if 1000000000000 < date < 9999999999999:
@@ -109,6 +122,8 @@ class DM(object):
         ts=float(timestamp)
         if len(timestamp) == 13:
             ts = ts/1000
+        elif len(timestamp) == 16:
+            ts = ts/1000000
         return datetime.fromtimestamp(ts).isoformat()
 
     @staticmethod

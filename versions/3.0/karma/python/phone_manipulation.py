@@ -308,6 +308,7 @@ class PM(object):
     @staticmethod
     def get_country_code(phone, country):
         phone = phone.strip()
+        phone = SM.numeric_only(phone)
         country = country.strip()
 
         if '+' not in phone and '-' not in phone:
@@ -431,8 +432,11 @@ class PM(object):
                 ph = ph[1:]
                 cc = "1"
 
-            if len(cc) > 0:
+            """
+            MAKE THIS BETTER
+             if len(cc) > 0:
                 ph = "+" + cc + "-" + ph
+            """
             return ph
         return ''
 
