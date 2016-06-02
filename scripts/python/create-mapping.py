@@ -163,96 +163,7 @@ class Ontology(object):
     def is_format_date_optional_time(self, key):
         return 'memex:ES_format_date_optional_time' in self.directives(key)
 
-dig_settings = {
-    "index": {
-        "number_of_replicas": "0",
-        "number_of_shards": "5"
-    },
-    "analysis": {
-        "analyzer": {
-            "partial_phone_analyzer": {
-                "tokenizer": "keyword",
-                "char_filter": [
-                    "digits_only"
-                ],
-                "filter": [
-                    "ngram_3_10"
-                ]
-            },
-            "exact_phone_analyzer": {
-                "tokenizer": "keyword",
-                "char_filter": [
-                    "digits_only"
-                ]
-            },
-            "exact_email_analyzer": {
-                "tokenizer": "uax_url_email",
-                "filter": [
-                    "email_splitting_filter_keep_original",
-                    "lowercase",
-                    "unique"
-                ]
-            },
-            "partial_email_analyzer": {
-                "tokenizer": "uax_url_email",
-                "filter": [
-                    "ngram_5_8"
-                ]
-            }
-        },
-        "filter": {
-            "filter_stemmer": {
-                "type": "porter_stem",
-                "language": "English"
-            },
-            "shingle_filter_2_4": {
-                "type": "shingle",
-                "min_shingle_size": 2,
-                "max_shingle_size": 4,
-                "output_unigrams": False
-            },
-            "shingle_filter_4": {
-                "type": "shingle",
-                "min_shingle_size": 4,
-                "max_shingle_size": 4,
-                "output_unigrams": False
-            },
-            "email_splitting_filter_keep_original": {
-                "type": "pattern_capture",
-                "preserve_original": 1,
-                "patterns": [
-                    "(.+)@",
-                    "@(.+)"
-                ]
-            },
-            "email_splitting_filter": {
-                "type": "pattern_capture",
-                "preserve_original": 0,
-                "patterns": [
-                    "(.+)@",
-                    "@(.+)"
-                ]
-            },
-            "ngram_3_10": {
-                "type": "nGram",
-                "min_gram": 3,
-                "max_gram": 10
-            },
-            "ngram_5_8": {
-                "type": "nGram",
-                "min_gram": 5,
-                "max_gram": 8
-            }
-        },
-        "char_filter": {
-            "digits_only": {
-                "type": "pattern_replace",
-                "pattern": "(\\D)",
-                "replacement": ""
-            }
-        }
-    }
-}
+
 
 def main(argv):
     """
@@ -262,19 +173,12 @@ def main(argv):
     :return:
     :rtype:
     """
+    config = json.load(open(argv[1]))
+    dig_settings = config["dig_settings"]
+    frame_mapping = config["frame_mapping"]
+    base_url = config["base_url"]
 
     pp = pprint.PrettyPrinter(indent=4)
-
-    base_url = "https://raw.githubusercontent.com/usc-isi-i2/dig-alignment/development/versions/3.0/frames/"
-    frame_mapping = {
-        "offer": "offer.json",
-        "webpage": "webpage.json",
-        "email": "email.json",
-        "phone": "phone.json",
-        "image": "image.json",
-        "adultservice": "adultservice.json",
-        "seller": "seller.json"
-    }
 
     with open('all-ontology.json') as ontology_file:
         ontology = json.load(ontology_file)
@@ -292,7 +196,7 @@ def main(argv):
         "mappings": mapping,
         "settings": dig_settings
     }
-    with open('es-mapping.json', 'w') as mapping_file:
+    with open(argv[2], 'w') as mapping_file:
         mapping_file.write(json.dumps(full_mapping, indent=4, sort_keys=True))
 
 if __name__ == "__main__":
