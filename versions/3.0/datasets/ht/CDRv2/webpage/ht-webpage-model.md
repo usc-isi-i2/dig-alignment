@@ -19,8 +19,7 @@ From column: _extractions / posttime / results / values_
 posttime = getValue("values")
 if posttime.strip() != '':
     return DM.iso8601date(posttime,'%Y-%m-%d %H:%M:%S')
-posttime = getValue("timestamp")
-return DM.epoch_to_iso8601(posttime)
+return ''
 ```
 
 #### _domain_url_
@@ -63,6 +62,22 @@ if cc == '':
 return 'phone/' + cc + '-' + phone
 ```
 
+#### _iso_crawltime_
+From column: _extractions / posttime / results / values_
+>``` python
+return getValueFromNestedColumnByIndex("crawl_data", "context/iso_posttime2",0)
+```
+
+#### _iso_finaltime_
+From column: _extractions / posttime / results / iso_posttime_
+>``` python
+posttime = getValue("iso_posttime")
+if posttime != '':
+    return posttime
+return getValues("iso_crawltime")
+
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
@@ -70,7 +85,7 @@ return 'phone/' + cc + '-' + phone
 | _clean_text_ | `schema:description` | `schema:WebPage1`|
 | _domain_url_ | `schema:name` | `schema:Organization1`|
 | _email_uri_ | `uri` | `memex:EmailAddress1`|
-| _iso_posttime2_ | `schema:dateCreated` | `schema:WebPage1`|
+| _iso_finaltime_ | `schema:dateCreated` | `schema:WebPage1`|
 | _organization_domain_uri_ | `uri` | `schema:Organization1`|
 | _phone_uri_ | `uri` | `memex:PhoneNumber1`|
 | _url_ | `schema:url` | `schema:WebPage1`|
