@@ -1,4 +1,4 @@
-## ht-cdr2-seller-sample.jl
+## cdr_with_name.jl
 
 ### PyTransforms
 #### _seller_uri_
@@ -46,21 +46,53 @@ if cc == '':
 return 'phone/' + cc + '-' + phone
 ```
 
+#### _text_email_
+From column: _extractions / text / results / values_
+>``` python
+return extract_emails(getValue("values"))
+```
+
+#### _text_email_uri_
+From column: _extractions / text / results / text_email_split / Values_
+>``` python
+email = getValue("Values")
+if email != '':
+    return 'email/' + email
+```
+
+#### _title_email_
+From column: _extractions / title / results / values_
+>``` python
+return extract_emails(getValue("values"))
+```
+
+#### _title_email_uri_
+From column: _extractions / title / results / title_email_split / Values_
+>``` python
+email = getValue("Values")
+if email != '':
+    return 'email/' + email
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
 |  ----- | -------- | ----- |
-| _clean_email_ | `schema:name` | `memex:EmailAddress1`|
+| _Values_ | `schema:name` | `memex:EmailAddress1`|
+| _Values_ | `schema:name` | `memex:EmailAddress2`|
 | _clean_phone_ | `schema:name` | `memex:PhoneNumber1`|
-| _email_uri_ | `uri` | `memex:EmailAddress1`|
 | _phone_uri_ | `uri` | `memex:PhoneNumber1`|
 | _seller_uri_ | `uri` | `memex:PersonOrOrganization1`|
+| _text_email_uri_ | `uri` | `memex:EmailAddress1`|
+| _title_email_uri_ | `uri` | `memex:EmailAddress2`|
 
 
 ### Links
 | From | Property | To |
 |  --- | -------- | ---|
 | `memex:EmailAddress1` | `memex:owner` | `memex:PersonOrOrganization1`|
+| `memex:EmailAddress2` | `memex:owner` | `memex:PersonOrOrganization1`|
 | `memex:PersonOrOrganization1` | `schema:telephone` | `memex:PhoneNumber1`|
 | `memex:PersonOrOrganization1` | `schema:email` | `memex:EmailAddress1`|
+| `memex:PersonOrOrganization1` | `schema:email` | `memex:EmailAddress2`|
 | `memex:PhoneNumber1` | `memex:owner` | `memex:PersonOrOrganization1`|

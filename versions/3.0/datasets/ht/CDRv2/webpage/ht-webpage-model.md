@@ -1,4 +1,4 @@
-## ht-cdr2-sample.jl
+## cdr_with_name.jl
 
 ### PyTransforms
 #### _webpage_uri_
@@ -78,16 +78,43 @@ return getValues("iso_crawltime")
 
 ```
 
+#### _text_email_
+From column: _extractions / text / results / clean_text_
+>``` python
+return extract_emails(getValue("values"))
+```
+
+#### _text_email_uri_
+From column: _extractions / text / results / text_email_splits / Values_
+>``` python
+if getValue("Values") != '':
+    return 'email/' + getValue("Values")
+```
+
+#### _title_email_
+From column: _extractions / title / results / values_
+>``` python
+return extract_emails(getValue("values"))
+```
+
+#### _title_email_uri_
+From column: _extractions / title / results / title_email_splits / Values_
+>``` python
+if getValue("Values") != '':
+    return 'email/' + getValue("Values")
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
 |  ----- | -------- | ----- |
 | _clean_text_ | `schema:description` | `schema:WebPage1`|
 | _domain_url_ | `schema:name` | `schema:Organization1`|
-| _email_uri_ | `uri` | `memex:EmailAddress1`|
 | _iso_finaltime_ | `schema:dateCreated` | `schema:WebPage1`|
 | _organization_domain_uri_ | `uri` | `schema:Organization1`|
 | _phone_uri_ | `uri` | `memex:PhoneNumber1`|
+| _text_email_uri_ | `uri` | `memex:EmailAddress1`|
+| _title_email_uri_ | `uri` | `memex:EmailAddress2`|
 | _url_ | `schema:url` | `schema:WebPage1`|
 | _values_ | `schema:name` | `schema:WebPage1`|
 | _webpage_uri_ | `uri` | `schema:WebPage1`|
@@ -97,7 +124,9 @@ return getValues("iso_crawltime")
 | From | Property | To |
 |  --- | -------- | ---|
 | `memex:EmailAddress1` | `memex:isMentionedIn` | `schema:WebPage1`|
+| `memex:EmailAddress2` | `memex:isMentionedIn` | `schema:WebPage1`|
 | `memex:PhoneNumber1` | `memex:isMentionedIn` | `schema:WebPage1`|
 | `schema:WebPage1` | `schema:mentions` | `memex:PhoneNumber1`|
 | `schema:WebPage1` | `schema:publisher` | `schema:Organization1`|
 | `schema:WebPage1` | `schema:mentions` | `memex:EmailAddress1`|
+| `schema:WebPage1` | `schema:mentions` | `memex:EmailAddress2`|
