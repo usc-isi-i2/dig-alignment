@@ -67,6 +67,30 @@ From column: _extractions / rate / results / clean_price_name_
 return "price/" + getValue('clean_price_name')
 ```
 
+#### _iso_crawltime_
+From column: _extractions / posttime / results / values_
+>``` python
+return getValueFromNestedColumnByIndex("crawl_data", "context/iso_posttime2",0)
+```
+
+#### _iso_posttime_
+From column: _extractions / posttime / results / values_
+>``` python
+posttime = getValue("values")
+if posttime.strip() != '':
+    return DM.iso8601date(posttime)
+return ''
+```
+
+#### _iso_finaltime_
+From column: _extractions / posttime / results / iso_crawltime_
+>``` python
+posttime = getValue("iso_posttime").strip()
+if posttime != '':
+    return posttime
+return getValue("iso_crawltime")
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
@@ -77,7 +101,7 @@ return "price/" + getValue('clean_price_name')
 | _clean_price_name_ | `schema:name` | `schema:PriceSpecification1`|
 | _clean_state_ | `schema:addressRegion` | `schema:PostalAddress1`|
 | _clean_unit_ | `schema:unitCode` | `schema:PriceSpecification1`|
-| _iso_posttime2_ | `schema:validFrom` | `schema:Offer1`|
+| _iso_finaltime_ | `schema:validFrom` | `schema:Offer1`|
 | _offer_uri_ | `uri` | `schema:Offer1`|
 | _place_uri_ | `uri` | `schema:Place1`|
 | _postal_add_uri_ | `uri` | `schema:PostalAddress1`|

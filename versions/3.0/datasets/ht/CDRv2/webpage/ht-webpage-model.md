@@ -18,7 +18,7 @@ From column: _extractions / posttime / results / values_
 >``` python
 posttime = getValue("values")
 if posttime.strip() != '':
-    return DM.iso8601date(posttime,'%Y-%m-%d %H:%M:%S')
+    return DM.iso8601date(posttime)
 return ''
 ```
 
@@ -74,7 +74,7 @@ From column: _extractions / posttime / results / iso_posttime_
 posttime = getValue("iso_posttime")
 if posttime != '':
     return posttime
-return getValues("iso_crawltime")
+return getValue("iso_crawltime")
 
 ```
 
