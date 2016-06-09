@@ -1,4 +1,4 @@
-## sample_data_for_offers.jl
+## cdr_with_name.jl
 
 ### PyTransforms
 #### _offer_uri_
@@ -40,7 +40,10 @@ return "offer/" + getValue("isi_id") + "/place"
 #### _clean_price_name_
 From column: _extractions / rate / results / values_
 >``` python
-return SM.clean_price_name(getValue("values"))
+x = getValue("values").strip()
+if x != "":
+  return SM.clean_price_name(getValue("values"))
+return ""
 ```
 
 #### _clean_price_
@@ -64,7 +67,10 @@ return "MIN"
 #### _rate_uri_
 From column: _extractions / rate / results / clean_price_name_
 >``` python
-return "price/" + getValue('clean_price_name')
+x = getValue('clean_price_name')
+if x != '':
+  return "price/" + x
+return ''
 ```
 
 #### _iso_crawltime_
