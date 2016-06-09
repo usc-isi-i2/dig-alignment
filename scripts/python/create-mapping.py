@@ -3,7 +3,7 @@ import pprint
 import sys
 import urllib2
 from httplib import HTTPConnection
-
+import argparse
 
 class MappingGenerator(object):
     """Create a mapping file for a frame."""
@@ -173,7 +173,7 @@ def main(argv):
     :return:
     :rtype:
     """
-    config = json.load(open(argv[1]))
+    config = json.load(argv.config)
     dig_settings = config["dig_settings"]
     frame_mapping = config["frame_mapping"]
     base_url = config["base_url"]
@@ -196,8 +196,15 @@ def main(argv):
         "mappings": mapping,
         "settings": dig_settings
     }
-    with open(argv[2], 'w') as mapping_file:
+    with argv.output as mapping_file:
         mapping_file.write(json.dumps(full_mapping, indent=4, sort_keys=True))
 
 if __name__ == "__main__":
-    main(sys.argv)
+
+    parser = argparse.ArgumentParser(description='Create Mapping File for Elasticsearch')
+    parser.add_argument('config', type=argparse.FileType('r'),
+                    help='Config File')
+    parser.add_argument('output', type=argparse.FileType('w'),
+                    help='Output File')
+    argv = parser.parse_args()
+    main(argv)
