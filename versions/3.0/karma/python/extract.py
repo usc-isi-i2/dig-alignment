@@ -19,8 +19,7 @@ email_regex1 = re.compile('([A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4})', re.IGNOREC
 email_regex2 = re.compile(r"""(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])""")
 email_regex3 = re.compile(r'[\w\.-]+@[\w\.-]+')
 email_regex4 = re.compile(("([a-z0-9!#$%&'*+\/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+\/=?^_`"
-                     "{|}~-]+)*(@|\sat\s)(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?(\.|"
-                     "\sdot\s))+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)"))
+                     "{|}~-]+)*(@)(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?(\.))+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)"))
 
 # URL regex
 url_regex = re.compile('(?:(?:https?|ftp|file)://|www\.|ftp\.)[-A-Z0-9+&@#/%=~_|$?!:,.]*[A-Z0-9+&@#/%=~_|$]', re.IGNORECASE)
@@ -33,13 +32,12 @@ class EXTRACT_TYPE:
 def clean_email(x):
     """Remove all non alphabetic characters from the end of the string after the last dot"""
     try:
-        idx_at = x.rfind('@')
-        if idx_at != 1:
-            sub_str = x[idx_at+1:]
-            # print sub_str
-            idx = sub_str.find('.')
-            if idx != 1:
-                x = x[:idx_at+1] + sub_str[:idx+1] + re.sub('[^A-Za-z]+', '', sub_str[idx+1:])
+        clean_regex = re.compile('^.*@.+\.com')
+        x = re.sub('^[^A-Za-z]+', '', x)
+        x = re.sub('[^A-Za-z]+$', '', x)
+        x1 = re.findall(clean_regex, x)
+        if len(x1) > 0:
+            x = x1[0]
         return x
     except:
         return x
@@ -83,7 +81,7 @@ def extract_emails(data):
     for email in email_regex4.findall(data.lower()):
         email_set.add(clean_email(email[0]))
 
-    return email_set
+    return ",".join(email_set)
 
 #
 # def extract_urls(data):
@@ -104,12 +102,4 @@ def extract_emails(data):
 #     for x in url_regex.findall(data):
 #         _set.add(x)
 #     return _set
-
-
-
-
-
-
-
-
 
