@@ -27,6 +27,90 @@ class DM(object):
                 pass
 
         try:
+            return datetime.strptime(date, "%Y-%m-%d %H:%M:%S").isoformat()
+        except:
+            pass
+
+        try:
+            # Wednesday, September 30th, 2015
+            return datetime.strptime(date, "%A, %B %dth, %Y").isoformat()
+        except:
+            pass
+
+        try:
+            # Wednesday, September 2nd, 2015
+            return datetime.strptime(date, "%A, %B %dnd, %Y").isoformat()
+        except:
+            pass
+
+        try:
+            # Wednesday, September 1st, 2015
+            return datetime.strptime(date, "%A, %B %dst, %Y").isoformat()
+        except:
+            pass
+
+        try:
+            # Friday, October 2, 2015 1:35 AM
+            return datetime.strptime(date, "%A, %B %d, %Y %I:%M %p").isoformat()
+        except:
+            pass
+
+        try:
+            # Fri October 02nd, 2015
+            return datetime.strptime(date, "%a %B %dnd, %Y").isoformat()
+        except:
+            pass
+
+        try:
+            # Fri October 03rd, 2015
+            return datetime.strptime(date, "%a, %B %drd, %Y").isoformat()
+        except:
+            pass
+
+        try:
+            # Fri October 04th, 2015
+            return datetime.strptime(date, "%a, %B %dth, %Y").isoformat()
+        except:
+            pass
+
+        try:
+            # Fri, October 01st, 2015
+            return datetime.strptime(date, "%a, %B %dst, %Y").isoformat()
+        except:
+            pass
+
+        try:
+            # Friday, 2 October 2015, 18:23
+            return datetime.strptime(date, "%A, %d %B %Y, %H:%M").isoformat()
+        except:
+            pass
+
+        try:
+            # Thu October 01st, 2015
+            return datetime.strptime(date, "%a %B %dst, %Y").isoformat()
+        except:
+            pass
+
+        try:
+            # Thu October 02nd, 2015
+            return datetime.strptime(date, "%a %B %dnd, %Y").isoformat()
+        except:
+            pass
+
+        try:
+            # Thu October 03rd, 2015
+            return datetime.strptime(date, "%a %B %drd, %Y").isoformat()
+        except:
+            pass
+
+        try:
+            # Thu October 04th, 2015
+            return datetime.strptime(date, "%a %B %dth, %Y").isoformat()
+        except:
+            pass
+
+
+        try:
             return datetime.strptime(date, "%Y-%m-%d %H:%M:%S %Z").isoformat()
         except Exception:
             pass
