@@ -22,6 +22,28 @@ if posttime.strip() != '':
 return ''
 ```
 
+#### _iso_posttime2_
+From column: _crawl_data / context / timestamp_
+>``` python
+ts = getValue("timestamp")
+return DM.epoch_to_iso8601(ts)
+```
+
+#### _iso_crawltime_
+From column: _extractions / posttime / results / iso_posttime_
+>``` python
+return getValueFromNestedColumnByIndex("crawl_data", "context/iso_posttime2",0)
+```
+
+#### _iso_finaltime_
+From column: _extractions / posttime / results / iso_crawltime_
+>``` python
+posttime = getValue("iso_posttime")
+if posttime != '':
+    return posttime
+return getValue("iso_crawltime")
+```
+
 #### _domain_url_
 From column: _url_
 >``` python
@@ -32,22 +54,6 @@ return SM.get_website_domain_only(getValue("url"))
 From column: _domain_url_
 >``` python
 return 'organization/' + getValue("domain_url")
-```
-
-#### _iso_posttime2_
-From column: _crawl_data / context / timestamp_
->``` python
-ts = getValue("timestamp")
-return DM.epoch_to_iso8601(ts)
-```
-
-#### _email_uri_
-From column: _extractions / email / results / values_
->``` python
-email = SM.clean_email(getValue("values"))
-if email != '':
-    return 'email/' + email
-return ''
 ```
 
 #### _phone_uri_
@@ -62,46 +68,32 @@ if cc == '':
 return 'phone/' + cc + '-' + phone
 ```
 
-#### _iso_crawltime_
-From column: _extractions / posttime / results / values_
+#### _title_email_
+From column: _extractions / title / results / values_
 >``` python
-return getValueFromNestedColumnByIndex("crawl_data", "context/iso_posttime2",0)
-```
-
-#### _iso_finaltime_
-From column: _extractions / posttime / results / iso_posttime_
->``` python
-posttime = getValue("iso_posttime")
-if posttime != '':
-    return posttime
-return getValue("iso_crawltime")
-
+return EE.extract_email(getValue("values"), True)
 ```
 
 #### _text_email_
 From column: _extractions / text / results / clean_text_
 >``` python
-return extract_emails(getValue("values"))
+return EE.extract_email(getValue("clean_text"), True)
 ```
 
 #### _text_email_uri_
-From column: _extractions / text / results / text_email_splits / Values_
+From column: _extractions / text / results / text_email_split / Values_
 >``` python
-if getValue("Values") != '':
-    return 'email/' + getValue("Values")
-```
-
-#### _title_email_
-From column: _extractions / title / results / values_
->``` python
-return extract_emails(getValue("values"))
+email = getValue("Values")
+if email != '':
+    return 'email/' + email
 ```
 
 #### _title_email_uri_
-From column: _extractions / title / results / title_email_splits / Values_
+From column: _extractions / title / results / title_email_split / Values_
 >``` python
-if getValue("Values") != '':
-    return 'email/' + getValue("Values")
+email = getValue("Values")
+if email != '':
+    return 'email/' + email
 ```
 
 
@@ -126,7 +118,7 @@ if getValue("Values") != '':
 | `memex:EmailAddress1` | `memex:isMentionedIn` | `schema:WebPage1`|
 | `memex:EmailAddress2` | `memex:isMentionedIn` | `schema:WebPage1`|
 | `memex:PhoneNumber1` | `memex:isMentionedIn` | `schema:WebPage1`|
-| `schema:WebPage1` | `schema:mentions` | `memex:PhoneNumber1`|
-| `schema:WebPage1` | `schema:publisher` | `schema:Organization1`|
 | `schema:WebPage1` | `schema:mentions` | `memex:EmailAddress1`|
 | `schema:WebPage1` | `schema:mentions` | `memex:EmailAddress2`|
+| `schema:WebPage1` | `schema:mentions` | `memex:PhoneNumber1`|
+| `schema:WebPage1` | `schema:publisher` | `schema:Organization1`|
