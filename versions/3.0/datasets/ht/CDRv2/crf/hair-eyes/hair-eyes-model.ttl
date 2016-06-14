@@ -1,0 +1,425 @@
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix void: <http://rdfs.org/ns/void#> .
+@prefix schema: <http://schema.org/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix bibo: <http://purl.org/ontology/bibo/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix memex: <http://schema.dig.isi.edu/ontology/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix km-dev: <http://isi.edu/integration/karma/dev#> .
+
+_:node1al85l72rx1 a km-dev:R2RMLMapping ;
+	km-dev:sourceName "sample.jl" ;
+	km-dev:modelPublicationTime "1465931963483"^^xsd:long ;
+	km-dev:modelVersion "1.7" ;
+	km-dev:hasInputColumns "[[{\"columnName\":\"eyeColor_agg\"}],[{\"columnName\":\"hairType_agg\"}],[{\"columnName\":\"url\"}]]" ;
+	km-dev:hasOutputColumns "[[{\"columnName\":\"eyeColor_agg\"}],[{\"columnName\":\"hairType_agg\"}],[{\"columnName\":\"adultservice_uri\"}]]" ;
+	km-dev:hasModelLabel "sample.jl" ;
+	km-dev:hasBaseURI "http://localhost:8080/source/" ;
+	km-dev:hasWorksheetHistory """[
+    {
+        \"tags\": [\"Transformation\"],
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"url\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"value\": \"adultservice_uri\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"value\": \"return 'adultservice/' + SM.sha1_hash(getValue(\\\"url\\\").strip())\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"isJSONOutput\",
+                \"value\": \"false\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"url\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"adultservice_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SubmitPythonTransformationCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"hairType\"},
+                    {\"columnName\": \"values\"}
+                ],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"pythonCode\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"constructor\",
+                \"value\": \"concat('values', ' ')\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"value\": \"hairType_agg\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"hairType\\\"},{\\\"columnName\\\":\\\"values\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"AggregationPythonCommand\"
+    },
+    {
+        \"tags\": [\"Transformation\"],
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"eyeColor\"},
+                    {\"columnName\": \"values\"}
+                ],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"pythonCode\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"constructor\",
+                \"value\": \"concat('values', ' ')\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"value\": \"eyeColor_agg\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"eyeColor\\\"},{\\\"columnName\\\":\\\"values\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"AggregationPythonCommand\"
+    },
+    {
+        \"tags\": [\"SemanticType\"],
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"adultservice_uri\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyName\",
+                \"value\": \"isUriOfClass\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyUri\",
+                \"value\": \"http://schema.dig.isi.edu/ontology/AdultService\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"metaPropertyId\",
+                \"value\": \"http://schema.dig.isi.edu/ontology/AdultService1\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://isi.edu/integration/karma/dev#classLink\",
+                    \"DomainLabel\": \"memex:AdultService1 (add)\",
+                    \"DomainId\": \"http://schema.dig.isi.edu/ontology/AdultService1\",
+                    \"DomainUri\": \"http://schema.dig.isi.edu/ontology/AdultService\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": true,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"language\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"adultservice_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"adultservice_uri\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetMetaPropertyCommand\"
+    },
+    {
+        \"tags\": [\"SemanticType\"],
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"hairType_agg\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://schema.dig.isi.edu/ontology/hairColor\",
+                    \"DomainLabel\": \"memex:AdultService1\",
+                    \"DomainId\": \"http://schema.dig.isi.edu/ontology/AdultService1\",
+                    \"DomainUri\": \"http://schema.dig.isi.edu/ontology/AdultService\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": true,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"language\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"hairType_agg\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"hairType_agg\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetSemanticTypeCommand\"
+    },
+    {
+        \"tags\": [\"SemanticType\"],
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"eyeColor_agg\"}],
+                \"type\": \"hNodeId\"
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"value\": \"W\",
+                \"type\": \"worksheetId\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"value\": \"DEFAULT_TEST\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"value\": [{
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://schema.dig.isi.edu/ontology/eyeColor\",
+                    \"DomainLabel\": \"memex:AdultService1\",
+                    \"DomainId\": \"http://schema.dig.isi.edu/ontology/AdultService1\",
+                    \"DomainUri\": \"http://schema.dig.isi.edu/ontology/AdultService\"
+                }],
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"value\": true,
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"language\",
+                \"value\": \"\",
+                \"type\": \"other\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"eyeColor_agg\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"eyeColor_agg\\\"}]}]\",
+                \"type\": \"hNodeIdList\"
+            }
+        ],
+        \"commandName\": \"SetSemanticTypeCommand\"
+    }
+]""" .
+
+km-dev:TriplesMap_1e76cb78-74e2-42de-b277-d6568bc8c270 a rr:TriplesMap .
+
+_:node1al85l72rx1 km-dev:hasTriplesMap km-dev:TriplesMap_1e76cb78-74e2-42de-b277-d6568bc8c270 .
+
+km-dev:TriplesMap_1e76cb78-74e2-42de-b277-d6568bc8c270 km-dev:isPartOfMapping _:node1al85l72rx1 .
+
+_:node1al85l72rx2 rr:tableName "sample.jl" ;
+	a rr:LogicalTable ;
+	km-dev:isPartOfMapping _:node1al85l72rx1 .
+
+_:node1al85l72rx1 km-dev:hasLogicalTable _:node1al85l72rx2 .
+
+km-dev:TriplesMap_1e76cb78-74e2-42de-b277-d6568bc8c270 rr:logicalTable _:node1al85l72rx2 ;
+	rr:subjectMap _:node1al85l72rx3 .
+
+_:node1al85l72rx1 km-dev:hasSubjectMap _:node1al85l72rx3 .
+
+_:node1al85l72rx3 km-dev:isPartOfMapping _:node1al85l72rx1 ;
+	a rr:SubjectMap ;
+	km-dev:alignmentNodeId "http://schema.dig.isi.edu/ontology/AdultService1" ;
+	rr:class memex:AdultService ;
+	rr:template "{adultservice_uri}" ;
+	a km-dev:steinerTreeRootNode .
+
+km-dev:PredicateObjectMap_fdb83716-54b4-4f8f-ae06-aaf8330b59bb rr:predicate memex:eyeColor .
+
+_:node1al85l72rx4 rr:column "eyeColor_agg" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node1al85l72rx1 .
+
+_:node1al85l72rx1 km-dev:hasObjectMap _:node1al85l72rx4 .
+
+km-dev:PredicateObjectMap_fdb83716-54b4-4f8f-ae06-aaf8330b59bb rr:objectMap _:node1al85l72rx4 .
+
+km-dev:TriplesMap_1e76cb78-74e2-42de-b277-d6568bc8c270 rr:predicateObjectMap km-dev:PredicateObjectMap_fdb83716-54b4-4f8f-ae06-aaf8330b59bb .
+
+km-dev:PredicateObjectMap_fdb83716-54b4-4f8f-ae06-aaf8330b59bb a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node1al85l72rx1 .
+
+_:node1al85l72rx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_fdb83716-54b4-4f8f-ae06-aaf8330b59bb .
+
+km-dev:PredicateObjectMap_7a7360f0-fe66-47cc-ac03-df727a01758e rr:predicate memex:hairColor .
+
+_:node1al85l72rx5 rr:column "hairType_agg" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node1al85l72rx1 .
+
+_:node1al85l72rx1 km-dev:hasObjectMap _:node1al85l72rx5 .
+
+km-dev:PredicateObjectMap_7a7360f0-fe66-47cc-ac03-df727a01758e rr:objectMap _:node1al85l72rx5 .
+
+km-dev:TriplesMap_1e76cb78-74e2-42de-b277-d6568bc8c270 rr:predicateObjectMap km-dev:PredicateObjectMap_7a7360f0-fe66-47cc-ac03-df727a01758e .
+
+km-dev:PredicateObjectMap_7a7360f0-fe66-47cc-ac03-df727a01758e a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node1al85l72rx1 .
+
+_:node1al85l72rx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_7a7360f0-fe66-47cc-ac03-df727a01758e .
