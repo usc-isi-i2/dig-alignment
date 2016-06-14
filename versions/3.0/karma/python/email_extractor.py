@@ -119,7 +119,7 @@ class EE(object):
     username_regex = r"(" + basic_username_regex + r"|" + strict_username_regex + r")"
 
     email_regex = username_regex + dns_re
-    print email_regex
+    # print email_regex
 
     @staticmethod
     def clean_domain(regex_match):
@@ -182,8 +182,8 @@ class EE(object):
         clean_results = []
         for m in matches:
             clean_results.append(EE.clean_domain(m))
-            print("domains: "+', '.join(clean_results))
-        print "\n"
+            # print("domains: "+', '.join(clean_results))
+        # print "\n"
         return clean_results
 
     @staticmethod
