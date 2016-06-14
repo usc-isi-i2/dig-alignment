@@ -164,6 +164,9 @@ class EE(object):
         """
         username = string.strip()
         username = re.sub("[(]?dot[)]?", '.', username)
+        # paranoid sanity check to reject short user names.
+        if len(username) < 4:
+            return None
         return username
 
     @staticmethod
@@ -205,7 +208,7 @@ class EE(object):
             print "user: %s, domain: %s" % (u, d)
             domain = EE.clean_domain(d)
             username = EE.clean_username(u)
-            if domain:
+            if domain and username:
                 email = username + "@" + domain
                 clean_results.add(email)
                 # print ">>> %s" % email
