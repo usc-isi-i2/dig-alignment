@@ -49,7 +49,7 @@ return 'phone/' + cc + '-' + phone
 #### _text_email_
 From column: _extractions / text / results / values_
 >``` python
-return extract_emails(getValue("values"))
+return EE.extract_email(getValue("values"), True)
 ```
 
 #### _text_email_uri_
@@ -63,7 +63,7 @@ if email != '':
 #### _title_email_
 From column: _extractions / title / results / values_
 >``` python
-return extract_emails(getValue("values"))
+return EE.extract_email(getValue("values"), True)
 ```
 
 #### _title_email_uri_
