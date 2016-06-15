@@ -119,7 +119,7 @@ class EE(object):
     username_regex = r"(" + basic_username_regex + r"|" + strict_username_regex + r")"
 
     email_regex = username_regex + dns_re
-    # print email_regex
+    print email_regex
 
     @staticmethod
     def clean_domain(regex_match):
@@ -194,14 +194,14 @@ class EE(object):
         as a set
         :type return_as_string: Boolean
         """
-        string = string.lower().replace('\n', ' ').replace('\r', '')
-        line = re.sub(r"[*?]+", " ", string)
-        line = re.sub(r"\\n", " ", string)
+        line = string.lower().replace('\n', ' ').replace('\r', '')
+        line = re.sub(r"[*?]+", " ", line)
+        line = re.sub(r"\\n", " ", line)
         line = re.sub(r"\s+g\s+mail\s+", " gmail ", line)
         # print line
         #return EE.extract_domain(line)
 
-        matches = re.findall(EE.email_regex, string)
+        matches = re.findall(EE.email_regex, line)
 
         clean_results = Set()
         for (u, d) in matches:
@@ -209,7 +209,7 @@ class EE(object):
             domain = EE.clean_domain(d)
             username = EE.clean_username(u)
             if domain and username:
-                email = "ee_extractor_" + username + "@" + domain
+                email = username + "@" + domain
                 clean_results.add(email)
                 # print ">>> %s" % email
         if return_as_string:
