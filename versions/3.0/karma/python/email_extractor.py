@@ -209,7 +209,7 @@ class EE(object):
             domain = EE.clean_domain(d)
             username = EE.clean_username(u)
             if domain and username:
-                email = username + "@" + domain
+                email = "ee_extractor_" + username + "@" + domain
                 clean_results.add(email)
                 # print ">>> %s" % email
         if return_as_string:
@@ -249,9 +249,9 @@ if __name__ == '__main__':
             if len(emails) == 0:
                 print "~~~ no extractions"
             for e in emails:
+                found = True
                 if e in r["emails"]:
                     correct += 1
-                    found = True
                     print "+++ %s" % e
                 else:
                     if len(r["emails"]) > 0:
