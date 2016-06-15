@@ -49,7 +49,7 @@ return 'phone/' + cc + '-' + phone
 #### _text_email_
 From column: _extractions / text / results / values_
 >``` python
-return EE.extract_email(getValue("values"), True)
+return EE.extract_email(getValue("clean_text"), True)
 ```
 
 #### _text_email_uri_
@@ -72,6 +72,12 @@ From column: _extractions / title / results / title_email_split / Values_
 email = getValue("Values")
 if email != '':
     return 'email/' + email
+```
+
+#### _clean_text_
+From column: _extractions / text / results / values_
+>``` python
+return HM.clean_html_tags(getValue("values"))
 ```
 
 
