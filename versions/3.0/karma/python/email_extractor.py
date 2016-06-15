@@ -238,8 +238,11 @@ if __name__ == '__main__':
 
         correct = 0
         incorrect = 0
+        not_recalled = 0
         incorrectly_extracted = []
+        not_extracted = []
         for r in ground_truth:
+            found = False
             sentence = r["sentence"]
             # print "as string: %s" % EE.extract_email(sentence, True)
             emails = EE.extract_email(sentence)
@@ -248,6 +251,7 @@ if __name__ == '__main__':
             for e in emails:
                 if e in r["emails"]:
                     correct += 1
+                    found = True
                     print "+++ %s" % e
                 else:
                     if len(r["emails"]) > 0:
@@ -256,7 +260,12 @@ if __name__ == '__main__':
                         incorrectly_extracted.append(r)
                     print "--- got: %s, expected: %s" % (e, r["emails"])
                 print "\n"
+            if not found and len(r["emails"]) > 0:
+                not_recalled += 1
+                r["extracted"] = ""
+                not_extracted.append(r)
 
+        print json.dumps(not_extracted, indent=4)
         print json.dumps(incorrectly_extracted, indent=4)
-        print "\ncorrect %d, incorrect %d" % (correct, incorrect)
+        print "\ncorrect %d, incorrect %d, not extracted: %d" % (correct, incorrect, not_recalled)
         print len(ground_truth)
