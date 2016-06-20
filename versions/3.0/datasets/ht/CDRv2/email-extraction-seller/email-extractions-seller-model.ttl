@@ -1,0 +1,936 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix schema: <http://schema.org/> .
+@prefix memex: <http://schema.dig.isi.edu/ontology/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix void: <http://rdfs.org/ns/void#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix bibo: <http://purl.org/ontology/bibo/> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix km-dev: <http://isi.edu/integration/karma/dev#> .
+
+_:node1alnpj51kx1 a km-dev:R2RMLMapping ;
+	km-dev:sourceName "email-extractions-sample.jl" ;
+	km-dev:modelPublicationTime "1466456183860"^^xsd:long ;
+	km-dev:modelVersion "1.7" ;
+	km-dev:hasInputColumns "[[{\"columnName\":\"url\"}],[{\"columnName\":\"title_emails\"},{\"columnName\":\"values\"}],[{\"columnName\":\"text_emails\"},{\"columnName\":\"values\"}]]" ;
+	km-dev:hasOutputColumns "[[{\"columnName\":\"title_emails\"},{\"columnName\":\"url_email_uri\"}],[{\"columnName\":\"text_emails\"},{\"columnName\":\"text_email_uri\"}],[{\"columnName\":\"title_emails\"},{\"columnName\":\"values\"}],[{\"columnName\":\"seller_uri\"}],[{\"columnName\":\"text_emails\"},{\"columnName\":\"values\"}]]" ;
+	km-dev:hasModelLabel "email-extractions-seller-model" ;
+	km-dev:hasBaseURI "http://localhost:8080/source/" ;
+	km-dev:hasWorksheetHistory """[
+    {
+        \"commandName\": \"SetWorksheetPropertiesCommand\",
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"properties\",
+                \"type\": \"other\",
+                \"value\": {
+                    \"graphLabel\": \"email-extractions-seller-model\",
+                    \"hasBaseURI\": false,
+                    \"hasPrefix\": false,
+                    \"hasServiceProperties\": false
+                }
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            }
+        ],
+        \"tags\": [\"Transformation\"]
+    },
+    {
+        \"commandName\": \"SubmitPythonTransformationCommand\",
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"url\"}]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"type\": \"other\",
+                \"value\": \"seller_uri\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"type\": \"other\",
+                \"value\": \"return 'seller/' + SM.sha1_hash(getValue(\\\"url\\\").strip())\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"isJSONOutput\",
+                \"type\": \"other\",
+                \"value\": \"false\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"url\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"seller_uri\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"Transformation\"]
+    },
+    {
+        \"commandName\": \"SubmitPythonTransformationCommand\",
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"title_emails\"},
+                    {\"columnName\": \"values\"}
+                ]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"type\": \"other\",
+                \"value\": \"url_email_uri\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"type\": \"other\",
+                \"value\": \"return UM.email_uri(getValue(\\\"values\\\"))\\n\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"isJSONOutput\",
+                \"type\": \"other\",
+                \"value\": \"false\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"title_emails\\\"},{\\\"columnName\\\":\\\"values\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"title_emails\\\"},{\\\"columnName\\\":\\\"url_email_uri\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"Transformation\"]
+    },
+    {
+        \"commandName\": \"SubmitPythonTransformationCommand\",
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"text_emails\"},
+                    {\"columnName\": \"values\"}
+                ]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"type\": \"other\",
+                \"value\": \"text_email_uri\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"type\": \"other\",
+                \"value\": \"return UM.email_uri(getValue(\\\"values\\\"))\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"isJSONOutput\",
+                \"type\": \"other\",
+                \"value\": \"false\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"text_emails\\\"},{\\\"columnName\\\":\\\"values\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"text_emails\\\"},{\\\"columnName\\\":\\\"text_email_uri\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"Transformation\"]
+    },
+    {
+        \"commandName\": \"SetMetaPropertyCommand\",
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"seller_uri\"}]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"metaPropertyName\",
+                \"type\": \"other\",
+                \"value\": \"isUriOfClass\"
+            },
+            {
+                \"name\": \"metaPropertyUri\",
+                \"type\": \"other\",
+                \"value\": \"http://schema.dig.isi.edu/ontology/PersonOrOrganization\"
+            },
+            {
+                \"name\": \"metaPropertyId\",
+                \"type\": \"other\",
+                \"value\": \"http://schema.dig.isi.edu/ontology/PersonOrOrganization1\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"type\": \"other\",
+                \"value\": [{
+                    \"DomainUri\": \"http://schema.dig.isi.edu/ontology/PersonOrOrganization\",
+                    \"DomainId\": \"http://schema.dig.isi.edu/ontology/PersonOrOrganization1\",
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://isi.edu/integration/karma/dev#classLink\",
+                    \"DomainLabel\": \"memex:PersonOrOrganization1 (add)\"
+                }]
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"type\": \"other\",
+                \"value\": true
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"language\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"seller_uri\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"seller_uri\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"SemanticType\"]
+    },
+    {
+        \"commandName\": \"SetSemanticTypeCommand\",
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"text_emails\"},
+                    {\"columnName\": \"values\"}
+                ]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"type\": \"other\",
+                \"value\": [{
+                    \"DomainUri\": \"http://schema.dig.isi.edu/ontology/EmailAddress\",
+                    \"DomainId\": \"http://schema.dig.isi.edu/ontology/EmailAddress1\",
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://schema.org/name\",
+                    \"DomainLabel\": \"memex:EmailAddress1 (add)\"
+                }]
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"type\": \"other\",
+                \"value\": true
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"language\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"text_emails\\\"},{\\\"columnName\\\":\\\"values\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"text_emails\\\"},{\\\"columnName\\\":\\\"values\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"SemanticType\"]
+    },
+    {
+        \"commandName\": \"SetSemanticTypeCommand\",
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"title_emails\"},
+                    {\"columnName\": \"values\"}
+                ]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"type\": \"other\",
+                \"value\": [{
+                    \"DomainUri\": \"http://schema.dig.isi.edu/ontology/EmailAddress\",
+                    \"DomainId\": \"http://schema.dig.isi.edu/ontology/EmailAddress2\",
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://schema.org/name\",
+                    \"DomainLabel\": \"memex:EmailAddress2 (add)\"
+                }]
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"type\": \"other\",
+                \"value\": true
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"language\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"title_emails\\\"},{\\\"columnName\\\":\\\"values\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"title_emails\\\"},{\\\"columnName\\\":\\\"values\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"SemanticType\"]
+    },
+    {
+        \"commandName\": \"SetMetaPropertyCommand\",
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"title_emails\"},
+                    {\"columnName\": \"url_email_uri\"}
+                ]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"metaPropertyName\",
+                \"type\": \"other\",
+                \"value\": \"isUriOfClass\"
+            },
+            {
+                \"name\": \"metaPropertyUri\",
+                \"type\": \"other\",
+                \"value\": \"http://schema.dig.isi.edu/ontology/EmailAddress\"
+            },
+            {
+                \"name\": \"metaPropertyId\",
+                \"type\": \"other\",
+                \"value\": \"http://schema.dig.isi.edu/ontology/EmailAddress2\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"type\": \"other\",
+                \"value\": [{
+                    \"DomainUri\": \"http://schema.dig.isi.edu/ontology/EmailAddress\",
+                    \"DomainId\": \"http://schema.dig.isi.edu/ontology/EmailAddress2\",
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://isi.edu/integration/karma/dev#classLink\",
+                    \"DomainLabel\": \"memex:EmailAddress2\"
+                }]
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"type\": \"other\",
+                \"value\": true
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"language\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"title_emails\\\"},{\\\"columnName\\\":\\\"url_email_uri\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"title_emails\\\"},{\\\"columnName\\\":\\\"url_email_uri\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"SemanticType\"]
+    },
+    {
+        \"commandName\": \"SetMetaPropertyCommand\",
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"text_emails\"},
+                    {\"columnName\": \"text_email_uri\"}
+                ]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"metaPropertyName\",
+                \"type\": \"other\",
+                \"value\": \"isUriOfClass\"
+            },
+            {
+                \"name\": \"metaPropertyUri\",
+                \"type\": \"other\",
+                \"value\": \"http://schema.dig.isi.edu/ontology/EmailAddress\"
+            },
+            {
+                \"name\": \"metaPropertyId\",
+                \"type\": \"other\",
+                \"value\": \"http://schema.dig.isi.edu/ontology/EmailAddress1\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"type\": \"other\",
+                \"value\": [{
+                    \"DomainUri\": \"http://schema.dig.isi.edu/ontology/EmailAddress\",
+                    \"DomainId\": \"http://schema.dig.isi.edu/ontology/EmailAddress1\",
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://isi.edu/integration/karma/dev#classLink\",
+                    \"DomainLabel\": \"memex:EmailAddress1\"
+                }]
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"type\": \"other\",
+                \"value\": true
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"language\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"text_emails\\\"},{\\\"columnName\\\":\\\"text_email_uri\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"text_emails\\\"},{\\\"columnName\\\":\\\"text_email_uri\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"SemanticType\"]
+    },
+    {
+        \"commandName\": \"ChangeInternalNodeLinksCommand\",
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"initialEdges\",
+                \"type\": \"other\",
+                \"value\": []
+            },
+            {
+                \"name\": \"alignmentId\",
+                \"type\": \"other\",
+                \"value\": \"WSP3:WS5AL\"
+            },
+            {
+                \"name\": \"newEdges\",
+                \"type\": \"other\",
+                \"value\": [{
+                    \"edgeTargetId\": \"http://schema.dig.isi.edu/ontology/EmailAddress1\",
+                    \"edgeId\": \"http://schema.org/email\",
+                    \"edgeTargetUri\": \"http://schema.dig.isi.edu/ontology/EmailAddress\",
+                    \"edgeSourceId\": \"http://schema.dig.isi.edu/ontology/PersonOrOrganization1\",
+                    \"edgeSourceUri\": \"http://schema.dig.isi.edu/ontology/PersonOrOrganization\"
+                }]
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            }
+        ],
+        \"tags\": [\"Modeling\"]
+    },
+    {
+        \"commandName\": \"ChangeInternalNodeLinksCommand\",
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"initialEdges\",
+                \"type\": \"other\",
+                \"value\": []
+            },
+            {
+                \"name\": \"alignmentId\",
+                \"type\": \"other\",
+                \"value\": \"WSP3:WS5AL\"
+            },
+            {
+                \"name\": \"newEdges\",
+                \"type\": \"other\",
+                \"value\": [{
+                    \"edgeTargetId\": \"http://schema.dig.isi.edu/ontology/EmailAddress2\",
+                    \"edgeId\": \"http://schema.org/email\",
+                    \"edgeTargetUri\": \"http://schema.dig.isi.edu/ontology/EmailAddress\",
+                    \"edgeSourceId\": \"http://schema.dig.isi.edu/ontology/PersonOrOrganization1\",
+                    \"edgeSourceUri\": \"http://schema.dig.isi.edu/ontology/PersonOrOrganization\"
+                }]
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            }
+        ],
+        \"tags\": [\"Modeling\"]
+    },
+    {
+        \"commandName\": \"ChangeInternalNodeLinksCommand\",
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"initialEdges\",
+                \"type\": \"other\",
+                \"value\": []
+            },
+            {
+                \"name\": \"alignmentId\",
+                \"type\": \"other\",
+                \"value\": \"WSP3:WS161AL\"
+            },
+            {
+                \"name\": \"newEdges\",
+                \"type\": \"other\",
+                \"value\": [{
+                    \"edgeTargetId\": \"http://schema.dig.isi.edu/ontology/PersonOrOrganization1\",
+                    \"edgeId\": \"http://schema.dig.isi.edu/ontology/owner\",
+                    \"edgeTargetUri\": \"http://schema.dig.isi.edu/ontology/PersonOrOrganization\",
+                    \"edgeSourceId\": \"http://schema.dig.isi.edu/ontology/EmailAddress1\",
+                    \"edgeSourceUri\": \"http://schema.dig.isi.edu/ontology/EmailAddress\"
+                }]
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            }
+        ],
+        \"tags\": [\"Modeling\"]
+    },
+    {
+        \"commandName\": \"ChangeInternalNodeLinksCommand\",
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"initialEdges\",
+                \"type\": \"other\",
+                \"value\": []
+            },
+            {
+                \"name\": \"alignmentId\",
+                \"type\": \"other\",
+                \"value\": \"WSP3:WS161AL\"
+            },
+            {
+                \"name\": \"newEdges\",
+                \"type\": \"other\",
+                \"value\": [{
+                    \"edgeTargetId\": \"http://schema.dig.isi.edu/ontology/PersonOrOrganization1\",
+                    \"edgeId\": \"http://schema.dig.isi.edu/ontology/owner\",
+                    \"edgeTargetUri\": \"http://schema.dig.isi.edu/ontology/PersonOrOrganization\",
+                    \"edgeSourceId\": \"http://schema.dig.isi.edu/ontology/EmailAddress2\",
+                    \"edgeSourceUri\": \"http://schema.dig.isi.edu/ontology/EmailAddress\"
+                }]
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            }
+        ],
+        \"tags\": [\"Modeling\"]
+    }
+]""" .
+
+km-dev:TriplesMap_79a464f9-6680-4323-b1db-9caf74a20643 a rr:TriplesMap .
+
+_:node1alnpj51kx1 km-dev:hasTriplesMap km-dev:TriplesMap_79a464f9-6680-4323-b1db-9caf74a20643 .
+
+km-dev:TriplesMap_79a464f9-6680-4323-b1db-9caf74a20643 km-dev:isPartOfMapping _:node1alnpj51kx1 .
+
+_:node1alnpj51kx2 rr:tableName "email-extractions-sample.jl" ;
+	a rr:LogicalTable ;
+	km-dev:isPartOfMapping _:node1alnpj51kx1 .
+
+_:node1alnpj51kx1 km-dev:hasLogicalTable _:node1alnpj51kx2 .
+
+km-dev:TriplesMap_79a464f9-6680-4323-b1db-9caf74a20643 rr:logicalTable _:node1alnpj51kx2 ;
+	rr:subjectMap _:node1alnpj51kx3 .
+
+_:node1alnpj51kx1 km-dev:hasSubjectMap _:node1alnpj51kx3 .
+
+_:node1alnpj51kx3 km-dev:isPartOfMapping _:node1alnpj51kx1 ;
+	a rr:SubjectMap ;
+	km-dev:alignmentNodeId "http://schema.dig.isi.edu/ontology/EmailAddress1" ;
+	rr:class memex:EmailAddress ;
+	rr:template "{[\"text_emails\",\"text_email_uri\"]}" ;
+	a km-dev:steinerTreeRootNode .
+
+km-dev:PredicateObjectMap_07090437-639c-460d-a09e-3022db20a486 rr:predicate memex:owner .
+
+km-dev:RefObjectMap_ffeab7f1-9ea1-418c-8d8e-e85bd1bcb5e1 a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_2a8d148a-724a-49ce-8da5-6ed39ef908a4 ;
+	km-dev:isPartOfMapping _:node1alnpj51kx1 .
+
+_:node1alnpj51kx1 km-dev:hasObjectMap km-dev:RefObjectMap_ffeab7f1-9ea1-418c-8d8e-e85bd1bcb5e1 .
+
+km-dev:PredicateObjectMap_07090437-639c-460d-a09e-3022db20a486 rr:objectMap km-dev:RefObjectMap_ffeab7f1-9ea1-418c-8d8e-e85bd1bcb5e1 .
+
+km-dev:TriplesMap_79a464f9-6680-4323-b1db-9caf74a20643 rr:predicateObjectMap km-dev:PredicateObjectMap_07090437-639c-460d-a09e-3022db20a486 .
+
+km-dev:PredicateObjectMap_07090437-639c-460d-a09e-3022db20a486 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node1alnpj51kx1 .
+
+_:node1alnpj51kx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_07090437-639c-460d-a09e-3022db20a486 .
+
+km-dev:PredicateObjectMap_76dc3d9d-07df-4acd-9400-c2839ec2f3d2 rr:predicate schema:name .
+
+_:node1alnpj51kx4 rr:column "[\"text_emails\",\"values\"]" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node1alnpj51kx1 .
+
+_:node1alnpj51kx1 km-dev:hasObjectMap _:node1alnpj51kx4 .
+
+km-dev:PredicateObjectMap_76dc3d9d-07df-4acd-9400-c2839ec2f3d2 rr:objectMap _:node1alnpj51kx4 .
+
+km-dev:TriplesMap_79a464f9-6680-4323-b1db-9caf74a20643 rr:predicateObjectMap km-dev:PredicateObjectMap_76dc3d9d-07df-4acd-9400-c2839ec2f3d2 .
+
+km-dev:PredicateObjectMap_76dc3d9d-07df-4acd-9400-c2839ec2f3d2 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node1alnpj51kx1 .
+
+_:node1alnpj51kx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_76dc3d9d-07df-4acd-9400-c2839ec2f3d2 .
+
+km-dev:TriplesMap_2a8d148a-724a-49ce-8da5-6ed39ef908a4 a rr:TriplesMap .
+
+_:node1alnpj51kx1 km-dev:hasTriplesMap km-dev:TriplesMap_2a8d148a-724a-49ce-8da5-6ed39ef908a4 .
+
+km-dev:TriplesMap_2a8d148a-724a-49ce-8da5-6ed39ef908a4 km-dev:isPartOfMapping _:node1alnpj51kx1 .
+
+_:node1alnpj51kx5 rr:tableName "email-extractions-sample.jl" ;
+	a rr:LogicalTable ;
+	km-dev:isPartOfMapping _:node1alnpj51kx1 .
+
+_:node1alnpj51kx1 km-dev:hasLogicalTable _:node1alnpj51kx5 .
+
+km-dev:TriplesMap_2a8d148a-724a-49ce-8da5-6ed39ef908a4 rr:logicalTable _:node1alnpj51kx5 ;
+	rr:subjectMap _:node1alnpj51kx6 .
+
+_:node1alnpj51kx1 km-dev:hasSubjectMap _:node1alnpj51kx6 .
+
+_:node1alnpj51kx6 km-dev:isPartOfMapping _:node1alnpj51kx1 ;
+	a rr:SubjectMap ;
+	km-dev:alignmentNodeId "http://schema.dig.isi.edu/ontology/PersonOrOrganization1" ;
+	rr:class memex:PersonOrOrganization ;
+	rr:template "{seller_uri}" .
+
+km-dev:PredicateObjectMap_d998cfb7-414e-4176-8842-0a887149858c rr:predicate schema:email .
+
+km-dev:RefObjectMap_c8de2915-32e8-4a0d-a885-c9b4c3f63110 a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_ebbcf4f2-235b-4700-ac2d-3cb5cecc5ee5 ;
+	km-dev:isPartOfMapping _:node1alnpj51kx1 .
+
+_:node1alnpj51kx1 km-dev:hasObjectMap km-dev:RefObjectMap_c8de2915-32e8-4a0d-a885-c9b4c3f63110 .
+
+km-dev:PredicateObjectMap_d998cfb7-414e-4176-8842-0a887149858c rr:objectMap km-dev:RefObjectMap_c8de2915-32e8-4a0d-a885-c9b4c3f63110 .
+
+km-dev:TriplesMap_2a8d148a-724a-49ce-8da5-6ed39ef908a4 rr:predicateObjectMap km-dev:PredicateObjectMap_d998cfb7-414e-4176-8842-0a887149858c .
+
+km-dev:PredicateObjectMap_d998cfb7-414e-4176-8842-0a887149858c a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node1alnpj51kx1 .
+
+_:node1alnpj51kx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_d998cfb7-414e-4176-8842-0a887149858c .
+
+km-dev:PredicateObjectMap_d9354e31-7b09-4af7-884f-0520d55e28d3 rr:predicate schema:email .
+
+km-dev:RefObjectMap_1301b2a1-3bbb-4bbf-9fa5-779dc7c0c550 a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_79a464f9-6680-4323-b1db-9caf74a20643 ;
+	km-dev:isPartOfMapping _:node1alnpj51kx1 .
+
+_:node1alnpj51kx1 km-dev:hasObjectMap km-dev:RefObjectMap_1301b2a1-3bbb-4bbf-9fa5-779dc7c0c550 .
+
+km-dev:PredicateObjectMap_d9354e31-7b09-4af7-884f-0520d55e28d3 rr:objectMap km-dev:RefObjectMap_1301b2a1-3bbb-4bbf-9fa5-779dc7c0c550 .
+
+km-dev:TriplesMap_2a8d148a-724a-49ce-8da5-6ed39ef908a4 rr:predicateObjectMap km-dev:PredicateObjectMap_d9354e31-7b09-4af7-884f-0520d55e28d3 .
+
+km-dev:PredicateObjectMap_d9354e31-7b09-4af7-884f-0520d55e28d3 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node1alnpj51kx1 .
+
+_:node1alnpj51kx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_d9354e31-7b09-4af7-884f-0520d55e28d3 .
+
+km-dev:TriplesMap_ebbcf4f2-235b-4700-ac2d-3cb5cecc5ee5 a rr:TriplesMap .
+
+_:node1alnpj51kx1 km-dev:hasTriplesMap km-dev:TriplesMap_ebbcf4f2-235b-4700-ac2d-3cb5cecc5ee5 .
+
+km-dev:TriplesMap_ebbcf4f2-235b-4700-ac2d-3cb5cecc5ee5 km-dev:isPartOfMapping _:node1alnpj51kx1 .
+
+_:node1alnpj51kx7 rr:tableName "email-extractions-sample.jl" ;
+	a rr:LogicalTable ;
+	km-dev:isPartOfMapping _:node1alnpj51kx1 .
+
+_:node1alnpj51kx1 km-dev:hasLogicalTable _:node1alnpj51kx7 .
+
+km-dev:TriplesMap_ebbcf4f2-235b-4700-ac2d-3cb5cecc5ee5 rr:logicalTable _:node1alnpj51kx7 ;
+	rr:subjectMap _:node1alnpj51kx8 .
+
+_:node1alnpj51kx1 km-dev:hasSubjectMap _:node1alnpj51kx8 .
+
+_:node1alnpj51kx8 km-dev:isPartOfMapping _:node1alnpj51kx1 ;
+	a rr:SubjectMap ;
+	km-dev:alignmentNodeId "http://schema.dig.isi.edu/ontology/EmailAddress2" ;
+	rr:class memex:EmailAddress ;
+	rr:template "{[\"title_emails\",\"url_email_uri\"]}" .
+
+km-dev:PredicateObjectMap_806a5f44-9043-42a6-8bd2-1405445d151c rr:predicate memex:owner .
+
+km-dev:RefObjectMap_5cfd5ebf-133e-4e00-9ce2-082200fc0145 a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_2a8d148a-724a-49ce-8da5-6ed39ef908a4 ;
+	km-dev:isPartOfMapping _:node1alnpj51kx1 .
+
+_:node1alnpj51kx1 km-dev:hasObjectMap km-dev:RefObjectMap_5cfd5ebf-133e-4e00-9ce2-082200fc0145 .
+
+km-dev:PredicateObjectMap_806a5f44-9043-42a6-8bd2-1405445d151c rr:objectMap km-dev:RefObjectMap_5cfd5ebf-133e-4e00-9ce2-082200fc0145 .
+
+km-dev:TriplesMap_ebbcf4f2-235b-4700-ac2d-3cb5cecc5ee5 rr:predicateObjectMap km-dev:PredicateObjectMap_806a5f44-9043-42a6-8bd2-1405445d151c .
+
+km-dev:PredicateObjectMap_806a5f44-9043-42a6-8bd2-1405445d151c a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node1alnpj51kx1 .
+
+_:node1alnpj51kx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_806a5f44-9043-42a6-8bd2-1405445d151c .
+
+km-dev:PredicateObjectMap_e37d00cf-b0ac-423b-926d-7df998459231 rr:predicate schema:name .
+
+_:node1alnpj51kx9 rr:column "[\"title_emails\",\"values\"]" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node1alnpj51kx1 .
+
+_:node1alnpj51kx1 km-dev:hasObjectMap _:node1alnpj51kx9 .
+
+km-dev:PredicateObjectMap_e37d00cf-b0ac-423b-926d-7df998459231 rr:objectMap _:node1alnpj51kx9 .
+
+km-dev:TriplesMap_ebbcf4f2-235b-4700-ac2d-3cb5cecc5ee5 rr:predicateObjectMap km-dev:PredicateObjectMap_e37d00cf-b0ac-423b-926d-7df998459231 .
+
+km-dev:PredicateObjectMap_e37d00cf-b0ac-423b-926d-7df998459231 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node1alnpj51kx1 .
+
+_:node1alnpj51kx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_e37d00cf-b0ac-423b-926d-7df998459231 .
