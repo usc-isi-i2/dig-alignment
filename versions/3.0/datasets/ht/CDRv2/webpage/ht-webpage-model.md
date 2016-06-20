@@ -1,4 +1,4 @@
-## cdr_test_email.jl
+## cdr_with_name.jl
 
 ### PyTransforms
 #### _clean_phone_
@@ -122,9 +122,6 @@ return 'webpage/' + getValue("isi_id")
 | _domain_url_ | `schema:name` | `schema:Organization1`|
 | _iso_finaltime_ | `schema:dateCreated` | `schema:WebPage1`|
 | _organization_domain_uri_ | `uri` | `schema:Organization1`|
-| _phone_uri_ | `uri` | `memex:PhoneNumber1`|
-| _text_email_uri_ | `uri` | `memex:EmailAddress2`|
-| _title_email_uri_ | `uri` | `memex:EmailAddress1`|
 | _url_ | `schema:url` | `schema:WebPage1`|
 | _webpage_uri_ | `uri` | `schema:WebPage1`|
 
@@ -132,7 +129,4 @@ return 'webpage/' + getValue("isi_id")
 ### Links
 | From | Property | To |
 |  --- | -------- | ---|
-| `schema:WebPage1` | `schema:mentions` | `memex:EmailAddress1`|
-| `schema:WebPage1` | `schema:mentions` | `memex:EmailAddress2`|
-| `schema:WebPage1` | `schema:mentions` | `memex:PhoneNumber1`|
 | `schema:WebPage1` | `schema:publisher` | `schema:Organization1`|
