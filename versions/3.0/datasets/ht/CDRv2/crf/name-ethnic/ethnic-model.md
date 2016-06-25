@@ -1,4 +1,4 @@
-## sample.jl
+## ethnic_sample.jl
 
 ### PyTransforms
 #### _adultservice_uri_
@@ -12,7 +12,6 @@ return 'adultservice/' + SM.sha1_hash(getValue("url").strip())
 | Column | Property | Class |
 |  ----- | -------- | ----- |
 | _adultservice_uri_ | `uri` | `memex:AdultService1`|
-| _values_ | `memex:ethnicity` | `memex:AdultService1`|
 | _values_ | `memex:ethnicity` | `memex:AdultService1`|
 
 
