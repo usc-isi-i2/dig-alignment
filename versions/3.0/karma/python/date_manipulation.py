@@ -248,6 +248,7 @@ class DM(object):
         or            epoch (13 digit, indicating ms)
         or            epoch (10 digit, indicating sec)
         output format: iso8601"""
+        return "test-date"
         date = date.strip()
 
         if date_format:
