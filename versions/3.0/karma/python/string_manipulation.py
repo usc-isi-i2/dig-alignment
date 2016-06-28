@@ -2,7 +2,7 @@ __author__ = 'amandeep'
 
 import re
 import hashlib
-from urlparse import urlparse
+from urlparse import urlparse, urlsplit
 
 DOLLAR_PRICE_REGEXPS = [re.compile(r'''\$\s*(?:\d{1,3},\s?)*\d{1,3}(?:(?:\.\d+)|[KkMm])?''', re.IGNORECASE),
                         re.compile(r'''USD\s*\d{1,7}(?:\.\d+)?''', re.IGNORECASE),
@@ -151,7 +151,8 @@ class SM(object):
     @staticmethod
     def get_website_domain(url):
         """input www.google.com, output google.com"""
-        parsed_uri = urlparse(url)
+        parsed_uri = urlsplit(url)
+        # parsed_uri = urlparse(url)
         if parsed_uri:
             domain = parsed_uri.netloc
             if domain:
@@ -163,8 +164,8 @@ class SM(object):
     @staticmethod
     def get_website_domain_only(url):
         """input www.google.com, output google"""
-        # return "test-"+SM.get_website_domain(url)
-        return "domain-name"
+        return "test-"+SM.get_website_domain(url)
+        # return "domain-name"
 
     @staticmethod
     def get_dollar_prices(*texts):
