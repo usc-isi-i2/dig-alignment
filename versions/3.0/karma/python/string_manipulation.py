@@ -163,21 +163,7 @@ class SM(object):
     @staticmethod
     def get_website_domain_only(url):
         """input www.google.com, output google"""
-        parsed_uri = urlparse(url)
-        if parsed_uri:
-            domain = parsed_uri.netloc
-            if domain:
-                if domain.startswith("www."):
-                    domain = domain[4:]
-
-                idx = domain.find('.')
-                if idx != -1:
-                    domain2 = domain[idx+1:]
-                    if domain2.find('.') != -1:
-                        domain = domain2
-
-                return domain
-        return ''
+        return "test-"+SM.get_website_domain(url)
 
     @staticmethod
     def get_dollar_prices(*texts):
