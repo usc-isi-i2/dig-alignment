@@ -164,8 +164,7 @@ class SM(object):
     @staticmethod
     def get_website_domain_only(url):
         """input www.google.com, output google"""
-        return "test-"+SM.get_website_domain(url)
-        # return "domain-name"
+        return SM.get_website_domain(url)
 
     @staticmethod
     def get_dollar_prices(*texts):
