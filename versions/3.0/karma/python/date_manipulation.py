@@ -259,7 +259,7 @@ class DM(object):
 
         posttime = DM.posttime_date(date)
         if posttime:
-            return posttime
+            return "test-"+posttime
 
         try:
             return datetime.strptime(date, "%Y-%m-%d %H:%M:%S").isoformat()
@@ -366,7 +366,7 @@ class DM(object):
                 return datetime.fromtimestamp(mktime(gmtime(date))).isoformat()
         except:
             pass
-        # If all else fails, return input
+        # If all else fails, return empty
         return ''
 
 
