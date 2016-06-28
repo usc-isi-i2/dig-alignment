@@ -248,7 +248,6 @@ class DM(object):
         or            epoch (13 digit, indicating ms)
         or            epoch (10 digit, indicating sec)
         output format: iso8601"""
-        return "test-date"
         date = date.strip()
 
         if date_format:
@@ -398,13 +397,15 @@ class DM(object):
 
     @staticmethod
     def epoch_to_iso8601(timestamp):
-        ts = float(timestamp)
-        if len(timestamp) == 13:
-            ts = ts / 1000
-        elif len(timestamp) == 16:
-            ts = ts / 1000000
-        return datetime.fromtimestamp(ts).isoformat()
-
+        try:
+            ts = float(timestamp)
+            if len(timestamp) == 13:
+                ts = ts / 1000
+            elif len(timestamp) == 16:
+                ts = ts / 1000000
+            return "epoc-"+datetime.fromtimestamp(ts).isoformat()
+        except:
+            return "bad-timestamp"
 
     @staticmethod
     def get_year_from_iso_date(iso_date):
