@@ -195,7 +195,7 @@ class DM(object):
             return ''
 
     @staticmethod
-    def posttime_date(str):
+    def posttime_date(str, default_time):
         """"""
         str = str.lower().strip()
         tuples = re.findall(DM.adultservice_regex_day, str)
@@ -237,8 +237,22 @@ class DM(object):
         if (len(tuples) > 0):
             (m, d, y) = tuples[0]
             return DM.make_iso(y, m, d)
-        return ''
 
+        return default_time.isoformat()
+
+    @staticmethod
+    def date_created(posttime, crawl_time):
+        """
+        return DM.date_created(getValue("posttime_extraction"), getValue("timestamp"))
+        Construct iso time from posttime and crawl_time.
+        :param posttime: extracted string of posted data, in arbitrary format.
+        :type posttime: string
+        :param crawl_time: epoch of time when the page was crawled, known to be inaccurate.
+        :type crawl_time: string
+        :return: if posttime can be parsed, then return it, otherwise return the crawl_time
+        """
+        return DM.posttime_date(posttime, DM.epoch_to_datetime(crawl_time))
+    
     @staticmethod
     def iso8601date(date, date_format=None):
         """Convert a date to ISO8601 date format
@@ -396,16 +410,20 @@ class DM(object):
 
 
     @staticmethod
-    def epoch_to_iso8601(timestamp):
+    def epoch_to_datetime(timestamp):
         try:
             ts = float(timestamp)
             if len(timestamp) == 13:
                 ts = ts / 1000
             elif len(timestamp) == 16:
                 ts = ts / 1000000
-            return "epoc-"+datetime.fromtimestamp(ts).isoformat()
+            return datetime.fromtimestamp(ts)
         except:
-            return "bad-timestamp"
+            return None
+
+    @staticmethod
+    def epoch_to_iso8601(timestamp):
+        return DM.epoch_to_datetime(timestamp).isoformat()
 
     @staticmethod
     def get_year_from_iso_date(iso_date):
@@ -437,9 +455,11 @@ if __name__ == '__main__':
     filename = "../../test/posttime/classivox-dates.txt"
     filename = "../../test/posttime/liveescortreviews-dates.txt"
 
-    with open(filename, "r") as dates_file:
-        for d in dates_file.readlines():
-            print "l=%s" % d.strip().lower()
-            d = d.strip().lower()
-            date = DM.iso8601date(d)
-            print ">>>%s" % date
+    # with open(filename, "r") as dates_file:
+    #     for d in dates_file.readlines():
+    #         print "l=%s" % d.strip().lower()
+    #         d = d.strip().lower()
+    #         date = DM.iso8601date(d)
+    #         print ">>>%s" % date
+
+    print DM.date_created("Saturday, Aprddil 26th, 2014", "1399273701000")
