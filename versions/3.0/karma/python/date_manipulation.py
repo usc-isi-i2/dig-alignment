@@ -189,10 +189,10 @@ class DM(object):
             day = int(dd)
             year = int(yyyy)
             if year < 2008:
-                return None
+                return ''
             return datetime(year, month, day).isoformat()
         except Exception:
-            return None
+            return ''
 
     @staticmethod
     def posttime_date(str):
@@ -237,7 +237,7 @@ class DM(object):
         if (len(tuples) > 0):
             (m, d, y) = tuples[0]
             return DM.make_iso(y, m, d)
-        return None
+        return ''
 
     @staticmethod
     def iso8601date(date, date_format=None):
