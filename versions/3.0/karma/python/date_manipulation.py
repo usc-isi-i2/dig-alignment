@@ -238,6 +238,10 @@ class DM(object):
             (m, d, y) = tuples[0]
             return DM.make_iso(y, m, d)
 
+        last_ditch_parse = DM.iso8601date(str)
+        if last_ditch_parse:
+            return last_ditch_parse
+        
         return default_time.isoformat()
 
     @staticmethod
@@ -269,10 +273,6 @@ class DM(object):
                 return datetime.strptime(date, date_format).isoformat()
             except Exception:
                 pass
-
-        posttime = DM.posttime_date(date)
-        if posttime:
-            return "test-"+posttime
 
         try:
             return datetime.strptime(date, "%Y-%m-%d %H:%M:%S").isoformat()
