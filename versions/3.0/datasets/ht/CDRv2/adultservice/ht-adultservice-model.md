@@ -44,7 +44,6 @@ return SM.clean_ethnicity(getValue("values"))
 | _adultservice_uri_ | `uri` | `memex:AdultService1`|
 | _clean_age_ | `memex:age` | `memex:AdultService1`|
 | _clean_height_ | `schema:height` | `memex:AdultService1`|
-| _clean_name_ | `schema:name` | `memex:AdultService1`|
 | _clean_weight_ | `schema:weight` | `memex:AdultService1`|
 
 
