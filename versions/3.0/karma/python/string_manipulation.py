@@ -164,7 +164,16 @@ class SM(object):
     @staticmethod
     def get_website_domain_only(url):
         """input www.google.com, output google"""
-        return SM.get_website_domain(url)
+        netloc = SM.get_website_domain(url)
+        pieces = netloc.split('.')
+        if len(pieces) > 0:
+            if (len(pieces) == 3 and len(pieces[2]) == 2) or len(pieces) == 2:
+                return netloc
+            else:
+                return '.'.join(pieces[1:])
+
+        return netloc
+
 
     @staticmethod
     def get_dollar_prices(*texts):
