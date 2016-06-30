@@ -167,8 +167,13 @@ class SM(object):
         netloc = SM.get_website_domain(url)
         pieces = netloc.split('.')
         if len(pieces) > 0:
-            if (len(pieces) == 3 and len(pieces[2]) == 2) or len(pieces) == 2:
+            if len(pieces) == 2:
                 return netloc
+            if len(pieces) == 3 and len(pieces[2]) == 2:
+                if len(pieces[1]) <= 3:
+                    return netloc
+                else:
+                    return '.'.join(pieces[1:])
             else:
                 return '.'.join(pieces[1:])
 
@@ -418,3 +423,19 @@ class SM(object):
 
         except Exception, e:
             return None
+
+# if __name__ == "__main__":
+#     import codecs
+#     lines = codecs.open('urls', 'r', 'utf-8').readlines()
+#     unique_publishers = set()
+#     for line in lines:
+#         # print line
+#         idx = line.rfind(':')
+#         line = line[:idx]
+#         p = SM.get_website_domain_only(line).replace('\n', '')
+#         if not p or p == '':
+#             print line
+#         unique_publishers.add(p)
+#
+#     print unique_publishers
+
