@@ -179,6 +179,12 @@ memex:Phrase a owl:Class ;
 	skos:note """A memex simplification of skos:Concept.""" ;
 	.
 
+memex:TextExtraction a owl:Class ;
+	rdfs:label "TextExtraction" ;
+	rdfs:subClassOf schema:Intangible ;
+	rdfs:comment """Represents data extracted from a CreativeWork.""" ;
+	.
+
 memex:Topic a owl:Class ;
 	rdfs:label "Topic" ;
 	rdfs:subClassOf schema:Intangible ;
@@ -422,6 +428,14 @@ memex:hasPhrase a rdf:Property ;
         rdfs:comment """Identifies Phrases in a creative work. Text goes in schema:name.""" ;
         .
 
+memex:hasTextExtraction a rdf:Property ;
+        rdfs:label "hasTextExtraction" ;
+        schema:domainIncludes schema:CreativeWork ;
+        schema:rangeIncludes memex:TextExtraction ;
+        memex:jsonLD_container memex:JSONLD_Set ;
+        rdfs:comment """Identifies TextExtractions from a CreativeWork.""" ;
+        .
+        
 memex:isPhraseOf a rdf:Property ;
         rdfs:label "isPhraseOf" ;
         schema:domainIncludes schema:CreativeWork ;
@@ -579,24 +593,6 @@ memex:ethnicity a rdf:Property ;
 	schema:domainIncludes schema:Person ;
 	schema:rangeIncludes schema:Text ;
 	rdfs:comment """The ethnicity of a Person.""" ;
-	memex:jsonLD_container memex:JSONLD_Set ;
-	memex:es_directive memex:ES_not_analyzed ;
-	.
-
-memex:nationality a rdf:Property ; 
-	rdfs:label "nationality" ;
-	schema:domainIncludes schema:Person ;
-	schema:rangeIncludes schema:Text ;
-	rdfs:comment """The nationality of a Person.""" ;
-	memex:jsonLD_container memex:JSONLD_Set ;
-	memex:es_directive memex:ES_not_analyzed ;
-	.
-
-memex:gender a rdf:Property ; 
-	rdfs:label "gender" ;
-	schema:domainIncludes schema:Person ;
-	schema:rangeIncludes schema:Text ;
-	rdfs:comment """The gender of a Person.""" ;
 	memex:jsonLD_container memex:JSONLD_Set ;
 	memex:es_directive memex:ES_not_analyzed ;
 	.
@@ -858,6 +854,10 @@ schema:dateCreated
 	.
 
 schema:email memex:jsonLD_container memex:JSONLD_Set ;
+	memex:es_directive memex:ES_not_analyzed ;
+	.
+
+schema:gender memex:jsonLD_container memex:JSONLD_Set ;
 	memex:es_directive memex:ES_not_analyzed ;
 	.
 
