@@ -62,8 +62,8 @@ return 'seller/' + SM.sha1_hash(getValue("url").strip())
 | _location_ | `schema:addressLocality` | `schema:WebPage1`|
 | _name_ | `schema:name` | `schema:WebPage1`|
 | _nationality_ | `schema:nationality` | `schema:WebPage1`|
-| _obfuscation_ | `memex:isObfuscated` | `memex:EmailAddress1`|
 | _obfuscation_ | `memex:isObfuscated` | `memex:PhoneNumber1`|
+| _obfuscation_ | `memex:isObfuscated` | `memex:EmailAddress1`|
 | _physical_address_ | `schema:streetAddress` | `schema:WebPage1`|
 | _posting_date_ | `schema:dateCreated` | `schema:WebPage1`|
 | _price_nice_ | `schema:price` | `schema:WebPage1`|
@@ -77,8 +77,8 @@ return 'seller/' + SM.sha1_hash(getValue("url").strip())
 | _title_ | `schema:title` | `schema:WebPage1`|
 | _top_level_domain_ | `memex:top_level_domain` | `schema:WebPage1`|
 | _url_ | `schema:url` | `schema:WebPage1`|
-| _values_ | `memex:ethnicity` | `schema:WebPage1`|
 | _values_ | `schema:serviceType` | `schema:WebPage1`|
+| _values_ | `memex:ethnicity` | `schema:WebPage1`|
 | _webpage_uri_ | `uri` | `schema:WebPage1`|
 | _zipcode_ | `schema:postalCode` | `schema:WebPage1`|
 
@@ -86,7 +86,7 @@ return 'seller/' + SM.sha1_hash(getValue("url").strip())
 ### Links
 | From | Property | To |
 |  --- | -------- | ---|
-| `memex:EmailAddress1` | `memex:owner` | `memex:PersonOrOrganization1`|
-| `memex:PhoneNumber1` | `memex:owner` | `memex:PersonOrOrganization1`|
+| `memex:PersonOrOrganization1` | `schema:telephone` | `memex:PhoneNumber1`|
+| `memex:PersonOrOrganization1` | `schema:email` | `memex:EmailAddress1`|
 | `schema:WebPage1` | `schema:email` | `memex:EmailAddress1`|
 | `schema:WebPage1` | `schema:telephone` | `memex:PhoneNumber1`|
