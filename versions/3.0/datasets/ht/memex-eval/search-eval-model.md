@@ -89,4 +89,5 @@ return 'seller/' + SM.sha1_hash(getValue("url").strip())
 | `memex:PersonOrOrganization1` | `schema:telephone` | `memex:PhoneNumber1`|
 | `memex:PersonOrOrganization1` | `schema:email` | `memex:EmailAddress1`|
 | `schema:WebPage1` | `schema:email` | `memex:EmailAddress1`|
+| `schema:WebPage1` | `schema:seller` | `memex:PersonOrOrganization1`|
 | `schema:WebPage1` | `schema:telephone` | `memex:PhoneNumber1`|
