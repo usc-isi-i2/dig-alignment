@@ -103,14 +103,14 @@ class SM(object):
         return string[start:end+1]
 
     @staticmethod
-    def clean_age(x):
+    def clean_age(x, lower_bound=18, upper_bound=60):
         """Return the clean age"""
         stripped = x.strip().lower()
         """take only first value of any range"""
         stripped = stripped.split('-')[0].strip()
         try:
             age = int(stripped)
-            if age < 1 or age > 99:
+            if age <= lower_bound or age >= upper_bound:
                 return None
         except:
             return None
