@@ -462,4 +462,6 @@ if __name__ == '__main__':
     #         date = DM.iso8601date(d)
     #         print ">>>%s" % date
 
-    print DM.date_created("Saturday, Aprddil 26th, 2014", "1399273701000")
+    # print DM.date_created("Saturday, Aprddil 26th, 2014", "1399273701000")
+
+    print DM.date_created(""""HYDERABAD (07768032817 - 21\n\n    \n  \n\n\n  \n    Posted: \n    Monday, 11 January 2016, 21:36\n  \n\n  \n    \n\n  \n  \n""", "1399273701000")

@@ -43,6 +43,12 @@ From column: _url_
 return 'seller/' + SM.sha1_hash(getValue("url").strip())
 ```
 
+#### _readability_first_date_
+From column: _readability_text / values_
+>``` python
+return DM.date_created(getValue("values"),"0")
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
@@ -61,6 +67,7 @@ return 'seller/' + SM.sha1_hash(getValue("url").strip())
 | _obfuscation_ | `memex:isObfuscated` | `memex:PhoneNumber1`|
 | _physical_address_ | `schema:streetAddress` | `schema:WebPage1`|
 | _price_nice_ | `schema:price` | `schema:WebPage1`|
+| _readability_first_date_ | `schema:dateCreated` | `schema:WebPage1`|
 | _seller_uri_ | `uri` | `memex:PersonOrOrganization1`|
 | _site_ | `memex:review_site` | `schema:WebPage1`|
 | _telephone_ | `schema:name` | `memex:PhoneNumber1`|
@@ -69,10 +76,10 @@ return 'seller/' + SM.sha1_hash(getValue("url").strip())
 | _top_level_domain_ | `memex:top_level_domain` | `schema:WebPage1`|
 | _url_ | `schema:url` | `schema:WebPage1`|
 | _values_ | `memex:inferlink_text` | `schema:WebPage1`|
-| _values_ | `memex:eyeColor` | `schema:WebPage1`|
-| _values_ | `memex:review_site` | `schema:WebPage1`|
 | _values_ | `schema:serviceType` | `schema:WebPage1`|
 | _values_ | `memex:hairColor` | `schema:WebPage1`|
+| _values_ | `memex:eyeColor` | `schema:WebPage1`|
+| _values_ | `memex:review_site` | `schema:WebPage1`|
 | _values_ | `schema:dateCreated` | `schema:WebPage1`|
 | _values_ | `memex:price_per_hour` | `schema:WebPage1`|
 | _values_ | `memex:readability_text` | `schema:WebPage1`|
