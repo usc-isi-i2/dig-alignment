@@ -2,6 +2,7 @@ __author__ = 'amandeep'
 import calendar
 import re
 from datetime import datetime
+from datetime import date
 from time import mktime, gmtime
 
 
@@ -178,7 +179,7 @@ class DM(object):
     sipsap_regex_day = r"(" + months_long_regex + r")\s+(\d\d?)\w+\s+(\d\d\d\d)"
 
     @staticmethod
-    def make_iso(yyyy, mm, dd):
+    def make_iso(yyyy, mm, dd, format='time'):
         """Make an iso date.
         :param yyyy: the year as 4 digits
         :param mm: the month as a name or digits, looked up in
@@ -190,62 +191,73 @@ class DM(object):
             year = int(yyyy)
             if year < 2008:
                 return ''
-            return datetime(year, month, day).isoformat()
+            if format == 'time':
+                return datetime(year, month, day).isoformat()
+            else:
+                return date(year, month, day).isoformat()
         except Exception:
             return ''
 
     @staticmethod
-    def posttime_date(str, default_time):
+    def posttime_date(str, default_time, format='time'):
         """"""
         str = str.lower().strip()
         tuples = re.findall(DM.adultservice_regex_day, str)
         if (len(tuples) > 0):
             (m, d, y) = tuples[0]
-            return DM.make_iso(y, m, d)
+            return DM.make_iso(y, m, d, format)
 
         tuples = re.findall(DM.citiguide_regex_day, str)
         if (len(tuples) > 0):
             (m, d, y) = tuples[0]
-            return DM.make_iso(y, m, d)
+            return DM.make_iso(y, m, d, format)
 
         tuples = re.findall(DM.anunico_regex_day, str)
         if (len(tuples) > 0):
             (d, m, y) = tuples[0]
-            return DM.make_iso(y, m, d)
+            return DM.make_iso(y, m, d, format)
 
         tuples = re.findall(DM.craigslist_regex_day, str)
         if (len(tuples) > 0):
             (y, m, d) = tuples[0]
-            return DM.make_iso(y, m, d)
+            return DM.make_iso(y, m, d, format)
 
         tuples = re.findall(DM.backpage1_regex_day, str)
         if (len(tuples) > 0):
             (d, m, y) = tuples[0]
-            return DM.make_iso(y, m, d)
+            return DM.make_iso(y, m, d, format)
 
         tuples = re.findall(DM.backpage2_regex_day, str)
         if (len(tuples) > 0):
             (m, d, y) = tuples[0]
-            return DM.make_iso(y, m, d)
+            return DM.make_iso(y, m, d, format)
 
         tuples = re.findall(DM.myproviderguide_regex_day, str)
         if (len(tuples) > 0):
             (m, d, y) = tuples[0]
-            return DM.make_iso(y, m, d)
+            return DM.make_iso(y, m, d, format)
 
         tuples = re.findall(DM.sipsap_regex_day, str)
         if (len(tuples) > 0):
             (m, d, y) = tuples[0]
-            return DM.make_iso(y, m, d)
+            return DM.make_iso(y, m, d, format)
 
-        last_ditch_parse = DM.iso8601date(str)
+        last_ditch_parse = DM.iso8601date(str, format)
         if last_ditch_parse:
-            return last_ditch_parse
-        
-        return default_time.isoformat()
+            if format=='time':
+                return last_ditch_parse
+            else:
+                reparse_datetime = datetime.datetime.strptime(last_ditch_parse, "%Y-%m-%dT%H:%M:%S")
+                # reparse_datetime = dateutil.parser.parse(last_ditch_parse)
+                return reparse_datetime.date().isoformat()
+
+        if format == 'time':
+            return default_time.isoformat()
+        else:
+            return default_time.date().isoformat()
 
     @staticmethod
-    def date_created(posttime, crawl_time):
+    def date_created(posttime, crawl_time, format='time'):
         """
         return DM.date_created(getValue("posttime_extraction"), getValue("timestamp"))
         Construct iso time from posttime and crawl_time.
@@ -255,7 +267,7 @@ class DM(object):
         :type crawl_time: string
         :return: if posttime can be parsed, then return it, otherwise return the crawl_time
         """
-        return DM.posttime_date(posttime, DM.epoch_to_datetime(crawl_time))
+        return DM.posttime_date(posttime, DM.epoch_to_datetime(crawl_time), format)
     
     @staticmethod
     def iso8601date(date, date_format=None):
@@ -464,4 +476,5 @@ if __name__ == '__main__':
 
     # print DM.date_created("Saturday, Aprddil 26th, 2014", "1399273701000")
 
-    print DM.date_created(""""HYDERABAD (07768032817 - 21\n\n    \n  \n\n\n  \n    Posted: \n    Monday, 11 January 2016, 21:36\n  \n\n  \n    \n\n  \n  \n""", "1399273701000")
+    print DM.date_created(""""HYDERABAD (07768032817 - 21\n\n    \n  \n\n\n  \n    Posted: \n    Monday, 11 January 2016, 21:36\n  \n\n  \n    \n\n  \n  \n""", "1399273701000", 'time')
+    print DM.date_created("2016-01-11T00:00:00", "0", 'date')
