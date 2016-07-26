@@ -55,12 +55,14 @@ return 'seller/' + SM.sha1_hash(getValue("url").strip())
 | _drug_use_ | `memex:drug_use` | `schema:WebPage1`|
 | _email_ | `schema:name` | `memex:EmailAddress1`|
 | _email_uri_ | `uri` | `memex:EmailAddress1`|
+| _identifier_ | `memex:review_id` | `schema:WebPage1`|
 | _location_ | `schema:addressLocality` | `schema:WebPage1`|
 | _obfuscation_ | `memex:isObfuscated` | `memex:EmailAddress1`|
 | _obfuscation_ | `memex:isObfuscated` | `memex:PhoneNumber1`|
 | _physical_address_ | `schema:streetAddress` | `schema:WebPage1`|
 | _price_nice_ | `schema:price` | `schema:WebPage1`|
 | _seller_uri_ | `uri` | `memex:PersonOrOrganization1`|
+| _site_ | `memex:review_site` | `schema:WebPage1`|
 | _telephone_ | `schema:name` | `memex:PhoneNumber1`|
 | _telephone_uri_ | `uri` | `memex:PhoneNumber1`|
 | _title_ | `schema:title` | `schema:WebPage1`|
@@ -68,18 +70,17 @@ return 'seller/' + SM.sha1_hash(getValue("url").strip())
 | _url_ | `schema:url` | `schema:WebPage1`|
 | _values_ | `memex:inferlink_text` | `schema:WebPage1`|
 | _values_ | `memex:eyeColor` | `schema:WebPage1`|
-| _values_ | `schema:gender` | `schema:WebPage1`|
-| _values_ | `memex:hairColor` | `schema:WebPage1`|
-| _values_ | `schema:nationality` | `schema:WebPage1`|
 | _values_ | `memex:review_site` | `schema:WebPage1`|
+| _values_ | `schema:serviceType` | `schema:WebPage1`|
+| _values_ | `memex:hairColor` | `schema:WebPage1`|
 | _values_ | `schema:dateCreated` | `schema:WebPage1`|
 | _values_ | `memex:price_per_hour` | `schema:WebPage1`|
 | _values_ | `memex:readability_text` | `schema:WebPage1`|
 | _values_ | `schema:postalCode` | `schema:WebPage1`|
-| _values_ | `schema:serviceType` | `schema:WebPage1`|
+| _values_ | `schema:nationality` | `schema:WebPage1`|
 | _values_ | `memex:ethnicity` | `schema:WebPage1`|
-| _values_ | `memex:review_id` | `schema:WebPage1`|
 | _values_ | `schema:relatedLink` | `schema:WebPage1`|
+| _values_ | `schema:gender` | `schema:WebPage1`|
 | _webpage_uri_ | `uri` | `schema:WebPage1`|
 
 
