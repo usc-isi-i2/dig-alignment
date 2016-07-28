@@ -81,6 +81,7 @@ return DM.date_created(getValue("values"),"0",'date')
 | _title_ | `schema:title` | `schema:WebPage1`|
 | _top_level_domain_ | `memex:top_level_domain` | `schema:WebPage1`|
 | _url_ | `schema:url` | `schema:WebPage1`|
+| _values_ | `schema:name` | `schema:WebPage1`|
 | _values_ | `memex:inferlink_text` | `schema:WebPage1`|
 | _values_ | `schema:relatedLink` | `schema:WebPage1`|
 | _values_ | `memex:hairColor` | `schema:WebPage1`|
