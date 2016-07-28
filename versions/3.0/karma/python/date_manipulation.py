@@ -251,10 +251,13 @@ class DM(object):
                 # reparse_datetime = dateutil.parser.parse(last_ditch_parse)
                 return reparse_datetime.date().isoformat()
 
-        if format == 'time':
-            return default_time.isoformat()
+        if default_time > datetime(2000,1,1):
+            if format == 'time':
+                return default_time.isoformat()
+            else:
+                return default_time.date().isoformat()
         else:
-            return default_time.date().isoformat()
+            return ''
 
     @staticmethod
     def date_created(posttime, crawl_time, format='time'):
@@ -478,3 +481,4 @@ if __name__ == '__main__':
 
     print DM.date_created(""""HYDERABAD (07768032817 - 21\n\n    \n  \n\n\n  \n    Posted: \n    Monday, 11 January 2016, 21:36\n  \n\n  \n    \n\n  \n  \n""", "1399273701000", 'time')
     print DM.date_created("2016-01-11T00:00:00", "0", 'date')
+    print DM.date_created("2016xc sd-01-11T0sf0:00:00", "1", 'date')
