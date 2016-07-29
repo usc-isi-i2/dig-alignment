@@ -72,6 +72,7 @@ return DM.date_created(getValue("high_recall_readability_text"),"0",'date')
 | _email_ | `schema:name` | `memex:EmailAddress1`|
 | _email_uri_ | `uri` | `memex:EmailAddress1`|
 | _high_recall_posting_date_ | `memex:high_recall_readability_date` | `schema:WebPage1`|
+| _high_recall_readability_text_ | `memex:high_recall_readability_text` | `schema:WebPage1`|
 | _identifier_ | `memex:review_id` | `schema:WebPage1`|
 | _inferlink_postingdate_clean_ | `memex:inferlink_date` | `schema:WebPage1`|
 | _location_ | `schema:addressLocality` | `schema:WebPage1`|
