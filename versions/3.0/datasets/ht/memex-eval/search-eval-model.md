@@ -55,6 +55,12 @@ From column: _posting_date / values_
 return DM.date_created(getValue("values"),"0",'date')
 ```
 
+#### _high_recall_posting_date_
+From column: _high_recall_readability_text_
+>``` python
+return DM.date_created(getValue("high_recall_readability_text"),"0",'date')
+```
+
 
 ### Semantic Types
 | Column | Property | Class |
@@ -65,6 +71,7 @@ return DM.date_created(getValue("values"),"0",'date')
 | _description_ | `schema:description` | `schema:WebPage1`|
 | _email_ | `schema:name` | `memex:EmailAddress1`|
 | _email_uri_ | `uri` | `memex:EmailAddress1`|
+| _high_recall_posting_date_ | `memex:high_recall_readability_date` | `schema:WebPage1`|
 | _identifier_ | `memex:review_id` | `schema:WebPage1`|
 | _inferlink_postingdate_clean_ | `memex:inferlink_date` | `schema:WebPage1`|
 | _location_ | `schema:addressLocality` | `schema:WebPage1`|
@@ -80,18 +87,18 @@ return DM.date_created(getValue("values"),"0",'date')
 | _title_ | `schema:title` | `schema:WebPage1`|
 | _top_level_domain_ | `memex:top_level_domain` | `schema:WebPage1`|
 | _url_ | `schema:url` | `schema:WebPage1`|
+| _values_ | `schema:postalCode` | `schema:WebPage1`|
 | _values_ | `schema:name` | `schema:WebPage1`|
 | _values_ | `memex:inferlink_text` | `schema:WebPage1`|
-| _values_ | `schema:relatedLink` | `schema:WebPage1`|
 | _values_ | `memex:hairColor` | `schema:WebPage1`|
-| _values_ | `memex:price_per_hour` | `schema:WebPage1`|
-| _values_ | `schema:postalCode` | `schema:WebPage1`|
-| _values_ | `schema:nationality` | `schema:WebPage1`|
+| _values_ | `schema:relatedLink` | `schema:WebPage1`|
 | _values_ | `memex:ethnicity` | `schema:WebPage1`|
+| _values_ | `schema:nationality` | `schema:WebPage1`|
 | _values_ | `memex:drug_use` | `schema:WebPage1`|
+| _values_ | `memex:price_per_hour` | `schema:WebPage1`|
+| _values_ | `memex:business_type` | `schema:WebPage1`|
 | _values_ | `memex:eyeColor` | `schema:WebPage1`|
 | _values_ | `memex:review_site` | `schema:WebPage1`|
-| _values_ | `memex:business_type` | `schema:WebPage1`|
 | _values_ | `memex:readability_text` | `schema:WebPage1`|
 | _values_ | `schema:gender` | `schema:WebPage1`|
 | _values_ | `schema:serviceType` | `schema:WebPage1`|
@@ -101,8 +108,10 @@ return DM.date_created(getValue("values"),"0",'date')
 ### Links
 | From | Property | To |
 |  --- | -------- | ---|
+| `memex:EmailAddress1` | `memex:owner` | `memex:PersonOrOrganization1`|
 | `memex:PersonOrOrganization1` | `schema:telephone` | `memex:PhoneNumber1`|
 | `memex:PersonOrOrganization1` | `schema:email` | `memex:EmailAddress1`|
+| `memex:PhoneNumber1` | `memex:owner` | `memex:PersonOrOrganization1`|
 | `schema:WebPage1` | `schema:email` | `memex:EmailAddress1`|
 | `schema:WebPage1` | `schema:seller` | `memex:PersonOrOrganization1`|
 | `schema:WebPage1` | `schema:telephone` | `memex:PhoneNumber1`|
