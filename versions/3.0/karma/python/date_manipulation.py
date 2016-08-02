@@ -205,7 +205,7 @@ class DM(object):
             month = int(DM.months_dict[mm])
             day = int(dd)
             year = int(yyyy)
-            if year < 2008:
+            if year < 2008 or year > 2016:
                 return ''
             if format == 'time':
                 return datetime(year, month, day).isoformat()
