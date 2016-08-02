@@ -3,6 +3,7 @@ import calendar
 import re
 from datetime import datetime
 from datetime import date
+from datetime import timedelta
 from time import mktime, gmtime
 
 
@@ -145,7 +146,6 @@ class DM(object):
 
 
     months_long_regex = r"|".join(months_dict.keys())
-    print months_long_regex
     # Adult service regex
     # Thursday, September 4, 2014, 4:57 PM PST
     adultservice_regex_day = r"(" + months_long_regex + r")\s+(\d\d?),\s+(\d\d\d\d)"
@@ -178,6 +178,12 @@ class DM(object):
     # wednesday, april 16th, 2014
     sipsap_regex_day = r"(" + months_long_regex + r")\s+(\d\d?)\w+\s+(\d\d\d\d)"
 
+    # 9 days ago
+    days_relative_regex = r'(\b\d\d?)\s+days?\s+ago\b'
+
+    # 22 hours ago
+    hours_relative_regex = r'(\b\d\d?)\s+hours?\s+ago\b'
+
     @staticmethod
     def make_iso(yyyy, mm, dd, format='time'):
         """Make an iso date.
@@ -199,8 +205,40 @@ class DM(object):
             return ''
 
     @staticmethod
+    def datetime_to_iso(time, format='time'):
+        """"""
+        if format == 'time':
+            return time.isoformat()
+        else:
+            return time.date().isoformat()
+
+    @staticmethod
+    def extract_relative_date(str, base_time, format='time'):
+        """"""
+
+
+        try:
+            tuples = re.findall(DM.days_relative_regex, str)
+            if (len(tuples) > 0):
+                (days) = tuples[0]
+                base_time -= timedelta(days=int(days))
+                return DM.datetime_to_iso(base_time, format=format)
+            else:
+                tuples = re.findall(DM.hours_relative_regex, str)
+                if (len(tuples) > 0):
+                    (hours) = tuples[0]
+                    base_time -= timedelta(hours=int(hours))
+                    return DM.datetime_to_iso(base_time, format=format)
+        except:
+            return ''
+        return ''
+
+
+    @staticmethod
     def posttime_date(str, default_time, format='time'):
         """"""
+        # print "default_time ",
+        # print default_time
         str = str.lower().strip()
         tuples = re.findall(DM.adultservice_regex_day, str)
         if (len(tuples) > 0):
@@ -270,7 +308,8 @@ class DM(object):
         :type crawl_time: string
         :return: if posttime can be parsed, then return it, otherwise return the crawl_time
         """
-        return DM.posttime_date(posttime, DM.epoch_to_datetime(crawl_time), format)
+        x = datetime.strptime(crawl_time, "%Y-%m-%dT%H:%M:%S")
+        return DM.posttime_date(posttime, x, format)
     
     @staticmethod
     def iso8601date(date, date_format=None):
@@ -376,9 +415,15 @@ class DM(object):
             pass
 
         try:
+            return datetime.strptime(date, "%Y-%m-%dT%H:%M:%S").isoformat()
+        except:
+            pass
+
+        try:
             return datetime.strptime(date, "%Y-%m-%dT%H:%M:%SZ").isoformat()
         except:
             pass
+
         try:
             date = int(date)
             if 1000000000000 < date < 9999999999999:
@@ -479,6 +524,7 @@ if __name__ == '__main__':
 
     # print DM.date_created("Saturday, Aprddil 26th, 2014", "1399273701000")
 
-    print DM.date_created(""""HYDERABAD (07768032817 - 21\n\n    \n  \n\n\n  \n    Posted: \n    Monday, 11 January 2016, 21:36\n  \n\n  \n    \n\n  \n  \n""", "1399273701000", 'time')
-    print DM.date_created("2016-01-11T00:00:00", "0", 'date')
-    print DM.date_created("2016xc sd-01-11T0sf0:00:00", "1", 'date')
+    # print DM.date_created(""""HYDERABAD (07768032817 - 21\n\n    \n  \n\n\n  \n    Posted: \n    Monday, 11 January 2016, 21:36\n  \n\n  \n    \n\n  \n  \n""", "2016-06-27T19:58:11", 'time')
+    # print DM.date_created("2016-01-11T00:00:00", "2016-06-27T19:58:11", 'date')
+    # print DM.date_created("2016xc sd-01-11T0sf0:00:00", "2016-06-27T19:58:15", 'date')
+    print DM.extract_relative_date("Posted 9:99 days ago, etc posted 29 hours ago", datetime.now(), format='date')
