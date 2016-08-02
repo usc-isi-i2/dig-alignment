@@ -184,6 +184,16 @@ class DM(object):
     # 22 hours ago
     hours_relative_regex = r'(\b\d\d?)\s+hours?\s+ago\b'
 
+    # spanish backpage regex
+    # sábado, 9 de julio de 2016, 13:39
+    #  lunes, 27 de junio de 2016, 14:07
+    # lunes, 4 de julio de 2016, 9:01
+    backpage3_regex_day = r"(\d\d?)\s+de\s+(" + months_long_regex + r")\s+de\s+(\d\d\d\d)"
+
+    # european backpahe dates
+    # torsdag, 7. juli 2016, 12:01
+    backpage4_regex_day = r"(\d\d?)\.\s+(" + months_long_regex + r")\s+(\d\d\d\d)"
+
     @staticmethod
     def make_iso(yyyy, mm, dd, format='time'):
         """Make an iso date.
@@ -268,6 +278,16 @@ class DM(object):
         tuples = re.findall(DM.backpage2_regex_day, str)
         if (len(tuples) > 0):
             (m, d, y) = tuples[0]
+            return DM.make_iso(y, m, d, format)
+
+        tuples = re.findall(DM.backpage3_regex_day, str)
+        if len(tuples) > 0:
+            (d, m, y) = tuples[0]
+            return DM.make_iso(y, m, d, format)
+
+        tuples = re.findall(DM.backpage4_regex_day, str)
+        if len(tuples) > 0:
+            (d, m, y) = tuples[0]
             return DM.make_iso(y, m, d, format)
 
         tuples = re.findall(DM.myproviderguide_regex_day, str)
