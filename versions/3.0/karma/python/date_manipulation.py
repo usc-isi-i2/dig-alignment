@@ -213,7 +213,6 @@ class DM(object):
             else:
                 return date(year, month, day).isoformat()
         except Exception:
-            print "exception"
             return ''
 
     @staticmethod
@@ -277,7 +276,6 @@ class DM(object):
             (m, d) = tuples[0]
             return DM.make_iso(base_year, m, d, format)
 
-        print DM.date_month_relative_regex_4
         tuples = re.findall(DM.date_month_relative_regex_4, str)
         if (len(tuples) > 0):
             (m, d) = tuples[0]
