@@ -1,4 +1,3 @@
-# -​*- coding: UTF-8 -*​-
 __author__ = 'amandeep'
 
 import calendar
@@ -607,4 +606,5 @@ if __name__ == '__main__':
     # print DM.date_created("online: Jul 07, 00:44 \n  Posted: Fri. 1 Jul., 21:19 \n \n \n", "2016-06-27T19:58:11", 'date')
     print DM.date_created("online: Jul 07, 00:44 \n  ", "2016-06-27T19:58:11",
                           'date')
-
+    # 07 / 07 / 2016    136781205
+    # Last Updated:   2016-07-07 20:52:53
