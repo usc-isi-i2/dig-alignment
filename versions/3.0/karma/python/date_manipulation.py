@@ -1,3 +1,4 @@
+# -​*- coding: UTF-8 -*​-
 __author__ = 'amandeep'
 
 import calendar
@@ -213,6 +214,7 @@ class DM(object):
             else:
                 return date(year, month, day).isoformat()
         except Exception:
+            print "exception"
             return ''
 
     @staticmethod
@@ -223,9 +225,13 @@ class DM(object):
         else:
             return time.date().isoformat()
 
+    # 1 Jul
+    date_month_relative_regex = r"(\d\d?)\s+(" + months_long_regex + r")\b"
+
     @staticmethod
     def extract_relative_date(str, base_time, format='time'):
         """"""
+        str = str.lower().strip()
         try:
             tuples = re.findall(DM.days_relative_regex, str)
             if (len(tuples) > 0):
@@ -240,6 +246,19 @@ class DM(object):
                     return DM.datetime_to_iso(base_time, format=format)
         except:
             return ''
+
+        base_year = "2016"
+        try:
+            if base_time:
+                base_year = str(base_time.year)
+        except:
+            pass
+
+        tuples = re.findall(DM.date_month_relative_regex, str)
+        if (len(tuples) > 0):
+            (d, m) = tuples[0]
+            return DM.make_iso(base_year, m, d, format)
+
         return ''
 
 
@@ -556,8 +575,9 @@ if __name__ == '__main__':
     #print DM.date_created("Posted:Thursday, June 2, 2016 10:35 PM", "1399273701000", 'date')
 
     # print DM.date_created(""""HYDERABAD (07768032817 - 21\n\n    \n  \n\n\n  \n    Posted: \n    Monday, 11 January 2016, 21:36\n  \n\n  \n    \n\n  \n  \n""", "2016-06-27T19:58:11", 'time')
-    print DM.date_created("Posted:Thursday, June 2, 2016 10:35 PM", "2016-06-27T19:58:11", 'date')
+    # print DM.date_created("Posted:Thursday, June 2, 2016 10:35 PM", "2016-06-27T19:58:11", 'date')
     # print DM.date_created("2016xc sd-01-11T0sf0:00:00", "2016-06-27T19:58:15", 'date')
     # print DM.extract_relative_date("Posted 9:99 days ago, etc posted 29 hours ago", datetime.now(), format='date')
     # print DM.date_created("Posted:\r\n    Thursday, June 2, 2016 10:35 PM\r\n   \n \n \n \n \r\n      \r\n\r\n      \r\n\r\n      \r\n        \r\n        \r\n          Hey Guy's come ", "2016-06-27T19:58:11", 'date')
+    print DM.date_created("Posted: Fri. 1 Jul., 21:19 \n \n \n", "2016-06-27T19:58:11", 'date')
 
