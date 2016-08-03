@@ -228,6 +228,15 @@ class DM(object):
     # 1 Jul
     date_month_relative_regex = r"(\d\d?)\s+(" + months_long_regex + r")\b"
 
+    # 3. jul
+    date_month_relative_regex_2 = r"(\d\d?)\.\s+(" + months_long_regex + r")\b"
+
+    # Jul-01
+    date_month_relative_regex_3 = r"(" + months_long_regex + r")-(\d\d?)\b"
+
+    # Jun 25
+    date_month_relative_regex_4 = r"(" + months_long_regex + r")\s+(\d\d?)\b"
+
     @staticmethod
     def extract_relative_date(str, base_time, format='time'):
         """"""
@@ -257,6 +266,22 @@ class DM(object):
         tuples = re.findall(DM.date_month_relative_regex, str)
         if (len(tuples) > 0):
             (d, m) = tuples[0]
+            return DM.make_iso(base_year, m, d, format)
+
+        tuples = re.findall(DM.date_month_relative_regex_2, str)
+        if (len(tuples) > 0):
+            (d, m) = tuples[0]
+            return DM.make_iso(base_year, m, d, format)
+
+        tuples = re.findall(DM.date_month_relative_regex_3, str)
+        if (len(tuples) > 0):
+            (m, d) = tuples[0]
+            return DM.make_iso(base_year, m, d, format)
+
+        print DM.date_month_relative_regex_4
+        tuples = re.findall(DM.date_month_relative_regex_4, str)
+        if (len(tuples) > 0):
+            (m, d) = tuples[0]
             return DM.make_iso(base_year, m, d, format)
 
         return ''
@@ -579,5 +604,7 @@ if __name__ == '__main__':
     # print DM.date_created("2016xc sd-01-11T0sf0:00:00", "2016-06-27T19:58:15", 'date')
     # print DM.extract_relative_date("Posted 9:99 days ago, etc posted 29 hours ago", datetime.now(), format='date')
     # print DM.date_created("Posted:\r\n    Thursday, June 2, 2016 10:35 PM\r\n   \n \n \n \n \r\n      \r\n\r\n      \r\n\r\n      \r\n        \r\n        \r\n          Hey Guy's come ", "2016-06-27T19:58:11", 'date')
-    print DM.date_created("Posted: Fri. 1 Jul., 21:19 \n \n \n", "2016-06-27T19:58:11", 'date')
+    # print DM.date_created("online: Jul 07, 00:44 \n  Posted: Fri. 1 Jul., 21:19 \n \n \n", "2016-06-27T19:58:11", 'date')
+    print DM.date_created("online: Jul 07, 00:44 \n  ", "2016-06-27T19:58:11",
+                          'date')
 
