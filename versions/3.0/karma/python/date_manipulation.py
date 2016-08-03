@@ -1,4 +1,5 @@
 __author__ = 'amandeep'
+
 import calendar
 import re
 from datetime import datetime
@@ -215,8 +216,6 @@ class DM(object):
     @staticmethod
     def extract_relative_date(str, base_time, format='time'):
         """"""
-
-
         try:
             tuples = re.findall(DM.days_relative_regex, str)
             if (len(tuples) > 0):
@@ -236,7 +235,9 @@ class DM(object):
 
     @staticmethod
     def posttime_date(str, default_time, format='time'):
-        """"""
+        """
+        default_time can be None
+        """
         # print "default_time ",
         # print default_time
         str = str.lower().strip()
@@ -289,11 +290,14 @@ class DM(object):
                 # reparse_datetime = dateutil.parser.parse(last_ditch_parse)
                 return reparse_datetime.date().isoformat()
 
-        if default_time > datetime(2000,1,1):
-            if format == 'time':
-                return default_time.isoformat()
+        if default_time and default_time != '':
+            if default_time > datetime(2000,1,1):
+                if format == 'time':
+                    return default_time.isoformat()
+                else:
+                    return default_time.date().isoformat()
             else:
-                return default_time.date().isoformat()
+                return ''
         else:
             return ''
 
@@ -308,8 +312,15 @@ class DM(object):
         :type crawl_time: string
         :return: if posttime can be parsed, then return it, otherwise return the crawl_time
         """
-        x = datetime.strptime(crawl_time, "%Y-%m-%dT%H:%M:%S")
-        return DM.posttime_date(posttime, x, format)
+        default_time = None
+        try:
+            default_time = datetime.strptime(crawl_time, "%Y-%m-%dT%H:%M:%S")
+        except:
+            pass
+        parsed_date = DM.posttime_date(posttime, None, format)
+        if parsed_date == '':
+            parsed_date = DM.extract_relative_date(posttime, default_time, format)
+        return parsed_date
     
     @staticmethod
     def iso8601date(date, date_format=None):
@@ -522,9 +533,11 @@ if __name__ == '__main__':
     #         date = DM.iso8601date(d)
     #         print ">>>%s" % date
 
-    # print DM.date_created("Saturday, Aprddil 26th, 2014", "1399273701000")
+    #print DM.date_created("Posted:Thursday, June 2, 2016 10:35 PM", "1399273701000", 'date')
 
     # print DM.date_created(""""HYDERABAD (07768032817 - 21\n\n    \n  \n\n\n  \n    Posted: \n    Monday, 11 January 2016, 21:36\n  \n\n  \n    \n\n  \n  \n""", "2016-06-27T19:58:11", 'time')
-    # print DM.date_created("2016-01-11T00:00:00", "2016-06-27T19:58:11", 'date')
+    print DM.date_created("Posted:Thursday, June 2, 2016 10:35 PM", "2016-06-27T19:58:11", 'date')
     # print DM.date_created("2016xc sd-01-11T0sf0:00:00", "2016-06-27T19:58:15", 'date')
-    print DM.extract_relative_date("Posted 9:99 days ago, etc posted 29 hours ago", datetime.now(), format='date')
+    # print DM.extract_relative_date("Posted 9:99 days ago, etc posted 29 hours ago", datetime.now(), format='date')
+    # print DM.date_created("Posted:\r\n    Thursday, June 2, 2016 10:35 PM\r\n   \n \n \n \n \r\n      \r\n\r\n      \r\n\r\n      \r\n        \r\n        \r\n          Hey Guy's come ", "2016-06-27T19:58:11", 'date')
+
