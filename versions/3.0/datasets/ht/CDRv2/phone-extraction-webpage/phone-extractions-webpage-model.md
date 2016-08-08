@@ -37,13 +37,13 @@ return 'webpage/' + getValue("doc_id")
 |  ----- | -------- | ----- |
 | _text_phone_uri_ | `uri` | `memex:PhoneNumber1`|
 | _title_country_uri_ | `uri` | `memex:PhoneNumber2`|
-| _values_ | `schema:name` | `memex:PhoneNumber2`|
 | _values_ | `schema:name` | `memex:PhoneNumber1`|
+| _values_ | `schema:name` | `memex:PhoneNumber2`|
 | _webpage_uri_ | `uri` | `schema:WebPage1`|
 
 
 ### Links
 | From | Property | To |
 |  --- | -------- | ---|
-| `schema:WebPage1` | `schema:mentions` | `memex:PhoneNumber1`|
-| `schema:WebPage1` | `schema:mentions` | `memex:PhoneNumber2`|
+| `schema:WebPage1` | `memex:mentionsPhone` | `memex:PhoneNumber1`|
+| `schema:WebPage1` | `memex:mentionsPhone` | `memex:PhoneNumber2`|
