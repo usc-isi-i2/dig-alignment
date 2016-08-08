@@ -25,13 +25,13 @@ return UM.email_uri(getValue("values"))
 |  ----- | -------- | ----- |
 | _text_emails_uri_ | `uri` | `memex:EmailAddress1`|
 | _title_emails_uri_ | `uri` | `memex:EmailAddress2`|
-| _values_ | `schema:name` | `memex:EmailAddress2`|
 | _values_ | `schema:name` | `memex:EmailAddress1`|
+| _values_ | `schema:name` | `memex:EmailAddress2`|
 | _webpage_uri_ | `uri` | `schema:WebPage1`|
 
 
 ### Links
 | From | Property | To |
 |  --- | -------- | ---|
-| `schema:WebPage1` | `schema:mentions` | `memex:EmailAddress1`|
-| `schema:WebPage1` | `schema:mentions` | `memex:EmailAddress2`|
+| `schema:WebPage1` | `memex:mentionsEmail` | `memex:EmailAddress1`|
+| `schema:WebPage1` | `memex:mentionsEmail` | `memex:EmailAddress2`|
