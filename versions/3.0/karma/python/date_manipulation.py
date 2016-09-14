@@ -1,5 +1,6 @@
 __author__ = 'amandeep'
-from datetime import datetime
+import re
+from datetime import datetime, timedelta
 from time import mktime, gmtime
 import calendar
 
@@ -22,6 +23,18 @@ class DM(object):
 
         if date_format:
             try:
+                if date_format.find('%Z') != -1:
+                    date_format = date_format.replace('%Z', '')
+                    match_object = re.search('(([-+])(\d{2})(\d{2}))', date)
+                    tz = match_object.groups()
+
+                    dt = datetime.strptime(date.replace(tz[0], ''), date_format)
+                    delta = timedelta(hours=int(tz[2]), minutes=int(tz[3]))
+                    if tz[1] == '-': delta = delta * -1
+                    dt = dt + delta
+
+                    return dt.isoformat()
+                    
                 return datetime.strptime(date, date_format).isoformat()
             except Exception:
                 pass

@@ -1,0 +1,151 @@
+@prefix memex: <http://schema.dig.isi.edu/ontology/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix schema: <http://schema.org/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+
+#########################################################
+#
+# Classes
+#
+#########################################################
+
+memex:Vulnerability a owl:Class ;
+	rdfs:label "Vulnerability" ;
+	rdfs:subClassOf schema:Intangible ;
+	rdfs:comment """""" ;
+	.
+
+memex:CVSS a owl:Class ;
+	rdfs:label "CVSS" ;
+	rdfs:subClassOf schema:Intangible ;
+	rdfs:comment "CVSS represented as a structured object" ;
+	.
+
+memex:Exploit a owl:Class ;
+	rdfs:label "Exploit" ;
+	rdfs:subClassOf schema:CreativeWork ;
+	.
+
+#########################################################
+#
+# Properties
+#
+#########################################################
+
+# Vulnerability
+#
+
+memex:vulnerabilityOf a rdf:Property ;
+	rdfs:label "vulnerabilityOf" ;
+	schema:domainIncludes memex:Vulnerability ;
+	schema:rangeIncludes memex:SoftwareSystem ;
+	rdfs:comment "Specifies software contains this vulnerability" ;
+	.
+
+memex:hasVulnerability a rdf:Property ;
+	owl:inverseOf memex:vulnerabilityOf ;
+	.
+
+memex:hasCVSS a rdf:Property ;
+	rdfs:label "hasCVSS" ;
+	schema:domainIncludes memex:Vulnerability ;
+	schema:rangeIncludes memex:CVSS ;
+	.
+
+memex:scoreOf a rdf:Property ;
+	rdfs:label "scoreOf" ;
+	schema:domainIncludes memex:CVSS ;
+	schema:rangeIncludes memex:Vulnerability, memex:SoftwareSystem ;
+	.
+
+# CVSS
+#
+
+memex:availability a rdf:Property ;
+	rdfs:label "availability" ;
+	schema:domainIncludes memex:CVSS ;
+	schema:rangeIncludes schema:Text ;
+	.
+
+memex:integrity a rdf:Property ;
+	rdfs:label "integrity" ;
+	schema:domainIncludes memex:CVSS ;
+	schema:rangeIncludes schema:Text ;
+	.
+
+memex:accessVector a rdf:Property ;
+	rdfs:label "accessVector" ;
+	schema:domainIncludes memex:CVSS ;
+	schema:rangeIncludes schema:Text ;
+	.
+
+memex:authentication a rdf:Property ;
+	rdfs:label "authentication" ;
+	schema:domainIncludes memex:CVSS ;
+	schema:rangeIncludes schema:Text ;
+	.
+
+memex:complexity a rdf:Property ;
+	rdfs:label "authentication" ;
+	schema:domainIncludes memex:CVSS ;
+	schema:rangeIncludes schema:Text ;
+	.
+
+memex:confidentiality a rdf:Property ;
+	rdfs:label "authentication" ;
+	schema:domainIncludes memex:CVSS ;
+	schema:rangeIncludes schema:Text ;
+	.
+
+memex:score a rdf:Property ;
+	rdfs:label "cvssScore" ;
+	schema:domainIncludes memex:CVSS ;
+	schema:rangeIncludes schema:Float ;
+	.
+
+# Exploit
+#
+
+memex:hasSourceCode a rdf:Property ;
+	rdfs:label "hasSourceCode" ;
+	schema:domainIncludes memex:Exploit ;
+	schema:rangeIncludes schema:SoftwareSourceCode ;
+	.
+
+#########################################################
+#
+# Augmented subclass, domains/ranges of schema.org classes and properties
+#
+#########################################################
+
+schema:releaseDate a rdf:Property ;
+	schema:domainIncludes memex:SoftwareSystem ;
+	.
+
+schema:version a rdf:Property ;
+	schema:domainIncludes memex:SoftwareSystem ;
+	schema:rangeIncludes schema:Text ;
+	.
+
+schema:datePublished a rdf:Property ;
+	schema:domainIncludes memex:Vulnerability, memex:CVSS ;
+	schema:rangeIncludes schema:DateTime, schema:Date ;
+	.
+
+schema:dateModified a rdf:Property ;
+	schema:domainIncludes memex:Vulnerability, memex:CVSS ;
+	.
+
+schema:source a rdf:Property ;
+	rdfs:comment "A related resource from which the information is derived" ;
+	schema:domainIncludes memex:CVSS, memex:Vulnerability, memex:AttackEvent ;
+	.
+
+schema:target a rdf:Property ;
+	schema:domainIncludes memex:AttackEvent ;
+	schema:rangeIncludes memex:PersonOrOrganization ;
+	.
