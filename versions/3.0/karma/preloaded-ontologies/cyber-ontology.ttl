@@ -16,7 +16,7 @@
 memex:Vulnerability a owl:Class ;
 	rdfs:label "Vulnerability" ;
 	rdfs:subClassOf schema:Intangible ;
-	rdfs:comment """""" ;
+	rdfs:comment "A weakness which allows an attacker to reduce a system's information assurance" ;
 	.
 
 memex:CVSS a owl:Class ;
@@ -28,6 +28,7 @@ memex:CVSS a owl:Class ;
 memex:Exploit a owl:Class ;
 	rdfs:label "Exploit" ;
 	rdfs:subClassOf schema:CreativeWork ;
+	rdfs:command "Represent the one that takes advantage of a particular vulnerability" ;
 	.
 
 #########################################################
@@ -48,63 +49,74 @@ memex:vulnerabilityOf a rdf:Property ;
 
 memex:hasVulnerability a rdf:Property ;
 	owl:inverseOf memex:vulnerabilityOf ;
+	schema:rangeIncludes memex:Vulnerability ;
+	schema:domainIncludes memex:SoftwareSystem ;
+	rdfs:comment "Specifies vulnerabilities of a particular software system" ;
 	.
 
 memex:hasCVSS a rdf:Property ;
 	rdfs:label "hasCVSS" ;
 	schema:domainIncludes memex:Vulnerability ;
 	schema:rangeIncludes memex:CVSS ;
+	rdfs:comment "Tell if a vulnerability has a cvss" ;
 	.
 
-memex:scoreOf a rdf:Property ;
-	rdfs:label "scoreOf" ;
+memex:cvssScoreOf a rdf:Property ;
+	rdfs:label "cvssScoreOf" ;
 	schema:domainIncludes memex:CVSS ;
 	schema:rangeIncludes memex:Vulnerability, memex:SoftwareSystem ;
+	rdfs:comment "Indicate which vulnerability or software system has this cvss score" ;
 	.
 
 # CVSS
 #
 
-memex:availability a rdf:Property ;
-	rdfs:label "availability" ;
+memex:cvssAvailability a rdf:Property ;
+	rdfs:label "cvssAvailability" ;
+	schema:domainIncludes memex:CVSS ;
+	schema:rangeIncludes schema:Text ;
+	rdfs:comment "Describe the impact of a vulnerability on the availability of the target system" ;
+	.
+
+memex:cvssIntegrity a rdf:Property ;
+	rdfs:label "cvssIntegrity" ;
+	schema:domainIncludes memex:CVSS ;
+	schema:rangeIncludes schema:Text ;
+	rdfs:comment "Describe the impact of a vulnerability on the integrity of the target system" ;
+	.
+
+memex:cvssAccessVector a rdf:Property ;
+	rdfs:label "cvssAccessVector" ;
+	schema:domainIncludes memex:CVSS ;
+	schema:rangeIncludes schema:Text ;
+	rdfs:comment "Shows how a vulnerability may be exploited" ;
+	.
+
+memex:cvssAuthentication a rdf:Property ;
+	rdfs:label "cvssAuthentication" ;
+	schema:domainIncludes memex:CVSS ;
+	schema:rangeIncludes schema:Text ;
+	rdfs:comment "Describes the number of times that an attacker must authenticate to a target to exploit it" ;
+	.
+
+memex:cvssComplexity a rdf:Property ;
+	rdfs:label "cvssComplexity" ;
 	schema:domainIncludes memex:CVSS ;
 	schema:rangeIncludes schema:Text ;
 	.
 
-memex:integrity a rdf:Property ;
-	rdfs:label "integrity" ;
+memex:cvssConfidentiality a rdf:Property ;
+	rdfs:label "cvssConfidentiality" ;
 	schema:domainIncludes memex:CVSS ;
 	schema:rangeIncludes schema:Text ;
+	rdfs:comment "Describes the impact on the confidentiality of data processed by the system" ;
 	.
 
-memex:accessVector a rdf:Property ;
-	rdfs:label "accessVector" ;
-	schema:domainIncludes memex:CVSS ;
-	schema:rangeIncludes schema:Text ;
-	.
-
-memex:authentication a rdf:Property ;
-	rdfs:label "authentication" ;
-	schema:domainIncludes memex:CVSS ;
-	schema:rangeIncludes schema:Text ;
-	.
-
-memex:complexity a rdf:Property ;
-	rdfs:label "authentication" ;
-	schema:domainIncludes memex:CVSS ;
-	schema:rangeIncludes schema:Text ;
-	.
-
-memex:confidentiality a rdf:Property ;
-	rdfs:label "authentication" ;
-	schema:domainIncludes memex:CVSS ;
-	schema:rangeIncludes schema:Text ;
-	.
-
-memex:score a rdf:Property ;
+memex:cvssScore a rdf:Property ;
 	rdfs:label "cvssScore" ;
 	schema:domainIncludes memex:CVSS ;
 	schema:rangeIncludes schema:Float ;
+	rdfs:comment "Score of an cvss" ;
 	.
 
 # Exploit
@@ -114,6 +126,7 @@ memex:hasSourceCode a rdf:Property ;
 	rdfs:label "hasSourceCode" ;
 	schema:domainIncludes memex:Exploit ;
 	schema:rangeIncludes schema:SoftwareSourceCode ;
+	rdfs:comment "Source code of an exploit" ;
 	.
 
 #########################################################
