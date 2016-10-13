@@ -400,6 +400,8 @@ class DM(object):
                 if date_format.find('%Z') != -1:
                     date_format = date_format.replace('%Z', '')
                     match_object = re.search('(([-+])(\d{2})(\d{2}))', date)
+                    if match_object is None:
+                        match_object = re.search('(([-+])(\d{2}):(\d{2}))', date)
                     tz = match_object.groups()
 
                     dt = datetime.strptime(date.replace(tz[0], ''), date_format)
