@@ -47,9 +47,8 @@ memex:UserName a owl:Class ;
 	.
 
 memex:Password a owl:Class ;
-	rdfs:subClassOf memex:Appellation ;
 	rdfs:label "Password" ;
-	rdfs:comment """Represents the password that a person uses to authenticate with a SoftwareSystem """
+	rdfs:comment """Represents the password that a person uses to authenticate """
 	.
 
 memex:SoftwareSystem a owl:Class ;
@@ -336,6 +335,12 @@ memex:StructuredDate a owl:Class ;
 	rdfs:label "StructuredDate" ;
 	rdfs:subClassOf schema:Intangible ;
 	rdfs:comment """A date represented as a structured object.""" ;
+	.
+
+memex:LoginCredentials a owl:Class ;
+	rdfs:label "LoginCredentials" ;
+	rdfs:subClassOf schema:Intangible ;
+	rdfs:command "Represents login credentials of a person" ;
 	.
 
 #########################################################
@@ -759,24 +764,40 @@ memex:populationOfArea a rdf:Property ;
 
 memex:nameSHA1 a rdf:Property ;
 	rdfs:label "nameSHA1" ;
-	schema:domainIncludes memex:EmailAddress ;
 	schema:rangeIncludes schema:Text ;
-	rdfs:comment "SHA1 Hashed string of email address" ;
+	rdfs:comment "SHA1 Hashed string of name property" ;
 	.
 
-memex:nameSHA1 a rdf:Property ;
-	rdfs:label "nameSHA1" ;
-	schema:domainIncludes memex:Password ;
-	schema:rangeIncludes schema:Text ;
-	rdfs:comment "SHA1 Hashed string of password" ;
+
+#LoginCredentials
+#
+
+memex:username a rdf:Property ;
+	rdfs:label "username" ;
+	schema:domainIncludes memex:LoginCredentials ;
+	schema:rangeIncludes memex:UserName ;
+	rdfs:comment "Username details for login" ;
 	.
 
-memex:nameSHA1 a rdf:Property ;
-	rdfs:label "nameSHA1" ;
-	schema:domainIncludes memex:UserName ;
-	schema:rangeIncludes schema:Text ;
-	rdfs:comment "SHA1 Hashed string of username" ;
+memex:password a rdf:Property ;
+	rdfs:label "password" ;
+	schema:domainIncludes memex:LoginCredentials ;
+	schema:rangeIncludes memex:Password ;
+	rdfs:comment "Password for login" ;
 	.
+
+memex:hasLoginCredentials a rdf:Property ;
+	rdfs:label "hasLoginCredentials" ;
+	schema:rangeIncludes memex:LoginCredentials ;
+	rdfs:comment "has login credentials" ;
+	.
+
+memex:isLoginCredentialOf a rdf:Property ;
+	rdfs:label "isLoginCredentialOf" ;
+	schema:domainIncludes memex:LoginCredentials ;
+	rdfs:comment "organization for login" ;
+	.
+
 
 
 #########################################################
