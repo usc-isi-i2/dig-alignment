@@ -31,6 +31,12 @@ memex:Exploit a owl:Class ;
 	rdfs:command "Represent the one that takes advantage of a particular vulnerability" ;
 	.
 
+memex:LoginCredentials a owl:Class ;
+	rdfs:label "LoginCredentials" ;
+	rdfs:subClassOf schema:Intangible ;
+	rdfs:command "Represents login credentials of a person" ;
+	.
+
 #########################################################
 #
 # Properties
@@ -72,7 +78,7 @@ memex:hasExploit a rdf:Property ;
 	rdfs:label "hasExploit" ;
 	schema:domainIncludes memex:Vulnerability ;
 	schema:rangeIncludes memex:Exploit;
-	rdfs:comment "Exploits that are known to exploit a vulnerability" ;
+	rdfs:comment "Tell if a vulnerability has an exploit" ;
 	.
 
 # CVSS
@@ -140,8 +146,49 @@ memex:exploitsVulnerability a rdf:Property ;
 	rdfs:label "exploitsVulnerability" ;
 	schema:domainIncludes memex:Exploit;
 	schema:rangeIncludes memex:Vulnerability;
-	rdfs:comment "Vulnerabilities that an Exploit exploits" ;
+	rdfs:comment "Tell if exploit is exploting a vulnerability" ;
 	.
+
+memex:itemStolen a rdf:Property ;
+	rdfs:label "itemStolen" ;
+	schema:domainIncludes memex:Exploit;
+	schema:rangeIncludes memex:LoginCredentials;
+	rdfs:comment "Item stolen during an exploit" ;
+	.
+
+
+#LoginCredentials
+#
+
+memex:username a rdf:Property ;
+	rdfs:label "username" ;
+	schema:domainIncludes memex:LoginCredentials ;
+	schema:rangeIncludes memex:UserName ;
+	rdfs:comment "Username details for login" ;
+	.
+
+memex:password a rdf:Property ;
+	rdfs:label "password" ;
+	schema:domainIncludes memex:LoginCredentials ;
+	schema:rangeIncludes memex:Password ;
+	rdfs:comment "Password for login" ;
+	.
+
+memex:emailAddress a rdf:Property ;
+	rdfs:label "emailAddress" ;
+	schema:domainIncludes memex:LoginCredentials ;
+	schema:rangeIncludes memex:EmailAddress ;
+	rdfs:comment "email address for login" ;
+	.
+
+memex:organization a rdf:Property ;
+	rdfs:label "organization" ;
+	schema:domainIncludes memex:LoginCredentials ;
+	schema:rangeIncludes memex:PersonOrOrganization ;
+	rdfs:comment "organization for login" ;
+	.
+
+
 
 #########################################################
 #
