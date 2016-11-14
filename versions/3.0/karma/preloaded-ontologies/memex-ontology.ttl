@@ -141,6 +141,13 @@ memex:Preference a owl:Class ;
 	about a certain subject."""
 	.
 
+memex:Forum a owl:Class ;
+	rdfs:label "Forum" ;
+	rdfs:subClassOf schema:CreativeWork ;
+	rdfs:comment """ A discussion area on which Threads or entries are made. """ ;
+	skos:note """Equivalent to sioc:Forum""" ;
+	.
+
 memex:Thread a owl:Class ;
 	rdfs:label "Thread" ;
 	rdfs:subClassOf schema:CreativeWork ;
@@ -792,10 +799,64 @@ memex:hasLoginCredentials a rdf:Property ;
 	rdfs:comment "has login credentials" ;
 	.
 
-memex:isLoginCredentialOf a rdf:Property ;
-	rdfs:label "isLoginCredentialOf" ;
+memex:isLoginCredentialFor a rdf:Property ;
+	rdfs:label "isLoginCredentialFor" ;
 	schema:domainIncludes memex:LoginCredentials ;
 	rdfs:comment "organization for login" ;
+	.
+
+#Threads
+#
+
+memex:hasThread a rdf:Property ;
+	rdfs:label "hasThread" ;
+	schema:domainIncludes memex:Forum ;
+	schema:rangeIncludes memex:Thread ;
+	rdfs:comment "Forum has a thread" ;
+	.
+
+
+memex:partOfForum a rdf:Property ;
+	rdfs:label "partOfForum" ;
+	schema:domainIncludes memex:Thread ;
+	schema:rangeIncludes memex:Forum ;
+	rdfs:comment "Thread is part of a Forum" ;
+	.
+
+#Topics
+#
+
+memex:hasTopic a rdf:Property ;
+	rdfs:label "hasTopic" ;
+	schema:domainIncludes memex:Thread ;
+	schema:rangeIncludes memex:Topic ;
+	rdfs:comment "Thread has a topic" ;
+	.
+
+
+memex:partOfThread a rdf:Property ;
+	rdfs:label "partOfThread" ;
+	schema:domainIncludes memex:Topic ;
+	schema:rangeIncludes memex:Thread ;
+	rdfs:comment "Topic is part of a thread" ;
+	.
+
+#Posts
+#
+
+
+memex:hasPost a rdf:Property ;
+	rdfs:label "hasTopic" ;
+	schema:domainIncludes memex:Topic ;
+	schema:rangeIncludes memex:Post ;
+	rdfs:comment "Topic has a post" ;
+	.
+
+memex:partOfTopic a rdf:Property ;
+	rdfs:label "partOfTopic" ;
+	schema:domainIncludes memex:Post ;
+	schema:rangeIncludes memex:Topic ;
+	rdfs:comment "Post is part of a topic" ;
 	.
 
 
