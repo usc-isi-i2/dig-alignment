@@ -396,23 +396,7 @@ memex:isImagePartOf a rdf:Property ;
 	rdfs:comment """Identifies a schema:CreativeWork that an image is a part of.""" ; 
 	.
 
-memex:hasPost a rdf:Property ; 
-	rdfs:label "hasPost" ;
-	rdfs:subPropertyOf schema:hasPart ;
-	schema:domainIncludes schema:CreativeWork ;
-	schema:rangeIncludes memex:Post ;
-	memex:jsonLD_container memex:JSONLD_Set ;
-	rdfs:comment """Identifies a post belonging to a memex:Thread.""" ;
-	.
 
-memex:isPostOf a rdf:Property ; 
-	rdfs:label "isPostOf" ;
-	rdfs:subPropertyOf schema:isPartOf ;
-	schema:domainIncludes memex:Post ;
-	schema:rangeIncludes schema:CreativeWork ;
-	owl:inverseOf memex:hasPost ;
-	rdfs:comment """Identifies the creative work that a post is a part of.""" ;
-	.
 
 memex:abstract a rdf:Property ; 
 	rdfs:label "abstract" ;
@@ -808,57 +792,65 @@ memex:isLoginCredentialFor a rdf:Property ;
 #Threads
 #
 
-memex:hasThread a rdf:Property ;
+memex:hasThread a rdf:Property ; 
 	rdfs:label "hasThread" ;
-	schema:domainIncludes memex:Forum ;
+	rdfs:subPropertyOf schema:hasPart ;
+	schema:domainIncludes schema:CreativeWork ;
 	schema:rangeIncludes memex:Thread ;
-	rdfs:comment "Forum has a thread" ;
+	memex:jsonLD_container memex:JSONLD_Set ;
+	rdfs:comment """Identifies a thread belonging to a creative work.""" ;
 	.
 
-
-memex:partOfForum a rdf:Property ;
-	rdfs:label "partOfForum" ;
+memex:isThreadOf a rdf:Property ; 
+	rdfs:label "isThreadOf" ;
+	rdfs:subPropertyOf schema:isPartOf ;
 	schema:domainIncludes memex:Thread ;
-	schema:rangeIncludes memex:Forum ;
-	rdfs:comment "Thread is part of a Forum" ;
+	schema:rangeIncludes schema:CreativeWork ;
+	owl:inverseOf memex:hasThread ;
+	rdfs:comment """Identifies the creative work that a thread is a part of.""" ;
 	.
 
-#Topics
+#Topic
 #
 
-memex:hasTopic a rdf:Property ;
+memex:hasTopic a rdf:Property ; 
 	rdfs:label "hasTopic" ;
-	schema:domainIncludes memex:Thread ;
+	rdfs:subPropertyOf schema:hasPart ;
+	schema:domainIncludes schema:CreativeWork ;
 	schema:rangeIncludes memex:Topic ;
-	rdfs:comment "Thread has a topic" ;
+	memex:jsonLD_container memex:JSONLD_Set ;
+	rdfs:comment """Identifies a topic belonging to a creative work .""" ;
 	.
 
-
-memex:partOfThread a rdf:Property ;
-	rdfs:label "partOfThread" ;
+memex:isTopicOf a rdf:Property ; 
+	rdfs:label "isTopicOf" ;
+	rdfs:subPropertyOf schema:isPartOf ;
 	schema:domainIncludes memex:Topic ;
-	schema:rangeIncludes memex:Thread ;
-	rdfs:comment "Topic is part of a thread" ;
+	schema:rangeIncludes schema:CreativeWork ;
+	owl:inverseOf memex:hasTopic ;
+	rdfs:comment """Identifies the creative work that a topic is a part of.""" ;
 	.
 
-#Posts
+#Post
 #
 
-
-memex:hasPost a rdf:Property ;
-	rdfs:label "hasTopic" ;
-	schema:domainIncludes memex:Topic ;
+memex:hasPost a rdf:Property ; 
+	rdfs:label "hasPost" ;
+	rdfs:subPropertyOf schema:hasPart ;
+	schema:domainIncludes schema:CreativeWork ;
 	schema:rangeIncludes memex:Post ;
-	rdfs:comment "Topic has a post" ;
+	memex:jsonLD_container memex:JSONLD_Set ;
+	rdfs:comment """Identifies a post belonging to a creative work.""" ;
 	.
 
-memex:partOfTopic a rdf:Property ;
-	rdfs:label "partOfTopic" ;
+memex:isPostOf a rdf:Property ; 
+	rdfs:label "isPostOf" ;
+	rdfs:subPropertyOf schema:isPartOf ;
 	schema:domainIncludes memex:Post ;
-	schema:rangeIncludes memex:Topic ;
-	rdfs:comment "Post is part of a topic" ;
+	schema:rangeIncludes schema:CreativeWork ;
+	owl:inverseOf memex:hasPost ;
+	rdfs:comment """Identifies the creative work that a post is a part of.""" ;
 	.
-
 
 
 #########################################################
