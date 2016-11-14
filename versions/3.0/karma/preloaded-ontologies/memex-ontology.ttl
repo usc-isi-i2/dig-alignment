@@ -44,6 +44,11 @@ memex:UserName a owl:Class ;
 	rdfs:comment """Represents the user name or login name that a person uses to authenticate with a SoftwareSystem. UserName should appear as an identifier of a PersonOrOrganization. The hasType property should be used to specify the type of UserName, e.g., twitter. The softwareSystem property can be used to provide additional information about the software system associated with a UserName. The url property should be used to represent the login page, if relevant. """
 	.
 
+memex:Password a owl:Class ;
+	rdfs:label "Password" ;
+	rdfs:comment """Represents the password that a person uses to authenticate """
+	.
+
 memex:SoftwareSystem a owl:Class ;
 	rdfs:subClassOf schema:Intangible ;
 	rdfs:label "SoftwareSystem" ;
@@ -132,6 +137,13 @@ memex:Preference a owl:Class ;
 	rdfs:label "Preference" ;
 	rdfs:comment """Represents a preference that af Person or Organization may have
 	about a certain subject."""
+	.
+
+memex:Forum a owl:Class ;
+	rdfs:label "Forum" ;
+	rdfs:subClassOf schema:CreativeWork ;
+	rdfs:comment """ A discussion area on which Threads or entries are made. """ ;
+	skos:note """Equivalent to sioc:Forum""" ;
 	.
 
 memex:Thread a owl:Class ;
@@ -336,6 +348,12 @@ memex:StructuredDate a owl:Class ;
 	rdfs:comment """A date represented as a structured object.""" ;
 	.
 
+memex:LoginCredentials a owl:Class ;
+	rdfs:label "LoginCredentials" ;
+	rdfs:subClassOf schema:Intangible ;
+	rdfs:command "Represents login credentials of a person" ;
+	.
+
 #########################################################
 #
 # Properties
@@ -376,23 +394,7 @@ memex:isImagePartOf a rdf:Property ;
 	rdfs:comment """Identifies a schema:CreativeWork that an image is a part of.""" ; 
 	.
 
-memex:hasPost a rdf:Property ; 
-	rdfs:label "hasPost" ;
-	rdfs:subPropertyOf schema:hasPart ;
-	schema:domainIncludes schema:CreativeWork ;
-	schema:rangeIncludes memex:Post ;
-	memex:jsonLD_container memex:JSONLD_Set ;
-	rdfs:comment """Identifies a post belonging to a memex:Thread.""" ;
-	.
 
-memex:isPostOf a rdf:Property ; 
-	rdfs:label "isPostOf" ;
-	rdfs:subPropertyOf schema:isPartOf ;
-	schema:domainIncludes memex:Post ;
-	schema:rangeIncludes schema:CreativeWork ;
-	owl:inverseOf memex:hasPost ;
-	rdfs:comment """Identifies the creative work that a post is a part of.""" ;
-	.
 
 memex:abstract a rdf:Property ; 
 	rdfs:label "abstract" ;
@@ -843,6 +845,100 @@ memex:mentionsEmail a rdf:Property ;
 	memex:es_directive memex:ES_not_analyzed ;
 	.
 
+memex:nameSHA1 a rdf:Property ;
+	rdfs:label "nameSHA1" ;
+	schema:rangeIncludes schema:Text ;
+	rdfs:comment "SHA1 Hashed string of name property" ;
+	.
+
+#LoginCredentials
+#
+memex:username a rdf:Property ;
+	rdfs:label "username" ;
+	schema:domainIncludes memex:LoginCredentials ;
+	schema:rangeIncludes memex:UserName ;
+	rdfs:comment "Username details for login" ;
+	.
+
+memex:password a rdf:Property ;
+	rdfs:label "password" ;
+	schema:domainIncludes memex:LoginCredentials ;
+	schema:rangeIncludes memex:Password ;
+	rdfs:comment "Password for login" ;
+	.
+
+memex:hasLoginCredentials a rdf:Property ;
+	rdfs:label "hasLoginCredentials" ;
+	schema:rangeIncludes memex:LoginCredentials ;
+	rdfs:comment "has login credentials" ;
+	.
+
+memex:isLoginCredentialFor a rdf:Property ;
+	rdfs:label "isLoginCredentialFor" ;
+	schema:domainIncludes memex:LoginCredentials ;
+	rdfs:comment "organization for login" ;
+	.
+
+#Threads
+#
+memex:hasThread a rdf:Property ; 
+	rdfs:label "hasThread" ;
+	rdfs:subPropertyOf schema:hasPart ;
+	schema:domainIncludes schema:CreativeWork ;
+	schema:rangeIncludes memex:Thread ;
+	memex:jsonLD_container memex:JSONLD_Set ;
+	rdfs:comment """Identifies a thread belonging to a creative work.""" ;
+	.
+
+memex:isThreadOf a rdf:Property ; 
+	rdfs:label "isThreadOf" ;
+	rdfs:subPropertyOf schema:isPartOf ;
+	schema:domainIncludes memex:Thread ;
+	schema:rangeIncludes schema:CreativeWork ;
+	owl:inverseOf memex:hasThread ;
+	rdfs:comment """Identifies the creative work that a thread is a part of.""" ;
+	.
+
+#Topic
+#
+memex:hasTopic a rdf:Property ; 
+	rdfs:label "hasTopic" ;
+	rdfs:subPropertyOf schema:hasPart ;
+	schema:domainIncludes schema:CreativeWork ;
+	schema:rangeIncludes memex:Topic ;
+	memex:jsonLD_container memex:JSONLD_Set ;
+	rdfs:comment """Identifies a topic belonging to a creative work .""" ;
+	.
+
+memex:isTopicOf a rdf:Property ; 
+	rdfs:label "isTopicOf" ;
+	rdfs:subPropertyOf schema:isPartOf ;
+	schema:domainIncludes memex:Topic ;
+	schema:rangeIncludes schema:CreativeWork ;
+	owl:inverseOf memex:hasTopic ;
+	rdfs:comment """Identifies the creative work that a topic is a part of.""" ;
+	.
+
+#Post
+#
+memex:hasPost a rdf:Property ; 
+	rdfs:label "hasPost" ;
+	rdfs:subPropertyOf schema:hasPart ;
+	schema:domainIncludes schema:CreativeWork ;
+	schema:rangeIncludes memex:Post ;
+	memex:jsonLD_container memex:JSONLD_Set ;
+	rdfs:comment """Identifies a post belonging to a creative work.""" ;
+	.
+
+memex:isPostOf a rdf:Property ; 
+	rdfs:label "isPostOf" ;
+	rdfs:subPropertyOf schema:isPartOf ;
+	schema:domainIncludes memex:Post ;
+	schema:rangeIncludes schema:CreativeWork ;
+	owl:inverseOf memex:hasPost ;
+	rdfs:comment """Identifies the creative work that a post is a part of.""" ;
+	.
+
 #########################################################
 #
 # JSON LD and ElasticSearch directives for schema.org 
@@ -980,6 +1076,8 @@ schema:isSimilarTo a rdf:Property ;
 schema:member a rdf:Property ; 
 	schema:domainIncludes memex:Cluster ;
     .
+
+
 
 #########################################################
 #
