@@ -1,62 +1,80 @@
-## cdr_for_webpage.jl
+# cdr_with_name.jl
 
-### PyTransforms
+## Add Column
+
+## Add Node/Literal
+
+## PyTransforms
 #### _clean_text_
 From column: _extractions / text / results / values_
->``` python
+``` python
 return HM.clean_html_tags(getValue("values"))
 ```
 
 #### _clean_title_
 From column: _extractions / title / results / values_
->``` python
+``` python
 return HM.clean_html_tags(getValue("values"))
 ```
 
 #### _domain_url_
 From column: _url_
->``` python
+``` python
 return SM.get_website_domain_only(getValue("url"))
 ```
 
 #### _organization_domain_uri_
 From column: _domain_url_
->``` python
+``` python
 return 'organization/' + getValue("domain_url")
 ```
 
 #### _webpage_uri_
 From column: _isi_id_
->``` python
+``` python
 return 'webpage/' + getValue("isi_id")
 ```
 
 #### _posttime_extraction_
 From column: _crawl_data / context / timestamp_
->``` python
+``` python
 return getValueFromNestedColumnByIndex("extractions", "posttime/results/values",0)
 ```
 
 #### _date_created_
 From column: _crawl_data / context / timestamp_
->``` python
+``` python
 return DM.date_created(getValue("posttime_extraction"), getValue("timestamp"))
 ```
 
+#### _posttime_extraction2_
+From column: _timestamp_
+``` python
+return getValueFromNestedColumnByIndex('extractions', 'posttime/results/values',0)
+```
 
-### Semantic Types
+#### _date_created2_
+From column: _timestamp_
+``` python
+return DM.date_created(getValue('posttime_extraction2'), getValue('timestamp'))
+```
+
+
+## Selections
+
+## Semantic Types
 | Column | Property | Class |
 |  ----- | -------- | ----- |
 | _clean_text_ | `schema:description` | `schema:WebPage1`|
 | _clean_title_ | `schema:name` | `schema:WebPage1`|
-| _date_created_ | `schema:dateCreated` | `schema:WebPage1`|
+| _date_created2_ | `schema:dateCreated` | `schema:WebPage1`|
 | _domain_url_ | `schema:name` | `schema:Organization1`|
 | _organization_domain_uri_ | `uri` | `schema:Organization1`|
 | _url_ | `schema:url` | `schema:WebPage1`|
 | _webpage_uri_ | `uri` | `schema:WebPage1`|
 
 
-### Links
+## Links
 | From | Property | To |
 |  --- | -------- | ---|
 | `schema:WebPage1` | `schema:publisher` | `schema:Organization1`|
