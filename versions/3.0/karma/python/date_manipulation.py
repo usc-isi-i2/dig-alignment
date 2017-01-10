@@ -186,7 +186,6 @@ class DM(object):
     hours_relative_regex = r'(\b\d\d?)\s+hours?\s+ago\b'
 
     # spanish backpage regex
-    # sábado, 9 de julio de 2016, 13:39
     #  lunes, 27 de junio de 2016, 14:07
     # lunes, 4 de julio de 2016, 9:01
     backpage3_regex_day = r"(\d\d?)\s+de\s+(" + months_long_regex + r")\s+de\s+(\d\d\d\d)"
@@ -206,7 +205,7 @@ class DM(object):
             month = int(DM.months_dict[mm])
             day = int(dd)
             year = int(yyyy)
-            if year < 2008 or year > 2016:
+            if year < 2008 or year > 2018:
                 return ''
             if format == 'time':
                 return datetime(year, month, day).isoformat()
@@ -594,7 +593,8 @@ if __name__ == '__main__':
     #         date = DM.iso8601date(d)
     #         print ">>>%s" % date
 
-    #print DM.date_created("Posted:Thursday, June 2, 2016 10:35 PM", "1399273701000", 'date')
+    # print DM.date_created("Posted:Thursday, June 2, 2016 10:35 PM", "1399273701000", 'date')
+    print DM.date_created("Posted:Thursday, January 2, 2017 10:35 PM", "1399273701000", 'time')
 
     # print DM.date_created(""""HYDERABAD (07768032817 - 21\n\n    \n  \n\n\n  \n    Posted: \n    Monday, 11 January 2016, 21:36\n  \n\n  \n    \n\n  \n  \n""", "2016-06-27T19:58:11", 'time')
     # print DM.date_created("Posted:Thursday, June 2, 2016 10:35 PM", "2016-06-27T19:58:11", 'date')
@@ -602,7 +602,7 @@ if __name__ == '__main__':
     # print DM.extract_relative_date("Posted 9:99 days ago, etc posted 29 hours ago", datetime.now(), format='date')
     # print DM.date_created("Posted:\r\n    Thursday, June 2, 2016 10:35 PM\r\n   \n \n \n \n \r\n      \r\n\r\n      \r\n\r\n      \r\n        \r\n        \r\n          Hey Guy's come ", "2016-06-27T19:58:11", 'date')
     # print DM.date_created("online: Jul 07, 00:44 \n  Posted: Fri. 1 Jul., 21:19 \n \n \n", "2016-06-27T19:58:11", 'date')
-    print DM.date_created("online: Jul 07, 00:44 \n  ", "2016-06-27T19:58:11",
-                          'date')
+    # print DM.date_created("online: Jul 07, 00:44 \n  ", "2016-06-27T19:58:11",
+    #                      'date')
     # 07 / 07 / 2016    136781205
     # Last Updated:   2016-07-07 20:52:53
