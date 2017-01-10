@@ -1,0 +1,224 @@
+@prefix memex: <http://schema.dig.isi.edu/ontology/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix schema: <http://schema.org/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+
+#########################################################
+#
+# Classes
+#
+#########################################################
+
+memex:Vulnerability a owl:Class ;
+	rdfs:label "Vulnerability" ;
+	rdfs:subClassOf schema:Intangible ;
+	rdfs:comment "A weakness which allows an attacker to reduce a system's information assurance" ;
+	.
+
+memex:CVSS a owl:Class ;
+	rdfs:label "CVSS" ;
+	rdfs:subClassOf schema:Intangible ;
+	rdfs:comment "CVSS represented as a structured object" ;
+	.
+
+memex:Exploit a owl:Class ;
+	rdfs:label "Exploit" ;
+	rdfs:subClassOf schema:CreativeWork ;
+	rdfs:comment "An exploit (from the English verb to exploit, meaning using something to one’s own advantage) is a piece of software, a chunk of data, or a sequence of commands that takes advantage of a bug or vulnerability in order to cause unintended or unanticipated behavior to occur on computer software, hardware, or something electronic (usually computerized)" ;
+	.
+
+memex:Malware a owl:Class ;
+	rdfs:label "Malware" ;
+	rdfs:subClassOf schema:CreativeWork ;
+	rdfs:comment "Software that is intended to damage or disable computers and computer systems." ;
+	.
+
+memex:IPAddress a owl:Class ;
+	rdfs:label "IPAddress" ;
+	rdfs:subClassOf memex:Identifier ;
+	rdfs:comment "A unique string of numbers separated by periods that identifies each computer using the Internet Protocol to communicate over a network." ;
+	.
+
+
+#########################################################
+#
+# Properties
+#
+#########################################################
+
+# Vulnerability
+#
+
+memex:vulnerabilityOf a rdf:Property ;
+	rdfs:label "vulnerabilityOf" ;
+	schema:domainIncludes memex:Vulnerability ;
+	schema:rangeIncludes memex:SoftwareSystem ;
+	rdfs:comment "Specifies software contains this vulnerability" ;
+	.
+
+memex:hasVulnerability a rdf:Property ;
+	owl:inverseOf memex:vulnerabilityOf ;
+	schema:rangeIncludes memex:Vulnerability ;
+	schema:domainIncludes memex:SoftwareSystem ;
+	rdfs:comment "Specifies vulnerabilities of a particular software system" ;
+	.
+
+memex:hasCVSS a rdf:Property ;
+	rdfs:label "hasCVSS" ;
+	schema:domainIncludes memex:Vulnerability ;
+	schema:rangeIncludes memex:CVSS ;
+	rdfs:comment "Tell if a vulnerability has a cvss" ;
+	.
+
+memex:cvssScoreOf a rdf:Property ;
+	rdfs:label "cvssScoreOf" ;
+	schema:domainIncludes memex:CVSS ;
+	schema:rangeIncludes memex:Vulnerability, memex:SoftwareSystem ;
+	rdfs:comment "Indicate which vulnerability or software system has this cvss score" ;
+	.
+
+memex:hasExploit a rdf:Property ;
+	rdfs:label "hasExploit" ;
+	schema:domainIncludes memex:Vulnerability ;
+	schema:rangeIncludes memex:Exploit;
+	rdfs:comment "Exploits that are known to exploit a vulnerability" ;
+	.
+
+# CVSS
+#
+
+memex:cvssAvailability a rdf:Property ;
+	rdfs:label "cvssAvailability" ;
+	schema:domainIncludes memex:CVSS ;
+	schema:rangeIncludes schema:Text ;
+	rdfs:comment "Describe the impact of a vulnerability on the availability of the target system" ;
+	.
+
+memex:cvssIntegrity a rdf:Property ;
+	rdfs:label "cvssIntegrity" ;
+	schema:domainIncludes memex:CVSS ;
+	schema:rangeIncludes schema:Text ;
+	rdfs:comment "Describe the impact of a vulnerability on the integrity of the target system" ;
+	.
+
+memex:cvssAccessVector a rdf:Property ;
+	rdfs:label "cvssAccessVector" ;
+	schema:domainIncludes memex:CVSS ;
+	schema:rangeIncludes schema:Text ;
+	rdfs:comment "Shows how a vulnerability may be exploited" ;
+	.
+
+memex:cvssAuthentication a rdf:Property ;
+	rdfs:label "cvssAuthentication" ;
+	schema:domainIncludes memex:CVSS ;
+	schema:rangeIncludes schema:Text ;
+	rdfs:comment "Describes the number of times that an attacker must authenticate to a target to exploit it" ;
+	.
+
+memex:cvssComplexity a rdf:Property ;
+	rdfs:label "cvssComplexity" ;
+	schema:domainIncludes memex:CVSS ;
+	schema:rangeIncludes schema:Text ;
+	.
+
+memex:cvssConfidentiality a rdf:Property ;
+	rdfs:label "cvssConfidentiality" ;
+	schema:domainIncludes memex:CVSS ;
+	schema:rangeIncludes schema:Text ;
+	rdfs:comment "Describes the impact on the confidentiality of data processed by the system" ;
+	.
+
+memex:cvssScore a rdf:Property ;
+	rdfs:label "cvssScore" ;
+	schema:domainIncludes memex:CVSS ;
+	schema:rangeIncludes schema:Float ;
+	rdfs:comment "Score of an cvss" ;
+	.
+
+# Exploit
+#
+
+memex:hasSourceCode a rdf:Property ;
+	rdfs:label "hasSourceCode" ;
+	schema:domainIncludes memex:Exploit ;
+	schema:rangeIncludes schema:SoftwareSourceCode ;
+	rdfs:comment "Source code of an exploit" ;
+	.
+
+memex:exploitsVulnerability a rdf:Property ;
+	rdfs:label "exploitsVulnerability" ;
+	schema:domainIncludes memex:Exploit;
+	schema:rangeIncludes memex:Vulnerability;
+	rdfs:comment "Vulnerabilities that an Exploit exploits" ;
+	.
+
+memex:itemStolen a rdf:Property ;
+	rdfs:label "itemStolen" ;
+	schema:domainIncludes memex:Exploit;
+	schema:rangeIncludes memex:LoginCredentials;
+	rdfs:comment "Item stolen during an exploit" ;
+	.
+
+memex:registrar a rdf:Property ;
+	rdfs:label "registrar" ;
+	schema:domainIncludes memex:IPAddress ;
+	rdfs:comment "An official responsible for keeping a register or official records." ;
+	.
+
+memex:autonomousSystemNumber  a rdf:Property ;
+	rdfs:label "autonomousSystemNumber" ;
+	schema:domainIncludes memex:IPAddress ;
+	rdfs:comment "Within the Internet, an autonomous system (AS) is a collection of connected Internet Protocol (IP) routing prefixes under the control of one or more network operators on behalf of a single administrative entity or domain that presents a common, clearly defined routing policy to the Internet" ;
+	.
+
+memex:observedDate a rdf:Property ;
+	rdfs:label "observedDate" ;
+	schema:domainIncludes memex:Malware ;
+	rdfs:comment "The date on which this even was first observed" ;
+	.
+
+memex:hostedAt a rdf:Property ;
+	rdfs:label "hostedAt" ;
+	schema:domainIncludes schema:CreativeWork ;
+	schema:rangeIncludes memex:IPAddress ;
+	rdfs:comment "An identifier of a system where creative work is hosted" ;
+	.
+
+
+#########################################################
+#
+# Augmented subclass, domains/ranges of schema.org classes and properties
+#
+#########################################################
+
+schema:releaseDate a rdf:Property ;
+	schema:domainIncludes memex:SoftwareSystem ;
+	.
+
+schema:version a rdf:Property ;
+	schema:domainIncludes memex:SoftwareSystem ;
+	schema:rangeIncludes schema:Text ;
+	.
+
+schema:datePublished a rdf:Property ;
+	schema:domainIncludes memex:Vulnerability, memex:CVSS ;
+	schema:rangeIncludes schema:DateTime, schema:Date ;
+	.
+
+schema:dateModified a rdf:Property ;
+	schema:domainIncludes memex:Vulnerability, memex:CVSS ;
+	.
+
+schema:source a rdf:Property ;
+	rdfs:comment "A related resource from which the information is derived" ;
+	schema:domainIncludes memex:CVSS, memex:Vulnerability, memex:AttackEvent ;
+	.
+
+schema:target a rdf:Property ;
+	schema:domainIncludes memex:AttackEvent ;
+	schema:rangeIncludes memex:PersonOrOrganization ;
+	.
