@@ -107,7 +107,7 @@ return DM.date_created(getValue('posttime_extraction2'), getValue('timestamp'))
 | _clean_price_name_ | `schema:name` | `schema:PriceSpecification1`|
 | _clean_state_ | `schema:addressRegion` | `schema:PostalAddress1`|
 | _clean_unit_ | `schema:unitCode` | `schema:PriceSpecification1`|
-| _date_created2_ | `schema:validFrom` | `schema:Offer1`|
+| _date_created_ | `schema:validFrom` | `schema:Offer1`|
 | _offer_uri_ | `uri` | `schema:Offer1`|
 | _place_uri_ | `uri` | `schema:Place1`|
 | _postal_add_uri_ | `uri` | `schema:PostalAddress1`|
