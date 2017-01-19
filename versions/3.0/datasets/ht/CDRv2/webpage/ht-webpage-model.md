@@ -67,7 +67,7 @@ return DM.date_created(getValue('posttime_extraction2'), getValue('timestamp'))
 |  ----- | -------- | ----- |
 | _clean_text_ | `schema:description` | `schema:WebPage1`|
 | _clean_title_ | `schema:name` | `schema:WebPage1`|
-| _date_created2_ | `schema:dateCreated` | `schema:WebPage1`|
+| _date_created_ | `schema:dateCreated` | `schema:WebPage1`|
 | _domain_url_ | `schema:name` | `schema:Organization1`|
 | _organization_domain_uri_ | `uri` | `schema:Organization1`|
 | _url_ | `schema:url` | `schema:WebPage1`|
