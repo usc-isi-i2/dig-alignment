@@ -1,4 +1,4 @@
-# cdr_with_name.jl
+# inferlink_extractions_1.jl
 
 ## Add Column
 
@@ -95,6 +95,29 @@ From column: _timestamp_
 return DM.date_created(getValue('posttime_extraction2'), getValue('timestamp'))
 ```
 
+#### _clean_inferlink_state_
+From column: _inferlink_extractions / inferlink_state_
+``` python
+return HM.remove_junk(LM.clean_location(getValue("inferlink_state")))
+```
+
+#### _clean_inferlink_locations_
+From column: _inferlink_extractions / inferlink_location-3_
+``` python
+l1 = getValue("inferlink_location-1")
+l2 = getValue("inferlink_location-2")
+l3 = getValue("inferlink_location-3")
+l=''
+if l1 and l1 != '':
+    l+=l1 + ' ' 
+if l2 and l2 != '':
+    l+=l2 + ' '
+if l3 and l3 != '':
+    l+=l3 + ' '
+
+return HM.remove_junk(LM.clean_location(l))
+```
+
 
 ## Selections
 
@@ -103,6 +126,7 @@ return DM.date_created(getValue('posttime_extraction2'), getValue('timestamp'))
 |  ----- | -------- | ----- |
 | _clean_city_ | `schema:addressLocality` | `schema:PostalAddress1`|
 | _clean_duration_ | `schema:billingIncrement` | `schema:PriceSpecification1`|
+| _clean_inferlink_locations_ | `schema:addressLocality` | `schema:PostalAddress1`|
 | _clean_price_ | `schema:price` | `schema:PriceSpecification1`|
 | _clean_price_name_ | `schema:name` | `schema:PriceSpecification1`|
 | _clean_state_ | `schema:addressRegion` | `schema:PostalAddress1`|
