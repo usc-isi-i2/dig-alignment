@@ -1,39 +1,43 @@
-## cdr_with_name.jl
+# inferlink_extractions_1.jl
 
-### PyTransforms
+## Add Column
+
+## Add Node/Literal
+
+## PyTransforms
 #### _offer_uri_
 From column: _isi_id_
->``` python
+``` python
 return "offer/" + getValue("isi_id")
 ```
 
 #### _clean_city_
 From column: _extractions / city / results / values_
->``` python
+``` python
 return HM.remove_junk(LM.clean_location(getValue("values")))
 ```
 
 #### _clean_state_
 From column: _extractions / state / results / values_
->``` python
+``` python
 return HM.remove_junk(LM.clean_location(getValue("values")))
 ```
 
 #### _postal_add_uri_
 From column: _offer_uri_
->``` python
+``` python
 return "offer/" + getValue("isi_id") + "/address"
 ```
 
 #### _place_uri_
 From column: _offer_uri_
->``` python
+``` python
 return "offer/" + getValue("isi_id") + "/place"
 ```
 
 #### _clean_price_name_
 From column: _extractions / rate / results / values_
->``` python
+``` python
 x = getValue("values").strip()
 if x != "":
   return SM.clean_price_name(getValue("values"))
@@ -42,25 +46,25 @@ return ""
 
 #### _clean_price_
 From column: _extractions / rate / results / values_
->``` python
+``` python
 return SM.get_price(getValue("values"))
 ```
 
 #### _clean_duration_
 From column: _extractions / rate / results / values_
->``` python
+``` python
 return SM.calculate_minutes(getValue("values"))
 ```
 
 #### _clean_unit_
 From column: _extractions / rate / results / values_
->``` python
+``` python
 return "MIN"
 ```
 
 #### _rate_uri_
 From column: _extractions / rate / results / clean_price_name_
->``` python
+``` python
 x = getValue('clean_price_name')
 if x != '':
   return "price/" + x
@@ -69,22 +73,60 @@ return ''
 
 #### _posttime_extraction_
 From column: _crawl_data / context / timestamp_
->``` python
+``` python
 return getValueFromNestedColumnByIndex("extractions", "posttime/results/values",0)
 ```
 
 #### _date_created_
 From column: _crawl_data / context / timestamp_
->``` python
+``` python
 return DM.date_created(getValue("posttime_extraction"), getValue("timestamp"))
 ```
 
+#### _posttime_extraction2_
+From column: _timestamp_
+``` python
+return getValueFromNestedColumnByIndex("extractions", "posttime/results/values", 0)
+```
 
-### Semantic Types
+#### _date_created2_
+From column: _timestamp_
+``` python
+return DM.date_created(getValue('posttime_extraction2'), getValue('timestamp'))
+```
+
+#### _clean_inferlink_state_
+From column: _inferlink_extractions / inferlink_state_
+``` python
+return HM.remove_junk(LM.clean_location(getValue("inferlink_state")))
+```
+
+#### _clean_inferlink_locations_
+From column: _inferlink_extractions / inferlink_location-3_
+``` python
+l1 = getValue("inferlink_location-1")
+l2 = getValue("inferlink_location-2")
+l3 = getValue("inferlink_location-3")
+l=''
+if l1 and l1 != '':
+    l+=l1 + ' ' 
+if l2 and l2 != '':
+    l+=l2 + ' '
+if l3 and l3 != '':
+    l+=l3 + ' '
+
+return HM.remove_junk(LM.clean_location(l))
+```
+
+
+## Selections
+
+## Semantic Types
 | Column | Property | Class |
 |  ----- | -------- | ----- |
 | _clean_city_ | `schema:addressLocality` | `schema:PostalAddress1`|
 | _clean_duration_ | `schema:billingIncrement` | `schema:PriceSpecification1`|
+| _clean_inferlink_locations_ | `schema:addressLocality` | `schema:PostalAddress1`|
 | _clean_price_ | `schema:price` | `schema:PriceSpecification1`|
 | _clean_price_name_ | `schema:name` | `schema:PriceSpecification1`|
 | _clean_state_ | `schema:addressRegion` | `schema:PostalAddress1`|
@@ -97,7 +139,7 @@ return DM.date_created(getValue("posttime_extraction"), getValue("timestamp"))
 | _values_ | `schema:title` | `schema:Offer1`|
 
 
-### Links
+## Links
 | From | Property | To |
 |  --- | -------- | ---|
 | `schema:Offer1` | `schema:availableAtOrFrom` | `schema:Place1`|
