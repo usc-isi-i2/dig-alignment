@@ -444,3 +444,17 @@ class PM(object):
     def ten_digit_phone_number(x):
         """Return the 10-digit phone number of a phone, as 10 consecutive digits"""
         return re.sub('[^0-9]+', '', x)
+
+    @staticmethod
+    def phone_uri(number, country_code):
+        """Create a URI for a phone from the number and optional country_code
+        If country_code is empty use "x" as the country code, which unfortunately
+        makes same number in different countries have the same URI.
+        """
+        phone = number.strip()
+        cc = country_code.strip()
+        if phone == '' and cc == '':
+            return ''
+        if cc == '':
+            cc = "x"
+        return 'phone/' + cc + '-' + phone

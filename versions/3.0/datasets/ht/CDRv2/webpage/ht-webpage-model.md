@@ -1,61 +1,80 @@
-## hbase_sample_100_karma.jl
+# cdr_with_name.jl
 
-### PyTransforms
-#### _webpage_uri_
-From column: _isi_id_
->``` python
-return 'webpage/' + getValue("isi_id")
-```
+## Add Column
 
+## Add Node/Literal
+
+## PyTransforms
 #### _clean_text_
 From column: _extractions / text / results / values_
->``` python
+``` python
 return HM.clean_html_tags(getValue("values"))
 ```
 
-#### _iso_posttime_
-From column: _extractions / posttime / results / values_
->``` python
-posttime = getValue("values")
-if posttime.strip() != '':
-    return DM.iso8601date(posttime,'%Y-%m-%d %H:%M:%S')
-posttime = getValue("timestamp")
-return DM.epoch_to_iso8601(posttime)
+#### _clean_title_
+From column: _extractions / title / results / values_
+``` python
+return HM.clean_html_tags(getValue("values"))
 ```
 
 #### _domain_url_
 From column: _url_
->``` python
+``` python
 return SM.get_website_domain_only(getValue("url"))
 ```
 
 #### _organization_domain_uri_
 From column: _domain_url_
->``` python
+``` python
 return 'organization/' + getValue("domain_url")
 ```
 
-#### _iso_posttime2_
+#### _webpage_uri_
+From column: _isi_id_
+``` python
+return 'webpage/' + getValue("isi_id")
+```
+
+#### _posttime_extraction_
 From column: _crawl_data / context / timestamp_
->``` python
-ts = getValue("timestamp")
-return DM.epoch_to_iso8601(ts)
+``` python
+return getValueFromNestedColumnByIndex("extractions", "posttime/results/values",0)
+```
+
+#### _date_created_
+From column: _crawl_data / context / timestamp_
+``` python
+return DM.date_created(getValue("posttime_extraction"), getValue("timestamp"))
+```
+
+#### _posttime_extraction2_
+From column: _timestamp_
+``` python
+return getValueFromNestedColumnByIndex('extractions', 'posttime/results/values',0)
+```
+
+#### _date_created2_
+From column: _timestamp_
+``` python
+return DM.date_created(getValue('posttime_extraction2'), getValue('timestamp'))
 ```
 
 
-### Semantic Types
+## Selections
+
+## Semantic Types
 | Column | Property | Class |
 |  ----- | -------- | ----- |
 | _clean_text_ | `schema:description` | `schema:WebPage1`|
+| _clean_title_ | `schema:name` | `schema:WebPage1`|
+| _date_created_ | `schema:dateCreated` | `schema:WebPage1`|
 | _domain_url_ | `schema:name` | `schema:Organization1`|
-| _iso_posttime2_ | `schema:dateCreated` | `schema:WebPage1`|
 | _organization_domain_uri_ | `uri` | `schema:Organization1`|
 | _url_ | `schema:url` | `schema:WebPage1`|
-| _values_ | `schema:name` | `schema:WebPage1`|
 | _webpage_uri_ | `uri` | `schema:WebPage1`|
 
 
-### Links
+## Links
 | From | Property | To |
 |  --- | -------- | ---|
 | `schema:WebPage1` | `schema:publisher` | `schema:Organization1`|

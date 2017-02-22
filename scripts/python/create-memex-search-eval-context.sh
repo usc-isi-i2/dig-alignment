@@ -1,0 +1,1 @@
+python create_context.py ../../versions/3.0/karma/preloaded-ontologies/memex-ontology.ttl ../../versions/3.0/karma/preloaded-ontologies/memex-meta-ontology.ttl ../../versions/3.0/karma/preloaded-ontologies/schema.ttl ../../versions/3.0/karma/preloaded-ontologies/memex-search-eval-extensions-ontology.ttl

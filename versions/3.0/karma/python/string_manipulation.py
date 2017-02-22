@@ -2,7 +2,7 @@ __author__ = 'amandeep'
 
 import re
 import hashlib
-from urlparse import urlparse
+from urlparse import urlparse, urlsplit
 
 DOLLAR_PRICE_REGEXPS = [re.compile(r'''\$\s*(?:\d{1,3},\s?)*\d{1,3}(?:(?:\.\d+)|[KkMm])?''', re.IGNORECASE),
                         re.compile(r'''USD\s*\d{1,7}(?:\.\d+)?''', re.IGNORECASE),
@@ -103,14 +103,14 @@ class SM(object):
         return string[start:end+1]
 
     @staticmethod
-    def clean_age(x):
+    def clean_age(x, lower_bound=18, upper_bound=60):
         """Return the clean age"""
         stripped = x.strip().lower()
         """take only first value of any range"""
         stripped = stripped.split('-')[0].strip()
         try:
             age = int(stripped)
-            if age < 1 or age > 99:
+            if age <= lower_bound or age >= upper_bound:
                 return None
         except:
             return None
@@ -151,7 +151,8 @@ class SM(object):
     @staticmethod
     def get_website_domain(url):
         """input www.google.com, output google.com"""
-        parsed_uri = urlparse(url)
+        parsed_uri = urlsplit(url)
+        # parsed_uri = urlparse(url)
         if parsed_uri:
             domain = parsed_uri.netloc
             if domain:
@@ -163,21 +164,21 @@ class SM(object):
     @staticmethod
     def get_website_domain_only(url):
         """input www.google.com, output google"""
-        parsed_uri = urlparse(url)
-        if parsed_uri:
-            domain = parsed_uri.netloc
-            if domain:
-                if domain.startswith("www."):
-                    domain = domain[4:]
+        netloc = SM.get_website_domain(url)
+        pieces = netloc.split('.')
+        if len(pieces) > 0:
+            if len(pieces) == 2:
+                return netloc
+            if len(pieces) == 3 and len(pieces[2]) == 2:
+                if len(pieces[1]) <= 3:
+                    return netloc
+                else:
+                    return '.'.join(pieces[1:])
+            else:
+                return '.'.join(pieces[1:])
 
-                idx = domain.find('.')
-                if idx != -1:
-                    domain2 = domain[idx+1:]
-                    if domain2.find('.') != -1:
-                        domain = domain2
+        return netloc
 
-                return domain
-        return ''
 
     @staticmethod
     def get_dollar_prices(*texts):
@@ -250,6 +251,41 @@ class SM(object):
         except:
             return None
         return None
+
+
+    @staticmethod
+    def clean_price_name(x):
+        try:
+            minutes = str(SM.calculate_minutes(x))
+            return SM.get_price(x) + '-per-' + minutes + 'min'
+        except:
+            return x
+
+
+    @staticmethod
+    def get_price(x):
+        try:
+            v = x.split('-')
+            return v[0]
+        except:
+            return x
+
+
+    @staticmethod
+    def calculate_minutes(x):
+        try:
+            v = x.split('-')
+            time = v[1]
+            if ":" in time:
+                v = time.split(':')
+                hour = v[0]
+                minute = v[1]
+                return int(hour)*60 + int(minute)
+            else:
+                return x
+        except:
+            return x
+
 
     @staticmethod
     def base_clean_rate(x):
@@ -387,3 +423,19 @@ class SM(object):
 
         except Exception, e:
             return None
+
+# if __name__ == "__main__":
+#     import codecs
+#     lines = codecs.open('urls', 'r', 'utf-8').readlines()
+#     unique_publishers = set()
+#     for line in lines:
+#         # print line
+#         idx = line.rfind(':')
+#         line = line[:idx]
+#         p = SM.get_website_domain_only(line).replace('\n', '')
+#         if not p or p == '':
+#             print line
+#         unique_publishers.add(p)
+#
+#     print unique_publishers
+

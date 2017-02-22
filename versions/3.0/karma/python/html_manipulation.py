@@ -39,4 +39,17 @@ class HM(HTMLParser):
             return clean_text
         except Exception, e:
             return text
+
+    @staticmethod
+    def remove_junk(x):
+        result=""
+        junk = ["A", "DIV", "ESCORTS", "B", "WINDOW", "DOCTYPE", "HTML", "PUBLIC", "INITIAL", "SCALE", "1", "END", "HEADER"]
+        values = x.split(" ")
+        if len(values) > 1:
+            for value in values:
+                if value.upper() not in junk:
+                    result += value + " "
+            return result.strip()
+        else:
+            return x.strip()
         
