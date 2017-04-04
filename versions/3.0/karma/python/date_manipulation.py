@@ -516,7 +516,7 @@ class DM(object):
             pass
 
         try:
-            return datetime.strptime(getValue("timestamp"), "%Y-%m-%dT%H:%M:%S.%f+00:00").isoformat()
+            return datetime.strptime(date, "%Y-%m-%dT%H:%M:%S.%f+00:00").isoformat()
         except:
             pass
 
