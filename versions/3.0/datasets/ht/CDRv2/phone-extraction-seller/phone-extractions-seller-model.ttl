@@ -1,0 +1,1046 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix schema: <http://schema.org/> .
+@prefix memex: <http://schema.dig.isi.edu/ontology/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix void: <http://rdfs.org/ns/void#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix bibo: <http://purl.org/ontology/bibo/> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix km-dev: <http://isi.edu/integration/karma/dev#> .
+
+_:node1alnjh7rgx1 a km-dev:R2RMLMapping ;
+	km-dev:sourceName "phone-extractions-sample.jl" ;
+	km-dev:modelPublicationTime "1466449829744"^^xsd:long ;
+	km-dev:modelVersion "1.7" ;
+	km-dev:hasInputColumns "[[{\"columnName\":\"url_phone_numbers\"},{\"columnName\":\"values\"}],[{\"columnName\":\"text_phone_numbers\"},{\"columnName\":\"values\"}],[{\"columnName\":\"url\"}]]" ;
+	km-dev:hasOutputColumns "[[{\"columnName\":\"url_phone_numbers\"},{\"columnName\":\"title_country_uri\"}],[{\"columnName\":\"url_phone_numbers\"},{\"columnName\":\"values\"}],[{\"columnName\":\"text_phone_numbers\"},{\"columnName\":\"country_code\"}],[{\"columnName\":\"text_phone_numbers\"},{\"columnName\":\"text_phone_uri\"}],[{\"columnName\":\"text_phone_numbers\"},{\"columnName\":\"values\"}],[{\"columnName\":\"seller_uri\"}],[{\"columnName\":\"url_phone_numbers\"},{\"columnName\":\"title_country_code\"}]]" ;
+	km-dev:hasModelLabel "phone-extractions-model" ;
+	km-dev:hasBaseURI "http://localhost:8080/source/" ;
+	km-dev:hasWorksheetHistory """[
+    {
+        \"commandName\": \"SubmitPythonTransformationCommand\",
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"text_phone_numbers\"},
+                    {\"columnName\": \"values\"}
+                ]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"type\": \"other\",
+                \"value\": \"country_code\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"type\": \"other\",
+                \"value\": \"return PM.get_country_code(getValue(\\\"values\\\"),'')\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"isJSONOutput\",
+                \"type\": \"other\",
+                \"value\": \"false\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"text_phone_numbers\\\"},{\\\"columnName\\\":\\\"values\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"text_phone_numbers\\\"},{\\\"columnName\\\":\\\"country_code\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"Transformation\"]
+    },
+    {
+        \"commandName\": \"SubmitPythonTransformationCommand\",
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"text_phone_numbers\"},
+                    {\"columnName\": \"country_code\"}
+                ]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"type\": \"other\",
+                \"value\": \"text_phone_uri\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"type\": \"other\",
+                \"value\": \"return PM.phone_uri(getValue(\\\"values\\\"), getValue('country_code'))\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"isJSONOutput\",
+                \"type\": \"other\",
+                \"value\": \"false\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"text_phone_numbers\\\"},{\\\"columnName\\\":\\\"country_code\\\"}]},{\\\"value\\\":[{\\\"columnName\\\":\\\"text_phone_numbers\\\"},{\\\"columnName\\\":\\\"values\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"text_phone_numbers\\\"},{\\\"columnName\\\":\\\"text_phone_uri\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"Transformation\"]
+    },
+    {
+        \"commandName\": \"SubmitPythonTransformationCommand\",
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"url_phone_numbers\"},
+                    {\"columnName\": \"values\"}
+                ]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"type\": \"other\",
+                \"value\": \"title_country_code\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"type\": \"other\",
+                \"value\": \"return PM.get_country_code(getValue(\\\"values\\\"),'')\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"isJSONOutput\",
+                \"type\": \"other\",
+                \"value\": \"false\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"url_phone_numbers\\\"},{\\\"columnName\\\":\\\"values\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"url_phone_numbers\\\"},{\\\"columnName\\\":\\\"title_country_code\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"Transformation\"]
+    },
+    {
+        \"commandName\": \"SubmitPythonTransformationCommand\",
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"url_phone_numbers\"},
+                    {\"columnName\": \"title_country_code\"}
+                ]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"type\": \"other\",
+                \"value\": \"title_country_uri\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"type\": \"other\",
+                \"value\": \"return PM.phone_uri(getValue(\\\"values\\\"),getValue('title_country_code'))\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"isJSONOutput\",
+                \"type\": \"other\",
+                \"value\": \"false\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"url_phone_numbers\\\"},{\\\"columnName\\\":\\\"values\\\"}]},{\\\"value\\\":[{\\\"columnName\\\":\\\"url_phone_numbers\\\"},{\\\"columnName\\\":\\\"title_country_code\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"url_phone_numbers\\\"},{\\\"columnName\\\":\\\"title_country_uri\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"Transformation\"]
+    },
+    {
+        \"commandName\": \"SetWorksheetPropertiesCommand\",
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"properties\",
+                \"type\": \"other\",
+                \"value\": {
+                    \"graphLabel\": \"phone-extractions-model\",
+                    \"hasBaseURI\": false,
+                    \"hasPrefix\": false,
+                    \"hasServiceProperties\": false
+                }
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            }
+        ],
+        \"tags\": [\"Transformation\"]
+    },
+    {
+        \"commandName\": \"SubmitPythonTransformationCommand\",
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"url\"}]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"type\": \"other\",
+                \"value\": \"seller_uri\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"type\": \"other\",
+                \"value\": \"return 'seller/' + SM.sha1_hash(getValue(\\\"url\\\").strip())\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"isJSONOutput\",
+                \"type\": \"other\",
+                \"value\": \"false\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"url\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"seller_uri\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"Transformation\"]
+    },
+    {
+        \"commandName\": \"SetSemanticTypeCommand\",
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"text_phone_numbers\"},
+                    {\"columnName\": \"values\"}
+                ]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"type\": \"other\",
+                \"value\": [{
+                    \"DomainUri\": \"http://schema.dig.isi.edu/ontology/PhoneNumber\",
+                    \"DomainId\": \"http://schema.dig.isi.edu/ontology/PhoneNumber1\",
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://schema.org/name\",
+                    \"DomainLabel\": \"memex:PhoneNumber1 (add)\"
+                }]
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"type\": \"other\",
+                \"value\": true
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"language\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"text_phone_numbers\\\"},{\\\"columnName\\\":\\\"values\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"text_phone_numbers\\\"},{\\\"columnName\\\":\\\"values\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"SemanticType\"]
+    },
+    {
+        \"commandName\": \"SetSemanticTypeCommand\",
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"url_phone_numbers\"},
+                    {\"columnName\": \"values\"}
+                ]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"type\": \"other\",
+                \"value\": [{
+                    \"DomainUri\": \"http://schema.dig.isi.edu/ontology/PhoneNumber\",
+                    \"DomainId\": \"http://schema.dig.isi.edu/ontology/PhoneNumber2\",
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://schema.org/name\",
+                    \"DomainLabel\": \"memex:PhoneNumber2 (add)\"
+                }]
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"type\": \"other\",
+                \"value\": true
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"language\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"url_phone_numbers\\\"},{\\\"columnName\\\":\\\"values\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"url_phone_numbers\\\"},{\\\"columnName\\\":\\\"values\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"SemanticType\"]
+    },
+    {
+        \"commandName\": \"SetMetaPropertyCommand\",
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"url_phone_numbers\"},
+                    {\"columnName\": \"title_country_uri\"}
+                ]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"metaPropertyName\",
+                \"type\": \"other\",
+                \"value\": \"isUriOfClass\"
+            },
+            {
+                \"name\": \"metaPropertyUri\",
+                \"type\": \"other\",
+                \"value\": \"http://schema.dig.isi.edu/ontology/PhoneNumber\"
+            },
+            {
+                \"name\": \"metaPropertyId\",
+                \"type\": \"other\",
+                \"value\": \"http://schema.dig.isi.edu/ontology/PhoneNumber2\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"type\": \"other\",
+                \"value\": [{
+                    \"DomainUri\": \"http://schema.dig.isi.edu/ontology/PhoneNumber\",
+                    \"DomainId\": \"http://schema.dig.isi.edu/ontology/PhoneNumber2\",
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://isi.edu/integration/karma/dev#classLink\",
+                    \"DomainLabel\": \"memex:PhoneNumber2\"
+                }]
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"type\": \"other\",
+                \"value\": true
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"language\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"url_phone_numbers\\\"},{\\\"columnName\\\":\\\"title_country_uri\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"url_phone_numbers\\\"},{\\\"columnName\\\":\\\"title_country_uri\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"SemanticType\"]
+    },
+    {
+        \"commandName\": \"SetMetaPropertyCommand\",
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"text_phone_numbers\"},
+                    {\"columnName\": \"text_phone_uri\"}
+                ]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"metaPropertyName\",
+                \"type\": \"other\",
+                \"value\": \"isUriOfClass\"
+            },
+            {
+                \"name\": \"metaPropertyUri\",
+                \"type\": \"other\",
+                \"value\": \"http://schema.dig.isi.edu/ontology/PhoneNumber\"
+            },
+            {
+                \"name\": \"metaPropertyId\",
+                \"type\": \"other\",
+                \"value\": \"http://schema.dig.isi.edu/ontology/PhoneNumber1\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"type\": \"other\",
+                \"value\": [{
+                    \"DomainUri\": \"http://schema.dig.isi.edu/ontology/PhoneNumber\",
+                    \"DomainId\": \"http://schema.dig.isi.edu/ontology/PhoneNumber1\",
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://isi.edu/integration/karma/dev#classLink\",
+                    \"DomainLabel\": \"memex:PhoneNumber1\"
+                }]
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"type\": \"other\",
+                \"value\": true
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"language\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"text_phone_numbers\\\"},{\\\"columnName\\\":\\\"text_phone_uri\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"text_phone_numbers\\\"},{\\\"columnName\\\":\\\"text_phone_uri\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"SemanticType\"]
+    },
+    {
+        \"commandName\": \"SetMetaPropertyCommand\",
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"seller_uri\"}]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"metaPropertyName\",
+                \"type\": \"other\",
+                \"value\": \"isUriOfClass\"
+            },
+            {
+                \"name\": \"metaPropertyUri\",
+                \"type\": \"other\",
+                \"value\": \"http://schema.dig.isi.edu/ontology/PersonOrOrganization\"
+            },
+            {
+                \"name\": \"metaPropertyId\",
+                \"type\": \"other\",
+                \"value\": \"http://schema.dig.isi.edu/ontology/PersonOrOrganization1\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"type\": \"other\",
+                \"value\": [{
+                    \"DomainUri\": \"http://schema.dig.isi.edu/ontology/PersonOrOrganization\",
+                    \"DomainId\": \"http://schema.dig.isi.edu/ontology/PersonOrOrganization1\",
+                    \"isPrimary\": true,
+                    \"FullType\": \"http://isi.edu/integration/karma/dev#classLink\",
+                    \"DomainLabel\": \"memex:PersonOrOrganization1 (add)\"
+                }]
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"type\": \"other\",
+                \"value\": true
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"language\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"seller_uri\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"seller_uri\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"SemanticType\"]
+    },
+    {
+        \"commandName\": \"ChangeInternalNodeLinksCommand\",
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"initialEdges\",
+                \"type\": \"other\",
+                \"value\": []
+            },
+            {
+                \"name\": \"alignmentId\",
+                \"type\": \"other\",
+                \"value\": \"WSP1:WS5AL\"
+            },
+            {
+                \"name\": \"newEdges\",
+                \"type\": \"other\",
+                \"value\": [{
+                    \"edgeTargetId\": \"http://schema.dig.isi.edu/ontology/PhoneNumber1\",
+                    \"edgeId\": \"http://schema.org/telephone\",
+                    \"edgeTargetUri\": \"http://schema.dig.isi.edu/ontology/PhoneNumber\",
+                    \"edgeSourceId\": \"http://schema.dig.isi.edu/ontology/PersonOrOrganization1\",
+                    \"edgeSourceUri\": \"http://schema.dig.isi.edu/ontology/PersonOrOrganization\"
+                }]
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            }
+        ],
+        \"tags\": [\"Modeling\"]
+    },
+    {
+        \"commandName\": \"ChangeInternalNodeLinksCommand\",
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"initialEdges\",
+                \"type\": \"other\",
+                \"value\": []
+            },
+            {
+                \"name\": \"alignmentId\",
+                \"type\": \"other\",
+                \"value\": \"WSP1:WS5AL\"
+            },
+            {
+                \"name\": \"newEdges\",
+                \"type\": \"other\",
+                \"value\": [{
+                    \"edgeTargetId\": \"http://schema.dig.isi.edu/ontology/PhoneNumber2\",
+                    \"edgeId\": \"http://schema.org/telephone\",
+                    \"edgeTargetUri\": \"http://schema.dig.isi.edu/ontology/PhoneNumber\",
+                    \"edgeSourceId\": \"http://schema.dig.isi.edu/ontology/PersonOrOrganization1\",
+                    \"edgeSourceUri\": \"http://schema.dig.isi.edu/ontology/PersonOrOrganization\"
+                }]
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            }
+        ],
+        \"tags\": [\"Modeling\"]
+    },
+    {
+        \"commandName\": \"ChangeInternalNodeLinksCommand\",
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"initialEdges\",
+                \"type\": \"other\",
+                \"value\": []
+            },
+            {
+                \"name\": \"alignmentId\",
+                \"type\": \"other\",
+                \"value\": \"WSP1:WS5AL\"
+            },
+            {
+                \"name\": \"newEdges\",
+                \"type\": \"other\",
+                \"value\": [{
+                    \"edgeTargetId\": \"http://schema.dig.isi.edu/ontology/PersonOrOrganization1\",
+                    \"edgeId\": \"http://schema.dig.isi.edu/ontology/owner\",
+                    \"edgeTargetUri\": \"http://schema.dig.isi.edu/ontology/PersonOrOrganization\",
+                    \"edgeSourceId\": \"http://schema.dig.isi.edu/ontology/PhoneNumber1\",
+                    \"edgeSourceUri\": \"http://schema.dig.isi.edu/ontology/PhoneNumber\"
+                }]
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            }
+        ],
+        \"tags\": [\"Modeling\"]
+    },
+    {
+        \"commandName\": \"ChangeInternalNodeLinksCommand\",
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"initialEdges\",
+                \"type\": \"other\",
+                \"value\": []
+            },
+            {
+                \"name\": \"alignmentId\",
+                \"type\": \"other\",
+                \"value\": \"WSP1:WS5AL\"
+            },
+            {
+                \"name\": \"newEdges\",
+                \"type\": \"other\",
+                \"value\": [{
+                    \"edgeTargetId\": \"http://schema.dig.isi.edu/ontology/PersonOrOrganization1\",
+                    \"edgeId\": \"http://schema.dig.isi.edu/ontology/owner\",
+                    \"edgeTargetUri\": \"http://schema.dig.isi.edu/ontology/PersonOrOrganization\",
+                    \"edgeSourceId\": \"http://schema.dig.isi.edu/ontology/PhoneNumber2\",
+                    \"edgeSourceUri\": \"http://schema.dig.isi.edu/ontology/PhoneNumber\"
+                }]
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[]\"
+            }
+        ],
+        \"tags\": [\"Modeling\"]
+    }
+]""" .
+
+km-dev:TriplesMap_b3dd9a5c-8054-4718-a252-2424e6639bb9 a rr:TriplesMap .
+
+_:node1alnjh7rgx1 km-dev:hasTriplesMap km-dev:TriplesMap_b3dd9a5c-8054-4718-a252-2424e6639bb9 .
+
+km-dev:TriplesMap_b3dd9a5c-8054-4718-a252-2424e6639bb9 km-dev:isPartOfMapping _:node1alnjh7rgx1 .
+
+_:node1alnjh7rgx2 rr:tableName "phone-extractions-sample.jl" ;
+	a rr:LogicalTable ;
+	km-dev:isPartOfMapping _:node1alnjh7rgx1 .
+
+_:node1alnjh7rgx1 km-dev:hasLogicalTable _:node1alnjh7rgx2 .
+
+km-dev:TriplesMap_b3dd9a5c-8054-4718-a252-2424e6639bb9 rr:logicalTable _:node1alnjh7rgx2 ;
+	rr:subjectMap _:node1alnjh7rgx3 .
+
+_:node1alnjh7rgx1 km-dev:hasSubjectMap _:node1alnjh7rgx3 .
+
+_:node1alnjh7rgx3 km-dev:isPartOfMapping _:node1alnjh7rgx1 ;
+	a rr:SubjectMap ;
+	km-dev:alignmentNodeId "http://schema.dig.isi.edu/ontology/PersonOrOrganization1" ;
+	rr:class memex:PersonOrOrganization ;
+	rr:template "{seller_uri}" ;
+	a km-dev:steinerTreeRootNode .
+
+km-dev:PredicateObjectMap_72c23e48-48d2-4a0a-80a4-be6176ddfd42 rr:predicate schema:telephone .
+
+km-dev:RefObjectMap_b7a30263-c6fd-4b28-8bf3-976d468ee107 a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_be6d6b2d-e2d2-4cb5-9728-1fea138bd900 ;
+	km-dev:isPartOfMapping _:node1alnjh7rgx1 .
+
+_:node1alnjh7rgx1 km-dev:hasObjectMap km-dev:RefObjectMap_b7a30263-c6fd-4b28-8bf3-976d468ee107 .
+
+km-dev:PredicateObjectMap_72c23e48-48d2-4a0a-80a4-be6176ddfd42 rr:objectMap km-dev:RefObjectMap_b7a30263-c6fd-4b28-8bf3-976d468ee107 .
+
+km-dev:TriplesMap_b3dd9a5c-8054-4718-a252-2424e6639bb9 rr:predicateObjectMap km-dev:PredicateObjectMap_72c23e48-48d2-4a0a-80a4-be6176ddfd42 .
+
+km-dev:PredicateObjectMap_72c23e48-48d2-4a0a-80a4-be6176ddfd42 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node1alnjh7rgx1 .
+
+_:node1alnjh7rgx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_72c23e48-48d2-4a0a-80a4-be6176ddfd42 .
+
+km-dev:PredicateObjectMap_6480f995-f85e-4881-a7b0-81c2952f1ed1 rr:predicate schema:telephone .
+
+km-dev:RefObjectMap_1d3e080b-d7b3-498e-abbc-2ef0734d3972 a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_cf1d229f-69ae-449d-9441-f2779e09aca5 ;
+	km-dev:isPartOfMapping _:node1alnjh7rgx1 .
+
+_:node1alnjh7rgx1 km-dev:hasObjectMap km-dev:RefObjectMap_1d3e080b-d7b3-498e-abbc-2ef0734d3972 .
+
+km-dev:PredicateObjectMap_6480f995-f85e-4881-a7b0-81c2952f1ed1 rr:objectMap km-dev:RefObjectMap_1d3e080b-d7b3-498e-abbc-2ef0734d3972 .
+
+km-dev:TriplesMap_b3dd9a5c-8054-4718-a252-2424e6639bb9 rr:predicateObjectMap km-dev:PredicateObjectMap_6480f995-f85e-4881-a7b0-81c2952f1ed1 .
+
+km-dev:PredicateObjectMap_6480f995-f85e-4881-a7b0-81c2952f1ed1 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node1alnjh7rgx1 .
+
+_:node1alnjh7rgx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_6480f995-f85e-4881-a7b0-81c2952f1ed1 .
+
+km-dev:TriplesMap_be6d6b2d-e2d2-4cb5-9728-1fea138bd900 a rr:TriplesMap .
+
+_:node1alnjh7rgx1 km-dev:hasTriplesMap km-dev:TriplesMap_be6d6b2d-e2d2-4cb5-9728-1fea138bd900 .
+
+km-dev:TriplesMap_be6d6b2d-e2d2-4cb5-9728-1fea138bd900 km-dev:isPartOfMapping _:node1alnjh7rgx1 .
+
+_:node1alnjh7rgx4 rr:tableName "phone-extractions-sample.jl" ;
+	a rr:LogicalTable ;
+	km-dev:isPartOfMapping _:node1alnjh7rgx1 .
+
+_:node1alnjh7rgx1 km-dev:hasLogicalTable _:node1alnjh7rgx4 .
+
+km-dev:TriplesMap_be6d6b2d-e2d2-4cb5-9728-1fea138bd900 rr:logicalTable _:node1alnjh7rgx4 ;
+	rr:subjectMap _:node1alnjh7rgx5 .
+
+_:node1alnjh7rgx1 km-dev:hasSubjectMap _:node1alnjh7rgx5 .
+
+_:node1alnjh7rgx5 km-dev:isPartOfMapping _:node1alnjh7rgx1 ;
+	a rr:SubjectMap ;
+	km-dev:alignmentNodeId "http://schema.dig.isi.edu/ontology/PhoneNumber1" ;
+	rr:class memex:PhoneNumber ;
+	rr:template "{[\"text_phone_numbers\",\"text_phone_uri\"]}" .
+
+km-dev:PredicateObjectMap_3dadedfa-b32e-4724-a50d-94758d2c796e rr:predicate memex:owner .
+
+km-dev:RefObjectMap_8188f704-ca76-41b0-a17e-cf4708afa136 a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_b3dd9a5c-8054-4718-a252-2424e6639bb9 ;
+	km-dev:isPartOfMapping _:node1alnjh7rgx1 .
+
+_:node1alnjh7rgx1 km-dev:hasObjectMap km-dev:RefObjectMap_8188f704-ca76-41b0-a17e-cf4708afa136 .
+
+km-dev:PredicateObjectMap_3dadedfa-b32e-4724-a50d-94758d2c796e rr:objectMap km-dev:RefObjectMap_8188f704-ca76-41b0-a17e-cf4708afa136 .
+
+km-dev:TriplesMap_be6d6b2d-e2d2-4cb5-9728-1fea138bd900 rr:predicateObjectMap km-dev:PredicateObjectMap_3dadedfa-b32e-4724-a50d-94758d2c796e .
+
+km-dev:PredicateObjectMap_3dadedfa-b32e-4724-a50d-94758d2c796e a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node1alnjh7rgx1 .
+
+_:node1alnjh7rgx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_3dadedfa-b32e-4724-a50d-94758d2c796e .
+
+km-dev:PredicateObjectMap_5e5d02b3-7f67-4ee1-bae7-f671eb355092 rr:predicate schema:name .
+
+_:node1alnjh7rgx6 rr:column "[\"text_phone_numbers\",\"values\"]" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node1alnjh7rgx1 .
+
+_:node1alnjh7rgx1 km-dev:hasObjectMap _:node1alnjh7rgx6 .
+
+km-dev:PredicateObjectMap_5e5d02b3-7f67-4ee1-bae7-f671eb355092 rr:objectMap _:node1alnjh7rgx6 .
+
+km-dev:TriplesMap_be6d6b2d-e2d2-4cb5-9728-1fea138bd900 rr:predicateObjectMap km-dev:PredicateObjectMap_5e5d02b3-7f67-4ee1-bae7-f671eb355092 .
+
+km-dev:PredicateObjectMap_5e5d02b3-7f67-4ee1-bae7-f671eb355092 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node1alnjh7rgx1 .
+
+_:node1alnjh7rgx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_5e5d02b3-7f67-4ee1-bae7-f671eb355092 .
+
+km-dev:TriplesMap_cf1d229f-69ae-449d-9441-f2779e09aca5 a rr:TriplesMap .
+
+_:node1alnjh7rgx1 km-dev:hasTriplesMap km-dev:TriplesMap_cf1d229f-69ae-449d-9441-f2779e09aca5 .
+
+km-dev:TriplesMap_cf1d229f-69ae-449d-9441-f2779e09aca5 km-dev:isPartOfMapping _:node1alnjh7rgx1 .
+
+_:node1alnjh7rgx7 rr:tableName "phone-extractions-sample.jl" ;
+	a rr:LogicalTable ;
+	km-dev:isPartOfMapping _:node1alnjh7rgx1 .
+
+_:node1alnjh7rgx1 km-dev:hasLogicalTable _:node1alnjh7rgx7 .
+
+km-dev:TriplesMap_cf1d229f-69ae-449d-9441-f2779e09aca5 rr:logicalTable _:node1alnjh7rgx7 ;
+	rr:subjectMap _:node1alnjh7rgx8 .
+
+_:node1alnjh7rgx1 km-dev:hasSubjectMap _:node1alnjh7rgx8 .
+
+_:node1alnjh7rgx8 km-dev:isPartOfMapping _:node1alnjh7rgx1 ;
+	a rr:SubjectMap ;
+	km-dev:alignmentNodeId "http://schema.dig.isi.edu/ontology/PhoneNumber2" ;
+	rr:class memex:PhoneNumber ;
+	rr:template "{[\"url_phone_numbers\",\"title_country_uri\"]}" .
+
+km-dev:PredicateObjectMap_c82b22e2-d8ef-49b8-8241-6c3ca084fe77 rr:predicate memex:owner .
+
+km-dev:RefObjectMap_6e54ad31-876d-4855-bae2-927baf87f61f a rr:RefObjectMap , rr:ObjectMap ;
+	rr:parentTriplesMap km-dev:TriplesMap_b3dd9a5c-8054-4718-a252-2424e6639bb9 ;
+	km-dev:isPartOfMapping _:node1alnjh7rgx1 .
+
+_:node1alnjh7rgx1 km-dev:hasObjectMap km-dev:RefObjectMap_6e54ad31-876d-4855-bae2-927baf87f61f .
+
+km-dev:PredicateObjectMap_c82b22e2-d8ef-49b8-8241-6c3ca084fe77 rr:objectMap km-dev:RefObjectMap_6e54ad31-876d-4855-bae2-927baf87f61f .
+
+km-dev:TriplesMap_cf1d229f-69ae-449d-9441-f2779e09aca5 rr:predicateObjectMap km-dev:PredicateObjectMap_c82b22e2-d8ef-49b8-8241-6c3ca084fe77 .
+
+km-dev:PredicateObjectMap_c82b22e2-d8ef-49b8-8241-6c3ca084fe77 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node1alnjh7rgx1 .
+
+_:node1alnjh7rgx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_c82b22e2-d8ef-49b8-8241-6c3ca084fe77 .
+
+km-dev:PredicateObjectMap_0af59591-8016-4c10-8275-7abfc4296a6a rr:predicate schema:name .
+
+_:node1alnjh7rgx9 rr:column "[\"url_phone_numbers\",\"values\"]" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node1alnjh7rgx1 .
+
+_:node1alnjh7rgx1 km-dev:hasObjectMap _:node1alnjh7rgx9 .
+
+km-dev:PredicateObjectMap_0af59591-8016-4c10-8275-7abfc4296a6a rr:objectMap _:node1alnjh7rgx9 .
+
+km-dev:TriplesMap_cf1d229f-69ae-449d-9441-f2779e09aca5 rr:predicateObjectMap km-dev:PredicateObjectMap_0af59591-8016-4c10-8275-7abfc4296a6a .
+
+km-dev:PredicateObjectMap_0af59591-8016-4c10-8275-7abfc4296a6a a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node1alnjh7rgx1 .
+
+_:node1alnjh7rgx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_0af59591-8016-4c10-8275-7abfc4296a6a .

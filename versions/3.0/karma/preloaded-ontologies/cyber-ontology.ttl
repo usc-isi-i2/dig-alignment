@@ -37,18 +37,17 @@ memex:Malware a owl:Class ;
 	rdfs:comment "Software that is intended to damage or disable computers and computer systems." ;
 	.
 
+memex:ComputerHardware a owl:Class ;
+	rdfs:label "ComputerHardware" ;
+	rdfs:subClassOf schema:CreativeWork ;
+	rdfs:comment "collection of physical components that constitute a computer system." ;
+	.
+
 memex:IPAddress a owl:Class ;
 	rdfs:label "IPAddress" ;
 	rdfs:subClassOf memex:Identifier ;
 	rdfs:comment "A unique string of numbers separated by periods that identifies each computer using the Internet Protocol to communicate over a network." ;
 	.
-
-memex:Blog a owl:Class ;
-	rdfs:label "Blog" ;
-	rdfs:subClassOf memex:Post ;
-	rdfs:comment "a regularly updated website or web page, typically one run by an individual or small group, that is written in an informal or conversational style" ;
-	.
-
 
 #########################################################
 #
@@ -175,8 +174,28 @@ memex:registrar a rdf:Property ;
 	rdfs:comment "An official responsible for keeping a register or official records." ;
 	.
 
+memex:targetSoftware a rdf:Property ;
+	rdfs:label "targetSoftware" ;
+	schema:domainIncludes memex:SoftwareSystem ;
+	schema:rangeIncludes memex:SoftwareSystem ;
+	rdfs:comment "A software system on which a particular software is supposed to run." ;
+	.
+
+memex:platform a rdf:Property ;
+	rdfs:label "platform" ;
+	schema:domainIncludes memex:SoftwareSystem ;
+	schema:rangeIncludes memex:ComputerHardware ;
+	rdfs:comment "A computer hardware on which the software is supposed to run" ;
+	.
+
 memex:autonomousSystemNumber  a rdf:Property ;
 	rdfs:label "autonomousSystemNumber" ;
+	schema:domainIncludes memex:IPAddress ;
+	rdfs:comment "Within the Internet, an autonomous system (AS) is a collection of connected Internet Protocol (IP) routing prefixes under the control of one or more network operators on behalf of a single administrative entity or domain that presents a common, clearly defined routing policy to the Internet" ;
+	.
+
+memex:autonomousSystemName  a rdf:Property ;
+	rdfs:label "autonomousSystemName" ;
 	schema:domainIncludes memex:IPAddress ;
 	rdfs:comment "Within the Internet, an autonomous system (AS) is a collection of connected Internet Protocol (IP) routing prefixes under the control of one or more network operators on behalf of a single administrative entity or domain that presents a common, clearly defined routing policy to the Internet" ;
 	.
@@ -185,6 +204,15 @@ memex:observedDate a rdf:Property ;
 	rdfs:label "observedDate" ;
 	schema:domainIncludes memex:Malware ;
 	rdfs:comment "The date on which this even was first observed" ;
+	memex:es_directive memex:ES_format_date_optional_time ;
+	memex:es_directive memex:ES_type_date ;
+	.
+
+memex:reportedBy a rdf:Property ;
+	rdfs:label "reportedBy" ;
+	schema:domainIncludes memex:Malware ;
+	schema:rangeIncludes memex:PersonOrOrganization ;
+	rdfs:comment "The Person or Organization who reported the malware" ;
 	.
 
 memex:hostedAt a rdf:Property ;

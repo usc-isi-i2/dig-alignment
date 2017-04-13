@@ -1,0 +1,102 @@
+{
+  "dig_settings": {
+    "index": {
+      "number_of_replicas": "0",
+      "number_of_shards": "5"
+    },
+    "analysis": {
+      "analyzer": {
+        "partial_phone_analyzer": {
+          "tokenizer": "keyword",
+          "char_filter": [
+            "digits_only"
+          ],
+          "filter": [
+            "ngram_3_10"
+          ]
+        },
+        "exact_phone_analyzer": {
+          "tokenizer": "keyword",
+          "char_filter": [
+            "digits_only"
+          ]
+        },
+        "exact_email_analyzer": {
+          "tokenizer": "uax_url_email",
+          "filter": [
+            "email_splitting_filter_keep_original",
+            "lowercase",
+            "unique"
+          ]
+        },
+        "partial_email_analyzer": {
+          "tokenizer": "uax_url_email",
+          "filter": [
+            "ngram_5_8"
+          ]
+        }
+      },
+      "filter": {
+        "filter_stemmer": {
+          "type": "porter_stem",
+          "language": "English"
+        },
+        "shingle_filter_2_4": {
+          "type": "shingle",
+          "min_shingle_size": 2,
+          "max_shingle_size": 4,
+          "output_unigrams": false
+        },
+        "shingle_filter_4": {
+          "type": "shingle",
+          "min_shingle_size": 4,
+          "max_shingle_size": 4,
+          "output_unigrams": false
+        },
+        "email_splitting_filter_keep_original": {
+          "type": "pattern_capture",
+          "preserve_original": 1,
+          "patterns": [
+            "(.+)@",
+            "@(.+)"
+          ]
+        },
+        "email_splitting_filter": {
+          "type": "pattern_capture",
+          "preserve_original": 0,
+          "patterns": [
+            "(.+)@",
+            "@(.+)"
+          ]
+        },
+        "ngram_3_10": {
+          "type": "nGram",
+          "min_gram": 3,
+          "max_gram": 10
+        },
+        "ngram_5_8": {
+          "type": "nGram",
+          "min_gram": 5,
+          "max_gram": 8
+        }
+      },
+      "char_filter": {
+        "digits_only": {
+          "type": "pattern_replace",
+          "pattern": "(\\D)",
+          "replacement": ""
+        }
+      }
+    }
+  },
+  "base_url": "https://raw.githubusercontent.com/usc-isi-i2/dig-alignment/development/versions/3.0/frames/",
+  "frame_mapping": {
+    "offer": "offer.json",
+    "webpage": "webpage.json",
+    "email": "email.json",
+    "phone": "phone.json",
+    "image": "image.json",
+    "adultservice": "adultservice.json",
+    "seller": "seller.json"
+  }
+}

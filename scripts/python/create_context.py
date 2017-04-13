@@ -74,7 +74,7 @@ class Entity(object):
         if self.is_class:
             return name, {"@type": "@id", "@id": expansion}
         elif self.is_has_type:
-            return name, '@index'
+            return name, {"@id": expansion, "@container": '@index'}
         elif self.is_property:
             c = {"@id": expansion}
             if self.is_object_property:
