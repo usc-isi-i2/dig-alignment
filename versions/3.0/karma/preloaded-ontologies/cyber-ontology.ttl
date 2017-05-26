@@ -55,6 +55,12 @@ memex:Conference a owl:Class ;
  	rdfs:comment "A conference is a meeting of people who confer about a topic." ;
  	.
 
+memex:Extraction a owl:Class ;
+	rdfs:label "Extraction" ;
+	rdfs:subClassOf schema:CreativeWork ;
+	rdfs:comment "Text extracted from any page" ;
+	.
+
 #########################################################
 #
 # Properties
@@ -97,6 +103,21 @@ memex:hasExploit a rdf:Property ;
 	schema:domainIncludes memex:Vulnerability ;
 	schema:rangeIncludes memex:Exploit;
 	rdfs:comment "Exploits that are known to exploit a vulnerability" ;
+	.
+
+memex:hasExtraction a rdf:Property ;
+	rdfs:label "hasExtraction" ;
+	schema:domainIncludes schema:CreativeWork ;
+	schema:rangeIncludes memex:Extraction ;
+	rdfs:comment "Extraction from a page" ;
+	.
+
+memex:isExtractedFrom a rdf:Property ;
+	rdfs:label "isExtractedFrom" ;
+	schema:domainIncludes memex:Extraction ;
+	schema:rangeIncludes schema:CreativeWork;
+	owl:inverseOf  memex:hasExtraction ;
+	rdfs:comment "The extraction is done from a source page" ;
 	.
 
 # CVSS
@@ -226,6 +247,12 @@ memex:hostedAt a rdf:Property ;
 	schema:domainIncludes schema:CreativeWork ;
 	schema:rangeIncludes memex:IPAddress ;
 	rdfs:comment "An identifier of a system where creative work is hosted" ;
+	.
+
+memex:extractor a rdf:Property ;
+	rdfs:label "extractor" ;
+	schema:domainIncludes memex:Extraction ;
+	rdfs:comment "The name of the extractor that did the Extraction" ;
 	.
 
 
