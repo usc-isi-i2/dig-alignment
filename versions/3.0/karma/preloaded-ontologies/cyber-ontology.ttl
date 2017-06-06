@@ -19,6 +19,12 @@ memex:Vulnerability a owl:Class ;
 	rdfs:comment "A weakness which allows an attacker to reduce a system's information assurance" ;
 	.
 
+memex:SecurityUpdate a owl:Class ;
+	rdfs:label "SecurityUpdate" ;
+	rdfs:subClassOf schema:SoftwareApplication ;
+	rdfs:comment "A Security Update or Patch to a SoftwareApplication" ;
+	.
+
 memex:CVSS a owl:Class ;
 	rdfs:label "CVSS" ;
 	rdfs:subClassOf schema:Intangible ;
@@ -255,6 +261,30 @@ memex:extractor a rdf:Property ;
 	rdfs:comment "The name of the extractor that did the Extraction" ;
 	.
 
+memex:fixesVulnerability a rdf:Property ;
+	rdfs:label "fixesVulnerability" ;
+	schema:domainIncludes memex:SecurityUpdate ;
+	schema:rangeIncludes memex:Vulnerability;
+	rdfs:comment "The Security Update fixes this Vulnerability" ;
+	.
+
+memex:isFixedBy a rdf:Property ;
+	rdfs:label "isFixedBy" ;
+	schema:domainIncludes memex:Vulnerability;
+	schema:rangeIncludes memex:SecurityUpdate ;
+	owl:inverseOf memex:fixesVulnerability ;
+	rdfs:comment "The Vulnerability if fixed by this Security Update" ;
+	.
+
+memex:mentionsSecurityUpdate a rdf:Property ; 
+	rdfs:label "mentionsSecurityUpdate" ;
+	rdfs:subPropertyOf schema:mentions ;
+	schema:domainIncludes schema:Thing ;
+	schema:rangeIncludes memex:SecurityUpdate ;
+	rdfs:comment """The SecurityUpdate mentioned in an entity""" ;
+	memex:jsonLD_container memex:JSONLD_Set ;
+	memex:es_directive memex:ES_not_analyzed ;
+	.
 
 #########################################################
 #
