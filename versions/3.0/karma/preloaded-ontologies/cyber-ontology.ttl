@@ -73,8 +73,9 @@ memex:Extraction a owl:Class ;
 #
 #########################################################
 
-# Vulnerability
-#
+#########################################################
+# Object Properties
+#########################################################
 
 memex:vulnerabilityOf a rdf:Property ;
 	rdfs:label "vulnerabilityOf" ;
@@ -126,8 +127,89 @@ memex:isExtractedFrom a rdf:Property ;
 	rdfs:comment "The extraction is done from a source page" ;
 	.
 
-# CVSS
-#
+memex:hasSourceCode a rdf:Property ;
+	rdfs:label "hasSourceCode" ;
+	schema:domainIncludes memex:Exploit ;
+	schema:rangeIncludes schema:SoftwareSourceCode ;
+	rdfs:comment "Source code of an exploit" ;
+	.
+
+memex:exploitsVulnerability a rdf:Property ;
+	rdfs:label "exploitsVulnerability" ;
+	schema:domainIncludes memex:Exploit;
+	schema:rangeIncludes memex:Vulnerability;
+	rdfs:comment "Vulnerabilities that an Exploit exploits" ;
+	.
+
+memex:itemStolen a rdf:Property ;
+	rdfs:label "itemStolen" ;
+	schema:domainIncludes memex:Exploit;
+	schema:rangeIncludes memex:LoginCredentials;
+	rdfs:comment "Item stolen during an exploit" ;
+	.
+
+memex:targetSoftware a rdf:Property ;
+	rdfs:label "targetSoftware" ;
+	schema:domainIncludes memex:SoftwareSystem ;
+	schema:rangeIncludes memex:SoftwareSystem ;
+	rdfs:comment "A software system on which a particular software is supposed to run." ;
+	.
+
+memex:platform a rdf:Property ;
+	rdfs:label "platform" ;
+	schema:domainIncludes memex:SoftwareSystem ;
+	schema:rangeIncludes memex:ComputerHardware ;
+	rdfs:comment "A computer hardware on which the software is supposed to run" ;
+	.
+
+memex:reportedBy a rdf:Property ;
+	rdfs:label "reportedBy" ;
+	schema:domainIncludes memex:Malware ;
+	schema:rangeIncludes memex:PersonOrOrganization ;
+	rdfs:comment "The Person or Organization who reported the malware" ;
+	.
+
+memex:hostedAt a rdf:Property ;
+	rdfs:label "hostedAt" ;
+	schema:domainIncludes schema:CreativeWork ;
+	schema:rangeIncludes memex:IPAddress ;
+	rdfs:comment "An identifier of a system where creative work is hosted" ;
+	.
+
+memex:extractor a rdf:Property ;
+	rdfs:label "extractor" ;
+	schema:domainIncludes memex:Extraction ;
+	rdfs:comment "The name of the extractor that did the Extraction" ;
+	.
+
+memex:fixesVulnerability a rdf:Property ;
+	rdfs:label "fixesVulnerability" ;
+	schema:domainIncludes memex:SecurityUpdate ;
+	schema:rangeIncludes memex:Vulnerability;
+	rdfs:comment "The Security Update fixes this Vulnerability" ;
+	.
+
+memex:isFixedBy a rdf:Property ;
+	rdfs:label "isFixedBy" ;
+	schema:domainIncludes memex:Vulnerability;
+	schema:rangeIncludes memex:SecurityUpdate ;
+	owl:inverseOf memex:fixesVulnerability ;
+	rdfs:comment "The Vulnerability if fixed by this Security Update" ;
+	.
+
+memex:mentionsSecurityUpdate a rdf:Property ; 
+	rdfs:label "mentionsSecurityUpdate" ;
+	rdfs:subPropertyOf schema:mentions ;
+	schema:domainIncludes schema:Thing ;
+	schema:rangeIncludes memex:SecurityUpdate ;
+	rdfs:comment """The SecurityUpdate mentioned in an entity""" ;
+	memex:jsonLD_container memex:JSONLD_Set ;
+	memex:es_directive memex:ES_not_analyzed ;
+	.
+
+#########################################################
+# Data Properties
+#########################################################
 
 memex:cvssAvailability a rdf:Property ;
 	rdfs:label "cvssAvailability" ;
@@ -177,48 +259,20 @@ memex:cvssScore a rdf:Property ;
 	rdfs:comment "Score of an cvss" ;
 	.
 
-# Exploit
-#
-
-memex:hasSourceCode a rdf:Property ;
-	rdfs:label "hasSourceCode" ;
-	schema:domainIncludes memex:Exploit ;
-	schema:rangeIncludes schema:SoftwareSourceCode ;
-	rdfs:comment "Source code of an exploit" ;
+memex:softwareTags a rdf:Property ;
+	schema:domainIncludes schema:CreativeWork ;
+	schema:rangeIncludes schema:Text ;
 	.
 
-memex:exploitsVulnerability a rdf:Property ;
-	rdfs:label "exploitsVulnerability" ;
-	schema:domainIncludes memex:Exploit;
-	schema:rangeIncludes memex:Vulnerability;
-	rdfs:comment "Vulnerabilities that an Exploit exploits" ;
-	.
-
-memex:itemStolen a rdf:Property ;
-	rdfs:label "itemStolen" ;
-	schema:domainIncludes memex:Exploit;
-	schema:rangeIncludes memex:LoginCredentials;
-	rdfs:comment "Item stolen during an exploit" ;
+memex:financialTags a rdf:Property ;
+	schema:domainIncludes schema:CreativeWork ;
+	schema:rangeIncludes schema:Text ;
 	.
 
 memex:registrar a rdf:Property ;
 	rdfs:label "registrar" ;
 	schema:domainIncludes memex:IPAddress ;
 	rdfs:comment "An official responsible for keeping a register or official records." ;
-	.
-
-memex:targetSoftware a rdf:Property ;
-	rdfs:label "targetSoftware" ;
-	schema:domainIncludes memex:SoftwareSystem ;
-	schema:rangeIncludes memex:SoftwareSystem ;
-	rdfs:comment "A software system on which a particular software is supposed to run." ;
-	.
-
-memex:platform a rdf:Property ;
-	rdfs:label "platform" ;
-	schema:domainIncludes memex:SoftwareSystem ;
-	schema:rangeIncludes memex:ComputerHardware ;
-	rdfs:comment "A computer hardware on which the software is supposed to run" ;
 	.
 
 memex:autonomousSystemNumber  a rdf:Property ;
@@ -241,50 +295,7 @@ memex:observedDate a rdf:Property ;
 	memex:es_directive memex:ES_type_date ;
 	.
 
-memex:reportedBy a rdf:Property ;
-	rdfs:label "reportedBy" ;
-	schema:domainIncludes memex:Malware ;
-	schema:rangeIncludes memex:PersonOrOrganization ;
-	rdfs:comment "The Person or Organization who reported the malware" ;
-	.
 
-memex:hostedAt a rdf:Property ;
-	rdfs:label "hostedAt" ;
-	schema:domainIncludes schema:CreativeWork ;
-	schema:rangeIncludes memex:IPAddress ;
-	rdfs:comment "An identifier of a system where creative work is hosted" ;
-	.
-
-memex:extractor a rdf:Property ;
-	rdfs:label "extractor" ;
-	schema:domainIncludes memex:Extraction ;
-	rdfs:comment "The name of the extractor that did the Extraction" ;
-	.
-
-memex:fixesVulnerability a rdf:Property ;
-	rdfs:label "fixesVulnerability" ;
-	schema:domainIncludes memex:SecurityUpdate ;
-	schema:rangeIncludes memex:Vulnerability;
-	rdfs:comment "The Security Update fixes this Vulnerability" ;
-	.
-
-memex:isFixedBy a rdf:Property ;
-	rdfs:label "isFixedBy" ;
-	schema:domainIncludes memex:Vulnerability;
-	schema:rangeIncludes memex:SecurityUpdate ;
-	owl:inverseOf memex:fixesVulnerability ;
-	rdfs:comment "The Vulnerability if fixed by this Security Update" ;
-	.
-
-memex:mentionsSecurityUpdate a rdf:Property ; 
-	rdfs:label "mentionsSecurityUpdate" ;
-	rdfs:subPropertyOf schema:mentions ;
-	schema:domainIncludes schema:Thing ;
-	schema:rangeIncludes memex:SecurityUpdate ;
-	rdfs:comment """The SecurityUpdate mentioned in an entity""" ;
-	memex:jsonLD_container memex:JSONLD_Set ;
-	memex:es_directive memex:ES_not_analyzed ;
-	.
 
 #########################################################
 #
@@ -319,3 +330,4 @@ schema:target a rdf:Property ;
 	schema:domainIncludes memex:AttackEvent ;
 	schema:rangeIncludes memex:PersonOrOrganization ;
 	.
+
