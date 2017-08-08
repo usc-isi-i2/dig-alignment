@@ -67,6 +67,12 @@ memex:Extraction a owl:Class ;
 	rdfs:comment "Text extracted from any page" ;
 	.
 
+memex:SoftwareSystemClass a owl:Class ;
+	rdfs:subClassOf schema:Intangible ;
+	rdfs:label "SoftwareSystemClass" ;
+	rdfs:comment """Represents a class of software systems, that includes all versions of that software."""
+	.
+
 #########################################################
 #
 # Properties
@@ -76,6 +82,20 @@ memex:Extraction a owl:Class ;
 #########################################################
 # Object Properties
 #########################################################
+memex:includesSoftwares a rdf:Property ;
+	rdfs:label "includesSoftwares" ;
+	schema:domainIncludes memex:SoftwareSystemClass ;
+	schema:rangeIncludes memex:SoftwareSystem ;
+	rdfs:comment "Specifies software included in a SoftwareSystemClass" ;
+	.
+
+memex:hasSoftwareClass a rdf:Property ;
+	rdfs:label "hasSoftwareClass" ;
+	owl:inverseOf memex:includesSoftwares ;
+	schema:domainIncludes memex:SoftwareSystem ;
+	schema:rangeIncludes memex:SoftwareSystemClass ;
+	rdfs:comment "Specifies software included in a SoftwareSystemClass" ;
+	.
 
 memex:vulnerabilityOf a rdf:Property ;
 	rdfs:label "vulnerabilityOf" ;
@@ -174,6 +194,13 @@ memex:hostedAt a rdf:Property ;
 	schema:domainIncludes schema:CreativeWork ;
 	schema:rangeIncludes memex:IPAddress ;
 	rdfs:comment "An identifier of a system where creative work is hosted" ;
+	.
+
+memex:possiblyHostedAt a rdf:Property ;
+	rdfs:label "possiblyHostedAt" ;
+	schema:domainIncludes schema:CreativeWork ;
+	schema:rangeIncludes memex:IPAddress ;
+	rdfs:comment "An identifier of a system where creative work could possibly be hosted" ;
 	.
 
 memex:extractor a rdf:Property ;
@@ -285,6 +312,12 @@ memex:autonomousSystemName  a rdf:Property ;
 	rdfs:label "autonomousSystemName" ;
 	schema:domainIncludes memex:IPAddress ;
 	rdfs:comment "Within the Internet, an autonomous system (AS) is a collection of connected Internet Protocol (IP) routing prefixes under the control of one or more network operators on behalf of a single administrative entity or domain that presents a common, clearly defined routing policy to the Internet" ;
+	.
+
+memex:hostname  a rdf:Property ;
+	rdfs:label "hostname" ;
+	schema:domainIncludes memex:IPAddress ;
+	rdfs:comment "The hostname that resolves into this IP Address" ;
 	.
 
 memex:observedDate a rdf:Property ;
