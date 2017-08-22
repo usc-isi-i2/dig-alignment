@@ -78,6 +78,7 @@ memex:SoftwareSystemCluster a owl:Class ;
 	rdfs:label "SoftwareSystemCluster" ;
 	rdfs:comment """Represents a cluster of Software Systems that could be all versions or a particular version of the Software""" ;
 	.
+
 #########################################################
 #
 # Properties
@@ -263,6 +264,13 @@ memex:mentionsSecurityUpdate a rdf:Property ;
 	memex:es_directive memex:ES_not_analyzed ;
 	.
 
+memex:attackOnSoftwareCluster a rdf:Property ;
+	rdfs:label "attackOnSoftwareCluster" ;
+	schema:domainIncludes memex:AttackEvent ;
+	schema:rangeIncludes memex:SoftwareSystemCluster ;
+	rdfs:comment "The Software Cluster that is attacked by an AttackEvent"
+	.
+	
 #########################################################
 # Data Properties
 #########################################################
@@ -312,6 +320,7 @@ memex:cvssScore a rdf:Property ;
 	rdfs:label "cvssScore" ;
 	schema:domainIncludes memex:CVSS ;
 	schema:rangeIncludes schema:Float ;
+	memex:es_directive memex:ES_type_double ;
 	rdfs:comment "Score of an cvss" ;
 	.
 
@@ -352,11 +361,18 @@ memex:hostname  a rdf:Property ;
 memex:observedDate a rdf:Property ;
 	rdfs:label "observedDate" ;
 	schema:domainIncludes memex:Malware ;
-	rdfs:comment "The date on which this even was first observed" ;
+	rdfs:comment "The date on which this event was first observed" ;
 	memex:es_directive memex:ES_format_date_optional_time ;
 	memex:es_directive memex:ES_type_date ;
 	.
 
+memex:probabilityOfOccurance a rdf:Property ;
+	rdfs:label "probabilityOfOccurance" ;
+	schema:domainIncludes schema:Event ;
+	rdfs:comment "The probability that the Event with occur" ;
+	schema:rangeIncludes schema:Float ;
+	memex:es_directive memex:ES_type_double ;
+	.
 
 #########################################################
 #
