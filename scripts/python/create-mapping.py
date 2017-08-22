@@ -97,8 +97,13 @@ class MappingGenerator(object):
                 }
             if self.ontology.is_type_date(key):
                 new_entry['type'] = 'date'
+            elif self.ontology.is_type_long(key):
+                new_entry['type'] = 'long'
+            elif self.ontology.is_type_double(key):
+                new_entry['type'] = 'double'
             if self.ontology.is_format_date_optional_time(key):
                 new_entry['format'] = 'dateOptionalTime'
+            
             mapping[key] = new_entry
 
     def create_mapping(self):
@@ -163,6 +168,11 @@ class Ontology(object):
     def is_format_date_optional_time(self, key):
         return 'memex:ES_format_date_optional_time' in self.directives(key)
 
+    def is_type_long(self, key):
+        return 'memex:ES_type_long' in self.directives(key)
+
+    def is_type_double(self, key):
+        return 'memex:ES_type_double' in self.directives(key)
 
 
 def main(argv):
