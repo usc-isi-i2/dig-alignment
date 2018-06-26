@@ -120,8 +120,9 @@ class Ontology(object):
         conn.request('POST', '/convert/n3/json-ld/content', urllib.urlencode(content))
         response = conn.getresponse()
         response_text = response.read()
-        # print(response_text)
         print(response.reason)
+        if response.status != 200:
+            print(response_text)
         assert response.status == 200
 
         expanded = json.loads(response_text, strict=False)

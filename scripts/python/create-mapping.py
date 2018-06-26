@@ -97,6 +97,13 @@ class MappingGenerator(object):
                         'index': 'not_analyzed'
                     }
                 }
+            if self.ontology.is_stemmed_field(key):
+                new_entry['fields'] = {
+                    "stemmed": {
+                      "type": "string",
+                      "analyzer": "stemming_analyzer"
+                    }
+                }
             if self.ontology.is_type_date(key):
                 new_entry['type'] = 'date'
             elif self.ontology.is_type_long(key):
@@ -171,6 +178,9 @@ class Ontology(object):
 
     def is_raw_field(self, key):
         return 'memex:ES_include_raw_field' in self.directives(key)
+
+    def is_stemmed_field(self, key):
+        return 'memex:ES_include_stemmed_field' in self.directives(key)
 
     def is_type_date(self, key):
         return 'memex:ES_type_date' in self.directives(key)
