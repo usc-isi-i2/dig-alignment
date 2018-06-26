@@ -26,9 +26,11 @@ class MappingGenerator(object):
         :return: parsed frame as a JSON object.
         :rtype: JSON dictionary
         """
-        f = urllib2.urlopen(url).read()
-        return json.loads(f)
-
+        if url.find("http") == 0:
+            f = urllib2.urlopen(url).read()
+            return json.loads(f)
+        else:
+            return json.load(open(url, "r"))
     not_analyzed_keys = [
         "a",
         "uri"
@@ -137,6 +139,14 @@ class Ontology(object):
                 id = id.replace('memex:', '')
             elif id.startswith('schema:'):
                 id = id.replace('schema:', '')
+            elif id.startswith('space:'):
+                id = id.replace('space:', '')
+            elif id.startswith("http://schema.space.isi.edu/ontology/"):
+                id = id.replace("http://schema.space.isi.edu/ontology/", "")
+            elif id.startswith("http://www.w3.org/ns/prov#"):
+                id = id.replace("http://www.w3.org/ns/prov#", "")
+            elif id.startswith("http://uas-c2-initiative.mil/#"):
+                id = id.replace("http://uas-c2-initiative.mil/#", "")
             self.ontolgy[id] = item;
 
     def directives(self, key):

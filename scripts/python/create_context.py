@@ -115,13 +115,16 @@ class Ontology(object):
 
         content = {'content': self.triples}
 
-        conn = HTTPConnection('rdf-translator.appspot.com')
+        conn = HTTPConnection('rdf-translator.appspot.com', timeout=60*10)
         # conn.set_debuglevel(1)
         conn.request('POST', '/convert/n3/json-ld/content', urllib.urlencode(content))
         response = conn.getresponse()
+        response_text = response.read()
+        # print(response_text)
+        print(response.reason)
         assert response.status == 200
 
-        expanded = json.load(response)
+        expanded = json.loads(response_text, strict=False)
         compacted = jsonld.compact(expanded, self.context)
         # print json.dumps(compacted,indent=4)
         compacted['@graph'] = sorted(compacted['@graph'], key=lambda x: x['@id'])
